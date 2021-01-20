@@ -24,7 +24,7 @@ container, on/off-prem, or in Netris cloud.
 
 Diagram: High level Netris architecture.
 
-.. image:: high_level_netris_architecture.png
+.. image:: images/high_level_netris_architecture.png
     :align: center
 
 * **Controller HA​.** We highly recommend running more than one copy of the
@@ -73,5 +73,5 @@ encrypted tunnels.
 
 Diagram: Netris SoftGate high level architecture
 
-.. image:: netris_softgate_high_level_architecture.png
+.. image:: images/netris_softgate_high_level_architecture.png
     :align: center
