@@ -108,11 +108,14 @@ html_theme_options = {
     'description_font_style': 'Montserrat',
     'head_font_family': 'Montserrat',
     'analytics_id': 'UA-152905529-2',
+    'body_text': '#f9556d',
 }
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = 'alabaster'
+
+body_text = '#01358d'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
