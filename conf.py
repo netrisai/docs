@@ -43,7 +43,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Netris user manual'
+project = u'Netris docs'
 copyright = u'2021, Netris'
 
 # The version info for the project you're documenting, acts as replacement for
