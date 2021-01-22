@@ -1,6 +1,6 @@
-###########
-2) Concepts
-###########
+########
+Concepts
+########
 
 Introduction to Netris
 ======================
