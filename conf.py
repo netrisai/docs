@@ -105,8 +105,9 @@ extensions = [
 ]
 
 html_theme_options = {
-    'logo': 'logo.png',
     'description_font_style': 'Montserrat',
+    'head_font_family': 'Montserrat',
+    'analytics_id': 'UA-152905529-2',
 }
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
