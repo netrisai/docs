@@ -95,39 +95,6 @@ pygments_style = 'sphinx'
 
 
 # -- Options for HTML output ----------------------------------------------
-
-# -- Extensions --------------------------------------------------------------
-extensions = [
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.autodoc",
-    "sphinx.ext.mathjax",
-    "sphinx.ext.viewcode",
-]
-
-#html_theme_options = {
-#    'description_font_style': 'Montserrat',
-#    'head_font_family': 'Montserrat',
-#    'analytics_id': 'UA-152905529-2',
-#    'body_text': '#f9556d',
-#}
-
-html_theme_options = {
-    'analytics_id': 'UA-152905529-2',  #  Provided by Google in your dashboard
-    'analytics_anonymize_ip': False,
-    'logo_only': False,
-    'display_version': True,
-    'prev_next_buttons_location': 'bottom',
-    'style_external_links': False,
-    'vcs_pageview_mode': '',
-    'style_nav_header_background': 'white',
-    # Toc options
-    'collapse_navigation': True,
-    'sticky_navigation': True,
-    'navigation_depth': 4,
-    'includehidden': True,
-    'titles_only': False
-}
-
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = 'default'
