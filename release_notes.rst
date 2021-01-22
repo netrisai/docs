@@ -1,6 +1,6 @@
-=============
-Release notes
-=============
+################
+1) Release notes
+################
 * DPDK​ ​data plane support for SoftGate nodes​. - Provides higher SoftGateperformance. Up to 27Mpps, 100Gbps for L3 routing, 12Mpps with NAT rules on.
 * L4 Load Balancer​. - In addition to switch-based Anycast Load Balancer, wenow support a SoftGate/DPDK-based L4 Load Balancer. L4LB integrates withKubernetes providing cloud-like load balancer service (type: load-balancer).
 * Kubenet​ - a network service purpose-built for Kubernetes cluster nodes.Kubenet integrates with Kube API to provide an on-demand load balancer andother Kubernetes specific networking features. Netris Kubenet is designed tocomplement Kubernetes CNI networking with modern physical networking.
