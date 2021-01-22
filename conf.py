@@ -96,6 +96,18 @@ pygments_style = 'sphinx'
 
 # -- Options for HTML output ----------------------------------------------
 
+# -- Extensions --------------------------------------------------------------
+extensions = [
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.viewcode",
+]
+
+html_theme_options = {
+    'caption_font_family: 'Montserrat',
+}
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = 'alabaster'
