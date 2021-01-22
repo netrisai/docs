@@ -12,8 +12,14 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
-   :glob:
+   :caption: Getting Started
 
-   release_notes
    concepts
    switch_agent_installation
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Updates
+   
+   release_notes
+
