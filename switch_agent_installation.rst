@@ -98,5 +98,6 @@ Description of netris-setup parameters
 Once the switch boots up you should see its heartbeat going from Critical to OK in Net→Inventory, Telescope→Dashboard, and switch color will reflect its health in Net→Topology
 
 Screenshot: Net→Inventory
+
 .. image:: images/inventory_heartbeat.png
     :align: center
