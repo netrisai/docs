@@ -37,8 +37,8 @@ for current_version in ${versions}; do
 	export current_version
 	git checkout -B ${current_version} refs/remotes/origin/${current_version}
 
-	# rename "master" to "stable"
-	if [[ "${current_version}" == "master" ]]; then
+	# rename "deploy-gh-pages-ci" to "stable"
+	if [[ "${current_version}" == "deploy-gh-pages-ci" ]]; then
 		current_version="stable"
 	fi
 
@@ -75,8 +75,8 @@ for current_version in ${versions}; do
 
 done
 
-# return to master branch
-git checkout master
+# return to deploy-gh-pages-ci branch
+git checkout deploy-gh-pages-ci
 
 #######################
 # Update GitHub Pages #
