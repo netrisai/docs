@@ -44,7 +44,7 @@ for current_version in ${versions}; do
 
 	echo "INFO: Building sites for ${current_version}"
 
-	# skip this branch if it doesn't have our docs dir & sphinx config
+	# skip this branch if it doesn't have our dir & sphinx config
 	if [ ! -e 'conf.py' ]; then
 		echo -e "\tINFO: Couldn't find 'conf.py' (skipped)"
 		continue
@@ -63,15 +63,15 @@ for current_version in ${versions}; do
   # PDF #
   sphinx-build -b rinoh . _build/rinoh -D language="${languages}"
   mkdir -p "${docroot}/${languages}/${current_version}"
-  cp "docs/_build/rinoh/target.pdf" "${docroot}/${languages}/${current_version}/netris-docs_${languages}_${current_version}.pdf"
+  cp "_build/rinoh/target.pdf" "${docroot}/${languages}/${current_version}/netris-docs_${languages}_${current_version}.pdf"
 
   # EPUB #
-  sphinx-build -b epub docs/ docs/_build/epub -D language="${languages}"
+  sphinx-build -b epub _build/epub -D language="${languages}"
   mkdir -p "${docroot}/${languages}/${current_version}"
-  cp "docs/_build/epub/target.epub" "${docroot}/${languages}/${current_version}/netris-docs_${languages}_${current_version}.epub"
+  cp "_build/epub/target.epub" "${docroot}/${languages}/${current_version}/netris-docs_${languages}_${current_version}.epub"
 
   # copy the static assets produced by the above build into our docroot
-  rsync -av "docs/_build/html/" "${docroot}/"
+  rsync -av "_build/html/" "${docroot}/"
 
 done
 
