@@ -134,7 +134,7 @@ msg="Updating Docs for commit ${GITHUB_SHA} made on `date -d"@${SOURCE_DATE_EPOC
 git commit -am "${msg}"
 
 # overwrite the contents of the gh-pages branch on our github.com repo
-# git push deploy gh-pages --force
+git push deploy gh-pages --force
 
 popd # return to main repo sandbox root
 
