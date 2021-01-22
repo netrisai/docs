@@ -287,3 +287,114 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+
+# -- Options for Epub output -------------------------------------------------
+
+# Bibliographic Dublin Core info.
+epub_title = project
+
+# The unique identifier of the text. This can be a ISBN number
+# or the project homepage.
+#
+# epub_identifier = ''
+
+# A unique identification for the text.
+#
+# epub_uid = ''
+
+# A list of files that should not be packed into the epub file.
+epub_exclude_files = ['search.html']
+
+
+# -- Extension configuration -------------------------------------------------
+
+# -- Options for intersphinx extension ---------------------------------------
+
+# Example configuration for intersphinx: refer to the Python standard library.
+#intersphinx_mapping = {'https://docs.python.org/': None}
+
+# -- Options for todo extension ----------------------------------------------
+
+# If true, `todo` and `todoList` produce output, else they produce nothing.
+todo_include_todos = True
+
+# prevent "failed to import module...No module named..." errors on modules that
+# we don't need just to build our documentation from the code
+autodoc_mock_imports = [ "kivy", "usb1" ]
+autodoc_default_flags = ['members']
+autodoc_member_order = 'bysource'
+autodoc_default_options = {
+	'undoc-members': True,
+}
+
+############################
+# SETUP THE RTD LOWER-LEFT #
+############################
+html_context['display_lower_left'] = True
+
+from git import Repo
+repo = Repo( search_parent_directories=True )
+
+if 'current_version' in os.environ:
+	# get the current_version env var set by updatePages.sh
+	current_version = os.environ['current_version']
+else:
+	# the user is probably doing `make html`
+	# set this build's current version by looking at the branch
+	current_version = repo.active_branch.name
+
+# rename the 'master' bracnh to be version = 'stable'
+if current_version == 'master':
+	current_version = 'stable'
+
+# tell the theme which version we're currently on ('current_version' affects
+# the lower-left rtd menu and 'version' affects the logo-area version)
+html_context['current_version'] = current_version
+html_context['version'] = current_version
+
+language = 'en'
+
+html_context['language'] = language
+
+# POPULATE LINKS TO OTHER LANGUAGES
+html_context['languages'] = [ ('en', '/docs/en/' +current_version+ '/') ]
+
+# POPULATE LINKS TO OTHER VERSIONS
+html_context['versions'] = list()
+
+# get list of remote branches, excluding HEAD and gh-pages
+remote_refs = repo.remote().refs
+versions = list()
+for ref in remote_refs:
+	ref = ref.name.split('/')[-1]
+	if ref != 'HEAD' and ref != 'gh-pages':
+		versions.append( ref )
+
+for version in versions:
+
+	# special override to rename 'master' branch to 'stable'
+	if version == 'master':
+		version = 'stable'
+
+	html_context['versions'].append( (version, '/docs/' +language+ '/' +version+ '/') )
+
+# DOWNLOADS
+
+# settings for creating PDF with rinoh
+rinoh_documents = [(
+ master_doc,
+ 'ReadtheDocsTemplate',
+ project+ ' Documentation',
+ '© ' +copyright,
+)]
+rinoh_logo = 'images/logo-600.png'
+today_fmt = "%B %d, %Y"
+
+# settings for EPUB
+epub_basename = 'Netrisdocs'
+
+html_context['downloads'] = list()
+html_context['downloads'].append( ('pdf', '/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
+
+html_context['downloads'].append( ('epub', '/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
