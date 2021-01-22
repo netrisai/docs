@@ -16,6 +16,7 @@ Contents:
 
    concepts
    switch_agent_installation
+   visibility
 
 .. toctree::
    :maxdepth: 2
