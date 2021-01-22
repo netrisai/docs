@@ -26,5 +26,7 @@ jobs:
     - name: Execute script to build our documentation and update pages
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: ./updatePages.sh
+      run: |
+        chmod +x updatePages.sh
+        ./updatePages.sh
       shell: bash
