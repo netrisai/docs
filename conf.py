@@ -105,7 +105,7 @@ extensions = [
 ]
 
 html_theme_options = {
-    'caption_font_family: 'Montserrat',
+    'logo': 'logo.png',
 }
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
