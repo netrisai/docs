@@ -61,8 +61,7 @@ for current_version in ${versions}; do
   
 
   # Backwards compatibility with RTD cloud
-  sed -i "/extensions = \[\]/c\extensions = ['sphinx_rtd_theme',]" conf.py
-  sed -i "/html_theme = 'default'/c\html_theme = 'sphinx_rtd_theme'" conf.py
+  cp -f conf-ghp.py conf.py
   
   # HTML #
   sphinx-build -b html . _build/html/${languages}/${current_version} -D language="${languages}"
