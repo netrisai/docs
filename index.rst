@@ -16,5 +16,6 @@ Contents:
    :maxdepth: 2
    :glob:
 
-   *
+   release_notes
+   concepts
 
