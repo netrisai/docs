@@ -8,8 +8,6 @@ Welcome to Netris documentation!
 
 Netris is the automatic NetOps platform that runs the physical network and provides cloud-like user experience for NetOps and DevOps engineers.
 
-Test
-
 Contents:
 
 .. toctree::
@@ -18,4 +16,3 @@ Contents:
 
    release_notes
    concepts
-
