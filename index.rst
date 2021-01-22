@@ -16,3 +16,4 @@ Contents:
 
    release_notes
    concepts
+   switch_agent_installation
