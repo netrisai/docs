@@ -64,13 +64,13 @@ for current_version in ${versions}; do
 
   # PDF #
   sphinx-build -b rinoh . _build/rinoh -D language="${languages}"
-  mkdir -p "${docroot}/${languages}/${current_version}"
-  cp "_build/rinoh/target.pdf" "${docroot}/${languages}/${current_version}/netris-docs_${languages}_${current_version}.pdf"
+  mkdir -p "${docroot}/docs/${languages}/${current_version}"
+  cp "_build/rinoh/target.pdf" "${docroot}/docs/${languages}/${current_version}/netris-docs_${languages}_${current_version}.pdf"
 
   # EPUB #
   sphinx-build -b epub _build/epub -D language="${languages}"
-  mkdir -p "${docroot}/${languages}/${current_version}"
-  cp "_build/epub/target.epub" "${docroot}/${languages}/${current_version}/netris-docs_${languages}_${current_version}.epub"
+  mkdir -p "${docroot}/docs/${languages}/${current_version}"
+  cp "_build/epub/target.epub" "${docroot}/docs/${languages}/${current_version}/netris-docs_${languages}_${current_version}.epub"
 
   # copy the static assets produced by the above build into our docroot
   rsync -av "_build/html/" "${docroot}/"
