@@ -110,7 +110,7 @@ cat >> index.html <<EOF
       <meta http-equiv = "refresh" content="0; url='/en/stable/'" />
    </head>
    <body>
-      <p>Please wait while you're redirected to our <a href="/">netris documentation page</a>.</p>
+      <p>Please wait while you're redirected to our <a href="/docs/">netris documentation page</a>.</p>
    </body>
 </html>
 EOF
