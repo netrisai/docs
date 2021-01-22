@@ -95,7 +95,7 @@ git remote add deploy "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSIT
 git checkout -b gh-pages
 
 # Add CNAME - this is required for GitHub to know what our custom domain is
-echo "docs.netris.dev" > CNAME
+# echo "docs.netris.dev" > CNAME                                           # [todo] uncomment after prod domain
 
 # add .nojekyll to the root so that github won't 404 on content added to dirs
 # that start with an underscore (_), such as our "_content" dir..
