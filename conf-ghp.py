@@ -395,6 +395,6 @@ today_fmt = "%B %d, %Y"
 epub_basename = 'Netrisdocs'
 
 html_context['downloads'] = list()
-html_context['downloads'].append( ('pdf', '/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
+html_context['downloads'].append( ('pdf', '/docs/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
 
-html_context['downloads'].append( ('epub', '/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
+html_context['downloads'].append( ('epub', '/docs/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
