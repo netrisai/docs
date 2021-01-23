@@ -30,8 +30,7 @@ docroot=`mktemp -d`
 make clean
 
 # get a list of branches, excluding 'HEAD' and 'gh-pages'
-# versions="`git for-each-ref '--format=%(refname:lstrip=-1)' refs/remotes/origin/ | grep -viE '^(HEAD|gh-pages)$'`"
-versions="`git for-each-ref '--format=%(refname:lstrip=-1)' refs/remotes/origin/ | grep -viE '^(HEAD|gh-pages|master)$'`"   # [todo] remove after merge to master
+versions="`git for-each-ref '--format=%(refname:lstrip=-1)' refs/remotes/origin/ | grep -viE '^(HEAD|gh-pages)$'`"
 
 for current_version in ${versions}; do
 
@@ -39,8 +38,8 @@ for current_version in ${versions}; do
 	export current_version
 	git checkout -B ${current_version} refs/remotes/origin/${current_version}
 
-	# rename "deploy-gh-pages-ci" to "stable"
-	if [[ "${current_version}" == "deploy-gh-pages-ci" ]]; then
+	# rename "master" to "stable"
+	if [[ "${current_version}" == "master" ]]; then
 		current_version="stable"
 	fi
 
@@ -81,8 +80,8 @@ for current_version in ${versions}; do
 
 done
 
-# return to deploy-gh-pages-ci branch
-git checkout deploy-gh-pages-ci
+# return to master branch
+git checkout master
 
 #######################
 # Update GitHub Pages #
@@ -99,7 +98,7 @@ git remote add deploy "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSIT
 git checkout -b gh-pages
 
 # Add CNAME - this is required for GitHub to know what our custom domain is
-# echo "docs.netris.dev" > CNAME                                           # [todo] uncomment after prod domain
+# echo "docs.netris.dev" > CNAME                                           # [todo] uncomment after setup prod domain
 
 # add .nojekyll to the root so that github won't 404 on content added to dirs
 # that start with an underscore (_), such as our "_content" dir..
