@@ -12,7 +12,7 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Getting Started
+   :caption: Getting Started (test)
 
    concepts
    switch_agent_installation
