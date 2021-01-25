@@ -12,11 +12,18 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Getting Started (test)
+   :caption: Getting Started
 
    concepts
    switch_agent_installation
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: Operations
+
+   services
    visibility
+   accounts
 
 .. toctree::
    :maxdepth: 2
