@@ -24,6 +24,7 @@ Description of +Add graph fields:
 
 * **Title** - Title for the new graph.
 * **Type** - Type of data source.
+
     * Bps - Traffic bits per second.
     * Pps - Traffic packets per second.
     * Errors - Errors per second.
