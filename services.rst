@@ -336,5 +336,9 @@ Screenshot: Once approved, users of both tenants will see the ACL in the “Acti
 .. image:: images/ACL_active.png
     :align: center
     
-    
+The sequence order of ACL rules
+-------------------------------
+1. User-defined Deny Rules
+2. User-defined Permit Rules
+3. Deny the rest
 
