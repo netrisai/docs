@@ -22,16 +22,16 @@ Now you can add graphs by clicking +Add graph.
 
 Description of +Add graph fields:
 
-* **Title** - Title for the new graph.
-* **Type** - Type of data source.
+- **Title** - Title for the new graph.
+- **Type** - Type of data source.
 
-    * Bps - Traffic bits per second.
-    * Pps - Traffic packets per second.
-    * Errors - Errors per second.
-    * Optical - Optical signal statistics/history.
-    * MAC Count - History of the number of MAC addresses on the port.
-* **Function** - Currently, only summing is supported.
-* **+Member** - Add data sources by service (E-BGP, V-NET, etc..) or by Switch Port.
+  - Bps - Traffic bits per second.
+  - Pps - Traffic packets per second.
+  - Errors - Errors per second.
+  - Optical - Optical signal statistics/history.
+  - MAC Count - History of the number of MAC addresses on the port.
+- **Function** - Currently, only summing is supported.
+- **+Member** - Add data sources by service (E-BGP, V-NET, etc..) or by Switch Port.
 
 Example: Sum of traffic on two ISP(Iris1 + Iris2) links.
 
