@@ -36,3 +36,45 @@ Example: Sum of traffic on two ISP(Iris1 + Iris2) links.
 
 .. image:: images/ISP_Iris.png
     :align: center
+
+Example: Sum of the traffic on all ports under the service called “my V-NET”
+
+.. image:: images/V_NET.png
+    :align: center
+
+Screenshot: Listing of a Graph Board with the explanation of the controls.
+
+.. image:: images/graphboard.png
+    :align: center
+
+API Logs
+========
+Comprehensive logging of all API calls sent to Netris Controller with the ability to search by various attributes, sort by each column, and filter by method type.
+
+Dashboard
+=========
+Netris, besides automatic configuration, also provides automatic monitoring of the entire network without the need for configuration of the monitoring systems.
+
+Telescope→Dashboard summarizes Network Health, which can also be accessed by clicking on the Netris icon in the top left corner.
+
+Description of the pie charts.
+
+* **Hardware Health** - summary of CPU, RAM, disk utilization. Statuses of power supplies, fans, temperature sensors, critical system services, and time synchronization. Statuses of switch port link, utilization, optical signal levels, and BGP sessions. 
+* **E-BGP** - Statuses of external BGP sessions.
+* **LB VIP** - Statuses of Load Balancer frontend / VIP availability.
+* **LB Members** - Statuses of Load Balancer backend members.
+
+By clicking on each title you can see the details of the checks on the right side.
+
+Screenshot: Dashboard showing details of “Hardware Health.”
+
+.. image:: images/hardware_health.png
+    :align: center
+
+Port up/down state can be set to “Save as normal.” So the system will alarm only if the actual state is different from the saved as the normal state. 
+
+Screenshot: “Save as normal” on selected ports.
+
+.. image:: images/saveasnormal.png
+    :align: center
+        
