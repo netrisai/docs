@@ -12,3 +12,7 @@ pre.literal-block {
 .wy-nav-side {
   background: #ffffff;
 }
+
+wy-menu-vertical p.caption {
+  color: #01358d;
+}
