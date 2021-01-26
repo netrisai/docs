@@ -362,7 +362,7 @@ language = 'en'
 html_context['language'] = language
 
 # POPULATE LINKS TO OTHER LANGUAGES
-html_context['languages'] = [ ('en', '/docs/en/' +current_version+ '/') ]
+html_context['languages'] = [ ('en', '/en/' +current_version+ '/') ]
 
 # POPULATE LINKS TO OTHER VERSIONS
 html_context['versions'] = list()
@@ -381,7 +381,7 @@ for version in versions:
 	if version == 'master':
 		version = 'stable'
 
-	html_context['versions'].append( (version, '/docs/' +language+ '/' +version+ '/') )
+	html_context['versions'].append( (version, '/' +language+ '/' +version+ '/') )
 
 # DOWNLOADS
 
@@ -399,6 +399,6 @@ today_fmt = "%B %d, %Y"
 epub_basename = 'Netrisdocs'
 
 html_context['downloads'] = list()
-html_context['downloads'].append( ('pdf', '/docs/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
+html_context['downloads'].append( ('pdf', '/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
 
-html_context['downloads'].append( ('epub', '/docs/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
+html_context['downloads'].append( ('epub', '/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
