@@ -105,18 +105,18 @@ echo "docs.netris.dev" > CNAME
 touch .nojekyll
 
 # add redirect (for now) since I want repo-specific docs dirs, but we only have one so far
-# cat >> index.html <<EOF
-# <!DOCTYPE html>
-# <html>
-#    <head>
-#       <title>Netris Docs</title>
-#       <meta http-equiv = "refresh" content="0; url='/en/stable/'" />   
-#    </head>
-#    <body>
-#       <p>Please wait while you're redirected to our <a href="/">netris documentation page</a>.</p>
-#    </body>
-# </html>
-# EOF
+cat >> index.html <<EOF
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Netris Docs</title>
+      <meta http-equiv = "refresh" content="0; url='/en/stable/'" />   
+   </head>
+   <body>
+      <p>Please wait while you're redirected to our <a href="/">netris documentation page</a>.</p>
+   </body>
+</html>
+EOF
 
 # Add README
 cat >> README.md <<EOF
