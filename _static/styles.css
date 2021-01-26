@@ -13,6 +13,17 @@ pre.literal-block {
   background: #ffffff;
 }
 
-wy-menu-vertical p.caption {
+.wy-menu-vertical header, .wy-menu-vertical p.caption {
   color: #01358d;
+}
+
+.wy-side-nav-search input[type=text] {
+    width: 100%;
+    border-radius: 50px;
+    padding: 6px 12px;
+    border-color: #f9556d;
+}
+
+.wy-menu-vertical a {
+    color: #666666;
 }
