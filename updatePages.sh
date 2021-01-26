@@ -105,18 +105,18 @@ echo "docs.netris.dev" > CNAME
 touch .nojekyll
 
 # add redirect (for now) since I want repo-specific docs dirs, but we only have one so far
-cat >> index.html <<EOF
-<!DOCTYPE html>
-<html>
-   <head>
-      <title>Netris Docs</title>
-      <meta http-equiv = "refresh" content="0; url='/docs/en/stable/'" />   
-   </head>
-   <body>
-      <p>Please wait while you're redirected to our <a href="/docs/">netris documentation page</a>.</p>
-   </body>
-</html>
-EOF
+# cat >> index.html <<EOF
+# <!DOCTYPE html>
+# <html>
+#    <head>
+#       <title>Netris Docs</title>
+#       <meta http-equiv = "refresh" content="0; url='/en/stable/'" />   
+#    </head>
+#    <body>
+#       <p>Please wait while you're redirected to our <a href="/">netris documentation page</a>.</p>
+#    </body>
+# </html>
+# EOF
 
 # Add README
 cat >> README.md <<EOF
@@ -126,7 +126,7 @@ Nothing to see here. The contents of this branch are essentially a cache that's 
 
 You can view the actual documentation as it's intended to be viewed at [https://docs.netris.dev/](https://docs.netris.dev/)
 
-If you're looking to update our documentation, check the relevant development branch's ['docs' dir](https://github.com/netrisai/docs).
+If you're looking to update our documentation, check the relevant development branch's ['docs'](https://github.com/netrisai/docs).
 EOF
 
 # copy the resulting html pages built from sphinx above to our new git repo
