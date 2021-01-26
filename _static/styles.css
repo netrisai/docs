@@ -8,3 +8,7 @@ pre.literal-block {
   overflow: auto;
   color: #404040;
 }
+
+.wy-nav-side {
+  background: #ffffff;
+}
