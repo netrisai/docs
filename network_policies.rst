@@ -55,7 +55,7 @@ BGP objects
 -----------
 Under Net→E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.
 
-| Supported objects are:
+Supported objects are:
 
 * IPv4 Prefix
 * IPv6 Prefix
@@ -81,7 +81,7 @@ Example: Creating an IPv4 Prefix list.
 IPv6 Prefix.
 ^^^^^^^^^^^^
 | Rules defined one per line.
-Each line in IPv6 prefix list field consists of three parts: 
+| Each line in IPv6 prefix list field consists of three parts: 
 
 * Action - Possible values are: permit or deny (mandatory).
 * IP Prefix - Any valid IPv6 prefix (mandatory).
@@ -94,7 +94,8 @@ Example: Creating an IPv6 Prefix list.
     
 Community.
 ^^^^^^^^^^
-| Community field has two parts:
+Community field has two parts:
+
 * Action - Possible values: permit or deny (mandatory).
 * Community string - format is AA:NN, where AA and NN are any number from 0 to 65535 range or alternatively well known string (local-AS|no-advertise|no-export|internet|additive).
 
