@@ -53,9 +53,8 @@ Click Advanced to expand the BGP neighbor add/edit window.
 
 BGP objects
 -----------
-Under Net→E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.
-
-Supported objects are:
+| Under Net→E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.
+| Supported objects are:
 
 * IPv4 Prefix
 * IPv6 Prefix
@@ -94,7 +93,7 @@ Example: Creating an IPv6 Prefix list.
     
 Community.
 ^^^^^^^^^^
-Community field has two parts:
+| Community field has two parts:
 
 * Action - Possible values: permit or deny (mandatory).
 * Community string - format is AA:NN, where AA and NN are any number from 0 to 65535 range or alternatively well known string (local-AS|no-advertise|no-export|internet|additive).
