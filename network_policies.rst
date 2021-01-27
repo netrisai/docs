@@ -33,7 +33,7 @@ Advanced BGP
 ------------
 BGP neighbor declaration can optionally include advanced BGP attributes and BGP route-maps for fine-tuning of BGP policies. 
 
-| Click Advanced to expand the BGP neighbor add/edit window.
+Click Advanced to expand the BGP neighbor add/edit window.
 
 * **Neighbor address** - IP address of the neighbor when peering with the loopback IP address instead of the interface IP address. (aka Multihop).
 * **Update source** - When Multihop BGP peering is used, it allows the        operator to choose one of the loopback IP addresses of the SoftGate node as a BGP speaker source IP address.
@@ -81,7 +81,8 @@ Example: Creating an IPv4 Prefix list.
 IPv6 Prefix.
 ^^^^^^^^^^^^
 | Rules defined one per line.
-| Each line in IPv6 prefix list field consists of three parts: 
+Each line in IPv6 prefix list field consists of three parts: 
+
 * Action - Possible values are: permit or deny (mandatory).
 * IP Prefix - Any valid IPv6 prefix (mandatory).
 * Keyword - Possible values are: le <len>, ge <len> or ge <len> le <len>. 
@@ -104,8 +105,9 @@ Example: Creating community.
     
 BGP route-maps
 --------------
-Under the Net→E-BGP Route-maps section, you can define route-map policies, which can be associated with the BGP neighbors inbound or outbound. 
+| Under the Net→E-BGP Route-maps section, you can define route-map policies, which can be associated with the BGP neighbors inbound or outbound. 
 | Description of route-map fields:
+
 * **Sequence Number** - Automatically assigned a sequence number. Drag and move sequences to organize the order.
 * **Description** - Free description.
 * **Policy** - Permit or deny the routes which match below all match clauses within the current sequence.
@@ -119,7 +121,6 @@ Under the Net→E-BGP Route-maps section, you can define route-map policies, whi
   * **Action type** - Define whether to manipulate a particular BGP attribute or go to another sequence.
   * **Attribute** - The attribute to be manipulated.
   * **Value** - New attribute value.
-
     
 Example: route-map
 
@@ -153,7 +154,7 @@ Example: Default route pointing to a Next-Hop that belongs to one of V-NETs.
 
 Example: Adding a back route to 10.254.0.0/16 through an out-of-band management network.  
 
-.. image:: images/10.254.0.0/16.png
+.. image:: images/static_route.png
     :align: center
     
 Screenshot: This Shows that my back route is actually applied on leaf1 and spine1.
@@ -161,7 +162,7 @@ Screenshot: This Shows that my back route is actually applied on leaf1 and spine
 .. image:: images/leaf1_spine1.png
     :align: center
     
- 
+
 NAT
 ===
 Netris SoftGate nodes are required to support NAT (Network Address Translation). 
@@ -189,34 +190,120 @@ Defining NAT rules
 NAT rules are defined under Net→NAT.
 
 NAT rule fields described:
-Name - Unique name.
-Protocol 
-All - Match any IP protocol.
-TCP - Match TCP traffic and ports.
-UDP - Match UDP traffic and ports
-ICMP - Match ICMP traffic.
-Action 
-SNAT - Replace the source IP address with specified NAT IP.
-DNAT - Replace the destination IP address and/or destination port with specified NAT IP. 
-ACCEPT - Silently forward, typically used to add an exemption to broader SNAT or DNAT rule. 
-Source
-Address - Source IP address to match.
-From port - Source ports to match starting with this value (TCP/UDP)
-To port - Source ports to much up to this value (TCP/UDP)
-Destination
-Address - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses.
-Port - For DNAT only, to match a single destination port.
-From port - For SNAT/ACCEPT only. Destination ports to match starting with this value (TCP/UDP)
-To port - For SNAT/ACCEPT only. Destination ports to much up to this value (TCP/UDP)
-NAT IP - The global IP address for SNAT to be visible on Public Internet. The internal IP address for DNAT to replace the original destination address with.
-Status - Administrative state (enable/disable).
-Comment - Free optional comment.
 
+* **Name** - Unique name.
+* **Protocol** 
 
-    
-    
+  * **All** - Match any IP protocol.
+  * **TCP** - Match TCP traffic and ports.
+  * **UDP** - Match UDP traffic and ports
+  * **ICMP** - Match ICMP traffic.
+  
+* **Action** 
 
+  * **SNAT** - Replace the source IP address with specified NAT IP.
+  * **DNAT** - Replace the destination IP address and/or destination port with specified NAT IP. 
+  * **ACCEPT** - Silently forward, typically used to add an exemption to broader SNAT or DNAT rule. 
+  
+* **Source**
+
+  * **Address** - Source IP address to match.
+  * **From port** - Source ports to match starting with this value (TCP/UDP)
+  * **To port** - Source ports to much up to this value (TCP/UDP)
+  
+* **Destination**
+
+  * **Address** - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses.
+  * **Port** - For DNAT only, to match a single destination port.
+  * **From port** - For SNAT/ACCEPT only. Destination ports to match starting with this value (TCP/UDP)
+  * **To port** - For SNAT/ACCEPT only. Destination ports to much up to this value (TCP/UDP)
+  
+* **NAT IP** - The global IP address for SNAT to be visible on Public Internet. The internal IP address for DNAT to replace the original destination address with.
+* **Status** - Administrative state (enable/disable).
+* **Comment** - Free optional comment.
+
+Example: SNAT all hosts on 10.0.0.0/8 to the Internet using 198.51.100.65 as a global IP. 
+
+.. image:: images/globalIP.png
+    :align: center
     
+Example: Port forwarding. DNAT the traffic destined to 198.51.100.66:80 to be forwarded to the host 10.0.4.10 on port tcp/1080. 
+
+.. image:: images/Port_Forwarding.png
+    :align: center
+
+SiteMesh
+========
+SiteMesh is a Netris service for site-to-site interconnects over the public Internet. SiteMesh automatically generates configuration for WireGuard to create encrypted tunnels between participating sites and automatically generates a configuration for FRR to run dynamic routing. Hence, sites learn how to reach each other over the mesh WireGuard tunnels. The SiteMesh feature requires a SoftGate node at each participating site. 
+
+Edit Net->Sites, do declare what sites should form a SiteMesh. See SiteMesh types described below.
+
+* **Disabled** - Do not participate in SiteMesh.
+* **Hub** - Hub sites form full-mesh tunnels with all other sites (Hub and non-Hub) and can carry transit traffic for non-Hub sites. (usually major data center sites)
+* **Spoke** - Spoke sites form tunnels with all Hub sites. Spoke to Spoke traffic will transit a Hub site. (small data center sites or major office sites)
+* **Dynamic Spoke** - Dynamic Spoke is like Spoke, but it will maintain a tunnel only with one Hub site, based on dynamic connectivity measurements underneath and mathematical modeling. (small office sites)
+
+Screenshot: Site Mesh parameter editing a Site under Net→Sites.
+
+.. image:: images/Site_Mesh.png
+    :align: center  
     
+You only need to define your site-to-site VPN architecture policy by selecting SiteMesh mode for every site. Netris will generate the WireGuard tunnels (using randomly generated keys, and generate FRR rules to get the dynamic routing to converge.
+
+.. image:: images/SiteMesh_modes.png
+    :align: center  
     
+Check the Net→Site Mesh section for the listing of tunnel statuses.
+
+Screenshot: Listing of SiteMesh tunnels and BGP statuses (Net→Site Mesh)
+
+.. image:: images/SiteMesh_listing.png
+    :align: center  
     
+Looking Glass
+=============
+The Looking Glass Is a GUI-based tool for looking up routing information from a switch or SoftGate perspective. You can access the Looking Glass either from Topology, individually for every device (right click on device → details → Looking Glass), or by navigating to Net→Looking Glass then selecting the device from the top-left dropdown menu. 
+
+Looking Glass controls described for IPv4/IPv6 protocol families.
+
+* **BGP Summary** - Shows the summary of BGP adjacencies with neighbors, interface names, prefixes received. You can click on the neighbor name then query for the list of advertised/received prefixes.
+* **BGP Route** - Lookup the BGP table (RIB) for the given address.
+* **Route** - Lookup switch routing table for the given address.
+* **Traceroute** - Conduct a traceroute from the selected device towards the given destination, optionally allowing to determine the source IP address.
+* **Ping** - Execute a ping on the selected device towards the given destination, optionally allowing to select the source IP address.
+
+Example: Spine1: listing BGP neighbors and number of received prefixes.
+
+.. image:: images/Spine1.png
+    :align: center
+    
+Example: BGP Route - looking up my leaf1 switch’s loopback address from spine1’s perspective. Spine1 is load balancing between two available paths. 
+
+.. image:: images/BGP_route.png
+    :align: center
+
+Example: Ping.
+
+.. image:: images/ping.png
+    :align: center
+
+| Looking Glass controls described for the EVPN family.
+* **BGP Summary** - Show brief summary of BGP adjacencies with neighbors, interface names, and EVPN prefixes received. 
+* **VNI** - List VNIs learned.
+* **BGP EVPN** - List detailed EVPN routing information optionally for the given route distinguisher. 
+* **MAC table** - List MAC address table for the given VNI.
+
+Example: Listing of adjacent BGP neighbors and number of EVPN prefixes received.
+
+.. image:: images/BGP_neighbors_listing.png
+    :align: center
+
+Example: Listing MAC addresses on VNI 2.
+
+.. image:: images/MAC_listing.png
+    :align: center
+
+Example: EVPN routing information listing for a specified route distinguisher.
+
+.. image:: images/EVPN_routing.png
+    :align: center
