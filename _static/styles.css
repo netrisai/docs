@@ -30,29 +30,42 @@ pre.literal-block {
 
 .wy-menu-vertical a {
     color: #666666;
+  position: relative;
 }
 
 .wy-menu-vertical a:hover {
-    background-color: none !important;
+    background-color: #eee !important;
 }
 
 .wy-menu-vertical a::before {
-    width: 0;
-    height: 3px;
-    background: #f9556d;
-    background-color: rgb(249, 85, 109);
-    bottom: -2px;
-    position: absolute;
-    -webkit-transition: width 0.5s ease-in;
-    -moz-transition: width 0.5s ease-in;
-    transition: width 0.5s ease-in;
+  box-sizing: inherit;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
-.wy-menu-vertical li:hover a::before {
-    width: 100%;
+.wy-menu-vertical a::before {
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+.wy-menu-vertical a::before {
+  bottom: 0;
+  left: 0;
+}
+
+
+.wy-menu-vertical a:hover::before {
+  width: 100%;
+}
+.wy-menu-vertical a:hover::before {
+  border-top-color: #f9556d;
+  border-right-color: #f9556d;
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
 }
 
 .btn-neutral {
     border-radius: 4px;
-    
+
 }
