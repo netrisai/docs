@@ -28,13 +28,17 @@ pre.literal-block {
     border-color: #f9556d;
 }
 
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3>a {
+    background: #ffffff;
+}
+
 .wy-menu-vertical a {
     color: #666666;
   position: relative;
 }
 
 .wy-menu-vertical a:hover {
-    background-color: #eee !important;
+    background-color: #ffffff !important;
 }
 
 .wy-menu-vertical a::before {
@@ -67,5 +71,5 @@ pre.literal-block {
 
 .btn-neutral {
     border-radius: 4px;
-
+    color: #f9556d;
 }
