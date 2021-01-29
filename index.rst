@@ -15,12 +15,16 @@ Contents:
    :caption: Getting Started
 
    concepts
+   controller_installation
+   controller_initial_configuration
    switch_agent_installation
+   SoftGate_agent_installation
    
 .. toctree::
    :maxdepth: 4
    :caption: Operations
 
+   network_policies
    services
    visibility
    accounts
