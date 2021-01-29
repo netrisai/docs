@@ -1,9 +1,6 @@
-########
-Services
-########
-
+#####
 V-NET
-=====
+#####
 V-NET is a virtual networking service. V-NETs can be used for Layer-2 (unrouted) or Layer-3 (routed) virtual network segments involving switch ports anywhere on the switch fabric. V-NETs can be created and managed by a single tenant (single team) or created and managed collaboratively by multiple tenants (different teams inside and/or outside the organization). 
 
   Automatically, Netris will configure a VXLAN with an EVPN control plane over an unnumbered BGP Layer-3 underlay network and organize the high availability for the default gateway behind the scenes. 
@@ -45,8 +42,9 @@ Example: Expanded view of a V-NET listing.
 .. image:: images/VNET_listing.png
     :align: center
   
+#######
 Kubenet
-=======
+#######
 Kubenet is a network service purpose-built for Kubernetes cluster nodes. Netris integrates with Kube API to provide on-demand load balancer and other Kubernetes specific networking features. Netris Kubenet is designed to complement Kubernetes CNI networking and provide a cloud-like user experience to local Kubernetes clusters.  
 
 The Gateway and Switch Port part of Kubenet is similar to the V-NET. In fact, it is leveraging a V-NET. Kubeconfig is for granting Netris Controller access to your Kube API. Kubenet therefore, dynamically leverages Netris L4LB and other services based on events that Netris kube-watcher (Kube API integration adapter) watches in your Kube API. 
@@ -94,8 +92,9 @@ Screenshot: Statuses of on-demand load balancers (type: load-balancer)
     :align: center
 
 
+#########################
 ROH (Routing on the Host)
-=========================
+#########################
 To create more resilient and higher-performance data centers, some companies leverage the Linux ecosystem to run routing protocols directly to their servers. Known as ROH (Routing on the Host). 
 
 In ROH architectures, servers use a routing demon to establish a BGP adjacency with the switch fabric on every physical link. ROH can run on bare metal servers, VMs, and even containers. The most commonly used routing daemon is FRR.
@@ -135,9 +134,10 @@ Screenshot: Expanded view of ROH listing. BGP sessions are up, and the expected 
 .. image:: images/ROH_listing.png
     :align: center
     
-  
+
+#############################
 L3 Load Balancer (Anycast LB)
-=============================
+#############################
 L3 (Anycast) load balancer is leveraging ECMP load balancing and hashing capability of spine and leaf switches to deliver line-rate server load balancing with health checks.
 
 ROH servers, besides advertising their unicast (unique) loopback IP address, need to configure and advertise an additional anycast (the same IP) IP address. Unicast IP address is used for connecting to each individual server. 
@@ -164,10 +164,11 @@ Screenshot: L3 (Anycast) Load Balancer listing.
 
 .. image:: images/loadbalancer_listing.png
     :align: center
-    
- 
+
+
+#######################
 L4 Load Balancer (L4LB)
-=======================
+#######################
 Netris L4 Load Balancer (L4LB) is leveraging SoftGate(Linux router) nodes for providing Layer-4 load balancing service, including on-demand cloud load balancer with native integration with Kubernetes. 
 
 Enabling L4LB service
@@ -239,8 +240,9 @@ Example: Listing of L4 Load Balancer services
     :align: center
     
     
+##########################
 Access Control Lists (ACL)
-==========================
+##########################
 Netris supports ACLs for switch network access control. (ACL and ACL2.0) ACL is for defining network access lists in a source IP: Port, destination IP: Port format. ACL2.0 is an object-oriented service way of describing network access.
 
 Both ACL and ACL2.0 services support tenant/RBAC based approval workflows. Access control lists execute in switch hardware providing line-rate performance for security enforcement. It’s important to keep in mind that the number of ACLs is limited to the limited size of TCAM of network switches. 

@@ -15,18 +15,33 @@ Contents:
    :caption: Getting Started
 
    concepts
+   controller_installation
+   controller_initial_configuration
    switch_agent_installation
+   SoftGate_agent_installation
    
 .. toctree::
-   :maxdepth: 2
-   :caption: Operations
+   :maxdepth: 4
+   :caption: Network Policies
 
-   services
-   visibility
-   accounts
+   network_policies
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
+   :caption: Network Services
+
+   services
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Operations
+
+   visibility
+   accounts
+   
+
+.. toctree::
+   :maxdepth: 4
    :caption: Updates
    
    release_notes
