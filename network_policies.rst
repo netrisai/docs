@@ -1,13 +1,7 @@
-######################
-Network Policies (Net)
-######################
-Network policies are mainly for defining how a given site, given switch fabric, should interconnect with other networks, i.e., Internet, between a multitude of your data centers, any conventional network, or a public cloud. 
-
-#############################
-External BGP (dynamic routing)
-#############################
+#########
 Basic BGP
----------
+#########
+
 BGP neighbors can be declared in the Net→E-BGP section. Netris will automatically generate and inject the right configuration to meet your requirements as declared. See below description of E-BGP neighbor declaration fields.
 
 * **Name** - Name for BGP session.
