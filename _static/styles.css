@@ -43,6 +43,10 @@ pre.literal-block {
     background-color: #ffffff !important;
 }
 
+.wy-menu-vertical li.current > a {
+    color: #000000 !important;
+}
+
 .btn-neutral {
     color: #fff !important;
     background-color: #f9556d !important;
@@ -115,6 +119,10 @@ footer > a:hover::before {
 .highlight {
     background-color: #f3f3f3 !important;
     border-color: #b7b7b7 !important;
+}
+
+.rst-current-version {
+    color: #f9556d !important;
 }
 
 .rst-versions,
