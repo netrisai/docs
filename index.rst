@@ -22,9 +22,14 @@ Contents:
    
 .. toctree::
    :maxdepth: 4
-   :caption: Operations
+   :caption: Network Policies
 
    network_policies
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Operations
+
    services
    visibility
    accounts
