@@ -104,6 +104,42 @@ default credentials. **login**: ``netris`` **password**: ``newNet0ps``
   sudo virsh console netris-controller
   
 .. note::
+
+  Do not forget to change the default password (using passwd command).
+
+2. Setting a static IP address.
+
+Edit network configuration file.
+
+.. code-block:: shell-session
+
+  sudo vim /etc/network/interfaces
+
+Example: IP configuration file.
+
+.. code-block:: shell-session
+
+  # The loopback network interface
+  auto lo
+  iface lo inet loopback
+
+
+  # The primary network interface
+  auto eth0
+  iface eth0 inet static
+          address <Netris Controller IP/prefix length>
+          gateway <Netris Controller default gateway>
+          dns-nameserver <a DNS server address>
+
+  source /etc/network/interfaces.d/* 
+
+Reload the network config.
+
+.. code-block:: shell-session
+
+  sudo ifreload -a
+
+.. note::
   
   Make sure Netris Controller has Internet access.
   
@@ -124,7 +160,6 @@ Security hardening
 ==================
 | Recommended for production use.
 | 
-|
 
 Changing the default GRPC authentication key.
 ---------------------------------------------
