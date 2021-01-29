@@ -91,9 +91,9 @@ Example: Network configuration on host (hypervisor) machine.
   
 Accessing the Netris Controller
 ===============================
-By default, Netris Controller will obtain an IP address from a DHCP server.
+By default, Netris Controller will obtain an IP address from a **DHCP** server.
 
-Below steps describe how to configure a static IP address for the Netris Controller.
+Below steps describe how to configure a **static IP** address for the Netris Controller.
 
 1. Connecting to the VM console.
 
