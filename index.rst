@@ -28,11 +28,17 @@ Contents:
 
 .. toctree::
    :maxdepth: 4
-   :caption: Operations
+   :caption: Network Services
 
    services
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Operations
+
    visibility
    accounts
+   
 
 .. toctree::
    :maxdepth: 4
