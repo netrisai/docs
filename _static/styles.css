@@ -143,3 +143,7 @@ footer > a:hover::before {
 .rst-other-versions hr {
     border-color: #f9556d !important;
 }
+
+.wy-menu-vertical li.current a {
+    border: none !important;
+}
