@@ -3,8 +3,9 @@ Network Policies (Net)
 ######################
 Network policies are mainly for defining how a given site, given switch fabric, should interconnect with other networks, i.e., Internet, between a multitude of your data centers, any conventional network, or a public cloud. 
 
+#############################
 External BGP (dynamic routing)
-==============================
+#############################
 Basic BGP
 ---------
 BGP neighbors can be declared in the Net→E-BGP section. Netris will automatically generate and inject the right configuration to meet your requirements as declared. See below description of E-BGP neighbor declaration fields.
@@ -27,10 +28,11 @@ Example: Declare a basic BGP neighbor.
 
 .. image:: images/BGP_neighbor.png
     :align: center
-    
 
+
+############
 Advanced BGP
-------------
+############
 BGP neighbor declaration can optionally include advanced BGP attributes and BGP route-maps for fine-tuning of BGP policies. 
 
 Click Advanced to expand the BGP neighbor add/edit window.
@@ -126,9 +128,10 @@ Example: route-map
 
 .. image:: images/route-map.png
     :align: center
-    
+
+#######################
 Routes (static routing)
-=======================
+#######################
 Located under Net→Routes is a method for describing static routing policies that Netris will dynamically inject on switches and/or SoftGate where appropriate.
 We recommend using the Routes only if BGP is not supported by the remote end. 
 
@@ -161,9 +164,10 @@ Screenshot: This Shows that my back route is actually applied on leaf1 and spine
 
 .. image:: images/leaf1_spine1.png
     :align: center
-    
+
+###    
 NAT
-===
+###
 Netris SoftGate nodes are required to support NAT (Network Address Translation). 
 
 Enabling NAT
@@ -259,8 +263,9 @@ Screenshot: Listing of SiteMesh tunnels and BGP statuses (Net→Site Mesh)
 .. image:: images/SiteMesh_listing.png
     :align: center  
     
+#############
 Looking Glass
-=============
+#############
 The Looking Glass Is a GUI-based tool for looking up routing information from a switch or SoftGate perspective. You can access the Looking Glass either from Topology, individually for every device (right click on device → details → Looking Glass), or by navigating to Net→Looking Glass then selecting the device from the top-left dropdown menu. 
 
 Looking Glass controls described for IPv4/IPv6 protocol families.
