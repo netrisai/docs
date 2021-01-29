@@ -28,7 +28,14 @@ import os
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.todo',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.githubpages',
+    'sphinx_rtd_theme',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -97,7 +104,7 @@ pygments_style = 'sphinx'
 # -- Options for HTML output ----------------------------------------------
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinx_rtd_theme'
 
 #body_text = '#01358d'
 
@@ -114,13 +121,20 @@ html_theme_options = {
     'prev_next_buttons_location': 'both',
     'style_external_links': False,
     'vcs_pageview_mode': '',
-    'style_nav_header_background': '#f9556d',
+    'style_nav_header_background': '#ffffff',
     # Toc options
     'collapse_navigation': True,
     'sticky_navigation': True,
     'navigation_depth': 4,
     'includehidden': True,
     'titles_only': False
+}
+
+html_context = {
+	'display_github': True,
+	'github_user': 'netrisai',
+	'github_repo': 'docs',
+	'github_version': 'master/',
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
@@ -146,6 +160,10 @@ html_favicon = 'images/netris_favicon.png'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+html_css_files = [
+    'styles.css',
+]
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -273,3 +291,114 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+
+# -- Options for Epub output -------------------------------------------------
+
+# Bibliographic Dublin Core info.
+epub_title = project
+
+# The unique identifier of the text. This can be a ISBN number
+# or the project homepage.
+#
+# epub_identifier = ''
+
+# A unique identification for the text.
+#
+# epub_uid = ''
+
+# A list of files that should not be packed into the epub file.
+epub_exclude_files = ['search.html']
+
+
+# -- Extension configuration -------------------------------------------------
+
+# -- Options for intersphinx extension ---------------------------------------
+
+# Example configuration for intersphinx: refer to the Python standard library.
+#intersphinx_mapping = {'https://docs.python.org/': None}
+
+# -- Options for todo extension ----------------------------------------------
+
+# If true, `todo` and `todoList` produce output, else they produce nothing.
+todo_include_todos = True
+
+# prevent "failed to import module...No module named..." errors on modules that
+# we don't need just to build our documentation from the code
+autodoc_mock_imports = [ "kivy", "usb1" ]
+autodoc_default_flags = ['members']
+autodoc_member_order = 'bysource'
+autodoc_default_options = {
+	'undoc-members': True,
+}
+
+############################
+# SETUP THE RTD LOWER-LEFT #
+############################
+html_context['display_lower_left'] = True
+
+from git import Repo
+repo = Repo( search_parent_directories=True )
+
+if 'current_version' in os.environ:
+	# get the current_version env var set by updatePages.sh
+	current_version = os.environ['current_version']
+else:
+	# the user is probably doing `make html`
+	# set this build's current version by looking at the branch
+	current_version = repo.active_branch.name
+
+# rename the 'master' bracnh to be version = 'stable'
+if current_version == 'master':
+	current_version = 'stable'
+
+# tell the theme which version we're currently on ('current_version' affects
+# the lower-left rtd menu and 'version' affects the logo-area version)
+html_context['current_version'] = current_version
+html_context['version'] = current_version
+
+language = 'en'
+
+html_context['language'] = language
+
+# POPULATE LINKS TO OTHER LANGUAGES
+html_context['languages'] = [ ('en', '/en/' +current_version+ '/') ]
+
+# POPULATE LINKS TO OTHER VERSIONS
+html_context['versions'] = list()
+
+# get list of remote branches, excluding HEAD and gh-pages
+remote_refs = repo.remote().refs
+versions = list()
+for ref in remote_refs:
+	ref = ref.name.split('/')[-1]
+	if ref != 'HEAD' and ref != 'gh-pages':
+		versions.append( ref )
+
+for version in versions:
+
+	# special override to rename 'master' branch to 'stable'
+	if version == 'master':
+		version = 'stable'
+
+	html_context['versions'].append( (version, '/' +language+ '/' +version+ '/') )
+
+# DOWNLOADS
+
+# settings for creating PDF with rinoh
+rinoh_documents = [(
+ master_doc,
+ 'ReadtheDocsTemplate',
+ project+ ' Documentation',
+ '© ' +copyright,
+)]
+rinoh_logo = 'images/logo-600.png'
+today_fmt = "%B %d, %Y"
+
+# settings for EPUB
+epub_basename = 'Netrisdocs'
+
+html_context['downloads'] = list()
+html_context['downloads'].append( ('pdf', '/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
+
+html_context['downloads'].append( ('epub', '/docs/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
