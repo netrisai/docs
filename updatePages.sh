@@ -58,10 +58,6 @@ for current_version in ${versions}; do
   ##########
   echo "INFO: Building for ${languages}"
   
-
-  # Backwards compatibility with RTD cloud
-  cp -f conf-ghp.py conf.py
-  
   # HTML #
   sphinx-build -b html . _build/html/${languages}/${current_version} -D language="${languages}"
 
@@ -98,7 +94,7 @@ git remote add deploy "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSIT
 git checkout -b gh-pages
 
 # Add CNAME - this is required for GitHub to know what our custom domain is
-echo "docs.netris.dev" > CNAME
+echo "docs.netris.ai" > CNAME
 
 # add .nojekyll to the root so that github won't 404 on content added to dirs
 # that start with an underscore (_), such as our "_content" dir..
@@ -124,7 +120,7 @@ cat >> README.md <<EOF
 
 Nothing to see here. The contents of this branch are essentially a cache that's not intended to be viewed on github.com.
 
-You can view the actual documentation as it's intended to be viewed at [https://docs.netris.dev/](https://docs.netris.dev/)
+You can view the actual documentation as it's intended to be viewed at [https://docs.netris.ai/](https://docs.netris.ai/)
 
 If you're looking to update our documentation, check the relevant development branch's ['docs'](https://github.com/netrisai/docs).
 EOF
