@@ -18,7 +18,7 @@ Contents:
    switch_agent_installation
    
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Operations
 
    services
@@ -26,7 +26,7 @@ Contents:
    accounts
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Updates
    
    release_notes
