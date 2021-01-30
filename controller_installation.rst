@@ -1,7 +1,7 @@
-******************************
-Netris Controller installation
-******************************
-Netris Controller can be hosted in Netris cloud, Installed locally as a VM, or deployed as a Kubernetes application. All three options provide the same functionality. Cloud-hosted Controller can be moved into on-prem anytime. 
+**************************************
+On-prem Netris Controller installation
+**************************************
+Netris Controller can be hosted in Netris cloud, installed locally as a VM, or deployed as a Kubernetes application. All three options provide the same functionality. Cloud-hosted Controller can be moved into on-prem anytime. 
 
 KVM virtual machine
 ===================
