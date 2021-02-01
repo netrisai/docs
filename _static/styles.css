@@ -165,3 +165,19 @@ footer > a:hover::before {
     padding: 9px 34px;
     font-size: 14px;
 }
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.header-wrapper div {
+    display: flex;
+}
+
+.header-wrapper .underscore-transition {
+    cursor: pointer;
+    margin-right: 25px;
+}
