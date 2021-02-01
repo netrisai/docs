@@ -116,6 +116,7 @@ html_theme_options = {
     'analytics_id': 'UA-152905529-2',  #  Provided by Google in your dashboard
     'analytics_anonymize_ip': False,
     'logo_only': True,
+    "logo_url": "https://www.netris.ai/",
     'display_version': True,
 #    'prev_next_buttons_location': 'bottom',
     'prev_next_buttons_location': 'both',
