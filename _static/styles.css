@@ -45,6 +45,7 @@ pre.literal-block {
 
 .wy-menu-vertical li.current > a {
     color: #000000 !important;
+    border: none !important;
 }
 
 .btn-neutral {
@@ -70,19 +71,27 @@ pre.literal-block {
     color: #fff !important;
 }
 
+.toctree-wrapper a {
+    color: #01358d;
+}
+
+.underscore-transition,
 .wy-breadcrumbs li:first-child a,
 .wy-breadcrumbs li:last-child a,
 .rst-other-versions > a,
+.toctree-wrapper a,
 footer > a {
     font-family: Montseratt;
     color: #01358d !important;
     position: relative;
 }
 
+.underscore-transition::before,
 .wy-menu-vertical a::before,
 .wy-breadcrumbs li:first-child a::before,
 .wy-breadcrumbs li:last-child a::before,
 .rst-other-versions > a::before,
+.toctree-wrapper a::before,
 footer > a::before {
     box-sizing: inherit;
     content: "";
@@ -96,10 +105,12 @@ footer > a::before {
     left: 0;
 }
 
+.underscore-transition:hover::before,
 .wy-menu-vertical a:hover::before,
 .wy-breadcrumbs li:first-child a:hover::before,
 .wy-breadcrumbs li:last-child a:hover::before,
 .rst-other-versions > a:hover::before,
+.toctree-wrapper a:hover::before,
 footer > a:hover::before {
     width: 100%;
     border-top-color: #f9556d;
@@ -144,6 +155,29 @@ footer > a:hover::before {
     border-color: #f9556d !important;
 }
 
-.wy-menu-vertical li.current a {
-    border: none !important;
+.button {
+    color: #fff !important;
+    background-color: #f9556d !important;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    box-shadow: 0 13px 13px 0 rgba(249, 85, 109, 0.2);
+    transition: all 0.2s ease-in;
+    padding: 9px 34px;
+    font-size: 14px;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.header-wrapper div {
+    display: flex;
+}
+
+.header-wrapper .underscore-transition {
+    cursor: pointer;
+    margin-right: 25px;
 }
