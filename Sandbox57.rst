@@ -5,8 +5,8 @@ Sandbox57
 .. toctree::
    :maxdepth: 2
 
-   Diagram
-   Sandbox_info
-   Configurations
-   creating_services
+   Diagram57
+   Sandbox_info57
+   Configurations57
+   creating_services57
    
