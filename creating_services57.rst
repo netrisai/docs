@@ -61,9 +61,9 @@ Now when we have both internal and external facing services, we can aim for our 
 
 * In a terminal window:
 
-  1. SSH to srv04-nyc by typing **ssh demo@166.88.17.22 -p 22764**.
+  1. SSH to srv04-nyc by typing ``ssh demo@166.88.17.22 -p 22764``.
   2. Enter the password provided in the introductory e-mail.
-  3. Start a ping session by typing **ping 8.8.8.8** and keep it running as an indicator for when the service starts to work.
+  3. Start a ping session by typing ``ping 8.8.8.8`` and keep it running as an indicator for when the service starts to work.
   
 Let's configure a source NAT so our V-Net subnet **192.168.40.0/24** can communicate with public IP **8.8.8.8**.
 
