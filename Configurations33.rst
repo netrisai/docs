@@ -15,7 +15,7 @@ You may also verify that the service is working properly from within the GUI: (*
 4. Type in ``192.168.29.64`` in the field labeled "**IPv4 address**".
 5. Click **Submit**.
 
-The result should look similar to the output below, indicating that the communication between the sw01-nyc switch and srv04-nyc server is working properly thanks to the configured V-Net service.
+The result should look similar to the output below, indicating that the communication between the **sw01-nyc** switch and **srv04-nyc** server is working properly thanks to the configured V-Net service.
 
 .. code-block:: shell-session
 
