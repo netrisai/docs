@@ -43,7 +43,7 @@ NAT (Network Address Translation) Example
 =========================================
 Navigate to **Net > NAT** and you will find a NAT service named "**NAT Example**" configured as an example . The configured services ensures that there can be communication between the the private **192.168.39.0/24** network with the public **1.1.1.1** IP address. You can examine the particular settings of the NAT service by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**NAT Example**" service.
 
-You may observer the functioning service by pinging the pubblic **1.1.1.1** IP address from the **srv04-nyc** server.
+You may observe the functioning service by pinging the pubblic **1.1.1.1** IP address from the **srv04-nyc** server.
 
 * In a terminal window:
 
@@ -60,14 +60,3 @@ ACL (Access Control List) Example
 Navigate to **Services > ACL** and you will find an ACL services named "**V-Net to WAN Example**" set up as an example. This particular ACL ensures that the connectivity between the the private **192.168.39.0/24** network with the public **1.1.1.1** IP address is permitted through all protocols and ports, even in a scenario where the the **Default Site Policy** for the "**US/NYC**" site configured in the our Sandbox is changed from **Permit** to **Deny**. You can examine the particular settings of this ACL policy by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net to WAN Example**" ACL policy.
 
 By utilizing ACLs, you can impose granular controls and implement policies that would allow or disallow particular connections. If you are interested in learning how to create a ACL policies yourself, please refer to the step-by-step instructions in the "**ACL (Access Control List)**" section below.
-
-
-
-
-
-
-
-
-
-
-
