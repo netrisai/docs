@@ -78,7 +78,7 @@ Let's configure a source NAT so our V-Net subnet **192.168.28.0/24** can communi
   7. The **Destination** field can remain as ``0.0.0.0/0``.
   8. From the **Nat IP** drop-down menu, select **7.7.7.8/32(US/NYC)**.
   
-  * This IP is from our sandbox address space and is indicated in the SoftGate configuration to be used as a global IP for NAT.
+  * This IP is from our sandbox address space and is indicated in the NFV configuration to be used as a global IP for NAT.
     
   9. Click **Add**
 
