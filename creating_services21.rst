@@ -41,7 +41,7 @@ Optionally you can configure an E-BGP session to ISP 2 for fault tolerance.
   2. Click **+Add** to configure a new E-BGP session.
   3. Define a name in the **Name** field (e.g. ``ISP2 Customer``).
   4. From the **Site** drop-down menu, select **US/NYC**.
-  5. From the **NFV Node** drop-down menu, select **SoftGate2**.
+  5. From the **NFV** drop-down menu, select **NFV2**.
   6. In the **Neighbor AS** field, type in ``200``.
   7. In the **Switch port** field, define the port on the switch that is connected to the ISP2.
 
