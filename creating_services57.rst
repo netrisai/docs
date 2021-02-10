@@ -42,16 +42,17 @@ Optionally you can configure an E-BGP session to ISP 2 for fault tolerance.
   3. Define a name in the **Name** field (e.g. ``ISP2 Customer``).
   4. From the **Site** drop-down menu, select **US/NYC**.
   5. From the **NFV Node** drop-down menu, select **SoftGate2**.
-  6. In the **Neighbor AS** field, type in ``200``.
+  6. In the **Neighbor AS** field, type in ``100``.
   7. In the **Switch port** field, define the port on the switch that is connected to the ISP2.
 
   * For the purposes of this exercise, you can find the required port by typing "``ISP2``" in the Search field.
 
-  8. In the **Local IP** field, type in ``10.20.10.10``
-  9. In the **Remote IP** field, type in ``10.20.10.9``.
-  10. Expand the **Advanced** section
-  11. In the **Prefix List Outbound** field, type in ``permit 7.7.7.0/24``
-  12. And finally click **Add**
+  8. Uncheck the **Untag** checkbox to the right of the **VLAN-ID** field and type in ``502`` for the Vlan ID
+  9. In the **Local IP** field, type in ``50.117.59.102``.
+  10. In the **Remote IP** field, type in ``50.117.59.101``.
+  11. Expand the **Advanced** section
+  12. In the **Prefix List Outbound** field, type in permit ``50.117.59.160/28 le 32``.
+  13. And finally click **Add**
   
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net > E-BGP** page as well as on **Telescope > Dashboard** pages will turn green, indication a successfully established BGP session. 
 
@@ -76,7 +77,7 @@ Let's configure a source NAT so our V-Net subnet **192.168.40.0/24** can communi
   5. From the **Protocol** drop-down menu, select **ALL**.
   6. In the **Source** field, type in ``192.168.40.0/24``.
   7. The **Destination** field can remain as ``0.0.0.0/0``.
-  8. From the **Nat IP** drop-down menu, select **7.7.7.8/32(US/NYC)**.
+  8. From the **Nat IP** drop-down menu, select **50.117.59.165/32(US/NYC)**.
   
   * This IP is from our sandbox address space and is indicated in the SoftGate configuration to be used as a global IP for NAT.
     
