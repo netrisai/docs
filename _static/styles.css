@@ -76,20 +76,29 @@ pre.literal-block {
 }
 
 .underscore-transition,
-.wy-breadcrumbs li:first-child a,
-.wy-breadcrumbs li:last-child a,
+.rst-other-versions > a,
+footer > a {
+    font-family: Montseratt;
+}
+
+.fa-github::before {
+    color: #01358d !important;
+}
+
+.underscore-transition,
+.wy-breadcrumbs li:first-child,
+.wy-breadcrumbs li:last-child,
 .rst-other-versions > a,
 .toctree-wrapper a,
 footer > a {
-    font-family: Montseratt;
     color: #01358d !important;
     position: relative;
 }
 
 .underscore-transition::before,
 .wy-menu-vertical a::before,
-.wy-breadcrumbs li:first-child a::before,
-.wy-breadcrumbs li:last-child a::before,
+.wy-breadcrumbs li:first-child::before,
+.wy-breadcrumbs li:last-child::before,
 .rst-other-versions > a::before,
 .toctree-wrapper a::before,
 footer > a::before {
@@ -107,8 +116,8 @@ footer > a::before {
 
 .underscore-transition:hover::before,
 .wy-menu-vertical a:hover::before,
-.wy-breadcrumbs li:first-child a:hover::before,
-.wy-breadcrumbs li:last-child a:hover::before,
+.wy-breadcrumbs li:first-child:hover::before,
+.wy-breadcrumbs li:last-child:hover::before,
 .rst-other-versions > a:hover::before,
 .toctree-wrapper a:hover::before,
 footer > a:hover::before {
