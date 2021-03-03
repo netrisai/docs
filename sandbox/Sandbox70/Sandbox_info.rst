@@ -25,8 +25,17 @@ Netris GUI
 ==========
 http://demo70.netris.ai
 
-Accessing Linux servers
-=======================
+Linux servers
+=============
+
+Example Netris services pre-configured:
+ srv01, srv02, srv03 - are consuming a ROH (Routing On Host) Netris example service, see Services-->ROH.
+ srv01, srv02 - are behing Anycast L3 load balancer.
+ srv04 - is consuming a V-NET (routed VXLAN) Netris example service, see Services-->V-NET.
+
+
+Accessing Linux servers:
+
 .. code-block:: shell-session
 
   srv01: ssh demo@166.88.17.22 -p 23061
@@ -35,10 +44,34 @@ Accessing Linux servers
   srv04: ssh demo@166.88.17.22 -p 23064
   
 
-Accessing Kubernetes cluster
-============================
-In Netris GUI, navigate to Services-->Kubenet. You'll find a pre-configured example Kubenet. Kubenet is a network service purpose built for serving to Kubernetes nodes. Edit the service and copy "Kubeconfig" from the example service into your ".kube/config" on your local machine. Now you should be able to kubectl the sandbox cluster.
-  
+Kubernetes cluster
+==================
+This sandbox provides an up and running Kubernetes cluster. You can deploy any application that needs to expose a TCP port, or you can deploy your favorite ingress controller that needs to expose it's TCP port. Netris will process type:load-balancer automatically using it's L4 Load Balancer service.
+
+To access built-in Kubernetes cluster navigate to Services-->Kubenet in Netris GUI. You'll find a pre-configured example Kubenet service. Kubenet is a network service purpose built for serving to Kubernetes nodes. Edit the service and copy "Kubeconfig" content from the example service into your ".kube/config" on your local machine. Now you should be able to kubectl the sandbox cluster.
+
+
+Upstream ISP
+============
+This sandbox provides and upstream ISP service with real-world Internet routing. 
+There is a pre-configured example NET-->E-BGP session, which is advertising the public IP subnet to the upstream ISP Iris.
+
+ISP settings:
+
+.. code-block:: shell-session
+
+ Customer subnet: 50.117.59.208/28
+ 
+ (pre-configured example)
+ Vlan: 801
+ IP customer: 50.117.59.122/30
+ IP Iris: 50.117.59.121/30
+ 
+ Vlan: 802
+ IP customer:  50.117.59.126/30
+ IP Iris: 50.117.59.125/30
+
+
 Networks used
 =============
 .. code-block:: shell-session
