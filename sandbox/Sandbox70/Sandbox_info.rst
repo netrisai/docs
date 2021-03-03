@@ -3,18 +3,17 @@ Welcome to Netris Sandbox
 *************************
 
 Netris sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
-Please see Topology diagram, check the example services, and learn by doing with our step-by-step guide for using Netris. 
+We have created some example services for you. Feel free to view, edit, and create new services. Reach out to us if you have any questions. https://netris.ai/slack 
 
 This environment provides:
 
-* Netris Controller: Cloud-hosted and loaded with examples.
+* Netris Controller: A cloud-hosted Netris controller, loaded with examples.
 * Switching fabric: Two spine switches and four leaf switches, all Netris-operated.
 * SoftGate: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
 * Linux servers: Four Linux servers, with root access where you can run any applications for your tests.
 * Kubernetes cluster: A 3 node Kubernetes cluster, integrated with Netris controller, feel free to deploy any applications for your tests.
 * ISP: Internet upstream, providing the sandbox Internet connectivity with real-world routable public IP addresses.
 
-* Feel free to reach out to us if you have any questions. https://netris.ai/slack 
 
 Topology diagram
 ================
