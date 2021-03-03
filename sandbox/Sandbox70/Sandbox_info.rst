@@ -3,9 +3,11 @@ Welcome to Netris Sandbox
 *************************
 
 Netris sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
-We have created some example services for you. Feel free to view, edit, and create new services. Reach out to us if you have any questions. https://netris.ai/slack 
+We have pre-created some example services for you. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions. https://netris.ai/slack 
 
-This environment provides:
+The credentials should be in the email response to your sandbox request.
+
+This environment includes:
 
 * Netris Controller: A cloud-hosted Netris controller, loaded with examples.
 * Switching fabric: Two spine switches and four leaf switches, all Netris-operated.
@@ -53,8 +55,8 @@ To access built-in Kubernetes cluster navigate to Services-->Kubenet in Netris G
 
 Upstream ISP
 ============
-This sandbox provides and upstream ISP service with real-world Internet routing. 
-There is a pre-configured example NET-->E-BGP session, which is advertising the public IP subnet to the upstream ISP Iris.
+This sandbox provides an upstream ISP service with real-world Internet routing. 
+There is one pre-configured example NET-->E-BGP service, which is advertising the public IP subnet to the upstream ISP Iris.
 
 ISP settings:
 
