@@ -6,9 +6,9 @@ set -x
 ###################
 
 apt-get update
-apt-get -y install git rsync python3-sphinx python3-sphinx-rtd-theme python3-stemmer python3-git python3-pip python3-virtualenv python3-setuptools
+apt-get -y install git curl rsync python3-sphinx python3-sphinx-rtd-theme python3-stemmer python3-git python3-pip python3-virtualenv python3-setuptools
 
-python3 -m pip install --upgrade rinohtype pygments
+python3 -m pip install --upgrade rinohtype pygments m2r
 
 #####################
 # DECLARE VARIABLES #
@@ -57,6 +57,12 @@ for current_version in ${versions}; do
   # BUILDS #
   ##########
   echo "INFO: Building for ${languages}"
+
+  # Downloading external docs #
+  curl "https://raw.githubusercontent.com/netrisai/charts/main/charts/netris-controller/README.md" -o "controller_k8s_installation.md"
+
+  # Converting MDs to rst #
+  m2r *.md
   
   # HTML #
   sphinx-build -b html . _build/html/${languages}/${current_version} -D language="${languages}"
