@@ -16,6 +16,7 @@ Contents:
 
    concepts
    controller_installation
+   controller_k8s_installation
    controller_initial_configuration
    switch_agent_installation
    SoftGate_agent_installation
