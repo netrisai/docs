@@ -7,7 +7,7 @@ Let's create a V-Net service to give the **srv04-nyc** server the ability to rea
 
 * In a terminal window:
 
-  1. SSH to the **srv04-nyc** server by typing ``ssh demo@166.88.17.22 -p 22964``.
+  1. SSH to the **srv04-nyc** server by typing ``ssh demo@166.88.17.19 -p 22964``.
   2. Enter the password provided in the introductory e-mail.
   3. Type ``ip route ls`` and we can see ``192.168.44.1`` is configured as the default gateway, indicated by the "**default via 192.168.44.1 dev eth2 proto kernel onlink**" line in the output.
   4. Start a ping session towards the default gateway by typing ``ping 192.168.44.1`` and keep it running as an indicator for when the service becomes fully provisioned.
@@ -15,7 +15,7 @@ Let's create a V-Net service to give the **srv04-nyc** server the ability to rea
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting **http://demo69.netris.ai** and navigate to **Services > V-Net**.
+  1. Log into the Netris GUI by visiting **http://sandbox9.netris.ai** and navigate to **Services > V-Net**.
   2. Click **+Add** to create a new V-Net service.
   3. Define a name in the **Name** field (e.g. ``V-Net Customer``).
   4. From the **Sites** drop-down menu, select **US/NYC**.
@@ -37,21 +37,22 @@ Optionally you can configure an E-BGP session to ISP 2 for fault tolerance.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting **https://demo69.netris.ai** and navigate to **Net > E-BGP**.
+  1. Log into the Netris GUI by visiting **https://sandbox9.netris.ai** and navigate to **Net > E-BGP**.
   2. Click **+Add** to configure a new E-BGP session.
   3. Define a name in the **Name** field (e.g. ``ISP2 Customer``).
   4. From the **Site** drop-down menu, select **US/NYC**.
   5. From the **NFV Node** drop-down menu, select **SoftGate2**.
-  6. In the **Neighbor AS** field, type in ``200``.
+  6. In the **Neighbor AS** field, type in ``100``.
   7. In the **Switch port** field, define the port on the switch that is connected to the ISP2.
 
   * For the purposes of this exercise, you can find the required port by typing "``ISP2``" in the Search field.
-
-  8. In the **Local IP** field, type in ``10.20.10.10``
-  9. In the **Remote IP** field, type in ``10.20.10.9``.
-  10. Expand the **Advanced** section
-  11. In the **Prefix List Outbound** field, type in ``permit 7.7.7.0/24``
-  12. And finally click **Add**
+  
+  8. For the **VLAN ID** field, unselect ``Untag`` and type in ``702``.
+  9. In the **Local IP** field, type in ``50.117.59.118``
+  10. In the **Remote IP** field, type in ``50.117.59.117``.
+  11. Expand the **Advanced** section
+  12. In the **Prefix List Outbound** field, type in ``permit 50.117.59.192/28 le 32``
+  13. And finally click **Add**
   
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net > E-BGP** page as well as on **Telescope > Dashboard** pages will turn green, indication a successfully established BGP session. .
 
@@ -61,7 +62,7 @@ Now when we have both internal and external facing services, we can aim for our 
 
 * In a terminal window:
 
-  1. SSH to srv04-nyc by typing ``ssh demo@166.88.17.22 -p 22964``.
+  1. SSH to srv04-nyc by typing ``ssh demo@166.88.17.19 -p 22964``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 8.8.8.8`` and keep it running as an indicator for when the service starts to work.
   
@@ -69,14 +70,14 @@ Let's configure a source NAT so our V-Net subnet **192.168.44.0/24** can communi
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting **https://demo69.netris.ai** and navigate to **Net > NAT**.
+  1. Log into the Netris GUI by visiting **https://sandbox9.netris.ai** and navigate to **Net > NAT**.
   2. Click **+Add** to define a new NAT.
   3. Define a name in the **Name** field (e.g. ``NAT Customer``).
   4. From the **Action** drop-down menu, select **SNAT**.
   5. From the **Protocol** drop-down menu, select **ALL**.
   6. In the **Source** field, type in ``192.168.44.0/24``.
   7. The **Destination** field can remain as ``0.0.0.0/0``.
-  8. From the **Nat IP** drop-down menu, select **7.7.7.8/32(US/NYC)**.
+  8. From the **Nat IP** drop-down menu, select **50.117.59.197/32(US/NYC)**.
   
   * This IP is from our sandbox address space and is indicated in the SoftGate configuration to be used as a global IP for NAT.
     
@@ -90,13 +91,13 @@ Now that **srv02-nyc** can communicate with both internal and external hosts, le
 
 * In a terminal window:
 
-  1. SSH to srv04-nyc by typing ``ssh demo@166.88.17.22 -p 22964``.
+  1. SSH to srv04-nyc by typing ``ssh demo@166.88.17.19 -p 22964``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 8.8.8.8`` and keep it running for the duration of this exercise.
   
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting **https://demo69.netris.ai** and navigate to **Net > Sites**.
+  1. Log into the Netris GUI by visiting **https://sandbox9.netris.ai** and navigate to **Net > Sites**.
   2. Click **Edit** from the Actions menu indicated by three vertical dots (⋮) on the right side of the **UC/NYC** site.
   3. From the **ACL Default Policy** drop-down menu, change the value from **Permit** to **Deny**.
   4. Click **Save**.
@@ -114,7 +115,7 @@ Now that the **Default ACL Policy** is set to **Deny**, we need to configure an 
   3. Define a name in the **Name** field (e.g. ``V-Net to WAN Customer``).
   4. From the **Protocol** drop-down menu, select **ALL**.
   5. In the Source field, type in ``192.168.44.0/24``.
-  6. In the Destination field, type in ``8.8.8.8/32``.
+  6. In the Destination field, type in ``0.0.0.0/0``.
   7. Click **Add**.
   8. Select **Approve** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the newly created "**V-Net to WAN Example**" ACL.
   9. Click **Approve** one more time in the pop-up window.

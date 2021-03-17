@@ -5,7 +5,7 @@ Once you log into the Netris GUI, you will find that certain services have alrea
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
-Once you log into the Netris GUI by visiting **https://demo69.netris.ai** and navigating to **Services > V-Net**, you will find a V-Net service named "**V-Net Example**" already configured for you as an example. You can examine the particular service settings by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net Example**" service.
+Once you log into the Netris GUI by visiting **https://sandbox10.netris.ai** and navigating to **Services > V-Net**, you will find a V-Net service named "**V-Net Example**" already configured for you as an example. You can examine the particular service settings by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net Example**" service.
 
 You may also verify that the service is working properly from within the GUI: (*\*Fields not specified should remain unchanged and retain default values*)
 
