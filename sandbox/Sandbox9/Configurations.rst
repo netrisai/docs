@@ -5,12 +5,12 @@ Once you log into the Netris GUI, you will find that certain services have alrea
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
-Once you log into the Netris GUI by visiting **https://demo69.netris.ai** and navigating to **Services > V-Net**, you will find a V-Net service named "**V-Net Example**" already configured for you as an example. You can examine the particular service settings by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net Example**" service.
+Once you log into the Netris GUI by visiting **https://sandbox9.netris.ai** and navigating to **Services > V-Net**, you will find a V-Net service named "**V-Net Example**" already configured for you as an example. You can examine the particular service settings by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net Example**" service.
 
 You may also verify that the service is working properly from within the GUI: (*\*Fields not specified should remain unchanged and retain default values*)
 
 1. Navigate to **Net > Looking Glass**.
-2. Select the **sw01-nyc(10.254.34.1)** switch from the **Select switch** drop-down menu.
+2. Select the **sw01-nyc(10.254.44.1)** switch from the **Select switch** drop-down menu.
 3. Select the **Ping** radio button from the row of available choices.
 4. Type in ``192.168.43.64`` in the field labeled "**IPv4 address**".
 5. Click **Submit**.
@@ -47,7 +47,7 @@ You may observe the functioning service by pinging the pubblic **1.1.1.1** IP ad
 
 * In a terminal window:
 
-  1. SSH to srv04-nyc by typing ``ssh demo@166.88.17.22 -p 22964``.
+  1. SSH to srv04-nyc by typing ``ssh demo@166.88.17.19 -p 22964``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 1.1.1.1``
 
