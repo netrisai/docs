@@ -44,7 +44,7 @@ Requires freshly installed Ubuntu Linux 18.04 and network connectivity with your
 
 .. code-block:: shell-session
 
-  wget -qO - http://repo.netris.ai/repo/public.key_ | sudo apt-key add -
+  wget -qO - http://repo.netris.ai/repo/public.key | sudo apt-key add -
   
   echo "deb http://repo.netris.ai/repo/ bionic main" | sudo tee /etc/apt/sources.list.d/netris.list
 
@@ -58,7 +58,7 @@ Requires freshly installed Ubuntu Linux 18.04 and network connectivity with your
 
 .. code-block:: shell-session
 
-  sudo apt-get install netris-sg-mlnx
+  sudo apt-get install netris-dpdk-mlnx frr
 
 6. Configure Management IP address
 
@@ -100,7 +100,7 @@ Configure out of band management IP address. In case Netris Controller is not in
 
 .. code-block:: shell-session
 
-  sudo /opt/netris/bin/netris-setup --lo=<SoftGate loopback IP address as defined in controller>  --controller=<Netris Controller IP or FQDN> --hostname=<node name as defined in controller> --auth=<authentication key> --node-prio=<node priority 1/2>  
+  sudo /opt/netris-dpdk/bin/netris-setup --lo=<SoftGate loopback IP address as defined in controller>  --controller=<Netris Controller IP or FQDN> --hostname=<node name as defined in controller> --auth=<authentication key> --node-prio=<node priority 1/2>  
 
 Example: Running netris-setup
 
