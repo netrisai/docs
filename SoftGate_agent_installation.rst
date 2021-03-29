@@ -106,7 +106,7 @@ Example: Running netris-setup
 
 .. code-block:: shell-session
 
-  netris@ubuntu:~$ sudo /opt/netris/bin/netris-setup --lo=10.254.97.33  --controller=10.254.97.10 --hostname=softgate1 --auth=6a284d55148f81728f932b28e9d020736c8f78e1950b3d576f6e679d90516df1 --node-prio=1
+  netris@ubuntu:~$ sudo /opt/netris-dpdk/bin/netris-setup --lo=10.254.97.33  --controller=10.254.97.10 --hostname=softgate1 --auth=6a284d55148f81728f932b28e9d020736c8f78e1950b3d576f6e679d90516df1 --node-prio=1
   * Setup Hostname
   * Setup Hosts
   * Setup Keepalived
