@@ -58,7 +58,7 @@ Requires freshly installed Ubuntu Linux 18.04 and network connectivity with your
 
 .. code-block:: shell-session
 
-  sudo apt-get install netris-dpdk-mlnx frr
+  sudo apt-get install netris-dpdk-mlnx
 
 6. Configure Management IP address
 
@@ -100,13 +100,13 @@ Configure out of band management IP address. In case Netris Controller is not in
 
 .. code-block:: shell-session
 
-  sudo /opt/netris-dpdk/bin/netris-setup --lo=<SoftGate loopback IP address as defined in controller>  --controller=<Netris Controller IP or FQDN> --hostname=<node name as defined in controller> --auth=<authentication key> --node-prio=<node priority 1/2>  
+  sudo /opt/netris/bin/netris-setup --lo=<SoftGate loopback IP address as defined in controller>  --controller=<Netris Controller IP or FQDN> --hostname=<node name as defined in controller> --auth=<authentication key> --node-prio=<node priority 1/2>  
 
 Example: Running netris-setup
 
 .. code-block:: shell-session
 
-  netris@ubuntu:~$ sudo /opt/netris-dpdk/bin/netris-setup --lo=10.254.97.33  --controller=10.254.97.10 --hostname=softgate1 --auth=6a284d55148f81728f932b28e9d020736c8f78e1950b3d576f6e679d90516df1 --node-prio=1
+  netris@ubuntu:~$ sudo /opt/netris/bin/netris-setup --lo=10.254.97.33  --controller=10.254.97.10 --hostname=softgate1 --auth=6a284d55148f81728f932b28e9d020736c8f78e1950b3d576f6e679d90516df1 --node-prio=1
   * Setup Hostname
   * Setup Hosts
   * Setup Keepalived
