@@ -236,7 +236,7 @@ Description of netris-setup parameters
 
 .. code-block:: shell-session
 
-sudo /opt/netris/bin/netris-setup --auth=<authentication key> --controller=<IP or FQDN> --hostname=<name> --lo=<loopback IP address> --type=<spine/leaf>
+  sudo /opt/netris/bin/netris-setup --auth=<authentication key> --controller=<IP or FQDN> --hostname=<name> --lo=<loopback IP address> --type=<spine/leaf>
 
 5. Reboot the switch
 
