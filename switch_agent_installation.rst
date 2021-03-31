@@ -129,8 +129,8 @@ If you don’t have DHCP in the management network, the stop onie discovery serv
 .. code-block:: shell-session
 
   onie-discovery-stop
-  ip addr add 10.254.96.18/24 dev eth0
-  ip route add default via 10.254.96.1
+  ip addr add <management IP address/prefix> dev eth0
+  ip route add default via <gateway of management network>
   echo “nameserver 1.1.1.1” > /etc/resolv.conf
 
 Update ONIE to the supported version. 
@@ -139,7 +139,9 @@ Update ONIE to the supported version.
 
   ONIE image available for Mellanox switches only!
 
-``onie-self-update http://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x8`` 
+.. code-block:: shell-session
+
+  onie-self-update http://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x8
 
 3. NOS Install
 --------------
@@ -153,13 +155,15 @@ If you don’t have DHCP in the management network, the stop onie discovery serv
 .. code-block:: shell-session
 
   onie-discovery-stop
-  ip addr add 10.254.96.18/24 dev eth0
-  ip route add default via 10.254.96.1
+  ip addr add <management IP address/prefix> dev eth0
+  ip route add default via <gateway of management network>
   echo “nameserver 1.1.1.1” > /etc/resolv.conf
 
 Install Ubuntu-SiwtchDev from the Netris custom image:
 
-``onie-nos-install http://repo.netris.ai/repo/netris-ubuntu-18.04.1.bin``
+.. code-block:: shell-session
+
+  onie-nos-install http://repo.netris.ai/repo/netris-ubuntu-18.04.1.bin
 
 Default username/password
  
