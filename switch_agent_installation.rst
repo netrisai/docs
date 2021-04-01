@@ -224,7 +224,7 @@ Install the Netris Agent
  
 .. code-block:: shell-session
 
-  sudo apt install netris-sw
+  sudo apt-get update && sudo apt-get install netris-sw
   
 4. Initialize the switch using netris-setup
 
