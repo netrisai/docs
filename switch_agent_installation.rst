@@ -79,7 +79,7 @@ Description of netris-setup parameters
 
 .. code-block:: shell-session
 
- --auth - Authentication key, “6878C6DD88224981967F67EE2A73F092” is the default key.
+ --auth - Authentication key, "6878C6DD88224981967F67EE2A73F092" is the default key.
  --controller - IP address or domain name of Netris Controller. 
  --hostname - The hostname for the current switch, this hostname should match the name defined in the Controller.
  --lo - IP address for the loopback interface, as it is defined in the controller.
@@ -124,14 +124,14 @@ Select **Update ONIE** from grub menu:
 .. image:: images/updateONIE.png
     :align: center
 
-If you don’t have DHCP in the management network, the stop onie discovery service and configure IP address and default gateway manually:
+In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
 
 .. code-block:: shell-session
 
   onie-discovery-stop
   ip addr add <management IP address/prefix> dev eth0
   ip route add default via <gateway of management network>
-  echo “nameserver 1.1.1.1” > /etc/resolv.conf
+  echo "nameserver 1.1.1.1" > /etc/resolv.conf
 
 Update ONIE to the supported version. 
 
@@ -141,7 +141,7 @@ Update ONIE to the supported version.
 
 .. code-block:: shell-session
 
-  onie-self-update http://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x8
+  onie-self-update http://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x86-r0
 
 3. NOS Install
 --------------
@@ -150,14 +150,14 @@ Select **Install OS** from grub menu:
 .. image:: images/installOS.png
     :align: center
 
-If you don’t have DHCP in the management network, the stop onie discovery service and configure IP address and default gateway manually:
+In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
 
 .. code-block:: shell-session
 
   onie-discovery-stop
   ip addr add <management IP address/prefix> dev eth0
   ip route add default via <gateway of management network>
-  echo “nameserver 1.1.1.1” > /etc/resolv.conf
+  echo "nameserver 1.1.1.1" > /etc/resolv.conf
 
 Install Ubuntu-SiwtchDev from the Netris custom image:
 
