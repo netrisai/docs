@@ -187,8 +187,7 @@ Configure out of band management IP address, and in case Netris Controller is no
   auto eth0
   iface eth0 inet static
       address <Management IP address/prefix length>
-      up ip ro add <Controller address> via <Management network gateway> 
-  #delete this line if Netris Controller is located in the same network with the switch.
+      up ip ro add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the switch.
 
   source /etc/network/interfaces.d/*
 
