@@ -109,7 +109,7 @@ For Ubuntu SwitchDev
   Further installation requires a Console and Internet connectivity via management port!
   
 1. NOS Uninstall
------------------
+
 Fist of all uninstall current NOS using **Uninstall OS** from grub menu:
 
 .. image:: images/uninstallOS.png
@@ -118,7 +118,7 @@ Fist of all uninstall current NOS using **Uninstall OS** from grub menu:
 Once the uninstallation is completed, the switch will reboot automatically.
 
 2. Update ONIE
---------------
+
 Select **Update ONIE** from grub menu:
 
 .. image:: images/updateONIE.png
@@ -144,7 +144,7 @@ Update ONIE to the supported version.
   onie-self-update http://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x86-r0
 
 3. NOS Install
---------------
+
 Select **Install OS** from grub menu:
 
 .. image:: images/installOS.png
