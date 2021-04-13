@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Sandbox info &mdash; Netris docs Netris v2.9 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/styles.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/netris_favicon.png"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffffff" >
+          
+
+
+  <a href="https://www.netris.ai">
+
+
+
+  
+  <img src="../../_static/logo-600.png" class="logo" alt="Logo"/>
+
+</a>
+
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts.html">Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts.html#introduction-to-netris">Introduction to Netris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts.html#what-is-netris-controller">What is Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts.html#netris-switch-agent">Netris Switch Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts.html#netris-softgate">Netris SoftGate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../controller_installation.html">On-prem Netris Controller installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_installation.html#kvm-virtual-machine">KVM virtual machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_installation.html#installation-steps-for-kvm-hypervisor">Installation steps for KVM hypervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_installation.html#netris-controller-installation-steps">Netris Controller Installation steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_installation.html#accessing-the-netris-controller">Accessing the Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_installation.html#security-hardening">Security hardening</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_installation.html#changing-the-default-grpc-authentication-key">Changing the default GRPC authentication key.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_installation.html#replacing-the-ssl-certificate">Replacing the SSL certificate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../controller_k8s_installation.html">Netris Controller Helm Chart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_k8s_installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_k8s_installation.html#get-repo-info">Get Repo Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_k8s_installation.html#installing-the-chart">Installing the Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_k8s_installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_k8s_installation.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#common-parameters">Common parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#netris-controller-common-parameters">Netris-Controller common parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#netris-controller-app-parameters">Netris-Controller app parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#netris-controller-grpc-parameters">Netris-Controller grpc parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#netris-controller-telescope-parameters">Netris-Controller telescope parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#netris-controller-k8s-watcher-parameters">Netris-Controller k8s-watcher parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#netris-controller-telescope-notifier-parameters">Netris-Controller telescope-notifier parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#mariadb-parameters">Mariadb parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#mongodb-parameters">Mongodb parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#redis-parameters">Redis parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#smtp-parameters">Smtp parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#haproxy-parameters">HAproxy parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_k8s_installation.html#graphite-parameters">Graphite parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_k8s_installation.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../controller_initial_configuration.html">Controller initial configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_initial_configuration.html#definitions">Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_initial_configuration.html#subnets">Subnets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_initial_configuration.html#example-ip-addresses-used-are-just-examples-please-replace-them-following-your-ip-planning">Example:  (IP addresses used are just examples, please replace them following your IP planning.)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_initial_configuration.html#inventory-profiles">Inventory Profiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller_initial_configuration.html#fields-descriptions">Fields descriptions:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_initial_configuration.html#adding-switches-to-topology">Adding Switches to Topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_initial_configuration.html#topology-manager">Topology Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_initial_configuration.html#hairpin-cumulus-only">Hairpin (Cumulus only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller_initial_configuration.html#adding-softgate-nodes-to-topology">Adding SoftGate nodes to Topology</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../switch_agent_installation.html">Netris switch agent installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../switch_agent_installation.html#for-cumulus-linux">For Cumulus Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../switch_agent_installation.html#configure-the-oob-management-ip-address">Configure the OOB Management IP address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch_agent_installation.html#configure-cumulus-linux-license">Configure Cumulus Linux license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch_agent_installation.html#install-the-netris-agent">Install the Netris Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../switch_agent_installation.html#for-ubuntu-switchdev">For Ubuntu SwitchDev</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../switch_agent_installation.html#nos-uninstall">1. NOS Uninstall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch_agent_installation.html#update-onie">2. Update ONIE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch_agent_installation.html#nos-install">3. NOS Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch_agent_installation.html#id1">Configure the OOB Management IP address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch_agent_installation.html#id2">Install the Netris Agent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../SoftGate_agent_installation.html">Netris SoftGate agent installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate_agent_installation.html#minimal-hardware-requirements">Minimal hardware requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate_agent_installation.html#bios-configuration">BIOS configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate_agent_installation.html#software-installation">Software installation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Network Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../network_policies.html">Basic BGP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network_policies.html#advanced-bgp">Advanced BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../network_policies.html#bgp-objects">BGP objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../network_policies.html#ipv4-prefix">IPv4 Prefix.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../network_policies.html#ipv6-prefix">IPv6 Prefix.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../network_policies.html#community">Community.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../network_policies.html#bgp-route-maps">BGP route-maps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../network_policies.html#routes-static-routing">Routes (static routing)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network_policies.html#nat">NAT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../network_policies.html#enabling-nat">Enabling NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../network_policies.html#defining-nat-rules">Defining NAT rules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../network_policies.html#looking-glass">Looking Glass</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Network Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html">V-NET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#kubenet">Kubenet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#roh-routing-on-the-host">ROH (Routing on the Host)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#l3-load-balancer-anycast-lb">L3 Load Balancer (Anycast LB)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#l4-load-balancer-l4lb">L4 Load Balancer (L4LB)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#enabling-l4lb-service">Enabling L4LB service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#consuming-l4lb-service">Consuming L4LB service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#access-control-lists-acl">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#acl-default-policy">ACL Default Policy.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#acl-rules">ACL rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#acl-approval-workflow">ACL approval workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#the-sequence-order-of-acl-rules">The sequence order of ACL rules</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Operations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visibility.html">Visibility (Telescope)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../visibility.html#graph-boards">Graph Boards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visibility.html#api-logs">API Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visibility.html#dashboard">Dashboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../accounts.html">Accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#permission-groups">Permission Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#user-roles">User Roles</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Updates</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release notes</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Netris docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          <!--
+<div class="header-wrapper">
+    <div>
+        <a class="underscore-transition" href="https://www.netris.ai/overview/">
+            Product Overview
+        </a>
+        <a class="underscore-transition" href="https://www.netris.ai/start/">
+            Get started
+        </a>
+        <a class="underscore-transition" href="https://www.netris.ai/category/blog/">
+            Blog
+        </a>
+    </div>
+    <a class="button" href="https://netris.ai/demo">
+        Schedule a demo
+    </a>
+</div>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Sandbox info</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/netrisai/docs/blob/master/sandbox/Sandbox57/Sandbox_info.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="sandbox-info">
+<h1>Sandbox info<a class="headerlink" href="#sandbox-info" title="Permalink to this headline">¶</a></h1>
+<section id="gui">
+<h2>Gui<a class="headerlink" href="#gui" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://demo57.netris.ai">https://demo57.netris.ai</a></p>
+</section>
+<section id="ssh-to-servers">
+<h2>SSH to servers<a class="headerlink" href="#ssh-to-servers" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">srv01-nyc: ssh demo@166.88.17.22 -p 22761</span>
+<span class="go">srv02-nyc: ssh demo@166.88.17.22 -p 22762</span>
+<span class="go">srv03-nyc: ssh demo@166.88.17.22 -p 22763</span>
+<span class="go">srv04-nyc: ssh demo@166.88.17.22 -p 22764</span>
+</pre></div>
+</div>
+</section>
+<section id="networks">
+<h2>Networks<a class="headerlink" href="#networks" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">Management subnet: 10.254.39.0/24 (X=39)</span>
+<span class="go">Loopback subnet:   10.254.40.0/24 (X=40)</span>
+<span class="go">Example subnet:    192.168.39.0/24</span>
+<span class="go">Customer subnet:   192.168.40.0/24</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Netris.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Alternate Versions</span>
+      v: stable
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+           <strong> 
+          <dd><a href="/en/stable/">stable</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/en/nadianetris-patch-1/">nadianetris-patch-1</a></dd>
+          
+        
+      </dl>
+      
+      
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="/docs/en/stable/netris-docs_en_stable.pdf">pdf</a></dd>
+        
+          <dd><a href="/docs/en/stable/netris-docs_en_stable.epub">epub</a></dd>
+        
+      </dl>
+      
+      
+      <hr/>
+      Free theme by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-152905529-2', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>
