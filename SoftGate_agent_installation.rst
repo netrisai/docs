@@ -17,7 +17,7 @@ The following are some recommendations on BIOS settings. Different vendors will 
 * Select Performance as the CPU Power and Performance policy.
 * Disable Turbo Boost to ensure the performance scaling increases with the number of cores.
 * Set memory frequency to the highest available number, NOT auto.
-* Disable all virtualization options when you test the physical function of the NIC, and turn on VT-d.
+* Disable all virtualization options when you test the physical function of the NIC, and turn off VT-d.
 * Disable Hyper-Threading.
 
 Software installation
