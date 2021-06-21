@@ -381,7 +381,7 @@ for version in versions:
 	if version == 'master':
 		version = 'stable'
 
-	html_context['versions'].append( (version, '/' +language+ '/' +version+ '/') )
+	html_context['versions'].append( (version, '/docs/' +language+ '/' +version+ '/') )
 
 # DOWNLOADS
 
