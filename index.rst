@@ -15,17 +15,17 @@ Contents:
    :caption: Getting Started
 
    concepts
-   controller_installation
-   controller_k8s_installation
-   controller_initial_configuration
-   switch_agent_installation
-   SoftGate_agent_installation
+   controller-installation
+   controller-k8s-installation
+   controller-initial-configuration
+   switch-agent-installation
+   SoftGate-agent-installation
    
 .. toctree::
    :maxdepth: 4
    :caption: Network Policies
 
-   network_policies
+   network-policies
 
 .. toctree::
    :maxdepth: 4
@@ -45,5 +45,5 @@ Contents:
    :maxdepth: 4
    :caption: Updates
    
-   release_notes
+   release-notes
 
