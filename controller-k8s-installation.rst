@@ -545,13 +545,13 @@ Alternatively, a YAML file that specifies the values for the parameters can be p
 
    helm install netris-controller netrisai/netris-controller --namespace netris-controller -f values.yaml
 
-After installation use ``EXTERNAL-IP`` of haproxy service as ``--controller`` parameter in `netris-setup <https://www.netris.ai/docs/en/stable/switch_agent_installation.html#install-the-netris-agent>`_
+After installation use ``EXTERNAL-IP`` of haproxy service as ``--controller`` parameter in `netris-setup <https://www.netris.ai/docs/en/stable/switch-agent-installation.html#install-the-netris-agent>`_
 
 .. code-block::
 
    kubectl get svc -nnetris-controller |grep haproxy
 
-and ``$mystrongauthkey`` as ``--auth`` parameter in `netris-setup <https://www.netris.ai/docs/en/stable/switch_agent_installation.html#install-the-netris-agent>`_
+and ``$mystrongauthkey`` as ``--auth`` parameter in `netris-setup <https://www.netris.ai/docs/en/stable/switch-agent-installation.html#install-the-netris-agent>`_
 
 .. code-block::
 
