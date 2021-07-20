@@ -5,4 +5,5 @@ Sandbox9
 .. toctree::
    :maxdepth: 2
 
-   Sandbox_info
+   Sandbox-info
+   creating-services

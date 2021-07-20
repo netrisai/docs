@@ -402,3 +402,10 @@ html_context['downloads'] = list()
 html_context['downloads'].append( ('pdf', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
 
 html_context['downloads'].append( ('epub', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
+
+# Variables
+
+rst_prolog = """
+.. |a-variable| replace:: A variable
+.. 
+"""

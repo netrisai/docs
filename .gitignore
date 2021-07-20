@@ -1,3 +1,4 @@
 .vscode
 _build
 *.code-workspace
+.DS_Store
