@@ -1,3 +1,6 @@
+.. meta::
+    :description: Netris Network Policies & Protocol Configuration
+
 #########
 Basic BGP
 #########

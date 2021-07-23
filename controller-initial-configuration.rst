@@ -1,3 +1,6 @@
+.. meta::
+    :description: Netris Controller Initial Configuration
+
 ********************************
 Controller initial configuration
 ********************************

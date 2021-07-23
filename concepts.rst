@@ -1,3 +1,6 @@
+.. meta::
+    :description: Netris Core Concepts
+
 ########
 Concepts
 ########

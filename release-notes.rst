@@ -1,3 +1,6 @@
+.. meta::
+    :description: Netris Release Notes
+
 #############
 Release notes
 #############
