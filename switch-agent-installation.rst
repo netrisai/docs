@@ -1,3 +1,6 @@
+.. meta::
+  :description: Netris Switch Agent Installation
+
 ********************************
 Netris switch agent installation
 ********************************

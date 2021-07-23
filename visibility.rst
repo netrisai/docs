@@ -1,3 +1,6 @@
+.. meta::
+    :description: Netris System Visibility, Monitoring & Telemetry
+
 **********************
 Visibility (Telescope)
 **********************

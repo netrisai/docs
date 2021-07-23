@@ -1,3 +1,6 @@
+.. meta::
+  :description: Netris SoftGate Agent Installation
+
 ***********************************
 Netris SoftGate agent installation
 ***********************************
