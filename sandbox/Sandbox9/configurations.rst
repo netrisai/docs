@@ -10,7 +10,7 @@ Once you log into the Netris GUI by visiting `https://sandbox9.netris.ai <https:
 You may also verify that the service is working properly from within the GUI: (*\*Fields not specified should remain unchanged and retain default values*)
 
 1. Navigate to **Net > Looking Glass**.
-2. Select the **sw01-nyc(10.254.44.1)** switch from the **Select switch** drop-down menu.
+2. Select the **sw01-nyc(10.254.44.1)** switch from the **Select device** drop-down menu.
 3. Select the **Ping** radio button from the row of available choices.
 4. Type in ``192.168.43.64`` in the field labeled "**IPv4 address**".
 5. Click **Submit**.
@@ -21,14 +21,15 @@ The result should look similar to the output below, indicating that the communic
 
   sw01-nyc# ping -c 5 192.168.43.64
   PING 192.168.43.64 (192.168.43.64) 56(84) bytes of data.
-  64 bytes from 192.168.43.64: icmp_seq=1 ttl=64 time=33.4 ms
-  64 bytes from 192.168.43.64: icmp_seq=2 ttl=64 time=27.1 ms
-  64 bytes from 192.168.43.64: icmp_seq=3 ttl=64 time=0.702 ms
-  64 bytes from 192.168.43.64: icmp_seq=4 ttl=64 time=1.37 ms
-  64 bytes from 192.168.43.64: icmp_seq=5 ttl=64 time=0.609 ms
+  64 bytes from 192.168.43.64: icmp_seq=1 ttl=64 time=0.543 ms
+  64 bytes from 192.168.43.64: icmp_seq=2 ttl=64 time=0.436 ms
+  64 bytes from 192.168.43.64: icmp_seq=3 ttl=64 time=0.445 ms
+  64 bytes from 192.168.43.64: icmp_seq=4 ttl=64 time=0.354 ms
+  64 bytes from 192.168.43.64: icmp_seq=5 ttl=64 time=0.345 ms
+
   --- 192.168.43.64 ping statistics ---
-  5 packets transmitted, 5 received, 0% packet loss, time 4008ms
-  rtt min/avg/max/mdev = 0.609/12.660/33.422/14.545 ms
+  5 packets transmitted, 5 received, 0% packet loss, time 4074ms
+  rtt min/avg/max/mdev = 0.345/0.424/0.543/0.075 ms
 
 If you are interested in learning how to create a V-Net service yourself, please refer to the step-by-step instructions in the :ref:`"V-Net (Ethernet/Vlan/VXlan)"<v-net>` section in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
 
@@ -61,6 +62,8 @@ If you are interested in learning how to create a NAT services yourself, please 
 
 ACL (Access Control List) Example
 =================================
-Navigate to **Services > ACL** and you will find an ACL services named "**V-Net to WAN Example**" set up as an example. This particular ACL ensures that the connectivity between the the private **192.168.43.0/24** network with the public **1.1.1.1** IP address is permitted through all protocols and ports, even in a scenario where the the **Default Site Policy** for the "**US/NYC**" site configured in the our Sandbox is changed from **Permit** to **Deny**. You can examine the particular settings of this ACL policy by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net to WAN Example**" ACL policy.
+Navigate to **Services > ACL** and you will find an ACL services named "**V-Net to WAN Example**" set up as an example. This particular ACL ensures that the connectivity between the the private **192.168.43.0/24** network and the Internet is permitted through all protocols and ports, even in a scenario where the the **Default Site Policy** for the "**US/NYC**" site configured in the our Sandbox is changed from **Permit** to **Deny**. 
 
-By utilizing ACLs, you can impose granular controls and implement policies that would allow or disallow particular connections. If you are interested in learning how to create a ACL policies yourself, please refer to the step-by-step instructions in the "**ACL (Access Control List)**" section below.
+You can examine the particular settings of this ACL policy by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net to WAN Example**" ACL policy.
+
+By utilizing ACLs, you can impose granular controls and implement policies that would allow or disallow particular connections. If you are interested in learning how to create a ACL policies yourself, please refer to the step-by-step instructions in the :ref:`"ACL (Access Control List)"<acl>` section in the in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
