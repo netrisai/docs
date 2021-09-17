@@ -1,3 +1,5 @@
+.. _learn_by_doing:
+
 **************************
 Learn by Creating Services
 **************************
