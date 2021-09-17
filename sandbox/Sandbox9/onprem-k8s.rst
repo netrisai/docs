@@ -78,7 +78,7 @@ Get the list of pods and services in the default namespace:
 
   $ kubectl get po,svc
 
-As you can see, the service type is ‘ClusterIP’:
+As you can see, the service type is "ClusterIP":
 
 .. code-block:: shell-session
 
@@ -89,7 +89,7 @@ As you can see, the service type is ‘ClusterIP’:
   NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
   service/podinfo      ClusterIP   172.21.65.106   <none>        9898/TCP,9999/TCP   50s
 
-In order to request access from outside, change the type to ‘LoadBalancer’:
+In order to request access from outside, change the type to "LoadBalancer":
 
 .. code-block:: shell-session
 
@@ -101,14 +101,14 @@ Check the services again:
 
   $ kubectl get svc
 
-Now we can see that the service type changed to LoadBalancer, and “EXTERNAL-IP” switched to pending state:
+Now we can see that the service type changed to LoadBalancer, and "EXTERNAL-IP" switched to pending state:
 
 .. code-block:: shell-session
 
    NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                         AGE
    podinfo      LoadBalancer   172.21.65.106   <pending>     9898:32584/TCP,9999:30365/TCP   8m57s
 
-Going into the netris-controller web interface, navigate to **Services / L4 Load Balancer**, and you may see L4LBs provisioning in real-time. If you do not see the provisioning process it is likely because it already completed. Look for the service with the name **“podinfo-xxxxxxxx”**
+Going into the netris-controller web interface, navigate to **Services / L4 Load Balancer**, and you may see L4LBs provisioning in real-time. If you do not see the provisioning process it is likely because it already completed. Look for the service with the name **"podinfo-xxxxxxxx"**
 
 .. image:: /images/sandbox9-podinfo-prov.png
     :align: center
@@ -119,7 +119,7 @@ After provisioning has finished, let’s one more time look at service in k8s:
 
   $ kubectl get svc
 
-You can see that “EXTERNAL-IP” has been injected into Kubernetes:
+You can see that "EXTERNAL-IP" has been injected into Kubernetes:
 
 .. code-block:: shell-session
   
@@ -203,7 +203,7 @@ In addition to provisioning on-demand network load balancers, Netris-Operator ca
 L4LB Custom Resource
 --------------------
 
-In the previous section, when we changed the service type from “ClusterIP” to “LoadBalancer”, Netris-Operator detected a new request for a network load balancer, then it created L4LB custom resources. Let’s see them:
+In the previous section, when we changed the service type from "ClusterIP" to "LoadBalancer", Netris-Operator detected a new request for a network load balancer, then it created L4LB custom resources. Let’s see them:
 
 .. code-block:: shell-session
 
@@ -219,7 +219,7 @@ As you can see, there are two L4LB resources, one for each podinfo’s service p
 
 You can’t edit/delete them, because Netris-Operator will recreate them based on what was originally deployed in the service specifications.
 Instead, let’s create a new load balancer using the CRD method.
-Our new L4LB’s backends will be “srv04-nyc” & “srv05-nyc” on TCP port 80. These servers are already running the Nginx web server, with the hostname present in the index.html file.
+Our new L4LB’s backends will be "srv04-nyc" & "srv05-nyc" on TCP port 80. These servers are already running the Nginx web server, with the hostname present in the index.html file.
 Create a yaml file:
 
 .. code-block:: shell-session
@@ -334,24 +334,24 @@ Let’s curl several times to see that:
 
   $ curl 50.117.59.203
 
-As we can see, the curl request shows the behavior of ‘round robin’ between the backends:
+As we can see, the curl request shows the behavior of "round robin" between the backends:
 
 .. code-block:: shell-session
 
   SRV05-NYC
-  ❯ curl 50.117.59.203
+  $ curl 50.117.59.203
   
   SRV05-NYC
-  ❯ curl 50.117.59.203
+  $ curl 50.117.59.203
   
   SRV05-NYC
-  ❯ curl 50.117.59.203
+  $ curl 50.117.59.203
   
   SRV04-NYC
 
-.. seealso::
+.. note::
 
-  *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the “Default ACL Policy” is set to “Deny“. To remedy this configure an ACL entry that will allow the srv05-nyc server to communicate with the world. For step-by-step instruction review the* :ref:`ACL documentation<s9-v-net>`.
+  *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the "Default ACL Policy" is set to "Deny". To remedy this configure an ACL entry that will allow the srv05-nyc server to communicate with the world. For step-by-step instruction review the* :ref:`ACL documentation<s9-acl>`.
 
 BTW, if you already created "vnet-customer" Vnet as stated in the :ref:`"Learn by Creating Services"<s9-v-net>`, you may import that to k8s, by adding ``resource.k8s.netris.ai/import: "true"`` annotation in vnet manifest, the manifest should look like this:
 
@@ -379,3 +379,225 @@ After applying the manifest containing "import" annotation, the vnet, created fr
 
 BGP Custom Resource
 -------------------
+
+Let’s create a new BGP peer, that is listed in the "Learn by Creating Services"<s9-e-bgp>`.
+Create a yaml file:
+
+.. code-block:: shell-session
+
+  $ cat << EOF > isp2-customer.yaml
+  apiVersion: k8s.netris.ai/v1alpha1
+  kind: BGP
+  metadata:
+    name: isp2-customer
+  spec:
+    site: US/NYC
+    softgate: SoftGate2
+    neighborAs: 100
+    transport:
+      name: swp14@sw02-nyc
+      vlanId: 702
+    localIP: 50.117.59.118/30
+    remoteIP: 50.117.59.117/30
+    description: Example BGP to ISP2
+    prefixListOutbound:
+      - permit 50.117.59.192/28 le 32
+  EOF
+
+And apply it:
+
+.. code-block:: shell-session
+
+  $ kubectl apply -f isp2-customer.yaml
+
+Check created BGP:
+
+.. code-block:: shell-session
+
+  $ kubectl get bgp
+
+Allow up to 1 minute for both sides of the BGP sessions to come up:
+
+.. code-block:: shell-session
+
+  NAME            STATE     BGP STATE   PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
+  isp2-customer   enabled                            100           50.117.59.118/30   50.117.59.117/30   15s
+
+Then check the state again:
+
+.. code-block:: shell-session
+
+  $ kubectl get bgp
+
+The output is similar to this:
+
+.. code-block:: shell-session
+
+  NAME            STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
+  isp2-customer   enabled   bgp: Established; prefix: 30; time: 00:00:51   UP           100           50.117.59.118/30   50.117.59.117/30   2m3s
+
+Feel free to use the import annotation for this BGP if you created it from the controller web interface previously.
+
+Return to the Netris UI and navigate to Net / Topology to see the new BGP neighbor you created.
+
+Importing existing resources from Netris controller to Kubernetes
+-----------------------------------------------------------------
+
+And one more time about importing resources. You can import any custom resources, already created from the Netris-Controller to k8s by adding this annotation:
+
+.. code-block:: yaml
+
+  resource.k8s.netris.ai/import: "true"
+
+Otherwise, if try to apply them w/out "import" annotation, the Netris-Operator will complain that the resource with such name or specs already exists.
+ 
+After importing resources to k8s, they will belong to the Netris-Operator, and you won’t be able to edit/delete them directly from the Netris-Controller web interface, because the Netris-Operator will put everything back, as declared in the custom resources.
+
+Reclaim Policy
+--------------
+
+There is also one useful annotation. So suppose you want to remove some custom resource from k8s, and want to prevent its deletion from the controller, for that you can use "reclaimPolicy" annotation:
+
+.. code-block:: yaml
+
+  resource.k8s.netris.ai/reclaimPolicy: "retain"
+
+Just add this annotation in any custom resource while creating it. Or if the custom resource has already been created, change the ``"delete"`` value to ``"retain"`` for key ``resource.k8s.netris.ai/reclaimPolicy`` in the resource annotation. After that, you’ll be able to delete any Netris Custom Resource from Kubernetes, and it won’t be deleted from the controller.
+
+.. seealso::
+
+  See all options and examples for Netris Custom Resources `here <https://github.com/netrisai/netris-operator/tree/master/samples>`_.
+
+
+Netris Calico CNI Integration
+=============================
+
+Netris-Operator can integrate with Calico CNI, in your sandbox k8s cluster, Calico has already been configured as the CNI, so you can try this integration. It will automatically create BGP peering between cluster nodes and the leaf/TOR switch for each node, then to clean up it will disable Calico Node-to-Node mesh. To understand why you need to configure peering between Kubernetes nodes and the leaf/TOR switch, and why you should disable Node-to-Node mesh, review the `calico docs <https://docs.projectcalico.org/networking/bgp>`_.
+
+Integration is very simple, just need to add the annotation in calico’s ``bgpconfigurations`` custom resource. Before doing that, let’s see the current state of ``bgpconfigurations``:
+
+.. code-block:: shell-session
+
+  $ kubectl get bgpconfigurations default -o yaml
+
+As we can see, ``nodeToNodeMeshEnabled`` is enabled, and ``asNumber`` is 64512 (it’s Calico default AS number):
+
+.. code-block:: yaml
+
+  apiVersion: crd.projectcalico.org/v1
+  kind: BGPConfiguration
+  metadata:
+   annotations:
+     ...
+   name: default
+   ...
+  spec:
+   asNumber: 64512
+   logSeverityScreen: Info
+   nodeToNodeMeshEnabled: true
+
+Let’s enable the "netris-calico" integration:
+
+.. code-block:: shell-session
+
+  $ kubectl annotate bgpconfigurations default manage.k8s.netris.ai/calico='true'
+
+Let’s check our BGP resources in k8s:
+
+.. code-block:: shell-session
+
+  $ kubectl get bgp
+
+Here are our freshly created BGPs, one for each k8s node:
+
+.. code-block:: shell-session
+
+  NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
+  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:06:18   UP           100           50.117.59.118/30   50.117.59.117/30    7m59s
+  sandbox9-srv06-nyc-192.168.109.66   enabled                                                               4200070000    192.168.109.1/24   192.168.109.66/24   26s
+  sandbox9-srv07-nyc-192.168.109.67   enabled                                                               4200070001    192.168.109.1/24   192.168.109.67/24   26s
+  sandbox9-srv08-nyc-192.168.109.68   enabled                                                               4200070002    192.168.109.1/24   192.168.109.68/24   26s  
+
+
+You might notice that peering neighbor AS is different from Calico’s default 64512.  The is because the Netris-Operator is setting a particular AS number for each node.
+
+Allow up to 1 minute for the BGP sessions to come up, then check BGP resources again:
+
+.. code-block:: shell-session
+
+  $ kubectl get bgp
+
+As seen our BGP peers are established:
+
+.. code-block:: shell-session
+
+  NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
+  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:07:48   UP           100           50.117.59.118/30   50.117.59.117/30    8m41s
+  sandbox9-srv06-nyc-192.168.109.66   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070000    192.168.109.1/24   192.168.109.66/24   68s
+  sandbox9-srv07-nyc-192.168.109.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4200070001    192.168.109.1/24   192.168.109.67/24   68s
+  sandbox9-srv08-nyc-192.168.109.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070002    192.168.109.1/24   192.168.109.68/24   68s
+
+Now let’s check if ``nodeToNodeMeshEnabled`` is still enabled:
+
+.. code-block:: shell-session
+
+  $ kubectl get bgpconfigurations default -o yaml
+
+It is disabled, which means the "netris-calico" integration process is finished:
+
+.. code-block:: yaml
+
+  apiVersion: crd.projectcalico.org/v1
+  kind: BGPConfiguration
+  metadata:
+    annotations:
+      manage.k8s.netris.ai/calico: "true"
+      ...
+    name: default
+    ...
+  spec:
+    asNumber: 64512
+    nodeToNodeMeshEnabled: false
+
+.. note::
+
+  Netris-Operator won’t disable ``nodeToNodeMeshEnabled`` until k8s cluster all nodes’ BGP peers are being established.
+
+Finally, let’s check if our earlier deployed "Podinfo" application is still working when Calico Node-to-Node mesh is disabled:
+
+.. code-block:: shell-session
+
+  $ curl 50.117.59.202
+
+Yes, it works:
+
+.. code-block:: json
+
+  {
+   "hostname": "podinfo-576d5bf6bd-mfpdt",
+   "version": "6.0.0",
+   "revision": "",
+   "color": "#34577c",
+   "logo": "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif",
+   "message": "greetings from podinfo v6.0.0",
+   "goos": "linux",
+   "goarch": "amd64",
+   "runtime": "go1.16.5",
+   "num_goroutine": "8",
+   "num_cpu": "4"
+  }
+
+Disabling Netris-Calico Integration
+-----------------------------------
+
+To disable "netris-calico" integration, delete the annotation from Calico’s ``bgpconfigurations`` resource:
+
+.. code-block:: shell-session
+
+  $ kubectl annotate bgpconfigurations default manage.k8s.netris.ai/calico-
+
+or change its value to ``"false"``.
+
+.. topic:: Milestone 2
+
+  Congratulations!  You completed Milestone 2.  Time to get yourself another iced coffee or even a beer depending on what time it is!
