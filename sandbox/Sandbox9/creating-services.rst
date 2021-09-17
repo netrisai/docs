@@ -59,7 +59,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   11. In the **Remote IP** field, type in ``50.117.59.117``.
   12. Expand the **Advanced** section
   13. In the **Prefix List Outbound** field, type in ``permit 50.117.59.192/28 le 32``
-  14git pu. And finally click **Add**
+  14. And finally click **Add**
   
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net > E-BGP** page as well as on **Telescope > Dashboard** pages will turn green, indication a successfully established BGP session. .
 
