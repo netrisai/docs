@@ -4,6 +4,8 @@
 Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps
 **************************************************************
 
+.. contents:: 
+   :local: 
 
 Intro
 =====
