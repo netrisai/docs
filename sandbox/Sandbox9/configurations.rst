@@ -35,7 +35,9 @@ If you are interested in learning how to create a V-Net service yourself, please
 E-BGP (Exterior Border Gateway Protocol) Example
 ================================================
 
-Navigate to **Net > E-BGP**. Here, aside from the system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( **SoftGate1 & SoftGate2** ) and their respective adjacent spine switches ( **sw01-nyc & sw02-nyc** ), you will also find an E-BGP session named "**iris-isp1-example**" configured as example with IRIS ISP1. This ensures communication of the inside network with the Internet. You can examine the particular session settings of the E-BGP connection by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**iris-isp1-example**" connection. While viewing the settings, you may also expand the **Advanced** section located toward the bottom of the initial screen to able to see the more advanced settings available while configuring an E-BGP session.
+Navigate to **Net > E-BGP**. Here, aside from the system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( **SoftGate1 & SoftGate2** ) and their respective adjacent spine switches ( **sw01-nyc & sw02-nyc** ), you will also find an E-BGP session named "**iris-isp1-example**" configured as example with IRIS ISP1. This ensures communication of the inside network with the Internet. 
+
+You can examine the particular session settings of the E-BGP connection by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**iris-isp1-example**" connection. While viewing the settings, you may also expand the **Advanced** section located toward the bottom of the initial screen to able to see the more advanced settings available while configuring an E-BGP session.
 
 If you are interested in learning how to create a fault tolerant E-BGP session with IRIS ISP2 yourself, please refer to the step-by-step instructions in the :ref:`"E-BGP (Exterior Border Gateway Protocol)"<e-bgp>` in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
 
