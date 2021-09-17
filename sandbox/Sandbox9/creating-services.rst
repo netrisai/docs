@@ -1,9 +1,9 @@
-.. _learn_by_doing:
+.. _s9-learn-by-doing:
 
 **************************
 Learn by Creating Services
 **************************
-.. _v-net:
+.. _s9-v-net:
 
 V-Net (Ethernet/Vlan/VXlan)
 ===========================
@@ -33,7 +33,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   
 Once fully provisioned, you will start seeing replies similar in form to "**64 bytes from 192.168.44.1: icmp_seq=1 ttl=64 time=1.66 ms**" to the ping previously started in the terminal window, indicating that now the gateway address is reachable.
 
-.. _e-bgp:
+.. _s9-e-bgp:
 
 E-BGP (Exterior Border Gateway Protocol)
 ========================================
@@ -63,7 +63,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net > E-BGP** page as well as on **Telescope > Dashboard** pages will turn green, indication a successfully established BGP session. .
 
-.. _nat:
+.. _s9-nat:
 
 NAT (Network Address Translation)
 =================================
@@ -94,7 +94,7 @@ Let's configure a source NAT so our V-Net subnet **192.168.44.0/24** can communi
 
 Soon you will start seeing replies similar in form to "**64 bytes from 1.1.1.1: icmp_seq=1 ttl=62 time=1.23 ms**" to the ping previously started in the terminal window, indicating that now the Internet is reachable from **srv05-nyc**.
 
-.. _acl:
+.. _s9-acl:
 
 ACL (Access Control List)
 =========================

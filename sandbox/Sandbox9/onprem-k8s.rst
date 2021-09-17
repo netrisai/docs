@@ -1,4 +1,4 @@
-.. _k8s:
+.. _s9-k8s:
 
 **************************************************************
 Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps
@@ -285,7 +285,7 @@ You can also inspect the L4LB in the Netris controller web interface:
 VNET Custom Resource
 --------------------
 
-If you see the same as shown in the previous screenshot, it means you didn’t create "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<v-net>` manual. If so, let’s create it from Kubernetes using the VNet custom resource.
+If you see the same as shown in the previous screenshot, it means you didn’t create "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s9-v-net>` manual. If so, let’s create it from Kubernetes using the VNet custom resource.
 
 Let’s create our vnet manifest:
 
@@ -351,9 +351,9 @@ As we can see, the curl request shows the behavior of ‘round robin’ between 
 
 .. seealso::
 
-  *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the “Default ACL Policy” is set to “Deny“. To remedy this configure an ACL entry that will allow the srv05-nyc server to communicate with the world. For step-by-step instruction review the* :ref:`ACL documentation<v-net>`.
+  *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the “Default ACL Policy” is set to “Deny“. To remedy this configure an ACL entry that will allow the srv05-nyc server to communicate with the world. For step-by-step instruction review the* :ref:`ACL documentation<s9-v-net>`.
 
-BTW, if you already created "vnet-customer" Vnet as stated in the :ref:`"Learn by Creating Services"<v-net>`, you may import that to k8s, by adding ``resource.k8s.netris.ai/import: "true"`` annotation in vnet manifest, the manifest should look like this:
+BTW, if you already created "vnet-customer" Vnet as stated in the :ref:`"Learn by Creating Services"<s9-v-net>`, you may import that to k8s, by adding ``resource.k8s.netris.ai/import: "true"`` annotation in vnet manifest, the manifest should look like this:
 
 .. code-block:: shell-session
 

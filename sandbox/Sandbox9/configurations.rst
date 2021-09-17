@@ -1,9 +1,9 @@
-.. _pre-configured:
+.. _s9-pre-configured:
 
 ********************************
 Provided Example Configurations
 ********************************
-Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
+Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<s9-learn-by-doing>` document.
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
@@ -33,7 +33,7 @@ The result should look similar to the output below, indicating that the communic
   5 packets transmitted, 5 received, 0% packet loss, time 4074ms
   rtt min/avg/max/mdev = 0.345/0.424/0.543/0.075 ms
 
-If you are interested in learning how to create a V-Net service yourself, please refer to the step-by-step instructions in the :ref:`"V-Net (Ethernet/Vlan/VXlan)"<v-net>` section in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
+If you are interested in learning how to create a V-Net service yourself, please refer to the step-by-step instructions in the :ref:`"V-Net (Ethernet/Vlan/VXlan)"<s9-v-net>` section in the :ref:`"Learn by Creating Services"<s9-learn-by-doing>` document.
 
 E-BGP (Exterior Border Gateway Protocol) Example
 ================================================
@@ -42,7 +42,7 @@ Navigate to **Net > E-BGP**. Here, aside from the system generated IPv4/IPv6 E-B
 
 You can examine the particular session settings of the E-BGP connection by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**iris-isp1-example**" connection. While viewing the settings, you may also expand the **Advanced** section located toward the bottom of the initial screen to able to see the more advanced settings available while configuring an E-BGP session.
 
-If you are interested in learning how to create a fault tolerant E-BGP session with IRIS ISP2 yourself, please refer to the step-by-step instructions in the :ref:`"E-BGP (Exterior Border Gateway Protocol)"<e-bgp>` in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
+If you are interested in learning how to create a fault tolerant E-BGP session with IRIS ISP2 yourself, please refer to the step-by-step instructions in the :ref:`"E-BGP (Exterior Border Gateway Protocol)"<s9-e-bgp>` in the :ref:`"Learn by Creating Services"<s9-learn-by-doing>` document.
 
 NAT (Network Address Translation) Example
 =========================================
@@ -60,7 +60,7 @@ You may observe the functioning service by pinging the pubblic **1.1.1.1** IP ad
 
 You will see replies in the form of "**64 bytes from 1.1.1.1: icmp_seq=1 ttl=62 time=1.10 ms**" indicating proper communication with the public **1.1.1.1** IP address.
 
-If you are interested in learning how to create a NAT services yourself, please refer to the step-by-step instructions in the :ref:`"NAT (Network Address Translation)"<nat>` section in the in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
+If you are interested in learning how to create a NAT services yourself, please refer to the step-by-step instructions in the :ref:`"NAT (Network Address Translation)"<s9-nat>` section in the in the :ref:`"Learn by Creating Services"<s9-learn-by-doing>` document.
 
 ACL (Access Control List) Example
 =================================
@@ -68,4 +68,4 @@ Navigate to **Services > ACL** and you will find an ACL services named "**V-Net 
 
 You can examine the particular settings of this ACL policy by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net to WAN Example**" ACL policy.
 
-By utilizing ACLs, you can impose granular controls and implement policies that would allow or disallow particular connections. If you are interested in learning how to create a ACL policies yourself, please refer to the step-by-step instructions in the :ref:`"ACL (Access Control List)"<acl>` section in the in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
+By utilizing ACLs, you can impose granular controls and implement policies that would allow or disallow particular connections. If you are interested in learning how to create a ACL policies yourself, please refer to the step-by-step instructions in the :ref:`"ACL (Access Control List)"<s9-acl>` section in the in the :ref:`"Learn by Creating Services"<s9-learn-by-doing>` document.

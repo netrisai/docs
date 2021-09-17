@@ -3,7 +3,7 @@ Welcome to Netris Sandbox
 *************************
 
 Netris sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
-We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<pre-configured>` document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at https://netris.ai/slack 
+We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s9-pre-configured>` document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at https://netris.ai/slack 
 
 The credentials for the sandbox have been provided to you by email in response to your sandbox request.
 
@@ -49,7 +49,7 @@ Accessing Linux servers:
 
 Kubernetes cluster
 ==================
-This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing **netris-operator**. Step-by-step instructions are included in the :ref:`"Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps"<k8s>` document.
+This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing **netris-operator**. Step-by-step instructions are included in the :ref:`"Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps"<s9-k8s>` document.
 
 
 Upstream ISP

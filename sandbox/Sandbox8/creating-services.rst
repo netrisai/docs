@@ -1,9 +1,9 @@
-.. _learn_by_doing:
+.. _s8-learn-by-doing:
 
 **************************
 Learn by Creating Services
 **************************
-.. _v-net:
+.. _s8-v-net:
 
 V-Net (Ethernet/Vlan/VXlan)
 ===========================
@@ -11,7 +11,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
 
 * In a terminal window:
 
-  1. SSH to the **srv05-nyc** server by typing ``ssh demo@166.88.17.19 -p 22865``.
+  1. SSH to the **srv05-nyc** server by typing ``ssh demo@166.88.17.29 -p 22865``.
   2. Enter the password provided in the introductory e-mail.
   3. Type ``ip route ls`` and we can see ``192.168.42.1`` is configured as the default gateway, indicated by the "**default via 192.168.42.1 dev eth1 proto kernel onlink**" line in the output.
   4. Start a ping session towards the default gateway by typing ``ping 192.168.42.1`` and keep it running as an indicator for when the service becomes fully provisioned.
@@ -33,7 +33,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   
 Once fully provisioned, you will start seeing replies similar in form to "**64 bytes from 192.168.42.1: icmp_seq=1 ttl=64 time=1.66 ms**" to the ping previously started in the terminal window, indicating that now the gateway address is reachable.
 
-.. _e-bgp:
+.. _s8-e-bgp:
 
 E-BGP (Exterior Border Gateway Protocol)
 ========================================
@@ -48,22 +48,22 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   3. Define a name in the **Name** field (e.g. ``iris-isp2-customer``).
   4. From the **Site** drop-down menu, select **US/NYC**.
   5. From the **NFV Node** drop-down menu, select **SoftGate2**.
-  6. In the **Neighbor AS** field, type in ``100``.
+  6. In the **Neighbor AS** field, type in ``65007``.
   7. In the **Switch port** field, define the port on the switch that is connected to the ISP2.
 
   * For the purposes of this exercise, you can easily find the required port by typing "``ISP2``" in the Search field.
   
   8. Select the port named **swp14(sw02-nyc-swp14 (ISP2))@sw02-nyc**
   9. For the **VLAN ID** field, unselect ``Untag`` and type in ``702``.
-  10. In the **Local IP** field, type in ``50.117.59.118``
-  11. In the **Remote IP** field, type in ``50.117.59.117``.
+  10. In the **Local IP** field, type in ``50.117.59.110``
+  11. In the **Remote IP** field, type in ``50.117.59.109``.
   12. Expand the **Advanced** section
-  13. In the **Prefix List Outbound** field, type in ``permit 50.117.59.192/28 le 32``
+  13. In the **Prefix List Outbound** field, type in ``permit 50.117.59.176/28 le 32``
   14. And finally click **Add**
   
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net > E-BGP** page as well as on **Telescope > Dashboard** pages will turn green, indication a successfully established BGP session. .
 
-.. _nat:
+.. _s8-nat:
 
 NAT (Network Address Translation)
 =================================
@@ -71,7 +71,7 @@ Now when we have both internal and external facing services, we can aim for our 
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.19 -p 22865``.
+  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.29 -p 22865``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 1.1.1.1`` and keep it running as an indicator for when the service starts to work.
   
@@ -86,7 +86,7 @@ Let's configure a source NAT so our V-Net subnet **192.168.42.0/24** can communi
   5. From the **Protocol** drop-down menu, select **ALL**.
   6. In the **Source** field, type in ``192.168.42.0/24``.
   7. The **Destination** field can remain as ``0.0.0.0/0``.
-  8. From the **Nat IP** drop-down menu, select **50.117.59.198/32(US/NYC)**.
+  8. From the **Nat IP** drop-down menu, select **50.117.59.182/32(US/NYC)**.
   
   * This IP is from our sandbox address space and is indicated in the SoftGate configuration to be used as a global IP for NAT.
     
@@ -94,7 +94,7 @@ Let's configure a source NAT so our V-Net subnet **192.168.42.0/24** can communi
 
 Soon you will start seeing replies similar in form to "**64 bytes from 1.1.1.1: icmp_seq=1 ttl=62 time=1.23 ms**" to the ping previously started in the terminal window, indicating that now the Internet is reachable from **srv05-nyc**.
 
-.. _acl:
+.. _s8-acl:
 
 ACL (Access Control List)
 =========================
@@ -102,7 +102,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.19 -p 22865``.
+  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.29 -p 22865``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 1.1.1.1`` and keep it running for the duration of this exercise.
   
