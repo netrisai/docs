@@ -1,7 +1,7 @@
 ********************************
 Provided Example Configurations
 ********************************
-Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :"**Learn by Creating Services**":`../creating-services` section.
+Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the "**:Learn by Creating Services:**"`creating-services.rst` section.
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
