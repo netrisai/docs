@@ -54,7 +54,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   * For the purposes of this exercise, you can easily find the required port by typing "``ISP2``" in the Search field.
   
   8. Select the port named **swp14(sw02-nyc-swp14 (ISP2))@sw02-nyc**
-  9. For the **VLAN ID** field, unselect ``Untag`` and type in ``702``.
+  9. For the **VLAN ID** field, unselect ``Untag`` and type in ``1082``.
   10. In the **Local IP** field, type in ``50.117.59.110``
   11. In the **Remote IP** field, type in ``50.117.59.109``.
   12. Expand the **Advanced** section
