@@ -49,9 +49,7 @@ Accessing Linux servers:
 
 Kubernetes cluster
 ==================
-This sandbox provides an up and running Kubernetes cluster. You can deploy any application that needs to expose a TCP port, or you can deploy your favorite ingress controller that needs to expose it's TCP port. Netris will process type:load-balancer automatically using it's L4 Load Balancer service.
-
-To access built-in Kubernetes cluster navigate to Services-->Kubenet in Netris GUI. You'll find a pre-configured example Kubenet service. Kubenet is a network service purpose built for serving to Kubernetes nodes. Edit the service and copy "Kubeconfig" content from the example service into your ".kube/config" on your local machine. Now you should be able to kubectl the sandbox cluster.
+This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing **netris-operator**. Step-by-step instructions are included in the :ref:`"Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps"<k8s>` document.
 
 
 Upstream ISP
