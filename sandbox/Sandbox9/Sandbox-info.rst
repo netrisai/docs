@@ -20,7 +20,7 @@ This environment includes:
 Topology diagram
 ================
 
-.. image:: /images/sandbox_topology.png
+.. image:: /images/sandbox_topology_n.png
     :align: center
 
 Netris GUI
