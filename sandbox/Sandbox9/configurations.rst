@@ -1,3 +1,5 @@
+.. _pre-configured:
+
 ********************************
 Provided Example Configurations
 ********************************
