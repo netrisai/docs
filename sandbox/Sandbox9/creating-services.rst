@@ -62,6 +62,8 @@ Optionally you can configure an E-BGP session to ISP 2 for fault tolerance.
   
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net > E-BGP** page as well as on **Telescope > Dashboard** pages will turn green, indication a successfully established BGP session. .
 
+.. _nat:
+
 NAT (Network Address Translation)
 =================================
 Now when we have both internal and external facing services, we can aim for our **srv05-nyc** server to be able to communicate with **8.8.8.8**.

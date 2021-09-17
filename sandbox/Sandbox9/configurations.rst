@@ -43,7 +43,9 @@ If you are interested in learning how to create a fault tolerant E-BGP session w
 
 NAT (Network Address Translation) Example
 =========================================
-Navigate to **Net > NAT** and you will find a NAT service named "**NAT Example**" configured as an example . The configured services ensures that there can be communication between the the private **192.168.43.0/24** network with the public **1.1.1.1** IP address. You can examine the particular settings of the NAT service by clicking **Edit** from the Actions menu indicated by three vertical dots on the right side of the "**NAT Example**" service.
+Navigate to **Net > NAT** and you will find a NAT service named "**NAT Example**" configured as an example . The configured services ensures that there can be communication between the the private **192.168.43.0/24** network with the public **1.1.1.1** IP address. 
+
+You can examine the particular settings of the NAT service by clicking **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**NAT Example**" service.
 
 You may observe the functioning service by pinging the pubblic **1.1.1.1** IP address from the **srv04-nyc** server.
 
@@ -55,7 +57,7 @@ You may observe the functioning service by pinging the pubblic **1.1.1.1** IP ad
 
 You will see replies in the form of "**64 bytes from 1.1.1.1: icmp_seq=1 ttl=62 time=1.10 ms**" indicating proper communication with the public **1.1.1.1** IP address.
 
-If you are interested in learning how to create a NAT services yourself, please refer to the step-by-step instructions in the "**NAT (Network Address Translation)**" section below.
+If you are interested in learning how to create a NAT services yourself, please refer to the step-by-step instructions in the :ref:`"NAT (Network Address Translation)"<nat>` section in the in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
 
 ACL (Access Control List) Example
 =================================
