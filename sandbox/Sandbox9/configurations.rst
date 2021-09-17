@@ -1,7 +1,7 @@
 ********************************
 Provided Example Configurations
 ********************************
-Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<learn_by_doing>` section.
+Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
@@ -30,7 +30,7 @@ The result should look similar to the output below, indicating that the communic
   5 packets transmitted, 5 received, 0% packet loss, time 4008ms
   rtt min/avg/max/mdev = 0.609/12.660/33.422/14.545 ms
 
-If you are interested in learning how to create a V-Net service yourself, please refer to the step-by-step instructions in the "**V-Net (Ethernet/Vlan/VXlan)**" section below.
+If you are interested in learning how to create a V-Net service yourself, please refer to the step-by-step instructions in the :ref:`"V-Net (Ethernet/Vlan/VXlan)"<v-net>` section in the :ref:`"Learn by Creating Services"<learn_by_doing>` document.
 
 E-BGP (Exterior Border Gateway Protocol) Example
 ================================================

@@ -3,6 +3,8 @@
 **************************
 Learn by Creating Services
 **************************
+.. _v-net:
+
 V-Net (Ethernet/Vlan/VXlan)
 ===========================
 Let's create a V-Net service to give the **srv05-nyc** server the ability to reach its gateway address.
