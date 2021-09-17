@@ -130,7 +130,6 @@ Now that the **Default ACL Policy** is set to **Deny**, we need to configure an 
   7. Click **Add**.
   8. Select **Approve** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the newly created "**V-Net to WAN Example**" ACL.
   9. Click **Approve** one more time in the pop-up window.
-
 |
 * Back in the terminal window again:
 
