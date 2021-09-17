@@ -1,11 +1,11 @@
 ********************************
 Provided Example Configurations
 ********************************
-Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the **:ref:`"Learn by Creating Services"<learn_by_doing>`** section.
+Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<learn_by_doing>` section.
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
-Once you log into the Netris GUI by visiting **`https://sandbox9.netris.ai <https://sandbox9.netris.ai>`_** and navigating to **Services > V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. You can examine the particular service settings by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**vnet-example**" service.
+Once you log into the Netris GUI by visiting `https://sandbox9.netris.ai <https://sandbox9.netris.ai>`_ and navigating to **Services > V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. You can examine the particular service settings by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**vnet-example**" service.
 
 You may also verify that the service is working properly from within the GUI: (*\*Fields not specified should remain unchanged and retain default values*)
 
