@@ -32,6 +32,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   8. Click **Save** and the service will start provisioning.
   
 Once fully provisioned, you will start seeing replies similar in form to "**64 bytes from 192.168.44.1: icmp_seq=1 ttl=64 time=1.66 ms**" to the ping previously started in the terminal window, indicating that now the gateway address is reachable.
+
 .. _e-bgp:
 
 E-BGP (Exterior Border Gateway Protocol)
