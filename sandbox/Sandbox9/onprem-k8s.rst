@@ -1,3 +1,10 @@
+..
+  ##################
+  values for replace
+  
+
+
+
 .. _s9-k8s:
 
 **************************************************************
@@ -11,7 +18,7 @@ Intro
 =====
 This sandbox environment provides an existing Kubernetes cluster that has been deployed via `Kubespray <https://github.com/kubernetes-sigs/kubespray>`_. For this scenario, we will be using the `external LB <https://github.com/kubernetes-sigs/kubespray/blob/master/docs/ha-mode.md>`_ option in Kubespray. A dedicated Netris L4LB service has been created in each sandbox to access the k8s apiservers from users and non-master nodes sides.
 
-.. image:: /images/sandbox9-l4lb-kubeapi.png
+.. image:: /images/sandbox-l4lb-kubeapi.png
     :align: center
 
 To access the built-in Kubernetes cluster, put "Kubeconfig" file which you received by the introductory email into your ``~/.kube/config`` or set "KUBECONFIG" environment variable ``export KUBECONFIG=~/Downloads/config`` on your local machine. After that try to connect to the k8s cluster:
@@ -112,7 +119,7 @@ Now we can see that the service type changed to LoadBalancer, and "EXTERNAL-IP" 
 
 Going into the Netris Controller web interface, navigate to **Services / L4 Load Balancer**, and you may see L4LBs provisioning in real-time. If you do not see the provisioning process it is likely because it already completed. Look for the service with the name **"podinfo-xxxxxxxx"**
 
-.. image:: /images/sandbox9-podinfo-prov.png
+.. image:: /images/sandbox-podinfo-prov.png
     :align: center
 
 After provisioning has finished, let’s one more time look at service in k8s:
@@ -160,7 +167,7 @@ As seen, "PodInfo" developers decided to expose 9898 port for HTTP, let’s swit
 
 Wait a few seconds, you can see the provisioning process on the controller:
 
-.. image:: /images/sandbox9-podinfo-ready.png
+.. image:: /images/sandbox-podinfo-ready.png
     :align: center
 
 Curl again, without specifying a port:
@@ -282,7 +289,7 @@ You will see the servers’ hostname in curl output:
 
 You can also inspect the L4LB in the Netris Controller web interface:
 
-.. image:: /images/sandbox9-l4lbs.png
+.. image:: /images/sandbox-l4lbs.png
     :align: center
 
 VNet Custom Resource
