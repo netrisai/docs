@@ -448,7 +448,7 @@ Allow up to 1 minute for both sides of the BGP sessions to come up:
 .. code-block:: shell-session
 
   NAME            STATE     BGP STATE   PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled                            65007           50.117.59.110/30   50.117.59.109/30   15s
+  isp2-customer   enabled                            65007         50.117.59.110/30   50.117.59.109/30   15s
 
 Then check the state again:
 
@@ -461,7 +461,7 @@ The output is similar to this:
 .. code-block:: shell-session
 
   NAME            STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled   bgp: Established; prefix: 30; time: 00:00:51   UP           65007           50.117.59.110/30   50.117.59.109/30   2m3s
+  isp2-customer   enabled   bgp: Established; prefix: 30; time: 00:00:51   UP           65007         50.117.59.110/30   50.117.59.109/30   2m3s
 
 Feel free to use the import annotation for this BGP if you created it from the controller web interface previously.
 
@@ -540,7 +540,7 @@ Here are our freshly created BGPs, one for each k8s node:
 .. code-block:: shell-session
 
   NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:06:18   UP           65007           50.117.59.110/30   50.117.59.109/30    7m59s
+  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:06:18   UP           65007         50.117.59.110/30   50.117.59.109/30    7m59s
   sandbox8-srv06-nyc-192.168.108.66   enabled                                                               4200070000    192.168.108.1/24   192.168.108.66/24   26s
   sandbox8-srv07-nyc-192.168.108.67   enabled                                                               4200070001    192.168.108.1/24   192.168.108.67/24   26s
   sandbox8-srv08-nyc-192.168.108.68   enabled                                                               4200070002    192.168.108.1/24   192.168.108.68/24   26s  
@@ -559,7 +559,7 @@ As seen our BGP peers are established:
 .. code-block:: shell-session
 
   NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:07:48   UP           65007           50.117.59.110/30   50.117.59.109/30    8m41s
+  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:07:48   UP           65007         50.117.59.110/30   50.117.59.109/30    8m41s
   sandbox8-srv06-nyc-192.168.108.66   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070000    192.168.108.1/24   192.168.108.66/24   68s
   sandbox8-srv07-nyc-192.168.108.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4200070001    192.168.108.1/24   192.168.108.67/24   68s
   sandbox8-srv08-nyc-192.168.108.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070002    192.168.108.1/24   192.168.108.68/24   68s
