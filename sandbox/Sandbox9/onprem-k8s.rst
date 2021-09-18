@@ -1,9 +1,26 @@
 ..
   ##################
   values for replace
-  
-
-
+  ##################
+  ------------------------------------------------------------------------------------------------
+  values                   | description
+  ------------------------------------------------------------------------------------------------ 
+  sandbox9                  # sandbox name
+  50.117.59.202             # second usable ip address in load-balancer subnet
+  50.117.59.203             # third usable ip address in load-balancer subnet
+  192.168.43.64             # srv4 ip address
+  192.168.44.65             # srv5 ip address
+  192.168.44.1              # vnet-customer gateway
+  100                       # Iris AS number bgp peer, SHORT QUERY BE CAREFUL WHILE REPLACING
+  702                       # Iris peer vlanid, SHORT QUERY BE CAREFUL WHILE REPLACING
+  50.117.59.118/30          # isp2-customer bgp peer local ip
+  50.117.59.117/30          # isp2-customer bgp peer remote ip
+  50.117.59.192/28          # sandbox public subnet
+  192.168.109.              # k8s vnet subnet
+  9-e-bgp                   # LINKS
+  s9-v-net                  # LINKS
+  s9-acl                    # LINKS
+  s9-k8s                    # LINKS
 
 .. _s9-k8s:
 
