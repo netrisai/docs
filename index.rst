@@ -44,6 +44,12 @@ Contents:
 .. toctree::
    :maxdepth: 4
    :caption: Updates
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Lab Scenarios
+
+   onprem-k8s
    
    release-notes
 
