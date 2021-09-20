@@ -245,7 +245,7 @@ As you can see, there are two L4LB resources, one for each podinfo’s service p
 
 You can’t edit/delete them, because Netris Operator will recreate them based on what was originally deployed in the service specifications.
 
-Instead, let’s create a new load balancer using the CRD method. Our new L4LB’s backends will be "srv04-nyc" & "srv05-nyc" on TCP port 80. These servers are already running the Nginx web server, with the hostname present in the index.html file.
+Instead, let’s create a new load balancer using the CRD method.  This method allows us to create L4 load balancers for services outside of what is being created natively with the Kubernetes service schema.  Our new L4LB’s backends will be "srv04-nyc" & "srv05-nyc" on TCP port 80. These servers are already running the Nginx web server, with the hostname present in the index.html file.
 
 Create a yaml file:
 
@@ -378,7 +378,7 @@ As we can see, the curl request shows the behavior of "round robin" between the 
 
 .. note::
 
-  *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the "Default ACL Policy" is set to "Deny". To remedy this configure an ACL entry that will allow the srv05-nyc server to communicate with the world. For step-by-step instruction review the* :ref:`ACL documentation<s8-acl>`.
+  *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the "Default ACL Policy" is set to "Deny". To remedy this, configure an ACL entry that will allow the srv05-nyc server to communicate external addresses. For step-by-step instruction review the* :ref:`ACL documentation<s8-acl>`.
 
 BTW, if you already created "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s8-v-net>`, you may import that to k8s, by adding ``resource.k8s.netris.ai/import: "true"`` annotation in VNet manifest, the manifest should look like this:
 
