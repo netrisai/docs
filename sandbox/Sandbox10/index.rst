@@ -6,4 +6,5 @@ Sandbox10
    :maxdepth: 2
 
    Sandbox-info
+   onprem-k8s
    creating-services

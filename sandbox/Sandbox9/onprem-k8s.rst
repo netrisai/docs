@@ -24,9 +24,9 @@
 
 .. _s9-k8s:
 
-**************************************************************
-Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps
-**************************************************************
+**********************
+Kubernetes Integration
+**********************
 
 .. contents:: 
    :local: 
@@ -73,7 +73,7 @@ The first step to integrate the Netris Controller with the Kubernetes API is to 
 
 3. Inspect the pod logs and make sure the operator is connected to Netris Controller:
 
-.. code-block:: shell-session
+.. code-block::
 
   kubectl -nnetris-operator logs -l netris-operator=controller-manager --all-containers -f
 

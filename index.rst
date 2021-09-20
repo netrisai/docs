@@ -45,11 +45,10 @@ Contents:
    :maxdepth: 4
    :caption: Updates
 
+   release-notes
+
 .. toctree::
    :maxdepth: 4
    :caption: Lab Scenarios
-
-   onprem-k8s
    
-   release-notes
-
+   onprem-k8s
