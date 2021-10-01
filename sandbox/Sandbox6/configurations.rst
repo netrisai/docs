@@ -46,7 +46,7 @@ If you are interested in learning how to create a fault tolerant E-BGP session w
 
 NAT (Network Address Translation) Example
 =========================================
-Navigate to **Net > NAT** and you will find a NAT service named "**NAT Example**" configured as an example . The configured services ensures that there can be communication between the the private **192.168.45.0/24** network with the public **1.1.1.1** IP address. 
+Navigate to **Net > NAT** and you will find a NAT service named "**NAT Example**" configured as an example . The configured services ensures that there can be communication between the the private **192.168.45.0/24** network and the Internet. 
 
 You can examine the particular settings of the NAT service by clicking **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**NAT Example**" service.
 
