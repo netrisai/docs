@@ -75,7 +75,7 @@ Now when we have both internal and external facing services, we can aim for our 
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 1.1.1.1`` and keep it running as an indicator for when the service starts to work.
   
-Let's configure a source NAT so our V-Net subnet **192.168.46.0/24** can communicate with public IP **1.1.1.1**.
+Let's configure a source NAT so our V-Net subnet **192.168.46.0/24** can communicate with the Internet.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
