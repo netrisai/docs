@@ -15,12 +15,23 @@ Contents:
    :caption: Getting Started
 
    concepts
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Installation
+
    controller-installation
    controller-k8s-installation
    controller-initial-configuration
    switch-agent-installation
    SoftGate-agent-installation
-   
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Configuration
+
+   ipam
+
 .. toctree::
    :maxdepth: 4
    :caption: Network Policies
