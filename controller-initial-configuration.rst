@@ -1,9 +1,9 @@
 .. meta::
     :description: Netris Controller Initial Configuration
 
-********************************
+================================
 Controller initial configuration
-********************************
+================================
 
 Definitions
 ===========
@@ -12,11 +12,14 @@ Definitions
 * **Tenant** - IP addresses and Switch Ports are network resources assigned to different Tenants to have under their management. Admin is the default tenant, and by default, it owns all the resources. You can use different Tenants for sharing and delegation of control over the network resources. Network teams typically use Tenants to grant access to other groups to request & manage network services using the Netris Controller as a self-service portal or programmatically (with Kubernetes CRDs) DevOps/NetOps pipeline.  
 * **Permission Group** - List of permissions on a per section basis can be attached individually to a User or a User Role.  
 * **User Role** - Group of user permissions and tenants for role-based access control. 
+
 * **Site** - Each separate deployment (each data center) should be defined as a Site. All network units and resources are attached to a site. Netris Controller comes with a "default" site preconfigured. Site entry defines global attributes such as; AS numbers, default ACL policy, Site Mesh (site to site VPN) type.
 * **Subnet** - IPv4/IPv6 address resources linked to Sites and Tenants. 
 * **Switch Port** - Physical ports of all switches attached to the system. Switch port objects represent statuses, take basic parameters, and are assigned to Tenants.
 * **Inventory** - This is an inventory of all network units that are operated using Netris Agent.
 * **E-BGP** - Is for defining all External BGP peers (iBGP and eBGP). 
+
+--------------------------
 
 Subnets
 =======
@@ -26,60 +29,91 @@ Example:  (IP addresses used are just examples, please replace them following yo
 ------------------------------------------------------------------------------------------------
 In NET->Subnets section of the Netris Controller GUI, you can add new subnet entries. Subnets are of 2 types of allocation and assignment. Allocations are the large blocks of IP resources assigned to the organization. Assignments are IP blocks that are smaller blocks inside the allocation and can be used by services or policies that yet to be defined.   
 
-1. Adding a new allocation. In this example, 10.0.0.0/8 is used as a large block of allocation. You can add as many allocations as required.
+#. Adding a new allocation. In this example, 10.0.0.0/8 is used as a large block of allocation. You can add as many allocations as required.
 
 .. image:: images/allocation.png
     :align: center
+    :class: with-shadow
     
-2. Adding two new assignments. 
+#. Adding two new assignments. 
 
 * 10.254.96.0/24 (netManagement) assigned to the tenant “Admin” and available for the site “Default”.
 * 10.254.97.0/24 (netLoopbacks) assigned to the tenant “Admin” and available for the site “Default”.
 
 .. image:: images/assignment.png
     :align: center
+    :class: with-shadow
     
 .. image:: images/assignment2.png
     :align: center
+    :class: with-shadow
     
 Screenshot: Listing of the Subnets section after adding the new objects.
 
 .. image:: images/subnet_listing.png
     :align: center
-|
-|
+    :class: with-shadow
+
+
+--------------------------
+
 Inventory Profiles 
 ==================
-Inventory profiles define access security, timezone, DNS, NTP settings profiles for network switches and SoftGate nodes.
-To create a new Inventory profile, click +Add under the Net→Inventory Profiles section.
+Inventory profiles allow security hardening of inventory devices. By default all traffic flow destined to switch/softgate is allowed. 
+As soon as the inventory profile is attached to a device it denies all traffic destined to the device except netris-defined and user-defined custom flows. Generated rules include:
 
-Fields descriptions:
---------------------
-* **Name** - Profile name.
-* **Description** - Free text description.
-* **Allow SSH from IPv4** - List of IPv4 subnets allowed to ssh (one address per line)
-* **Allow SSH from IPv6** - List of IPv6 subnets allowed to ssh (one address per line)
-* **Timezone** - Devices using this inventory profile will adjust their system time to the selected timezone.
-* **NTP servers** - List of domain names or IP addresses of NTP servers (one address per line). You can use your Netris Controller address as an NTP server for your switches and SoftGate.
-* **DNS servers** - List of IP addresses of DNS servers (one address per line). You can use your Netris Controller address as a DNS server for your switches and SoftGate.
+*  SSH from user defined subnets
+*  NTP from user defined ntp services
+*  DNS from user defined DNS servers
+*  Custom user defined rules
+
+.. centered::
+   Inventory Profile Fields
+
+.. csv-table:: Inventory Profile Fields
+   :file: tables/inventory-profile-fields.csv
+   :widths: 25, 75
+   :header-rows: 0
+
++-------------------------+------------------------------------------------------------------------------------------------+
+| **Name**                | Profile name                                                                                   |
++-------------------------+------------------------------------------------------------------------------------------------+
+| **Description**         | Free text description                                                                          |
++-------------------------+------------------------------------------------------------------------------------------------+
+| **Allow SSH from IPv4** | List of IPv4 subnets allowed to ssh (one address per line)                                     |
++-------------------------+------------------------------------------------------------------------------------------------+
+| **Allow SSH from IPv6** | List of IPv6 subnets allowed to ssh (one address per line)                                     |
++-------------------------+------------------------------------------------------------------------------------------------+
+| **Timezone**            | Devices using this inventory profile will adjust their system time to the                      |
+|                         | selected timezone.                                                                             |
++-------------------------+------------------------------------------------------------------------------------------------+
+| **NTP servers**         | List of domain names or IP addresses of NTP servers (one address per line).                    |
+|                         | You can use your Netris Controller address as an NTP server for your switches and SoftGate.    |
++-------------------------+------------------------------------------------------------------------------------------------+
+| **DNS servers**         | List of IP addresses of DNS servers (one address per line). You can use your Netris Controller |
+|                         | address as a DNS server for your switches and SoftGate.                                        |                                                       |
++-------------------------+------------------------------------------------------------------------------------------------+
 
 **Example:** In this example Netris Controller is used to provide NTP and DNS services to the switches (common setup).
 
 .. image:: images/inventory_profile.png
     :align: center
-    
+    :class: with-shadow
+
+--------------------------
+
 Adding Switches to Topology
 ===========================
-You need to define every switch in the Net→Topology section. To add a switch, please go to Net→Topology and click +Add.
+You need to define every switch in the Net→Topology section. To add a switch, navigate to Net→Topology and click **Add**.
 
 * **Name** - Descriptive name.
 * **Owner Tenant**  - Tenant(typically Admin) who administers this node.
 * **Description** - Free text description.
 * **Hardware Type** - For switches: Spine Switch or Leaf Switch.
-* **NOS*** - Network operating system. Cumulus Linux, Ubuntu SwitchDev (Nvidia Mellanox only), SONiC (not for production use yet)  
-* **Site*** - The site where the switch belongs. 
+* **NOS** - Network operating system. Cumulus Linux, Ubuntu SwitchDev (Nvidia Mellanox only), SONiC (not for production use yet)  
+* **Site** - The site where the switch belongs. 
 * **Inventory Profile** - Reference to Timezone, DNS, NTP, and Security features profile.
-* **IP Address*** - IPv4 address for the loopback interface.
+* **IP Address** - IPv4 address for the loopback interface.
 * **Management IP address** - IPv4 address for the out of band management interface. 
 * **Zero-touch provisioning** - Automatically install the NOS. (Experimental in this version) 
 * **MAC address** - Out of band management interface MAC address used for zero-touch provisioning. (Experimental in this version)
@@ -87,12 +121,14 @@ You need to define every switch in the Net→Topology section. To add a switch, 
 
 **Example:**  Adding a spine switch w/ Cumulus Linux.
 
-.. image:: images/new_hardware.png
-    :align: center
-    
-Tip: You can drag/move the units to your desired positions and click “Save positions”.
+  .. image:: images/new_hardware.png
+      :align: center
+      :class: with-shadow
 
-Note: Repeat this process to define all your switches.
+
+.. tip:: You can drag/move the units to your desired positions and click “Save positions”.
+
+.. note:: Repeat this process to define all your switches.
 
 Topology Manager
 ================
@@ -102,11 +138,13 @@ To define the links, right-click on the spine switch, then click create a link. 
 
 .. image:: images/create_link.png
     :align: center
+    :class: with-shadow
     
 All links require definition in the topology manager. Topology links can also be described through a .yaml file when using Kubernetes CRD. (a GUI wizard is planned to be available in v2.10).
 
 .. image:: images/topology_manager.png
     :align: center
+    :class: with-shadow
     
 Now when network units and links are defined, your network is automatically configured as long as physical connectivity is in place and Netris Agents can communicate with Netris Controller.
 
@@ -120,7 +158,8 @@ Example: Accessing Switch Ports from Net→Topology
 
 .. image:: images/switch_port.png
     :align: center
-    
+    :class: with-shadow
+
 For each spine switch, find the two ports that you are going to connect (loop/hairpin) and configure one port as a “hairpin **l2**” and another port as “hairpin **l3**”. The order doesn’t matter. The system needs to know which ports you have dedicated for the hairpin/loop on each spine switch. (do not do this for non-Cumulus switches)  
 |
 |
@@ -128,17 +167,23 @@ Example: Editing Switch Port from Net→Switch Ports.
 
 .. image:: images/edit_switch_port.png
     :align: center
+    :class: with-shadow
     
 Example: Setting port types to “hairpin l2” and “hairpin l3”.
 
 .. image:: images/hairpin.png
     :align: center
+    :class: with-shadow
     
 Screenshot: Hairpin visualized in Net→Topology
 
 .. image:: images/hairpin_topology.png
     :align: center
-    
+    :class: with-shadow
+
+
+--------------------------
+
 Adding SoftGate nodes to Topology
 =================================
 Every SoftGate node first needs to be defined in Netris Controller.
@@ -160,3 +205,4 @@ Example: Adding a SoftGate Node to Topology.
 
 .. image:: images/softgate_node.png
     :align: center
+    :class: with-shadow

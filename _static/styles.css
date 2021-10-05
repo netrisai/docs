@@ -2,10 +2,7 @@ pre.literal-block {
     white-space: pre;
     margin: 0 !important;
     padding: 12px 12px !important;
-    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
-        "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
-        "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
-        monospace;
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
     font-size: 12px;
     display: block;
     overflow: auto;
@@ -28,7 +25,7 @@ pre.literal-block {
     border-color: #f9556d;
 }
 
-.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3>a {
     background: #ffffff;
 }
 
@@ -39,11 +36,11 @@ pre.literal-block {
 
 .wy-menu-vertical a:hover,
 .wy-menu-vertical li.current,
-.wy-menu-vertical li.current > a {
+.wy-menu-vertical li.current>a {
     background-color: #ffffff !important;
 }
 
-.wy-menu-vertical li.current > a {
+.wy-menu-vertical li.current>a {
     color: #000000 !important;
     border: none !important;
 }
@@ -76,7 +73,7 @@ pre.literal-block {
 }
 
 .underscore-transition,
-.rst-other-versions > a {
+.rst-other-versions>a {
     font-family: Montseratt;
 }
 
@@ -87,9 +84,9 @@ pre.literal-block {
 .underscore-transition,
 .wy-breadcrumbs li:first-child,
 .wy-breadcrumbs li:last-child,
-.rst-other-versions > a,
+.rst-other-versions>a,
 .toctree-wrapper a,
-footer > a {
+footer>a {
     color: #01358d !important;
     position: relative;
 }
@@ -98,9 +95,9 @@ footer > a {
 .wy-menu-vertical a::before,
 .wy-breadcrumbs li:first-child::before,
 .wy-breadcrumbs li:last-child::before,
-.rst-other-versions > a::before,
+.rst-other-versions>a::before,
 .toctree-wrapper a::before,
-footer > a::before {
+footer>a::before {
     box-sizing: inherit;
     content: "";
     position: absolute;
@@ -117,9 +114,9 @@ footer > a::before {
 .wy-menu-vertical a:hover::before,
 .wy-breadcrumbs li:first-child:hover::before,
 .wy-breadcrumbs li:last-child:hover::before,
-.rst-other-versions > a:hover::before,
+.rst-other-versions>a:hover::before,
 .toctree-wrapper a:hover::before,
-footer > a:hover::before {
+footer>a:hover::before {
     width: 100%;
     border-top-color: #f9556d;
     border-right-color: #f9556d;
@@ -188,4 +185,12 @@ footer > a:hover::before {
 .header-wrapper .underscore-transition {
     cursor: pointer;
     margin-right: 25px;
+}
+
+.with-shadow {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.centered {
+    text-align: center;
 }

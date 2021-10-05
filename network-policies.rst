@@ -25,7 +25,9 @@ Example: Declare a basic BGP neighbor.
 
 .. image:: images/BGP_neighbor.png
     :align: center
+    :class: with-shadow
 
+--------------------------
 
 ############
 Advanced BGP
@@ -50,7 +52,9 @@ Click Advanced to expand the BGP neighbor add/edit window.
 * **Prefix List Outbound** - List of IP addresses prefixes to permit or deny outbound.
 * **Send BGP Community** - List of BGP communities to send to the current neighbor.
 
-BGP objects
+--------------------------
+
+BGP Objects
 -----------
 | Under Net→E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.
 | Supported objects are:
@@ -75,6 +79,7 @@ Example: Creating an IPv4 Prefix list.
 
 .. image:: images/IPv4_Prefix.png
     :align: center
+    :class: with-shadow
     
 IPv6 Prefix.
 ^^^^^^^^^^^^
@@ -89,6 +94,7 @@ Example: Creating an IPv6 Prefix list.
 
 .. image:: images/IPv6_Prefix.png
     :align: center
+    :class: with-shadow
     
 Community.
 ^^^^^^^^^^
@@ -101,7 +107,10 @@ Example: Creating community.
 
 .. image:: images/community.png
     :align: center
+    :class: with-shadow
     
+--------------------------
+
 BGP route-maps
 --------------
 | Under the Net→E-BGP Route-maps section, you can define route-map policies, which can be associated with the BGP neighbors inbound or outbound. 
@@ -125,6 +134,9 @@ Example: route-map
 
 .. image:: images/route-map.png
     :align: center
+    :class: with-shadow
+
+--------------------------    
 
 #######################
 Routes (static routing)
@@ -151,16 +163,21 @@ Example: Default route pointing to a Next-Hop that belongs to one of V-NETs.
 
 .. image:: images/defaultroute.png
     :align: center
+    :class: with-shadow
 
 Example: Adding a back route to 10.254.0.0/16 through an out-of-band management network.  
 
 .. image:: images/static_route.png
     :align: center
+    :class: with-shadow
     
 Screenshot: This Shows that my back route is actually applied on leaf1 and spine1.
 
 .. image:: images/leaf1_spine1.png
     :align: center
+    :class: with-shadow
+
+--------------------------
 
 ###    
 NAT
@@ -178,13 +195,15 @@ Example: Adding an IP allocation under Net→Subnets.
 
 .. image:: images/IP-allocation.png
     :align: center
+    :class: with-shadow
 
-2. Attach NAT IP addresses and/or NAT IP Pools to just one SoftGate node. Other SoftGate Nodes on the same site will automatically add the same NAT IP/Pool resources for proper consistency and high availability.
+1. Attach NAT IP addresses and/or NAT IP Pools to just one SoftGate node. Other SoftGate Nodes on the same site will automatically add the same NAT IP/Pool resources for proper consistency and high availability.
 
 Example: Adding NAT IP addresses and NAT IP Address Pools to a SoftGate node.
 
 .. image:: images/NATIP-address.png
     :align: center
+    :class: with-shadow
 
 Defining NAT rules
 ------------------
@@ -231,11 +250,15 @@ Example: SNAT all hosts on 10.0.0.0/8 to the Internet using 198.51.100.65 as a g
 
 .. image:: images/globalIP.png
     :align: center
+    :class: with-shadow
     
 Example: Port forwarding. DNAT the traffic destined to 198.51.100.66:80 to be forwarded to the host 10.0.4.10 on port tcp/1080. 
 
 .. image:: images/Port-Forwarding.png
     :align: center
+    :class: with-shadow
+
+--------------------------
 
 SiteMesh
 ========
@@ -264,7 +287,9 @@ Screenshot: Listing of SiteMesh tunnels and BGP statuses (Net→Site Mesh)
 
 .. image:: images/SiteMesh_listing.png
     :align: center  
-    
+
+--------------------------
+
 #############
 Looking Glass
 #############
@@ -282,11 +307,13 @@ Example: Spine1: listing BGP neighbors and number of received prefixes.
 
 .. image:: images/Spine1.png
     :align: center
+    :class: with-shadow
     
 Example: BGP Route - looking up my leaf1 switch’s loopback address from spine1’s perspective. Spine1 is load balancing between two available paths. 
 
 .. image:: images/BGP_route.png
     :align: center
+    :class: with-shadow
 
 Example: Ping.
 
@@ -303,13 +330,16 @@ Example: Listing of adjacent BGP neighbors and number of EVPN prefixes received.
 
 .. image:: images/BGP_neighbors_listing.png
     :align: center
+    :class: with-shadow
 
 Example: Listing MAC addresses on VNI 2.
 
 .. image:: images/MAC_listing.png
     :align: center
+    :class: with-shadow
 
 Example: EVPN routing information listing for a specified route distinguisher.
 
 .. image:: images/EVPN_routing.png
     :align: center
+    :class: with-shadow

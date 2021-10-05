@@ -17,12 +17,16 @@ Allocations and Subnets
 
 There are 2 main types of IP prefixes - allocation and subnet. Allocations are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network. Subnets are prefixes which are going to be used in services. Subnets are always childs of allocation. Allocations do not have parent subnets.
 
+
 .. image:: images/subnet-tree.png
    :align: center
    :alt: IPAM Tree View
    :class: with-shadow
-IPAM Tree View
 
+.. centered::
+   IPAM Tree View
+
+--------------------------
 
 Add an Allocation
 -----------------
@@ -34,7 +38,7 @@ Add an Allocation
 #. Click the **Add** button
 
 
-.. list-table:: Allocation fields
+.. list-table:: Allocation Fields
    :widths: 25 50
    :header-rows: 0
 
@@ -50,7 +54,10 @@ Add an Allocation
    :class: with-shadow
    :alt: Add a New IP Allocation
 
-Add Allocation
+.. centered::
+   Add Allocation Window
+
+--------------------------
 
 Add a Subnet
 ------------
@@ -87,9 +94,5 @@ Add a Subnet
    :alt: Add a New Subnet
    :class: with-shadow
 
-   Add Subnet
-
-
-
-
-
+.. centered::
+   Add Subnet Window
