@@ -1,9 +1,9 @@
 .. meta::
     :description: IP Address Management
 
-==================
-IPAM Functionality
-==================
+===============
+IPAM Management
+===============
 
 Netris IPAM allows users to document their IP addresses and track pool usage. It is designed to have a tree-like view to provide opportunity to perform any kind of subnetting.  
 

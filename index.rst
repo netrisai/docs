@@ -33,6 +33,7 @@ Contents:
    ipam
    inventory-profiles
    topology-management
+   switch-ports
 
 .. toctree::
    :maxdepth: 4
