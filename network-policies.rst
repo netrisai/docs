@@ -165,62 +165,67 @@ Screenshot: This Shows that my back route is actually applied on leaf1 and spine
 ###    
 NAT
 ###
+
 Netris SoftGate nodes are required to support NAT (Network Address Translation). 
 
 Enabling NAT
 ------------
-To enable NAT for a given site, you first need to attach NAT IP addresses and/or NAT IP pool resources to SoftGate nodes. NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need, assuming it's configured as an allocation under Net→Subnets section.
+To enable NAT for a given site, you first need to create a subnet with NAT purpose in the IPAM section. NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need.
 
-1. Allocate a public IP subnet for NAT under Net→Subnets. 
+1. Allocate a public IP subnet for NAT under Net→IPAM. 
 
 Example: Adding an IP allocation under Net→Subnets.
 
-.. image:: images/IP_allocation.png
+.. image:: images/IP-allocation.png
     :align: center
 
 2. Attach NAT IP addresses and/or NAT IP Pools to just one SoftGate node. Other SoftGate Nodes on the same site will automatically add the same NAT IP/Pool resources for proper consistency and high availability.
 
 Example: Adding NAT IP addresses and NAT IP Address Pools to a SoftGate node.
 
-.. image:: images/NATIP_address.png
+.. image:: images/NATIP-address.png
     :align: center
 
 Defining NAT rules
 ------------------
 NAT rules are defined under Net→NAT.
 
-NAT rule fields described:
+.. list-table:: NAT Rule Fields
+   :widths: 25 75
+   :header-rows: 1
 
-* **Name** - Unique name.
-* **Protocol** 
+    * - Name
+      - Unique name
+    * - **State**
+      - State of rule (enabled or disabled)
+    * - **Site** 
+      - Site to apply the rule
+    * - **Action**
+      - *SNAT* - Replace the source IP address with specified NAT IP along with port overloading
+        *DNAT* - Replace the destination IP address and/or destination port with specified NAT IP
+        *ACCEPT* - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule
+        *MASQUERADE* - Replace the source IP address with the IP address of the exit interface
+    * - **Protocol**
+      - *All* - Match any IP protocol
+        *TCP* - Match TCP traffic and ports
+        *UDP* - Match UDP traffic and ports
+        *ICMP* - Match ICMP traffic
+    * - **Source**
+      - *Address* - Source IP address to match
+        *Port* - Source ports range to match with this value (TCP/UDP)
+    * - **Destination**
+      - *Address* - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses
+        *Port* - For DNAT only, to match a single destination port
+        *Ports* - For SNAT/ACCEPT only. Destination ports range  to match with this value (TCP/UDP)
+    * - **DNAT to IP** 
+      - The global IP address for SNAT to be visible on the Public Internet. The internal IP address for DNAT to replace the original destination address with
+    * - **DNAT to Port** 
+      - The Port to which destination Port of the packet should be NAT'd
+    * - **Status**
+      - Administrative state (enable/disable)
+    * - **Comment**
+      - Free optional comment
 
-  * **All** - Match any IP protocol.
-  * **TCP** - Match TCP traffic and ports.
-  * **UDP** - Match UDP traffic and ports
-  * **ICMP** - Match ICMP traffic.
-  
-* **Action** 
-
-  * **SNAT** - Replace the source IP address with specified NAT IP.
-  * **DNAT** - Replace the destination IP address and/or destination port with specified NAT IP. 
-  * **ACCEPT** - Silently forward, typically used to add an exemption to broader SNAT or DNAT rule. 
-  
-* **Source**
-
-  * **Address** - Source IP address to match.
-  * **From port** - Source ports to match starting with this value (TCP/UDP)
-  * **To port** - Source ports to much up to this value (TCP/UDP)
-  
-* **Destination**
-
-  * **Address** - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses.
-  * **Port** - For DNAT only, to match a single destination port.
-  * **From port** - For SNAT/ACCEPT only. Destination ports to match starting with this value (TCP/UDP)
-  * **To port** - For SNAT/ACCEPT only. Destination ports to much up to this value (TCP/UDP)
-  
-* **NAT IP** - The global IP address for SNAT to be visible on Public Internet. The internal IP address for DNAT to replace the original destination address with.
-* **Status** - Administrative state (enable/disable).
-* **Comment** - Free optional comment.
 
 Example: SNAT all hosts on 10.0.0.0/8 to the Internet using 198.51.100.65 as a global IP. 
 
@@ -229,7 +234,7 @@ Example: SNAT all hosts on 10.0.0.0/8 to the Internet using 198.51.100.65 as a g
     
 Example: Port forwarding. DNAT the traffic destined to 198.51.100.66:80 to be forwarded to the host 10.0.4.10 on port tcp/1080. 
 
-.. image:: images/Port_Forwarding.png
+.. image:: images/Port-Forwarding.png
     :align: center
 
 SiteMesh
