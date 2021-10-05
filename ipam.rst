@@ -1,9 +1,9 @@
 .. meta::
     :description: IP Address Management
 
-******************
+==================
 IPAM Functionality
-******************
+==================
 
 Netris IPAM allows users to document their IP addresses and track pool usage. It is designed to have a tree-like view to provide opportunity to perform any kind of subnetting.  
 
@@ -11,9 +11,8 @@ Purpose:
 Users define specific roles(purpose) for each subnet/address and only after that are allowed to use those subnets in services like V-net, NAT, etc… 
 
 
-***********************
 Allocations and Subnets
-***********************
+-----------------------
 
 There are 2 main types of IP prefixes - allocation and subnet. Allocations are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network. Subnets are prefixes which are going to be used in services. Subnets are always childs of allocation. Allocations do not have parent subnets.
 

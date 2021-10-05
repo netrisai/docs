@@ -154,9 +154,9 @@ We recommend using the Routes only if BGP is not supported by the remote end.
 * **Prefix** - Route destination to match. 
 * **Next-Hop** - Traffic destined to the Prefix will be routed towards the Next-Hop. Note that static routes will be injected only on units that have the Next-Hop as a connected network.
 * **Description** - Free description.
-* **Site*** - Site where Route belongs. 
+* **Site** - Site where Route belongs. 
 * **State** - Administrative (enable/disable) state of the Route. 
-* **+Apply to** -  Limit the scope to particular units. It’s typically used for Null routes.
+* **Apply to** -  Limit the scope to particular units. It’s typically used for Null routes.
 
 
 Example: Default route pointing to a Next-Hop that belongs to one of V-NETs. 

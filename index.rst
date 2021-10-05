@@ -22,15 +22,17 @@ Contents:
 
    controller-installation
    controller-k8s-installation
-   controller-initial-configuration
    switch-agent-installation
    SoftGate-agent-installation
 
 .. toctree::
-   :maxdepth: 4
-   :caption: Configuration
+   :maxdepth: 2
+   :caption: Initial Configuration
 
+   definitions
    ipam
+   inventory-profiles
+   topology-management
 
 .. toctree::
    :maxdepth: 4
