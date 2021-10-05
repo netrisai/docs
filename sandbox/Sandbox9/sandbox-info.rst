@@ -40,11 +40,11 @@ Accessing Linux servers:
   
 .. code-block:: shell-session  
   
-  srv01: ssh demo@166.88.17.19 -p 22961
-  srv02: ssh demo@166.88.17.19 -p 22962
-  srv03: ssh demo@166.88.17.19 -p 22963
-  srv04: ssh demo@166.88.17.19 -p 22964
-  srv05: ssh demo@166.88.17.19 -p 22965
+  srv01: ssh demo@166.88.17.19 -p 30061
+  srv02: ssh demo@166.88.17.19 -p 30062
+  srv03: ssh demo@166.88.17.19 -p 30063
+  srv04: ssh demo@166.88.17.19 -p 30064
+  srv05: ssh demo@166.88.17.19 -p 30065
   
 
 Kubernetes cluster
@@ -63,13 +63,13 @@ ISP settings:
  
  (pre-configured example)
  Name: iris-isp1-example
- Neighbor AS: 100
- Vlan: 701
+ Neighbor AS: 65007
+ Vlan: 1091
  IP customer: 50.117.59.114/30
  IP Iris: 50.117.59.113/30
  
- Neighbor AS: 100
- Vlan: 702
+ Neighbor AS: 65007
+ Vlan: 1092
  IP customer:  50.117.59.118/30
  IP Iris: 50.117.59.117/30
 
@@ -79,10 +79,10 @@ Networks used
 =============
 .. code-block:: shell-session
 
-  Management subnet: 10.254.43.0/24 
-  Loopback subnet:   10.254.44.0/24
-  Example subnet:    192.168.43.0/24
-  Customer subnet:   192.168.44.0/24
-  K8s subnet:        192.168.109.0/24
+  Management subnet: 10.254.45.0/24 
+  Loopback subnet:   10.254.46.0/24
+  Example subnet:    192.168.45.0/24
+  Customer subnet:   192.168.46.0/24
+  K8s subnet:        192.168.110.0/24
   Public subnet:     50.117.59.192/28
   

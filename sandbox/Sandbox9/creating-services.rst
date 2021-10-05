@@ -11,11 +11,11 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
 
 * In a terminal window:
 
-  1. SSH to the **srv05-nyc** server by typing ``ssh demo@166.88.17.19 -p 22965``.
+  1. SSH to the **srv05-nyc** server by typing ``ssh demo@166.88.17.19 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
-  3. Type ``ip route ls`` and we can see ``192.168.44.1`` is configured as the default gateway, indicated by the "**default via 192.168.44.1 dev eth1 proto kernel onlink**" line in the output.
-  4. Start a ping session towards the default gateway by typing ``ping 192.168.44.1`` and keep it running as an indicator for when the service becomes fully provisioned.
-  5. Until the service is provisioned, the received responses will indicate that the destination is not reachable in the form of "**From 192.168.44.64 icmp_seq=1 Destination Host Unreachable**"
+  3. Type ``ip route ls`` and we can see ``192.168.46.1`` is configured as the default gateway, indicated by the "**default via 192.168.46.1 dev eth1 proto kernel onlink**" line in the output.
+  4. Start a ping session towards the default gateway by typing ``ping 192.168.46.1`` and keep it running as an indicator for when the service becomes fully provisioned.
+  5. Until the service is provisioned, the received responses will indicate that the destination is not reachable in the form of "**From 192.168.46.64 icmp_seq=1 Destination Host Unreachable**"
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
@@ -23,7 +23,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   2. Click **+Add** to create a new V-Net service.
   3. Define a name in the **Name** field (e.g. ``vnet-customer``).
   4. From the **Sites** drop-down menu, select **US/NYC**.
-  5. Click **+IPv4 Gateway**, select subnet ``192.168.44.0/24(CUSTOMER)`` and IP ``192.168.44.1`` to match the results of the ``ip route ls`` output on **srv05-nyc**.
+  5. Click **+IPv4 Gateway**, select subnet ``192.168.46.0/24(CUSTOMER)`` and IP ``192.168.46.1`` to match the results of the ``ip route ls`` output on **srv05-nyc**.
   6. Click **+Port** to define the port(s) to be included in the current V-Net service.
    
   * For the purposes of this exercise, you can easily find the required port by typing "``srv05``" in the Search field.
@@ -31,7 +31,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   7. Select the port named **swp2(sw22-nyc-swp2 (srv05))@sw22-nyc (Admin)**, check the **Untag** check-box and click **Add**.
   8. Click **Save** and the service will start provisioning.
   
-Once fully provisioned, you will start seeing replies similar in form to "**64 bytes from 192.168.44.1: icmp_seq=1 ttl=64 time=1.66 ms**" to the ping previously started in the terminal window, indicating that now the gateway address is reachable.
+Once fully provisioned, you will start seeing replies similar in form to "**64 bytes from 192.168.46.1: icmp_seq=1 ttl=64 time=1.66 ms**" to the ping previously started in the terminal window, indicating that now the gateway address is reachable.
 
 .. _s9-e-bgp:
 
@@ -48,13 +48,13 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   3. Define a name in the **Name** field (e.g. ``iris-isp2-customer``).
   4. From the **Site** drop-down menu, select **US/NYC**.
   5. From the **NFV Node** drop-down menu, select **SoftGate2**.
-  6. In the **Neighbor AS** field, type in ``100``.
+  6. In the **Neighbor AS** field, type in ``65007``.
   7. In the **Switch port** field, define the port on the switch that is connected to the ISP2.
 
   * For the purposes of this exercise, you can easily find the required port by typing "``ISP2``" in the Search field.
   
   8. Select the port named **swp14(sw02-nyc-swp14 (ISP2))@sw02-nyc**
-  9. For the **VLAN ID** field, unselect ``Untag`` and type in ``702``.
+  9. For the **VLAN ID** field, unselect ``Untag`` and type in ``1092``.
   10. In the **Local IP** field, type in ``50.117.59.118``
   11. In the **Remote IP** field, type in ``50.117.59.117``.
   12. Expand the **Advanced** section
@@ -71,11 +71,11 @@ Now when we have both internal and external facing services, we can aim for our 
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.19 -p 22965``.
+  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.19 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 1.1.1.1`` and keep it running as an indicator for when the service starts to work.
   
-Let's configure a source NAT so our V-Net subnet **192.168.44.0/24** can communicate with public IP **1.1.1.1**.
+Let's configure a source NAT so our V-Net subnet **192.168.46.0/24** can communicate with the Internet.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
@@ -84,7 +84,7 @@ Let's configure a source NAT so our V-Net subnet **192.168.44.0/24** can communi
   3. Define a name in the **Name** field (e.g. ``NAT Customer``).
   4. From the **Action** drop-down menu, select **SNAT**.
   5. From the **Protocol** drop-down menu, select **ALL**.
-  6. In the **Source** field, type in ``192.168.44.0/24``.
+  6. In the **Source** field, type in ``192.168.46.0/24``.
   7. The **Destination** field can remain as ``0.0.0.0/0``.
   8. From the **Nat IP** drop-down menu, select **50.117.59.198/32(US/NYC)**.
   
@@ -102,7 +102,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.19 -p 22965``.
+  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.19 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 1.1.1.1`` and keep it running for the duration of this exercise.
   
@@ -125,7 +125,7 @@ Now that the **Default ACL Policy** is set to **Deny**, we need to configure an 
   2. Click **+Add** to define a new ACL.
   3. Define a name in the **Name** field (e.g. ``V-Net to WAN Customer``).
   4. From the **Protocol** drop-down menu, select **ALL**.
-  5. In the Source field, type in ``192.168.44.0/24``.
+  5. In the Source field, type in ``192.168.46.0/24``.
   6. In the Destination field, type in ``0.0.0.0/0``.
   7. Click **Add**.
   8. Select **Approve** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the newly created "**V-Net to WAN Example**" ACL.

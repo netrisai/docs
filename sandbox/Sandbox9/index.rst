@@ -8,3 +8,4 @@ Sandbox9
    sandbox-info
    configurations
    creating-services
+   onprem-k8s

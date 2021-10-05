@@ -6,19 +6,30 @@
   values                   | description
   ------------------------------------------------------------------------------------------------ 
   sandbox9                  # sandbox name
+  166.88.17.19              # hypervisor public ip
+  300                       # *STATIC NO NEED TO REPLACE* ssh NAT port *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  10.254.45.0/24            # *STATIC NO NEED TO REPLACE* management subnet
+  10.254.46.0/24            # *STATIC NO NEED TO REPLACE* loopback subnet
+  192.168.45.64             # *STATIC NO NEED TO REPLACE* srv4 ip address
+  192.168.46.65             # *STATIC NO NEED TO REPLACE* srv5 ip address
+  192.168.46.1              # *STATIC NO NEED TO REPLACE* vnet-customer gateway
+  192.168.110.              # *STATIC NO NEED TO REPLACE* k8s subnet
+  65007                     # *STATIC NO NEED TO REPLACE* Iris AS number bgp peer, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  1091                      # Iris 1nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  1092                      # Iris 2nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  50.117.59.192/28          # customer public subnet
   50.117.59.202             # second usable ip address in load-balancer subnet
   50.117.59.203             # third usable ip address in load-balancer subnet
-  192.168.43.64             # srv4 ip address
-  192.168.44.65             # srv5 ip address
-  192.168.44.1              # vnet-customer gateway
-  100                       # Iris AS number bgp peer, SHORT QUERY BE CAREFUL WHILE REPLACING
-  702                       # Iris peer vlanid, SHORT QUERY BE CAREFUL WHILE REPLACING
+  50.117.59.114/30          # isp1-customer bgp peer local ip
+  50.117.59.113/30          # isp1-customer bgp peer remote ip
   50.117.59.118/30          # isp2-customer bgp peer local ip
   50.117.59.117/30          # isp2-customer bgp peer remote ip
-  50.117.59.192/28          # sandbox public subnet
-  192.168.109.              # k8s vnet subnet
-  9-e-bgp                   # LINKS
+  50.117.59.198/32          # customer v-net nat ip
+  s9-pre-configured         # LINKS
+  s9-learn-by-doing         # LINKS
+  s9-e-bgp                  # LINKS
   s9-v-net                  # LINKS
+  s9-nat                    # LINKS 
   s9-acl                    # LINKS
   s9-k8s                    # LINKS
 
@@ -264,8 +275,8 @@ Create a yaml file:
    frontend:
      port: 80
    backend:
-     - 192.168.43.64:80
-     - 192.168.44.65:80
+     - 192.168.45.64:80
+     - 192.168.46.65:80
    check:
      type: tcp
      timeout: 3000
@@ -329,7 +340,7 @@ Let’s create our VNet manifest:
    sites:
      - name: US/NYC
        gateways:
-         - 192.168.44.1/24
+         - 192.168.46.1/24
        switchPorts:
          - name: swp2@sw22-nyc
   EOF
@@ -351,7 +362,7 @@ As you can see, provisioning for our new VNet has started:
 .. code-block:: shell-session
 
   NAME            STATE    GATEWAYS          SITES    OWNER   STATUS         AGE
-  vnet-customer   active   192.168.44.1/24   US/NYC   Admin   Provisioning   7s
+  vnet-customer   active   192.168.46.1/24   US/NYC   Admin   Provisioning   7s
 
 After provisioning has completed, the L4LB’s checks should work for both backend servers, and incoming requests should be balanced between them. 
 
@@ -397,7 +408,7 @@ BTW, if you already created "vnet-customer" VNet as stated in the :ref:`"Learn b
    sites:
      - name: US/NYC
        gateways:
-         - 192.168.44.1/24
+         - 192.168.46.1/24
        switchPorts:
          - name: swp2@sw22-nyc
   EOF
@@ -420,10 +431,10 @@ Create a yaml file:
   spec:
     site: US/NYC
     softgate: SoftGate2
-    neighborAs: 100
+    neighborAs: 65007
     transport:
       name: swp14@sw02-nyc
-      vlanId: 702
+      vlanId: 1092
     localIP: 50.117.59.118/30
     remoteIP: 50.117.59.117/30
     description: Example BGP to ISP2
@@ -448,7 +459,7 @@ Allow up to 1 minute for both sides of the BGP sessions to come up:
 .. code-block:: shell-session
 
   NAME            STATE     BGP STATE   PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled                            100           50.117.59.118/30   50.117.59.117/30   15s
+  isp2-customer   enabled                            65007         50.117.59.118/30   50.117.59.117/30   15s
 
 Then check the state again:
 
@@ -461,7 +472,7 @@ The output is similar to this:
 .. code-block:: shell-session
 
   NAME            STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled   bgp: Established; prefix: 30; time: 00:00:51   UP           100           50.117.59.118/30   50.117.59.117/30   2m3s
+  isp2-customer   enabled   bgp: Established; prefix: 30; time: 00:00:51   UP           65007         50.117.59.118/30   50.117.59.117/30   2m3s
 
 Feel free to use the import annotation for this BGP if you created it from the controller web interface previously.
 
@@ -540,10 +551,10 @@ Here are our freshly created BGPs, one for each k8s node:
 .. code-block:: shell-session
 
   NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:06:18   UP           100           50.117.59.118/30   50.117.59.117/30    7m59s
-  sandbox9-srv06-nyc-192.168.109.66   enabled                                                               4200070000    192.168.109.1/24   192.168.109.66/24   26s
-  sandbox9-srv07-nyc-192.168.109.67   enabled                                                               4200070001    192.168.109.1/24   192.168.109.67/24   26s
-  sandbox9-srv08-nyc-192.168.109.68   enabled                                                               4200070002    192.168.109.1/24   192.168.109.68/24   26s  
+  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:06:18   UP           65007         50.117.59.118/30   50.117.59.117/30    7m59s
+  sandbox9-srv06-nyc-192.168.110.66   enabled                                                               4200070000    192.168.110.1/24   192.168.110.66/24   26s
+  sandbox9-srv07-nyc-192.168.110.67   enabled                                                               4200070001    192.168.110.1/24   192.168.110.67/24   26s
+  sandbox9-srv08-nyc-192.168.110.68   enabled                                                               4200070002    192.168.110.1/24   192.168.110.68/24   26s  
 
 
 You might notice that peering neighbor AS is different from Calico’s default 64512.  The is because the Netris Operator is setting a particular AS number for each node.
@@ -559,10 +570,10 @@ As seen our BGP peers are established:
 .. code-block:: shell-session
 
   NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:07:48   UP           100           50.117.59.118/30   50.117.59.117/30    8m41s
-  sandbox9-srv06-nyc-192.168.109.66   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070000    192.168.109.1/24   192.168.109.66/24   68s
-  sandbox9-srv07-nyc-192.168.109.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4200070001    192.168.109.1/24   192.168.109.67/24   68s
-  sandbox9-srv08-nyc-192.168.109.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070002    192.168.109.1/24   192.168.109.68/24   68s
+  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:07:48   UP           65007         50.117.59.118/30   50.117.59.117/30    8m41s
+  sandbox9-srv06-nyc-192.168.110.66   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070000    192.168.110.1/24   192.168.110.66/24   68s
+  sandbox9-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4200070001    192.168.110.1/24   192.168.110.67/24   68s
+  sandbox9-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070002    192.168.110.1/24   192.168.110.68/24   68s
 
 Now let’s check if ``nodeToNodeMeshEnabled`` is still enabled:
 
