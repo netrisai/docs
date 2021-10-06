@@ -46,6 +46,8 @@ Contents:
    :caption: Network Services
 
    vnet
+   kubenet
+   l3-load-balancer
    services
    roh
 
@@ -56,7 +58,6 @@ Contents:
    visibility
    accounts
    
-
 .. toctree::
    :maxdepth: 4
    :caption: Updates
