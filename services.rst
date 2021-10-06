@@ -1,49 +1,5 @@
 .. meta::
     :description: Netris Services and Configuration Examples
-
-#####
-V-NET
-#####
-V-NET is a virtual networking service. V-NETs can be used for Layer-2 (unrouted) or Layer-3 (routed) virtual network segments involving switch ports anywhere on the switch fabric. V-NETs can be created and managed by a single tenant (single team) or created and managed collaboratively by multiple tenants (different teams inside and/or outside the organization). 
-
-  Automatically, Netris will configure a VXLAN with an EVPN control plane over an unnumbered BGP Layer-3 underlay network and organize the high availability for the default gateway behind the scenes. 
-
-
-V-Net fields.
-
-- **Name** - Unique name for the V-NET.
-- **Owner** - Tenant, who can make any changes to current V-NET.
-- **V-Net state** - Active/Disable state for entire V-NET.
-- **VLAN aware** - Enable VLAN aware bridge, use only in rare cases, if otherwise is not possible.
-- **Guest tenants** - List of tenants allowed to add/edit/remove ports to the V-Net but not manage other parameters.
-- **Sites** - Ports from these sites will be allowed to participate in the V-Net. (Multi-site circuits would require backbone connectivity between sites).
-- **IPv4 Gateway** - IPv4 address to be used as a default gateway in this V-NET. Should be configured under Net→Subnets as an assignment, assigned to the owner tenant, and available in the site where V-NET is intended to span.
-- **IPv6 Gateway** - IPv6 address to be used as a default gateway in this V-NET. Should be configured under Net→Subnets as an assignment, assigned to the owner tenant, and available in the site or sites where V-NET is intended to span.
-- **Port** - Physical Switch Port anywhere on the network. Switch Port should be assigned to the owner or guest tenant under Net→Switch Ports.
-  
-  - **Enabled** - Enable or disable individual Switch Port under current V-NET
-  - **Port Name** - Switch Port format: <alias>(swp<number>)@<switch name>
-  - **VLAN ID / Untag** - Specify a VLAN ID for tagging traffic on a per-port basis or set Untag not to use tagging on a particular port. VLAN tags are only significant on each port’s ingress/egress unless VLAN aware mode is used.
-  - **LAG Mode** -  Allows for active-standby dual-homing, assuming LAG configuration on the remote end. Active/active dual homing will be enabled in future releases (dependence on SVI support by NOSes).
-
-.. tip:: Many switches can’t autodetect old 1Gbps ports. If attaching hosts with 1Gbps ports to 10Gpbs switch ports, you’ll need to change the speed for a given Switch Port from Auto(default) to 1Gbps. You can edit a port in Net→Switch Ports individually or in bulk.
-
-Example: Adding a new V-NET.
-
-.. image:: images/new_VNET.png
-    :align: center
-
-
-Example: Listing of V-NETs.
-
-.. image:: images/VNETs.png
-    :align: center
-    
-
-Example: Expanded view of a V-NET listing.
-
-.. image:: images/VNET_listing.png
-    :align: center
   
 #######
 Kubenet
@@ -95,47 +51,7 @@ Screenshot: Statuses of on-demand load balancers (type: load-balancer)
     :align: center
 
 
-#########################
-ROH (Routing on the Host)
-#########################
-To create more resilient and higher-performance data centers, some companies leverage the Linux ecosystem to run routing protocols directly to their servers. Known as ROH (Routing on the Host). 
 
-In ROH architectures, servers use a routing demon to establish a BGP adjacency with the switch fabric on every physical link. ROH can run on bare metal servers, VMs, and even containers. The most commonly used routing daemon is FRR.
-
-Hosts connected to the network in ROH architecture don’t have IP addresses on a shared Ethernet segment; instead IP address is configured on the loopback interface and advertised over all BGP links towards switch fabric. Thus, leveraging the Layer-3 network throughout the entire network down the servers. 
-
-ROH architecture with Netris allows for leveraging ECMP load balancing capabilities of the switching hardware for the high-performance server load balancing (described in L3 Load Balancer section). 
-For each instance of ROH, you’ll need to create an ROH entry in Netris Controller.
-
-Description of ROH instance fields:
-
-- **Name** - Unique name for the ROH instance.
-- **Site** - Site where the current ROH instance belongs.
-- **Type** - Physical Server, for all servers forming a BGP adjacency directly with the switch fabric. Hypervisor, for using the hypervisor as an interim router. Proxmox is currently the only supported hypervisor.
-- **ROH Routing Profile** - ROH Routing profile defines what set of routing prefixes to be advertised to ROH instances.
-
-  - **Default route only (a most common choice)** - Will advertise 0.0.0.0/0 + loopback address of the physically connected switch.
-  - **Default + Aggregate** - Will add prefixes of defined assignments + "Default" profile.
-  - **Full table** - Will advertise all prefixes available in the routing table of the connected switch.
-  - **Inherit** - will inherit policy from site objects defined under Net→Sites.
-
-- **Legacy Mode** - Switch from default zero-config mode to using /30 IP addresses. Use for MS Windows Servers or other OS that doesn’t support FRR.
-- **+Port** - Physical Switch Ports anywhere on the network. 
-- **+IPv4** - IPv4 addresses for the loopback interface.
-- **+Inbound Prefix List** - List of additional prefixes that the ROH server may advertise. Sometimes used to advertise container or VM networks.
-
-.. tip:: Many switches can’t autodetect old 1Gbps ports. If attaching hosts with 1Gbps ports to 10Gpbs switch ports, you’ll need to change the speed for a given Switch Port from Auto(default) to 1Gbps. You can edit a port in Net→Switch Ports individually or in bulk.
-
-Example: Adding an ROH instance.  (Yes, you can use A.B.C.0/32 and A.B.C.255/32)
-
-.. image:: images/ROH_instance.png
-    :align: center
-
-
-Screenshot: Expanded view of ROH listing. BGP sessions are up, and the expected IP is in fact received from the actual ROH server. Traffic stats are available per port.
-
-.. image:: images/ROH_listing.png
-    :align: center
     
 
 #############################

@@ -10,8 +10,8 @@ Initial setup of a Netris managed network is a two part process:
 #. Adding Switches
 #. Adding Softgates
 
-Adding Switches to Inventory
-===========================
+Adding Switches
+===============
 Every switch needs to be added to the Netris Controller inventory.  You can add new devices with the following process:
 
 #. Navigate to **Net→Inventory**
@@ -42,8 +42,8 @@ Every switch needs to be added to the Netris Controller inventory.  You can add 
 
 .. note:: Repeat this process to define all your switches.
 
-Adding SoftGates to Inventory
-=============================
+Adding SoftGates
+================
 Every SoftGate node needs to be added to the Netris Controller inventory.  To add a SoftGate node:
 
 #. Navigate to **Net→Topology**
@@ -69,8 +69,8 @@ Example: Adding a SoftGate Node to Topology.
     :align: center
     :class: with-shadow
 
-Viewing Device Inventory
-========================
+Viewing Inventory
+=================
 
 Inventory Listing shows also Heartbeat and monitoring statuses of each device.
 

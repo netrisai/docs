@@ -45,7 +45,9 @@ Contents:
    :maxdepth: 4
    :caption: Network Services
 
+   vnet
    services
+   roh
 
 .. toctree::
    :maxdepth: 4

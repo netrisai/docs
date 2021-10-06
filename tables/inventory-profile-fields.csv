@@ -1,0 +1,7 @@
+**Name**,Profile name
+**Description**,Free text description
+**Allow SSH from IPv4**,List of IPv4 subnets allowed to ssh (one address per line)
+**Allow SSH from IPv6**,List of IPv6 subnets allowed to ssh (one address per line)
+**Timezone**,Devices using this inventory profile will adjust their system time to the selected timezone.
+**NTP servers**,List of domain names or IP addresses of NTP servers (one address per line). You can use your Netris Controller address as an NTP server for your switches and SoftGate.
+**DNS servers**,List of IP addresses of DNS servers (one address per line). You can use your Netris Controller address as a DNS server for your switches and SoftGate.
