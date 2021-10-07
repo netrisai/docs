@@ -194,3 +194,11 @@ footer>a:hover::before {
 .centered {
     text-align: center;
 }
+
+.wy-table-responsive table td {
+    white-space: normal !important;
+}
+
+.wy-table-responsive {
+    overflow: visible !important;
+}

@@ -5,29 +5,31 @@
 Basic BGP
 #########
 
-BGP neighbors can be declared in the Net→E-BGP section. Netris will automatically generate and inject the right configuration to meet your requirements as declared. See below description of E-BGP neighbor declaration fields.
+BGP neighbors can be declared in the Net→E-BGP section. Netris will automatically generate and program the network configuration to meet the requirements. 
 
-* **Name** - Name for BGP session.
-* **Description** - Free description.
-* **Site** - Selects the  site (data center) where this  BGP session should be terminated on.
-* **NFV Node** - Only if SoftGate nodes are in use, define on which node BGP session should be terminated on.
-* **Neighbor AS** - Autonomous System number of the remote side. (Local AS is defined at Net→Sites section)
-* **Terminate on switch** - Typically used for setups without SoftGate, for connecting with upstream routers. Instructs the system to terminate the BGP session directly on the switch. 
-* **Switch port** - Switch Port for the physical cable to the BGP neighbor. (any port on the fabric). Optionally can bind to a V-NET service, typically used for peering with IXPs or systems like GGC (Google Global Cache).
-* **VLAN ID** - Optionally tag with a VLAN ID. (usually untagged)
-* **IP Version** - IPv4 / IPv6
-* **Local IP** - BGP peering IP address on Netris controlled side.
-* **Remote IP** - BGP peering IP address on the remote end.
-* **State** - Administrative state. (Enabled/Disabled)
-* **Advanced** - Advanced policy settings are described in the next section. 
+Adding BGP Peers
+----------------
+#. Navigate to Net→E-BGP in the web UI
+#. Click the **Add** button
+#. Fill in the fields as described in the table below
+#. Click the **Add** button
 
-Example: Declare a basic BGP neighbor.
+.. csv-table:: BGP Peer Fields
+   :file: tables/basic-bgp.csv
+   :widths: 25, 75
+   :header-rows: 0
 
-.. image:: images/BGP_neighbor.png
+Example: Declare a basic BGP neighbor
+
+.. image:: images/add-bgp-basic.png
     :align: center
     :class: with-shadow
 
---------------------------
+Example2: Declare BGP neighbor terminated on V-Net. Netris will automatically configure BGP session on the switch closest to the remote IP.    
+.. image:: images/add-bgp-basic-2.png
+    :align: center
+    :class: with-shadow
+
 
 ############
 Advanced BGP
@@ -36,8 +38,13 @@ BGP neighbor declaration can optionally include advanced BGP attributes and BGP 
 
 Click Advanced to expand the BGP neighbor add/edit window.
 
+.. csv-table:: BGP Peer Fields - Advanced
+   :file: tables/advanced-bgp.csv
+   :widths: 25, 75
+   :header-rows: 0
+
 * **Neighbor address** - IP address of the neighbor when peering with the loopback IP address instead of the interface IP address. (aka Multihop).
-* **Update source** - When Multihop BGP peering is used, it allows the        operator to choose one of the loopback IP addresses of the SoftGate node as a BGP speaker source IP address.
+* **Update source** - When Multihop BGP peering is used, it allows the operator to choose one of the loopback IP addresses of the SoftGate node as a BGP speaker source IP address.
 * **BGP password** - Password for the BGP session.
 * **Allowas-in** - Define the number of allowed occurrences of the self AS number in the received BGP NLRI to consider it valid. (normally 0)
 * **Default Originate** - Originate default route to the current neighbor.
@@ -66,8 +73,8 @@ BGP Objects
 * Extended Community
 * Large Community
 
-IPv4 Prefix.
-^^^^^^^^^^^^
+IPv4 Prefix
+^^^^^^^^^^^
 | Rules defined one per line. 
 | Each line in IPv4 prefix list field consists of three parts: 
 
@@ -81,8 +88,8 @@ Example: Creating an IPv4 Prefix list.
     :align: center
     :class: with-shadow
     
-IPv6 Prefix.
-^^^^^^^^^^^^
+IPv6 Prefix
+^^^^^^^^^^^
 | Rules defined one per line.
 | Each line in IPv6 prefix list field consists of three parts: 
 
@@ -96,8 +103,8 @@ Example: Creating an IPv6 Prefix list.
     :align: center
     :class: with-shadow
     
-Community.
-^^^^^^^^^^
+Community
+^^^^^^^^^
 | Community field has two parts:
 
 * Action - Possible values: permit or deny (mandatory).
@@ -138,13 +145,13 @@ Example: route-map
 
 --------------------------    
 
-#######################
-Routes (static routing)
-#######################
+##############
+Static Routing
+##############
 Located under Net→Routes is a method for describing static routing policies that Netris will dynamically inject on switches and/or SoftGate where appropriate.
 We recommend using the Routes only if BGP is not supported by the remote end. 
 
-| Typical use cases for Routes
+| Typical use cases for static routing:
 * To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported. 
 * Temporary interconnection with the old network for a migration. 
 * Routing a subnet behind a VM hypervisor machine for an internal VM network.
@@ -319,6 +326,7 @@ Example: Ping.
 
 .. image:: images/ping.png
     :align: center
+    :class: with-shadow
 
 | Looking Glass controls described for the EVPN family.
 * **BGP Summary** - Show brief summary of BGP adjacencies with neighbors, interface names, and EVPN prefixes received. 
