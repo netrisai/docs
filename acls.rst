@@ -79,7 +79,7 @@ Example: “Check” shows that requested access is already provided by a broade
         
 ACL Approval Workflow
 ---------------------
-When one Tenant (one team) needs to get network access to resources under the responsibility of another Tenant (another team), an ACL can be created but will activate only after approval of the Tenant responsible for the destination address resources. See the below example.
+When one tenant (one team) needs to get network access to resources under the responsibility of another tenant (another team), an ACL can be created but will activate only after approval of the tenant responsible for the destination address resources. See the below example.
 
 Example: User representing QA_tenant is creating an ACL where source belongs to QA_tenant, but destination belongs to the Admin tenant.
 
@@ -105,8 +105,8 @@ Screenshot: Once approved, users of both tenants will see the ACL in the “Acti
     :align: center
     :class: with-shadow
     
-The sequence order of ACL rules
--------------------------------
+ACL Processing Order
+--------------------
 #. User-defined Deny Rules
 #. User-defined Permit Rules
 #. Deny the rest

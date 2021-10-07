@@ -111,7 +111,7 @@ BGP route-maps
 * **Sequence Number** - Automatically assigned a sequence number. Drag and move sequences to organize the order.
 * **Description** - Free description.
 * **Policy** - Permit or deny the routes which match below all match clauses within the current sequence.
-* **+Match** - Rules for route matching.
+* **Match** - Rules for route matching.
 
   * **Type** - Type of the object to match: AS-Path, Community, Extended Community, Large Community, IPv4 prefix-list, IPv4 next-hop, Route Source, IPv6 prefix-list. IPv6 next-hop, local-preference, MED, Origin, Route Tag. 
   * **Object** - Select an object from the list. 
