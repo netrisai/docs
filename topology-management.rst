@@ -5,10 +5,17 @@
 Inventory
 =========
 Inventory allows you to add/edit/delete network switches and Softgates
-Initial setup of a Netris managed network is a two part process:
+Initial setup of a Netris managed network is a three part process:
 
+#. Create Inventory Profiles
 #. Adding Switches
 #. Adding Softgates
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Inventory Profiles
+
+   inventory-profiles
 
 Adding Switches
 ===============

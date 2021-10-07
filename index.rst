@@ -31,7 +31,6 @@ Contents:
 
    definitions
    ipam
-   inventory-profiles
    topology-management
    switch-ports
 
