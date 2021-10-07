@@ -48,7 +48,8 @@ Contents:
    vnet
    kubenet
    l3-load-balancer
-   services
+   l4-load-balancer
+   acls
    roh
 
 .. toctree::

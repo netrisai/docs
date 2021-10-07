@@ -14,8 +14,8 @@ By using only Layer-3 interfaces, Layer-2 protocols such as Spanning Tree (STP) 
 
 The ROH architecture that is configured by Netris allows for leveraging ECMP load balancing capabilities of the switching hardware for the high-performance server load balancing (described in L3 Load Balancer section). For each instance of ROH, you’ll need to create a ROH entry in Netris Controller.
 
-Configuring ROH Hosts
----------------------
+Adding ROH Hosts
+----------------
 
 #. Navigate in the Netris UI to **Services→Instances (ROH)**
 #. Click the **Add** button
