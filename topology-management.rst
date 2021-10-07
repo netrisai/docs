@@ -11,11 +11,28 @@ Initial setup of a Netris managed network is a three part process:
 #. Adding Switches
 #. Adding Softgates
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Inventory Profiles
+Inventory Profiles
+==================
 
-   inventory-profiles
+Inventory profiles allow security hardening of inventory devices. By default all traffic flow destined to switch/softgate is allowed. 
+As soon as the inventory profile is attached to a device it denies all traffic destined to the device except netris-defined and user-defined custom flows. Generated rules include:
+
+*  SSH from user defined subnets
+*  NTP from user defined ntp services
+*  DNS from user defined DNS servers
+*  Custom user defined rules
+
+.. csv-table:: Inventory Profile Fields
+   :file: tables/inventory-profile-fields.csv
+   :widths: 25, 75
+   :header-rows: 0
+
+**Example:** In this example Netris Controller is used to provide NTP and DNS services to the switches (common setup).
+
+.. image:: images/inventory-profile.png
+    :align: center
+    :class: with-shadow
+
 
 Adding Switches
 ===============
@@ -26,20 +43,10 @@ Every switch needs to be added to the Netris Controller inventory.  You can add 
 #. Fill in the fields as described below
 #. Click the **Add** button
 
- The descriptions of parameters of inventory devices are following:
-* **Name** - Name of the device
-* **Owner Tenant**  - Owner tenant of the device
-* **Description** - Description of the device
-* **Type** - There are 3 types of devices that users can add/edit - Switch, Softgate and Controller. Other types are added automatically when creating services like ROH
-* **NOS** - Operating system of the device, applicable for switches only  
-* **Site** - Site where the devices reside.
-* **AS Number** - Private AS number of the device, applicable for switches only, recommended to be assigned automatically
-* **Profile** - Inventory profile for current device. Profiles are used for security hardening the devices
-* **Main IP address** - Main loopback IP address for the device. Can be configured manually, or assigned automatically from subnet with “loopback” purpose defined for current site.
-* **Management IP address** - Management IP address for the device. Can be configured manually, or assigned automatically from subnet with “management” purpose defined for current site. This IP address is configured on the out-of-band management interface of the device. 
-* **MAC address** - MAC address of the device, applicable for switches only
-* **Preliminary port count** - Used for definition of topology. When the device registers with the controller the real ports are synced with inventory
-* **Add Link** - provides functionality to define the connections between devices, mandatory for Switch and Softgate physical interconnections
+ .. csv-table:: Add Inventory Fields - Switch
+    :file: tables/inventory-add-switch.csv
+    :widths: 25, 75
+    :header-rows: 0
 
 **Example:**  Add a new Switch.
 
@@ -58,17 +65,10 @@ Every SoftGate node needs to be added to the Netris Controller inventory.  To ad
 #. Fill in the fields as described below
 #. Click the **Add** button
 
-* **Name** - Descriptive name.
-* **Owner Tenant** - Tenant(typically Admin), who administers this node.
-* **Description** - Free text description.
-* **Hardware Type** - NFV node.
-* **Site** - The data center where the current SoftGate node belongs. 
-* **Inventory Profile** - Profile describing the timezone, DNS, NTP, and Security features.
-* **IP Address** - IPv4 address for the loopback interface.
-* **Management IP address** - IPv4 address for the out of band management interface. 
-* **NFV Node Port** - A physical port on a spine switch where the SoftGate node's first SmartNIC port is connected. Typically each spine switch has one SoftGate node connected to it. 
-* **+NAT address** - Public IP addresses to be used as global IP for SNAT/DNAT. (check Enabling NAT section of Network Policies chapter)
-* **+NAT address pool** - Public IP address subnets to be used as rolling global IP addresses for SNAT. (check Enabling NAT section of Network Policies chapter)
+.. csv-table:: Add Inventory Fields - SoftGate
+   :file: tables/inventory-add-softgate.csv
+   :widths: 25, 75
+   :header-rows: 0
 
 Example: Adding a SoftGate Node to Topology.
 
