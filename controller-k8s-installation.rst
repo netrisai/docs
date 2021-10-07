@@ -26,24 +26,24 @@ Add the Netris Helm repository:
    helm repo add netrisai https://netrisai.github.io/charts
    helm repo update
 
-Installing the Chart
---------------------
+Helm Chart Installation
+-----------------------
 
-In order to install the Helm chart, you must follow these steps:
+To install the Helm chart, follow these steps:
 
-Create the namespace for netris-controller:
+1. Create the namespace for netris-controller:
 
 .. code-block::
 
    kubectl create namespace netris-controller
 
-Generate strong auth key
+2. Generate strong auth key:
 
 .. code-block::
 
    export mystrongauthkey=$(date |base64 | md5sum | base64 | head -c 32)
 
-Install helm chart with netris-controller
+3. Install helm chart with netris-controller:
 
 .. code-block::
 
@@ -52,8 +52,8 @@ Install helm chart with netris-controller
      --set app.ingress.hosts={my.domain.com} \
      --set netris.authKey=$mystrongauthkey
 
-Uninstalling the Chart
-----------------------
+Uninstalling the Helm Chart
+---------------------------
 
 To uninstall/delete the ``netris-controller`` helm release:
 
@@ -66,7 +66,7 @@ Configuration
 
 The following table lists the configurable parameters of the netris-controller chart and their default values.
 
-Common parameters
+Common Parameters
 ^^^^^^^^^^^^^^^^^
 
 .. list-table::
@@ -113,7 +113,7 @@ Common parameters
      - ``{}``
 
 
-Netris-Controller common parameters
+Netris-Controller Common Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
@@ -133,7 +133,7 @@ Netris-Controller common parameters
      - ``mystrongkey``
 
 
-Netris-Controller app parameters
+Netris-Controller App Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
@@ -201,7 +201,7 @@ Netris-Controller app parameters
      - ``80``
 
 
-Netris-Controller grpc parameters
+Netris-Controller gRPC Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
@@ -248,7 +248,7 @@ Netris-Controller grpc parameters
      - ``80``
 
 
-Netris-Controller telescope parameters
+Netris-Controller Telescope Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
@@ -301,7 +301,7 @@ Netris-Controller telescope parameters
      - ``80``
 
 
-Netris-Controller k8s-watcher parameters
+Netris-Controller k8s-watcher Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
@@ -339,7 +339,7 @@ Netris-Controller k8s-watcher parameters
      - ``80``
 
 
-Netris-Controller telescope-notifier parameters
+Netris-Controller telescope-notifier Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
@@ -377,7 +377,7 @@ Netris-Controller telescope-notifier parameters
      - ``80``
 
 
-Mariadb parameters
+MariaDB Parameters
 ^^^^^^^^^^^^^^^^^^
 
 *Using default values* `from <https://github.com/bitnami/charts/tree/master/bitnami/mariadb/values.yaml>`_
@@ -413,7 +413,7 @@ Mariadb parameters
 
 *Auth from existing secret not supported at the momment*
 
-Mongodb parameters
+MongoDB Parameters
 ^^^^^^^^^^^^^^^^^^
 
 *Using default values* `from <https://github.com/bitnami/charts/tree/master/bitnami/mongodb/values.yaml>`_
@@ -446,7 +446,7 @@ Mongodb parameters
 
 *Auth from existing secret not supported at the momment*
 
-Redis parameters
+Redis Parameters
 ^^^^^^^^^^^^^^^^
 
 *Using default values* `from <https://github.com/bitnami/charts/tree/master/bitnami/redis/values.yaml>`_
@@ -467,7 +467,7 @@ Redis parameters
 
 *Auth not supported at the momment*
 
-Smtp parameters
+SMTP Parameters
 ^^^^^^^^^^^^^^^
 
 *Using default values* `from <https://github.com/ntppool/charts/tree/main/charts/smtp/values.yaml>`_
@@ -486,7 +486,7 @@ Smtp parameters
      - ``:172.16.0.0/12:10.0.0.0/8:192.168.0.0/16``
 
 
-HAproxy parameters
+HAproxy Parameters
 ^^^^^^^^^^^^^^^^^^
 
 *Using default values* `from <https://github.com/haproxytech/helm-charts/tree/master/haproxy/values.yaml>`_
@@ -505,7 +505,7 @@ HAproxy parameters
      - ``LoadBalancer``
 
 
-Graphite parameters
+Graphite Parameters
 ^^^^^^^^^^^^^^^^^^^
 
 *Using default values* `from <https://github.com/kiwigrid/helm-charts/tree/master/charts/graphite/values.yaml>`_

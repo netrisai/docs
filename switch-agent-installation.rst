@@ -5,8 +5,8 @@
 Netris switch agent installation
 ********************************
 
-For Cumulus Linux
-=================
+Nvidia Cumulus Linux Devices
+============================
 Requirements:
 * Fresh install of Cumulus Linux v. 3.7.(x) - Cumulus 4.X is in the process of validation and will be supported in the next Netris release.
 
@@ -36,8 +36,8 @@ Configure out of band management IP address, and in case Netris Controller is no
 
  sudo ifreload -a
 
-Configure Cumulus Linux license
--------------------------------
+Configure Nvidia Cumulus Linux License
+--------------------------------------
 
 .. code-block:: shell-session
 
@@ -47,7 +47,7 @@ Copy/paste the Cumulus Linux license string then press ctrl-d.
 
 Install the Netris Agent 
 ------------------------
-1. Add netris repository using Netris Controller as an http proxy. Replace <Your Netris Controller address> with your actual Netris Controller address.
+1. Add Netris repository using Netris Controller as an HTTP proxy. Replace <Your Netris Controller address> with your actual Netris Controller address.
 
 .. note::
 
@@ -105,15 +105,15 @@ Screenshot: Net→Inventory
 .. image:: images/inventory_heartbeat.png
     :align: center
 
-For Ubuntu SwitchDev
-==================== 
+Ubuntu SwitchDev Devices
+======================== 
 .. note::
 
   Further installation requires a Console and Internet connectivity via management port!
   
 1. NOS Uninstall
 
-Fist of all uninstall current NOS using **Uninstall OS** from grub menu:
+Uninstall current NOS using **Uninstall OS** from grub menu:
 
 .. image:: images/uninstallOS.png
     :align: center
@@ -162,7 +162,7 @@ In case you don't have DHCP in the management network, then stop ONIE discovery 
   ip route add default via <gateway of management network>
   echo "nameserver 1.1.1.1" > /etc/resolv.conf
 
-Install Ubuntu-SiwtchDev from the Netris custom image:
+Install Ubuntu-SwitchDev from the Netris custom image:
 
 .. code-block:: shell-session
 
@@ -172,7 +172,7 @@ Default username/password
  
 ``netris/newNet0ps``
 
-Configure the OOB Management IP address
+Configure the OOB Management IP Address
 ---------------------------------------
 Configure out of band management IP address, and in case Netris Controller is not in the same OOB network then configure a route to Netris Controller. No default route or other IP addresses should be configured.
 

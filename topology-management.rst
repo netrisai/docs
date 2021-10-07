@@ -4,8 +4,7 @@
 =========
 Inventory
 =========
-Inventory allows you to add/edit/delete network switches and Softgates
-Initial setup of a Netris managed network is a three part process:
+The Inventory section allows you to add/edit/delete network switches and SoftGates.  Initial setup of a Netris managed network is a three part process:
 
 #. Create Inventory Profiles
 #. Adding Switches
@@ -13,9 +12,8 @@ Initial setup of a Netris managed network is a three part process:
 
 Inventory Profiles
 ==================
-
-Inventory profiles allow security hardening of inventory devices. By default all traffic flow destined to switch/softgate is allowed. 
-As soon as the inventory profile is attached to a device it denies all traffic destined to the device except netris-defined and user-defined custom flows. Generated rules include:
+Inventory profiles allow security hardening of inventory devices. By default all traffic flow destined to switch/SoftGate is allowed. 
+As soon as the inventory profile is attached to a device it denies all traffic destined to the device except Netris-defined and user-defined custom flows. Generated rules include:
 
 *  SSH from user defined subnets
 *  NTP from user defined ntp services
@@ -32,7 +30,6 @@ As soon as the inventory profile is attached to a device it denies all traffic d
 .. image:: images/inventory-profile.png
     :align: center
     :class: with-shadow
-
 
 Adding Switches
 ===============
@@ -99,14 +96,18 @@ The topology manager is for describing and monitoring the desired network topolo
 Adding Links
 ============
 
-To define the links, right-click on the spine switch, then click create a link. Select the “from port,” then “to device” and “port.” See the example below.  
+To define the links in the network:
+
+#. Right-click on the spine switch
+#. Click **Create Link**
+#. Select the **From Port** and the **To Port**
+
+See the example below:  
 
 .. image:: images/create_link.png
     :align: center
     :class: with-shadow
     
-All links require definition in the topology manager. Topology links can also be described through a .yaml file when using Kubernetes CRD. (a GUI wizard is planned to be available in v2.10).
-
 .. image:: images/topology_manager.png
     :align: center
     :class: with-shadow
@@ -115,9 +116,9 @@ Once the links have been defined, the network is automatically configured as lon
 
 .. tip:: You can drag/move the units to your desired positions and click “Save positions”.
 
-Hairpin Links (Cumulus only) 
-============================
-With Cumulus Linux only, we need to loop two ports on spine switches (hairpin cable) in the current release, usually two upstream (higher capacity) ports. We are planning to lift this requirement in the next Netris release (v2.10).
+Hairpin Links (Nvidia Cumulus only) 
+===================================
+With Nvidia Cumulus Linux only, we need to loop two ports on spine switches (hairpin cable) in the current release, usually two upstream (higher capacity) ports. We are planning to lift this requirement in the next Netris release (v2.10).
 
 To define what ports will be used as a hairpin, navigate to Net→Switch Ports, or right-click on the spine switch, click Ports in Net-->Topology.
 
@@ -128,7 +129,6 @@ Example: Accessing Switch Ports from Net→Topology
     :class: with-shadow
 
 For each spine switch, find the two ports that you are going to connect (loop/hairpin) and configure one port as a “hairpin **l2**” and another port as “hairpin **l3**”. The order doesn’t matter. The system needs to know which ports you have dedicated for the hairpin/loop on each spine switch. (do not do this for non-Cumulus switches)  
-|
 |
 Example: Editing Switch Port from Net→Switch Ports.
 
@@ -147,4 +147,3 @@ Screenshot: Hairpin visualized in Net→Topology
 .. image:: images/hairpin_topology.png
     :align: center
     :class: with-shadow
-
