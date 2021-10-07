@@ -15,7 +15,7 @@ Adding BGP Peers
 #. Click the **Add** button
 
 .. csv-table:: BGP Peer Fields
-   :file: tables/basic-bgp.csv
+   :file: tables/bgp-basic.csv
    :widths: 25, 75
    :header-rows: 0
 
@@ -39,32 +39,17 @@ BGP neighbor declaration can optionally include advanced BGP attributes and BGP 
 Click Advanced to expand the BGP neighbor add/edit window.
 
 .. csv-table:: BGP Peer Fields - Advanced
-   :file: tables/advanced-bgp.csv
+   :file: tables/bgp-advanced.csv
    :widths: 25, 75
    :header-rows: 0
 
-* **Neighbor address** - IP address of the neighbor when peering with the loopback IP address instead of the interface IP address. (aka Multihop).
-* **Update source** - When Multihop BGP peering is used, it allows the operator to choose one of the loopback IP addresses of the SoftGate node as a BGP speaker source IP address.
-* **BGP password** - Password for the BGP session.
-* **Allowas-in** - Define the number of allowed occurrences of the self AS number in the received BGP NLRI to consider it valid. (normally 0)
-* **Default Originate** - Originate default route to the current neighbor.
-* **Prefix Inbound Max** - Drop the BGP session if the number of received prefixes exceeds this max limit. For switch termination maximum allowed is 1000 prefixes, while SoftGate termination can handle up to one million prefixes. 
-* **Inbound Route-Map** - Apply BGP policies described in a route-map for inbound BGP updates. 
-* **Outbound Route-Map** - Apply BGP policies described in a route-map for outbound BGP updates. 
-* **Local Preference** - Set local preference for all inbound routes for the current neighbor.
-* **Weight** - Set weight for all inbound routes for the current neighbor.
-* **Prepend Inbound(times)** - How many times to prepend self AS number for inbound routes.
-* **Prepend Outbound(times)** - How many times to prepend self AS number for outbound routes.
-* **Prefix List Inbound** - List of IP addresses prefixes to permit or deny inbound.
-* **Prefix List Outbound** - List of IP addresses prefixes to permit or deny outbound.
-* **Send BGP Community** - List of BGP communities to send to the current neighbor.
 
 --------------------------
 
 BGP Objects
 -----------
 | Under Net→E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.
-| Supported objects are:
+| Supported objects include:
 
 * IPv4 Prefix
 * IPv6 Prefix
@@ -84,7 +69,7 @@ IPv4 Prefix
 
 Example: Creating an IPv4 Prefix list.
 
-.. image:: images/IPv4_Prefix.png
+.. image:: images/IPv4-Prefix.png
     :align: center
     :class: with-shadow
     
@@ -99,7 +84,7 @@ IPv6 Prefix
 
 Example: Creating an IPv6 Prefix list.
 
-.. image:: images/IPv6_Prefix.png
+.. image:: images/IPv6-Prefix.png
     :align: center
     :class: with-shadow
     
