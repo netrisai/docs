@@ -97,7 +97,6 @@ Configure out-of-band management IP address. If the Netris Controller is not in 
 | **--controller** - IP address or domain name of Netris Controller. 
 | **--hostname** - Specify the hostname for the current switch, this hostname should match the name defined for particular switch in the Controller..
 | **--lo** - IP address for the loopback interface, as it is defined in the controller.
-| **--node-prio - brief explanation of node priority goes here**
 |
 | Run netris-setup.
 
@@ -126,7 +125,7 @@ Example: Running netris-setup
 | *** ATTENTION: You must reboot SoftGate to complete the installation 
 | netris@ubuntu:~$ 
 
-8. Reboot the server
+1. Reboot the server
 
 .. code-block:: shell-session
 
