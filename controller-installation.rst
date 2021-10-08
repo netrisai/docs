@@ -159,37 +159,6 @@ After reboot, the Netris Controller GUI should be accessible using a browser. Us
 
 .. note::Don’t forget to change the default password by clicking your login name in the top right corner and then clicking “Change Password”.
 
-Security Hardening
-==================
-| Recommended for production use.
-| 
-
-Changing the default GRPC authentication key.
----------------------------------------------
-
-Connect to the Netris Controller CLI (SSH or Console)
-
-.. tip::You can generate a random and secure key using sha256sum.
-
-.. code-block:: shell-session
-
-  echo "<some random text here>" | sha256sum
-  
-Example:
-
-.. code-block:: shell-session
-
-  netris@iris:~$ echo "<some random text here>" | sha256sum
-  6a284d55148f81728f932b28e9d020736c8f78e1950b3d576f6e679d90516df1  -
-
-Set your newly generated secure key into Netris Controller:
-
-.. code-block:: shell-session
-
-  sudo /opt/telescope/netris-set-auth.sh --key <your key>
-  
-Store the auth key in a safe place as it will be required every time when installing Netris Agent for the switches and SoftGates.
-
 Replacing the SSL certificate
 ------------------------------
 
