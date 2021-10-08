@@ -14,7 +14,9 @@ Contents:
    :maxdepth: 2
    :caption: Getting Started
 
-   concepts
+   introduction
+   netris-architecture
+   reference-designs
 
 .. toctree::
    :maxdepth: 2
