@@ -5,7 +5,7 @@
 Supported Networks
 ##################
 
-The following basic network designs are supported by Netris.
+The following basic network designs are supported by Netris:
 
 .. image:: images/slide-1.png
     :align: center
