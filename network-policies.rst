@@ -171,7 +171,7 @@ Screenshot: This Shows that my back route is actually applied on leaf1 and spine
 
 --------------------------
 
-###    
+###
 NAT
 ###
 
@@ -252,8 +252,9 @@ Example: Port forwarding. DNAT the traffic destined to 198.51.100.66:80 to be fo
 
 --------------------------
 
+########
 SiteMesh
-========
+########
 SiteMesh is a Netris service for site-to-site interconnects over the public Internet. SiteMesh automatically generates configuration for WireGuard to create encrypted tunnels between participating sites and automatically generates a configuration for FRR to run dynamic routing. Hence, sites learn how to reach each other over the mesh WireGuard tunnels. The SiteMesh feature requires a SoftGate node at each participating site. 
 
 Edit Net->Sites, do declare what sites should form a SiteMesh. See SiteMesh types described below.

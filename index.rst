@@ -6,9 +6,7 @@
 Welcome to Netris documentation!
 ==================================================
 
-Netris is the automatic NetOps platform that runs the physical network and provides cloud-like user experience for NetOps and DevOps engineers.
-
-Contents:
+Netris is the Automatic NetOps platform that runs the physical network and provides cloud-like user experience for NetOps and DevOps engineers.
 
 .. toctree::
    :maxdepth: 2
@@ -16,6 +14,7 @@ Contents:
 
    introduction
    netris-architecture
+   supported-networks
    reference-designs
 
 .. toctree::
