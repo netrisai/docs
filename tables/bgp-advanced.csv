@@ -1,0 +1,15 @@
+**Neighbor address**,IP address of the neighbor when peering with the loopback IP address instead of the interface IP address (aka Multihop).
+**Update source**,When Multihop BGP peering is used it allows the operator to choose one of the loopback IP addresses of the SoftGate node as a BGP speaker source IP address.
+**BGP password**,Password for the BGP session
+**Allowas-in**,Define the number of allowed occurrences of the self AS number in the received BGP NLRI to consider it valid (normally 0).
+**Default Originate**,Originate default route to the current neighbor
+**Prefix Inbound Max**,Drop the BGP session if the number of received prefixes exceeds this max limit. For switch termination maximum allowed is 1000 prefixes and SoftGate termination can handle up to one million prefixes.
+**Inbound Route-Map**,Apply BGP policies described in a route-map for inbound BGP updates
+**Outbound Route-Map**,Apply BGP policies described in a route-map for outbound BGP updates
+**Local Preference**,Set local preference for all inbound routes for the current neighbor
+**Weight**,Set weight for all inbound routes for the current neighbor
+**Prepend Inbound (times)**,How many times to prepend self AS number for inbound routes
+**Prepend Outbound (times)**,How many times to prepend self AS number for outbound routes
+**Prefix List Inbound**,List of IP addresses prefixes to permit or deny inbound
+**Prefix List Outbound**,List of IP addresses prefixes to permit or deny outbound
+**Send BGP Community**,List of BGP communities to send to the current neighbor

@@ -5,26 +5,30 @@
 Basic BGP
 #########
 
-BGP neighbors can be declared in the Net→E-BGP section. Netris will automatically generate and inject the right configuration to meet your requirements as declared. See below description of E-BGP neighbor declaration fields.
+BGP neighbors can be declared in the Net→E-BGP section. Netris will automatically generate and program the network configuration to meet the requirements. 
 
-* **Name** - Name for BGP session.
-* **Description** - Free description.
-* **Site** - Selects the  site (data center) where this  BGP session should be terminated on.
-* **NFV Node** - Only if SoftGate nodes are in use, define on which node BGP session should be terminated on.
-* **Neighbor AS** - Autonomous System number of the remote side. (Local AS is defined at Net→Sites section)
-* **Terminate on switch** - Typically used for setups without SoftGate, for connecting with upstream routers. Instructs the system to terminate the BGP session directly on the switch. 
-* **Switch port** - Switch Port for the physical cable to the BGP neighbor. (any port on the fabric). Optionally can bind to a V-NET service, typically used for peering with IXPs or systems like GGC (Google Global Cache).
-* **VLAN ID** - Optionally tag with a VLAN ID. (usually untagged)
-* **IP Version** - IPv4 / IPv6
-* **Local IP** - BGP peering IP address on Netris controlled side.
-* **Remote IP** - BGP peering IP address on the remote end.
-* **State** - Administrative state. (Enabled/Disabled)
-* **Advanced** - Advanced policy settings are described in the next section. 
+Adding BGP Peers
+----------------
+#. Navigate to Net→E-BGP in the web UI
+#. Click the **Add** button
+#. Fill in the fields as described in the table below
+#. Click the **Add** button
 
-Example: Declare a basic BGP neighbor.
+.. csv-table:: BGP Peer Fields
+   :file: tables/bgp-basic.csv
+   :widths: 25, 75
+   :header-rows: 0
 
-.. image:: images/BGP_neighbor.png
+Example: Declare a basic BGP neighbor
+
+.. image:: images/add-bgp-basic.png
     :align: center
+    :class: with-shadow
+
+Example2: Declare BGP neighbor terminated on V-Net. Netris will automatically configure BGP session on the switch closest to the remote IP.    
+.. image:: images/add-bgp-basic-2.png
+    :align: center
+    :class: with-shadow
 
 
 ############
@@ -34,26 +38,18 @@ BGP neighbor declaration can optionally include advanced BGP attributes and BGP 
 
 Click Advanced to expand the BGP neighbor add/edit window.
 
-* **Neighbor address** - IP address of the neighbor when peering with the loopback IP address instead of the interface IP address. (aka Multihop).
-* **Update source** - When Multihop BGP peering is used, it allows the        operator to choose one of the loopback IP addresses of the SoftGate node as a BGP speaker source IP address.
-* **BGP password** - Password for the BGP session.
-* **Allowas-in** - Define the number of allowed occurrences of the self AS number in the received BGP NLRI to consider it valid. (normally 0)
-* **Default Originate** - Originate default route to the current neighbor.
-* **Prefix Inbound Max** - Drop the BGP session if the number of received prefixes exceeds this max limit. For switch termination maximum allowed is 1000 prefixes, while SoftGate termination can handle up to one million prefixes. 
-* **Inbound Route-Map** - Apply BGP policies described in a route-map for inbound BGP updates. 
-* **Outbound Route-Map** - Apply BGP policies described in a route-map for outbound BGP updates. 
-* **Local Preference** - Set local preference for all inbound routes for the current neighbor.
-* **Weight** - Set weight for all inbound routes for the current neighbor.
-* **Prepend Inbound(times)** - How many times to prepend self AS number for inbound routes.
-* **Prepend Outbound(times)** - How many times to prepend self AS number for outbound routes.
-* **Prefix List Inbound** - List of IP addresses prefixes to permit or deny inbound.
-* **Prefix List Outbound** - List of IP addresses prefixes to permit or deny outbound.
-* **Send BGP Community** - List of BGP communities to send to the current neighbor.
+.. csv-table:: BGP Peer Fields - Advanced
+   :file: tables/bgp-advanced.csv
+   :widths: 25, 75
+   :header-rows: 0
 
-BGP objects
+
+--------------------------
+
+BGP Objects
 -----------
 | Under Net→E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.
-| Supported objects are:
+| Supported objects include:
 
 * IPv4 Prefix
 * IPv6 Prefix
@@ -62,8 +58,8 @@ BGP objects
 * Extended Community
 * Large Community
 
-IPv4 Prefix.
-^^^^^^^^^^^^
+IPv4 Prefix
+^^^^^^^^^^^
 | Rules defined one per line. 
 | Each line in IPv4 prefix list field consists of three parts: 
 
@@ -73,11 +69,12 @@ IPv4 Prefix.
 
 Example: Creating an IPv4 Prefix list.
 
-.. image:: images/IPv4_Prefix.png
+.. image:: images/IPv4-Prefix.png
     :align: center
+    :class: with-shadow
     
-IPv6 Prefix.
-^^^^^^^^^^^^
+IPv6 Prefix
+^^^^^^^^^^^
 | Rules defined one per line.
 | Each line in IPv6 prefix list field consists of three parts: 
 
@@ -87,11 +84,12 @@ IPv6 Prefix.
 
 Example: Creating an IPv6 Prefix list.
 
-.. image:: images/IPv6_Prefix.png
+.. image:: images/IPv6-Prefix.png
     :align: center
+    :class: with-shadow
     
-Community.
-^^^^^^^^^^
+Community
+^^^^^^^^^
 | Community field has two parts:
 
 * Action - Possible values: permit or deny (mandatory).
@@ -101,7 +99,10 @@ Example: Creating community.
 
 .. image:: images/community.png
     :align: center
+    :class: with-shadow
     
+--------------------------
+
 BGP route-maps
 --------------
 | Under the Net→E-BGP Route-maps section, you can define route-map policies, which can be associated with the BGP neighbors inbound or outbound. 
@@ -110,7 +111,7 @@ BGP route-maps
 * **Sequence Number** - Automatically assigned a sequence number. Drag and move sequences to organize the order.
 * **Description** - Free description.
 * **Policy** - Permit or deny the routes which match below all match clauses within the current sequence.
-* **+Match** - Rules for route matching.
+* **Match** - Rules for route matching.
 
   * **Type** - Type of the object to match: AS-Path, Community, Extended Community, Large Community, IPv4 prefix-list, IPv4 next-hop, Route Source, IPv6 prefix-list. IPv6 next-hop, local-preference, MED, Origin, Route Tag. 
   * **Object** - Select an object from the list. 
@@ -125,14 +126,17 @@ Example: route-map
 
 .. image:: images/route-map.png
     :align: center
+    :class: with-shadow
 
-#######################
-Routes (static routing)
-#######################
+--------------------------    
+
+##############
+Static Routing
+##############
 Located under Net→Routes is a method for describing static routing policies that Netris will dynamically inject on switches and/or SoftGate where appropriate.
 We recommend using the Routes only if BGP is not supported by the remote end. 
 
-| Typical use cases for Routes
+| Typical use cases for static routing:
 * To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported. 
 * Temporary interconnection with the old network for a migration. 
 * Routing a subnet behind a VM hypervisor machine for an internal VM network.
@@ -142,98 +146,115 @@ We recommend using the Routes only if BGP is not supported by the remote end.
 * **Prefix** - Route destination to match. 
 * **Next-Hop** - Traffic destined to the Prefix will be routed towards the Next-Hop. Note that static routes will be injected only on units that have the Next-Hop as a connected network.
 * **Description** - Free description.
-* **Site*** - Site where Route belongs. 
+* **Site** - Site where Route belongs. 
 * **State** - Administrative (enable/disable) state of the Route. 
-* **+Apply to** -  Limit the scope to particular units. It’s typically used for Null routes.
+* **Apply to** -  Limit the scope to particular units. It’s typically used for Null routes.
 
 
 Example: Default route pointing to a Next-Hop that belongs to one of V-NETs. 
 
 .. image:: images/defaultroute.png
     :align: center
+    :class: with-shadow
 
 Example: Adding a back route to 10.254.0.0/16 through an out-of-band management network.  
 
 .. image:: images/static_route.png
     :align: center
+    :class: with-shadow
     
 Screenshot: This Shows that my back route is actually applied on leaf1 and spine1.
 
 .. image:: images/leaf1_spine1.png
     :align: center
+    :class: with-shadow
 
-###    
+--------------------------
+
+###
 NAT
 ###
+
 Netris SoftGate nodes are required to support NAT (Network Address Translation). 
 
 Enabling NAT
 ------------
-To enable NAT for a given site, you first need to attach NAT IP addresses and/or NAT IP pool resources to SoftGate nodes. NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need, assuming it's configured as an allocation under Net→Subnets section.
+To enable NAT for a given site, you first need to create a subnet with NAT purpose in the IPAM section. NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need.
 
-1. Allocate a public IP subnet for NAT under Net→Subnets. 
+1. Allocate a public IP subnet for NAT under Net→IPAM. 
 
 Example: Adding an IP allocation under Net→Subnets.
 
-.. image:: images/IP_allocation.png
+.. image:: images/IP-allocation.png
     :align: center
+    :class: with-shadow
 
-2. Attach NAT IP addresses and/or NAT IP Pools to just one SoftGate node. Other SoftGate Nodes on the same site will automatically add the same NAT IP/Pool resources for proper consistency and high availability.
+1. Attach NAT IP addresses and/or NAT IP Pools to just one SoftGate node. Other SoftGate Nodes on the same site will automatically add the same NAT IP/Pool resources for proper consistency and high availability.
 
 Example: Adding NAT IP addresses and NAT IP Address Pools to a SoftGate node.
 
-.. image:: images/NATIP_address.png
+.. image:: images/NATIP-address.png
     :align: center
+    :class: with-shadow
 
 Defining NAT rules
 ------------------
 NAT rules are defined under Net→NAT.
 
-NAT rule fields described:
+.. list-table:: NAT Rule Fields
+   :widths: 25 75
+   :header-rows: 1
 
-* **Name** - Unique name.
-* **Protocol** 
+    * - Name
+      - Unique name
+    * - **State**
+      - State of rule (enabled or disabled)
+    * - **Site** 
+      - Site to apply the rule
+    * - **Action**
+      - *SNAT* - Replace the source IP address with specified NAT IP along with port overloading
+        *DNAT* - Replace the destination IP address and/or destination port with specified NAT IP
+        *ACCEPT* - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule
+        *MASQUERADE* - Replace the source IP address with the IP address of the exit interface
+    * - **Protocol**
+      - *All* - Match any IP protocol
+        *TCP* - Match TCP traffic and ports
+        *UDP* - Match UDP traffic and ports
+        *ICMP* - Match ICMP traffic
+    * - **Source**
+      - *Address* - Source IP address to match
+        *Port* - Source ports range to match with this value (TCP/UDP)
+    * - **Destination**
+      - *Address* - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses
+        *Port* - For DNAT only, to match a single destination port
+        *Ports* - For SNAT/ACCEPT only. Destination ports range  to match with this value (TCP/UDP)
+    * - **DNAT to IP** 
+      - The global IP address for SNAT to be visible on the Public Internet. The internal IP address for DNAT to replace the original destination address with
+    * - **DNAT to Port** 
+      - The Port to which destination Port of the packet should be NAT'd
+    * - **Status**
+      - Administrative state (enable/disable)
+    * - **Comment**
+      - Free optional comment
 
-  * **All** - Match any IP protocol.
-  * **TCP** - Match TCP traffic and ports.
-  * **UDP** - Match UDP traffic and ports
-  * **ICMP** - Match ICMP traffic.
-  
-* **Action** 
-
-  * **SNAT** - Replace the source IP address with specified NAT IP.
-  * **DNAT** - Replace the destination IP address and/or destination port with specified NAT IP. 
-  * **ACCEPT** - Silently forward, typically used to add an exemption to broader SNAT or DNAT rule. 
-  
-* **Source**
-
-  * **Address** - Source IP address to match.
-  * **From port** - Source ports to match starting with this value (TCP/UDP)
-  * **To port** - Source ports to much up to this value (TCP/UDP)
-  
-* **Destination**
-
-  * **Address** - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses.
-  * **Port** - For DNAT only, to match a single destination port.
-  * **From port** - For SNAT/ACCEPT only. Destination ports to match starting with this value (TCP/UDP)
-  * **To port** - For SNAT/ACCEPT only. Destination ports to much up to this value (TCP/UDP)
-  
-* **NAT IP** - The global IP address for SNAT to be visible on Public Internet. The internal IP address for DNAT to replace the original destination address with.
-* **Status** - Administrative state (enable/disable).
-* **Comment** - Free optional comment.
 
 Example: SNAT all hosts on 10.0.0.0/8 to the Internet using 198.51.100.65 as a global IP. 
 
 .. image:: images/globalIP.png
     :align: center
+    :class: with-shadow
     
 Example: Port forwarding. DNAT the traffic destined to 198.51.100.66:80 to be forwarded to the host 10.0.4.10 on port tcp/1080. 
 
-.. image:: images/Port_Forwarding.png
+.. image:: images/Port-Forwarding.png
     :align: center
+    :class: with-shadow
 
+--------------------------
+
+########
 SiteMesh
-========
+########
 SiteMesh is a Netris service for site-to-site interconnects over the public Internet. SiteMesh automatically generates configuration for WireGuard to create encrypted tunnels between participating sites and automatically generates a configuration for FRR to run dynamic routing. Hence, sites learn how to reach each other over the mesh WireGuard tunnels. The SiteMesh feature requires a SoftGate node at each participating site. 
 
 Edit Net->Sites, do declare what sites should form a SiteMesh. See SiteMesh types described below.
@@ -259,7 +280,9 @@ Screenshot: Listing of SiteMesh tunnels and BGP statuses (Net→Site Mesh)
 
 .. image:: images/SiteMesh_listing.png
     :align: center  
-    
+
+--------------------------
+
 #############
 Looking Glass
 #############
@@ -277,16 +300,19 @@ Example: Spine1: listing BGP neighbors and number of received prefixes.
 
 .. image:: images/Spine1.png
     :align: center
+    :class: with-shadow
     
 Example: BGP Route - looking up my leaf1 switch’s loopback address from spine1’s perspective. Spine1 is load balancing between two available paths. 
 
 .. image:: images/BGP_route.png
     :align: center
+    :class: with-shadow
 
 Example: Ping.
 
 .. image:: images/ping.png
     :align: center
+    :class: with-shadow
 
 | Looking Glass controls described for the EVPN family.
 * **BGP Summary** - Show brief summary of BGP adjacencies with neighbors, interface names, and EVPN prefixes received. 
@@ -298,13 +324,16 @@ Example: Listing of adjacent BGP neighbors and number of EVPN prefixes received.
 
 .. image:: images/BGP_neighbors_listing.png
     :align: center
+    :class: with-shadow
 
 Example: Listing MAC addresses on VNI 2.
 
 .. image:: images/MAC_listing.png
     :align: center
+    :class: with-shadow
 
 Example: EVPN routing information listing for a specified route distinguisher.
 
 .. image:: images/EVPN_routing.png
     :align: center
+    :class: with-shadow

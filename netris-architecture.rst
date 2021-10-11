@@ -1,27 +1,29 @@
 .. meta::
-    :description: Netris Core Concepts
+    :description: Netris Architecture
 
-########
-Concepts
-########
+###################
+Netris Architecture
+###################
 
-Introduction to Netris
-======================
-Netris is an automatic netops software for operating physical networks like it is a cloud. Netris automatically configures switching, routing, load-balancing, and network security based on user-defined services and policies. Netris continuously monitors the network's health and either apply software remediation or informs you of necessary actions if human intervention is required. Netris abstracts away the complexities of detailed network configuration, letting you perform efficiently by operating your physical network in a top down approach like a cloud – instead of the legacy box by box operation.
+A Netris system is composed of 4 elements:
 
+* Netris Controller
+* Netris Switch Agent
+* Netris SoftGate
+* Customer Application Servers
 
-What is Netris Controller
-=========================
-Netris Controller is the main operations control center for engineers using GUI/RestAPI/Kubernetes, systems, and network devices. Netris Controller stores the data representing the user-defined network services and policies, health, statistics, analytics received from the network devices, and information from integration modules with external systems (Kubernetes). Netris Controller can run as a VM or container, on/off-prem, or in Netris cloud. 
+Netris Controller
+=================
+Netris Controller is the main operations control center for engineers using GUI/RestAPI/Kubernetes, systems, and network devices. The Netris Controller stores the data representing the user-defined network services and policies, health, statistics, analytics received from the network devices, and information from integration modules with external systems (Kubernetes). Netris Controller can run as a VM or container, on/off-prem, or in Netris cloud. 
 
-Diagram: High level Netris architecture.
+Diagram: High level Netris architecture
 
 .. image:: images/netris_controller_diagram.png
     :align: center
   
-* **Controller HA.** We highly recommend running more than one copy of the controller for database replication. 
-* **Multiple sites.** Netris is designed to operate multiple sites with just a single controller with HA.
-* **What if the controller is unreachable.** Netris operated switches/routers can tolerate the unreachability of the Netris Controller. Changes and stats collection will be unavailable during the controller unavailability window; however, switches/routers' core operation will not be affected.
+* **Controller HA** We highly recommend running more than one copy of the controller for database replication. 
+* **Multiple sites** Netris is designed to operate multiple sites with just a single controller with HA.
+* **What if the controller is unreachable.** Netris operated switches/routers can tolerate the unreachability of the Netris Controller. Changes and stats collection will be unavailable during the controller unavailability window; however, switches/routers core operations will not be affected.
 
 Netris Switch Agent
 ===================
@@ -36,7 +38,6 @@ Netris SoftGate supports a high-performance DPDK data plane running in the user-
 The server has to have 2 x Intel CPUs (8+ cores each). One CPU (closest to the SmartNIC card) is reserved for the data-plane process only (OS will report 100% CPU usage). Another CPU is used for running Linux OS, routing control plane (FRR), Netris agent, and other standard Linux utilities. 
 
 Netris agents can also configure Wireguard to form full mesh VPN tunnels between customer sites and then run necessary dynamic routing. So, servers and applications in multiple data centers can communicate over the Internet using encrypted tunnels. 
-
 
 Diagram: Netris SoftGate high level architecture
 

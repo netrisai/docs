@@ -2,17 +2,17 @@
   :description: Netris Controller Virtual Machine Installation
 
 **************************************
-On-prem Netris Controller installation
+On-Prem Netris Controller Installation
 **************************************
-Netris Controller can be hosted in Netris cloud, installed locally as a VM, or deployed as a Kubernetes application. All three options provide the same functionality. Cloud-hosted Controller can be moved into on-prem anytime. 
+Netris Controller can be hosted in Netris Cloud, installed locally as a VM, or deployed as a Kubernetes application. All three options provide the same functionality. Cloud-hosted Controller can be moved into on-prem anytime. 
 
 KVM virtual machine
 ===================
-| Minimal system requirements for the VM:
-| CPU - 8 Core
-| RAM - 16 Gb
-| Disk - 100Gb
-| Network - 1 virtual NIC
+Minimal system requirements for the VM:
+* CPU - 8 Core
+* RAM - 16 Gb
+* Disk - 100Gb
+* Network - 1 virtual NIC
 
 Installation steps for KVM hypervisor
 =====================================
@@ -22,8 +22,8 @@ If KVM is not already installed, install Qemu/KVM on the host machine (example p
 
   sudo apt-get install virt-manager
 
-Netris Controller Installation steps
-====================================
+Netris Controller Installation
+==============================
 
 1. Download the Netris Controller image. (contact Netris support for repository access permissions).
 
@@ -33,7 +33,7 @@ Netris Controller Installation steps
 
   sudo wget http://img.netris.ai/netris-controller.qcow2 
 
-2. Download vm definition file.
+2. Download VM definition file.
 
 .. code-block:: shell-session
 
@@ -49,7 +49,7 @@ Netris Controller Installation steps
 
 .. note::
   
-  Netris controller virtual NIC will bind to the “br-mgmt” interface on the KVM host machine. See below network interface configuration exam
+  Netris Controller virtual NIC will bind to the “br-mgmt” interface on the KVM host machine. See below for the network interface configuration example.
 
 Example: Network configuration on host (hypervisor) machine. 
 
@@ -96,7 +96,7 @@ Accessing the Netris Controller
 ===============================
 By default, Netris Controller will obtain an IP address from a **DHCP** server.
 
-Below steps describe how to configure a **static IP** address for the Netris Controller.
+Below steps describe how to configure a **Static IP** address for the Netris Controller.
 
 1. Connecting to the VM console.
 
@@ -157,49 +157,18 @@ After reboot, the Netris Controller GUI should be accessible using a browser. Us
 .. image:: images/credentials.png
     :align: center
 
-Don’t forget to change the default password by clicking your login name in the top right corner and then clicking “Change Password”.
-
-Security hardening
-==================
-| Recommended for production use.
-| 
-
-Changing the default GRPC authentication key.
----------------------------------------------
-
-Connect to the Netris Controller CLI (SSH or Console)
-
-Tip: You can generate a random and secure key using sha256sum.
-
-.. code-block:: shell-session
-
-  echo "<some random text here>" | sha256sum
-  
-example:
-
-.. code-block:: shell-session
-
-  netris@iris:~$ echo "<some random text here>" | sha256sum
-  6a284d55148f81728f932b28e9d020736c8f78e1950b3d576f6e679d90516df1  -
-
-Set your newly generated secure key into Netris Controller.
-
-.. code-block:: shell-session
-
-  sudo /opt/telescope/netris-set-auth.sh --key <your key>
-  
-Please store the auth key in a safe place as it will be required every time when installing Netris Agent for the switches and SoftGates.
+.. note::Don’t forget to change the default password by clicking your login name in the top right corner and then clicking “Change Password”.
 
 Replacing the SSL certificate
 ------------------------------
 
-1. Replace below file with your SSL certificate file.
+1. Replace the below file with your SSL certificate file.
 
 .. code-block:: shell-session
 
   /etc/nginx/ssl/controller.cert.pem;
 
-2. Replace below file with your SSL private key.
+2. Replace the below file with your SSL private key.
 
 .. code-block:: shell-session
 

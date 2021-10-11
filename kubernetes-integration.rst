@@ -1,72 +1,23 @@
-..
-  ##################
-  values for replace
-  ##################
-  ------------------------------------------------------------------------------------------------
-  values                   | description
-  ------------------------------------------------------------------------------------------------ 
-  sandbox9                  # sandbox name
-  166.88.17.19              # hypervisor public ip
-  300                       # *STATIC NO NEED TO REPLACE* ssh NAT port *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  10.254.45.0/24            # *STATIC NO NEED TO REPLACE* management subnet
-  10.254.46.0/24            # *STATIC NO NEED TO REPLACE* loopback subnet
-  192.168.45.64             # *STATIC NO NEED TO REPLACE* srv4 ip address
-  192.168.46.65             # *STATIC NO NEED TO REPLACE* srv5 ip address
-  192.168.46.1              # *STATIC NO NEED TO REPLACE* vnet-customer gateway
-  192.168.110.              # *STATIC NO NEED TO REPLACE* k8s subnet
-  65007                     # *STATIC NO NEED TO REPLACE* Iris AS number bgp peer, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  1091                      # Iris 1nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  1092                      # Iris 2nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  50.117.59.192/28          # customer public subnet
-  50.117.59.202             # second usable ip address in load-balancer subnet
-  50.117.59.203             # third usable ip address in load-balancer subnet
-  50.117.59.114/30          # isp1-customer bgp peer local ip
-  50.117.59.113/30          # isp1-customer bgp peer remote ip
-  50.117.59.118/30          # isp2-customer bgp peer local ip
-  50.117.59.117/30          # isp2-customer bgp peer remote ip
-  50.117.59.198/32          # customer v-net nat ip
-  s9-pre-configured         # LINKS
-  s9-learn-by-doing         # LINKS
-  s9-e-bgp                  # LINKS
-  s9-v-net                  # LINKS
-  s9-nat                    # LINKS 
-  s9-acl                    # LINKS
-  s9-k8s                    # LINKS
+.. meta::
+    :description: Kubernetes Integration
+  
+########################
+Kubenernetes Integration
+########################
+Netris integrates with Kube API to provide on-demand load balancer and other Kubernetes specific networking features. Netris-Kubernetes integration is designed to complement Kubernetes CNI networking and provide a cloud-like user experience to local Kubernetes clusters.  
 
-.. _s9-k8s:
-
-**********************
-Kubernetes Integration
-**********************
-
-.. contents:: 
-   :local: 
-
-Intro
-=====
-This sandbox environment provides an existing Kubernetes cluster that has been deployed via `Kubespray <https://github.com/kubernetes-sigs/kubespray>`_. For this scenario, we will be using the `external LB <https://github.com/kubernetes-sigs/kubespray/blob/master/docs/ha-mode.md>`_ option in Kubespray. A dedicated Netris L4LB service has been created in each sandbox to access the k8s apiservers from users and non-master nodes sides.
-
-.. image:: /images/sandbox-l4lb-kubeapi.png
-    :align: center
-
-To access the built-in Kubernetes cluster, put "Kubeconfig" file which you received by the introductory email into your ``~/.kube/config`` or set "KUBECONFIG" environment variable ``export KUBECONFIG=~/Downloads/config`` on your local machine. After that try to connect to the k8s cluster:
-
-.. code-block:: shell-session
-
-  kubectl cluster-info
-
-The output below means you’ve successfully connected to the sandbox cluster:
-
-.. code-block:: shell-session
-
-    Kubernetes master is running at https://api.k8s-sandbox9.netris.ai:6443
-
-    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 Install Netris Operator
 =======================
 
-The first step to integrate the Netris Controller with the Kubernetes API is to install the Netris Operator. Installation can be accomplished by installing regular manifests or a `helm chart <https://github.com/netrisai/netris-operator/tree/master/deploy/charts/netris-operator>`_.  For this example we will use the Kubernetes regular manifests:
+Integration between the Netris Controller and the Kubernetes API is completed by installing the Netris Operator.  Installation can be accomplished by installing regular manifests or a helm chart:
+
+Helm Chart Method
+-----------------
+Instructions are available on Github: https://github.com/netrisai/netris-operator/tree/master/deploy/charts/netris-operator#installing-the-chart
+
+Regular Manifest Method
+-----------------------
 
 1. Install the latest Netris Operator:
 
@@ -79,8 +30,8 @@ The first step to integrate the Netris Controller with the Kubernetes API is to 
 .. code-block:: shell-session
 
   kubectl -nnetris-operator create secret generic netris-creds \
-  --from-literal=host='https://sandbox9.netris.ai/' \
-  --from-literal=login='demo' --from-literal=password='Your Demo user pass'
+  --from-literal=host='**your-netris-controller-ip**' \
+  --from-literal=login='**your-netris-admin-username**' --from-literal=password='**your-netris-admin-password**'
 
 3. Inspect the pod logs and make sure the operator is connected to Netris Controller:
 
@@ -98,8 +49,8 @@ Example output demonstrating the successful operation of Netris Operator:
   
   After installing the Netris Operator, your Kubernetes cluster and physical network control planes are connected. 
 
-Deploy an Application with an On-Demand Netris Load Balancer
-============================================================
+Using Type 'LoadBalancer'
+=========================
 
 In this scenario we will be installing a simple application that requires a network load balancer: 
 
@@ -150,7 +101,7 @@ Going into the Netris Controller web interface, navigate to **Services / L4 Load
 .. image:: /images/sandbox-podinfo-prov.png
     :align: center
 
-After provisioning has finished, let’s one more time look at service in k8s:
+After provisioning has finished, inspect the service in k8s:
 
 .. code-block:: shell-session
 
@@ -162,72 +113,6 @@ You can see that "EXTERNAL-IP" has been injected into Kubernetes:
   
   NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)                         AGE
   podinfo      LoadBalancer   172.21.65.106   50.117.59.202   9898:32584/TCP,9999:30365/TCP   9m17s
-
-Let’s try to curl it (remember to replace the IP below with the IP that has been assigned in the previous command):
-
-.. code-block:: shell-session
-
-  curl 50.117.59.202:9898
-
-The application is now accessible directly on the internet:
-
-.. code-block:: json
-  
-  {
-   "hostname": "podinfo-576d5bf6bd-nhlmh",
-   "version": "6.0.0",
-   "revision": "",
-   "color": "#34577c",
-   "logo": "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif",
-   "message": "greetings from podinfo v6.0.0",
-   "goos": "linux",
-   "goarch": "amd64",
-   "runtime": "go1.16.5",
-   "num_goroutine": "8",
-   "num_cpu": "4"
-  }
-
-As seen, "PodInfo" developers decided to expose 9898 port for HTTP, let’s switch it to 80:
-
-.. code-block:: shell-session
-
-  kubectl patch svc podinfo --type='json' -p='[{"op": "replace", "path": "/spec/ports/0/port", "value":80}]'
-
-Wait a few seconds, you can see the provisioning process on the controller:
-
-.. image:: /images/sandbox-podinfo-ready.png
-    :align: center
-
-Curl again, without specifying a port:
-
-.. code-block:: shell-session
-
-  curl 50.117.59.202
-
-The output is similar to this:
-
-.. code-block:: json
-  
-  {
-   "hostname": "podinfo-576d5bf6bd-nhlmh",
-   "version": "6.0.0",
-   "revision": "",
-   "color": "#34577c",
-   "logo": "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif",
-   "message": "greetings from podinfo v6.0.0",
-   "goos": "linux",
-   "goarch": "amd64",
-   "runtime": "go1.16.5",
-   "num_goroutine": "8",
-   "num_cpu": "4"
-  }
-
-You can also verify the application is reachable by putting this IP address directly into your browser.
-
-.. topic:: Milestone 1
-
-  Congratulations!  You successfully deployed a network load balancer and exposed an application from your cloud to the internet.  Time to get yourself an iced coffee.
-
 
 Using Netris Custom Resources
 =============================
@@ -320,12 +205,10 @@ You can also inspect the L4LB in the Netris Controller web interface:
 .. image:: /images/sandbox-l4lbs.png
     :align: center
 
-VNet Custom Resource
+V-Net Custom Resource
 --------------------
 
-If you see the same as shown in the previous screenshot, it means you didn’t create "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s9-v-net>` manual. If so, let’s create it from Kubernetes using the VNet custom resource.
-
-Let’s create our VNet manifest:
+You can also create Netris V-Nets (L2 segments) via Kubernetes with a simple manifest:
 
 .. code-block:: shell-session
 
@@ -366,60 +249,12 @@ As you can see, provisioning for our new VNet has started:
 
 After provisioning has completed, the L4LB’s checks should work for both backend servers, and incoming requests should be balanced between them. 
 
-Let’s curl several times to see that:
-
-.. code-block:: shell-session
-
-  curl 50.117.59.203
-
-As we can see, the curl request shows the behavior of "round robin" between the backends:
-
-.. code-block:: shell-session
-
-  SRV05-NYC
-  curl 50.117.59.203
-  
-  SRV05-NYC
-  curl 50.117.59.203
-  
-  SRV05-NYC
-  curl 50.117.59.203
-  
-  SRV04-NYC
-
-.. note::
-
-  *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the "Default ACL Policy" is set to "Deny". To remedy this, configure an ACL entry that will allow the srv05-nyc server to communicate external addresses. For step-by-step instruction review the* :ref:`ACL documentation<s9-acl>`.
-
-BTW, if you already created "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s9-v-net>`, you may import that to k8s, by adding ``resource.k8s.netris.ai/import: "true"`` annotation in VNet manifest, the manifest should look like this:
-
-.. code-block:: shell-session
-
-  cat << EOF > vnet-customer.yaml
-  apiVersion: k8s.netris.ai/v1alpha1
-  kind: VNet
-  metadata:
-   name: vnet-customer
-   annotations:
-     resource.k8s.netris.ai/import: "true"
-  spec:
-   ownerTenant: Admin
-   guestTenants: []
-   sites:
-     - name: US/NYC
-       gateways:
-         - 192.168.46.1/24
-       switchPorts:
-         - name: swp2@sw22-nyc
-  EOF
-
-After applying the manifest containing "import" annotation, the VNet, created from the Netris Controller web interface, will appear in k8s and you will be able to manage it from Kubernetes.
-
 BGP Custom Resource
 -------------------
 
-Let’s create a new BGP peer, that is listed in the :ref:`"Learn by Creating Services"<s9-e-bgp>`.
-Create a yaml file:
+You can create BGP peers via Kubernetes manifests:
+
+1. Create a yaml file:
 
 .. code-block:: shell-session
 
@@ -442,13 +277,13 @@ Create a yaml file:
       - permit 50.117.59.192/28 le 32
   EOF
 
-And apply it:
+2. Apply the manifest file:
 
 .. code-block:: shell-session
 
   kubectl apply -f isp2-customer.yaml
 
-Check created BGP:
+3. Check created BGP:
 
 .. code-block:: shell-session
 
@@ -481,7 +316,7 @@ Return to the Netris UI and navigate to **Net / Topology** to see the new BGP ne
 Importing existing resources from Netris Controller to Kubernetes
 -----------------------------------------------------------------
 
-And one more time about importing resources. You can import any custom resources, already created from the Netris Controller to k8s by adding this annotation:
+ou can import any custom resources, already created from the Netris Controller to k8s by adding this annotation:
 
 .. code-block:: yaml
 
@@ -507,10 +342,10 @@ Just add this annotation in any custom resource while creating it. Or if the cus
   See all options and examples for Netris Custom Resources `here <https://github.com/netrisai/netris-operator/tree/master/samples>`_.
 
 
-Netris Calico CNI Integration
-=============================
+Calico CNI Integration
+======================
 
-Netris Operator can integrate with Calico CNI, in your sandbox k8s cluster, Calico has already been configured as the CNI, so you can try this integration. It will automatically create BGP peering between cluster nodes and the leaf/TOR switch for each node, then to clean up it will disable Calico Node-to-Node mesh. To understand why you need to configure peering between Kubernetes nodes and the leaf/TOR switch, and why you should disable Node-to-Node mesh, review the `calico docs <https://docs.projectcalico.org/networking/bgp>`_.
+Netris Operator can integrate with Calico CNI.  This annotation will automatically create BGP peering between cluster nodes and the leaf/TOR switch for each node, then to clean up it will disable Calico Node-to-Node mesh. To understand why you need to configure peering between Kubernetes nodes and the leaf/TOR switch, and why you should disable Node-to-Node mesh, review the `calico docs <https://docs.projectcalico.org/networking/bgp>`_.
 
 Integration is very simple, just need to add the annotation in calico’s ``bgpconfigurations`` custom resource. Before doing that, let’s see the current state of ``bgpconfigurations``:
 
@@ -635,7 +470,3 @@ To disable "Netris-Calico" integration, delete the annotation from Calico’s ``
   kubectl annotate bgpconfigurations default manage.k8s.netris.ai/calico-
 
 or change its value to ``"false"``.
-
-.. topic:: Milestone 2
-
-  Congratulations!  You completed Milestone 2.  Time to get yourself another iced coffee or even a beer depending on what time it is!

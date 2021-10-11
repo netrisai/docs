@@ -1,0 +1,13 @@
+**Name**,User assigned name of BGP session
+**Description**,Free description
+**Site**,Selects the site (data center) where this BGP session should be terminated on.
+**Softgate**,Only if SoftGate nodes are in use. Define on which node BGP session should be terminated on.
+**Neighbor** AS,Autonomous System number of the remote side. (Local AS is defined at Net→Sites section)
+**Terminate on switch**,Typically used for setups without SoftGate. For connecting with upstream routers. Instructs the system to terminate the BGP session directly on the switch.
+**Switch port**,Switch Port for the physical cable to the BGP neighbor (any port on the fabric). Optionally can bind to a V-NET service. Typically used for peering with IXPs or systems like GGC (Google Global Cache).
+**VLAN ID**,Optionally tag with a VLAN ID (usually untagged)
+**IP Version**,IPv4 or IPv6
+**Local IP**,BGP peering IP address on Netris controlled side
+**Remote IP**,BGP peering IP address on the remote end
+**State**,Administrative state (Enabled/Disabled)
+**Advanced**,Advanced policy settings are described in the next section

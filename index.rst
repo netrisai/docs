@@ -6,21 +6,35 @@
 Welcome to Netris documentation!
 ==================================================
 
-Netris is the automatic NetOps platform that runs the physical network and provides cloud-like user experience for NetOps and DevOps engineers.
-
-Contents:
+Netris is the Automatic NetOps platform that runs the physical network and provides cloud-like user experience for NetOps and DevOps engineers.
 
 .. toctree::
    :maxdepth: 2
    :caption: Getting Started
 
-   concepts
+   introduction
+   netris-architecture
+   supported-networks
+   reference-designs
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Installation
+
    controller-installation
    controller-k8s-installation
-   controller-initial-configuration
    switch-agent-installation
    SoftGate-agent-installation
-   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Initial Configuration
+
+   definitions
+   ipam
+   topology-management
+   switch-ports
+
 .. toctree::
    :maxdepth: 4
    :caption: Network Policies
@@ -31,7 +45,17 @@ Contents:
    :maxdepth: 4
    :caption: Network Services
 
-   services
+   vnet
+   l3-load-balancer
+   l4-load-balancer
+   acls
+   roh
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Integrations
+
+   kubernetes-integration
 
 .. toctree::
    :maxdepth: 4
@@ -40,10 +64,14 @@ Contents:
    visibility
    accounts
    
-
 .. toctree::
    :maxdepth: 4
    :caption: Updates
-   
+
    release-notes
 
+.. toctree::
+   :maxdepth: 4
+   :caption: Lab Scenarios
+   
+   onprem-k8s

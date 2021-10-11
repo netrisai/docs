@@ -2,28 +2,28 @@
   :description: Netris SoftGate Agent Installation
 
 ***********************************
-Netris SoftGate agent installation
+Netris SoftGate Agent Installation
 ***********************************
-Minimal hardware requirements
+Minimum Hardware Requirements
 =============================
 * 2 x Intel Silver CPU
 * 96 GB RAM
 * 300 GB HDD
 * Nvidia Mellanox Connect-X 5 SmartNIC card
 
-BIOS configuration
+BIOS Configuration
 ==================
-The following are some recommendations on BIOS settings. Different vendors will have different BIOS naming so the following is mainly for reference:
+The following are some recommendations for BIOS settings. Different vendors will have different BIOS naming so the following is mainly for reference:
 
-* Before starting consider resetting all BIOS settings to their defaults.
-* Disable all power saving options such as: Power performance tuning, CPU P-State, CPU C3 Report and CPU C6 Report.
-* Select Performance as the CPU Power and Performance policy.
-* Disable Turbo Boost to ensure the performance scaling increases with the number of cores.
-* Set memory frequency to the highest available number, NOT auto.
-* Disable all virtualization options when you test the physical function of the NIC, and turn off VT-d.
-* Disable Hyper-Threading.
+* Before starting consider resetting all BIOS settings to their defaults
+* Disable all power saving options such as: Power performance tuning, CPU P-State, CPU C3 Report and CPU C6 Report
+* Select Performance as the CPU Power and Performance policy
+* Disable Turbo Boost to ensure the performance scaling increases with the number of cores
+* Set memory frequency to the highest available number, NOT auto
+* Disable all virtualization options when you test the physical function of the NIC, and turn off VT-d
+* Disable Hyper-Threading
 
-Software installation
+Software Installation
 =====================
 Requires freshly installed Ubuntu Linux 18.04 and network connectivity with your Netris Controller over the out-of-band management network.
 
@@ -35,7 +35,7 @@ Requires freshly installed Ubuntu Linux 18.04 and network connectivity with your
 
   echo -e 'Acquire::http::Proxy "http://<Your Netris Controller address>:3128";\nAcquire::https::Proxy "http://<Your Netris Controller address>:3128";' | sudo tee -a /etc/apt/apt.conf.d/netris-proxy
 
-2. Config the apt for Mellanox repository.
+2. Config the apt for Nvidia Mellanox repository.
 
 .. code-block:: shell-session
 
@@ -57,7 +57,7 @@ Requires freshly installed Ubuntu Linux 18.04 and network connectivity with your
 
   sudo apt-get update && sudo apt-get install mlnx-ofed-dpdk
 
-5. Install Netris agent package and dependencies, including specific Linux Kernel version.
+5. Install Netris Agent package and dependencies, including specific Linux Kernel version.
 
 .. code-block:: shell-session
 
@@ -65,7 +65,7 @@ Requires freshly installed Ubuntu Linux 18.04 and network connectivity with your
 
 6. Configure Management IP address
 
-Configure out of band management IP address. In case Netris Controller is not in the same OOB network then add a route to Netris Controller. No default route or other IP addresses should be configured. 
+Configure out-of-band management IP address. If the Netris Controller is not in the same OOB network then add a route to Netris Controller. No default route or other IP addresses should be configured. 
 
 .. code-block:: shell-session
 
@@ -97,7 +97,6 @@ Configure out of band management IP address. In case Netris Controller is not in
 | **--controller** - IP address or domain name of Netris Controller. 
 | **--hostname** - Specify the hostname for the current switch, this hostname should match the name defined for particular switch in the Controller..
 | **--lo** - IP address for the loopback interface, as it is defined in the controller.
-| **--node-prio - brief explanation of node priority goes here**
 |
 | Run netris-setup.
 
@@ -123,17 +122,13 @@ Example: Running netris-setup
   └── └── * Setup Grub Config
   * Update Grub
   └── 
-
 | *** ATTENTION: You must reboot SoftGate to complete the installation 
 | netris@ubuntu:~$ 
-|
 
-8. Reboot the server
+1. Reboot the server
 
 .. code-block:: shell-session
 
   sudo reboot
 
-When server boots up, you should see it’s heartbeat status in Net→Inventory
-
-
+When server completes the reboot process, you should see it’s heartbeat status in Net→Inventory
