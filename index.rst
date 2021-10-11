@@ -46,11 +46,11 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
    :caption: Network Services
 
    vnet
-   kubenet
    l3-load-balancer
    l4-load-balancer
    acls
    roh
+   kubernetes-integration
 
 .. toctree::
    :maxdepth: 4
