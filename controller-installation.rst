@@ -31,7 +31,7 @@ Netris Controller Installation
 
   cd /var/lib/libvirt/images 
 
-  sudo wget http://img.netris.ai/netris-controller.qcow2 
+  sudo wget http://img.netris.ai/netris-controller3.qcow2 
 
 2. Download VM definition file.
 
