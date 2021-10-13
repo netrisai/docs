@@ -9,8 +9,8 @@ Netris Controller can be hosted in Netris Cloud, installed locally as a VM, or d
 KVM virtual machine
 ===================
 Minimal system requirements for the VM:
-* CPU - 8 Core
-* RAM - 16 Gb
+* CPU - 4 Core
+* RAM - 4 Gb
 * Disk - 100Gb
 * Network - 1 virtual NIC
 
