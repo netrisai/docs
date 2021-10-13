@@ -39,13 +39,13 @@ Netris Controller Installation
 
   cd /etc/libvirt/qemu
 
-  sudo wget http://img.netris.ai/netris-controller.xml
+  sudo wget http://img.netris.ai/netris-controller3.xml
 
 3. Define the KVM virtual machine
 
 .. code-block:: shell-session
 
-  sudo virsh define netris-controller.xml
+  sudo virsh define netris-controller3.xml
 
 .. note::
   
