@@ -14,6 +14,12 @@ Minimal system requirements for the VM:
 * Disk - 100Gb
 * Network - 1 virtual NIC
 
+Recommended system requirements for the VM:
+* CPU - 8 Core
+* RAM - 16 Gb
+* Disk - 100Gb
+* Network - 1 virtual NIC
+
 Installation steps for KVM hypervisor
 =====================================
 If KVM is not already installed, install Qemu/KVM on the host machine (example provided for Ubuntu Linux 18.04)
