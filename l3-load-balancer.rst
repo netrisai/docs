@@ -27,7 +27,7 @@ To configure L3 (Anycast) load balancing:
 .. centered::
    Example: Adding an Anycast IPv4 address 
 
-.. image:: images/listing_L3.png
+.. image:: images/list-l3-lb.png
     :align: center
     :class: with-shadow
 

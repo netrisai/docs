@@ -69,7 +69,7 @@ Every SoftGate node needs to be added to the Netris Controller inventory.  To ad
 
 Example: Adding a SoftGate Node to Topology.
 
-.. image:: images/softgate_node.png
+.. image:: images/add-softgate.png
     :align: center
     :class: with-shadow
 
