@@ -26,6 +26,8 @@ Example: Creating a user with full access to all sections of Netris Controller, 
 
 .. image:: images/users.png
     :align: center
+    :class: with-shadow
+    :alt: User Management
     
 **Password**: To set a password or email the user for a password form, go to the listing of usernames and click the menu on the right side. 
 
@@ -34,6 +36,8 @@ Example: Listing of user accounts.
 
 .. image:: images/password.png
     :align: center
+    :class: with-shadow
+    :alt:  List User Accounts
     
 Tenants
 =======
@@ -45,6 +49,8 @@ Example: Adding a tenant.
 
 .. image:: images/tenants.png
     :align: center
+    :class: with-shadow
+    :alt: Adding Tenants
     
 Permission Groups
 =================
@@ -54,6 +60,8 @@ Example: Permission Group.
 
 .. image:: images/permission_group.png
     :align: center
+    :class: with-shadow
+    :alt: Managing Permissions 
     
 User Roles
 ==========
@@ -61,4 +69,6 @@ Permission Groups and Tenants can be either linked directly to an individual use
 
 .. image:: images/user_role.png
     :align: center
+    :class: with-shadow
+    :alt: User Roles
     

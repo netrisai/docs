@@ -22,7 +22,6 @@ There are 2 main types of IP prefixes - allocation and subnet. Allocations are I
    :alt: IPAM Tree View
    :class: with-shadow
 
-.. centered::
    IPAM Tree View
 
 --------------------------
@@ -53,7 +52,6 @@ Add an Allocation
    :class: with-shadow
    :alt: Add a New IP Allocation
 
-.. centered::
    Add Allocation Window
 
 --------------------------
@@ -93,5 +91,4 @@ Add a Subnet
    :alt: Add a New Subnet
    :class: with-shadow
 
-.. centered::
    Add Subnet Window

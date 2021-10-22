@@ -21,5 +21,6 @@ As soon as the inventory profile is attached to a device it denies all traffic d
 **Example:** In this example Netris Controller is used to provide NTP and DNS services to the switches (common setup).
 
 .. image:: images/inventory-profile.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
+   :alt: Adding an inventory profile

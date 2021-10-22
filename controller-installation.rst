@@ -155,7 +155,9 @@ Reload the network config.
 After reboot, the Netris Controller GUI should be accessible using a browser. Use ``netris/newNet0ps`` credentials. 
 
 .. image:: images/credentials.png
-    :align: center
+   :align: center
+   :class: with-shadow
+   :alt: Netris Credentials
 
 .. note::Don’t forget to change the default password by clicking your login name in the top right corner and then clicking “Change Password”.
 
