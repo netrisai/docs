@@ -103,7 +103,8 @@ Once the switch boots up you should see its heartbeat going from Critical to OK 
 Screenshot: Net→Inventory
 
 .. image:: images/inventory_heartbeat.png
-    :align: center
+   :align: center
+
 
 Ubuntu SwitchDev Devices
 ======================== 
@@ -116,7 +117,7 @@ Ubuntu SwitchDev Devices
 Uninstall current NOS using **Uninstall OS** from grub menu:
 
 .. image:: images/uninstallOS.png
-    :align: center
+   :align: center
     
 Once the uninstallation is completed, the switch will reboot automatically.
 
@@ -125,7 +126,7 @@ Once the uninstallation is completed, the switch will reboot automatically.
 Select **Update ONIE** from grub menu:
 
 .. image:: images/updateONIE.png
-    :align: center
+   :align: center
 
 In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
 
@@ -151,7 +152,7 @@ Update ONIE to the supported version.
 Select **Install OS** from grub menu:
 
 .. image:: images/installOS.png
-    :align: center
+   :align: center
 
 In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
 
