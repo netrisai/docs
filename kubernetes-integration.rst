@@ -139,7 +139,7 @@ As you can see, there are two L4LB resources, one for each podinfo’s service p
 .. code-block:: shell-session
 
   NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS   AGE
-  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-80     active   50.117.59.202   80/TCP     US/NYC   Admin    OK       33m
+  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9898   active   50.117.59.202   9898/TCP   US/NYC   Admin    OK       33m
   podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9999   active   50.117.59.202   9999/TCP   US/NYC   Admin    OK       32m
 
 You can’t edit/delete them, because Netris Operator will recreate them based on what was originally deployed in the service specifications.
@@ -187,7 +187,7 @@ As you can see, provisioning started:
 .. code-block:: shell-session
 
   NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS         AGE
-  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-80     active   50.117.59.202   80/TCP     US/NYC   Admin    OK             2m17s
+  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-9898   active   50.117.59.202   9898/TCP   US/NYC   Admin    OK             2m17s
   podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-9999   active   50.117.59.202   9999/TCP   US/NYC   Admin    OK             3m47s
   srv04-5-nyc-http                                                active   50.117.59.203   80/TCP     US/NYC   Admin    Provisioning   6s
 

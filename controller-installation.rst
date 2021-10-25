@@ -9,6 +9,12 @@ Netris Controller can be hosted in Netris Cloud, installed locally as a VM, or d
 KVM virtual machine
 ===================
 Minimal system requirements for the VM:
+* CPU - 4 Core
+* RAM - 4 Gb
+* Disk - 100Gb
+* Network - 1 virtual NIC
+
+Recommended system requirements for the VM:
 * CPU - 8 Core
 * RAM - 16 Gb
 * Disk - 100Gb
@@ -31,7 +37,7 @@ Netris Controller Installation
 
   cd /var/lib/libvirt/images 
 
-  sudo wget http://img.netris.ai/netris-controller.qcow2 
+  sudo wget http://img.netris.ai/netris-controller3.qcow2 
 
 2. Download VM definition file.
 
@@ -39,13 +45,13 @@ Netris Controller Installation
 
   cd /etc/libvirt/qemu
 
-  sudo wget http://img.netris.ai/netris-controller.xml
+  sudo wget http://img.netris.ai/netris-controller3.xml
 
 3. Define the KVM virtual machine
 
 .. code-block:: shell-session
 
-  sudo virsh define netris-controller.xml
+  sudo virsh define netris-controller3.xml
 
 .. note::
   
