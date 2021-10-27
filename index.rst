@@ -15,7 +15,6 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
    introduction
    netris-architecture
    supported-networks
-   reference-designs
 
 .. toctree::
    :maxdepth: 2

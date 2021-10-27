@@ -1,9 +1,10 @@
 .. meta::
   :description: Netris SoftGate Agent Installation
 
-***********************************
-Netris SoftGate Agent Installation
-***********************************
+***************************
+SoftGate Agent Installation
+***************************
+
 Minimum Hardware Requirements
 =============================
 * 2 x Intel Silver CPU

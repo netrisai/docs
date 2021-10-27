@@ -1,17 +1,15 @@
 
 .. meta::
-  :description: Netris Controller Installation on Kubernetes
+  :description: Controller Helm Chart Installation
 
-============================
-Netris Controller Helm Chart
-============================
-
+=======================
+Helm Chart Installation
+=======================
 
 * Installs the automatic NetOps platform `Netris Controller <https://www.netris.ai/overview/>`_
 
-Prerequisites
--------------
-
+Requirements
+------------
 
 * Kubernetes 1.12+
 * Helm 3.1+
@@ -62,10 +60,12 @@ To uninstall/delete the ``netris-controller`` helm release:
 
    helm uninstall netris-controller
 
-Configuration
--------------
+Chart Default Configuration
+---------------------------
 
 The following table lists the configurable parameters of the netris-controller chart and their default values.
+
+.. note:: These settings are already enabled, you do not need to do anything.
 
 Common Parameters
 ^^^^^^^^^^^^^^^^^
