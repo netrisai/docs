@@ -1,35 +1,37 @@
 .. meta::
-  :description: Netris Controller Virtual Machine Installation
+  :description: Controller Virtual Machine Installation
 
-**************************************
-On-Prem Netris Controller Installation
-**************************************
-Netris Controller can be hosted in Netris Cloud, installed locally as a VM, or deployed as a Kubernetes application. All three options provide the same functionality. Cloud-hosted Controller can be moved into on-prem anytime. 
+****************************
+Virtual Machine Installation
+****************************
 
-KVM virtual machine
-===================
+Requirements
+============
+
 Minimal system requirements for the VM:
+
 * CPU - 4 Core
 * RAM - 4 Gb
 * Disk - 100Gb
 * Network - 1 virtual NIC
 
 Recommended system requirements for the VM:
+
 * CPU - 8 Core
 * RAM - 16 Gb
 * Disk - 100Gb
 * Network - 1 virtual NIC
 
-Installation steps for KVM hypervisor
-=====================================
+KVM Hypervisor Installation
+===========================
 If KVM is not already installed, install Qemu/KVM on the host machine (example provided for Ubuntu Linux 18.04)
 
 .. code-block:: shell-session
 
   sudo apt-get install virt-manager
 
-Netris Controller Installation
-==============================
+VM Controller Installation
+==========================
 
 1. Download the Netris Controller image. (contact Netris support for repository access permissions).
 
@@ -161,12 +163,14 @@ Reload the network config.
 After reboot, the Netris Controller GUI should be accessible using a browser. Use ``netris/newNet0ps`` credentials. 
 
 .. image:: images/credentials.png
-    :align: center
+   :align: center
+   :class: with-shadow
+   :alt: Netris Credentials
 
 .. note::Don’t forget to change the default password by clicking your login name in the top right corner and then clicking “Change Password”.
 
 Replacing the SSL certificate
-------------------------------
+=============================
 
 1. Replace the below file with your SSL certificate file.
 

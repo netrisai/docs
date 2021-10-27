@@ -28,8 +28,8 @@ As soon as the inventory profile is attached to a device it denies all traffic d
 **Example:** In this example Netris Controller is used to provide NTP and DNS services to the switches (common setup).
 
 .. image:: images/inventory-profile.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
 
 Adding Switches
 ===============
@@ -48,8 +48,8 @@ Every switch needs to be added to the Netris Controller inventory.  You can add 
 **Example:**  Add a new Switch.
 
   .. image:: images/add-new-hardware.png
-      :align: center
-      :class: with-shadow
+     :align: center
+     :class: with-shadow
 
 .. note:: Repeat this process to define all your switches.
 
@@ -70,8 +70,8 @@ Every SoftGate node needs to be added to the Netris Controller inventory.  To ad
 Example: Adding a SoftGate Node to Topology.
 
 .. image:: images/add-softgate.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
 
 Viewing Inventory
 =================
@@ -82,8 +82,8 @@ Heartbeat - Shows the status of device reachability.
 Health - Shows number of successful and failed checks on the device.
 
   .. image:: images/inventory-listing.png
-      :align: center
-      :class: with-shadow      
+     :align: center
+     :class: with-shadow      
 
 .. note:: You can also add new devices in the Topology view.
 
@@ -105,12 +105,12 @@ To define the links in the network:
 See the example below:  
 
 .. image:: images/create_link.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
     
 .. image:: images/topology_manager.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
     
 Once the links have been defined, the network is automatically configured as long as physical connectivity is in place and Netris Agents can communicate with Netris Controller.
 
@@ -125,25 +125,25 @@ To define what ports will be used as a hairpin, navigate to Net→Switch Ports, 
 Example: Accessing Switch Ports from Net→Topology
 
 .. image:: images/switch_port.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
 
 For each spine switch, find the two ports that you are going to connect (loop/hairpin) and configure one port as a “hairpin **l2**” and another port as “hairpin **l3**”. The order doesn’t matter. The system needs to know which ports you have dedicated for the hairpin/loop on each spine switch. (do not do this for non-Cumulus switches)  
 |
 Example: Editing Switch Port from Net→Switch Ports.
 
 .. image:: images/edit_switch_port.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
     
 Example: Setting port types to “hairpin l2” and “hairpin l3”.
 
 .. image:: images/hairpin.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
     
 Screenshot: Hairpin visualized in Net→Topology
 
 .. image:: images/hairpin_topology.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow

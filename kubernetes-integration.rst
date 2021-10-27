@@ -99,7 +99,10 @@ Now we can see that the service type changed to LoadBalancer, and "EXTERNAL-IP" 
 Going into the Netris Controller web interface, navigate to **Services / L4 Load Balancer**, and you may see L4LBs provisioning in real-time. If you do not see the provisioning process it is likely because it already completed. Look for the service with the name **"podinfo-xxxxxxxx"**
 
 .. image:: /images/sandbox-podinfo-prov.png
-    :align: center
+   :align: center
+   :class: with-shadow
+   :alt: Sandbox pod provisioning
+
 
 After provisioning has finished, inspect the service in k8s:
 
@@ -203,10 +206,12 @@ You will see the servers’ hostname in curl output:
 You can also inspect the L4LB in the Netris Controller web interface:
 
 .. image:: /images/sandbox-l4lbs.png
-    :align: center
+   :align: center
+   :class: with-shadow
+   :alt: View L4 LB instances
 
 V-Net Custom Resource
---------------------
+---------------------
 
 You can also create Netris V-Nets (L2 segments) via Kubernetes with a simple manifest:
 

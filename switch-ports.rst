@@ -21,8 +21,8 @@ The following options are available for editing on each port:
 * VLAN Range - VLAN id range for new extension port.
 
 .. image:: images/edit-port.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
 
 Example: Edit physical port
 
@@ -34,14 +34,13 @@ Admin UP/Down - Toggle admin status of the port.
 Add to V-net - Add selected port(s) to a V-net.
 
 .. image:: images/quick-action-port.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
 
     Add to LAG - Add selected ports into a LAG.
 
 .. image:: images/add-to-lag-port.png
-    :align: center
-    :class: with-shadow
+   :align: center
+   :class: with-shadow
 
 Free Up Port - Detach port from all resources.
-

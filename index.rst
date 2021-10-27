@@ -15,14 +15,12 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
    introduction
    netris-architecture
    supported-networks
-   reference-designs
 
 .. toctree::
    :maxdepth: 2
    :caption: Installation
 
-   controller-installation
-   controller-k8s-installation
+   installation
    switch-agent-installation
    SoftGate-agent-installation
 
