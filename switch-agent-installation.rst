@@ -251,7 +251,7 @@ Description of netris-setup parameters
 
   sudo reboot
   
-  Edgecore SONiC Devices
+Edgecore SONiC Devices
 ======================== 
 .. note::
 
