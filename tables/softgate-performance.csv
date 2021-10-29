@@ -2,5 +2,3 @@
 Xeon E5-2660 CPU cores: (6 core for fw) Scheduler 0 Forward 1-7 KNI 8-10 OS 11-15,~27mpps,~17mpps,7mpps,9mpps,~2mpps,
 Xeon Gold 6130 CPU cores: (6 core for fw) Scheduler 0 Forward 3-13(odd numbers) KNI 15 17 19,~31mpps,~22mpps,~15mpps,~11mpps,~3mpps(3M conntrack count) ~7mpps(20k conntrack count),~11mpps
 Xeon Gold 6130 CPU cores: (8 core for fw) Scheduler 0 Forward 3-17(odd numbers) KNI 19 21 23,~38mpps,~28mpps,19mpps,12mpps,,~12mpps
-
-
