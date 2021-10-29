@@ -67,6 +67,7 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
    :caption: Updates
 
    release-notes
+   softgate-performance
 
 .. toctree::
    :maxdepth: 4
