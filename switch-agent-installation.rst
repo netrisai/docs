@@ -5,9 +5,10 @@
 Switch Agent Installation
 *************************
 
-Nvidia Cumulus Linux Devices
-============================
+Nvidia Cumulus Linux
+====================
 Requirements:
+
 * Fresh install of Cumulus Linux v. 3.7.(x) - Cumulus 4.X is in the process of validation and will be supported in the next Netris release.
 
 Configure the OOB Management IP address
@@ -104,13 +105,14 @@ Screenshot: Net→Inventory
 
 .. image:: images/inventory_heartbeat.png
    :align: center
+   :class: with-shadow
 
 
-Ubuntu SwitchDev Devices
-======================== 
+Ubuntu SwitchDev
+================ 
 .. note::
 
-  Further installation requires a Console and Internet connectivity via management port!
+  This installation requires a Console connection and Internet connectivity via management port.
   
 1. NOS Uninstall
 
@@ -251,8 +253,8 @@ Description of netris-setup parameters
 
   sudo reboot
   
-Edgecore SONiC Devices
-======================== 
+Edgecore SONiC
+============== 
 .. note::
 
   Further installation requires a Console and Internet connectivity via management port!
@@ -273,7 +275,7 @@ Select **Install OS** from grub menu:
 .. image:: images/installOS.png
    :align: center
 
-In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
+If you don't have DHCP in the management network, stop ONIE discovery service and configure IP address and default gateway manually:
 
 .. code-block:: shell-session
 
@@ -288,13 +290,13 @@ Install SONiC from the Netris repo:
 
   onie-nos-install http://repo.netris.ai/repo/Edgecore-SONiC_20210917_063104_ec202012_172.bin
 
-Default username/password
+Default username/password:
  
 ``admin/YourPaSsWoRd``
 
 Configure the OOB Management IP Address
 ---------------------------------------
-Configure out of band management IP address, and in case Netris Controller is not in the same OOB network then configure a route to Netris Controller. No default route or other IP addresses should be configured.
+Configure out-of-band management IP address, and in case Netris Controller is not in the same OOB network then configure a route to Netris Controller. No default route or other IP addresses should be configured.
 
 .. code-block:: shell-session
 
