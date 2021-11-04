@@ -6,19 +6,30 @@
   values                   | description
   ------------------------------------------------------------------------------------------------ 
   sandbox8                  # sandbox name
+  166.88.17.29              # hypervisor public ip
+  300                       # *STATIC NO NEED TO REPLACE* ssh NAT port *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  10.254.45.0/24            # *STATIC NO NEED TO REPLACE* management subnet
+  10.254.46.0/24            # *STATIC NO NEED TO REPLACE* loopback subnet
+  192.168.45.64             # *STATIC NO NEED TO REPLACE* srv4 ip address
+  192.168.46.65             # *STATIC NO NEED TO REPLACE* srv5 ip address
+  192.168.46.1              # *STATIC NO NEED TO REPLACE* vnet-customer gateway
+  192.168.110.              # *STATIC NO NEED TO REPLACE* k8s subnet
+  65007                     # *STATIC NO NEED TO REPLACE* Iris AS number bgp peer, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  1081                      # Iris 1nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  1082                      # Iris 2nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  50.117.59.176/28          # customer public subnet
   50.117.59.186             # second usable ip address in load-balancer subnet
   50.117.59.187             # third usable ip address in load-balancer subnet
-  192.168.41.64             # srv4 ip address
-  192.168.42.65             # srv5 ip address
-  192.168.42.1              # vnet-customer gateway
-  65007                     # Iris AS number bgp peer, SHORT QUERY BE CAREFUL WHILE REPLACING
-  1082                      # Iris peer vlanid, SHORT QUERY BE CAREFUL WHILE REPLACING
+  50.117.59.106/30          # isp1-customer bgp peer local ip
+  50.117.59.105/30          # isp1-customer bgp peer remote ip
   50.117.59.110/30          # isp2-customer bgp peer local ip
   50.117.59.109/30          # isp2-customer bgp peer remote ip
-  50.117.59.176/28          # sandbox public subnet
-  192.168.108.              # k8s vnet subnet
-  s8-e-bgp                   # LINKS
-  s8-v-net                  # LINKS
+  50.117.59.182/32          # customer v-net nat ip
+  s8-pre-configured         # LINKS
+  s8-learn-by-doing         # LINKS
+  s8-e-bgp                  # LINKS
+  s1-v-net                  # LINKS
+  s8-nat                    # LINKS 
   s8-acl                    # LINKS
   s8-k8s                    # LINKS
 
@@ -264,8 +275,8 @@ Create a yaml file:
    frontend:
      port: 80
    backend:
-     - 192.168.41.64:80
-     - 192.168.42.65:80
+     - 192.168.45.64:80
+     - 192.168.46.65:80
    check:
      type: tcp
      timeout: 3000
@@ -312,7 +323,7 @@ You can also inspect the L4LB in the Netris Controller web interface:
 VNet Custom Resource
 --------------------
 
-If you see the same as shown in the previous screenshot, it means you didn’t create "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s8-v-net>` manual. If so, let’s create it from Kubernetes using the VNet custom resource.
+If you see the same as shown in the previous screenshot, it means you didn’t create "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s1-v-net>` manual. If so, let’s create it from Kubernetes using the VNet custom resource.
 
 Let’s create our VNet manifest:
 
@@ -329,7 +340,7 @@ Let’s create our VNet manifest:
    sites:
      - name: US/NYC
        gateways:
-         - 192.168.42.1/24
+         - 192.168.46.1/24
        switchPorts:
          - name: swp2@sw22-nyc
   EOF
@@ -351,7 +362,7 @@ As you can see, provisioning for our new VNet has started:
 .. code-block:: shell-session
 
   NAME            STATE    GATEWAYS          SITES    OWNER   STATUS         AGE
-  vnet-customer   active   192.168.42.1/24   US/NYC   Admin   Provisioning   7s
+  vnet-customer   active   192.168.46.1/24   US/NYC   Admin   Provisioning   7s
 
 After provisioning has completed, the L4LB’s checks should work for both backend servers, and incoming requests should be balanced between them. 
 
@@ -380,7 +391,7 @@ As we can see, the curl request shows the behavior of "round robin" between the 
 
   *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the "Default ACL Policy" is set to "Deny". To remedy this, configure an ACL entry that will allow the srv05-nyc server to communicate external addresses. For step-by-step instruction review the* :ref:`ACL documentation<s8-acl>`.
 
-BTW, if you already created "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s8-v-net>`, you may import that to k8s, by adding ``resource.k8s.netris.ai/import: "true"`` annotation in VNet manifest, the manifest should look like this:
+BTW, if you already created "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s1-v-net>`, you may import that to k8s, by adding ``resource.k8s.netris.ai/import: "true"`` annotation in VNet manifest, the manifest should look like this:
 
 .. code-block:: shell-session
 
@@ -397,7 +408,7 @@ BTW, if you already created "vnet-customer" VNet as stated in the :ref:`"Learn b
    sites:
      - name: US/NYC
        gateways:
-         - 192.168.42.1/24
+         - 192.168.46.1/24
        switchPorts:
          - name: swp2@sw22-nyc
   EOF
@@ -541,9 +552,9 @@ Here are our freshly created BGPs, one for each k8s node:
 
   NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
   isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:06:18   UP           65007         50.117.59.110/30   50.117.59.109/30    7m59s
-  sandbox8-srv06-nyc-192.168.108.66   enabled                                                               4200070000    192.168.108.1/24   192.168.108.66/24   26s
-  sandbox8-srv07-nyc-192.168.108.67   enabled                                                               4200070001    192.168.108.1/24   192.168.108.67/24   26s
-  sandbox8-srv08-nyc-192.168.108.68   enabled                                                               4200070002    192.168.108.1/24   192.168.108.68/24   26s  
+  sandbox8-srv06-nyc-192.168.110.66   enabled                                                               4200070000    192.168.110.1/24   192.168.110.66/24   26s
+  sandbox8-srv07-nyc-192.168.110.67   enabled                                                               4200070001    192.168.110.1/24   192.168.110.67/24   26s
+  sandbox8-srv08-nyc-192.168.110.68   enabled                                                               4200070002    192.168.110.1/24   192.168.110.68/24   26s  
 
 
 You might notice that peering neighbor AS is different from Calico’s default 64512.  The is because the Netris Operator is setting a particular AS number for each node.
@@ -560,9 +571,9 @@ As seen our BGP peers are established:
 
   NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
   isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:07:48   UP           65007         50.117.59.110/30   50.117.59.109/30    8m41s
-  sandbox8-srv06-nyc-192.168.108.66   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070000    192.168.108.1/24   192.168.108.66/24   68s
-  sandbox8-srv07-nyc-192.168.108.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4200070001    192.168.108.1/24   192.168.108.67/24   68s
-  sandbox8-srv08-nyc-192.168.108.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070002    192.168.108.1/24   192.168.108.68/24   68s
+  sandbox8-srv06-nyc-192.168.110.66   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070000    192.168.110.1/24   192.168.110.66/24   68s
+  sandbox8-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4200070001    192.168.110.1/24   192.168.110.67/24   68s
+  sandbox8-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070002    192.168.110.1/24   192.168.110.68/24   68s
 
 Now let’s check if ``nodeToNodeMeshEnabled`` is still enabled:
 
