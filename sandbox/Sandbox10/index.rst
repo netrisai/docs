@@ -5,6 +5,7 @@ Sandbox10
 .. toctree::
    :maxdepth: 2
 
-   Sandbox-info
-   onprem-k8s
+   sandbox-info
+   configurations
    creating-services
+   onprem-k8s
