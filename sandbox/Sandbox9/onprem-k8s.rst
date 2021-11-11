@@ -6,7 +6,7 @@
   values                   | description
   ------------------------------------------------------------------------------------------------ 
   sandbox9                  # sandbox name
-  166.88.17.19              # hypervisor public ip
+  166.88.17.22              # hypervisor public ip
   300                       # *STATIC NO NEED TO REPLACE* ssh NAT port *SHORT QUERY BE CAREFUL WHILE REPLACING*
   10.254.45.0/24            # *STATIC NO NEED TO REPLACE* management subnet
   10.254.46.0/24            # *STATIC NO NEED TO REPLACE* loopback subnet

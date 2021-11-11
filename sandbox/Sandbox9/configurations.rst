@@ -54,7 +54,7 @@ You may observe the functioning service by pinging the pubblic **1.1.1.1** IP ad
 
 * In a terminal window:
 
-  1. SSH to srv04-nyc by typing ``ssh demo@166.88.17.19 -p 30064``.
+  1. SSH to srv04-nyc by typing ``ssh demo@166.88.17.22 -p 30064``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 1.1.1.1``
 

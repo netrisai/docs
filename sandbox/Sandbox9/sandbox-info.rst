@@ -40,11 +40,11 @@ Accessing Linux servers:
   
 .. code-block:: shell-session  
   
-  srv01: ssh demo@166.88.17.19 -p 30061
-  srv02: ssh demo@166.88.17.19 -p 30062
-  srv03: ssh demo@166.88.17.19 -p 30063
-  srv04: ssh demo@166.88.17.19 -p 30064
-  srv05: ssh demo@166.88.17.19 -p 30065
+  srv01: ssh demo@166.88.17.22 -p 30061
+  srv02: ssh demo@166.88.17.22 -p 30062
+  srv03: ssh demo@166.88.17.22 -p 30063
+  srv04: ssh demo@166.88.17.22 -p 30064
+  srv05: ssh demo@166.88.17.22 -p 30065
   
 
 Kubernetes cluster
