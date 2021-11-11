@@ -11,7 +11,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
 
 * In a terminal window:
 
-  1. SSH to the **srv05-nyc** server by typing ``ssh demo@166.88.17.19 -p 30065``.
+  1. SSH to the **srv05-nyc** server by typing ``ssh demo@166.88.17.22 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Type ``ip route ls`` and we can see ``192.168.46.1`` is configured as the default gateway, indicated by the "**default via 192.168.46.1 dev eth1 proto kernel onlink**" line in the output.
   4. Start a ping session towards the default gateway by typing ``ping 192.168.46.1`` and keep it running as an indicator for when the service becomes fully provisioned.
@@ -71,7 +71,7 @@ Now when we have both internal and external facing services, we can aim for our 
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.19 -p 30065``.
+  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.22 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 1.1.1.1`` and keep it running as an indicator for when the service starts to work.
   
@@ -102,7 +102,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.19 -p 30065``.
+  1. SSH to srv05-nyc by typing ``ssh demo@166.88.17.22 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session by typing ``ping 1.1.1.1`` and keep it running for the duration of this exercise.
   
