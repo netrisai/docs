@@ -1,9 +1,9 @@
 .. meta::
     :description: Reference Network Architectures
 
-##################
-Supported Networks
-##################
+###############################
+Reference Network Architectures
+###############################
 
 
 Unmanaged Switch & Netris SoftGate 
