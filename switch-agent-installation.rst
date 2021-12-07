@@ -299,11 +299,17 @@ Configure the OOB Management IP Address
 Configure out-of-band management IP address, and in case Netris Controller is not in the same OOB network then configure a route to Netris Controller. No default route or other IP addresses should be configured.
 
 .. code-block:: shell-session
-
+  
+  # Disable Zero Touch Provisioning
+  ztp disable -y
   config interface ip add eth0 <Management IP address/prefix length>
   # optional: in case when Netris Controller is NOT in the same network with the switch.
   config route add prefix <Controller address>/32 nexthop <Management network gateway> 
 
 Install the Netris Agent 
 ------------------------
-TBD
+To install netris Agent please navigate to Net - > inventory section of Controller, then click "+ Add" button to create the switch. 
+Fill all the requred fields and click add.
+After switch is created please click three dots at the left of the switch you just created and select install Agent. 
+Finally please copy the line, paste into the switch's command line and execute.
+Follow on-screen instructions in console.
