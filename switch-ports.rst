@@ -11,7 +11,7 @@ The following options are available for editing on each port:
 
 * Description - Description of the port.
 * Tenant - Tenant to whom the port is assigned, by default it is the owner tenant of the device to whom the port belongs to.
-* Breakout - Available only for physical ports of the switches, used to split physical port into multiple physical ports. When there is a need to use other supported option supported by switch not shown in the dropdown list user must set breakout to "Manual" and configure breakout manually on the switch. For certain platforms some ports should be disabled to be able to breakout other ports, for that option use "Disable" mode of breakout. For cumulus after configuration user must manually restart switchd daemon on the switch via command "systemctl restart switchd".
+* Breakout - Available only for physical switch ports, used to split physical ports into multiple physical ports. When there is a need to use other supported option supported by switch not shown in the dropdown list user must set breakout to "Manual" and configure breakout manually on the switch. For certain platforms some ports need to be disabled to support breakout into other ports, for that option use "Disable" mode of breakout. For Cumulus, after configuration, user must manually restart switchd daemon on the switch via command "systemctl restart switchd".
 * MTU - Maximum transmission unit of the port.
 * Autoneg - Toggle autonegotiation. Available only for physical ports.
 * Speed - Toggle speed. Available only for physical ports.
