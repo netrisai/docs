@@ -82,7 +82,7 @@ In case you don't have DHCP in the management network, then stop ONIE discovery 
   onie-discovery-stop
   ip addr add <management IP address/prefix> dev eth0
   ip route add default via <gateway of management network>
-  echo "nameserver 1.1.1.1" > /etc/resolv.conf
+  echo "nameserver <dns server>" > /etc/resolv.conf
 
 Update ONIE to the supported version. 
 
