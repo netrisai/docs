@@ -33,6 +33,7 @@ As soon as the inventory profile is attached to a device it denies all traffic d
 
 Adding Switches
 ===============
+.. _adding-switches:
 Every switch needs to be added to the Netris Controller inventory.  You can add new devices with the following process:
 
 #. Navigate to **Net→Inventory**
