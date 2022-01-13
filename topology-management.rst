@@ -1,3 +1,4 @@
+.. _topology-management:
 .. meta::
     :description: Topology Management
 
@@ -30,6 +31,8 @@ As soon as the inventory profile is attached to a device it denies all traffic d
 .. image:: images/inventory-profile.png
    :align: center
    :class: with-shadow
+
+.. _topology-management-adding-switches:
 
 Adding Switches
 ===============
