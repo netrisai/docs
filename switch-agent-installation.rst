@@ -153,7 +153,7 @@ Configure internet connectivity via management port.
 Install the Netris Agent 
 ************************
 
-1. Add the Switch in the controller **Inventory**. Detailed configuration documentation is available here: :ref:`"Adding Switches"<adding-switches>`
+1. Add the Switch in the controller **Inventory**. Detailed configuration documentation is available here: :ref:`"Adding Switches"<topology-management-adding-switches>`
 2. Once the Switch is created in the **Inventory**, click on **three vertical dots (⋮)** on the right side on the Switch and select the **Install Agent** option
 3. Copy the agent install command to your clipboard and run the command on the Switch
 4. Reboot the Switch when the installation completes
