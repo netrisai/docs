@@ -56,6 +56,8 @@ Every switch needs to be added to the Netris Controller inventory.  You can add 
 
 .. note:: Repeat this process to define all your switches.
 
+.. _topology-management-adding-softgates:
+
 Adding SoftGates
 ================
 Every SoftGate node needs to be added to the Netris Controller inventory.  To add a SoftGate node:
