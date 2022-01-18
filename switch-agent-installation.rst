@@ -1,19 +1,23 @@
 .. meta::
   :description: Netris Switch Agent Installation
 
-*************************
+#########################
 Switch Agent Installation
-*************************
+#########################
 
-Nvidia Cumulus Linux
-====================
+******************
+Prerequisite Steps
+******************
+
+============================
+Nvidia Cumulus Linux Devices
+============================
 Requirements:
-
 * Fresh install of Cumulus Linux v. 3.7.(x) - Cumulus 4.X is in the process of validation and will be supported in the next Netris release.
 
 Configure the OOB Management IP address
----------------------------------------
-Configure out of band management IP address, and in case Netris Controller is not in the same OOB network then configure a route to Netris Controller. No default route or other IP addresses should be configured. 
+***************************************
+Configure internet connectivity via management port.
 
 .. code-block:: shell-session
 
@@ -28,8 +32,9 @@ Configure out of band management IP address, and in case Netris Controller is no
  # The primary network interface
  auto eth0
  iface eth0 inet static
-         address <Management IP address/prefix length>
-         up ip ro add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the switch.
+         address <management IP address/prefix length>
+         gateway <gateway of management network>
+         dns-nameserver <dns server>
  
  source /etc/network/interfaces.d/*
 
@@ -38,7 +43,7 @@ Configure out of band management IP address, and in case Netris Controller is no
  sudo ifreload -a
 
 Configure Nvidia Cumulus Linux License
---------------------------------------
+**************************************
 
 .. code-block:: shell-session
 
@@ -46,73 +51,13 @@ Configure Nvidia Cumulus Linux License
 
 Copy/paste the Cumulus Linux license string then press ctrl-d.
 
-Install the Netris Agent 
-------------------------
-1. Add Netris repository using Netris Controller as an HTTP proxy. Replace <Your Netris Controller address> with your actual Netris Controller address.
+============================
+Ubuntu SwitchDev Devices
+============================
 
 .. note::
 
- Netris Controller built-in proxy, by default, permits RFC1918 IP addresses (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).
- If your management network is using IP addresses outside these ranges you will need to configure iptables on the Netris Controller accordingly.
-
-.. code-block:: shell-session
-
- export http_proxy=http://<Your Netris Controller address>:3128
-
- wget -qO - http://repo.netris.ai/repo/public.key | sudo apt-key add -
-
- echo "deb http://repo.netris.ai/repo/ jessie main" | sudo tee /etc/apt/sources.list.d/netris.list
-
-2. Update the apt
-
-.. code-block:: shell-session
-
- echo -e 'Acquire::http::Proxy "http://<Your Netris Controller address>:3128";\nAcquire::https::Proxy "http://<Your Netris Controller address>:3128";' | sudo tee -a /etc/apt/apt.conf.d/netris-proxy
- 
- sudo apt update
-
-3. Install Netris Agent and dependencies
-
-.. code-block:: shell-session
-
- sudo apt install netris-sw
-
-4. Initialize the switch using netris-setup
-
-Description of netris-setup parameters
-
-.. code-block:: shell-session
-
- --auth - Authentication key, "6878C6DD88224981967F67EE2A73F092" is the default key.
- --controller - IP address or domain name of Netris Controller. 
- --hostname - The hostname for the current switch, this hostname should match the name defined in the Controller.
- --lo - IP address for the loopback interface, as it is defined in the controller.
- --type - Role of the switch in your topology: spine/leaf  
- 
-.. code-block:: shell-session
-
- sudo /opt/netris/bin/netris-setup --auth=<authentication key> --controller=<IP or FQDN> --hostname=<name> --lo=<loopback IP address> --type=<spine/leaf>
-
-5. Reboot the switch
-
-.. code-block:: shell-session
-
- sudo reboot
-
-Once the switch boots up you should see its heartbeat going from Critical to OK in Net→Inventory, Telescope→Dashboard, and switch color will reflect its health in Net→Topology
-
-Screenshot: Net→Inventory
-
-.. image:: images/inventory_heartbeat.png
-   :align: center
-   :class: with-shadow
-
-
-Ubuntu SwitchDev
-================ 
-.. note::
-
-  This installation requires a Console connection and Internet connectivity via management port.
+  Further installation requires a Console and Internet connectivity via management port!
   
 1. NOS Uninstall
 
@@ -137,7 +82,7 @@ In case you don't have DHCP in the management network, then stop ONIE discovery 
   onie-discovery-stop
   ip addr add <management IP address/prefix> dev eth0
   ip route add default via <gateway of management network>
-  echo "nameserver 1.1.1.1" > /etc/resolv.conf
+  echo "nameserver <dns server>" > /etc/resolv.conf
 
 Update ONIE to the supported version. 
 
@@ -147,7 +92,7 @@ Update ONIE to the supported version.
 
 .. code-block:: shell-session
 
-  onie-self-update http://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x86-r0
+  onie-self-update https://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x86-r0
 
 3. NOS Install
 
@@ -163,153 +108,63 @@ In case you don't have DHCP in the management network, then stop ONIE discovery 
   onie-discovery-stop
   ip addr add <management IP address/prefix> dev eth0
   ip route add default via <gateway of management network>
-  echo "nameserver 1.1.1.1" > /etc/resolv.conf
+  echo "nameserver <dns server>" > /etc/resolv.conf
 
 Install Ubuntu-SwitchDev from the Netris custom image:
 
 .. code-block:: shell-session
 
-  onie-nos-install http://repo.netris.ai/repo/netris-ubuntu-18.04.1.bin
+  onie-nos-install https://repo.netris.ai/repo/netris-ubuntu-18.04.1.bin
 
 Default username/password
  
 ``netris/newNet0ps``
 
-Configure the OOB Management IP Address
----------------------------------------
-Configure out of band management IP address, and in case Netris Controller is not in the same OOB network then configure a route to Netris Controller. No default route or other IP addresses should be configured.
+Configure the OOB Management IP address
+***************************************
+Configure internet connectivity via management port.
 
 .. code-block:: shell-session
 
- sudo vim /etc/network/interfaces
+    sudo vim /etc/network/interfaces
 
 .. code-block:: shell-session
 
-  # The loopback network interface
-  auto lo
-  iface lo inet loopback
-
-  # The primary network interface
-  auto eth0
-  iface eth0 inet static
-      address <Management IP address/prefix length>
-      up ip ro add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the switch.
-
-  source /etc/network/interfaces.d/*
+ # The loopback network interface
+ auto lo
+ iface lo inet loopback
+ 
+ # The primary network interface
+ auto eth0
+ iface eth0 inet static
+         address <management IP address/prefix length>
+         gateway <gateway of management network>
+         dns-nameserver <dns server>
+ 
+ source /etc/network/interfaces.d/*
 
 .. code-block:: shell-session
 
  sudo ifreload -a
 
+
+
+************************
 Install the Netris Agent 
-------------------------
-1. Add netris repository using Netris Controller as an http proxy. Replace <Your Netris Controller address> with your actual Netris Controller address.
+************************
 
-.. note::
-
-  Netris Controller built-in proxy, by default, permits RFC1918 IP addresses (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16). If your management network is using IP addresses outside these ranges you will need to configure iptables on the Netris Controller accordingly.
-
-.. code-block:: shell-session
-
- export http_proxy=http://<Your Netris Controller address>:3128
- 
- wget -qO - http://repo.netris.ai/repo/public.key | sudo apt-key add -
- 
- echo "deb http://repo.netris.ai/repo/ bionic main" | sudo tee /etc/apt/sources.list.d/netris.list
- 
-2. Update the apt
+1. Add the Switch in the controller **Inventory**. Detailed configuration documentation is available here: :ref:`"Adding Switches"<topology-management-adding-switches>`
+2. Once the Switch is created in the **Inventory**, click on **three vertical dots (⋮)** on the right side on the Switch and select the **Install Agent** option
+3. Copy the agent install command to your clipboard and run the command on the Switch
+4. Reboot the Switch when the installation completes
 
 .. code-block:: shell-session
 
-  echo -e 'Acquire::http::Proxy "http://<Your Netris Controller address>:3128";\nAcquire::https::Proxy "http://<Your Netris Controller address>:3128";' | sudo tee -a /etc/apt/apt.conf.d/netris-proxy
-  
-  sudo apt update
- 
-3. Install Netris Agent and dependencies
- 
-.. code-block:: shell-session
+ sudo reboot
 
-  sudo apt-get update && sudo apt-get install netris-sw
-  
-4. Initialize the switch using netris-setup
+Once the switch boots up you should see its heartbeat going from Critical to OK in Net→Inventory, Telescope→Dashboard, and switch color will reflect its health in Net→Topology
 
-Description of netris-setup parameters
+Screenshot: Net→Inventory
 
-.. code-block:: shell-session
-
-  --auth - Authentication key, "6878C6DD88224981967F67EE2A73F092" is the default key.
-  --controller - IP address or domain name of Netris Controller.
-  --hostname - The hostname for the current switch, this hostname should match the name defined in the Controller.
-  --lo - IP address for the loopback interface, as it is defined in the controller.
-  --type - Role of the switch in your topology: spine/leaf
-
-.. code-block:: shell-session
-
-  sudo /opt/netris/bin/netris-setup --auth=<authentication key> --controller=<IP or FQDN> --hostname=<name> --lo=<loopback IP address> --type=<spine/leaf>
-
-5. Reboot the switch
-
-.. code-block:: shell-session
-
-  sudo reboot
-  
-Edgecore SONiC
-============== 
-.. note::
-
-  Further installation requires a Console and Internet connectivity via management port!
-  
-1. NOS Uninstall
-
-Uninstall current NOS using **Uninstall OS** from grub menu:
-
-.. image:: images/uninstallOS.png
+.. image:: images/inventory_heartbeat.png
    :align: center
-    
-Once the uninstallation is completed, the switch will reboot automatically.
-
-2. NOS Install
-
-Select **Install OS** from grub menu:
-
-.. image:: images/installOS.png
-   :align: center
-
-If you don't have DHCP in the management network, stop ONIE discovery service and configure IP address and default gateway manually:
-
-.. code-block:: shell-session
-
-  onie-discovery-stop
-  ip addr add <management IP address/prefix> dev eth0
-  ip route add default via <gateway of management network>
-  echo "nameserver 1.1.1.1" > /etc/resolv.conf
-
-Install SONiC from the Netris repo:
-
-.. code-block:: shell-session
-
-  onie-nos-install http://repo.netris.ai/repo/Edgecore-SONiC_20210917_063104_ec202012_172.bin
-
-Default username/password:
- 
-``admin/YourPaSsWoRd``
-
-Configure the OOB Management IP Address
----------------------------------------
-Configure out-of-band management IP address, and in case Netris Controller is not in the same OOB network then configure a route to Netris Controller. No default route or other IP addresses should be configured.
-
-.. code-block:: shell-session
-  
-  # Disable Zero Touch Provisioning
-  ztp disable -y
-  config interface ip add eth0 <Management IP address/prefix length>
-  # optional: in case when Netris Controller is NOT in the same network with the switch.
-  config route add prefix <Controller address>/32 nexthop <Management network gateway> 
-
-Install the Netris Agent 
-------------------------
-To install netris Agent please navigate to Net - > inventory section of Controller, then click "+ Add" button to create the switch. 
-Fill all the requred fields and click add.
-After switch is created please click three dots at the left of the switch you just created and select install Agent. 
-Finally please copy the line, paste into the switch's command line and execute.
-Follow on-screen instructions in console.
