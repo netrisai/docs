@@ -147,7 +147,85 @@ Configure internet connectivity via management port.
 
  sudo ifreload -a
 
+============================
+EdgeCore SONiC Devices
+============================
 
+.. note::
+
+  Further installation requires a Console and Internet connectivity via management port!
+  
+1. NOS Uninstall
+
+Uninstall current NOS using **Uninstall OS** from grub menu:
+
+.. image:: images/uninstallOS.png
+   :align: center
+    
+Once the uninstallation is completed, the switch will reboot automatically.
+
+2. Update ONIE
+
+Select **Update ONIE** from grub menu:
+
+.. image:: images/updateONIE.png
+   :align: center
+
+In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
+
+.. code-block:: shell-session
+
+  onie-discovery-stop
+  ip addr add <management IP address/prefix> dev eth0
+  ip route add default via <gateway of management network>
+  echo "nameserver <dns server>" > /etc/resolv.conf
+
+Update ONIE to the supported version. 
+
+.. note::
+
+  ONIE image available for Mellanox switches only!
+
+.. code-block:: shell-session
+
+  onie-self-update https://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x86-r0
+
+3. NOS Install
+
+Select **Install OS** from grub menu:
+
+.. image:: images/installOS.png
+   :align: center
+
+In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
+
+.. code-block:: shell-session
+
+  onie-discovery-stop
+  ip addr add <management IP address/prefix> dev eth0
+  ip route add default via <gateway of management network>
+  echo "nameserver <dns server>" > /etc/resolv.conf
+
+Install EdgeCore SONiC image from the Netris repository:
+
+.. code-block:: shell-session
+
+  onie-nos-install https://repo.netris.ai/repo/Edgecore-SONiC_20211125_074752_ec202012_227.bin
+
+Default username/password
+ 
+``admin/YourPaSsWoRd``
+
+Configure the OOB Management IP address
+***************************************
+Configure internet connectivity via management port.
+
+.. code-block:: shell-session
+  
+  ztp disable -y
+  ip addr add <management IP address/prefix> dev eth0
+  ip route add default via <gateway of management network>
+  echo "nameserver <dns server>" > /etc/resolv.conf
 
 ************************
 Install the Netris Agent 
