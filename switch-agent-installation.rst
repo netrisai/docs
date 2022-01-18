@@ -164,33 +164,7 @@ Uninstall current NOS using **Uninstall OS** from grub menu:
     
 Once the uninstallation is completed, the switch will reboot automatically.
 
-2. Update ONIE
-
-Select **Update ONIE** from grub menu:
-
-.. image:: images/updateONIE.png
-   :align: center
-
-In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
-
-.. code-block:: shell-session
-
-  onie-discovery-stop
-  ip addr add <management IP address/prefix> dev eth0
-  ip route add default via <gateway of management network>
-  echo "nameserver <dns server>" > /etc/resolv.conf
-
-Update ONIE to the supported version. 
-
-.. note::
-
-  ONIE image available for Mellanox switches only!
-
-.. code-block:: shell-session
-
-  onie-self-update https://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x86-r0
-
-3. NOS Install
+2. NOS Install
 
 Select **Install OS** from grub menu:
 
