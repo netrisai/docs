@@ -1,13 +1,12 @@
 .. meta::
-    :description: Supported Networks
+    :description: Reference Network Architectures
 
-##################
-Supported Networks
-##################
+###############################
+Reference Network Architectures
+###############################
 
-The following basic network designs are supported by Netris:
 
-Unmanaged Switch & SoftGate
+Unmanaged Switch & Netris SoftGate 
 ---------------------------
 
 .. image:: images/slide-1.png
@@ -16,29 +15,29 @@ Unmanaged Switch & SoftGate
 
 --------------------------
 
-Unmanaged Switch & SoftGate (Redundant)
+Unmanaged Switch & SoftGate (HA)
 ---------------------------------------
 
 .. image:: images/slide-2.png
     :align: center
-    :alt: Unmanaged Switch & SoftGate (Redundant)
+    :alt: Unmanaged Switch & SoftGate (HA)
 
 --------------------------
 
-Netris Managed Switch & SoftGate (Redundant)
+Netris Managed Switch & SoftGate (HA)
 --------------------------------------------
 
 .. image:: images/slide-3.png
    :align: center
-   :alt: Netris Managed Switch & SoftGate (Redundant)
+   :alt: Netris Managed Switch & SoftGate small data center (HA)
 
 --------------------------
 
-Netris Managed Switch & SoftGate (Multipod)
+Netris Managed Switch & SoftGate scalable data center (HA)
 --------------------------------------------
 
 .. image:: images/slide-4.png
    :align: center
-   :alt: Netris Managed Switch & SoftGate (Multipod)
+   :alt: Netris Managed Switch & SoftGate scalable data center (HA)
 
 --------------------------

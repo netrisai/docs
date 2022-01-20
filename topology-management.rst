@@ -1,3 +1,4 @@
+.. _topology-management:
 .. meta::
     :description: Topology Management
 
@@ -31,6 +32,8 @@ As soon as the inventory profile is attached to a device it denies all traffic d
    :align: center
    :class: with-shadow
 
+.. _topology-management-adding-switches:
+
 Adding Switches
 ===============
 Every switch needs to be added to the Netris Controller inventory.  You can add new devices with the following process:
@@ -52,6 +55,8 @@ Every switch needs to be added to the Netris Controller inventory.  You can add 
      :class: with-shadow
 
 .. note:: Repeat this process to define all your switches.
+
+.. _topology-management-adding-softgates:
 
 Adding SoftGates
 ================

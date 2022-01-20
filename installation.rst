@@ -16,5 +16,6 @@ Netris Controller can be installed locally as a VM, deployed as a Kubernetes app
    :maxdepth: 2
    :caption: Controller Installation
 
+   controller-k8s-quickstart
    controller-vm-installation
    controller-k8s-installation

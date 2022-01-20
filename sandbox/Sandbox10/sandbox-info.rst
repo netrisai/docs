@@ -3,7 +3,7 @@ Welcome to Netris Sandbox
 *************************
 
 Netris sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
-We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s8-pre-configured>` document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at https://netris.ai/slack 
+We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s10-pre-configured>` document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at https://netris.ai/slack 
 
 The credentials for the sandbox have been provided to you by email in response to your sandbox request.
 
@@ -25,7 +25,7 @@ Topology diagram
 
 Netris GUI
 ==========
-http://sandbox8.netris.ai
+http://sandbox10.netris.ai
 
 Linux servers
 =============
@@ -40,16 +40,16 @@ Accessing Linux servers:
   
 .. code-block:: shell-session  
   
-  srv01: ssh demo@166.88.17.29 -p 30061
-  srv02: ssh demo@166.88.17.29 -p 30062
-  srv03: ssh demo@166.88.17.29 -p 30063
-  srv04: ssh demo@166.88.17.29 -p 30064
-  srv05: ssh demo@166.88.17.29 -p 30065
+  srv01: ssh demo@166.88.17.19 -p 30061
+  srv02: ssh demo@166.88.17.19 -p 30062
+  srv03: ssh demo@166.88.17.19 -p 30063
+  srv04: ssh demo@166.88.17.19 -p 30064
+  srv05: ssh demo@166.88.17.19 -p 30065
   
 
 Kubernetes cluster
 ==================
-This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing **netris-operator**. Step-by-step instructions are included in the :ref:`"Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps"<s8-k8s>` document.
+This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing **netris-operator**. Step-by-step instructions are included in the :ref:`"Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps"<s10-k8s>` document.
 
 
 Upstream ISP
@@ -64,14 +64,14 @@ ISP settings:
  (pre-configured example)
  Name: iris-isp1-example
  Neighbor AS: 65007
- Vlan: 1081
- IP customer: 50.117.59.106/30
- IP Iris: 50.117.59.105/30
+ Vlan: 1101
+ IP customer: 50.117.59.122/30
+ IP Iris: 50.117.59.121/30
  
  Neighbor AS: 65007
- Vlan: 1082
- IP customer:  50.117.59.110/30
- IP Iris: 50.117.59.109/30
+ Vlan: 1102
+ IP customer:  50.117.59.126/30
+ IP Iris: 50.117.59.125/30
 
 
 
@@ -84,5 +84,5 @@ Networks used
   Example subnet:    192.168.45.0/24
   Customer subnet:   192.168.46.0/24
   K8s subnet:        192.168.110.0/24
-  Public subnet:     50.117.59.176/28
+  Public subnet:     50.117.59.208/28
   

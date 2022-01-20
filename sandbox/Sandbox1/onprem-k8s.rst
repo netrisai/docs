@@ -24,7 +24,7 @@
   45.38.161.17/30           # isp1-customer bgp peer remote ip
   45.38.161.22/30           # isp2-customer bgp peer local ip
   45.38.161.21/30           # isp2-customer bgp peer remote ip
-  45.38.161.6/32           # customer v-net nat ip
+  45.38.161.6/32            # customer v-net nat ip
   s1-pre-configured         # LINKS
   s1-learn-by-doing         # LINKS
   s1-e-bgp                  # LINKS
