@@ -51,6 +51,8 @@ Configure Nvidia Cumulus Linux License
 
 Copy/paste the Cumulus Linux license string then press ctrl-d.
 
+Continue to :ref:`"Install the Netris Agent"<install-the-netris-agent>` section.
+
 ============================
 Ubuntu SwitchDev Devices
 ============================
@@ -147,6 +149,8 @@ Configure internet connectivity via management port.
 
  sudo ifreload -a
 
+Continue to :ref:`"Install the Netris Agent"<install-the-netris-agent>` section.
+
 ============================
 EdgeCore SONiC Devices
 ============================
@@ -192,14 +196,24 @@ Default username/password
 
 Configure the OOB Management IP address
 ***************************************
-Configure internet connectivity via management port.
+Disable Zero Touch Provisioning for time being.
 
 .. code-block:: shell-session
   
   ztp disable -y
+
+This will take some time, please be patient
+
+Configure internet connectivity via management port.
+
+.. code-block:: shell-session
+  
+
   ip addr add <management IP address/prefix> dev eth0
   ip route add default via <gateway of management network>
   echo "nameserver <dns server>" > /etc/resolv.conf
+
+Continue to :ref:`"Install the Netris Agent"<install-the-netris-agent>` section.
 
 ************************
 Install the Netris Agent 
