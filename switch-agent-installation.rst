@@ -1,3 +1,4 @@
+.. _switch-agent-installation:
 .. meta::
   :description: Netris Switch Agent Installation
 
@@ -51,7 +52,7 @@ Configure Nvidia Cumulus Linux License
 
 Copy/paste the Cumulus Linux license string then press ctrl-d.
 
-Continue to :ref:`"Install the Netris Agent"<install-the-netris-agent>` section.
+Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` section.
 
 ============================
 Ubuntu SwitchDev Devices
@@ -149,7 +150,7 @@ Configure internet connectivity via management port.
 
  sudo ifreload -a
 
-Continue to :ref:`"Install the Netris Agent"<install-the-netris-agent>` section.
+Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` section.
 
 ============================
 EdgeCore SONiC Devices
@@ -213,7 +214,9 @@ Configure internet connectivity via management port.
   ip route add default via <gateway of management network>
   echo "nameserver <dns server>" > /etc/resolv.conf
 
-Continue to :ref:`"Install the Netris Agent"<install-the-netris-agent>` section.
+Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` section.
+
+.. _switch-agent-installation-install-the-netris-agent:
 
 ************************
 Install the Netris Agent 
