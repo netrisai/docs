@@ -203,13 +203,13 @@ Disable Zero Touch Provisioning for time being.
   
   ztp disable -y
 
-This will take some time, please be patient
+.. note::
+  This will take some time, please be patient.
 
 Configure internet connectivity via management port.
 
 .. code-block:: shell-session
   
-
   ip addr add <management IP address/prefix> dev eth0
   ip route add default via <gateway of management network>
   echo "nameserver <dns server>" > /etc/resolv.conf
