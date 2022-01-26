@@ -321,7 +321,7 @@ Return to the Netris UI and navigate to **Net / Topology** to see the new BGP ne
 Importing existing resources from Netris Controller to Kubernetes
 -----------------------------------------------------------------
 
-ou can import any custom resources, already created from the Netris Controller to k8s by adding this annotation:
+You can import any custom resources, already created from the Netris Controller to k8s by adding this annotation:
 
 .. code-block:: yaml
 
