@@ -28,9 +28,7 @@ Topology diagram
 
 Netris GUI
 ==========
-|location_link|
-.. |location_link| raw:: html
-   <a href="http://sandbox15.netris.ai" target="_blank">http://sandbox15.netris.ai</a>
+http://sandbox15.netris.ai
 
 Linux servers
 =============
