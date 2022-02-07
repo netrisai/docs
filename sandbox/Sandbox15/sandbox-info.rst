@@ -1,0 +1,113 @@
+*************************
+Welcome to Netris Sandbox
+*************************
+
+Netris sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
+We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s15-pre-configured>` document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at https://netris.ai/slack 
+
+The credentials for the sandbox have been provided to you by email in response to your sandbox request.
+
+This environment includes:
+
+* **Netris Controller**: A cloud-hosted Netris controller, loaded with examples.
+* **Switching fabric**: Two spine switches and four leaf switches, all Netris-operated.
+* **SoftGates**: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
+* **Linux servers**: Five Linux servers, with root access where you can run any applications for your tests.
+* **Kubernetes cluster**: A 3 node Kubernetes cluster, user integratable with Netris controller, feel free to deploy any applications for your tests.
+* **ISP**: Internet upstream, providing the sandbox Internet connectivity with real-world routable public IP addresses.
+
+
+Topology diagram
+================
+
+.. image:: /images/sandbox_topology.png
+    :align: center
+    :alt: Sandbox Topology
+
+
+
+Netris GUI
+==========
+|location_link|
+.. |location_link| raw:: html
+   <a href="http://sandbox15.netris.ai" target="_blank">http://sandbox16.netris.ai</a>
+
+Linux servers
+=============
+
+Example pre-configured Netris services:
+ * srv01, srv02, srv03 & Netris Controller - are consuming a ROH (Routing On Host) Netris example service, see **Services > ROH.**
+ * srv01, srv02 - are behind Anycast L3 load balancer, see **Services > Load Balancer**.
+ * srv04, srv05 - are consuming a V-NET (routed VXLAN) Netris service, see **Services > V-NET**.
+
+
+Accessing Linux servers:
+  
+.. code-block:: shell-session  
+  
+  srv01: ssh demo@50.117.27.86 -p 30061
+  srv02: ssh demo@50.117.27.86 -p 30062
+  srv03: ssh demo@50.117.27.86 -p 30063
+  srv04: ssh demo@50.117.27.86 -p 30064
+  srv05: ssh demo@50.117.27.86 -p 30065
+  
+
+Kubernetes cluster
+==================
+This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing **netris-operator**. Step-by-step instructions are included in the :ref:`"Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps"<s15-k8s>` document.
+
+
+Upstream ISP
+============
+This sandbox provides an upstream ISP service with real-world Internet routing. 
+There are two pre-configured examples under **NET > E-BGP** , one using IPv4 and the other using IPv6, which are advertising the public IP subnets to the upstream ISP IRIS.
+
+ISP settings:
+
+.. code-block:: shell-session
+ 
+ (pre-configured examples)
+ Name:                    iris-isp1-ipv4-example
+ BGP Router:              Softage1
+ Switch Port:             swp16@sw01-nyc
+ Neighbor AS:             65007
+ VLAN ID:                 1151
+ Local Address:           45.38.161.210/30
+ Remote Address:          45.38.161.209/30
+ Prefix List Inbound:     permit 0.0.0.0/0
+ Prefix List Outbound:    permit 45.38.161.192/28 le 32
+ 
+ Name:                    iris-isp1-ipv6-example
+ BGP Router:              Softage1
+ Switch Port:             swp16@sw01-nyc
+ Neighbor AS:             65007
+ VLAN ID:                 1151
+ Local Address:           2607:f358:11:ffc0::1f/127
+ Remote Address:          2607:f358:11:ffc0::1e/127
+ Prefix List Inbound:     permit ::/0
+ Prefix List Outbound:    permit 2607:f358:11:ffcf::/64
+ 
+ (configurable by you)
+ BGP Router:              Softage2
+ Switch Port:             swp16@sw02-nyc
+ Neighbor AS:             65007
+ VLAN ID:                 1152
+ Local Address:           45.38.161.214/30
+ Remote Address:          45.38.161.213/30 
+ Prefix List Inbound:     permit 0.0.0.0/0
+ Prefix List Outbound:    permit 45.38.161.192/28 le 32
+
+
+Network Allocations defined under IPAM
+=============
+.. code-block:: shell-session
+
+  MANAGMENT subnet:       10.254.45.0/24 
+  LOOPBACK subnet:        10.254.46.0/24
+  ROH Subnet:             192.168.44.0/24
+  EXAMPLE subnet:         192.168.45.0/24
+  CUSTOMER subnet:        192.168.46.0/24
+  K8s subnet:             192.168.110.0/24
+  Public IPv4 subnet:     45.38.161.192/28
+  Public IPv6 subnet:     2607:f358:11:ffcf::/64
+  
