@@ -1,6 +1,8 @@
 .. meta::
     :description: IP Address Management
 
+.. _ipam_def:
+
 =====================
 IP Address Management
 =====================

@@ -24,7 +24,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigate to **Services > V-Net**.
+  1. Log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigate to **Services → V-Net**.
   2. Click the **+ Add** button in the top right corner of the page to get started with creating a new V-Net service.
   3. Define a name in the **Name** field (e.g. ``vnet-customer``).
   4. Select **Demo** from the **Owner** drop-down menu. 
@@ -51,7 +51,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigate to **Net > E-BGP**.
+  1. Log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigate to **Net → E-BGP**.
   2. Click the **+ Add** button in the top right corner of the page to configure a new E-BGP session.
   3. Define a name in the **Name** field (e.g. ``iris-isp2-ipv4-customer``).
   4. From the **Site** drop-down menu, select **US/NYC**.
@@ -69,7 +69,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   13. In the **Prefix List Outbound** field, type in ``permit 45.38.161.192/28 le 32``
   14. And finally click **Add**
   
-Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net > E-BGP** page as well as on **Telescope > Dashboard** pages will turn green, indication a successfully established BGP session. We can glean further insight into the BGP session details by navigating to **Net > Looking Glass**.
+Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net → E-BGP** page as well as on **Telescope → Dashboard** pages will turn green, indication a successfully established BGP session. We can glean further insight into the BGP session details by navigating to **Net → Looking Glass**.
 
   1. Select **SoftGate2(45.38.161.193)** (the border router where our newly created BGP session is terminated on) from the **Select device** drop-down menu.
   2. Leaving the **Family** drop-down menu on IPv4 and the **Command** drop-down menu on "**BGP Summary**", click on the **Submit** button.
@@ -94,7 +94,7 @@ Let's configure a source NAT so our Customer subnet **192.168.46.0/24** which is
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigate to **Net > NAT**.
+  1. Log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigate to **Net → NAT**.
   2. Click the **+ Add** button in the top right corner of the page to define a new NAT rule.
   3. Define a name in the **Name** field (e.g. ``NAT Customer``).
   4. From the **Sites** drop-down menu, select **US/NYC**.
@@ -106,7 +106,7 @@ Let's configure a source NAT so our Customer subnet **192.168.46.0/24** which is
   10. From the **Select subnet** drop-down menu, select the **45.38.161.196/30 (NAT)** subnet. 
   11. From the **Select IP** drop-down menu, select the **45.38.161.196/32** IP address.
 
-  * This public IP is part of **45.38.161.196/30 (NAT)** subnet which is is configured in the **NET > IPAM** section with the purpose of **NAT** and indicated in the SoftGate configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`..
+  * This public IP is part of **45.38.161.196/30 (NAT)** subnet which is is configured in the **NET → IPAM** section with the purpose of **NAT** and indicated in the SoftGate configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`..
     
   12. Click **Add**
 
@@ -128,7 +128,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
   
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigate to **Net > Sites**.
+  1. Log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigate to **Net → Sites**.
   2. Click **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the **UC/NYC** site.
   3. From the **ACL Default Policy** drop-down menu, change the value from **Permit** to **Deny**.
   4. Click **Save**.
@@ -141,7 +141,7 @@ Now that the **Default ACL Policy** is set to **Deny**, we need to configure an 
 
 * Back in the web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Navigate to **Services > ACL**.
+  1. Navigate to **Services → ACL**.
   2. Click the **+ Add** button in the top right corner of the page to define a new ACL.
   3. Define a name in the **Name** field (e.g. ``V-Net Customer to WAN``).
   4. From the **Protocol** drop-down menu, select **ALL**.

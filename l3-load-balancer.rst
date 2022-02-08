@@ -1,6 +1,8 @@
 .. meta::
     :description: Layer-3 Load Balancer (Anycast)
-  
+
+.. _l3lb_def:
+
 #############################
 L3 Load Balancer (Anycast LB)
 #############################
