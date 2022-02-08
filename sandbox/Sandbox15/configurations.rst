@@ -7,7 +7,11 @@ Once you log into the Netris GUI, you will find that certain services have alrea
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
-Once you log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigating to **Services → V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. If you examine the particular service settings ( select **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**vnet-example**" service), you will find that the services is configured on second port of "**switch 21 (swp2(swp2)@sw21-nyc)**". The V-Net servicers is also configured with both an IPv4 and IPv6 gateway, **192.168.45.1** (from the "**192.168.45.0/24 (EXAMPLE)**" subnet) and **2607:f358:11:ffcf::1** (from the "**2607:f358:11:ffcf::/64 (EXAMPLE IPv6)**" subnet) respectively. 
+Once you log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigating to **Services → V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. 
+
+If you examine the particular service settings ( select **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**vnet-example**" service), you will find that the services is configured on second port of "**switch 21 (swp2(swp2)@sw21-nyc)**". 
+
+The V-Net servicers is also configured with both an IPv4 and IPv6 gateway, **192.168.45.1** (from the "**192.168.45.0/24 (EXAMPLE)**" subnet) and **2607:f358:11:ffcf::1** (from the "**2607:f358:11:ffcf::/64 (EXAMPLE IPv6)**" subnet) respectively. 
 
 You may also verify that the service is working properly from within the GUI: (*\*Fields not specified should remain unchanged and retain default values*)
 
@@ -42,7 +46,7 @@ E-BGP (Exterior Border Gateway Protocol) Example
 
 Navigate to **Net → E-BGP**. Here, aside from the necessary system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( **SoftGate1 & SoftGate2** ) and the rest of the switching fabric, you will also find two E-BGP sessions named "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" configured as example with **IRIS ISP1**. This ensures communication between the internal network with the Internet. 
 
-You may examine the particular session configurations of the E-BGP connections by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of either the "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" connections. You may also expand the **Advanced** section located toward the bottom of the **Edit** window to able to access the more advanced settings available while configuring an E-BGP session.
+You may examine the particular session configurations of the E-BGP connections by selecting **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of either the "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" connections. You may also expand the **Advanced** section located toward the bottom of the **Edit** window to able to access the more advanced settings available while configuring an E-BGP session.
 
 If you are interested in learning how to create an additional E-BGP session with **IRIS ISP2** in order to make the sandbox upstream connections fault tolerant yourself, please refer to the step-by-step instructions found in the :ref:`"E-BGP (Exterior Border Gateway Protocol)"<s15-e-bgp>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
 
@@ -52,7 +56,7 @@ NAT (Network Address Translation) Example
 =========================================
 Navigate to **Net → NAT** and you will find a NAT rule named "**NAT Example**" configured as an example for you. The configured "**SNAT**" rule ensures that there can be communication between the the private "**192.168.45.0/24 (EXAMPLE)**" subnet and the Internet. 
 
-You can examine the particular settings of the NAT rule by clicking **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**NAT Example**" service.
+You can examine the particular settings of the NAT rule by clicking **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**NAT Example**" service.
 
 You may also observe the functioning NAT rule in action by pinging any public IP address (e.g. **1.1.1.1**)  from the **srv04-nyc** server.
 
@@ -72,7 +76,7 @@ ACL (Access Control List) Example
 =================================
 Navigate to **Services → ACL** and you will find an ACL services named "**V-Net Example to WAN**" set up as an example for you. This particular ACL ensures that the connectivity between the the private "**192.168.45.0/24 (EXAMPLE)**" subnet and the Internet is permitted through all protocols and ports, even in a scenario where the the "**ACL Default Policy**" for the "**US/NYC**" site configured under **Net → Sites** in our Sandbox is changed from **Permit** to **Deny**. 
 
-You can examine the particular settings of this ACL policy by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net Example to WAN**" ACL policy.
+You can examine the particular settings of this ACL policy by selecting **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**V-Net Example to WAN**" ACL policy.
 
 By utilizing ACLs, you can impose granular controls and implement policies that would permit or deny particular connections of any complexity. If you are interested in learning how to create ACL policies yourself, please refer to the step-by-step instructions found in the :ref:`"ACL (Access Control List)"<s15-acl>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
 

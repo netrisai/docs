@@ -99,7 +99,8 @@ ISP settings:
 
 Networks Used 
 =============
-Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Net → IPAM**
+Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Net → IPAM**.
+
 .. code-block:: shell-session
 
   MANAGMENT subnet:       10.254.45.0/24 

@@ -31,7 +31,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   5. From the **Sites** drop-down menu, select **US/NYC**.
   6. From the **IPv4 Gateway** drop-down menu, select the ``192.168.46.0/24(CUSTOMER)`` subnet.
   7. The first available IP address ``192.168.46.1`` is automatically chosen in the second drop-down menu of the list of IP addresses. This matches the results of the ``ip route ls`` command output on **srv05-nyc** we observed earlier.
-  8. From the **Add Port** drop-down menu put a check mark next to switch port ``swp2(swp2 | srv05-nyc)@sw22-nyc (Demo)``, which we can see is the the port where **srv05-nyc** is wired into when we reference the :ref:`"Sandbox Topology diagram"<s15-learn-by-doing>`.
+  8. From the **Add Port** drop-down menu put a check mark next to switch port ``swp2(swp2 | srv05-nyc)@sw22-nyc (Demo)``, which we can see is the the port where **srv05-nyc** is wired into when we reference the :ref:`"Sandbox Topology diagram"<s15-topology>`.
    
   *  The drop-down menu only contains this single switch port as it is the only port that has been assigned to the **Demo** tenant.
   
@@ -133,7 +133,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
   1. Log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigate to **Net → Sites**.
-  2. Click **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the **UC/NYC** site.
+  2. Click **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the **UC/NYC** site.
   3. From the **ACL Default Policy** drop-down menu, change the value from **Permit** to **Deny**.
   4. Click **Save**.
 
@@ -152,11 +152,11 @@ Now that the **Default ACL Policy** is set to **Deny**, we need to configure an 
   5. In the Source field, type in ``192.168.46.0/24``.
   6. In the Destination field, type in ``0.0.0.0/0``.
   7. Click **Add**.
-  8. Select **Approve** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the newly created "**V-Net Customer to WAN**" ACL.
+  8. Select **Approve** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the newly created "**V-Net Customer to WAN**" ACL.
   9. Click **Approve** one more time in the pop-up window.
 
 * Back in the terminal window again:
 
 Once the Netris software has finished syncing the new ACL policy with all the member devices, you can see that replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again.
 
-
+More details about ACL (Access Control List) can be found on the :ref:`"ACL"<acl_def>` page.
