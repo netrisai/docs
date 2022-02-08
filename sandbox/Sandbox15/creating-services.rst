@@ -4,7 +4,7 @@
 Learn by Creating Services
 **************************
 
-Following these short exercises we will be able to demonstrate how the :ref:`"**Netris Controller**"<netris_controller_def>`, in conjunction with the  :ref:`"**Netris Agents**"<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision desired services within a matter of minutes.
+Following these short exercises we will be able to demonstrate how the :ref:`Netris Controller<netris_controller_def>`, in conjunction with the  :ref:`Netris Agents<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision desired services within a matter of minutes.
 
 
 .. _s15-v-net:

@@ -9,12 +9,10 @@ The credentials for the sandbox have been provided to you by email in response t
 
 This environment includes:
 
-.. |Netris Controller| replace:: **Netris Controller** 
-* :ref:`|Netris Controller|<netris_controller_def>`: A cloud-hosted Netris controller, loaded with examples.
-.. |Switching fabric| replace:: **Switching fabric**
-* :ref:`|Switching fabric|<netris_sw_agent>`: Two spine switches and four leaf switches, all Netris-operated.
-.. |SoftGates| replace:: **SoftGates**
-* :ref:`|SoftGates|<netris_sg_agent>`: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
+
+* :ref:`Netris Controller<netris_controller_def>`: A cloud-hosted Netris controller, loaded with examples.
+* :ref:`Switching fabric|<netris_sw_agent>`: Two spine switches and four leaf switches, all Netris-operated.
+* :ref:`SoftGates<netris_sg_agent>`: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
 * **Linux servers**: Five Linux servers, with root access where you can run any applications for your tests.
 * **Kubernetes cluster**: A 3 node Kubernetes cluster, user integratable with Netris controller, feel free to deploy any applications for your tests.
 * **ISP**: Internet upstream with IRIS ISP, providing the sandbox Internet connectivity with real-world routable public IP addresses.
@@ -37,9 +35,9 @@ Linux servers
 =============
 
 Example pre-configured Netris services:
- * srv01-nyc, srv02-nyc, srv03-nyc & Netris Controller - are consuming a ROH (Routing On Host) Netris example service, see **Services > ROH.**
- * srv01-nyc, srv02-nyc - are behind Anycast L3 load balancer, see **Services > Load Balancer**.
- * srv04-nyc, srv05-nyc - are consuming a V-NET (routed VXLAN) Netris service, see **Services > V-NET**.
+ * **srv01-nyc**, **srv02-nyc**, **srv03-nyc** & **Netris Controller** - are consuming a ROH (Routing On Host) Netris example service, see **Services > ROH.**
+ * **srv01-nyc**, **srv02-nyc** - are behind Anycast L3 load balancer, see **Services > Load Balancer**.
+ * **srv04-nyc**, **srv05-nyc** - are consuming a V-NET (routed VXLAN) Netris service, see **Services > V-NET**.
 
 
 Accessing Linux servers:
@@ -109,6 +107,6 @@ Network Allocations defined under **Net > IPAM**
   EXAMPLE subnet:         192.168.45.0/24
   CUSTOMER subnet:        192.168.46.0/24
   K8s subnet:             192.168.110.0/24
-  Public IPv4 subnet:     45.38.161.192/28
-  Public IPv6 subnet:     2607:f358:11:ffcf::/64
+  PUBLIC IPv4 subnet:     45.38.161.192/28
+  PUBLIC IPv6 subnet:     2607:f358:11:ffcf::/64
   
