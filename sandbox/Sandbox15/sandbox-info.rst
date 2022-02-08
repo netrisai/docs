@@ -2,21 +2,21 @@
 Welcome to Netris Sandbox
 *************************
 
-Netris sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
+Netris Sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
 We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s15-pre-configured>` document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at https://netris.ai/slack 
 
 The credentials for the sandbox have been provided to you by email in response to your sandbox request.
 
 This environment includes:
 
-* **Netris Controller**: A cloud-hosted Netris controller, loaded with examples.
-* **Switching fabric**: Two spine switches and four leaf switches, all Netris-operated.
-* **SoftGates**: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
+* :ref:`"**Netris Controller**"<netris_controller_def>`: A cloud-hosted Netris controller, loaded with examples.
+* :ref:`"**Switching fabric**"<netris_sw_agent>`: Two spine switches and four leaf switches, all Netris-operated.
+* :ref:`"**SoftGates**"<netris_sg_agent>`: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
 * **Linux servers**: Five Linux servers, with root access where you can run any applications for your tests.
 * **Kubernetes cluster**: A 3 node Kubernetes cluster, user integratable with Netris controller, feel free to deploy any applications for your tests.
-* **ISP**: Internet upstream, providing the sandbox Internet connectivity with real-world routable public IP addresses.
+* **ISP**: Internet upstream with IRIS ISP, providing the sandbox Internet connectivity with real-world routable public IP addresses.
 
-
+.. _s15-topology:
 Topology diagram
 ================
 
@@ -34,20 +34,20 @@ Linux servers
 =============
 
 Example pre-configured Netris services:
- * srv01, srv02, srv03 & Netris Controller - are consuming a ROH (Routing On Host) Netris example service, see **Services > ROH.**
- * srv01, srv02 - are behind Anycast L3 load balancer, see **Services > Load Balancer**.
- * srv04, srv05 - are consuming a V-NET (routed VXLAN) Netris service, see **Services > V-NET**.
+ * srv01-nyc, srv02-nyc, srv03-nyc & Netris Controller - are consuming a ROH (Routing On Host) Netris example service, see **Services > ROH.**
+ * srv01-nyc, srv02-nyc - are behind Anycast L3 load balancer, see **Services > Load Balancer**.
+ * srv04-nyc, srv05-nyc - are consuming a V-NET (routed VXLAN) Netris service, see **Services > V-NET**.
 
 
 Accessing Linux servers:
   
 .. code-block:: shell-session  
   
-  srv01: ssh demo@50.117.27.86 -p 30061
-  srv02: ssh demo@50.117.27.86 -p 30062
-  srv03: ssh demo@50.117.27.86 -p 30063
-  srv04: ssh demo@50.117.27.86 -p 30064
-  srv05: ssh demo@50.117.27.86 -p 30065
+  srv01-nyc: ssh demo@50.117.27.86 -p 30061
+  srv02-nyc: ssh demo@50.117.27.86 -p 30062
+  srv03-nyc: ssh demo@50.117.27.86 -p 30063
+  srv04-nyc: ssh demo@50.117.27.86 -p 30064
+  srv05-nyc: ssh demo@50.117.27.86 -p 30065
   
 
 Kubernetes cluster
@@ -96,7 +96,7 @@ ISP settings:
  Prefix List Outbound:    permit 45.38.161.192/28 le 32
 
 
-Network Allocations defined under IPAM
+Network Allocations defined under **Net > IPAM**
 =============
 .. code-block:: shell-session
 

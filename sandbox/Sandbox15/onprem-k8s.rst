@@ -13,21 +13,25 @@
   10.254.46.0/24             # *STATIC NO NEED TO REPLACE* loopback subnet
   192.168.44.0/24            # *STATIC NO NEED TO REPLACE* ROH subnet
   192.168.45.64              # *STATIC NO NEED TO REPLACE* srv4 ip address
+  192.168.45.1               # *STATIC NO NEED TO REPLACE* vnet-example IP4v gateway
   192.168.46.65              # *STATIC NO NEED TO REPLACE* srv5 ip address
-  192.168.46.1               # *STATIC NO NEED TO REPLACE* vnet-customer gateway
+  192.168.46.1               # *STATIC NO NEED TO REPLACE* vnet-customer IPv4 gateway
   192.168.110.               # *STATIC NO NEED TO REPLACE* k8s subnet
   65007                      # *STATIC NO NEED TO REPLACE* Iris AS number bgp peer, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  1151                       # Iris 1nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  1152                       # Iris 2nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  45.38.161.192/28           # public IPv4 subnet
+  1151                       # Iris 1nd peer VLAN ID, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  1152                       # Iris 2nd peer VLAN ID, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  45.38.161.192/28           # Public IPv4 subnet
+  45.38.161.193              # Public Loopback IPv4 of SoftGate2
   45.38.161.201              # second usable ip address in load-balancer subnet
   45.38.161.202              # third usable ip address in load-balancer subnet
   45.38.161.210/30           # isp1-ipv4-example bgp peer local ip
   45.38.161.209/30           # isp1-ipv4-example bgp peer remote ip
   45.38.161.214/30           # isp2-ipv4-customer bgp peer local ip
   45.38.161.213/30           # isp2-ipv4-customer bgp peer remote ip
-  45.38.161.199/32           # customer v-net nat ip
+  45.38.161.196/30           # public ipv4 NAT subnet
+  45.38.161.195.32           # customer v-net nat ip
   2607:f358:11:ffcf::/64     # public IPv6 subnet
+  2607:f358:11:ffcf::1       # vnet-example IP6v gateway
   2607:f358:11:ffc0::1f/127  # isp1-ipv4-example bgp peer local ip
   2607:f358:11:ffc0::1e/127  # isp1-ipv4-example bgp peer remote ip
   s15-pre-configured         # LINKS
@@ -37,6 +41,7 @@
   s15-nat                    # LINKS 
   s15-acl                    # LINKS
   s15-k8s                    # LINKS
+  s15-topology               # LINKS
 
 .. _s15-k8s:
 
