@@ -9,9 +9,12 @@ The credentials for the sandbox have been provided to you by email in response t
 
 This environment includes:
 
-* :ref:`"**Netris Controller**"<netris_controller_def>`: A cloud-hosted Netris controller, loaded with examples.
-* :ref:`"**Switching fabric**"<netris_sw_agent>`: Two spine switches and four leaf switches, all Netris-operated.
-* :ref:`"**SoftGates**"<netris_sg_agent>`: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
+.. |Netris Controller| replace:: **Netris Controller** 
+* :ref:`|Netris Controller|<netris_controller_def>`: A cloud-hosted Netris controller, loaded with examples.
+.. |Switching fabric| replace:: **Switching fabric**
+* :ref:`|Switching fabric|<netris_sw_agent>`: Two spine switches and four leaf switches, all Netris-operated.
+.. |SoftGates| replace:: **SoftGates**
+* :ref:`|SoftGates|<netris_sg_agent>`: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
 * **Linux servers**: Five Linux servers, with root access where you can run any applications for your tests.
 * **Kubernetes cluster**: A 3 node Kubernetes cluster, user integratable with Netris controller, feel free to deploy any applications for your tests.
 * **ISP**: Internet upstream with IRIS ISP, providing the sandbox Internet connectivity with real-world routable public IP addresses.
