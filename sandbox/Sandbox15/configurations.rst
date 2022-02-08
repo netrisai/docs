@@ -35,6 +35,8 @@ The result should look similar to the output below, indicating that the communic
 
 If you are interested in learning how to create a V-Net service yourself, please refer to the step-by-step instructions found in the :ref:`"V-Net (Ethernet/Vlan/VXlan)"<s15-v-net>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
 
+More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-NET"<v-net_def>` page.
+
 E-BGP (Exterior Border Gateway Protocol) Example
 ================================================
 
@@ -43,6 +45,8 @@ Navigate to **Net → E-BGP**. Here, aside from the necessary system generated I
 You may examine the particular session configurations of the E-BGP connections by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of either the "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" connections. You may also expand the **Advanced** section located toward the bottom of the **Edit** window to able to access the more advanced settings available while configuring an E-BGP session.
 
 If you are interested in learning how to create an additional E-BGP session with **IRIS ISP2** in order to make the sandbox upstream connections fault tolerant yourself, please refer to the step-by-step instructions found in the :ref:`"E-BGP (Exterior Border Gateway Protocol)"<s15-e-bgp>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
+
+More details about E-BGP (Exterior Border Gateway Protocol) can be found on the the :ref:`"BGP"<bgp_def>` page.
 
 NAT (Network Address Translation) Example
 =========================================
@@ -62,6 +66,8 @@ You will see replies in the form of "**64 bytes from 1.1.1.1: icmp_seq=1 ttl=62 
 
 If you are interested in learning how to create a NAT rule yourself, please refer to the step-by-step instructions found in the :ref:`"NAT (Network Address Translation)"<s15-nat>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
 
+More details about NAT (Network Address Translation) can be found on the :ref:`"NAT"<nat_def>` page.
+
 ACL (Access Control List) Example
 =================================
 Navigate to **Services → ACL** and you will find an ACL services named "**V-Net Example to WAN**" set up as an example for you. This particular ACL ensures that the connectivity between the the private "**192.168.45.0/24 (EXAMPLE)**" subnet and the Internet is permitted through all protocols and ports, even in a scenario where the the "**ACL Default Policy**" for the "**US/NYC**" site configured under **Net → Sites** in our Sandbox is changed from **Permit** to **Deny**. 
@@ -69,3 +75,5 @@ Navigate to **Services → ACL** and you will find an ACL services named "**V-Ne
 You can examine the particular settings of this ACL policy by selecting **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the "**V-Net Example to WAN**" ACL policy.
 
 By utilizing ACLs, you can impose granular controls and implement policies that would permit or deny particular connections of any complexity. If you are interested in learning how to create ACL policies yourself, please refer to the step-by-step instructions found in the :ref:`"ACL (Access Control List)"<s15-acl>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
+
+More details about ACL (Access Control List) can be found on the :ref:`"ACL"<acl_def>` page.

@@ -4,7 +4,7 @@
 Learn by Creating Services
 **************************
 
-Following these short exercises we will be able to demonstrate how the :ref:`Netris Controller<netris_controller_def>`, in conjunction with the  :ref:`Netris Agents<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision desired services within a matter of minutes.
+Following these short exercises we will be able to demonstrate how the :ref:`Netris Controller<netris_controller_def>`, in conjunction with the :ref:`Netris Agents<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision desired services within a matter of minutes.
 
 
 .. _s15-v-net:
@@ -40,6 +40,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   
 After just a few seconds, once fully provisioned, you will start seeing successful ping replies, similar in form to "**64 bytes from 192.168.46.1: icmp_seq=1 ttl=64 time=1.66 ms**", to the ping that was previously started in the terminal window, indicating that now the gateway address is reachable from host **srv05-nyc**. 
 
+More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-NET"<v-net_def>` page.
 
 .. _s15-e-bgp:
 
@@ -76,6 +77,7 @@ Allow up to 1 minute for both sides of the BGP sessions to come up and then the 
 
 We are presented with the summary of the BGP sessions terminated on **SoftGate2**. You can also click on each BGP neighbor name to further see the "**Advertised routes**" and "**Routes**" received to/from that BGP neighbor.
 
+More details about E-BGP (Exterior Border Gateway Protocol) can be found on the the :ref:`"BGP"<bgp_def>` page.
 
 .. _s15-nat:
 
@@ -111,6 +113,8 @@ Let's configure a source NAT so our Customer subnet **192.168.46.0/24** which is
   12. Click **Add**
 
 Soon you will start seeing replies similar in form to "**64 bytes from 1.1.1.1: icmp_seq=1 ttl=62 time=1.23 ms**" to the ping previously started in the terminal window, indicating that now the Internet is reachable from **srv05-nyc**.
+
+More details about NAT (Network Address Translation) can be found on the :ref:`"NAT"<nat_def>` page.
 
 .. _s15-acl:
 
@@ -154,3 +158,5 @@ Now that the **Default ACL Policy** is set to **Deny**, we need to configure an 
 * Back in the terminal window again:
 
 Once the Netris software has finished syncing the new ACL policy with all the member devices, you can see that replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again.
+
+

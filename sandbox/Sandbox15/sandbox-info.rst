@@ -11,7 +11,7 @@ This environment includes:
 
 
 * :ref:`Netris Controller<netris_controller_def>`: A cloud-hosted Netris controller, loaded with examples.
-* :ref:`Switching fabric|<netris_sw_agent>`: Two spine switches and four leaf switches, all Netris-operated.
+* :ref:`Switching fabric<netris_sw_agent>`: Two spine switches and four leaf switches, all Netris-operated.
 * :ref:`SoftGates<netris_sg_agent>`: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
 * **Linux servers**: Five Linux servers, with root access where you can run any applications for your tests.
 * **Kubernetes cluster**: A 3 node Kubernetes cluster, user integratable with Netris controller, feel free to deploy any applications for your tests.

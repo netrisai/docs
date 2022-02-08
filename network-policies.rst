@@ -1,6 +1,8 @@
 .. meta::
     :description: Netris Network Policies & Protocol Configuration
 
+.. _bgp_def:
+
 #########
 Basic BGP
 #########
@@ -170,6 +172,8 @@ Screenshot: This Shows that my back route is actually applied on leaf1 and spine
     :class: with-shadow
 
 --------------------------
+
+.. _nat_def:
 
 ###
 NAT
