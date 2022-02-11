@@ -95,7 +95,7 @@ Update ONIE to the supported version.
 
 .. code-block:: shell-session
 
-  onie-self-update https://repo.netris.ai/repo/onie-updater-x86_64-mlnx_x86-r0
+  onie-self-update http://downloads.netris.ai/onie-updater-x86_64-mlnx_x86-r0
 
 3. NOS Install
 
@@ -117,7 +117,7 @@ Install Ubuntu-SwitchDev from the Netris custom image:
 
 .. code-block:: shell-session
 
-  onie-nos-install https://repo.netris.ai/repo/netris-ubuntu-18.04.1.bin
+  onie-nos-install http://downloads.netris.ai/netris-ubuntu-18.04.1.bin
 
 Default username/password
  
@@ -189,7 +189,7 @@ Install EdgeCore SONiC image from the Netris repository:
 
 .. code-block:: shell-session
 
-  onie-nos-install https://repo.netris.ai/repo/Edgecore-SONiC_20211125_074752_ec202012_227.bin
+  onie-nos-install http://downloads.netris.ai/Edgecore-SONiC_20211125_074752_ec202012_227.bin
 
 Default username/password
  
