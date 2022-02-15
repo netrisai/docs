@@ -30,7 +30,7 @@ Regular Manifest Method
 .. code-block:: shell-session
 
   kubectl -nnetris-operator create secret generic netris-creds \
-  --from-literal=host='**your-netris-controller-ip**' \
+  --from-literal=host='http://**your-netris-controller-ip-or-host**' \
   --from-literal=login='**your-netris-admin-username**' --from-literal=password='**your-netris-admin-password**'
 
 3. Inspect the pod logs and make sure the operator is connected to Netris Controller:

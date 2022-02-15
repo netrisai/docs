@@ -56,7 +56,7 @@ Intro
 =====
 This sandbox environment provides an existing Kubernetes cluster that has been deployed via `Kubespray <https://github.com/kubernetes-sigs/kubespray>`_. For this scenario, we will be using the `external LB <https://github.com/kubernetes-sigs/kubespray/blob/master/docs/ha-mode.md>`_ option in Kubespray. A dedicated Netris L4LB service has been created in each sandbox to access the k8s apiservers from users and non-master nodes sides.
 
-.. image:: /images/sandbox-l4lb-kubeapi.png
+.. image:: /images/sandbox3-l4lb-kubeapi.png
     :align: center
 
 To access the built-in Kubernetes cluster, put "Kubeconfig" file which you received by the introductory email into your ``~/.kube/config`` or set "KUBECONFIG" environment variable ``export KUBECONFIG=~/Downloads/config`` on your local machine. After that try to connect to the k8s cluster:
@@ -89,7 +89,7 @@ The first step to integrate the Netris Controller with the Kubernetes API is to 
 .. code-block:: shell-session
 
   kubectl -nnetris-operator create secret generic netris-creds \
-  --from-literal=host='https://sandbox14.netris.ai/' \
+  --from-literal=host='https://sandbox14.netris.ai' \
   --from-literal=login='demo' --from-literal=password='Your Demo user pass'
 
 3. Inspect the pod logs and make sure the operator is connected to Netris Controller:
@@ -157,7 +157,7 @@ Now we can see that the service type changed to LoadBalancer, and "EXTERNAL-IP" 
 
 Going into the Netris Controller web interface, navigate to **Services / L4 Load Balancer**, and you may see L4LBs provisioning in real-time. If you do not see the provisioning process it is likely because it already completed. Look for the service with the name **"podinfo-xxxxxxxx"**
 
-.. image:: /images/sandbox-podinfo-prov.png
+.. image:: /images/sandbox3-podinfo-prov.png
     :align: center
 
 After provisioning has finished, let’s one more time look at service in k8s:
@@ -205,7 +205,7 @@ As seen, "PodInfo" developers decided to expose 9898 port for HTTP, let’s swit
 
 Wait a few seconds, you can see the provisioning process on the controller:
 
-.. image:: /images/sandbox-podinfo-ready.png
+.. image:: /images/sandbox3-podinfo-ready.png
     :align: center
 
 Curl again, without specifying a port:
@@ -327,7 +327,7 @@ You will see the servers’ hostname in curl output:
 
 You can also inspect the L4LB in the Netris Controller web interface:
 
-.. image:: /images/sandbox-l4lbs.png
+.. image:: /images/sandbox3-l4lbs.png
     :align: center
 
 VNet Custom Resource
@@ -345,7 +345,7 @@ Let’s create our VNet manifest:
   metadata:
    name: vnet-customer
   spec:
-   ownerTenant: Admin
+   ownerTenant: Demo
    guestTenants: []
    sites:
      - name: US/NYC
@@ -371,8 +371,8 @@ As you can see, provisioning for our new VNet has started:
 
 .. code-block:: shell-session
 
-  NAME            STATE    GATEWAYS          SITES    OWNER   STATUS         AGE
-  vnet-customer   active   192.168.46.1/24   US/NYC   Admin   Provisioning   7s
+  NAME            STATE    GATEWAYS          SITES    OWNER   STATUS   AGE
+  vnet-customer   active   192.168.46.1/24   US/NYC   Demo    Active   10s
 
 After provisioning has completed, the L4LB’s checks should work for both backend servers, and incoming requests should be balanced between them. 
 
@@ -440,13 +440,13 @@ Create a yaml file:
     name: isp2-customer
   spec:
     site: US/NYC
-    softgate: SoftGate2
+    hardware: SoftGate2
     neighborAs: 65007
     transport:
-      name: swp14@sw02-nyc
+      name: swp16@sw02-nyc
       vlanId: 1142
-    localIP: 50.117.59.126/30
-    remoteIP: 50.117.59.125/30
+    localIP: 45.38.161.174/30
+    remoteIP: 45.38.161.173/30
     description: Example BGP to ISP2
     prefixListOutbound:
       - permit 45.38.161.176/28 le 32
@@ -469,7 +469,7 @@ Allow up to 1 minute for both sides of the BGP sessions to come up:
 .. code-block:: shell-session
 
   NAME            STATE     BGP STATE   PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled                            65007         45.38.161.174/30  45.38.161.173/30  15s
+  isp2-customer   enabled               Link Up      65007         45.38.161.174/30   45.38.161.173/30   15s
 
 Then check the state again:
 
@@ -481,8 +481,8 @@ The output is similar to this:
 
 .. code-block:: shell-session
 
-  NAME            STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled   bgp: Established; prefix: 30; time: 00:00:51   UP           65007         45.38.161.174/30  45.38.161.173/30  2m3s
+  NAME            STATE     BGP STATE                                       PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
+  isp2-customer   enabled   bgp: Established; prefix: 160; time: 00:01:27   Link Up      65007         45.38.161.174/30   45.38.161.173/30   2m3s
 
 Feel free to use the import annotation for this BGP if you created it from the controller web interface previously.
 
@@ -560,11 +560,11 @@ Here are our freshly created BGPs, one for each k8s node:
 
 .. code-block:: shell-session
 
-  NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:06:18   UP           65007         45.38.161.174/30  45.38.161.173/30   7m59s
-  sandbox14-srv06-nyc-192.168.110.66   enabled                                                               4200070000    192.168.110.1/24   192.168.110.66/24   26s
-  sandbox14-srv07-nyc-192.168.110.67   enabled                                                               4200070001    192.168.110.1/24   192.168.110.67/24   26s
-  sandbox14-srv08-nyc-192.168.110.68   enabled                                                               4200070002    192.168.110.1/24   192.168.110.68/24   26s  
+  NAME                                 STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
+  isp2-customer                        enabled   bgp: Established; prefix: 160; time: 00:06:18  Link Up      65007         45.38.161.174/30   45.38.161.173/30    7m59s
+  sandbox14-srv06-nyc-192.168.110.66   enabled                                                               4230000000    192.168.110.1/24   192.168.110.66/24   26s
+  sandbox14-srv07-nyc-192.168.110.67   enabled                                                               4230000001    192.168.110.1/24   192.168.110.67/24   26s
+  sandbox14-srv08-nyc-192.168.110.68   enabled                                                               4230000002    192.168.110.1/24   192.168.110.68/24   26s  
 
 
 You might notice that peering neighbor AS is different from Calico’s default 64512.  The is because the Netris Operator is setting a particular AS number for each node.
@@ -579,11 +579,11 @@ As seen our BGP peers are established:
 
 .. code-block:: shell-session
 
-  NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:07:48   UP           65007         45.38.161.174/30  45.38.161.173/30   8m41s
-  sandbox14-srv06-nyc-192.168.110.66   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070000    192.168.110.1/24   192.168.110.66/24   68s
-  sandbox14-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4200070001    192.168.110.1/24   192.168.110.67/24   68s
-  sandbox14-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070002    192.168.110.1/24   192.168.110.68/24   68s
+  NAME                                 STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
+  isp2-customer                        enabled   bgp: Established; prefix: 160; time: 00:07:48  Link Up      65007         45.38.161.174/30   45.38.161.173/30    8m41s
+  sandbox14-srv06-nyc-192.168.110.66   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4230000000    192.168.110.1/24   192.168.110.66/24   68s
+  sandbox14-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4230000001    192.168.110.1/24   192.168.110.67/24   68s
+  sandbox14-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4230000002    192.168.110.1/24   192.168.110.68/24   68s
 
 Now let’s check if ``nodeToNodeMeshEnabled`` is still enabled:
 

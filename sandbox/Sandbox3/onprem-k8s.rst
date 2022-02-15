@@ -79,7 +79,7 @@ The first step to integrate the Netris Controller with the Kubernetes API is to 
 .. code-block:: shell-session
 
   kubectl -nnetris-operator create secret generic netris-creds \
-  --from-literal=host='https://sandbox3.netris.ai/' \
+  --from-literal=host='https://sandbox3.netris.ai' \
   --from-literal=login='demo' --from-literal=password='Your Demo user pass'
 
 3. Inspect the pod logs and make sure the operator is connected to Netris Controller:
