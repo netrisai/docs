@@ -413,7 +413,7 @@ BTW, if you already created "vnet-customer" VNet as stated in the :ref:`"Learn b
    annotations:
      resource.k8s.netris.ai/import: "true"
   spec:
-   ownerTenant: Admin
+   ownerTenant: Demo
    guestTenants: []
    sites:
      - name: US/NYC
