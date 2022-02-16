@@ -448,6 +448,8 @@ Create a yaml file:
     localIP: 45.38.161.214/30
     remoteIP: 45.38.161.213/30
     description: Example BGP to ISP2
+    prefixListInbound:
+      - permit 0.0.0.0/0
     prefixListOutbound:
       - permit 45.38.161.192/28 le 32
   EOF
