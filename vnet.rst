@@ -1,6 +1,8 @@
 .. meta::
     :description: V-Net
 
+.. _v-net_def:    
+
 #####
 V-Net
 #####

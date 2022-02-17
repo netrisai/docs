@@ -1,6 +1,8 @@
 .. meta::
     :description: Netris Architecture
 
+.. _netris_architecture:
+
 ###################
 Netris Architecture
 ###################
@@ -11,6 +13,8 @@ A Netris system is composed of 4 elements:
 * Netris Switch Agent
 * Netris SoftGate
 * Customer Application Servers
+
+.. _netris_controller_def:
 
 Netris Controller
 =================
@@ -25,9 +29,13 @@ Diagram: High level Netris architecture
 * **Multiple sites** Netris is designed to operate multiple sites with just a single controller with HA.
 * **What if the controller is unreachable.** Netris operated switches/routers can tolerate the unreachability of the Netris Controller. Changes and stats collection will be unavailable during the controller unavailability window; however, switches/routers core operations will not be affected.
 
+.. _netris_sw_agent:
+
 Netris Switch Agent
 ===================
 Netris Switch Agent is software running in the user space of the network operating system (NOS) of the switch and is responsible for automatically generating the particular switch configuration according to service requirements and policies defined in the Netris Controller. Netris Switch Agent uses an encrypted GRPC protocol for secure communication with the Netris Controller accessible through a local management network or over the Internet. 
+
+.. _netris_sg_agent:
 
 Netris SoftGate
 ===============
