@@ -24,6 +24,7 @@ Topology diagram
 .. image:: /images/sandbox_topology.png
     :align: center
     :alt: Sandbox Topology
+    :target: /images/sandbox_topology.png
 
 
 
