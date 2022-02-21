@@ -2,7 +2,7 @@
     :description: Kubernetes Integration
   
 ########################
-Kubenernetes Integration
+Kubernetes Integration
 ########################
 Netris integrates with Kube API to provide on-demand load balancer and other Kubernetes specific networking features. Netris-Kubernetes integration is designed to complement Kubernetes CNI networking and provide a cloud-like user experience to local Kubernetes clusters.  
 
