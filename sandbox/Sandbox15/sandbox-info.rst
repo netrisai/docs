@@ -103,12 +103,30 @@ Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Net → IPA
 
 .. code-block:: shell-session
 
-  MANAGMENT subnet:       10.254.45.0/24 
-  LOOPBACK subnet:        10.254.46.0/24
-  ROH Subnet:             192.168.44.0/24
-  EXAMPLE subnet:         192.168.45.0/24
-  CUSTOMER subnet:        192.168.46.0/24
-  K8s subnet:             192.168.110.0/24
-  PUBLIC IPv4 subnet:     45.38.161.192/28
-  PUBLIC IPv6 subnet:     2607:f358:11:ffcf::/64
+  * MANAGEMENT Allocation:      10.254.45.0/24 
+    * MANAGEMENT Subnet:        10.254.45.0/24
+
+  * LOOPBACK Allocation:        10.254.46.0/24
+    * LOOPBACK Subnet:          10.254.46.0/24
+
+  * PUBLIC IPv4 Allocation:     45.38.161.192/28
+    * PUBLIC LOOPBACK subnet:   45.38.161.192/30
+    * NAT Subnet:               45.38.161.196/30
+    * L3 LOAD BALANCER subnet:  45.38.161.200/30
+    * L4 LOAD BALANCER subnet:  45.38.161.204/30
+
+  * ROH Allocation:             192.168.44.0/24
+    * ROH Subnet:               192.168.44.0/24
+
+  * EXAMPLE Allocation:         192.168.45.0/24
+    * EXAMPLE Subnet:           192.168.45.0/24
+
+  * CUSTOMER Allocation:        192.168.46.0/24
+    * CUSTOMER Subnet:          192.168.46.0/24
+
+  * K8s Allocation:             192.168.110.0/24
+    * K8s Subnet:               192.168.110.0/24
+  
+  * EXAMPLE IPv6 Allocation:    2607:f358:11:ffcf::/64
+    * EXAMPLE IPv6 Subnet:      2607:f358:11:ffcf::/64
   
