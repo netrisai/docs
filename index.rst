@@ -54,6 +54,7 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
    :caption: Integrations
 
    kubernetes-integration
+   terraform-integration
 
 .. toctree::
    :maxdepth: 4
