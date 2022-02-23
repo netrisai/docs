@@ -8,7 +8,7 @@ Terraform: Netris provider
 Use Netris provider to interact with the many resources supported by Netris. You must configure the provider with the proper credentials before you can use it.
 To learn the basics of Terraform using this provider, follow the hands-on `get started tutorials <https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/aws-get-started>`_ on HashiCorp’s Learn platform.
 
-.. image:: images/diagrams_terraform.jpg
+.. image:: images/diagrams_terraform.png
    :align: center
 
 When you make changes in the Terraform files and apply them, Terraform automatically decides which part of your configuration is already deployed into Netris controller and what should be added or removed.
