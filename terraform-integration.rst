@@ -1,16 +1,17 @@
 .. meta::
-    :description: Getting started with Terraform
+    :description: Terraform: Netris provider
   
-##############################
-Getting started with Terraform
-##############################
+##########################
+Terraform: Netris provider
+##########################
 
-With Terraform you can easily provision your network resources in Netris and manage them using configuration files. They store the infrastructure description in HashiCorp Configuration Language (HCL).
+Use Netris provider to interact with the many resources supported by Netris. You must configure the provider with the proper credentials before you can use it.
+To learn the basics of Terraform using this provider, follow the hands-on `get started tutorials <https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/aws-get-started>`_ on HashiCorp’s Learn platform.
 
 .. image:: images/diagrams_terraform.jpg
    :align: center
 
-When you make changes in the configuration files and apply them, Terraform automatically decides which part of your configuration is already deployed and what should be added or removed.
+When you make changes in the Terraform files and apply them, Terraform automatically decides which part of your configuration is already deployed into Netris controller and what should be added or removed.
 
 
 .. contents:: To create your first Terraform configuration:
