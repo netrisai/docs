@@ -24,7 +24,7 @@
   45.38.161.193              # PUBLIC Loopback IPv4 of SoftGate2
   45.38.161.196/30           # PUBLIC IPv4 NAT Subnet
   45.38.161.196/32           # CUSTOMER V-NET SNAT IP
-  45.38.161.200/30           # L3LB Subnet
+  45.38.161.200/30           # L3LB Subnet & IP
   45.38.161.204/30           # L4LB Subnet
   45.38.161.205              # Second usable ip address in load-balancer subnet
   45.38.161.206              # Third usable ip address in load-balancer subnet
@@ -36,14 +36,15 @@
   2607:f358:11:ffcf::1       # vnet-example IP6v gateway
   2607:f358:11:ffc0::1f/127  # isp1-ipv6-example BGP peer local IPv6
   2607:f358:11:ffc0::1e/127  # isp1-ipv6-example BGP peer remote IPv6
-  s15-pre-configured         # LINKS
-  s15-learn-by-doing         # LINKS
-  s15-e-bgp                  # LINKS
-  s15-v-net                  # LINKS
-  s15-nat                    # LINKS 
-  s15-acl                    # LINKS
-  s15-k8s                    # LINKS
-  s15-topology               # LINKS
+  s15-pre-configured         # LINK
+  s15-learn-by-doing         # LINK
+  s15-e-bgp                  # LINK
+  s15-v-net                  # LINK
+  s15-nat                    # LINK 
+  s15-acl                    # LINK
+  s15-l3lb                   # LINK 
+  s15-k8s                    # LINK
+  s15-topology               # LINK
 
 .. _s15-k8s:
 

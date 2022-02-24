@@ -3,11 +3,11 @@
 ********************************
 Provided Example Configurations
 ********************************
-Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
+Once you log into the Netris Controller, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
-Once you log into the Netris GUI by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigating to **Services → V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. 
+After logging into the Netris Controller by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigating to **Services → V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. 
 
 If you examine the particular service settings ( select **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**vnet-example**" service), you will find that the services is configured on second port of "**switch 21 (swp2(swp2)@sw21-nyc)**". 
 

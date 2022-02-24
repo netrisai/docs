@@ -28,7 +28,7 @@ Topology diagram
 
 
 
-Netris GUI
+Netris Controller
 ==========
 http://sandbox15.netris.ai
 
@@ -123,10 +123,10 @@ Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Net → IPA
   |___ K8s Subnet:               192.168.110.0/24
 
   | PUBLIC IPv4 Allocation:      45.38.161.192/28
-  |___ PUBLIC LOOPBACK subnet:   45.38.161.192/30
+  |___ PUBLIC LOOPBACK Subnet:   45.38.161.192/30
   |___ NAT Subnet:               45.38.161.196/30
-  |___ L3 LOAD BALANCER subnet:  45.38.161.200/30
-  |___ L4 LOAD BALANCER subnet:  45.38.161.204/30
+  |___ L3 LOAD BALANCER Subnet:  45.38.161.200/30
+  |___ L4 LOAD BALANCER Subnet:  45.38.161.204/30
 
   | EXAMPLE IPv6 Allocation:     2607:f358:11:ffcf::/64
   |___ EXAMPLE IPv6 Subnet:      2607:f358:11:ffcf::/64
