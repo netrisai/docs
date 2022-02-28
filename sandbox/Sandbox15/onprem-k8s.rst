@@ -11,9 +11,9 @@
   10.254.45.0/24             # *STATIC NO NEED TO REPLACE* MANAGEMENT Allocation/Subnet
   10.254.46.0/24             # *STATIC NO NEED TO REPLACE* LOOPBACK Allocation/Subnet
   192.168.44.0/24            # *STATIC NO NEED TO REPLACE* ROH Allocation/Subnet
-  192.168.45.64              # *STATIC NO NEED TO REPLACE* SRV4 IP Address
+  192.168.45.64              # *STATIC NO NEED TO REPLACE* srv04 IP Address
   192.168.45.1               # *STATIC NO NEED TO REPLACE* vnet-example IP4v GW
-  192.168.46.65              # *STATIC NO NEED TO REPLACE* SRV5 IP Address
+  192.168.46.65              # *STATIC NO NEED TO REPLACE* srv05 IP Address
   192.168.46.1               # *STATIC NO NEED TO REPLACE* vnet-customer IPv4 GW
   192.168.110.0/24           # *STATIC NO NEED TO REPLACE* k8s subnet
   65007                      # *STATIC NO NEED TO REPLACE* Iris AS number bgp peer, *SHORT QUERY BE CAREFUL WHILE REPLACING*
