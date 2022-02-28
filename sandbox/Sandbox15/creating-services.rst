@@ -165,7 +165,7 @@ More details about ACL (Access Control List) can be found on the :ref:`"ACL"<acl
 
 L3LB (Anycast L3 load balancer)
 ===============================
-In this exercise we will quickly configure an Anycast IP address in the Netris Controller for two of our :ref:`"ROH (Routing on the Host)"<roh_def>` servers (**srv01-nyc** & **srv02-nyc**) which both have a running Web Server configured to display a simple HTML webpage and observe ECMP load balancing it in action.
+In this exercise we will quickly configure an Anycast IP address in the Netris Controller for two of our :ref:`"ROH (Routing on the Host)"<roh_def>` servers (**srv01-nyc** & **srv02-nyc**) which both have a running Web Server configured to display a simple HTML webpage and observe **ECMP** load balancing it in action.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
@@ -181,23 +181,26 @@ In this exercise we will quickly configure an Anycast IP address in the Netris C
 * In a new web browser window/tab:
 
   1. Type in the Anycast IP address we just configured (**45.38.161.200**) into the browser's address bar or simply visit `http://45.38.161.200/ <http://45.38.161.200/>`_.
-  2. Based on the unique hash calculated from factors such as source IP/Protocol/Port, the L3LB will use ECMP to load balance the traffic from your browser to either **srv01-nyc** or **srv02-nyc**, with the text on the website indicating where the traffic ended up.
+  2. Based on the unique hash calculated from factors such as source IP/Protocol/Port, the **L3LB** will use **ECMP** to load balance the traffic from your browser to either **srv01-nyc** or **srv02-nyc**, with the text on the website indicating where the traffic ended up.
 
   * It should be noted that the TCP session will continue to exist between the given end-user and server pair for the lifetime of the session. In our case we have landed on **srv01-nyc**.
 
 .. image:: /images/l3lb_srv01.png
     :align: center
 
-In order to trigger the L3 load balancer to switch directing the traffic towards the other backend server (in this case from **srv01-nyc** to **srv02-nyc**, which based on the unique hash in your situation could be the other way around), we can simulate the unavailability of backend server we ended up on by putting it in **MAintenance** mode.
+In order to trigger the L3 load balancer to switch directing the traffic towards the other backend server (in this case from **srv01-nyc** to **srv02-nyc**, which based on the unique hash in your situation could be the other way around), we can simulate the unavailability of backend server we ended up on by putting it in **Maintenance** mode.
 
 * Back in the Netris Controller, navigate to **Services → Load Balancer**.
 
-  1. Expand the LB Vip that was created when we defined the **Anycast** IP address earlier by clicking on the **>** to the left of "**45.38.161.200 (name_45.38.161.200)**".
+
+  1. Expand the **LB Vip** that was created when we defined the **Anycast** IP address earlier by clicking on the **>** to the left of "**45.38.161.200 (name_45.38.161.200)**".
   2. Click **Action v** to the right of the server you originally ended up on (in this case **srv01-nyc**).
   3. Click **Maintenance on**.
   4. Click **Maintenance** one more time in the pop-up window.
 
+
 * Back in the browser window/tab directed at the **45.38.161.200** Anycast IP address.
+
 
   1. After just a few seconds, we can observe that now the website indicates that the traffic is routed to **srv02-nyc** (once more, your case could be opposite for you based on the original hash).
 
