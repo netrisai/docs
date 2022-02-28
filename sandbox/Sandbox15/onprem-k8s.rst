@@ -1,47 +1,50 @@
 ..
-  ##################
-  values for replace
-  ##################
+  #################
+  Sandbox Variables
+  #################
   ------------------------------------------------------------------------------------------------
   values                     | description
   ------------------------------------------------------------------------------------------------ 
-  Sandbox15                  # sandbox name (case sensitive)
-  sandbox15                  # sandbox name
-  50.117.27.86               # hypervisor public ip
-  300                        # *STATIC NO NEED TO REPLACE* ssh NAT port *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  10.254.45.0/24             # *STATIC NO NEED TO REPLACE* management subnet
-  10.254.46.0/24             # *STATIC NO NEED TO REPLACE* loopback subnet
-  192.168.44.0/24            # *STATIC NO NEED TO REPLACE* ROH subnet
-  192.168.45.64              # *STATIC NO NEED TO REPLACE* srv4 ip address
-  192.168.45.1               # *STATIC NO NEED TO REPLACE* vnet-example IP4v gateway
-  192.168.46.65              # *STATIC NO NEED TO REPLACE* srv5 ip address
-  192.168.46.1               # *STATIC NO NEED TO REPLACE* vnet-customer IPv4 gateway
-  192.168.110.               # *STATIC NO NEED TO REPLACE* k8s subnet
+  Sandbox15                  # Sandbox name Uppercase(case sensitive)
+  sandbox15                  # Sandbox name Lowercase
+  50.117.27.86               # Hypervisor PUBLIC IP
+  10.254.45.0/24             # *STATIC NO NEED TO REPLACE* MANAGEMENT Allocation/Subnet
+  10.254.46.0/24             # *STATIC NO NEED TO REPLACE* LOOPBACK Allocation/Subnet
+  192.168.44.0/24            # *STATIC NO NEED TO REPLACE* ROH Allocation/Subnet
+  192.168.45.64              # *STATIC NO NEED TO REPLACE* srv04 IP Address
+  192.168.45.1               # *STATIC NO NEED TO REPLACE* vnet-example IP4v GW
+  192.168.46.65              # *STATIC NO NEED TO REPLACE* srv05 IP Address
+  192.168.46.1               # *STATIC NO NEED TO REPLACE* vnet-customer IPv4 GW
+  192.168.110.0/24           # *STATIC NO NEED TO REPLACE* k8s subnet
   65007                      # *STATIC NO NEED TO REPLACE* Iris AS number bgp peer, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  1151                       # Iris 1nd peer VLAN ID, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  1151                       # Iris 1st peer VLAN ID, *SHORT QUERY BE CAREFUL WHILE REPLACING*
   1152                       # Iris 2nd peer VLAN ID, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  45.38.161.192/28           # Public IPv4 subnet
-  45.38.161.193              # Public Loopback IPv4 of SoftGate2
-  45.38.161.201              # second usable ip address in load-balancer subnet
-  45.38.161.202              # third usable ip address in load-balancer subnet
-  45.38.161.210/30           # isp1-ipv4-example bgp peer local ip
-  45.38.161.209/30           # isp1-ipv4-example bgp peer remote ip
-  45.38.161.214/30           # isp2-ipv4-customer bgp peer local ip
-  45.38.161.213/30           # isp2-ipv4-customer bgp peer remote ip
-  45.38.161.196/30           # public IPv4 NAT subnet
-  45.38.161.196/32           # customer v-net nat ip
+  45.38.161.192/28           # PUBLIC IPv4 Allocation
+  45.38.161.192/30           # PUBLIC LOOPBACK subnet
+  45.38.161.193              # PUBLIC Loopback IPv4 of SoftGate2
+  45.38.161.196/30           # PUBLIC IPv4 NAT Subnet
+  45.38.161.196/32           # CUSTOMER V-NET SNAT IP
+  45.38.161.200/30           # L3LB Subnet & IP
+  45.38.161.204/30           # L4LB Subnet
+  45.38.161.205              # Second usable ip address in load-balancer subnet
+  45.38.161.206              # Third usable ip address in load-balancer subnet
+  45.38.161.210/30           # isp1-ipv4-example BGP peer local IPv4
+  45.38.161.209/30           # isp1-ipv4-example BGP peer remote IPv4
+  45.38.161.214/30           # isp2-ipv4-customer BGP peer local IPv4
+  45.38.161.213/30           # isp2-ipv4-customer BGP peer remote IPv4
   2607:f358:11:ffcf::/64     # public IPv6 subnet
   2607:f358:11:ffcf::1       # vnet-example IP6v gateway
-  2607:f358:11:ffc0::1f/127  # isp1-ipv4-example bgp peer local ip
-  2607:f358:11:ffc0::1e/127  # isp1-ipv4-example bgp peer remote ip
-  s15-pre-configured         # LINKS
-  s15-learn-by-doing         # LINKS
-  s15-e-bgp                  # LINKS
-  s15-v-net                  # LINKS
-  s15-nat                    # LINKS 
-  s15-acl                    # LINKS
-  s15-k8s                    # LINKS
-  s15-topology               # LINKS
+  2607:f358:11:ffc0::1f/127  # isp1-ipv6-example BGP peer local IPv6
+  2607:f358:11:ffc0::1e/127  # isp1-ipv6-example BGP peer remote IPv6
+  s15-pre-configured         # LINK
+  s15-learn-by-doing         # LINK
+  s15-e-bgp                  # LINK
+  s15-v-net                  # LINK
+  s15-nat                    # LINK 
+  s15-acl                    # LINK
+  s15-l3lb                   # LINK 
+  s15-k8s                    # LINK
+  s15-topology               # LINK
 
 .. _s15-k8s:
 
@@ -171,13 +174,13 @@ You can see that "EXTERNAL-IP" has been injected into Kubernetes:
 .. code-block:: shell-session
   
   NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)                         AGE
-  podinfo      LoadBalancer   172.21.65.106   45.38.161.201   9898:32584/TCP,9999:30365/TCP   9m17s
+  podinfo      LoadBalancer   172.21.65.106   45.38.161.205   9898:32584/TCP,9999:30365/TCP   9m17s
 
 Let’s try to curl it (remember to replace the IP below with the IP that has been assigned in the previous command):
 
 .. code-block:: shell-session
 
-  curl 45.38.161.201:9898
+  curl 45.38.161.205:9898
 
 The application is now accessible directly on the internet:
 
@@ -212,7 +215,7 @@ Curl again, without specifying a port:
 
 .. code-block:: shell-session
 
-  curl 45.38.161.201
+  curl 45.38.161.205
 
 The output is similar to this:
 
@@ -261,8 +264,8 @@ As you can see, there are two L4LB resources, one for each podinfo’s service p
 .. code-block:: shell-session
 
   NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS   AGE
-  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-80     active   45.38.161.201   80/TCP     US/NYC   Admin    OK       33m
-  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9999   active   45.38.161.201   9999/TCP   US/NYC   Admin    OK       32m
+  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-80     active   45.38.161.205   80/TCP     US/NYC   Admin    OK       33m
+  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9999   active   45.38.161.205   9999/TCP   US/NYC   Admin    OK       32m
 
 You can’t edit/delete them, because Netris Operator will recreate them based on what was originally deployed in the service specifications.
 
@@ -309,15 +312,15 @@ As you can see, provisioning started:
 .. code-block:: shell-session
 
   NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS         AGE
-  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-80     active   45.38.161.201   80/TCP     US/NYC   Admin    OK             2m17s
-  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-9999   active   45.38.161.201   9999/TCP   US/NYC   Admin    OK             3m47s
-  srv04-5-nyc-http                                                active   45.38.161.202   80/TCP     US/NYC   Admin    Provisioning   6s
+  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-80     active   45.38.161.205   80/TCP     US/NYC   Admin    OK             2m17s
+  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-9999   active   45.38.161.205   9999/TCP   US/NYC   Admin    OK             3m47s
+  srv04-5-nyc-http                                                active   45.38.161.206   80/TCP     US/NYC   Admin    Provisioning   6s
 
 When provisioning is finished, you should be able to connect to L4LB. Try to curl, using the L4LB frontend address displayed in the above command output:
 
 .. code-block:: shell-session
 
-  curl 45.38.161.202
+  curl 45.38.161.206
 
 You will see the servers’ hostname in curl output:
 
@@ -380,20 +383,20 @@ Let’s curl several times to see that:
 
 .. code-block:: shell-session
 
-  curl 45.38.161.202
+  curl 45.38.161.206
 
 As we can see, the curl request shows the behavior of "round robin" between the backends:
 
 .. code-block:: shell-session
 
   SRV05-NYC
-  curl 45.38.161.202
+  curl 45.38.161.206
   
   SRV05-NYC
-  curl 45.38.161.202
+  curl 45.38.161.206
   
   SRV05-NYC
-  curl 45.38.161.202
+  curl 45.38.161.206
   
   SRV04-NYC
 
@@ -617,7 +620,7 @@ Finally, let’s check if our earlier deployed "Podinfo" application is still wo
 
 .. code-block:: shell-session
 
-  curl 45.38.161.201
+  curl 45.38.161.205
 
 Yes, it works:
 

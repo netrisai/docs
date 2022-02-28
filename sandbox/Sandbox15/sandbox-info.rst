@@ -24,10 +24,11 @@ Topology diagram
 .. image:: /images/sandbox_topology.png
     :align: center
     :alt: Sandbox Topology
+    :target: ../../_images/sandbox_topology.png
 
 
 
-Netris GUI
+Netris Controller
 ==========
 http://sandbox15.netris.ai
 
@@ -66,35 +67,35 @@ ISP settings:
 .. code-block:: shell-session
  
  (pre-configured examples)
- Name:                    iris-isp1-ipv4-example
- BGP Router:              Softage1
- Switch Port:             swp16@sw01-nyc
- Neighbor AS:             65007
- VLAN ID:                 1151
- Local Address:           45.38.161.210/30
- Remote Address:          45.38.161.209/30
- Prefix List Inbound:     permit 0.0.0.0/0
- Prefix List Outbound:    permit 45.38.161.192/28 le 32
+ Name:                           iris-isp1-ipv4-example
+ BGP Router:                     Softage1
+ Switch Port:                    swp16@sw01-nyc
+ Neighbor AS:                    65007
+ VLAN ID:                        1151
+ Local Address:                  45.38.161.210/30
+ Remote Address:                 45.38.161.209/30
+ Prefix List Inbound:            permit 0.0.0.0/0
+ Prefix List Outbound:           permit 45.38.161.192/28 le 32
  
- Name:                    iris-isp1-ipv6-example
- BGP Router:              Softage1
- Switch Port:             swp16@sw01-nyc
- Neighbor AS:             65007
- VLAN ID:                 1151
- Local Address:           2607:f358:11:ffc0::1f/127
- Remote Address:          2607:f358:11:ffc0::1e/127
- Prefix List Inbound:     permit ::/0
- Prefix List Outbound:    permit 2607:f358:11:ffcf::/64
+ Name:                           iris-isp1-ipv6-example
+ BGP Router:                     Softage1
+ Switch Port:                    swp16@sw01-nyc
+ Neighbor AS:                    65007
+ VLAN ID:                        1151
+ Local Address:                  2607:f358:11:ffc0::1f/127
+ Remote Address:                 2607:f358:11:ffc0::1e/127
+ Prefix List Inbound:            permit ::/0
+ Prefix List Outbound:           permit 2607:f358:11:ffcf::/64
  
  (configurable by you)
- BGP Router:              Softage2
- Switch Port:             swp16@sw02-nyc
- Neighbor AS:             65007
- VLAN ID:                 1152
- Local Address:           45.38.161.214/30
- Remote Address:          45.38.161.213/30 
- Prefix List Inbound:     permit 0.0.0.0/0
- Prefix List Outbound:    permit 45.38.161.192/28 le 32
+ BGP Router:                     Softage2
+ Switch Port:                    swp16@sw02-nyc
+ Neighbor AS:                    65007
+ VLAN ID:                        1152
+ Local Address:                  45.38.161.214/30
+ Remote Address:                 45.38.161.213/30 
+ Prefix List Inbound:            permit 0.0.0.0/0
+ Prefix List Outbound:           permit 45.38.161.192/28 le 32
 
 
 Networks Used 
@@ -103,12 +104,30 @@ Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Net → IPA
 
 .. code-block:: shell-session
 
-  MANAGMENT subnet:       10.254.45.0/24 
-  LOOPBACK subnet:        10.254.46.0/24
-  ROH Subnet:             192.168.44.0/24
-  EXAMPLE subnet:         192.168.45.0/24
-  CUSTOMER subnet:        192.168.46.0/24
-  K8s subnet:             192.168.110.0/24
-  PUBLIC IPv4 subnet:     45.38.161.192/28
-  PUBLIC IPv6 subnet:     2607:f358:11:ffcf::/64
+  | MANAGEMENT Allocation:       10.254.45.0/24 
+  |___ MANAGEMENT Subnet:        10.254.45.0/24
+
+  | LOOPBACK Allocation:         10.254.46.0/24
+  |___ LOOPBACK Subnet:          10.254.46.0/24
+
+  | ROH Allocation:              192.168.44.0/24
+  |___ ROH Subnet:               192.168.44.0/24
+
+  | EXAMPLE Allocation:          192.168.45.0/24
+  |___ EXAMPLE Subnet:           192.168.45.0/24
+
+  | CUSTOMER Allocation:         192.168.46.0/24
+  |___ CUSTOMER Subnet:          192.168.46.0/24
+
+  | K8s Allocation:              192.168.110.0/24
+  |___ K8s Subnet:               192.168.110.0/24
+
+  | PUBLIC IPv4 Allocation:      45.38.161.192/28
+  |___ PUBLIC LOOPBACK Subnet:   45.38.161.192/30
+  |___ NAT Subnet:               45.38.161.196/30
+  |___ L3 LOAD BALANCER Subnet:  45.38.161.200/30
+  |___ L4 LOAD BALANCER Subnet:  45.38.161.204/30
+
+  | EXAMPLE IPv6 Allocation:     2607:f358:11:ffcf::/64
+  |___ EXAMPLE IPv6 Subnet:      2607:f358:11:ffcf::/64
   
