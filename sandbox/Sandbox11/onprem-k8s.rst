@@ -5,9 +5,9 @@
   ------------------------------------------------------------------------------------------------
   values                     | description
   ------------------------------------------------------------------------------------------------ 
-  Sandbox15                  # Sandbox name Uppercase(case sensitive)
-  sandbox15                  # Sandbox name Lowercase
-  50.117.27.86               # Hypervisor PUBLIC IP
+  Sandbox11                  # Sandbox name Uppercase(case sensitive)
+  sandbox11                  # Sandbox name Lowercase
+  50.117.27.82               # Hypervisor PUBLIC IP
   10.254.45.0/24             # *STATIC NO NEED TO REPLACE* MANAGEMENT Allocation/Subnet
   10.254.46.0/24             # *STATIC NO NEED TO REPLACE* LOOPBACK Allocation/Subnet
   192.168.44.0/24            # *STATIC NO NEED TO REPLACE* ROH Allocation/Subnet
@@ -16,37 +16,37 @@
   192.168.46.65              # *STATIC NO NEED TO REPLACE* srv05 IP Address
   192.168.46.1               # *STATIC NO NEED TO REPLACE* vnet-customer IPv4 GW
   192.168.110.0/24           # *STATIC NO NEED TO REPLACE* k8s subnet
-  65007                      # *STATIC NO NEED TO REPLACE* Iris AS number bgp peer
-  1151                       # Iris 1st peer VLAN ID, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  1152                       # Iris 2nd peer VLAN ID, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  45.38.161.192/28           # PUBLIC IPv4 Allocation
-  45.38.161.192/30           # PUBLIC LOOPBACK subnet
-  45.38.161.193              # PUBLIC Loopback IPv4 of SoftGate2
-  45.38.161.196/30           # PUBLIC IPv4 NAT Subnet
-  45.38.161.196/32           # CUSTOMER V-NET SNAT IP
-  45.38.161.200/30           # L3LB Subnet & IP
-  45.38.161.204/30           # L4LB Subnet
-  45.38.161.205              # Second usable ip address in load-balancer subnet
-  45.38.161.206              # Third usable ip address in load-balancer subnet
-  45.38.161.210/30           # isp1-ipv4-example BGP peer local IPv4
-  45.38.161.209/30           # isp1-ipv4-example BGP peer remote IPv4
-  45.38.161.214/30           # isp2-ipv4-customer BGP peer local IPv4
-  45.38.161.213/30           # isp2-ipv4-customer BGP peer remote IPv4
-  2607:f358:11:ffcf::/64     # public IPv6 subnet
-  2607:f358:11:ffcf::1       # vnet-example IP6v gateway
-  2607:f358:11:ffc0::1f/127  # isp1-ipv6-example BGP peer local IPv6
-  2607:f358:11:ffc0::1e/127  # isp1-ipv6-example BGP peer remote IPv6
-  s15-pre-configured         # LINK
-  s15-learn-by-doing         # LINK
-  s15-e-bgp                  # LINK
-  s15-v-net                  # LINK
-  s15-nat                    # LINK 
-  s15-acl                    # LINK
-  s15-l3lb                   # LINK 
-  s15-k8s                    # LINK
-  s15-topology               # LINK
+  65007                      # *STATIC NO NEED TO REPLACE* Iris AS number bgp peer 
+  1111                       # Iris 1st peer VLAN ID, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  1112                       # Iris 2nd peer VLAN ID, *SHORT QUERY BE CAREFUL WHILE REPLACING*
+  45.38.161.96/28            # PUBLIC IPv4 Allocation
+  45.38.161.96/30            # PUBLIC LOOPBACK subnet
+  45.38.161.97               # PUBLIC Loopback IPv4 of SoftGate2
+  45.38.161.100/30           # PUBLIC IPv4 NAT Subnet
+  45.38.161.100/32           # CUSTOMER V-NET SNAT IP
+  45.38.161.104/30           # L3LB Subnet & IP
+  45.38.161.108/30           # L4LB Subnet
+  45.38.161.109              # Second usable ip address in load-balancer subnet
+  45.38.161.110              # Third usable ip address in load-balancer subnet
+  45.38.161.114/30           # isp1-ipv4-example BGP peer local IPv4
+  45.38.161.113/30           # isp1-ipv4-example BGP peer remote IPv4
+  45.38.161.118/30           # isp2-ipv4-customer BGP peer local IPv4
+  45.38.161.117/30           # isp2-ipv4-customer BGP peer remote IPv4
+  2607:f358:11:ffcb::/64     # public IPv6 subnet
+  2607:f358:11:ffcb::1       # vnet-example IP6v gateway
+  2607:f358:11:ffc0::17/127  # isp1-ipv6-example BGP peer local IPv6
+  2607:f358:11:ffc0::16/127  # isp1-ipv6-example BGP peer remote IPv6
+  s11-pre-configured         # LINK
+  s11-learn-by-doing         # LINK
+  s11-e-bgp                  # LINK
+  s11-v-net                  # LINK
+  s11-nat                    # LINK 
+  s11-acl                    # LINK
+  s11-l3lb                   # LINK 
+  s11-k8s                    # LINK
+  s11-topology               # LINK
 
-.. _s15-k8s:
+.. _s11-k8s:
 
 **************************************************************
 Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps
@@ -72,7 +72,7 @@ The output below means you’ve successfully connected to the sandbox cluster:
 
 .. code-block:: shell-session
 
-    Kubernetes master is running at https://api.k8s-sandbox15.netris.ai:6443
+    Kubernetes master is running at https://api.k8s-sandbox11.netris.ai:6443
 
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
@@ -92,7 +92,7 @@ The first step to integrate the Netris Controller with the Kubernetes API is to 
 .. code-block:: shell-session
 
   kubectl -nnetris-operator create secret generic netris-creds \
-  --from-literal=host='https://sandbox15.netris.ai' \
+  --from-literal=host='https://sandbox11.netris.ai' \
   --from-literal=login='demo' --from-literal=password='Your Demo user pass'
 
 3. Inspect the pod logs and make sure the operator is connected to Netris Controller:
@@ -174,13 +174,13 @@ You can see that "EXTERNAL-IP" has been injected into Kubernetes:
 .. code-block:: shell-session
   
   NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)                         AGE
-  podinfo      LoadBalancer   172.21.65.106   45.38.161.205   9898:32584/TCP,9999:30365/TCP   9m17s
+  podinfo      LoadBalancer   172.21.65.106   45.38.161.109   9898:32584/TCP,9999:30365/TCP   9m17s
 
 Let’s try to curl it (remember to replace the IP below with the IP that has been assigned in the previous command):
 
 .. code-block:: shell-session
 
-  curl 45.38.161.205:9898
+  curl 45.38.161.109:9898
 
 The application is now accessible directly on the internet:
 
@@ -215,7 +215,7 @@ Curl again, without specifying a port:
 
 .. code-block:: shell-session
 
-  curl 45.38.161.205
+  curl 45.38.161.109
 
 The output is similar to this:
 
@@ -264,8 +264,8 @@ As you can see, there are two L4LB resources, one for each podinfo’s service p
 .. code-block:: shell-session
 
   NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS   AGE
-  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-80     active   45.38.161.205   80/TCP     US/NYC   Admin    OK       33m
-  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9999   active   45.38.161.205   9999/TCP   US/NYC   Admin    OK       32m
+  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-80     active   45.38.161.109   80/TCP     US/NYC   Admin    OK       33m
+  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9999   active   45.38.161.109   9999/TCP   US/NYC   Admin    OK       32m
 
 You can’t edit/delete them, because Netris Operator will recreate them based on what was originally deployed in the service specifications.
 
@@ -312,15 +312,15 @@ As you can see, provisioning started:
 .. code-block:: shell-session
 
   NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS         AGE
-  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-80     active   45.38.161.205   80/TCP     US/NYC   Admin    OK             2m17s
-  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-9999   active   45.38.161.205   9999/TCP   US/NYC   Admin    OK             3m47s
-  srv04-5-nyc-http                                                active   45.38.161.206   80/TCP     US/NYC   Admin    Provisioning   6s
+  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-80     active   45.38.161.109   80/TCP     US/NYC   Admin    OK             2m17s
+  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-9999   active   45.38.161.109   9999/TCP   US/NYC   Admin    OK             3m47s
+  srv04-5-nyc-http                                                active   45.38.161.110   80/TCP     US/NYC   Admin    Provisioning   6s
 
 When provisioning is finished, you should be able to connect to L4LB. Try to curl, using the L4LB frontend address displayed in the above command output:
 
 .. code-block:: shell-session
 
-  curl 45.38.161.206
+  curl 45.38.161.110
 
 You will see the servers’ hostname in curl output:
 
@@ -336,7 +336,7 @@ You can also inspect the L4LB in the Netris Controller web interface:
 VNet Custom Resource
 --------------------
 
-If you see the same as shown in the previous screenshot, it means you didn’t create "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s15-v-net>` manual. If so, let’s create it from Kubernetes using the VNet custom resource.
+If you see the same as shown in the previous screenshot, it means you didn’t create "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s11-v-net>` manual. If so, let’s create it from Kubernetes using the VNet custom resource.
 
 Let’s create our VNet manifest:
 
@@ -383,28 +383,28 @@ Let’s curl several times to see that:
 
 .. code-block:: shell-session
 
-  curl 45.38.161.206
+  curl 45.38.161.110
 
 As we can see, the curl request shows the behavior of "round robin" between the backends:
 
 .. code-block:: shell-session
 
   SRV05-NYC
-  curl 45.38.161.206
+  curl 45.38.161.110
   
   SRV05-NYC
-  curl 45.38.161.206
+  curl 45.38.161.110
   
   SRV05-NYC
-  curl 45.38.161.206
+  curl 45.38.161.110
   
   SRV04-NYC
 
 .. note::
 
-  *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the "Default ACL Policy" is set to "Deny". To remedy this, configure an ACL entry that will allow the srv05-nyc server to communicate external addresses. For step-by-step instruction review the* :ref:`ACL documentation<s15-acl>`.
+  *If intermittently the result of the curl command is "Connection timed out", it is likely that the request went to the srv05-nyc backend, and the "Default ACL Policy" is set to "Deny". To remedy this, configure an ACL entry that will allow the srv05-nyc server to communicate external addresses. For step-by-step instruction review the* :ref:`ACL documentation<s11-acl>`.
 
-BTW, if you already created "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s15-v-net>`, you may import that to k8s, by adding ``resource.k8s.netris.ai/import: "true"`` annotation in VNet manifest, the manifest should look like this:
+BTW, if you already created "vnet-customer" VNet as stated in the :ref:`"Learn by Creating Services"<s11-v-net>`, you may import that to k8s, by adding ``resource.k8s.netris.ai/import: "true"`` annotation in VNet manifest, the manifest should look like this:
 
 .. code-block:: shell-session
 
@@ -431,7 +431,7 @@ After applying the manifest containing "import" annotation, the VNet, created fr
 BGP Custom Resource
 -------------------
 
-Let’s create a new BGP peer, that is listed in the :ref:`"Learn by Creating Services"<s15-e-bgp>`.
+Let’s create a new BGP peer, that is listed in the :ref:`"Learn by Creating Services"<s11-e-bgp>`.
 Create a yaml file:
 
 .. code-block:: shell-session
@@ -447,14 +447,14 @@ Create a yaml file:
     neighborAs: 65007
     transport:
       name: swp16@sw02-nyc
-      vlanId: 1152
-    localIP: 45.38.161.214/30
-    remoteIP: 45.38.161.213/30
+      vlanId: 1112
+    localIP: 45.38.161.118/30
+    remoteIP: 45.38.161.117/30
     description: Example BGP to ISP2
     prefixListInbound:
       - permit 0.0.0.0/0
     prefixListOutbound:
-      - permit 45.38.161.192/28 le 32
+      - permit 45.38.161.96/28 le 32
   EOF
 
 And apply it:
@@ -474,7 +474,7 @@ Allow up to 1 minute for both sides of the BGP sessions to come up:
 .. code-block:: shell-session
 
   NAME            STATE     BGP STATE   PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled               Link Up      65007         45.38.161.214/30   45.38.161.213/30   15s
+  isp2-customer   enabled               Link Up      65007         45.38.161.118/30   45.38.161.117/30   15s
 
 Then check the state again:
 
@@ -487,7 +487,7 @@ The output is similar to this:
 .. code-block:: shell-session
 
   NAME            STATE     BGP STATE                                       PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled   bgp: Established; prefix: 160; time: 00:01:27   Link Up      65007         45.38.161.214/30   45.38.161.213/30   2m3s
+  isp2-customer   enabled   bgp: Established; prefix: 160; time: 00:01:27   Link Up      65007         45.38.161.118/30   45.38.161.117/30   2m3s
 
 Feel free to use the import annotation for this BGP if you created it from the controller web interface previously.
 
@@ -566,10 +566,10 @@ Here are our freshly created BGPs, one for each k8s node:
 .. code-block:: shell-session
 
   NAME                                 STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                        enabled   bgp: Established; prefix: 160; time: 00:06:18  Link Up      65007         45.38.161.214/30   45.38.161.213/30    7m59s
-  sandbox15-srv06-nyc-192.168.110.66   enabled                                                               4230000000    192.168.110.1/24   192.168.110.66/24   26s
-  sandbox15-srv07-nyc-192.168.110.67   enabled                                                               4230000001    192.168.110.1/24   192.168.110.67/24   26s
-  sandbox15-srv08-nyc-192.168.110.68   enabled                                                               4230000002    192.168.110.1/24   192.168.110.68/24   26s  
+  isp2-customer                        enabled   bgp: Established; prefix: 160; time: 00:06:18  Link Up      65007         45.38.161.118/30   45.38.161.117/30    7m59s
+  sandbox11-srv06-nyc-192.168.110.66   enabled                                                               4230000000    192.168.110.1/24   192.168.110.66/24   26s
+  sandbox11-srv07-nyc-192.168.110.67   enabled                                                               4230000001    192.168.110.1/24   192.168.110.67/24   26s
+  sandbox11-srv08-nyc-192.168.110.68   enabled                                                               4230000002    192.168.110.1/24   192.168.110.68/24   26s  
 
 
 You might notice that peering neighbor AS is different from Calico’s default 64512.  The is because the Netris Operator is setting a particular AS number for each node.
@@ -585,10 +585,10 @@ As seen our BGP peers are established:
 .. code-block:: shell-session
 
   NAME                                 STATE     BGP STATE                                       PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                        enabled   bgp: Established; prefix: 160; time: 00:07:48   Link Up      65007         45.38.161.214/30   45.38.161.213/30    8m41s
-  sandbox15-srv06-nyc-192.168.110.66   enabled   bgp: Established; prefix: 5; time: 00:00:44     N/A          4230000000    192.168.110.1/24   192.168.110.66/24   68s
-  sandbox15-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19     N/A          4230000001    192.168.110.1/24   192.168.110.67/24   68s
-  sandbox15-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44     N/A          4230000002    192.168.110.1/24   192.168.110.68/24   68s
+  isp2-customer                        enabled   bgp: Established; prefix: 160; time: 00:07:48   Link Up      65007         45.38.161.118/30   45.38.161.117/30    8m41s
+  sandbox11-srv06-nyc-192.168.110.66   enabled   bgp: Established; prefix: 5; time: 00:00:44     N/A          4230000000    192.168.110.1/24   192.168.110.66/24   68s
+  sandbox11-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19     N/A          4230000001    192.168.110.1/24   192.168.110.67/24   68s
+  sandbox11-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44     N/A          4230000002    192.168.110.1/24   192.168.110.68/24   68s
 
 Now let’s check if ``nodeToNodeMeshEnabled`` is still enabled:
 
@@ -620,7 +620,7 @@ Finally, let’s check if our earlier deployed "Podinfo" application is still wo
 
 .. code-block:: shell-session
 
-  curl 45.38.161.205
+  curl 45.38.161.109
 
 Yes, it works:
 
