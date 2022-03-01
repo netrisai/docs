@@ -36,9 +36,9 @@ Linux servers
 =============
 
 Example pre-configured Netris services:
- * **srv01-nyc**, **srv02-nyc**, **srv03-nyc** & **Netris Controller** - are consuming a :ref:`"ROH (Routing on the Host)"<roh_def>` Netris example service, see **Services → ROH.**
+ * **srv01-nyc**, **srv02-nyc**, **srv03-nyc** & **Netris Controller** - are consuming :ref:`"ROH (Routing on the Host)"<roh_def>` Netris example service, see **Services → ROH.**
  * **srv01-nyc**, **srv02-nyc** - are behind :ref:`"Anycast L3 load balancer"<l3lb_def>`, see **Services → Load Balancer**.
- * **srv04-nyc**, **srv05-nyc** - are consuming a :ref:`"V-NET (routed VXLAN)"<v-net_def>` Netris service, see **Services → V-NET**.
+ * **srv04-nyc**, **srv05-nyc** - are consuming :ref:`"V-NET (routed VXLAN)"<v-net_def>` Netris service, see **Services → V-NET**.
 
 
 Accessing Linux servers:
@@ -60,7 +60,7 @@ This sandbox provides an up and running 3 node Kubernetes cluster. You can integ
 Upstream ISP
 ============
 This sandbox provides an upstream ISP service with real-world Internet routing configured through :ref:`"BGP"<bgp_def>`. 
-There are two pre-configured examples under **NET → E-BGP** , one using IPv4 and the other using IPv6, which are advertising the public IP subnets to the upstream ISP IRIS.
+There are two pre-configured examples under **NET → E-BGP** , one using IPv4 and the other using IPv6, which are advertising the public IP subnets belonging to the sandbox to the upstream ISP IRIS.
 
 ISP settings:
 
