@@ -9,15 +9,15 @@ V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
 After logging into the Netris Controller by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigating to **Services → V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. 
 
-If you examine the particular service settings ( select **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**vnet-example**" service), you will find that the services is configured on second port of "**switch 21 (swp2(swp2)@sw21-nyc)**". 
+If you examine the particular service settings ( select **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**vnet-example**" service), you will find that the services is configured on the second port of **switch 21** named "**swp2(swp2)@sw21-nyc (Admin)**". 
 
 The V-Net servicers is also configured with both an IPv4 and IPv6 gateway, **192.168.45.1** (from the "**192.168.45.0/24 (EXAMPLE)**" subnet) and **2607:f358:11:ffcf::1** (from the "**2607:f358:11:ffcf::/64 (EXAMPLE IPv6)**" subnet) respectively. 
 
 You may also verify that the service is working properly from within the GUI: (*\*Fields not specified should remain unchanged and retain default values*)
 
 1. Navigate to **Net → Looking Glass**.
-2. Select switch **sw21-nyc(10.254.46.21)** (the switch the "**vnet-example**" service is configured on) from the **Select device** drop-down menu.
-3. Select **Ping** from the **Command** drop-down menu.
+2. Select switch "**sw21-nyc(10.254.46.21)**" (the switch the "**vnet-example**" service is configured on) from the **Select device** drop-down menu.
+3. Select "**Ping**" from the **Command** drop-down menu.
 4. Type ``192.168.45.64`` (the IP address of **srv04-nyc** connected to **swp2@sw21-nyc**) in the field labeled **IPv4 address**.
 5. Click **Submit**.
 
@@ -44,7 +44,7 @@ More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-
 E-BGP (Exterior Border Gateway Protocol) Example
 ================================================
 
-Navigate to **Net → E-BGP**. Here, aside from the necessary system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( **SoftGate1 & SoftGate2** ) and the rest of the switching fabric, you will also find two E-BGP sessions named "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" configured as example with **IRIS ISP1**. This ensures communication between the internal network with the Internet. 
+Navigate to **Net → E-BGP**. Here, aside from the necessary system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( **SoftGate1** & **SoftGate2** ) and the rest of the switching fabric, you will also find two E-BGP sessions named "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" configured as example with **IRIS ISP1**. This ensures communication between the internal network with the Internet. 
 
 You may examine the particular session configurations of the E-BGP connections by selecting **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of either the "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" connections. You may also expand the **Advanced** section located toward the bottom of the **Edit** window to able to access the more advanced settings available while configuring an E-BGP session.
 
