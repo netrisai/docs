@@ -25,7 +25,7 @@ Topology diagram
 
 Netris GUI
 ==========
-http://sandbox5.netris.ai
+https://sandbox5.netris.ai
 
 Linux servers
 =============
