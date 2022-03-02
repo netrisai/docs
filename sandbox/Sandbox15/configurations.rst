@@ -61,9 +61,10 @@ You can examine the particular settings of the NAT rule by clicking **Edit** fro
 You may also observe the functioning NAT rule in action by pinging any public IP address (e.g. **1.1.1.1**)  from the **srv04-nyc** server.
 
 * In a terminal window:
-  #. SSH to server **srv04-nyc**: ``ssh demo@50.117.27.86 -p 30064``.
-  #. Enter the password provided in the introductory e-mail.
-  #. Start a ping session: ``ping4 1.1.1.1``
+
+  1. SSH to server **srv04-nyc**: ``ssh demo@50.117.27.86 -p 30064``.
+  2. Enter the password provided in the introductory e-mail.
+  3. Start a ping session: ``ping4 1.1.1.1``
 
 You will see replies in the form of "**64 bytes from 1.1.1.1: icmp_seq=1 ttl=62 time=1.10 ms**" indicating proper communication with the **1.1.1.1** public IP address.
 
