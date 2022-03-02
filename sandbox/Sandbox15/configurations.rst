@@ -62,7 +62,7 @@ You may also observe the functioning NAT rule in action by pinging any public IP
 
 * In a terminal window:
 
-  1. SSH to srv04-nyc: ``ssh demo@50.117.27.86 -p 30064``.
+  1. SSH to server **srv04-nyc**: ``ssh demo@50.117.27.86 -p 30064``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session: ``ping4 1.1.1.1``
 

@@ -87,7 +87,7 @@ Now that we have both internal and external facing services, we can aim for our 
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc: ``ssh demo@50.117.27.86 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@50.117.27.86 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session towards any public IP address (e.g. ``ping 1.1.1.1``).
   4. Keep the ping running as an indicator for when the service starts to work.
@@ -124,7 +124,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc: ``ssh demo@50.117.27.86 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@50.117.27.86 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session: ``ping 1.1.1.1``.
   4. If the previous steps were followed, you should see successful ping replies in the form of "**64 bytes from 1.1.1.1: icmp_seq=55 ttl=62 time=1.23 ms**".
