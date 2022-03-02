@@ -32,9 +32,9 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   6. From the **IPv4 Gateway** drop-down menu, select the "**192.168.46.0/24(CUSTOMER)**" subnet.
   7. The first available IP address "**192.168.46.1**" is automatically selected in the second drop-down menu of the list of IP addresses. This matches the results of the ``ip route ls`` command output on **srv05-nyc** we observed earlier.
   8. From the **Add Port** drop-down menu put a check mark next to switch port "**swp2(swp2 | srv05-nyc)@sw22-nyc (Demo)**", which we can see is the the port where **srv05-nyc** is wired into when we reference the :ref:`"Sandbox Topology diagram"<s11-topology>`.
-   
+
     *  The drop-down menu only contains this single switch port as it is the only port that has been assigned to the **Demo** tenant.
-  
+
   9. Check the **Untag** check-box and click the **Add** button.
   10. Click the **Add** button at the bottom right of the "**Add new V-Net**" window and the service will start provisioning.
 
@@ -69,7 +69,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   12. In the **Prefix List Inbound** field, type in ``permit 0.0.0.0/0`` 
   13. In the **Prefix List Outbound** field, type in ``permit 45.38.161.192/28 le 32``
   14. And finally click **Add**
-  
+
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net → E-BGP** page as well as on **Telescope → Dashboard** pages will turn green, indication a successfully established BGP session. We can glean further insight into the BGP session details by navigating to **Net → Looking Glass**.
 
   1. Select "**SoftGate2(45.38.161.193)**" (the border router where our newly created BGP session is terminated on) from the **Select device** drop-down menu.
@@ -91,7 +91,7 @@ Now that we have both internal and external facing services, we can aim for our 
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session towards any public IP address (e.g. ``ping 1.1.1.1``).
   4. Keep the ping running as an indicator for when the service starts to work.
-  
+
 Let's configure a source NAT so our Customer subnet **192.168.46.0/24**, which is used in the V-Net services called **vnet-customer**, can communicate with the Internet.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
@@ -107,7 +107,7 @@ Let's configure a source NAT so our Customer subnet **192.168.46.0/24**, which i
   9. Toggle the switch from **SNAT to Pool** to **SNAT to IP**.
   10. From the **Select subnet** drop-down menu, select the "**45.38.161.196/30 (NAT)**" subnet. 
   11. From the **Select IP** drop-down menu, select the "**45.38.161.196/32**" IP address.
-  
+
     * This public IP is part of **45.38.161.196/30 (NAT)** subnet which is configured in the **NET → IPAM** section with the purpose of **NAT** and indicated in the SoftGate configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`..
 
   12. Click **Add**
