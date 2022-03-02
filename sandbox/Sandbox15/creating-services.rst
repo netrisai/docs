@@ -195,7 +195,7 @@ In order to trigger the L3 load balancer to switch directing the traffic towards
 
   1. After just a few seconds, we can observe that now the website indicates that the traffic is routed to **srv02-nyc** (once more, your case could be opposite for you based on the original hash).
 
- .. image:: /images/l3lb_srv02.png
+.. image:: /images/l3lb_srv02.png
     :align: center
 
 More details about AL3LB (Anycast L3 load balancer) can be found on the :ref:`"L3 Load Balancer (Anycast LB)"<l3lb_def>` page.
