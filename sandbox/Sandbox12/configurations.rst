@@ -1,17 +1,17 @@
-.. _s15-pre-configured:
+.. _s12-pre-configured:
 
 ********************************
 Provided Example Configurations
 ********************************
-Once you log into the Netris Controller, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
+Once you log into the Netris Controller, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<s12-learn-by-doing>` document.
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
-After logging into the Netris Controller by visiting `https://sandbox15.netris.ai <https://sandbox15.netris.ai>`_ and navigating to **Services → V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. 
+After logging into the Netris Controller by visiting `https://sandbox12.netris.ai <https://sandbox12.netris.ai>`_ and navigating to **Services → V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. 
 
 If you examine the particular service settings ( select **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**vnet-example**" service), you will find that the services is configured on the second port of **switch 21** named "**swp2(swp2)@sw21-nyc (Admin)**". 
 
-The V-Net servicers is also configured with both an IPv4 and IPv6 gateway, **192.168.45.1** (from the "**192.168.45.0/24 (EXAMPLE)**" subnet) and **2607:f358:11:ffcf::1** (from the "**2607:f358:11:ffcf::/64 (EXAMPLE IPv6)**" subnet) respectively. 
+The V-Net servicers is also configured with both an IPv4 and IPv6 gateway, **192.168.45.1** (from the "**192.168.45.0/24 (EXAMPLE)**" subnet) and **2607:f358:11:ffcc::1** (from the "**2607:f358:11:ffcc::/64 (EXAMPLE IPv6)**" subnet) respectively. 
 
 You may also verify that the service is working properly from within the GUI: (*\*Fields not specified should remain unchanged and retain default values*)
 
@@ -37,7 +37,7 @@ The result should look similar to the output below, indicating that the communic
   5 packets transmitted, 5 received, 0% packet loss, time 4092ms
   rtt min/avg/max/mdev = 0.562/0.680/0.745/0.065 ms
 
-If you are interested in learning how to create a V-Net service yourself, please refer to the step-by-step instructions found in the :ref:`"V-Net (Ethernet/Vlan/VXlan)"<s15-v-net>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
+If you are interested in learning how to create a V-Net service yourself, please refer to the step-by-step instructions found in the :ref:`"V-Net (Ethernet/Vlan/VXlan)"<s12-v-net>` section of the :ref:`"Learn by Creating Services"<s12-learn-by-doing>` document.
 
 More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-NET"<v-net_def>` page.
 
@@ -48,7 +48,7 @@ Navigate to **Net → E-BGP**. Here, aside from the necessary system generated I
 
 You may examine the particular session configurations of the E-BGP connections by selecting **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of either the "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" connections. You may also expand the **Advanced** section located toward the bottom of the **Edit** window to able to access the more advanced settings available while configuring an E-BGP session.
 
-If you are interested in learning how to create an additional E-BGP session with **IRIS ISP2** in order to make the sandbox upstream connections fault tolerant yourself, please refer to the step-by-step instructions found in the :ref:`"E-BGP (Exterior Border Gateway Protocol)"<s15-e-bgp>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
+If you are interested in learning how to create an additional E-BGP session with **IRIS ISP2** in order to make the sandbox upstream connections fault tolerant yourself, please refer to the step-by-step instructions found in the :ref:`"E-BGP (Exterior Border Gateway Protocol)"<s12-e-bgp>` section of the :ref:`"Learn by Creating Services"<s12-learn-by-doing>` document.
 
 More details about E-BGP (Exterior Border Gateway Protocol) can be found on the the :ref:`"BGP"<bgp_def>` page.
 
@@ -62,13 +62,13 @@ You may also observe the functioning NAT rule in action by pinging any public IP
 
 * In a terminal window:                                                                                   
                              
-  1. SSH to server **srv04-nyc**: ``ssh demo@50.117.27.86 -p 30064``.
+  1. SSH to server **srv04-nyc**: ``ssh demo@50.117.27.83 -p 30064``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session: ``ping4 1.1.1.1``
 
 You will see replies in the form of "**64 bytes from 1.1.1.1: icmp_seq=1 ttl=62 time=1.10 ms**" indicating proper communication with the **1.1.1.1** public IP address.
 
-If you are interested in learning how to create a NAT rule yourself, please refer to the step-by-step instructions found in the :ref:`"NAT (Network Address Translation)"<s15-nat>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
+If you are interested in learning how to create a NAT rule yourself, please refer to the step-by-step instructions found in the :ref:`"NAT (Network Address Translation)"<s12-nat>` section of the :ref:`"Learn by Creating Services"<s12-learn-by-doing>` document.
 
 More details about NAT (Network Address Translation) can be found on the :ref:`"NAT"<nat_def>` page.
 
@@ -78,6 +78,6 @@ Navigate to **Services → ACL** and you will find an ACL services named "**V-Ne
 
 You can examine the particular settings of this ACL policy by selecting **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**V-Net Example to WAN**" ACL policy.
 
-By utilizing ACLs, you can impose granular controls and implement policies that would permit or deny particular connections of any complexity. If you are interested in learning how to create ACL policies yourself, please refer to the step-by-step instructions found in the :ref:`"ACL (Access Control List)"<s15-acl>` section of the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
+By utilizing ACLs, you can impose granular controls and implement policies that would permit or deny particular connections of any complexity. If you are interested in learning how to create ACL policies yourself, please refer to the step-by-step instructions found in the :ref:`"ACL (Access Control List)"<s12-acl>` section of the :ref:`"Learn by Creating Services"<s12-learn-by-doing>` document.
 
 More details about ACL (Access Control List) can be found on the :ref:`"ACL"<acl_def>` page.
