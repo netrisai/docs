@@ -3,7 +3,7 @@ Welcome to Netris Sandbox
 *************************
 
 Netris Sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
-We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s14-pre-configured>` document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at https://netris.ai/slack 
+We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s12-pre-configured>` document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at https://netris.ai/slack 
 
 The credentials for the sandbox have been provided to you by email in response to your sandbox request.
 
@@ -17,7 +17,7 @@ This environment includes:
 * **Kubernetes cluster**: A 3 node Kubernetes cluster, user integratable with Netris controller, feel free to deploy any applications for your tests.
 * **ISP**: Internet upstream with IRIS ISP, providing the sandbox Internet connectivity with real-world routable public IP addresses.
 
-.. _s14-topology:
+.. _s12-topology:
 Topology diagram
 ================
 
@@ -30,7 +30,7 @@ Topology diagram
 
 Netris Controller
 ==========
-https://sandbox14.netris.ai
+https://sandbox12.netris.ai
 
 Linux servers
 =============
@@ -45,16 +45,16 @@ Accessing Linux servers:
   
 .. code-block:: shell-session  
   
-  srv01-nyc: ssh demo@50.117.27.85 -p 30061
-  srv02-nyc: ssh demo@50.117.27.85 -p 30062
-  srv03-nyc: ssh demo@50.117.27.85 -p 30063
-  srv04-nyc: ssh demo@50.117.27.85 -p 30064
-  srv05-nyc: ssh demo@50.117.27.85 -p 30065
+  srv01-nyc: ssh demo@50.117.27.83 -p 30061
+  srv02-nyc: ssh demo@50.117.27.83 -p 30062
+  srv03-nyc: ssh demo@50.117.27.83 -p 30063
+  srv04-nyc: ssh demo@50.117.27.83 -p 30064
+  srv05-nyc: ssh demo@50.117.27.83 -p 30065
   
 
 Kubernetes cluster
 ==================
-This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing **netris-operator**. Step-by-step instructions are included in the :ref:`"Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps"<s14-k8s>` document.
+This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing **netris-operator**. Step-by-step instructions are included in the :ref:`"Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps"<s12-k8s>` document.
 
 
 Upstream ISP
@@ -71,31 +71,31 @@ ISP settings:
  BGP Router:                     Softage1
  Switch Port:                    swp16@sw01-nyc
  Neighbor AS:                    65007
- VLAN ID:                        1141
- Local Address:                  45.38.161.170/30
- Remote Address:                 45.38.161.169/30
+ VLAN ID:                        1121
+ Local Address:                  45.38.161.122/30
+ Remote Address:                 45.38.161.121/30
  Prefix List Inbound:            permit 0.0.0.0/0
- Prefix List Outbound:           permit 45.38.161.176/28 le 32
+ Prefix List Outbound:           permit 45.38.161.128/28 le 32
  
  Name:                           iris-isp1-ipv6-example
  BGP Router:                     Softage1
  Switch Port:                    swp16@sw01-nyc
  Neighbor AS:                    65007
- VLAN ID:                        1141
- Local Address:                  2607:f358:11:ffc0::1d/127
- Remote Address:                 2607:f358:11:ffc0::1c/127
+ VLAN ID:                        1121
+ Local Address:                  2607:f358:11:ffc0::19/127
+ Remote Address:                 2607:f358:11:ffc0::18/127
  Prefix List Inbound:            permit ::/0
- Prefix List Outbound:           permit 2607:f358:11:ffce::/64
+ Prefix List Outbound:           permit 2607:f358:11:ffcc::/64
  
  (configurable by you)
  BGP Router:                     Softage2
  Switch Port:                    swp16@sw02-nyc
  Neighbor AS:                    65007
- VLAN ID:                        1142
- Local Address:                  45.38.161.174/30
- Remote Address:                 45.38.161.173/30 
+ VLAN ID:                        1122
+ Local Address:                  45.38.161.126/30
+ Remote Address:                 45.38.161.125/30 
  Prefix List Inbound:            permit 0.0.0.0/0
- Prefix List Outbound:           permit 45.38.161.176/28 le 32
+ Prefix List Outbound:           permit 45.38.161.128/28 le 32
 
 
 Networks Used 
@@ -122,12 +122,12 @@ Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Net → IPA
   | K8s Allocation:              192.168.110.0/24
   |___ K8s Subnet:               192.168.110.0/24
 
-  | PUBLIC IPv4 Allocation:      45.38.161.176/28
-  |___ PUBLIC LOOPBACK Subnet:   45.38.161.176/30
-  |___ NAT Subnet:               45.38.161.180/30
-  |___ L3 LOAD BALANCER Subnet:  45.38.161.184/30
-  |___ L4 LOAD BALANCER Subnet:  45.38.161.188/30
+  | PUBLIC IPv4 Allocation:      45.38.161.128/28
+  |___ PUBLIC LOOPBACK Subnet:   45.38.161.128/30
+  |___ NAT Subnet:               45.38.161.132/30
+  |___ L3 LOAD BALANCER Subnet:  45.38.161.136/30
+  |___ L4 LOAD BALANCER Subnet:  45.38.161.140/30
 
-  | EXAMPLE IPv6 Allocation:     2607:f358:11:ffce::/64
-  |___ EXAMPLE IPv6 Subnet:      2607:f358:11:ffce::/64
+  | EXAMPLE IPv6 Allocation:     2607:f358:11:ffcc::/64
+  |___ EXAMPLE IPv6 Subnet:      2607:f358:11:ffcc::/64
   
