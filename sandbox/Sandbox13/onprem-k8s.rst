@@ -25,7 +25,7 @@
   45.38.161.148/30           # PUBLIC IPv4 NAT Subnet
   45.38.161.148/32           # CUSTOMER V-NET SNAT IP
   45.38.161.152/30           # L3LB Subnet
-  45.38.161.152              # L3LB IP
+  45.38.161.152/32           # L3LB IP
   45.38.161.156/30           # L4LB Subnet
   45.38.161.157              # Second usable ip address in load-balancer subnet
   45.38.161.158              # Third usable ip address in load-balancer subnet
