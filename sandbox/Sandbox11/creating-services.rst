@@ -32,13 +32,13 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   6. From the **IPv4 Gateway** drop-down menu, select the "**192.168.46.0/24(CUSTOMER)**" subnet.
   7. The first available IP address "**192.168.46.1**" is automatically selected in the second drop-down menu of the list of IP addresses. This matches the results of the ``ip route ls`` command output on **srv05-nyc** we observed earlier.
   8. From the **Add Port** drop-down menu put a check mark next to switch port "**swp2(swp2 | srv05-nyc)@sw22-nyc (Demo)**", which we can see is the the port where **srv05-nyc** is wired into when we reference the :ref:`"Sandbox Topology diagram"<s11-topology>`.
-   
+
     *  The drop-down menu only contains this single switch port as it is the only port that has been assigned to the **Demo** tenant.
-  
+
   9. Check the **Untag** check-box and click the **Add** button.
   10. Click the **Add** button at the bottom right of the "**Add new V-Net**" window and the service will start provisioning.
 
-After just a few seconds, once fully provisioned, you will start seeing successful ping replies, similar in form to "**64 bytes from 192.168.46.1: icmp_seq=55 ttl=64 time=1.66 ms**", to the ping that was previously started in the terminal window, indicating that now the gateway address is reachable from host **srv05-nyc**. 
+After just a few seconds, once fully provisioned, you will start seeing successful ping replies, similar in form to "**64 bytes from 192.168.46.1: icmp_seq=55 ttl=64 time=1.66 ms**", to the ping that was previously started in the terminal window, indicating that now the gateway address is reachable from host **srv05-nyc**.
 
 More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-NET"<v-net_def>` page.
 
@@ -61,15 +61,15 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
 
     * For the purposes of this exercise, the required switch port can easily be found by typing ``ISP2`` in the Search field.
 
-  7. For the **VLAN ID** field, uncheck the **Untag** check-box and type in ``1152``.
+  7. For the **VLAN ID** field, uncheck the **Untag** check-box and type in ``1112``.
   8. In the **Neighbor AS** field, type in ``65007``.
-  9. In the **Local IP** field, type in ``45.38.161.214``.
-  10. In the **Remote IP** field, type in ``45.38.161.213``.
+  9. In the **Local IP** field, type in ``45.38.161.118``.
+  10. In the **Remote IP** field, type in ``45.38.161.117``.
   11. Expand the **Advanced** section
   12. In the **Prefix List Inbound** field, type in ``permit 0.0.0.0/0`` 
   13. In the **Prefix List Outbound** field, type in ``permit 45.38.161.96/28 le 32``
   14. And finally click **Add**
-  
+
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net → E-BGP** page as well as on **Telescope → Dashboard** pages will turn green, indication a successfully established BGP session. We can glean further insight into the BGP session details by navigating to **Net → Looking Glass**.
 
   1. Select "**SoftGate2(45.38.161.97)**" (the border router where our newly created BGP session is terminated on) from the **Select device** drop-down menu.
@@ -87,11 +87,11 @@ Now that we have both internal and external facing services, we can aim for our 
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc: ``ssh demo@50.117.27.82 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@50.117.27.82 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session towards any public IP address (e.g. ``ping 1.1.1.1``).
   4. Keep the ping running as an indicator for when the service starts to work.
-  
+
 Let's configure a source NAT so our Customer subnet **192.168.46.0/24**, which is used in the V-Net services called **vnet-customer**, can communicate with the Internet.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
@@ -124,7 +124,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a terminal window:
 
-  1. SSH to srv05-nyc: ``ssh demo@50.117.27.82 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@50.117.27.82 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session: ``ping 1.1.1.1``.
   4. If the previous steps were followed, you should see successful ping replies in the form of "**64 bytes from 1.1.1.1: icmp_seq=55 ttl=62 time=1.23 ms**".
@@ -151,7 +151,7 @@ Soon you will notice that there are no new replies to our previously started ``p
   8. Select **Approve** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the newly created "**V-Net Customer to WAN**" ACL.
   9. Click **Approve** one more time in the pop-up window.
 
-Once the Netris software has finished syncing the new ACL policy with all the member devices, we can see in the terminal window that replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again.
+Once the Netris software has finished syncing the new ACL policy with all the member devices, we can see in the terminal window that replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again..
 
 More details about ACL (Access Control List) can be found on the :ref:`"ACL"<acl_def>` page.
 
@@ -195,7 +195,7 @@ In order to trigger the L3 load balancer to switch directing the traffic towards
 
   1. After just a few seconds, we can observe that now the website indicates that the traffic is routed to **srv02-nyc** (once more, your case could be opposite for you based on the original hash).
 
- .. image:: /images/l3lb_srv02.png
+.. image:: /images/l3lb_srv02.png
     :align: center
 
 More details about AL3LB (Anycast L3 load balancer) can be found on the :ref:`"L3 Load Balancer (Anycast LB)"<l3lb_def>` page.
