@@ -139,7 +139,7 @@ To take database snapshot run the following command:
 
   kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysqldump -u $MARIADB_USER -p${MARIADB_PASSWORD} $MARIADB_DATABASE' > db-snapshot-$(date +%Y-%m-%d-%H-%M-%S).sql
 
-After command execution, you can find ``db-snapshot-YYYY-MM-DD-HH-MM-SS.sql`` file in the current directory.
+After command execution, you can find ``db-snapshot-YYYY-MM-DD-HH-MM-SS.sql`` file in the current working directory.
 
 
 Restore
@@ -147,13 +147,15 @@ Restore
 
 In order to restore DB from a snapshot, follow these steps:
 
+*In this example the snapshot file name is db-snapshot.sql and it's located in current working directory*
+
 1. Copy snapshot file to the MariaDB container:
 
 .. code-block:: shell-session
 
   kubectl -n netris-controller cp db-snapshot.sql netris-controller-mariadb-0:/opt/db-snapshot.sql
 
-1. Run the restore command:
+2. Run the restore command:
 
 .. code-block:: shell-session
 
