@@ -58,7 +58,14 @@ A self-signed SSL certificate will be generated from that host name.
 Installation with the Let's Encrypt SSL
 ---------------------------------------
 
-The installation script supports Let's Encrypt SSL generation out-of-box. To instruct the installation script to do that use ``--ctl-ssl-issuer`` argument:
+The installation script supports Let's Encrypt SSL generation out-of-box. To instruct the installation script to do that use ``--ctl-ssl-issuer`` argument.
+
+The argument ``--ctl-ssl-issuer`` is passing ``cert-manager.io/cluster-issuer`` value to the ingress resource of the Netris Controller. The installation script creates 2 resources type of ClusterIssuer: ``selfsigned`` and ``letsencrypt``,
+where ``selfsigned`` is just `Cert-Manager self-signed <https://cert-manager.io/docs/configuration/selfsigned/>`_ SSL and the ``letsencrypt`` is the ACME Issuer with `HTTP01 challenge validation <https://cert-manager.io/docs/configuration/acme/http01/>`_.
+When ``--ctl-ssl-issuer`` isn't set installation script is proceeding with ``selfsigned`` ClusterIssuer.
+
+
+Run the following command to install Netris Controller and use ``letsencrypt`` ClusterIssuer for SSL generation:
 
 .. code-block:: shell-session
 
@@ -71,10 +78,6 @@ The installation script supports Let's Encrypt SSL generation out-of-box. To ins
 
 Installation with the Custom SSL Issuer
 ---------------------------------------
-
-The argument ``--ctl-ssl-issuer`` is passing ``cert-manager.io/cluster-issuer`` value to the ingress resource of the Netris Controller. The installation script creates 2 resources type of ClusterIssuer: ``selfsigned`` and ``letsencrypt``,
-where ``selfsigned`` is just `Cert-Manager self-signed <https://cert-manager.io/docs/configuration/selfsigned/>`_ SSL and the ``letsencrypt`` is the ACME Issuer with `HTTP01 challenge validation <https://cert-manager.io/docs/configuration/acme/http01/>`_.
-When ``--ctl-ssl-issuer`` isn't set installation script is proceeding with ``selfsigned`` ClusterIssuer.
 
 The HTTP01 challenge validation is the simplest way of issuing the Let's Encrypt SSL, but it doesn't work when the host behind the FQDN isn't accessible from the public internet.
 The common approach of validating and completing Let's Encrypt SSL generation for private deployments is `DNS01 challenge validation <https://cert-manager.io/docs/configuration/acme/dns01/>`_.
