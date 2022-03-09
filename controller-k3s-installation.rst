@@ -147,7 +147,7 @@ Restore
 
 In order to restore DB from a snapshot, follow these steps:
 
-*In this example the snapshot file name is db-snapshot.sql and it's located in current working directory*
+*In this example the snapshot file name is db-snapshot.sql and it's located in the current working directory*
 
 1. Copy snapshot file to the MariaDB container:
 
