@@ -40,30 +40,29 @@ The following command will install the Netris Controller on your Linux server:
 
 .. code-block:: shell-session
 
-    curl -sfL https://get.netris.ai | sh -
+  curl -sfL https://get.netris.ai | sh -
 
 Once installed, you will be able to log in to Netris Controller using your host's IP address.
 
 Installation with the specific host name
 ------------------------------------------
 
-In order to set the specific ingress host name to the Netris Controller, use the ``--ctl-hostname`` installation argument
+In order to set the specific ingress host name to the Netris Controller, use the ``--ctl-hostname`` installation argument:
 
 .. code-block:: shell-session
 
-    curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com
+  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com
 
 A self-signed SSL certificate will be generated from that host name.
 
 Installation with the Let's Encrypt SSL
 ---------------------------------------
 
-The installation script supports Let's Encrypt SSL generation out-of-box. To instruct the installation script to do that use ``--ctl-ssl-issuer`` argument
+The installation script supports Let's Encrypt SSL generation out-of-box. To instruct the installation script to do that use ``--ctl-ssl-issuer`` argument:
 
 .. code-block:: shell-session
 
-    curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt
-
+  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt
 
 .. note:: 
 
@@ -81,33 +80,33 @@ The HTTP01 challenge validation is the simplest way of issuing the Let's Encrypt
 The common approach of validating and completing Let's Encrypt SSL generation for private deployments is `DNS01 challenge validation <https://cert-manager.io/docs/configuration/acme/dns01/>`_.
 If the ``DNS01`` doesn’t work for you either, Cert-Manager supports a number of certificate issuers, get familiar with all types of issuers `here <https://cert-manager.io/docs/configuration/>`_.
 
-In order to install Netris Controller with the custom SSL issuer, you need to run installation script with the specified host name
+In order to install Netris Controller with the custom SSL issuer, you need to run installation script with the specified host name:
 
 .. code-block:: shell-session
 
-    curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com
+  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com
 
-Once the installation has finished, create a yaml file with the ``ClusterIssuer`` resource, suitable for your requirements, and apply it.
-
-.. code-block:: shell-session
-
-    kubectl apply -f my-cluster-issuer.yaml
-
-Then rerun the installation script with the ``--ctl-ssl-issuer`` argument
+Once the installation has finished, create a yaml file with the ``ClusterIssuer`` resource, suitable for your requirements, and apply it:
 
 .. code-block:: shell-session
 
-    curl -sfL https://get.netris.ai | sh -s -- --ctl-ssl-issuer <Your ClusterIssuer resource name>
+  kubectl apply -f my-cluster-issuer.yaml
+
+Then rerun the installation script with the ``--ctl-ssl-issuer`` argument:
+
+.. code-block:: shell-session
+
+  curl -sfL https://get.netris.ai | sh -s -- --ctl-ssl-issuer <Your ClusterIssuer resource name>
 
 
 Upgrading
 =========
 
-To upgrade the Netris Controller simply run the script
+To upgrade the Netris Controller simply run the script:
 
 .. code-block:: shell-session
 
-    curl -sfL https://get.netris.ai | sh -
+  curl -sfL https://get.netris.ai | sh -
 
 If a new version of Netris Controller is available, it'll be updated in a few minutes.
 
@@ -119,7 +118,7 @@ To uninstall Netris Controller and K3s from a server node, run:
 
 .. code-block:: shell-session
 
-    /usr/local/bin/k3s-uninstall.sh
+  /usr/local/bin/k3s-uninstall.sh
 
 
 Backup and Restore
@@ -127,11 +126,34 @@ Backup and Restore
 
 Netris Controller stores all critical data in MariaDB. It's highly recommended to create a cronjob with ``mysqldump``.
 
+
 Backup
 ------
 
-To take database snapshots run the following command:
+To take database snapshot run the following command:
 
 .. code-block:: shell-session
 
-    kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysqldump -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE' > db-snapshot-$(date +%Y-%m-%d-%H-%M-%S).sql
+  kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysqldump -u $MARIADB_USER -p${MARIADB_PASSWORD} $MARIADB_DATABASE' > db-snapshot-$(date +%Y-%m-%d-%H-%M-%S).sql
+
+After command execution, you can find ``db-snapshot-YYYY-MM-DD-HH-MM-SS.sql`` file in the current directory.
+
+
+Restore
+-------
+
+In order to restore DB from a snapshot, follow these steps:
+
+1. Copy snapshot file to the MariaDB container:
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller cp db-snapshot.sql netris-controller-mariadb-0:/opt/db-snapshot.sql
+
+1. Run the restore command:
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE < /opt/db-snapshot.sql'
+
+
