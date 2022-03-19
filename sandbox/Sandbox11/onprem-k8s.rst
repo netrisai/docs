@@ -437,11 +437,11 @@ Create a yaml file:
 
 .. code-block:: shell-session
 
-  cat << EOF > isp2-customer.yaml
+  cat << EOF > iris-isp2-ipv4-customer.yaml
   apiVersion: k8s.netris.ai/v1alpha1
   kind: BGP
   metadata:
-    name: isp2-customer
+    name: iris-isp2-ipv4-customer
   spec:
     site: US/NYC
     hardware: SoftGate2
@@ -462,7 +462,7 @@ And apply it:
 
 .. code-block:: shell-session
 
-  kubectl apply -f isp2-customer.yaml
+  kubectl apply -f iris-isp2-ipv4-customer.yaml
 
 Check created BGP:
 
@@ -474,8 +474,8 @@ Allow up to 1 minute for both sides of the BGP sessions to come up:
 
 .. code-block:: shell-session
 
-  NAME            STATE     BGP STATE   PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled               Link Up      65007         45.38.161.118/30   45.38.161.117/30   15s
+  NAME                      STATE     BGP STATE   PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
+  iris-isp2-ipv4-customer   enabled               Link Up      65007         45.38.161.118/30   45.38.161.117/30   15s
 
 Then check the state again:
 
@@ -487,8 +487,8 @@ The output is similar to this:
 
 .. code-block:: shell-session
 
-  NAME            STATE     BGP STATE                                       PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  isp2-customer   enabled   bgp: Established; prefix: 160; time: 00:01:27   Link Up      65007         45.38.161.118/30   45.38.161.117/30   2m3s
+  NAME                      STATE     BGP STATE                                       PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
+  iris-isp2-ipv4-customer   enabled   bgp: Established; prefix: 160; time: 00:01:27   Link Up      65007         45.38.161.118/30   45.38.161.117/30   2m3s
 
 Feel free to use the import annotation for this BGP if you created it from the controller web interface previously.
 
@@ -567,7 +567,7 @@ Here are our freshly created BGPs, one for each k8s node:
 .. code-block:: shell-session
 
   NAME                                 STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                        enabled   bgp: Established; prefix: 160; time: 00:06:18  Link Up      65007         45.38.161.118/30   45.38.161.117/30    7m59s
+  iris-isp2-ipv4-customer              enabled   bgp: Established; prefix: 160; time: 00:06:18  Link Up      65007         45.38.161.118/30   45.38.161.117/30    7m59s
   sandbox11-srv06-nyc-192.168.110.66   enabled                                                               4230000000    192.168.110.1/24   192.168.110.66/24   26s
   sandbox11-srv07-nyc-192.168.110.67   enabled                                                               4230000001    192.168.110.1/24   192.168.110.67/24   26s
   sandbox11-srv08-nyc-192.168.110.68   enabled                                                               4230000002    192.168.110.1/24   192.168.110.68/24   26s  
@@ -586,7 +586,7 @@ As seen our BGP peers are established:
 .. code-block:: shell-session
 
   NAME                                 STATE     BGP STATE                                       PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  isp2-customer                        enabled   bgp: Established; prefix: 160; time: 00:07:48   Link Up      65007         45.38.161.118/30   45.38.161.117/30    8m41s
+  iris-isp2-ipv4-customer              enabled   bgp: Established; prefix: 160; time: 00:07:48   Link Up      65007         45.38.161.118/30   45.38.161.117/30    8m41s
   sandbox11-srv06-nyc-192.168.110.66   enabled   bgp: Established; prefix: 5; time: 00:00:44     N/A          4230000000    192.168.110.1/24   192.168.110.66/24   68s
   sandbox11-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19     N/A          4230000001    192.168.110.1/24   192.168.110.67/24   68s
   sandbox11-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44     N/A          4230000002    192.168.110.1/24   192.168.110.68/24   68s
