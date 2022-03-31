@@ -35,9 +35,9 @@
 
 .. _s9-k8s:
 
-**********************
-Kubernetes Integration
-**********************
+***************************************
+Learn Netris operations with Kubernetes
+***************************************
 
 .. contents:: 
    :local: 
