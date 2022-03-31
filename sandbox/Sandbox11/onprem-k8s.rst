@@ -50,7 +50,7 @@
 .. _s11-k8s:
 
 **************************************************************
-Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps
+Learn Netris operations with Kubernetes
 **************************************************************
 
 .. contents:: 
