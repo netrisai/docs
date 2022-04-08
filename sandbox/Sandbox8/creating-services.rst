@@ -1,4 +1,4 @@
-.. _s10-learn-by-doing:
+.. _s8-learn-by-doing:
 
 **************************
 Learn by Creating Services
@@ -7,7 +7,7 @@ Learn by Creating Services
 Following these short exercises we will be able to demonstrate how the :ref:`Netris Controller<netris_controller_def>`, in conjunction with the :ref:`Netris Agents<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision desired services within a matter of minutes.
 
 
-.. _s10-v-net:
+.. _s8-v-net:
 
 V-Net (Ethernet/Vlan/VXlan)
 ===========================
@@ -15,7 +15,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
 
 * In a terminal window:
 
-  1. SSH to server **srv05-nyc**: ``ssh demo@166.88.17.19 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@166.88.17.29 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Type ``ip route ls`` and we can see **192.168.46.1** is configured as the default gateway, indicated by the "**default via 192.168.46.1 dev eth1 proto kernel onlink**" line in the output.
   4. Start a ping session towards the default gateway: ``ping 192.168.46.1`` 
@@ -24,7 +24,7 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox10.netris.ai <https://sandbox10.netris.ai>`_ and navigate to **Services → V-Net**.
+  1. Log into the Netris Controller by visiting `https://sandbox8.netris.ai <https://sandbox8.netris.ai>`_ and navigate to **Services → V-Net**.
   2. Click the **+ Add** button in the top right corner of the page to get started with creating a new V-Net service.
   3. Define a name in the **Name** field (e.g. ``vnet-customer``).
   4. From the **Owner** drop-down menu, select "**Demo**".
@@ -42,7 +42,7 @@ After just a few seconds, once fully provisioned, you will start seeing successf
 
 More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-NET"<v-net_def>` page.
 
-.. _s10-e-bgp:
+.. _s8-e-bgp:
 
 E-BGP (Exterior Border Gateway Protocol)
 ========================================
@@ -52,7 +52,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox10.netris.ai <https://sandbox10.netris.ai>`_ and navigate to **Net → E-BGP**.
+  1. Log into the Netris Controller by visiting `https://sandbox8.netris.ai <https://sandbox8.netris.ai>`_ and navigate to **Net → E-BGP**.
   2. Click the **+ Add** button in the top right corner of the page to configure a new E-BGP session.
   3. Define a name in the **Name** field (e.g. ``iris-isp2-ipv4-customer``).
   4. From the **Site** drop-down menu, select "**US/NYC**".
@@ -61,25 +61,25 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
 
     * For the purposes of this exercise, the required switch port can easily be found by typing ``ISP2`` in the Search field.
 
-  7. For the **VLAN ID** field, uncheck the **Untag** check-box and type in ``1102``.
+  7. For the **VLAN ID** field, uncheck the **Untag** check-box and type in ``1082``.
   8. In the **Neighbor AS** field, type in ``65007``.
   9. In the **Local IP** field, type in ``50.117.59.126``.
   10. In the **Remote IP** field, type in ``50.117.59.125``.
   11. Expand the **Advanced** section
   12. In the **Prefix List Inbound** field, type in ``permit 0.0.0.0/0`` 
-  13. In the **Prefix List Outbound** field, type in ``permit 50.117.59.208/28 le 32``
+  13. In the **Prefix List Outbound** field, type in ``permit 50.117.59.176/28 le 32``
   14. And finally click **Add**
 
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net → E-BGP** page as well as on **Telescope → Dashboard** pages will turn green, indication a successfully established BGP session. We can glean further insight into the BGP session details by navigating to **Net → Looking Glass**.
 
-  1. Select "**SoftGate2(50.117.59.209)**" (the border router where our newly created BGP session is terminated on) from the **Select device** drop-down menu.
+  1. Select "**SoftGate2(50.117.59.177)**" (the border router where our newly created BGP session is terminated on) from the **Select device** drop-down menu.
   2. Leaving the **Family** drop-down menu on IPv4 and the **Command** drop-down menu on "**BGP Summary**", click on the **Submit** button.
 
 We are presented with the summary of the BGP sessions terminated on **SoftGate2**. You can also click on each BGP neighbor name to further see the "**Advertised routes**" and "**Routes**" received to/from that BGP neighbor.
 
 More details about E-BGP (Exterior Border Gateway Protocol) can be found on the the :ref:`"BGP"<bgp_def>` page.
 
-.. _s10-nat:
+.. _s8-nat:
 
 NAT (Network Address Translation)
 =================================
@@ -87,7 +87,7 @@ Now that we have both internal and external facing services, we can aim for our 
 
 * In a terminal window:
 
-  1. SSH to server **srv05-nyc**: ``ssh demo@166.88.17.19 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@166.88.17.29 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session towards any public IP address (e.g. ``ping 1.1.1.1``).
   4. Keep the ping running as an indicator for when the service starts to work.
@@ -96,7 +96,7 @@ Let's configure a source NAT so our Customer subnet **192.168.46.0/24**, which i
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox10.netris.ai <https://sandbox10.netris.ai>`_ and navigate to **Net → NAT**.
+  1. Log into the Netris Controller by visiting `https://sandbox8.netris.ai <https://sandbox8.netris.ai>`_ and navigate to **Net → NAT**.
   2. Click the **+ Add** button in the top right corner of the page to define a new NAT rule.
   3. Define a name in the **Name** field (e.g. ``NAT Customer``).
   4. From the **Site** drop-down menu, select "**US/NYC**".
@@ -105,10 +105,10 @@ Let's configure a source NAT so our Customer subnet **192.168.46.0/24**, which i
   7. In the **Source Address** field, type in ``192.168.46.0/24``.
   8. In the **Destination Address** field, type in ``0.0.0.0/0``.
   9. Toggle the switch from **SNAT to Pool** to **SNAT to IP**.
-  10. From the **Select subnet** drop-down menu, select the "**50.117.59.212/30 (NAT)**" subnet. 
-  11. From the **Select IP** drop-down menu, select the "**50.117.59.212/32**" IP address.
+  10. From the **Select subnet** drop-down menu, select the "**50.117.59.180/30 (NAT)**" subnet. 
+  11. From the **Select IP** drop-down menu, select the "**50.117.59.180/32**" IP address.
 
-    * This public IP is part of **50.117.59.212/30 (NAT)** subnet which is configured in the **NET → IPAM** section with the purpose of **NAT** and indicated in the SoftGate configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`..
+    * This public IP is part of **50.117.59.180/30 (NAT)** subnet which is configured in the **NET → IPAM** section with the purpose of **NAT** and indicated in the SoftGate configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`..
 
   12. Click **Add**
 
@@ -116,7 +116,7 @@ Soon you will start seeing replies similar in form to "**64 bytes from 1.1.1.1: 
 
 More details about NAT (Network Address Translation) can be found on the :ref:`"NAT"<nat_def>` page.
 
-.. _s10-acl:
+.. _s8-acl:
 
 ACL (Access Control List)
 =========================
@@ -124,7 +124,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a terminal window:
 
-  1. SSH to server **srv05-nyc**: ``ssh demo@166.88.17.19 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@166.88.17.29 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session: ``ping 1.1.1.1``.
   4. If the previous steps were followed, you should see successful ping replies in the form of "**64 bytes from 1.1.1.1: icmp_seq=55 ttl=62 time=1.23 ms**".
@@ -132,7 +132,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox10.netris.ai <https://sandbox10.netris.ai>`_ and navigate to **Net → Sites**.
+  1. Log into the Netris Controller by visiting `https://sandbox8.netris.ai <https://sandbox8.netris.ai>`_ and navigate to **Net → Sites**.
   2. Click **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the **UC/NYC** site.
   3. From the **ACL Default Policy** drop-down menu, change the value from "**Permit**" to "**Deny**".
   4. Click **Save**.
@@ -155,7 +155,7 @@ Once the Netris software has finished syncing the new ACL policy with all the me
 
 More details about ACL (Access Control List) can be found on the :ref:`"ACL"<acl_def>` page.
 
-.. _s10-l3lb:
+.. _s8-l3lb:
 
 L3LB (Anycast L3 load balancer)
 ===============================
@@ -163,9 +163,9 @@ In this exercise we will quickly configure an Anycast IP address in the Netris C
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox10.netris.ai <https://sandbox10.netris.ai>`_ and navigate to **Services → Instances(ROH)**.
+  1. Log into the Netris Controller by visiting `https://sandbox8.netris.ai <https://sandbox8.netris.ai>`_ and navigate to **Services → Instances(ROH)**.
   2. Click **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**srv01-nyc**" server.
-  3. From the **IPv4** drop-down menu, select the "**50.117.59.216/30 (L3 LOAD BALANCER)**" subnet.
+  3. From the **IPv4** drop-down menu, select the "**50.117.59.184/30 (L3 LOAD BALANCER)**" subnet.
   4. From the second drop-down menu that appears to the right, select the first available IP "**50.117.59.216**".
   5. Check the **Anycast** check-box next to the previously selected IP and click the **Save** button. 
   6. Repeat steps **3** through **4** for "**srv02-nyc**" by first clicking **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**srv02-nyc**" server.
