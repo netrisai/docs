@@ -81,7 +81,7 @@ Add a Subnet
    * - **Purpose**
      - This field describes for what kind of services the current subnet can be used. It can have the following values:
 
-        - *common* - ordinary subnet, can be used in v-nets.
+        - *common* - ordinary subnet, can be used in v-nets and ROH.
         - *loopback* - hosts of this subnet can be used only as loopback IP addresses for Netris hardware (switches and/or softgates).
         - *management* - subnet which specifies the out-of-band management IP addresses for Netris hardware (switches and softgates).
         - *load-balancer* - hosts of this subnet are used in LB services only. Useful for deploying on-prem kubernetes with cloud-like experience.
