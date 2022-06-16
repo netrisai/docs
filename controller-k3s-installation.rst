@@ -2,23 +2,15 @@
 .. meta::
   :description: Controller Generic Linux Host
 
-##################
-Generic Linux Host
-##################
+######################################################
+Netris Controller installation on a generic Linux host
+######################################################
 
-Netris offers a simplified deployment model for users who want to install the Netris Controller on the standalone Linux server.
-
-The installation script does the following:
-
-* Installs `k3s <https://k3s.io/>`_
-* Installs the `Cert-Manager Helm chart <https://cert-manager.io/docs/installation/helm/>`_
-* Installs the `Netris Controller Helm chart <https://www.netris.ai/docs/en/stable/controller-k8s-installation.html>`_
-
-Requirements
+Linux Host requirements
 ============
 
-* RAM: 4GB Minimum (we recommend at least 8GB)
-* CPU: 2 Minimum (we recommend at least 4)
+* RAM: 8 GB
+* CPU: 4 Cores
 * Disk: 50GB
 * OS: Linux 64-bit
 
@@ -43,6 +35,16 @@ The following command will install the Netris Controller on your Linux server:
   curl -sfL https://get.netris.ai | sh -
 
 Once installed, you will be able to log in to Netris Controller using your host's IP address.
+
+
+.. note:: 
+  The installation script does the following:
+  
+  * Installs `k3s <https://k3s.io/>`_
+  * Installs the `Cert-Manager Helm chart <https://cert-manager.io/docs/installation/helm/>`_
+  * Installs the `Netris Controller Helm chart <https://www.netris.ai/docs/en/stable/controller-k8s-installation.html>`_
+
+
 
 Installation with the specific host name
 ------------------------------------------
