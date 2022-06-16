@@ -62,8 +62,9 @@ Installation with the Let's Encrypt SSL
 
 The installation script supports Let's Encrypt SSL generation out-of-box. To instruct the installation script to do that use ``--ctl-ssl-issuer`` argument.
 
-The argument ``--ctl-ssl-issuer`` is passing ``cert-manager.io/cluster-issuer`` value to the ingress resource of the Netris Controller. The installation script creates 2 resources type of ClusterIssuer: ``selfsigned`` and ``letsencrypt``,
-where ``selfsigned`` is just `Cert-Manager self-signed <https://cert-manager.io/docs/configuration/selfsigned/>`_ SSL and the ``letsencrypt`` is the ACME Issuer with `HTTP01 challenge validation <https://cert-manager.io/docs/configuration/acme/http01/>`_.
+.. note:: 
+  The argument ``--ctl-ssl-issuer`` is passing ``cert-manager.io/cluster-issuer`` value to the ingress resource of the Netris Controller. The installation   script creates 2 resources type of ClusterIssuer: ``selfsigned`` and ``letsencrypt``,
+  where ``selfsigned`` is just `Cert-Manager self-signed <https://cert-manager.io/docs/configuration/selfsigned/>`_ SSL and the ``letsencrypt`` is the   ACME Issuer with `HTTP01 challenge validation <https://cert-manager.io/docs/configuration/acme/http01/>`_.  
 When ``--ctl-ssl-issuer`` isn't set installation script is proceeding with ``selfsigned`` ClusterIssuer.
 
 
@@ -107,13 +108,13 @@ Then rerun the installation script with the ``--ctl-ssl-issuer`` argument:
 Upgrading
 =========
 
-To upgrade the Netris Controller simply run the script:
+To upgrade the Netris Controller to the latest version simply run the script:
 
 .. code-block:: shell-session
 
   curl -sfL https://get.netris.ai | sh -
 
-If a new version of Netris Controller is available, it'll be updated in a few minutes.
+If a newer version of Netris Controller is available, it'll be updated in a few minutes.
 
 
 Uninstalling
