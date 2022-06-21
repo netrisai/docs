@@ -32,3 +32,6 @@ To install Netris Controller on a freshly installed Linux you only need to run b
   curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com
   
 Once installation process is finished you will be able to access your newly installed Netris Controller web consonle using netris/newNet0ps credentials.
+
+Please immediately change the default password to something strong in Setting → My Account → Change Password. 
+You can also use Settings → Login whitelist to restrict web console access to the controller. 
