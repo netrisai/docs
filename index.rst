@@ -10,7 +10,7 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
 
 .. toctree::
    :maxdepth: 2
-   :caption: HOWTOs
+   :caption: Tutorials
 
    tutorials/installing-netris-controller
 
