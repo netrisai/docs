@@ -16,8 +16,15 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
    tutorials/netris-for-equinix-metal-index
 
 .. toctree::
+   :maxdepth: 4
+   :caption: Cloud Native Tools
+
+   kubernetes-integration
+   terraform-integration
+
+.. toctree::
    :maxdepth: 2
-   :caption: Getting Started
+   :caption: Netris Fundamentals
 
    introduction
    netris-architecture
@@ -25,7 +32,7 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
 
 .. toctree::
    :maxdepth: 2
-   :caption: Installation
+   :caption: Detailed Installation
 
    installation
    switch-agent-installation
@@ -33,7 +40,7 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
 
 .. toctree::
    :maxdepth: 2
-   :caption: Initial Configuration
+   :caption: Switch-fabric Configuration
 
    definitions
    ipam
@@ -55,13 +62,6 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
    l4-load-balancer
    acls
    roh
-
-.. toctree::
-   :maxdepth: 4
-   :caption: Integrations
-
-   kubernetes-integration
-   terraform-integration
 
 .. toctree::
    :maxdepth: 4
