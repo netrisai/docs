@@ -13,7 +13,7 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
    :caption: Tutorials
 
    tutorials/installing-netris-controller
-   tutorials/getting-started-for-equinix-metal
+   tutorials/netris-for-equinix-metal-index
 
 .. toctree::
    :maxdepth: 2
