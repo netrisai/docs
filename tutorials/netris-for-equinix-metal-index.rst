@@ -18,3 +18,4 @@ Please see below our step-by-step guides for installing Netris VPC Networking se
 
    equinix-metal-api-integration-enablement
    adding-netris-softgate-nodes-in-equinix-metal
+   activating-bgp-on-equinix-metal-project
