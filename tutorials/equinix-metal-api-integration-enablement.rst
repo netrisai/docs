@@ -1,12 +1,10 @@
 .. meta::
     :description: Getting Started for Equinix Metal
 
-#################################
-Getting Started for Equinix Metal
-#################################
-
+########################################
 Equinix Metal API integration enablement
-========================================
+########################################
+
 
 For each Equinix Metal Project+location you need to define an individual Site in Netris Controller.
 
