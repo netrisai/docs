@@ -1,7 +1,10 @@
 .. meta::
     :description: Getting Started for Equinix Metal
 
-========================================
+#################################
+Getting Started for Equinix Metal
+#################################
+
 Equinix Metal API integration enablement
 ========================================
 
@@ -31,20 +34,23 @@ You only need to deal with the below 5 fields. Leave the rest to default values 
 
 
 Equinix Metal Project ID
-.. image:: images/equinix-metal-project-id.png
+
+.. image:: /tutorials/images/equinix-metal-project-id.png
     :align: center
 
 
 Equinix Metal Project API key
-.. image:: images/equinix-metal-project-api-keys.png
+
+.. image:: /tutorials/images/equinix-metal-project-api-keys.png
     :align: center
 
 
 Netris Create New Site
-.. image:: images/netris-create-equinix-metal-site.png
+
+.. image:: /tutorials/images/netris-create-equinix-metal-site.png
     :align: center
     
-============================
+
 Adding Netris SoftGate nodes
 ============================
 
