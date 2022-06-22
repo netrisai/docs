@@ -1,5 +1,6 @@
-Adding Netris SoftGate nodes
-============================
+###########################################################
+Provisioning Netris SoftGate nodes in Equinix Metal Project
+###########################################################
 
 For SoftGate nodes you can start with two servers of the smallest flavor. In the future if you happen to need to upgrade to high-performance SoftGate PRO (with DPDK acceleration) you can upgrade the servers one-by-one. 
 
