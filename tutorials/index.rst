@@ -32,4 +32,4 @@ Please see below our step-by-step guides for installing Netris VPC Networking se
    :maxdepth: 2
    :caption: Consuming Netris VPC on Equinix Metal Project
 
-   equinix-metal-api-integration-enablement
+   using-vnet-in-equinix-metal-project
