@@ -27,3 +27,4 @@ Netris VPC for Equinix Metal Tutorials
    :caption: Consuming Netris VPC services for Equinix Metal Project
 
    using-vnet-in-equinix-metal-project
+   using-l4-load-balancer
