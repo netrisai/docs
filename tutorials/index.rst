@@ -1,27 +1,21 @@
-.. meta::
-    :description: Netris Tutorials
+================
+Netris Tutorials
+================
     
-    
+
 .. toctree::
    :maxdepth: 2
-   :caption: Tutorials
+   :caption: The very first step
 
    installing-netris-controller
 
-==================================
-Netris for Equinix Metal Tutorials
-==================================
-
-Please see below our step-by-step guides for installing Netris VPC Networking services for Equinix Metal
-
-.. note::
-  
-  These tutorials assume that you have already installed Netris Controller
-
+======================================
+Netris VPC for Equinix Metal Tutorials
+======================================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Enabling Netris VPC on Equinix Metal Project
+   :caption: Enabling Netris VPC for Equinix Metal Project
 
    equinix-metal-api-integration-enablement
    adding-netris-softgate-nodes-in-equinix-metal
@@ -30,6 +24,6 @@ Please see below our step-by-step guides for installing Netris VPC Networking se
 
 .. toctree::
    :maxdepth: 2
-   :caption: Consuming Netris VPC on Equinix Metal Project
+   :caption: Consuming Netris VPC services for Equinix Metal Project
 
    using-vnet-in-equinix-metal-project
