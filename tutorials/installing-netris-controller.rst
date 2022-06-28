@@ -25,11 +25,11 @@ I’m using Cloudflare to create this “example-netris-controller.netris.dev”
 
 Ensure that newly created domain name indeed resolves into the right IP address of the machine that you are going to install the Netris Controller.
 
-To install Netris Controller on a freshly installed Linux you only need to run below one-liner command. Netris Controller installer will stand up a K3S cluster and then will deploy Netris Controller on top of it using Helm Chart.  The “--ctl-hostname ” will instruct the installer to generate a Let’s Encrypt SSL certificate for the provided domain name. That’s why it is important to create the DNS record before this step.
+To install Netris Controller on a freshly installed Linux you only need to run below one-liner command. Netris Controller installer will stand up a K3S cluster and then will deploy Netris Controller on top of it using Helm Chart.  The “--ctl-ssl-issuer” will instruct the installer to generate a Let’s Encrypt SSL certificate and the "--ctl-hostname" will hint for what domain name the certificate must be generated. That’s why it is important to create the DNS record before this step. For more details, get familiar with the controller installation `doc <https://www.netris.ai/docs/en/stable/controller-k3s-installation.html>`_.
 
 .. code-block:: shell-session
 
-  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com
+  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt
   
 Once installation process is finished you will be able to access your newly installed Netris Controller web consonle using netris/newNet0ps credentials.
 
