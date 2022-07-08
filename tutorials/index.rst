@@ -14,10 +14,9 @@ Netris VPC for Equinix Metal Tutorials
 ======================================
 
 
-
 .. toctree::
    :maxdepth: 2
-   :caption: Enabling Netris VPC for Equinix Metal Project  `Video <https://youtu.be/lU2lwrRY3i4>`_
+   :caption: Enabling Netris VPC for Equinix Metal Project 
 
    equinix-metal-api-integration-enablement
    adding-netris-softgate-nodes-in-equinix-metal
