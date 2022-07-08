@@ -13,6 +13,9 @@ Netris Tutorials
 Netris VPC for Equinix Metal Tutorials
 ======================================
 
+ `Watch video walkthrough <https://youtu.be/lU2lwrRY3i4>`_
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Enabling Netris VPC for Equinix Metal Project
