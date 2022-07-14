@@ -36,24 +36,34 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity conf
 
 .. code-block:: shell-session
 
-   # The loopback network interface
-   auto lo
-   iface lo inet loopback
+  # The loopback network interface
+  auto lo
+  iface lo inet loopback
 
-   # The primary network interface
-   auto eth0
-   iface eth0 inet static
-         address <Management IP address/prefix length>
-         up ip ro add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the SoftGate node.
+  # The primary network interface
+  auto ensZ
+  iface ensZ inet static
+      address <Management IP address/prefix length>
+      up ip ro add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the SoftGate node.
+   
+  # Softgate Interface 1
+  auto ensX # Please replace the ensX with actual interface name present in the OS.
+  iface ensX inet static # Please replace the ensX with actual interface name present in the OS.
+      address 0.0.0.0/0
+   
+  # Softgate Interface 2 # Optional
+  auto ensY # Please replace the ensY with actual interface name present in the OS.
+  iface ensY inet static # Please replace the ensY with actual interface name present in the OS.
+      address 0.0.0.0/0
 
-  #
-   auto bond0
-   iface bond0 inet manual
-         bond-slaves ensX ensY # Please replace the ensX/Y with actual interface names present in the OS.
-         bond-mode active-backup # Optional, please adjust the bonding mode according to the desired functionality.
+  # Bond interface 
+  auto bond0
+  iface bond0 inet static
+      address 0.0.0.0/0
+      bond-slaves ensX ensY # Please replace the ensX/Y with actual interface names present in the OS.
+      bond-mode active-backup # Optional, please adjust the bonding mode according to the desired functionality.
 
-   source /etc/network/interfaces.d/*
-
+  source /etc/network/interfaces.d/*
 
 1. Reboot the SoftGate
 
