@@ -1,32 +1,19 @@
 .. meta::
-  :description: Netris SoftGate Agent Installation
+  :description: Netris SoftGate Installation
 
 ***************************
-SoftGate Agent Installation
+SoftGate Installation
 ***************************
 
 Minimum Hardware Requirements
 =============================
-* 2 x Intel Silver CPU
-* 96 GB RAM
-* 300 GB HDD
-* Nvidia Mellanox Connect-X 5/6 SmartNIC card
-
-BIOS Configuration
-==================
-The following are some recommendations for BIOS settings. Different vendors will have different BIOS naming so the following is mainly for reference:
-
-* Before starting consider resetting all BIOS settings to their defaults
-* Disable all power saving options such as: Power performance tuning, CPU P-State, CPU C3 Report and CPU C6 Report
-* Select Performance as the CPU Power and Performance policy
-* Enable Turbo Boost
-* Set memory frequency to the highest available number, NOT auto
-* Disable all virtualization options when you test the physical function of the NIC, and turn off VT-d
-* Disable Hyper-Threading
+* 6 CPU cores
+* 8 GB RAM
+* 100 GB HDD
 
 Install the Netris Agent 
 ========================
-Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configured from netplan via management port
+Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity configured from netplan via management port
 
 1. Add the SoftGate in the controller **Inventory**. Detailed configuration documentation is available here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`
 2. Once the SoftGate is created in the **Inventory**, click on **three vertical dots (⋮)** on the right side on the SoftGate and select the **Install Agent** option
@@ -41,7 +28,11 @@ Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configur
 
 .. note::
   
-  If the Netris Controller is not in the same OOB network then add a route to Netris Controller. No default route or other IP addresses should be configured.
+  If the Netris Controller is not in the same OOB network then it is required to add a route to Netris Controller. No default route or other IP addresses should be configured.
+
+.. note::
+  
+  For proper operation of SoftGate, it is required to configure a bond interface. 
 
 .. code-block:: shell-session
 
@@ -55,10 +46,16 @@ Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configur
          address <Management IP address/prefix length>
          up ip ro add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the SoftGate node.
 
+  #
+   auto bond0
+   iface bond0 inet manual
+         bond-slaves ensX ensY # Please replace the ensX/Y with actual interface names present in the OS.
+         bond-mode active-backup # Optional, please adjust the bonding mode according to the desired functionality.
+
    source /etc/network/interfaces.d/*
 
 
-6. Reboot the SoftGate
+1. Reboot the SoftGate
 
 .. code-block:: shell-session
 

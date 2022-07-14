@@ -35,7 +35,8 @@ Netris is the Automatic NetOps platform that runs the physical network and provi
 
    installation
    switch-agent-installation
-   SoftGate-agent-installation
+   SoftGate-installation
+   SoftGate-PRO-installation
 
 .. toctree::
    :maxdepth: 2
