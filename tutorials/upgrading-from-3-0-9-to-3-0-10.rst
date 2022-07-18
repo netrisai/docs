@@ -2,6 +2,7 @@
     :description: Upgrading Netris from 3.0.9 to 3.0.10
 
 .. role:: green
+
 .. role:: red
 
 *************************************
@@ -35,11 +36,13 @@ For the SoftGate agent:
 
   systemctl stop netris-sg
 
-Ensure that all devices in the Net→Inventory section are ":red:`red`" with the "**check_agent**" status being "**Agent is unavailable**".
-``*`` *Stopped Netris agents don't affect production traffic through devices.*
+Ensure that all devices in the *Net → Inventory* section are :red:`red` with the "**check_agent**" status being "**Agent is unavailable**".
+
+`*` *Stopped Netris agents don't affect production traffic through devices.*
 
 3. Upgrade controller using one-liner.
-``*`` *This proccess can take up to 5 minutes*
+
+`*` *This process can take up to 5 minutes*
 
 .. code-block:: shell-session
 
@@ -53,7 +56,7 @@ Afterwards, verify that the version of the "*Netris Dashboard Version*" reflects
     :align: center
     :alt: Install Agent
 
-Ensure that after the agent upgrade, all devices in the *Net → Inventory* section have a ":green:`green`" status and the Netris version for each device is 3.0.10-X.
+Ensure that after the agent upgrade, all devices in the *Net → Inventory* section have a :green:`green` status and the Netris version for each device is 3.0.10-X.
 
 In case the "**check_agent**" status is "**Agent is unavailable**" after agent upgrade, perform agent restart.
 
@@ -69,3 +72,73 @@ For the SoftGate agent:
 
   systemctl restart netris-sg
 
+Rollback Procedure
+==================
+
+A rollback procedure can be applied in case of any negative impact on the production after the Netris upgrade.
+
+1. Stop all Netris agents on devices managed by the controller (switch & SoftGate) if already upgraded 3.0.10-X.
+
+For the switch agent:
+
+.. code-block:: shell-session
+
+  systemctl stop netris-sw
+
+For the SoftGate agent:
+
+.. code-block:: shell-session
+
+  systemctl stop netris-sg
+
+2. Restore the database from the previously taken snapshot.
+
+Copy the backup file from the controller host system to the MariaDB container:
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller cp db-snapshot-3.0.9.sql netris-controller-mariadb-0:/opt/db-snapshot-3.0.9.sql
+
+Restore the database:
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE < /opt/db-snapshot-3.0.9.sql'
+
+3. Downgrade Netris controller application:
+
+.. code-block:: shell-session
+
+  curl -sfL https://get.netris.ai | sh -s -- --ctl-version 3.0.9
+
+4. Downgrade switch and SoftGate agents.
+
+For the switch agent:
+
+.. code-block:: shell-session
+
+  apt-get update && apt-get install netris-sw=3.0.9.003
+
+For the SoftGate agent:
+
+.. code-block:: shell-session
+
+  apt-get update && apt-get install netris-sg=3.0.9.002
+
+Afterwards, verify that the version of the "*Netris Dashboard Version*" reflects the downgraded version 3.0.9-X by navigating to *Setting → General* in the Netris Controller.
+
+Ensure that after the agent downgrade, all the devices in the *Net → Inventory* section have a :green:`green` status and the Netris version for each device is 3.0.9-X.
+
+In case the "**check_agent**" status is "**Agent is unavailable**" after agent downgrade, perform agent restart.
+
+For the switch agent:
+
+.. code-block:: shell-session
+
+  systemctl restart netris-sw
+
+For the SoftGate agent:
+
+.. code-block:: shell-session
+
+  systemctl restart netris-sg
