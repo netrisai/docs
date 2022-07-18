@@ -3,7 +3,7 @@
 
 .. raw:: html
 
-    <style> .green {color:greenyellow} </style>
+    <style> .green {color:#2fa84f} </style>
     <style> .red {color:red} </style>
   
 .. role:: green
