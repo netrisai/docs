@@ -18,7 +18,7 @@ Upgrade Procedures
    :maxdepth: 2
    :caption: Version Upgrades
 
-   upgradeing-from-3-0-9-to-3-0-10
+   upgrading-from-3-0-9-to-3-0-10
 
 ======================================
 Netris VPC for Equinix Metal Tutorials

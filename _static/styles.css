@@ -202,3 +202,11 @@ footer>a:hover::before {
 .wy-table-responsive {
     overflow: visible !important;
 }
+
+.green {
+    color:green;
+}
+
+.red {
+    color:red;
+}
