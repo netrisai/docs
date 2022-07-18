@@ -3,7 +3,7 @@
 
 .. raw:: html
 
-    <style> .green {color:green} </style>
+    <style> .green {color:greenyellow} </style>
     <style> .red {color:red} </style>
   
 .. role:: green
@@ -41,7 +41,7 @@ For the SoftGate agent:
 
   systemctl stop netris-sg
 
-Ensure that all devices in the *Net → Inventory* section are :red:`red` with the "**check_agent**" status being "**Agent is unavailable**".
+Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with the "**check_agent**" status being "**Agent is unavailable**".
 
 `*` *Stopped Netris agents don't affect production traffic through devices.*
 
@@ -61,7 +61,7 @@ Afterwards, verify that the version of the "*Netris Dashboard Version*" reflects
     :align: center
     :alt: Install Agent
 
-Ensure that after the agent upgrade, all devices in the *Net → Inventory* section have a :green:`green` status and the Netris version for each device is 3.0.10-X.
+Ensure that after the agent upgrade, all devices in the *Net → Inventory* section have a ":green:`green`" status and the Netris version for each device is 3.0.10-X.
 
 In case the "**check_agent**" status is "**Agent is unavailable**" after agent upgrade, perform agent restart.
 
@@ -132,7 +132,7 @@ For the SoftGate agent:
 
 Afterwards, verify that the version of the "*Netris Dashboard Version*" reflects the downgraded version 3.0.9-X by navigating to *Setting → General* in the Netris Controller.
 
-Ensure that after the agent downgrade, all the devices in the *Net → Inventory* section have a :green:`green` status and the Netris version for each device is 3.0.9-X.
+Ensure that after the agent downgrade, all the devices in the *Net → Inventory* section have a ":green:`green`" status and the Netris version for each device is 3.0.9-X.
 
 In case the "**check_agent**" status is "**Agent is unavailable**" after agent downgrade, perform agent restart.
 
