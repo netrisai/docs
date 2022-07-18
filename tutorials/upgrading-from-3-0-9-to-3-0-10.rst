@@ -1,6 +1,11 @@
 .. meta::
     :description: Upgrading Netris from 3.0.9 to 3.0.10
 
+.. raw:: html
+
+    <style> .green {color:green} </style>
+    <style> .red {color:red} </style>
+  
 .. role:: green
 
 .. role:: red
