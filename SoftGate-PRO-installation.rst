@@ -26,20 +26,20 @@ The following are some recommendations for BIOS settings. Different vendors will
 
 Install the Netris Agent 
 ========================
-Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configured from netplan via management port.
+Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity configured from netplan via management port.
 
 1. Add the SoftGate in the controller **Inventory** or **Topology** section. Detailed configuration documentation is available here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
-2. Once the SoftGate is created navigate to **Inventory** swction, click the **three vertical dots (⋮)** on the right side on the SoftGate and select the **Install Agent** option.
-3. Copy the agent install line to your clipboard and run the command on the SoftGate as .
+2. Once the SoftGate is created, navigate to the **Inventory** section, click the **three vertical dots (⋮)** on the right side of the newly created SoftGate and select the **Install Agent** option.
+3. Copy the agent install line to your clipboard and run it on the SoftGate as an ordinary user.
 4. When the installation is complete, review the ifupdown configuration file and verify that the presented configuration corresponds to what you configured during OS installation (the file is generated based on your initial netplan configuration).
-
-.. code-block:: shell-session
-
-  sudo vim /etc/network/interfaces 
 
 .. note::
   
   If the Netris Controller is not in the same OOB network then add a route to Netris Controller. No default route or other IP addresses should be configured.
+
+.. code-block:: shell-session
+
+  user@host:~$ sudo vim /etc/network/interfaces 
 
 .. code-block:: shell-session
 
@@ -51,7 +51,7 @@ Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configur
   auto ensZ
   iface ensZ inet static
       address <Management IP address/prefix length>
-      up ip route add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the SoftGate node.
+      up ip route add <Controller address> via <Management network gateway> # Please delete this line if Netris Controller is located in the same network with the SoftGate node.
       gateway <Gateway IP address>
 
    source /etc/network/interfaces.d/*
@@ -66,6 +66,6 @@ Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configur
 
 .. code-block:: shell-session
 
- sudo reboot
+  user@host:~$ sudo reboot
 
-Once the server boots up you should see its heartbeat going from Critical to OK in **Net→Inventory**, **Telescope→Dashboard**, and the SoftGate color will reflect it's health in **Net→Topology**.
+Once the server boots up you should see its heartbeat going from Critical to OK in **Net→Inventory**, **Telescope→Dashboard**, and the SoftGate color will reflect its health in **Net→Topology**.

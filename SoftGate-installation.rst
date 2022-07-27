@@ -42,7 +42,7 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity conf
   auto ensZ
   iface ensZ inet static
       address <Management IP address/prefix length>
-      up ip route add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the SoftGate node.
+      up ip route add <Controller address> via <Management network gateway> # Pleasedelete this line if Netris Controller is located in the same network with the SoftGate node.
       gateway <Gateway IP address>
 
   # First Softgate Interface
@@ -50,7 +50,7 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity conf
   iface ensX inet static # Please replace the ensX with the actual interface name present in the OS.
       address 0.0.0.0/0
    
-  # Softgate Interface 2 # Optional
+  # Second Softgate Interface # This interface is optional
   auto ensY # Please replace the ensY with the actual interface name present in the OS.
   iface ensY inet static # Please replace the ensY with the actual interface name present in the OS.
       address 0.0.0.0/0
@@ -74,6 +74,6 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity conf
 
 .. code-block:: shell-session
 
- sudo reboot
+  user@host:~$ sudo reboot
 
-Once the server boots up you should see its heartbeat going from Critical to OK in **Net→Inventory**, **Telescope→Dashboard**, and the SoftGate color will reflect it's health in **Net→Topology**.
+Once the server boots up, you should see its heartbeat going from Critical to OK in **Net→Inventory**, **Telescope→Dashboard**, and the SoftGate color will reflect its health in **Net→Topology**.
