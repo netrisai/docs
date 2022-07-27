@@ -9,16 +9,16 @@ Netris Tutorials
 
    installing-netris-controller
 
-==================
-Upgrade Procedures
-==================
+==============================
+Recommended Upgrade Procedures
+==============================
     
 
 .. toctree::
    :maxdepth: 2
    :caption: Version Upgrades
 
-   upgrading-from-3-0-9-to-3-0-10
+   upgrading-netris
 
 ======================================
 Netris VPC for Equinix Metal Tutorials
