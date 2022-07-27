@@ -49,7 +49,7 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
 
 3. Before upgrading the Netris Controller, take a note of the "*Netris Dashboard Version*" by navigating to *Setting → General* in the Controller web interface. This version number will be used in case of the need to perform a rollback procedure.
 
-.. image:: /images/netris_version_example.png
+.. image:: /tutorials/images/netris_version_example.png
     :align: center
     :alt: Netris Version Example
 
@@ -67,7 +67,7 @@ Afterwards, verify that the "*Netris Dashboard Version*" reflects the version ch
 
 Afterwards, upgrade the switch & SoftGate agents using the one-liner from the "*Install Agent*" option of the corresponding device's 3-dot menu found under the *Net → Inventory* section.
 
-.. image:: /images/install_agent.gif
+.. image:: /tutorials/images/install_agent.gif
     :align: center
     :alt: Install Agent
 
@@ -122,7 +122,7 @@ Restore the database:
 
 3. Downgrade Netris controller application:
 
-`*` *For the version number, use the number collected from* :ref:`step #3<upgrade 3>` *during the upgrade procedure*
+`*` *For the version number, use the number collected from* :ref:`step 3<upgrade 3>` *during the upgrade procedure*
 
 Example:
 
@@ -136,25 +136,30 @@ Afterwards, verify that the version of the "*Netris Dashboard Version*" reflects
 
 4. Determine the correct version number to downgrade the device agents to:
 
+.. _downgrade 4 sw:
+
 For the switch agent, use ``apt policy netris-sw`` and select the latest version that matches the Controller version.
 
 Example:
 
-.. image:: /images/sw_apt_policy.png
+.. image:: /tutorials/images/sw_apt_policy.png
     :align: center
     :alt: SW Apt Policy Example
+
+
+.. _downgrade 4 sg:
 
 For the SoftGate agent, use ``apt policy netris-sg`` and select the latest version that matches the Controller version.
 
 Example:
 
-.. image:: /images/sg_apt_policy.png
+.. image:: /tutorials/images/sg_apt_policy.png
     :align: center
     :alt: SG Apt Policy Example
 
 5. Downgrade switch and SoftGate agents.
 
-For the switch agent follow the below example, replacing the version number determined in the pervious :ref:`step 4<downgrade 4>`.
+For the switch agent follow the below example, replacing the version number determined in the pervious :ref:`step 4<downgrade 4 sw>`.
 
 Example:
 
@@ -162,7 +167,7 @@ Example:
 
   sudo apt-get update && apt-get install netris-sw=3.0.9.003
 
-For the SoftGate agent follow the below example, replacing the version number determined in the pervious :ref:`step 4<downgrade 4>`.
+For the SoftGate agent follow the below example, replacing the version number determined in the pervious :ref:`step 4<downgrade 4 sg>`.
 
 Example:
 
