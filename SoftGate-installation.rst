@@ -13,18 +13,12 @@ Minimum Hardware Requirements
 
 Install the Netris Agent 
 ========================
-Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity configured from netplan via management port
+Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity configured from netplan via management port.
 
-1. Add the SoftGate in the controller **Inventory**. Detailed configuration documentation is available here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`
-2. Once the SoftGate is created in the **Inventory**, click on **three vertical dots (⋮)** on the right side on the SoftGate and select the **Install Agent** option
-3. Copy the agent install command to your clipboard and run the command on the SoftGate
-4. When the installation completes, review ifupdown configuration file (it was generated based on your netplan configuration)
-
-.. code-block:: shell-session
-
-  sudo vim /etc/network/interfaces 
-
-5. If everything seems ok, remove/comment **Gateway** line and save the file.
+1. Add the SoftGate in the controller **Inventory** or **Topology** section. Detailed configuration documentation is available here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
+2. Once the SoftGate is created, navigate to the **Inventory** section, click the **three vertical dots (⋮)** on the right side of the newly created SoftGate and select the **Install Agent** option.
+3. Copy the agent install line to your clipboard and run it on the SoftGate as an ordinary user.
+4. When the installation is complete, review the ifupdown configuration file and verify that the presented configuration corresponds to what you configured during OS installation (the file is generated based on your initial netplan configuration).
 
 .. note::
   
@@ -32,7 +26,11 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity conf
 
 .. note::
   
-  For proper operation of SoftGate, it is required to configure a bond interface. 
+  For proper operation of SoftGate, it is required to configure a bond interface. Please have a look at the example configuration below.
+
+.. code-block:: shell-session
+
+  user@host:~$ sudo vim /etc/network/interfaces
 
 .. code-block:: shell-session
 
@@ -40,20 +38,21 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity conf
   auto lo
   iface lo inet loopback
 
-  # The primary network interface
+  # The management network interface
   auto ensZ
   iface ensZ inet static
       address <Management IP address/prefix length>
-      up ip ro add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the SoftGate node.
-   
-  # Softgate Interface 1
-  auto ensX # Please replace the ensX with actual interface name present in the OS.
-  iface ensX inet static # Please replace the ensX with actual interface name present in the OS.
+      up ip route add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the SoftGate node.
+      gateway <Gateway IP address>
+
+  # First Softgate Interface
+  auto ensX # Please replace the ensX with the actual interface name present in the OS.
+  iface ensX inet static # Please replace the ensX with the actual interface name present in the OS.
       address 0.0.0.0/0
    
   # Softgate Interface 2 # Optional
-  auto ensY # Please replace the ensY with actual interface name present in the OS.
-  iface ensY inet static # Please replace the ensY with actual interface name present in the OS.
+  auto ensY # Please replace the ensY with the actual interface name present in the OS.
+  iface ensY inet static # Please replace the ensY with the actual interface name present in the OS.
       address 0.0.0.0/0
 
   # Bond interface 
@@ -65,10 +64,16 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity conf
 
   source /etc/network/interfaces.d/*
 
-1. Reboot the SoftGate
+5. If everything seems ok, please remove/comment the **Gateway** line and save the file.
+
+.. note::
+
+  Please do not configure any additional IP addresses other than those described in the example above. The further configuration will be performed by the Netris agent.
+
+6. Reboot the SoftGate
 
 .. code-block:: shell-session
 
  sudo reboot
 
-Once the server boots up you should see its heartbeat going from Critical to OK in Net→Inventory, Telescope→Dashboard, and SoftGate color will reflect its health in Net→Topology
+Once the server boots up you should see its heartbeat going from Critical to OK in **Net→Inventory**, **Telescope→Dashboard**, and the SoftGate color will reflect it's health in **Net→Topology**.

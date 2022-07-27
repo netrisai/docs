@@ -26,18 +26,16 @@ The following are some recommendations for BIOS settings. Different vendors will
 
 Install the Netris Agent 
 ========================
-Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configured from netplan via management port
+Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configured from netplan via management port.
 
-1. Add the SoftGate in the controller **Inventory**. Detailed configuration documentation is available here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`
-2. Once the SoftGate is created in the **Inventory**, click on **three vertical dots (⋮)** on the right side on the SoftGate and select the **Install Agent** option
-3. Copy the agent install command to your clipboard and run the command on the SoftGate
-4. When the installation completes, review ifupdown configuration file (it was generated based on your netplan configuration)
+1. Add the SoftGate in the controller **Inventory** or **Topology** section. Detailed configuration documentation is available here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
+2. Once the SoftGate is created navigate to **Inventory** swction, click the **three vertical dots (⋮)** on the right side on the SoftGate and select the **Install Agent** option.
+3. Copy the agent install line to your clipboard and run the command on the SoftGate as .
+4. When the installation is complete, review the ifupdown configuration file and verify that the presented configuration corresponds to what you configured during OS installation (the file is generated based on your initial netplan configuration).
 
 .. code-block:: shell-session
 
   sudo vim /etc/network/interfaces 
-
-5. If everything seems ok, remove/comment **Gateway** line and save the file.
 
 .. note::
   
@@ -45,18 +43,24 @@ Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configur
 
 .. code-block:: shell-session
 
-   # The loopback network interface
-   auto lo
-   iface lo inet loopback
+  # The loopback network interface
+  auto lo
+  iface lo inet loopback
 
-   # The primary network interface
-   auto eth0
-   iface eth0 inet static
-         address <Management IP address/prefix length>
-         up ip ro add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the SoftGate node.
+  # The management network interface
+  auto ensZ
+  iface ensZ inet static
+      address <Management IP address/prefix length>
+      up ip route add <Controller address> via <Management network gateway> #delete this line if Netris Controller is located in the same network with the SoftGate node.
+      gateway <Gateway IP address>
 
    source /etc/network/interfaces.d/*
 
+5. If everything seems ok, please remove/comment the **Gateway** line and save the file.
+
+.. note::
+
+  Please do not configure any additional IP addresses other than those described in the example above. The further configuration will be performed by the Netris agent.
 
 6. Reboot the SoftGate
 
@@ -64,4 +68,4 @@ Requires freshly installed Ubuntu Linux 18.04 and internet connectivity configur
 
  sudo reboot
 
-Once the server boots up you should see its heartbeat going from Critical to OK in Net→Inventory, Telescope→Dashboard, and SoftGate color will reflect its health in Net→Topology
+Once the server boots up you should see its heartbeat going from Critical to OK in **Net→Inventory**, **Telescope→Dashboard**, and the SoftGate color will reflect it's health in **Net→Topology**.
