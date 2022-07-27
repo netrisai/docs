@@ -45,7 +45,8 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
 
 `*` *A stopped Netris agent has no impact on production traffic through the device.*
 
-.. _upgrade-3:
+.. _upgrade 3:
+
 3. Before upgrading the Netris Controller, take a note of the "*Netris Dashboard Version*" by navigating to *Setting → General* in the Controller web interface. This version number will be used in case of the need to perform a rollback procedure.
 
 .. image:: /images/netris_version_example.png
@@ -121,7 +122,7 @@ Restore the database:
 
 3. Downgrade Netris controller application:
 
-`*` *For the version number, use the number collected from* :ref:`step #3<upgrade-3>` *during the upgrade procedure*
+`*` *For the version number, use the number collected from* :ref:`step #3<upgrade 3>` *during the upgrade procedure*
 
 Example:
 
@@ -131,7 +132,8 @@ Example:
 
 Afterwards, verify that the version of the "*Netris Dashboard Version*" reflects the downgraded version by navigating to *Setting → General* in the Netris Controller.
 
-.. _downgrade-4:
+.. _downgrade 4:
+
 4. Determine the correct version number to downgrade the device agents to:
 
 For the switch agent, use ``apt policy netris-sw`` and select the latest version that matches the Controller version.
@@ -152,7 +154,7 @@ Example:
 
 5. Downgrade switch and SoftGate agents.
 
-For the switch agent follow the below example, replacing the version number determined in the pervious :ref:`step #4<downgrade-4>`.
+For the switch agent follow the below example, replacing the version number determined in the pervious :ref:`step 4<downgrade 4>`.
 
 Example:
 
@@ -160,7 +162,7 @@ Example:
 
   sudo apt-get update && apt-get install netris-sw=3.0.9.003
 
-For the SoftGate agent follow the below example, replacing the version number determined in the pervious :ref:`step #4<downgrade-4>`.
+For the SoftGate agent follow the below example, replacing the version number determined in the pervious :ref:`step 4<downgrade 4>`.
 
 Example:
 
@@ -168,7 +170,7 @@ Example:
 
   sudo apt-get update && apt-get install netris-sg=3.0.9.002
 
-After all the switches and SoftGates have been downgraded, make sure all the devices in the *Net → Inventory* section have a ":green:`green`" status and the Netris version for each device matches what was determined in :ref:`step #4<downgrade-4>`.
+After all the switches and SoftGates have been downgraded, make sure all the devices in the *Net → Inventory* section have a ":green:`green`" status and the Netris version for each device matches what was determined in :ref:`step 4<downgrade 4>`.
 
 In case the "**check_agent**" status is "**Agent is unavailable**" after agent downgrade, perform agent restart.
 
