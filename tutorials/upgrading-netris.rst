@@ -45,7 +45,7 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
 
 .. note::
   
-  A stopped Netris agent has no impact on production traffic through the device.Select ONE installation option below.
+  A stopped Netris agent has no impact on production traffic through the device.
 
 .. _upgrade 3:
 
