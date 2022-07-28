@@ -43,7 +43,9 @@ For the SoftGate agent:
 
 Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with the "**check_agent**" status being "**Agent is unavailable**".
 
-`*` *A stopped Netris agent has no impact on production traffic through the device.*
+.. note::
+  
+  A stopped Netris agent has no impact on production traffic through the device.Select ONE installation option below.
 
 .. _upgrade 3:
 
@@ -55,7 +57,9 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
 
 4. Start the upgrade using the one-liner.
 
-`*` *This process can take up to 5 minutes*
+.. note::
+  
+  This process can take up to 5 minutes
 
 .. code-block:: shell-session
 
