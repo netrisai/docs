@@ -124,9 +124,11 @@ Restore the database:
 
   kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE < /opt/db-snapshot.sql'
 
-3. Downgrade Netris controller application:
+3. Downgrade Netris controller application.
 
-`*` *For the version number, use the number collected from* :ref:`step 3<upgrade 3>` *during the upgrade procedure*
+.. note::
+  
+  For the version number, use the number collected from :ref:`step #3<upgrade 3>` during the upgrade procedure.
 
 Example:
 
@@ -163,7 +165,7 @@ Example:
 
 5. Downgrade switch and SoftGate agents.
 
-For the switch agent follow the below example, replacing the version number determined in the pervious :ref:`step 4<downgrade 4 sw>`.
+For the switch agent follow the below example, replacing the version number determined in the pervious :ref:`step #4<downgrade 4 sw>`.
 
 Example:
 
@@ -171,7 +173,7 @@ Example:
 
   sudo apt-get update && apt-get install netris-sw=3.0.9.003
 
-For the SoftGate agent follow the below example, replacing the version number determined in the pervious :ref:`step 4<downgrade 4 sg>`.
+For the SoftGate agent follow the below example, replacing the version number determined in the pervious :ref:`step #4<downgrade 4 sg>`.
 
 Example:
 
@@ -179,7 +181,7 @@ Example:
 
   sudo apt-get update && apt-get install netris-sg=3.0.9.002
 
-After all the switches and SoftGates have been downgraded, make sure all the devices in the *Net → Inventory* section have a ":green:`green`" status and the Netris version for each device matches what was determined in :ref:`step 4<downgrade 4>`.
+After all the switches and SoftGates have been downgraded, make sure all the devices in the *Net → Inventory* section have a ":green:`green`" status and the Netris version for each device matches what was determined in :ref:`step #4<downgrade 4>`.
 
 In case the "**check_agent**" status is "**Agent is unavailable**" after agent downgrade, perform agent restart.
 
