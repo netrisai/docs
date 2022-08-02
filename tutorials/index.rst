@@ -9,9 +9,9 @@ Netris Tutorials
 
    installing-netris-controller
 
-==============================
-Recommended Upgrade Procedures
-==============================
+=============================
+Upgrade / Rollback Procedures
+=============================
     
 
 .. toctree::

@@ -10,14 +10,14 @@
 
 .. role:: red
 
-****************
-Upgrading Netris
-****************
+******
+How To
+******
 
 Upgrade Procedure
 =================
 
-Due to database structural changes between Netris versions, it's highly recommended to take a backup of the database before upgrading. The backup will be used in the unlikely event of the need to perform a rollback.
+Due to potential database structural changes between Netris versions, it's highly recommended to take a backup of the database before upgrading. The backup will be used in the unlikely event of the need to perform a rollback.
 
 1. To create a database backup, run the following command on the Controller:
 
@@ -49,7 +49,7 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
 
 .. _upgrade 3:
 
-3. Before upgrading the Netris Controller, take a note of the "*Netris Dashboard Version*" by navigating to *Setting → General* in the Controller web interface. This version number will be used in case of the need to perform a rollback procedure.
+3. Before upgrading the Netris Controller, take a note of the "*Netris Version*" by navigating to *Setting → General* in the Controller web interface. This version number will be used in case of the need to perform a rollback procedure.
 
 .. image:: /tutorials/images/netris_version_example.png
     :align: center
@@ -65,7 +65,7 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
 
   curl -sfL https://get.netris.ai | sh -
 
-Afterwards, verify that the "*Netris Dashboard Version*" reflects the version change by navigating to *Setting → General* in the Controller web interface.
+Afterwards, verify that the "*Netris Version*" reflects the version change by navigating to *Setting → General* in the Controller web interface.
 
 5. Once you have verified that the Netris controller is up-to-date, take a note of the *Netris version:* for each device found under *Net → Inventory* section of the Controller web interface.
 
@@ -136,7 +136,7 @@ Example:
 
   curl -sfL https://get.netris.ai | sh -s -- --ctl-version 3.0.9-014
 
-Afterwards, verify that the version of the "*Netris Dashboard Version*" reflects the downgraded version by navigating to *Setting → General* in the Netris Controller.
+Afterwards, verify that the version of the "*Netris Version*" reflects the downgraded version by navigating to *Setting → General* in the Netris Controller.
 
 .. _downgrade 4:
 
