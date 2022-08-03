@@ -1,23 +1,13 @@
-================
-Netris Tutorials
-================
+========================
+Generic Netris Tutorials
+========================
     
 
 .. toctree::
    :maxdepth: 2
-   :caption: The very first step
+   :caption: Generic Netris Tutorials
 
    installing-netris-controller
-
-=============================
-Upgrade / Rollback Procedures
-=============================
-    
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Version Upgrades
-
    upgrading-netris
 
 ======================================
