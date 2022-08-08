@@ -57,15 +57,43 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
 
 4. Start the upgrade using the one-liner.
 
-.. note::
-  
-  This process can take up to 5 minutes
-
 .. code-block:: shell-session
 
   curl -sfL https://get.netris.ai | sh -
 
-Afterwards, verify that the "*Netris Version*" reflects the version change by navigating to *Setting → General* in the Controller web interface.
+.. note::
+  
+  This process can take up to 5 minutes
+
+
+Afterward, make sure that all pods have either "*Running*" or "*Completed*" status by executing the following command:
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller get pods
+
+
+.. code-block:: shell-session
+
+   NAME                                                      READY   STATUS      RESTARTS    AGE
+   svclb-netris-controller-haproxy-6tkgj                     4/4     Running     0           38d
+   netris-controller-haproxy-bcb944b7c-qcbf8                 1/1     Running     0           13d
+   netris-controller-squid-7f6fdc6cf9-7fdx8                  1/1     Running     0           38d
+   svclb-netris-controller-squid-58rnp                       1/1     Running     0           38d
+   netris-controller-graphite-0                              1/1     Running     0           38d
+   netris-controller-mongodb-0                               1/1     Running     0           38d
+   netris-controller-redis-master-0                          1/1     Running     0           38d
+   netris-controller-smtp-76778cf85f-lw5v5                   1/1     Running     0           10d
+   netris-controller-mariadb-0                               1/1     Running     0           10d
+   netris-controller-web-session-generator-8b9dbbcd8-8snhd   1/1     Running     0           10d
+   netris-controller-telescope-notifier-647975848f-fs5dn     1/1     Running     0           10d
+   netris-controller-app-b9b8d8f8d-4ssqb                     1/1     Running     0           10d
+   netris-controller-grpc-987669fb9-jjskp                    1/1     Running     0           10d
+   netris-controller-telescope-777c98c5d9-mqwl6              1/1     Running     0           10d
+   helm-install-netris-controller-lqmq7                      0/1     Completed   0           20h
+
+
+Then verify that the "*Netris Version*" reflects the version change by navigating to *Setting → General* in the Controller web interface.
 
 5. Once you have verified that the Netris controller is up-to-date, take a note of the *Netris version:* for each device found under *Net → Inventory* section of the Controller web interface.
 
