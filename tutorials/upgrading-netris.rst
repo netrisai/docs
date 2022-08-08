@@ -73,6 +73,8 @@ Afterwards, make sure that all pods have either "*Running*" or "*Completed*" sta
   kubectl -n netris-controller get pods
 
 
+The output is similar to this:
+
 .. code-block:: shell-session
 
    NAME                                                      READY   STATUS      RESTARTS    AGE
