@@ -66,7 +66,7 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
   This process can take up to 5 minutes
 
 
-Afterward, make sure that all pods have either "*Running*" or "*Completed*" status by executing the following command:
+Afterwards, make sure that all pods have either "*Running*" or "*Completed*" status by executing the following command:
 
 .. code-block:: shell-session
 
