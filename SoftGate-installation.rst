@@ -7,9 +7,9 @@ SoftGate Installation
 
 Minimum Hardware Requirements
 =============================
-* 6 CPU cores
-* 8 GB RAM
-* 100 GB HDD
+* 8 physical CPU cores
+* 16 GB RAM
+* 300 GB HDD
 
 Install the Netris Agent 
 ========================

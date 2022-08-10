@@ -7,8 +7,8 @@ SoftGate PRO Installation
 
 Minimum Hardware Requirements
 =============================
-* 2 x Intel Silver CPU
-* 96 GB RAM
+* 2 x Intel® Xeon® Silver Processor with 10 physical cores
+* 64G GB RAM per socket in multichannel configuration
 * 300 GB HDD
 * Nvidia Mellanox Connect-X 5/6 SmartNIC card
 
