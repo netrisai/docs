@@ -8,7 +8,7 @@ SoftGate PRO Installation
 Minimum Hardware Requirements
 =============================
 * 2 x Intel® Xeon® Silver Processor with 10 physical cores
-* 64G GB RAM per socket in multichannel configuration
+* 128 GB (64 GB RAM per socket) in multichannel configuration
 * 300 GB HDD
 * Nvidia Mellanox Connect-X 5/6 SmartNIC card
 
@@ -26,7 +26,7 @@ The following are some recommendations for BIOS settings. Different vendors will
 
 Install the Netris Agent 
 ========================
-Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity configured from netplan via management port.
+Requires freshly installed Ubuntu Linux 18.04 LTS and internet connectivity configured from netplan via management port.
 
 1. Add the SoftGate in the controller **Inventory** or **Topology** section. Detailed configuration documentation is available here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
 2. Once the SoftGate is created, navigate to the **Inventory** section, click the **three vertical dots (⋮)** on the right side of the newly created SoftGate and select the **Install Agent** option.
