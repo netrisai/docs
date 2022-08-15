@@ -123,11 +123,6 @@ footer>a:hover::before {
     transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
 }
 
-.note,
-.note .last {
-    background-color: #ffe3e7 !important;
-}
-
 .note .first {
     background-color: #f9556d !important;
 }
