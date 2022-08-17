@@ -2,9 +2,9 @@
 Provisioning Netris SoftGate nodes in Equinix Metal Project
 ###########################################################
 
-For SoftGate nodes you can start with two servers of the smallest flavor. In the future if you happen to need to upgrade to high-performance SoftGate PRO (with DPDK acceleration) you can upgrade the servers one-by-one. 
+For SoftGate nodes you can start with two c3.small.x86 or larger servers. In the future if you happen to need to upgrade to high-performance SoftGate PRO (with DPDK acceleration) you can upgrade the servers one-by-one. 
 
-Request two servers from Equinix Metal with Ubuntu 22.04 OS and wait until provisioned. 
+Request two servers(c3.small.x86) from Equinix Metal with Ubuntu 22.04 OS and wait until provisioned. 
 
 1) At this point you should see Netris Controller listing newly created servers as “Equinix Metal Server” under  Netris Web Console → Net → Inventory
 
