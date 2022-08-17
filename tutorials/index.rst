@@ -5,7 +5,6 @@ Generic Netris Tutorials
 
 .. toctree::
    :maxdepth: 2
-   :caption: Generic Netris Tutorials
 
    installing-netris-controller
    upgrading-netris

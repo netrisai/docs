@@ -95,6 +95,10 @@ The output is similar to this:
    helm-install-netris-controller-lqmq7                      0/1     Completed   0           20h
 
 
+.. warning::
+  
+  If, after 5 minutes, you see pods with a status other than "*Running*" or "*Completed*", please reach out to us via `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__.
+
 Then verify that the "*Netris Version*" reflects the version change by navigating to *Setting → General* in the Controller web interface.
 
 5. Once you have verified that the Netris controller is up-to-date, take a note of the *Netris version:* for each device found under *Net → Inventory* section of the Controller web interface.
