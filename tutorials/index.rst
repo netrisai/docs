@@ -1,13 +1,13 @@
-================
-Netris Tutorials
-================
+========================
+Generic Netris Tutorials
+========================
     
 
 .. toctree::
    :maxdepth: 2
-   :caption: The very first step
 
    installing-netris-controller
+   upgrading-netris
 
 ======================================
 Netris VPC for Equinix Metal Tutorials
