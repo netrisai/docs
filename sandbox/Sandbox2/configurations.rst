@@ -1,4 +1,4 @@
-.. _s1-pre-configured:
+.. _s2-pre-configured:
 
 ********************************
 Provided Example Configurations

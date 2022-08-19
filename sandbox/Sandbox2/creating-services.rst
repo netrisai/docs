@@ -1,4 +1,4 @@
-.. _s1-learn-by-doing:
+.. _s2-learn-by-doing:
 
 **************************
 Learn by Creating Services
@@ -7,7 +7,7 @@ Learn by Creating Services
 Following these short exercises we will be able to demonstrate how the :ref:`Netris Controller<netris_controller_def>`, in conjunction with the :ref:`Netris Agents<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision desired services within a matter of minutes.
 
 
-.. _s1-v-net:
+.. _s2-v-net:
 
 V-Net (Ethernet/Vlan/VXlan)
 ===========================
@@ -42,7 +42,7 @@ After just a few seconds, once fully provisioned, you will start seeing successf
 
 More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-NET"<v-net_def>` page.
 
-.. _s1-e-bgp:
+.. _s2-e-bgp:
 
 E-BGP (Exterior Border Gateway Protocol)
 ========================================
@@ -79,7 +79,7 @@ We are presented with the summary of the BGP sessions terminated on **SoftGate2*
 
 More details about E-BGP (Exterior Border Gateway Protocol) can be found on the the :ref:`"BGP"<bgp_def>` page.
 
-.. _s1-nat:
+.. _s2-nat:
 
 NAT (Network Address Translation)
 =================================
@@ -116,7 +116,7 @@ Soon you will start seeing replies similar in form to "**64 bytes from 1.1.1.1: 
 
 More details about NAT (Network Address Translation) can be found on the :ref:`"NAT"<nat_def>` page.
 
-.. _s1-acl:
+.. _s2-acl:
 
 ACL (Access Control List)
 =========================
@@ -155,7 +155,7 @@ Once the Netris software has finished syncing the new ACL policy with all the me
 
 More details about ACL (Access Control List) can be found on the :ref:`"ACL"<acl_def>` page.
 
-.. _s1-l3lb:
+.. _s2-l3lb:
 
 L3LB (Anycast L3 load balancer)
 ===============================

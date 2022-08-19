@@ -1,4 +1,4 @@
-.. _s1-k8s:
+.. _s2-k8s:
 
 ***************************************
 Learn Netris operations with Kubernetes

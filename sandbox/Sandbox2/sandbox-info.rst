@@ -17,7 +17,7 @@ This environment includes:
 * **Kubernetes cluster**: A 3 node Kubernetes cluster, user integratable with Netris controller, feel free to deploy any applications for your tests.
 * **ISP**: Internet upstream with IRIS ISP, providing the sandbox Internet connectivity with real-world routable public IP addresses.
 
-.. _s1-topology:
+.. _s2-topology:
 Topology diagram
 ================
 
