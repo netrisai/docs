@@ -40,7 +40,7 @@ In order to install the Helm chart, you must follow these steps:
 
   helm install netris-controller netrisai/netris-controller \
     --namespace netris-controller \
-    --set app.ingress.hosts={my.domain.com}
+    --set ingress.hosts={my.domain.com}
 
 Uninstalling the Chart
 ---------------------------
