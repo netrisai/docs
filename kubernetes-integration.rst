@@ -23,7 +23,7 @@ Regular Manifest Method
 
 .. code-block:: shell-session
 
-  kubectl apply -f https://github.com/netrisai/netris-operator/releases/latest/download/netris-operator.yaml
+  kubectl apply -f https://github.com/netrisai/netris-operator/releases/download/v1.4.4/netris-operator.yaml
 
 2. Create credentials secret for Netris Operator:
 

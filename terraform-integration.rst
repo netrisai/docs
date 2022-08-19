@@ -43,6 +43,7 @@ Configure a provider
     required_providers {
       netris = {
         source  = "netrisai/netris"
+        version = "1.1.0"
       }
     }
   }
