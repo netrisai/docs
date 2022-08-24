@@ -7,68 +7,76 @@ SoftGate Installation
 
 Minimum Hardware Requirements
 =============================
-* 8 physical CPU cores
+* 8 CPU cores
 * 16 GB RAM
 * 300 GB HDD
 
-Install the Netris Agent 
-========================
-Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity configured from netplan via management port.
+Provision Netris SoftGate software  
+==================================
+Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity. 
 
-1. Add the SoftGate in the controller **Inventory** or **Topology** section. Detailed configuration documentation is available here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
-2. Once the SoftGate is created, navigate to the **Inventory** section, click the **three vertical dots (⋮)** on the right side of the newly created SoftGate and select the **Install Agent** option.
-3. Copy the agent install line to your clipboard and run it on the SoftGate as an ordinary user.
-4. When the installation is complete, review the ifupdown configuration file and verify that the presented configuration corresponds to what you configured during OS installation (the file is generated based on your initial netplan configuration).
+1. Netris controller ships with two SoftGate nodes pre-defined in the Default site. (softgate1-default, softgate2-default). We recommend using these if you are new to Netris. Alternatively, you can learn how to define  new SoftGate nodes here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
+
+2. Navigate to the **Net-->Inventory** section and click the **three vertical dots (⋮)** on the right side of the SoftGate node you are provisioning. Then click **Install Agent** and copy the one-line installer command to your clipboard.
+
+.. image:: /images/softgate-install-agent.png
+    :align: center
+
+
+3. Paste the one-line install command on your SoftGate node as an ordinary user. (keep in mind that one-line installer commands are unique for each node)
+
+.. image:: /images/softgate-provisioning-cli-output.png
+    :align: center
 
 .. note::
-  
-  If the Netris Controller is not in the same OOB network then it is required to add a route to Netris Controller. No default route or other IP addresses should be configured.
+  Please note that Netris replaces Netplan with regular ifupdown and attempts to migrate any prior configuration to /etc/network/interfaces.
 
-.. note::
-  
-  For proper operation of SoftGate, it is required to configure a bond interface. Please have a look at the example configuration below.
+4. Handoff Netris the bond0 interface for further automatic operations. Netris will automatically create necessary subinterfaces under your bond0 interface. (bond0.<xyz>). But you need to manually configure which physical interfaces should bind under the bond0 interface. Netris will only make changes to your bond0 and loopback interfaces; all other interfaces will remain as you describe in /etc/network/interfaces.
 
 .. code-block:: shell-session
 
   user@host:~$ sudo vim /etc/network/interfaces
-
+  
 .. code-block:: shell-session
 
   # The loopback network interface
   auto lo
   iface lo inet loopback
 
-  # The management network interface
-  auto ensZ
-  iface ensZ inet static
-      address <Management IP address/prefix length>
-      up ip route add <Controller address> via <Management network gateway> # Pleasedelete this line if Netris Controller is located in the same network with the SoftGate node.
-      gateway <Gateway IP address>
-
-  # First Softgate Interface
-  auto ensX # Please replace the ensX with the actual interface name present in the OS.
-  iface ensX inet static # Please replace the ensX with the actual interface name present in the OS.
+  # Physical port on SoftGate node connected to a TRUNK port of your network
+  auto ens<X> 
+  iface ens<x> inet static 
       address 0.0.0.0/0
-   
-  # Second Softgate Interface # This interface is optional
-  auto ensY # Please replace the ensY with the actual interface name present in the OS.
-  iface ensY inet static # Please replace the ensY with the actual interface name present in the OS.
+      
+ # Optionally you can add more physical interfaces under your bond0
+  auto ens<Y> 
+  iface ens<Y> inet static 
       address 0.0.0.0/0
 
   # Bond interface 
   auto bond0
   iface bond0 inet static
       address 0.0.0.0/0
-      bond-slaves ensX ensY # Please replace the ensX/Y with actual interface names present in the OS.
+      bond-slaves ens<X> ens<Y> # Please replace the ensX/Y with actual interface names present in the OS.
       bond-mode active-backup # Optional, please adjust the bonding mode according to the desired functionality.
 
   source /etc/network/interfaces.d/*
 
-5. If everything seems ok, please remove/comment the **Gateway** line and save the file.
 
-.. note::
+5. Ensure that SoftGate node will maintain IP connectivity with Netris Controller after reboot.
 
-  Please do not configure any additional IP addresses other than those described in the example above. The further configuration will be performed by the Netris agent.
+
+.. code-block:: shell-session
+
+  user@host:~$ sudo vim /etc/network/interfaces
+
+.. code-block:: shell-session
+  # The management network interface
+  auto ensZ
+  iface ensZ inet static
+      address <Management IP address/prefix length>
+      up ip route add <Controller address> via <Management network gateway> # Pleasedelete this line if Netris Controller is located in the same network with the SoftGate node.
+ 
 
 6. Reboot the SoftGate
 
