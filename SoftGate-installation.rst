@@ -71,6 +71,7 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
   user@host:~$ sudo vim /etc/network/interfaces
 
 .. code-block:: shell-session
+
   # The management network interface
   auto ensZ
   iface ensZ inet static
