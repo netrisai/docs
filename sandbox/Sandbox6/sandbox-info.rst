@@ -3,7 +3,7 @@ Welcome to Netris Sandbox
 *************************
 
 Netris sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
-We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s6-pre-configured>` document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at https://netris.ai/slack 
+We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s6-pre-configured>` document. Feel free to view, edit, delete, and create new services. In case of any questions, reach out to us on `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__. 
 
 The credentials for the sandbox have been provided to you by email in response to your sandbox request.
 
