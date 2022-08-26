@@ -9,28 +9,28 @@ Netris Controller Tutorials
    installing-netris-controller
    upgrading-netris
 
-============================================================================
-VPC Anywhere (Netris VPC over non-Netris managed ethernet switches) Tutorial
-============================================================================
+==================================
+VPC Anywhere Getting Started Guide
+==================================
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: VPC Anywhere (Netris VPC over non-Netris managed ethernet switches)
+   :caption: VPC Anywhere Getting Started Guide
 
    vpc-anywhere-concept
    vpc-anywhere-controller-installation
    vpc-anywhere-softgate-provisioning
 
 
-======================================
-Netris VPC for Equinix Metal Tutorials
-======================================
+==================================================
+Netris VPC for Equinix Metal Getting Started Guide
+==================================================
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Enabling Netris VPC for Equinix Metal Project 
+   :caption: Netris VPC for Equinix Metal Getting Started Guide 
 
    equinix-metal-api-integration-enablement
    adding-netris-softgate-nodes-in-equinix-metal
