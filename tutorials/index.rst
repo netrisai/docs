@@ -19,8 +19,8 @@ VPC Anywhere (Netris VPC over non-Netris managed ethernet switches) Tutorial
    :caption: VPC Anywhere (Netris VPC over non-Netris managed ethernet switches)
 
    vpc-anywhere-concept
-   vpc-anywhere-install-netris-controller
-   vpc-anywhere-provision-softgates
+   installing-netris-controller
+   ../SoftGate-installation
 
 
 ======================================
