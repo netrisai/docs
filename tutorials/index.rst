@@ -16,7 +16,6 @@ VPC Anywhere Getting Started Guide
 
 .. toctree::
    :maxdepth: 2
-   :caption: VPC Anywhere Getting Started Guide
 
    vpc-anywhere-concept
    vpc-anywhere-controller-installation
