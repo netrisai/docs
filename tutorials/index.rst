@@ -29,7 +29,7 @@ Netris VPC for Equinix Metal Getting Started Guide
 
 .. toctree::
    :maxdepth: 2
-   :caption: Netris VPC for Equinix Metal Getting Started Guide 
+   :caption: Setup
 
    equinix-metal-api-integration-enablement
    adding-netris-softgate-nodes-in-equinix-metal
@@ -38,7 +38,7 @@ Netris VPC for Equinix Metal Getting Started Guide
 
 .. toctree::
    :maxdepth: 2
-   :caption: Consuming Netris VPC services for Equinix Metal Project
+   :caption: Use
 
    using-vnet-in-equinix-metal-project
    using-l4-load-balancer
