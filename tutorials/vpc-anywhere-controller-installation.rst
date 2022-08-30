@@ -5,6 +5,9 @@
 Installing a Netris Controller
 ==============================
 
+Requirements and Installation steps
+-----------------------------------
+
 You can install the Netris controller almost on any 64-bit Linux host. Netris Controller may or may not be on the same network as the managed network nodes are. In fact if there are multiple Netris managed deployments there’s no need for an individual controller for each deployment.
 
 It doesn’t matter where to host the Netris controller. What matters is that the Netris controller needs to be accessible over the Internet. 1) So you can access the web console. 2) Nodes that are going to be managed by Netris need to have access to the Netris controller through their management network interface. 
