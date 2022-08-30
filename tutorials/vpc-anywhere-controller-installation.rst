@@ -16,6 +16,25 @@ Linux Host requirements
 * Disk: 50GB
 * OS: Linux 64-bit
 
+
+Permit incoming TCP requests:
+
++----------+--------------------------------+
+| TCP Port | Service                        |
++==========+================================+
+| 22       | SSH                            |
++----------+--------------------------------+
+| 443      | Netris Web Console             |             
++----------+--------------------------------+
+| 2003     | Streaming Telemetry (Collectd) |
++----------+--------------------------------+
+| 3033     | Netris Monitoring (Telescope)  |
++----------+--------------------------------+
+| 50051    | Netris Agent (gRPC)            |
++----------+--------------------------------+
+
+
+
 In this example my host has got a public IP address 54.219.211.71. While it is OK for users and nodes to refer to the Netris Controller through an IP address, I like using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
 
 I’m using Cloudflare to create this “example-netris-controller.netris.dev” DNS record to point to the public IP address of my host : 54.219.211.71. 
