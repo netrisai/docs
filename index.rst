@@ -13,6 +13,7 @@ Learn how to get started with Netris VPC Networking for your network environment
    :caption: Tutorials
 
    tutorials/index
+   tutorials/index-vpc
 
 .. toctree::
    :maxdepth: 4
