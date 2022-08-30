@@ -16,8 +16,56 @@ It doesn’t matter where to host the Netris controller. What matters is that th
 * Disk: 50GB
 * OS: Linux 64-bit
 
+**DNS record**
 
-**Permit incoming TCP requests:**
+In my example my host got a public IP address 54.183.23.201. While it is OK for users and nodes to refer to the Netris Controller through an IP address, we recommend using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
+
+Below is example using Cloudflare DNS service. (same idea with any DNS software or service)
+
+.. image:: images/dns-record-netrisctl.png
+    :align: center
+
+Ensure that newly created domain name indeed resolves into the right IP address of the machine that you are going to install the Netris Controller.
+
+.. code-block:: shell-session
+
+   host netrisctl.netris.dev
+   netrisctl.netris.dev has address 54.183.23.201
+
+**Install Netris Controller software and dependencies**
+
+.. code-block:: shell-session
+
+  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt
+  
+.. note::
+  Netris Controller installer will stand up a K3S cluster and then will deploy Netris Controller on top of it using Helm Chart.  The “--ctl-ssl-issuer” will instruct the installer to generate a Let’s Encrypt SSL certificate and the "--ctl-hostname" will hint for what domain name the certificate must be generated. That’s why it is important to create the DNS record before this step. Detailed info here: `doc <https://www.netris.ai/docs/en/stable/controller-k3s-installation.html>`_.
+
+.. image:: images/netris-controller-installed.png
+    :align: center
+
+
+Once installation process is finished you will be able to access your newly installed Netris Controller web console using netris/newNet0ps credentials.
+
+
+Security Matters
+----------------
+
+**Change the default password**
+
+Setting → My Account → Change Password
+
+.. image:: images/change-password.png
+    :align: center
+    
+**Add new admin user**
+
+Accounts → Users → +Add
+
+.. image:: images/create-new-admin-user.png
+    :align: center
+    
+**Restrict allowed incoming TCP requests to the list below:**
 
 +----------+--------------------------------+
 | TCP Port | Service                        |
@@ -33,29 +81,3 @@ It doesn’t matter where to host the Netris controller. What matters is that th
 | 50051    | Netris Agent (gRPC)            |
 +----------+--------------------------------+
 
-**DNS record**
-
-In this example my host has got a public IP address 54.219.211.71. While it is OK for users and nodes to refer to the Netris Controller through an IP address, I like using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
-
-I’m using Cloudflare to create this “example-netris-controller.netris.dev” DNS record to point to the public IP address of my host : 54.219.211.71. 
-
-.. image:: images/cloudflare-dns-record.png
-    :align: center
-
-Ensure that newly created domain name indeed resolves into the right IP address of the machine that you are going to install the Netris Controller.
-
-.. code-block:: shell-session
-
-   host example-netris-controller.netris.dev
-   example-netris-controller.netris.dev has address 54.219.211.71
-
-To install Netris Controller on a freshly installed Linux you only need to run below one-liner command. Netris Controller installer will stand up a K3S cluster and then will deploy Netris Controller on top of it using Helm Chart.  The “--ctl-ssl-issuer” will instruct the installer to generate a Let’s Encrypt SSL certificate and the "--ctl-hostname" will hint for what domain name the certificate must be generated. That’s why it is important to create the DNS record before this step. For more details, get familiar with the controller installation `doc <https://www.netris.ai/docs/en/stable/controller-k3s-installation.html>`_.
-
-.. code-block:: shell-session
-
-  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt
-  
-Once installation process is finished you will be able to access your newly installed Netris Controller web console using netris/newNet0ps credentials.
-
-Please immediately change the default password to something strong in Setting → My Account → Change Password. 
-You can also use Settings → Login whitelist to restrict web console access to the controller. 
