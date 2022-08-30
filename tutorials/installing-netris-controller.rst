@@ -16,22 +16,6 @@ It doesn’t matter where to host the Netris controller. What matters is that th
 * Disk: 50GB
 * OS: Linux 64-bit
 
-**Permit incoming TCP requests:**
-
-+----------+--------------------------------+
-| TCP Port | Service                        |
-+==========+================================+
-| 22       | SSH                            |
-+----------+--------------------------------+
-| 443      | Netris Web Console             |             
-+----------+--------------------------------+
-| 2003     | Streaming Telemetry (Collectd) |
-+----------+--------------------------------+
-| 3033     | Netris Monitoring (Telescope)  |
-+----------+--------------------------------+
-| 50051    | Netris Agent (gRPC)            |
-+----------+--------------------------------+
-
 **DNS record**
 
 In my example my host got a public IP address 54.183.23.201. While it is OK for users and nodes to refer to the Netris Controller through an IP address, we recommend using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
@@ -63,5 +47,37 @@ Ensure that newly created domain name indeed resolves into the right IP address 
 
 Once installation process is finished you will be able to access your newly installed Netris Controller web console using netris/newNet0ps credentials.
 
-Please immediately change the default password to something strong in Setting → My Account → Change Password. 
-You can also use Settings → Login whitelist to restrict web console access to the controller. 
+
+Security Matters
+----------------
+
+**Change the default password**
+
+Setting → My Account → Change Password
+
+.. image:: images/change-password.png
+    :align: center
+    
+**Add new admin user**
+
+Accounts → Users → +Add
+
+.. image:: images/create-new-admin-user.png
+    :align: center
+    
+**Restrict allowed incoming TCP requests to the list below:**
+
++----------+--------------------------------+
+| TCP Port | Service                        |
++==========+================================+
+| 22       | SSH                            |
++----------+--------------------------------+
+| 443      | Netris Web Console             |             
++----------+--------------------------------+
+| 2003     | Streaming Telemetry (Collectd) |
++----------+--------------------------------+
+| 3033     | Netris Monitoring (Telescope)  |
++----------+--------------------------------+
+| 50051    | Netris Agent (gRPC)            |
++----------+--------------------------------+
+
