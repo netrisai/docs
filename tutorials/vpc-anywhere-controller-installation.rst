@@ -9,7 +9,7 @@ You can install the Netris controller almost on any 64-bit Linux host. Netris Co
 
 It doesn’t matter where to host the Netris controller. What matters is that the Netris controller needs to be accessible over the Internet. 1) So you can access the web console. 2) Nodes that are going to be managed by Netris need to have access to the Netris controller through their management network interface. 
 
-Linux Host requirements
+**Linux Host requirements**
 
 * RAM: 8 GB
 * CPU: 4 Cores
@@ -17,7 +17,7 @@ Linux Host requirements
 * OS: Linux 64-bit
 
 
-Permit incoming TCP requests:
+**Permit incoming TCP requests:**
 
 +----------+--------------------------------+
 | TCP Port | Service                        |
@@ -33,7 +33,7 @@ Permit incoming TCP requests:
 | 50051    | Netris Agent (gRPC)            |
 +----------+--------------------------------+
 
-
+**DNS record**
 
 In this example my host has got a public IP address 54.219.211.71. While it is OK for users and nodes to refer to the Netris Controller through an IP address, I like using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
 
