@@ -1,6 +1,6 @@
-===========================
-Netris Controller Tutorials
-===========================
+=======================
+Netris Common Tutorials
+=======================
     
 
 .. toctree::
