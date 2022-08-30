@@ -70,19 +70,3 @@ Accounts → Users → +Add
 .. image:: images/create-new-admin-user.png
     :align: center
     
-**Restrict allowed incoming TCP requests to the list below:**
-
-+----------+--------------------------------+
-| TCP Port | Service                        |
-+==========+================================+
-| 22       | SSH                            |
-+----------+--------------------------------+
-| 443      | Netris Web Console             |             
-+----------+--------------------------------+
-| 2003     | Streaming Telemetry (Collectd) |
-+----------+--------------------------------+
-| 3033     | Netris Monitoring (Telescope)  |
-+----------+--------------------------------+
-| 50051    | Netris Agent (gRPC)            |
-+----------+--------------------------------+
-
