@@ -5,13 +5,13 @@ Welcome to Netris Sandbox
 Netris sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
 We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s6-pre-configured>` document. Feel free to view, edit, delete, and create new services. In case of any questions, reach out to us on `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__. 
 
-The credentials for the sandbox have been provided to you by email in response to your sandbox request.
+The credentials for the sandbox have been provided to you by email in response to your Sandbox request.
 
-This environment includes:
+The Sandbox environment includes:
 
-* **Netris Controller**: A cloud-hosted Netris controller, loaded with examples.
-* **Switching fabric**: Two spine switches and four leaf switches, all Netris-operated.
-* **SoftGates**: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.
+* **Netris Controller**: A cloud-hosted Netris Controller, loaded with examples.
+* **Switching fabric**: Two spine switches and four leaf switches, all operated by Netris.
+* **SoftGates**: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both operated by Netris.
 * **Linux servers**: Five Linux servers, with root access where you can run any applications for your tests.
 * **Kubernetes cluster**: A 3 node Kubernetes cluster, user integratable with Netris controller, feel free to deploy any applications for your tests.
 * **ISP**: Internet upstream, providing the sandbox Internet connectivity with real-world routable public IP addresses.
@@ -36,7 +36,7 @@ Example pre-configured Netris services:
  * srv04, srv05 - are consuming a V-NET (routed VXLAN) Netris example service, see Services-->V-NET.
 
 
-Accessing Linux servers:
+**Accessing the Linux servers:**
   
 .. code-block:: shell-session  
   
@@ -49,12 +49,12 @@ Accessing Linux servers:
 
 Kubernetes cluster
 ==================
-This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing **netris-operator**. Step-by-step instructions are included in the :ref:`"Learn Netris operations with Kubernetes"<s6-k8s>` document.
+This Sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris Controller by installing the **netris-operator**. Step-by-step instructions are included in the :ref:`"Learn Netris operations with Kubernetes"<s6-k8s>` document.
 
 
 Upstream ISP
 ============
-This sandbox provides an upstream ISP service with real-world Internet routing. 
+This Sandbox also provides an upstream ISP service with real-world Internet routing. 
 There is one pre-configured example under NET-->E-BGP service, which is advertising the public IP subnet to the upstream ISP IRIS.
 
 ISP settings:
