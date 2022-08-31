@@ -2,7 +2,7 @@
     :description: Installing a Netris Controller
 
 ==============================
-Installing a Netris Controller
+Install a Netris Controller
 ==============================
 
 Requirements and Installation steps
