@@ -1,6 +1,6 @@
-########
-Concepts
-########
+########################
+VPC Anywhere description
+########################
 
 Introduction
 -------------
