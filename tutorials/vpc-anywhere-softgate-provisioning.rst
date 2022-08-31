@@ -77,7 +77,7 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
   auto ensZ
   iface ensZ inet static
       address <Management IP address/prefix length>
-      up ip route add <Controller address> via <Management network gateway> # Pleasedelete this line if Netris Controller is located in the same network with the SoftGate node.
+      up ip route add <Controller address> via <Management network gateway> # Please delete this line if Netris Controller is located in the same network with the SoftGate node.
  
 
 5. Reboot the SoftGate
