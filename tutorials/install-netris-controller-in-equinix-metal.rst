@@ -5,6 +5,9 @@
 Installing a Netris Controller on Equinix Metal on-demand server
 ================================================================
 
+Installation Steps
+------------------
+
 You can install the Netris controller almost on any 64-bit Linux host. You can use a single Netris controller for operating multiple sites (regions).
 
 **Request a server**
