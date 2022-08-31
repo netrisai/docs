@@ -14,7 +14,7 @@ Learn how to get started with Netris VPC Networking for your network environment
 
    tutorials/index
    tutorials/index-vpc
-   tutorials/index-equinix
+   tutorials/netris-vpc-for-equinix-metal
 
 .. toctree::
    :maxdepth: 4
