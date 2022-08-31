@@ -1,18 +1,18 @@
 .. meta::
   :description: Netris SoftGate Installation
 
-***************************
+*********************
 SoftGate Installation
-***************************
+*********************
 
-Minimum Hardware Requirements
-=============================
+Hardware Requirements
+=====================
 * 8 CPU cores
 * 16 GB RAM
 * 300 GB HDD
 
-Provision Netris SoftGate software  
-==================================
+SoftGate software provisioning
+==============================
 Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity. 
 
 .. note::
