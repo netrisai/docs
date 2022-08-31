@@ -13,7 +13,7 @@ Learn how to get started with Netris VPC Networking for your network environment
    :caption: Tutorials
 
    tutorials/index
-   tutorials/index-vpc
+   tutorials/vpc-anywhere
    tutorials/netris-vpc-for-equinix-metal
 
 .. toctree::
