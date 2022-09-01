@@ -2,7 +2,7 @@
     :description: Installing a Netris Controller
 
 ==============================
-Installing a Netris Controller
+Install a Netris Controller
 ==============================
 
 Requirements and Installation steps
@@ -68,14 +68,17 @@ Accounts → Users → +Add
 .. image:: images/create-new-admin-user.png
     :align: center
     
-**Restrict allowed incoming TCP requests to the list below:**
+
+**Restrict incoming TCP requests to the list below:**
 
 +----------+--------------------------------+
 | TCP Port | Service                        |
 +==========+================================+
 | 22       | SSH                            |
 +----------+--------------------------------+
-| 443      | Netris Web Console             |             
+| 80       | HTTP                           |
++----------+--------------------------------+
+| 443      | Netris Web Console             |
 +----------+--------------------------------+
 | 2003     | Streaming Telemetry (Collectd) |
 +----------+--------------------------------+
