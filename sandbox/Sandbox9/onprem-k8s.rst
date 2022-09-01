@@ -462,7 +462,7 @@ Return to the Netris Controller and navigate to **Net → Topology** to see the 
 Importing Existing Resources from Netris Controller to Kubernetes
 -----------------------------------------------------------------
 
-You You can import any custom resources already created from the Netris Controller to k8s by adding the following annotation:
+You can import any custom resources already created from the Netris Controller to k8s by adding the following annotation:
 
 .. code-block:: yaml
 
