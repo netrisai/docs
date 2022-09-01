@@ -296,7 +296,7 @@ Let’s create our V-Net manifest:
 
   cat << EOF > vnet-customer.yaml
   apiVersion: k8s.netris.ai/v1alpha1
-  kind: V-Net
+  kind: VNet
   metadata:
    name: vnet-customer
   spec:
@@ -362,7 +362,7 @@ BTW, if you already created "vnet-customer" V-Net as described in the :ref:`"Lea
 
   cat << EOF > vnet-customer.yaml
   apiVersion: k8s.netris.ai/v1alpha1
-  kind: V-Net
+  kind: VNet
   metadata:
    name: vnet-customer
    annotations:
