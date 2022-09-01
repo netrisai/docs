@@ -7,7 +7,7 @@ Learn by Creating Services
 
 V-Net (Ethernet/Vlan/VXlan)
 ===========================
-Let's create a V-Net service to give the **srv05-nyc** server the ability to reach its gateway address.
+Let's create a V-Net service to give server **srv05-nyc** the ability to reach its gateway address.
 
 * In a terminal window:
 
@@ -133,4 +133,4 @@ Now that the **Default ACL Policy** is set to **Deny**, we need to configure an 
 
 * Back in the terminal window again:
 
-Once the Netris software has finished syncing the new ACL policy with all the member devices, you can see that replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again.
+Once the Netris Controller has finished syncing the new ACL policy with all member devices, you can see that replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again.

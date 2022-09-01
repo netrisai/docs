@@ -4,14 +4,13 @@
 Learn by Creating Services
 **************************
 
-Following these short exercises we will be able to demonstrate how the :ref:`Netris Controller<netris_controller_def>`, in conjunction with the :ref:`Netris Agents<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision desired services within a matter of minutes.
-
+Following these short exercises we will be able to demonstrate how the :ref:`Netris Controller<netris_controller_def>`, in conjunction with the :ref:`Netris Agents<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision the desired services within a matter of seconds.
 
 .. _s9-v-net:
 
 V-Net (Ethernet/Vlan/VXlan)
 ===========================
-Let's create a V-Net service to give the **srv05-nyc** server the ability to reach its gateway address.
+Let's create a V-Net service to give server **srv05-nyc** the ability to reach its gateway address.
 
 * In a terminal window:
 
@@ -27,11 +26,11 @@ Let's create a V-Net service to give the **srv05-nyc** server the ability to rea
   1. Log into the Netris Controller by visiting `https://sandbox9.netris.ai <https://sandbox9.netris.ai>`_ and navigate to **Services → V-Net**.
   2. Click the **+ Add** button in the top right corner of the page to get started with creating a new V-Net service.
   3. Define a name in the **Name** field (e.g. ``vnet-customer``).
-  4. From the **Owner** drop-down menu, select "**Demo**".
-  5. From the **Sites** drop-down menu, select "**US/NYC**".
+  4. From the **Sites** drop-down menu, select "**US/NYC**".
+  5. From the **Owner** drop-down menu, select "**Demo**".
   6. From the **IPv4 Gateway** drop-down menu, select the "**192.168.46.0/24(CUSTOMER)**" subnet.
   7. The first available IP address "**192.168.46.1**" is automatically selected in the second drop-down menu of the list of IP addresses. This matches the results of the ``ip route ls`` command output on **srv05-nyc** we observed earlier.
-  8. From the **Add Port** drop-down menu put a check mark next to switch port "**swp2(swp2 | srv05-nyc)@sw22-nyc (Demo)**", which we can see is the the port where **srv05-nyc** is wired into when we reference the :ref:`"Sandbox Topology diagram"<s11-topology>`.
+  8. From the **Add Network Interface** drop-down menu put a check mark next to switch port "**swp2(swp2 | srv05-nyc)@sw22-nyc (Demo)**", which we can see is the the port where **srv05-nyc** is wired into when we reference the :ref:`"Sandbox Topology diagram"<s11-topology>`.
 
     *  The drop-down menu only contains this single switch port as it is the only port that has been assigned to the **Demo** tenant.
 
@@ -116,6 +115,51 @@ Soon you will start seeing replies similar in form to "**64 bytes from 1.1.1.1: 
 
 More details about NAT (Network Address Translation) can be found on the :ref:`"NAT"<nat_def>` page.
 
+.. _s9-l3lb:
+
+L3LB (Anycast L3 load balancer)
+===============================
+In this exercise we will quickly configure an Anycast IP address in the Netris Controller for two of our :ref:`"ROH (Routing on the Host)"<roh_def>` servers (**srv01-nyc** & **srv02-nyc**) which both have a running Web Server configured to display a simple HTML webpage and observe **ECMP** load balancing it in action.
+
+* In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
+
+  1. Log into the Netris Controller by visiting `https://sandbox9.netris.ai <https://sandbox9.netris.ai>`_ and navigate to **Services → ROH**.
+  2. Click **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**srv01-nyc**" server.
+  3. From the **IPv4** drop-down menu, select the "**50.117.59.200/30 (L3 LOAD BALANCER)**" subnet.
+  4. From the second drop-down menu that appears to the right, select the first available IP "**50.117.59.216**".
+  5. Check the **Anycast** check-box next to the previously selected IP and click the **Save** button. 
+  6. Repeat steps **3** through **4** for "**srv02-nyc**" by first clicking **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**srv02-nyc**" server.
+
+    * While editing "**srv02-nyc**", after selecting the "**50.117.59.216**" IP address , the **Anycast** check-box will already be automatically checked as we had designated the IP address as such in step **5**.
+
+* In a new web browser window/tab:
+
+  1. Type in the Anycast IP address we just configured (**50.117.59.216**) into the browser's address bar or simply visit `http://50.117.59.216/ <http://50.117.59.216/>`_.
+  2. Based on the unique hash calculated from factors such as source IP/Protocol/Port, the **L3LB** will use **ECMP** to load balance the traffic from your browser to either **srv01-nyc** or **srv02-nyc**, with the text on the website indicating where the traffic ended up.
+
+    * It should be noted that the TCP session will continue to exist between the given end-user and server pair for the lifetime of the session. In our case we have landed on **srv01-nyc**.
+
+.. image:: /images/l3lb_srv01.png
+    :align: center
+
+In order to trigger the L3 load balancer to switch directing the traffic towards the other backend server (in this case from **srv01-nyc** to **srv02-nyc**, which based on the unique hash in your situation could be the other way around), we can simulate the unavailability of backend server we ended up on by putting it in **Maintenance** mode.
+
+* Back in the Netris Controller, navigate to **Services → L3 Load Balancer**.
+
+  1. Expand the **LB Vip** that was created when we defined the **Anycast** IP address earlier by clicking on the **>** to the left of "**50.117.59.216 (name_50.117.59.216)**".
+  2. Click **Action v** to the right of the server you originally ended up on (in this case **srv01-nyc**).
+  3. Click **Maintenance on**.
+  4. Click **Maintenance** one more time in the pop-up window.
+
+* Back in the browser window/tab directed at the **50.117.59.216** Anycast IP address.
+
+  1. After just a few seconds, we can observe that now the website indicates that the traffic is routed to **srv02-nyc** (once more, your case could be opposite for you based on the original hash).
+
+.. image:: /images/l3lb_srv02.png
+    :align: center
+
+More details about AL3LB (Anycast L3 load balancer) can be found on the :ref:`"L3 Load Balancer (Anycast LB)"<l3lb_def>` page.
+
 .. _s9-acl:
 
 ACL (Access Control List)
@@ -151,51 +195,6 @@ Soon you will notice that there are no new replies to our previously started ``p
   8. Select **Approve** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the newly created "**V-Net Customer to WAN**" ACL.
   9. Click **Approve** one more time in the pop-up window.
 
-Once the Netris software has finished syncing the new ACL policy with all the member devices, we can see in the terminal window that replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again..
+Once the Netris Controller has finished syncing the new ACL policy with all member devices, we can see in the terminal window that replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again..
 
 More details about ACL (Access Control List) can be found on the :ref:`"ACL"<acl_def>` page.
-
-.. _s9-l3lb:
-
-L3LB (Anycast L3 load balancer)
-===============================
-In this exercise we will quickly configure an Anycast IP address in the Netris Controller for two of our :ref:`"ROH (Routing on the Host)"<roh_def>` servers (**srv01-nyc** & **srv02-nyc**) which both have a running Web Server configured to display a simple HTML webpage and observe **ECMP** load balancing it in action.
-
-* In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
-
-  1. Log into the Netris Controller by visiting `https://sandbox9.netris.ai <https://sandbox9.netris.ai>`_ and navigate to **Services → Instances(ROH)**.
-  2. Click **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**srv01-nyc**" server.
-  3. From the **IPv4** drop-down menu, select the "**50.117.59.200/30 (L3 LOAD BALANCER)**" subnet.
-  4. From the second drop-down menu that appears to the right, select the first available IP "**50.117.59.216**".
-  5. Check the **Anycast** check-box next to the previously selected IP and click the **Save** button. 
-  6. Repeat steps **3** through **4** for "**srv02-nyc**" by first clicking **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**srv02-nyc**" server.
-
-    * While editing "**srv02-nyc**", after selecting the "**50.117.59.216**" IP address , the **Anycast** check-box will already be automatically checked as we had designated the IP address as such in step **5**.
-
-* In a new web browser window/tab:
-
-  1. Type in the Anycast IP address we just configured (**50.117.59.216**) into the browser's address bar or simply visit `http://50.117.59.216/ <http://50.117.59.216/>`_.
-  2. Based on the unique hash calculated from factors such as source IP/Protocol/Port, the **L3LB** will use **ECMP** to load balance the traffic from your browser to either **srv01-nyc** or **srv02-nyc**, with the text on the website indicating where the traffic ended up.
-
-    * It should be noted that the TCP session will continue to exist between the given end-user and server pair for the lifetime of the session. In our case we have landed on **srv01-nyc**.
-
-.. image:: /images/l3lb_srv01.png
-    :align: center
-
-In order to trigger the L3 load balancer to switch directing the traffic towards the other backend server (in this case from **srv01-nyc** to **srv02-nyc**, which based on the unique hash in your situation could be the other way around), we can simulate the unavailability of backend server we ended up on by putting it in **Maintenance** mode.
-
-* Back in the Netris Controller, navigate to **Services → Load Balancer**.
-
-  1. Expand the **LB Vip** that was created when we defined the **Anycast** IP address earlier by clicking on the **>** to the left of "**50.117.59.216 (name_50.117.59.216)**".
-  2. Click **Action v** to the right of the server you originally ended up on (in this case **srv01-nyc**).
-  3. Click **Maintenance on**.
-  4. Click **Maintenance** one more time in the pop-up window.
-
-* Back in the browser window/tab directed at the **50.117.59.216** Anycast IP address.
-
-  1. After just a few seconds, we can observe that now the website indicates that the traffic is routed to **srv02-nyc** (once more, your case could be opposite for you based on the original hash).
-
-.. image:: /images/l3lb_srv02.png
-    :align: center
-
-More details about AL3LB (Anycast L3 load balancer) can be found on the :ref:`"L3 Load Balancer (Anycast LB)"<l3lb_def>` page.

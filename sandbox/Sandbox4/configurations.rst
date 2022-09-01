@@ -44,11 +44,11 @@ More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-
 E-BGP (Exterior Border Gateway Protocol) Example
 ================================================
 
-Navigate to **Net → E-BGP**. Here, aside from the necessary system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( **SoftGate1** & **SoftGate2** ) and the rest of the switching fabric, you will also find two E-BGP sessions named "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" configured as example with **IRIS ISP1**. This ensures communication between the internal network with the Internet. 
+Navigate to **Net → E-BGP**. Here, aside from the necessary system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( **SoftGate1** & **SoftGate2** ) and the rest of the switching fabric (which can be toggled on/off using the **Show System Generated** toggle at the top of the page), you will also find two E-BGP sessions named "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" configured as example with **IRIS ISP1**. This ensures communication between the internal network with the Internet. 
 
-You may examine the particular session configurations of the E-BGP connections by selecting **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of either the "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" connections. You may also expand the **Advanced** section located toward the bottom of the **Edit** window to able to access the more advanced settings available while configuring an E-BGP session.
+You may examine the particular session configurations of the E-BGP connections by selecting **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of either the "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" connections. You may also expand the **Advanced** section located toward the bottom of the **Edit** window to be able to access the more advanced settings available while configuring an E-BGP session.
 
-If you are interested in learning how to create an additional E-BGP session with **IRIS ISP2** in order to make the sandbox upstream connections fault tolerant yourself, please refer to the step-by-step instructions found in the :ref:`"E-BGP (Exterior Border Gateway Protocol)"<s4-e-bgp>` section of the :ref:`"Learn by Creating Services"<s4-learn-by-doing>` document.
+If you are interested in learning how to create an additional E-BGP session with **IRIS ISP2** in order to make the Sandbox upstream connections fault tolerant yourself, please refer to the step-by-step instructions found in the :ref:`"E-BGP (Exterior Border Gateway Protocol)"<s4-e-bgp>` section of the :ref:`"Learn by Creating Services"<s4-learn-by-doing>` document.
 
 More details about E-BGP (Exterior Border Gateway Protocol) can be found on the the :ref:`"BGP"<bgp_def>` page.
 
