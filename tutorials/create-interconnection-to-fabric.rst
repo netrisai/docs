@@ -55,22 +55,6 @@ Then, finalize the request by clicking "Submit Interconnection Request".
 
 Once this is accomplished, use the token generated to connect your virtual Network Edge device to Equinix Metal.  Setting up a connection on the Fabric side is outside the scope of this document.  Once that is complete, the Interconnection will show as Active, and you may move onto creating BGP connections with the Network Edge Virtual Device.
 
-**Enable VLAN links to the softgates**
-
-To connect these newly created VLANs into the Netris Softgates, go to Servers -> Click on the Primary softgate. Then Click Network, scroll down to Layer 2, and click "Add New Vlan".
-
-Select the correct interface (should be bond0), then select the Primary Vlan.
-
-After adding, the vlans should look something like this:
-
-.. image:: images/primary-vlan-softgate1.png
-    :align: center
-
-Repeat these steps for the Secondary Softgate and the Secondary VLAN.
-
-.. image:: images/secondary-vlan-softgate2.png
-     :align: center
-
 
 
 **Primary BGP Connection to Fabric Network Edge Device**
