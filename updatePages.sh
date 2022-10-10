@@ -104,7 +104,7 @@ cat >> index.html <<EOF
 <html>
    <head>
       <title>Netris Docs</title>
-      <meta http-equiv = "refresh" content="0; url=https://www.netris.ai/docs/" />   
+      <meta http-equiv = "refresh" content="0; url=https://www.netris.io/docs/" />   
    </head>
    <body>
       <p>Please wait while you're redirected to our <a href="/">netris documentation page</a>.</p>
@@ -118,7 +118,7 @@ cat >> README.md <<EOF
 
 Nothing to see here. The contents of this branch are essentially a cache that's not intended to be viewed on github.com.
 
-You can view the actual documentation as it's intended to be viewed at [https://netris.ai/docs/](https://netris.ai/docs/)
+You can view the actual documentation as it's intended to be viewed at [https://netris.io/docs/](https://netris.io/docs/)
 
 If you're looking to update our documentation, check the relevant development branch's ['docs'](https://github.com/netrisai/docs).
 EOF

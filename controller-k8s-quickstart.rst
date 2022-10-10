@@ -10,9 +10,9 @@ Netris offers a simplified deployment model for users who want to quickly instal
 **This installation process is streamlined for Linux servers that do not already have Kubernetes running.**  The install does the following:
 
 * Installs `k3s <https://k3s.io/>`_
-* Installs the `Netris Controller Helm chart <https://www.netris.ai/docs/en/stable/controller-k8s-installation.html>`_
+* Installs the `Netris Controller Helm chart <https://www.netris.io/docs/en/stable/controller-k8s-installation.html>`_
 
-If you wish to install the controller on an existing Kubernetes cluster, follow `these instructions <https://www.netris.ai/docs/en/stable/controller-k8s-installation.html>`_ instead of this Quickstart.
+If you wish to install the controller on an existing Kubernetes cluster, follow `these instructions <https://www.netris.io/docs/en/stable/controller-k8s-installation.html>`_ instead of this Quickstart.
 
 Quickstart Process
 ------------------
@@ -29,7 +29,7 @@ Quickstart Process
 
    For example, if you are planning on using 192.168.1.100 as the IP address of your Ubuntu server, then create a subnet in Netris UI for 192.168.1.0/24.
 
-   Detailed configuration documentation is available here: `Netris IPAM <https://www.netris.ai/docs/en/stable/ipam.html>`_.
+   Detailed configuration documentation is available here: `Netris IPAM <https://www.netris.io/docs/en/stable/ipam.html>`_.
 
 4. Navigate in the UI to **Topology**
 5. Click the **Add** in the upper right

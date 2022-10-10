@@ -42,7 +42,7 @@ Once installed, you will be able to log in to Netris Controller using your host'
   
   * Installs `k3s <https://k3s.io/>`_
   * Installs the `Cert-Manager Helm chart <https://cert-manager.io/docs/installation/helm/>`_
-  * Installs the `Netris Controller Helm chart <https://www.netris.ai/docs/en/stable/controller-k8s-installation.html>`_
+  * Installs the `Netris Controller Helm chart <https://www.netris.io/docs/en/stable/controller-k8s-installation.html>`_
 
 
 

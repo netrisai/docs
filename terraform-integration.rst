@@ -153,7 +153,7 @@ Then, when we have the ``tenantid``, we can create IPAM resources.
   EOF
 
 With the command above, we've defined 6 resources, 3 of the type of Allocation, 3 of the type of Subnet, each Subnet resource has a different purpose.
-For more details, get familiar with the IPAM `docs <https://www.netris.ai/docs/en/stable/ipam.html>`_.
+For more details, get familiar with the IPAM `docs <https://www.netris.io/docs/en/stable/ipam.html>`_.
 
 Now, when we have all the required resources let's define our Inventory.
 We're going to create 1 SoftGate, 1 switch and connect them with a link.

@@ -6,8 +6,8 @@ More Information:
 
 hello@netris.ai
 
-https://netris.ai
+https://netris.io
 
-Slack Support Channel: https://www.netris.ai/slack/
+Slack Support Channel: https://www.netris.io/slack/
 
-Current docs are available at: https://netris.ai/docs
+Current docs are available at: https://netris.io/docs
