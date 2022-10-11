@@ -48,7 +48,7 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
   iface ens<x> inet static 
       address 0.0.0.0/0
       
- # Optionally you can add more physical interfaces under your bond0
+  # Optionally you can add more physical interfaces under your bond0
   auto ens<Y> 
   iface ens<Y> inet static 
       address 0.0.0.0/0
@@ -65,7 +65,7 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
   source /etc/network/interfaces.d/*
 
 
-1. Ensure that SoftGate node will maintain IP connectivity with Netris Controller after reboot.
+5. Ensure that SoftGate node will maintain IP connectivity with Netris Controller after reboot.
 
 
 .. code-block:: shell-session
@@ -82,7 +82,7 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
       up ip route add <Controller address> via <Management network gateway> 
  
 
-1. Reboot the SoftGate
+6. Reboot the SoftGate
 
 .. code-block:: shell-session
 
