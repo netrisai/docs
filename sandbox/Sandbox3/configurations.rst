@@ -7,7 +7,7 @@ Once you log into the Netris Controller, you will find that certain services hav
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
-After logging into the Netris Controller by visiting `https://sandbox3.netris.ai <https://sandbox3.netris.ai>`_ and navigating to **Services → V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. 
+After logging into the Netris Controller by visiting `https://sandbox3.netris.io <https://sandbox3.netris.io>`_ and navigating to **Services → V-Net**, you will find a V-Net service named "**vnet-example**" already configured for you as an example. 
 
 If you examine the particular service settings ( select **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**vnet-example**" service), you will find that the services is configured on the second port of **switch 21** named "**swp2(swp2)@sw21-nyc (Admin)**". 
 

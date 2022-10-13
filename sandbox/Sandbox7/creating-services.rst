@@ -23,7 +23,7 @@ Let's create a V-Net service to give server **srv05-nyc** the ability to reach i
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox7.netris.ai <https://sandbox7.netris.ai>`_ and navigate to **Services → V-Net**.
+  1. Log into the Netris Controller by visiting `https://sandbox7.netris.io <https://sandbox7.netris.io>`_ and navigate to **Services → V-Net**.
   2. Click the **+ Add** button in the top right corner of the page to get started with creating a new V-Net service.
   3. Define a name in the **Name** field (e.g. ``vnet-customer``).
   4. From the **Sites** drop-down menu, select "**US/NYC**".
@@ -51,7 +51,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox7.netris.ai <https://sandbox7.netris.ai>`_ and navigate to **Net → E-BGP**.
+  1. Log into the Netris Controller by visiting `https://sandbox7.netris.io <https://sandbox7.netris.io>`_ and navigate to **Net → E-BGP**.
   2. Click the **+ Add** button in the top right corner of the page to configure a new E-BGP session.
   3. Define a name in the **Name** field (e.g. ``iris-isp2-ipv4-customer``).
   4. From the **Site** drop-down menu, select "**US/NYC**".
@@ -95,7 +95,7 @@ Let's configure a source NAT so our Customer subnet **192.168.46.0/24**, which i
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox7.netris.ai <https://sandbox7.netris.ai>`_ and navigate to **Net → NAT**.
+  1. Log into the Netris Controller by visiting `https://sandbox7.netris.io <https://sandbox7.netris.io>`_ and navigate to **Net → NAT**.
   2. Click the **+ Add** button in the top right corner of the page to define a new NAT rule.
   3. Define a name in the **Name** field (e.g. ``NAT Customer``).
   4. From the **Site** drop-down menu, select "**US/NYC**".
@@ -123,7 +123,7 @@ In this exercise we will quickly configure an Anycast IP address in the Netris C
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox7.netris.ai <https://sandbox7.netris.ai>`_ and navigate to **Services → ROH**.
+  1. Log into the Netris Controller by visiting `https://sandbox7.netris.io <https://sandbox7.netris.io>`_ and navigate to **Services → ROH**.
   2. Click **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**srv01-nyc**" server.
   3. From the **IPv4** drop-down menu, select the "**50.117.59.168/30 (L3 LOAD BALANCER)**" subnet.
   4. From the second drop-down menu that appears to the right, select the first available IP "**50.117.59.216**".
@@ -176,7 +176,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox7.netris.ai <https://sandbox7.netris.ai>`_ and navigate to **Net → Sites**.
+  1. Log into the Netris Controller by visiting `https://sandbox7.netris.io <https://sandbox7.netris.io>`_ and navigate to **Net → Sites**.
   2. Click **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the **UC/NYC** site.
   3. From the **ACL Default Policy** drop-down menu, change the value from "**Permit**" to "**Deny**".
   4. Click **Save**.

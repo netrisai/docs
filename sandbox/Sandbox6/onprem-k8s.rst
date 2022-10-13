@@ -59,7 +59,7 @@ The output below means you’ve successfully connected to the sandbox cluster:
 
 .. code-block:: shell-session
 
-    Kubernetes master is running at https://api.k8s-sandbox6.netris.ai:6443
+    Kubernetes master is running at https://api.k8s-sandbox6.netris.io:6443
 
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
@@ -79,7 +79,7 @@ The first step to integrate the Netris Controller with the Kubernetes API is to 
 .. code-block:: shell-session
 
   kubectl -nnetris-operator create secret generic netris-creds \
-  --from-literal=host='https://sandbox6.netris.ai' \
+  --from-literal=host='https://sandbox6.netris.io' \
   --from-literal=login='demo' --from-literal=password='Your Demo user pass'
 
 3. Inspect the pod logs and make sure the operator is connected to Netris Controller:
