@@ -30,7 +30,7 @@ Topology diagram
 
 Netris Controller
 ==========
-https://sandbox10.netris.ai
+https://sandbox10.netris.io
 
 Linux servers
 =============

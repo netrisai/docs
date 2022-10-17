@@ -19,7 +19,7 @@ Let's create a V-Net service to give server **srv05-nyc** the ability to reach i
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting `https://sandbox6.netris.ai <https://sandbox6.netris.ai>`_ and navigate to **Services > V-Net**.
+  1. Log into the Netris GUI by visiting `https://sandbox6.netris.io <https://sandbox6.netris.io>`_ and navigate to **Services > V-Net**.
   2. Click **+Add** to create a new V-Net service.
   3. Define a name in the **Name** field (e.g. ``vnet-customer``).
   4. From the **Sites** drop-down menu, select **US/NYC**.
@@ -43,7 +43,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting `https://sandbox6.netris.ai <https://sandbox6.netris.ai>`_ and navigate to **Net > E-BGP**.
+  1. Log into the Netris GUI by visiting `https://sandbox6.netris.io <https://sandbox6.netris.io>`_ and navigate to **Net > E-BGP**.
   2. Click **+Add** to configure a new E-BGP session.
   3. Define a name in the **Name** field (e.g. ``iris-isp2-customer``).
   4. From the **Site** drop-down menu, select **US/NYC**.
@@ -79,7 +79,7 @@ Let's configure a source NAT so our V-Net subnet **192.168.46.0/24** can communi
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting `https://sandbox6.netris.ai <https://sandbox6.netris.ai>`_ and navigate to **Net > NAT**.
+  1. Log into the Netris GUI by visiting `https://sandbox6.netris.io <https://sandbox6.netris.io>`_ and navigate to **Net > NAT**.
   2. Click **+Add** to define a new NAT rule.
   3. Define a name in the **Name** field (e.g. ``NAT Customer``).
   4. From the **Action** drop-down menu, select **SNAT**.
@@ -108,7 +108,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
   
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris GUI by visiting `https://sandbox6.netris.ai <https://sandbox6.netris.ai>`_ and navigate to **Net > Sites**.
+  1. Log into the Netris GUI by visiting `https://sandbox6.netris.io <https://sandbox6.netris.io>`_ and navigate to **Net > Sites**.
   2. Click **Edit** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the **UC/NYC** site.
   3. From the **ACL Default Policy** drop-down menu, change the value from **Permit** to **Deny**.
   4. Click **Save**.
