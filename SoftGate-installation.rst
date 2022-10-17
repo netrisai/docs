@@ -48,7 +48,7 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
   iface ens<x> inet static 
       address 0.0.0.0/0
       
- # Optionally you can add more physical interfaces under your bond0
+  # Optionally you can add more physical interfaces under your bond0
   auto ens<Y> 
   iface ens<Y> inet static 
       address 0.0.0.0/0
@@ -57,8 +57,10 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
   auto bond0
   iface bond0 inet static
       address 0.0.0.0/0
-      bond-slaves ens<X> ens<Y> # Please replace the ensX/Y with actual interface names present in the OS.
-      bond-mode active-backup # Optional, please adjust the bonding mode according to the desired functionality.
+      # Please replace the ensX/Y with actual interface name(s) below to one(s) present in the OS.
+      bond-slaves ens<X> ens<Y>
+      # Optional, please adjust the bonding mode below according to the desired functionality. 
+      bond-mode active-backup
 
   source /etc/network/interfaces.d/*
 
@@ -76,7 +78,8 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
   auto ensZ
   iface ensZ inet static
       address <Management IP address/prefix length>
-      up ip route add <Controller address> via <Management network gateway> # Pleasedelete this line if Netris Controller is located in the same network with the SoftGate node.
+      # Please delete or comment the line below if Netris Controller is located in the same network with the SoftGate node.
+      up ip route add <Controller address> via <Management network gateway> 
  
 
 6. Reboot the SoftGate
