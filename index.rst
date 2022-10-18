@@ -10,7 +10,7 @@ Learn how to get started with Netris VPC Networking for your network environment
 
 You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get additional support from our engineers and community. 
 
-
+ 
 .. toctree::
    :maxdepth: 2
    :caption: Slack channel
