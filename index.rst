@@ -10,6 +10,12 @@ Learn how to get started with Netris VPC Networking for your network environment
 
 .. toctree::
    :maxdepth: 2
+   :caption: Slack channel
+
+   https://netris.io/slack
+
+.. toctree::
+   :maxdepth: 2
    :caption: Tutorials
 
    tutorials/index
