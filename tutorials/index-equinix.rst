@@ -2,12 +2,9 @@
 Netris VPC for Equinix Metal Getting Started Guide
 ==================================================
 
+You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get additional support from our engineers and community. 
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Video walkthrough
-
-   https://vimeo.com/723912838
+This `video <https://vimeo.com/723912838>`_ walks through Netris VPC setup steps described below.
 
 
 .. toctree::
