@@ -1,6 +1,8 @@
 ==================================
-VPC Anywhere Getting Started Guide
+VPC for Anywhere Getting Started Guide
 ==================================
+
+You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get additional support from our engineers and community. 
 
 
 .. toctree::
