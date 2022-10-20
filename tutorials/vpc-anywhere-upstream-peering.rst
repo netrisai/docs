@@ -9,6 +9,8 @@ Using a VLAN with public IP addresses (DMZ)
 ===========================================
 Netris VPC can use a traditional subnet or vlan with public IP addresses (a DMZ network) for upstream network peering. 
 
+In this scenario, Upstream ISP provides a subnet with default gateway to reach Internet. Typically each SoftGate node will use an IP address from ISP's subnet. It is possible to assign multiple IP addresses on SoftGate nodes enabling SoftGates to act as :ref:`"L3 Load Balancer"<l3lb_def>`, :ref:`"L4 Load Balancer"<l4lb_def>`, :ref:`"NAT functionality"<nat_def>`  (including 1 to 1 NAT) <<OTHERS?>>.
+
 **logical diagram**
 
 .. image:: images/upstream-dmz-logical.png
@@ -16,6 +18,12 @@ Netris VPC can use a traditional subnet or vlan with public IP addresses (a DMZ 
 **physical diagram**
 
 .. image:: images/upstream-dmz-physical.png
+
+Traditional subnet: configuration
+---------------------------------
+The configuration starts from defining the subnet in Net->IPAM section, this process is documented in details in :ref:`"IP Address Management"<ipam_def>` section.
+After defining the subnet the required services can be enabled from corresponding sections.
+
 
 BGP Upstream
 ============

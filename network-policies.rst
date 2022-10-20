@@ -28,6 +28,7 @@ Example: Declare a basic BGP neighbor
     :class: with-shadow
 
 Example2: Declare BGP neighbor terminated on V-Net. Netris will automatically configure BGP session on the switch closest to the remote IP.    
+
 .. image:: images/add-bgp-basic-2.png
     :align: center
     :class: with-shadow
@@ -139,18 +140,20 @@ Located under Net→Routes is a method for describing static routing policies th
 We recommend using the Routes only if BGP is not supported by the remote end. 
 
 | Typical use cases for static routing:
+
 * To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported. 
 * Temporary interconnection with the old network for a migration. 
 * Routing a subnet behind a VM hypervisor machine for an internal VM network.
 * Specifically routing traffic destined to a particular prefix through an out-of-band management network.
 
 | Add new static route fields description:
+
 * **Prefix** - Route destination to match. 
 * **Next-Hop** - Traffic destined to the Prefix will be routed towards the Next-Hop. Note that static routes will be injected only on units that have the Next-Hop as a connected network.
 * **Description** - Free description.
 * **Site** - Site where Route belongs. 
 * **State** - Administrative (enable/disable) state of the Route. 
-* **Apply to** -  Limit the scope to particular units. It’s typically used for Null routes.
+* **Apply to** -  Limit the scope to particular units. It's typically used for Null routes.
 
 
 Example: Default route pointing to a Next-Hop that belongs to one of V-NETs. 
@@ -201,45 +204,46 @@ Example: Adding NAT IP addresses and NAT IP Address Pools to a SoftGate node.
     :align: center
     :class: with-shadow
 
+
 Defining NAT rules
 ------------------
 NAT rules are defined under Net→NAT.
 
 .. list-table:: NAT Rule Fields
-   :widths: 25 75
-   :header-rows: 1
+  :widths: 25 75
+  :header-rows: 1
 
-    * - Name
-      - Unique name
-    * - **State**
-      - State of rule (enabled or disabled)
-    * - **Site** 
-      - Site to apply the rule
-    * - **Action**
-      - *SNAT* - Replace the source IP address with specified NAT IP along with port overloading
-        *DNAT* - Replace the destination IP address and/or destination port with specified NAT IP
-        *ACCEPT* - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule
-        *MASQUERADE* - Replace the source IP address with the IP address of the exit interface
-    * - **Protocol**
-      - *All* - Match any IP protocol
-        *TCP* - Match TCP traffic and ports
-        *UDP* - Match UDP traffic and ports
-        *ICMP* - Match ICMP traffic
-    * - **Source**
-      - *Address* - Source IP address to match
-        *Port* - Source ports range to match with this value (TCP/UDP)
-    * - **Destination**
-      - *Address* - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses
-        *Port* - For DNAT only, to match a single destination port
-        *Ports* - For SNAT/ACCEPT only. Destination ports range  to match with this value (TCP/UDP)
-    * - **DNAT to IP** 
-      - The global IP address for SNAT to be visible on the Public Internet. The internal IP address for DNAT to replace the original destination address with
-    * - **DNAT to Port** 
-      - The Port to which destination Port of the packet should be NAT'd
-    * - **Status**
-      - Administrative state (enable/disable)
-    * - **Comment**
-      - Free optional comment
+  * - Name
+    - Unique name
+  * - **State**
+    - State of rule (enabled or disabled)
+  * - **Site** 
+    - Site to apply the rule
+  * - **Action**
+    - *SNAT* - Replace the source IP address with specified NAT IP along with port overloading
+      *DNAT* - Replace the destination IP address and/or destination port with specified NAT IP
+      *ACCEPT* - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule
+      *MASQUERADE* - Replace the source IP address with the IP address of the exit interface
+  * - **Protocol**
+    - *All* - Match any IP protocol
+      *TCP* - Match TCP traffic and ports
+      *UDP* - Match UDP traffic and ports
+      *ICMP* - Match ICMP traffic
+  * - **Source**
+    - *Address* - Source IP address to match
+      *Port* - Source ports range to match with this value (TCP/UDP)
+  * - **Destination**
+    - *Address* - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses
+      *Port* - For DNAT only, to match a single destination port
+      *Ports* - For SNAT/ACCEPT only. Destination ports range  to match with this value (TCP/UDP)
+  * - **DNAT to IP** 
+    - The global IP address for SNAT to be visible on the Public Internet. The internal IP address for DNAT to replace the original destination address with
+  * - **DNAT to Port** 
+    - The Port to which destination Port of the packet should be NAT'd
+  * - **Status**
+    - Administrative state (enable/disable)
+  * - **Comment**
+    - Free optional comment
 
 
 Example: SNAT all hosts on 10.0.0.0/8 to the Internet using 198.51.100.65 as a global IP. 
@@ -319,10 +323,12 @@ Example: Ping.
     :class: with-shadow
 
 | Looking Glass controls described for the EVPN family.
-* **BGP Summary** - Show brief summary of BGP adjacencies with neighbors, interface names, and EVPN prefixes received. 
+
+* **BGP Summary** - Show brief summary of BGP adjacencies with neighbors, interface names, and EVPN prefixes received.
 * **VNI** - List VNIs learned.
 * **BGP EVPN** - List detailed EVPN routing information optionally for the given route distinguisher. 
 * **MAC table** - List MAC address table for the given VNI.
+
 
 Example: Listing of adjacent BGP neighbors and number of EVPN prefixes received.
 

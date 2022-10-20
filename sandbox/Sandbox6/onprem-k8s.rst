@@ -1,38 +1,3 @@
-..
-  ##################
-  values for replace
-  ##################
-  ------------------------------------------------------------------------------------------------
-  values                   | description
-  ------------------------------------------------------------------------------------------------ 
-  sandbox6                  # sandbox name
-  166.88.17.186             # hypervisor public ip
-  300                       # *STATIC NO NEED TO REPLACE* ssh NAT port *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  10.254.45.0/24            # *STATIC NO NEED TO REPLACE* management subnet
-  10.254.46.0/24            # *STATIC NO NEED TO REPLACE* loopback subnet
-  192.168.45.64             # *STATIC NO NEED TO REPLACE* srv4 ip address
-  192.168.46.65             # *STATIC NO NEED TO REPLACE* srv5 ip address
-  192.168.46.1              # *STATIC NO NEED TO REPLACE* vnet-customer gateway
-  192.168.110.              # *STATIC NO NEED TO REPLACE* k8s subnet
-  65007                     # *STATIC NO NEED TO REPLACE* Iris AS number bgp peer, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  1061                      # Iris 1nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  1062                      # Iris 2nd peer vlanid, *SHORT QUERY BE CAREFUL WHILE REPLACING*
-  50.117.59.144/28          # customer public subnet
-  50.117.59.154             # second usable ip address in load-balancer subnet
-  50.117.59.155             # third usable ip address in load-balancer subnet
-  50.117.59.90/30           # isp1-customer bgp peer local ip
-  50.117.59.89/30           # isp1-customer bgp peer remote ip
-  50.117.59.94/30           # isp2-customer bgp peer local ip
-  50.117.59.93/30           # isp2-customer bgp peer remote ip
-  50.117.59.150/32          # customer v-net nat ip
-  s6-pre-configured         # LINKS
-  s6-learn-by-doing         # LINKS
-  s6-e-bgp                  # LINKS
-  s6-v-net                  # LINKS
-  s6-nat                    # LINKS 
-  s6-acl                    # LINKS
-  s6-k8s                    # LINKS
-
 .. _s6-k8s:
 
 ***************************************
@@ -55,7 +20,7 @@ To access the built-in Kubernetes cluster, put "Kubeconfig" file which you recei
 
   kubectl cluster-info
 
-The output below means you’ve successfully connected to the sandbox cluster:
+The output below means you've successfully connected to the sandbox cluster:
 
 .. code-block:: shell-session
 
@@ -150,7 +115,7 @@ Going into the Netris Controller web interface, navigate to **Services → L4 Lo
 .. image:: /images/sandbox-podinfo-prov.png
     :align: center
 
-After provisioning has finished, let’s one more time look at service in k8s:
+After provisioning has finished, let's one more time look at service in k8s:
 
 .. code-block:: shell-session
 
@@ -163,7 +128,7 @@ You can see that "EXTERNAL-IP" has been injected into Kubernetes:
   NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)                         AGE
   podinfo      LoadBalancer   172.21.65.106   50.117.59.154   9898:32584/TCP,9999:30365/TCP   9m17s
 
-Let’s try to curl it (remember to replace the IP below with the IP that has been assigned in the previous command):
+Let's try to curl it (remember to replace the IP below with the IP that has been assigned in the previous command):
 
 .. code-block:: shell-session
 
@@ -187,7 +152,7 @@ The application is now accessible directly on the internet:
    "num_cpu": "4"
   }
 
-As seen, "PodInfo" developers decided to expose 9898 port for HTTP, let’s switch it to 80:
+As seen, "PodInfo" developers decided to expose 9898 port for HTTP, let's switch it to 80:
 
 .. code-block:: shell-session
 
@@ -235,18 +200,18 @@ Using Netris Custom Resources
 Introduction to Netris Custom Resources
 ---------------------------------------
 
-In addition to provisioning on-demand network load balancers, Netris Operator can also provide automatic creation of network services based on Kubernetes CRD objects. Let’s take a look at a few common examples:
+In addition to provisioning on-demand network load balancers, Netris Operator can also provide automatic creation of network services based on Kubernetes CRD objects. Let's take a look at a few common examples:
 
 L4LB Custom Resource
 --------------------
 
-In the previous section, when we changed the service type from "ClusterIP" to "LoadBalancer", Netris Operator detected a new request for a network load balancer, then it created L4LB custom resources. Let’s see them:
+In the previous section, when we changed the service type from "ClusterIP" to "LoadBalancer", Netris Operator detected a new request for a network load balancer, then it created L4LB custom resources. Let's see them:
 
 .. code-block:: shell-session
 
   kubectl get l4lb
 
-As you can see, there are two L4LB resources, one for each podinfo’s service port:
+As you can see, there are two L4LB resources, one for each podinfo's service port:
 
 .. code-block:: shell-session
 
@@ -254,9 +219,9 @@ As you can see, there are two L4LB resources, one for each podinfo’s service p
   podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-80     active   50.117.59.154   80/TCP     US/NYC   Admin    OK       33m
   podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9999   active   50.117.59.154   9999/TCP   US/NYC   Admin    OK       32m
 
-You can’t edit/delete them, because Netris Operator will recreate them based on what was originally deployed in the service specifications.
+You can't edit/delete them, because Netris Operator will recreate them based on what was originally deployed in the service specifications.
 
-Instead, let’s create a new load balancer using the CRD method.  This method allows us to create L4 load balancers for services outside of what is being created natively with the Kubernetes service schema.  Our new L4LB’s backends will be "srv04-nyc" & "srv05-nyc" on TCP port 80. These servers are already running the Nginx web server, with the hostname present in the index.html file.
+Instead, let's create a new load balancer using the CRD method.  This method allows us to create L4 load balancers for services outside of what is being created natively with the Kubernetes service schema.  Our new L4LB's backends will be "srv04-nyc" & "srv05-nyc" on TCP port 80. These servers are already running the Nginx web server, with the hostname present in the index.html file.
 
 Create a yaml file:
 
@@ -309,7 +274,7 @@ When provisioning is finished, you should be able to connect to L4LB. Try to cur
 
   curl 50.117.59.155
 
-You will see the servers’ hostname in curl output:
+You will see the servers' hostname in curl output:
 
 .. code-block:: shell-session
 
@@ -321,11 +286,11 @@ You can also inspect the L4LB in the Netris Controller web interface:
     :align: center
 
 V-Net Custom Resource
---------------------
+---------------------
 
-If one of the backend health-checks is marked as unhealthy like in the screenshot above, it means you didn’t create "vnet-customer" V-Net as described in the :ref:`"Learn by Creating Services"<s6-v-net>` manual. If that's the case, let's create it from Kubernetes using the V-Net custom resource.
+If one of the backend health-checks is marked as unhealthy like in the screenshot above, it means you didn't create "vnet-customer" V-Net as described in the :ref:`"Learn by Creating Services"<s6-v-net>` manual. If that's the case, let's create it from Kubernetes using the V-Net custom resource.
 
-Let’s create our V-Net manifest:
+Let's create our V-Net manifest:
 
 .. code-block:: shell-session
 
@@ -351,7 +316,7 @@ And apply it:
 
   kubectl apply -f vnet-customer.yaml
 
-Let’s check our V-Net resources in Kubernetes:
+Let's check our V-Net resources in Kubernetes:
 
 .. code-block:: shell-session
 
@@ -364,9 +329,9 @@ As you can see, provisioning for our new V-Net has started:
   NAME            STATE    GATEWAYS          SITES    OWNER   STATUS         AGE
   vnet-customer   active   192.168.46.1/24   US/NYC   Admin   Provisioning   7s
 
-After provisioning has completed, the L4LB’s checks should work for both backend servers, and incoming requests should be balanced between them. 
+After provisioning has completed, the L4LB's checks should work for both backend servers, and incoming requests should be balanced between them. 
 
-Let’s curl several times to see that:
+Let's curl several times to see that:
 
 .. code-block:: shell-session
 
@@ -431,7 +396,7 @@ After applying the manifest containing "import" annotation, the V-Net, created f
 BGP Custom Resource
 -------------------
 
-Let’s create a new BGP peer, that is listed in the :ref:`"Learn by Creating Services"<s6-e-bgp>`.
+Let's create a new BGP peer, that is listed in the :ref:`"Learn by Creating Services"<s6-e-bgp>`.
 Create a yaml file:
 
 .. code-block:: shell-session
@@ -502,7 +467,7 @@ You can import any custom resources already created from the Netris Controller t
 
 Otherwise, if try to apply them without the "import" annotation, the Netris Operator will complain that the resource with such name or specs already exists.
  
-After importing resources to k8s, they will belong to the Netris Operator, and you won’t be able to edit/delete them directly from the Netris Controller web interface, because the Netris Operator will put everything back, as declared in the custom resources.
+After importing resources to k8s, they will belong to the Netris Operator, and you won't be able to edit/delete them directly from the Netris Controller web interface, because the Netris Operator will put everything back, as declared in the custom resources.
 
 Reclaim Policy
 --------------
@@ -513,7 +478,7 @@ There is also one useful annotation. So suppose you want to remove some custom r
 
   resource.k8s.netris.ai/reclaimPolicy: "retain"
 
-Just add this annotation in any custom resource while creating it. Or if the custom resource has already been created, change the ``"delete"`` value to ``"retain"`` for key ``resource.k8s.netris.ai/reclaimPolicy`` in the resource annotation. After that, you’ll be able to delete any Netris Custom Resource from Kubernetes, and it won’t be deleted from the Netris Controller.
+Just add this annotation in any custom resource while creating it. Or if the custom resource has already been created, change the ``"delete"`` value to ``"retain"`` for key ``resource.k8s.netris.ai/reclaimPolicy`` in the resource annotation. After that, you'll be able to delete any Netris Custom Resource from Kubernetes, and it won't be deleted from the Netris Controller.
 
 .. seealso::
 
@@ -525,13 +490,13 @@ Netris Calico CNI Integration
 
 Netris Operator can integrate with Calico CNI, in your Sandbox k8s cluster, Calico has already been configured as the CNI, so you can try this integration. It will automatically create BGP peering between cluster nodes and the leaf/TOR switch for each node, then to clean up it will disable Calico Node-to-Node mesh. To understand why you need to configure peering between Kubernetes nodes and the leaf/TOR switch, and why you should disable Node-to-Node mesh, review the `calico docs <https://docs.projectcalico.org/networking/bgp>`_.
 
-Integration is very simple, you just need to add the annotation in calico’s ``bgpconfigurations`` custom resource. Before doing that, let’s see the current state of ``bgpconfigurations``:
+Integration is very simple, you just need to add the annotation in calico's ``bgpconfigurations`` custom resource. Before doing that, let's see the current state of ``bgpconfigurations``:
 
 .. code-block:: shell-session
 
   kubectl get bgpconfigurations default -o yaml
 
-As we can see, ``nodeToNodeMeshEnabled`` is enabled, and ``asNumber`` is 64512 (it’s Calico default AS number):
+As we can see, ``nodeToNodeMeshEnabled`` is enabled, and ``asNumber`` is 64512 (it's Calico default AS number):
 
 .. code-block:: yaml
 
@@ -547,13 +512,13 @@ As we can see, ``nodeToNodeMeshEnabled`` is enabled, and ``asNumber`` is 64512 (
    logSeverityScreen: Info
    nodeToNodeMeshEnabled: true
 
-Let’s enable the "netris-calico" integration:
+Let's enable the "netris-calico" integration:
 
 .. code-block:: shell-session
 
   kubectl annotate bgpconfigurations default manage.k8s.netris.ai/calico='true'
 
-Let’s check our BGP resources in k8s:
+Let's check our BGP resources in k8s:
 
 .. code-block:: shell-session
 
@@ -569,7 +534,7 @@ Here are our freshly created BGPs, one for each k8s node:
   sandbox6-srv07-nyc-192.168.110.67   enabled                                                               4200070001    192.168.110.1/24   192.168.110.67/24   26s
   sandbox6-srv08-nyc-192.168.110.68   enabled                                                               4200070002    192.168.110.1/24   192.168.110.68/24   26s  
 
-You might notice that peering neighbor AS is different from Calico’s default 64512.  The is because the Netris Operator is setting a particular AS number for each node.
+You might notice that peering neighbor AS is different from Calico's default 64512.  The is because the Netris Operator is setting a particular AS number for each node.
 
 Allow up to 1 minute for the BGP sessions to come up, then check BGP resources again:
 
@@ -587,7 +552,7 @@ As we can see, our BGP peers have become established:
   sandbox6-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4200070001    192.168.110.1/24   192.168.110.67/24   68s
   sandbox6-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070002    192.168.110.1/24   192.168.110.68/24   68s
 
-Now let’s check if ``nodeToNodeMeshEnabled`` is still enabled:
+Now let's check if ``nodeToNodeMeshEnabled`` is still enabled:
 
 .. code-block:: shell-session
 
@@ -611,9 +576,9 @@ It is disabled, which means the "netris-calico" integration process is finished:
 
 .. note::
 
-  Netris Operator won’t disable Node-to-Node mesh until all BGP peers of all the nodes in the k8s cluster become established.
+  Netris Operator won't disable Node-to-Node mesh until all BGP peers of all the nodes in the k8s cluster become established.
 
-Finally, let’s check if our earlier deployed "Podinfo" application is still working when Calico Node-to-Node mesh is disabled:
+Finally, let's check if our earlier deployed "Podinfo" application is still working when Calico Node-to-Node mesh is disabled:
 
 .. code-block:: shell-session
 
@@ -640,7 +605,7 @@ Yes, it works:
 Disabling Netris-Calico Integration
 -----------------------------------
 
-To disable "Netris-Calico" integration, delete the annotation from Calico’s ``bgpconfigurations`` resource:
+To disable "Netris-Calico" integration, delete the annotation from Calico's ``bgpconfigurations`` resource:
 
 .. code-block:: shell-session
 
