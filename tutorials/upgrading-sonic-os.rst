@@ -11,7 +11,7 @@
 .. role:: red
 
 **************************************
-Upgrading SONiC Oerating System
+Upgrading SONiC Operating System
 **************************************
 
 Upgrade Procedure
