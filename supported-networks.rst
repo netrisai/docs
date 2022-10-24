@@ -37,7 +37,7 @@ Netris Managed Switch & SoftGate scalable data center (HA)
 ----------------------------------------------------------
 
 .. image:: images/slide-4.png
-   :align: center
-   :alt: Netris Managed Switch & SoftGate scalable data center (HA)
+  :align: center
+  :alt: Netris Managed Switch & SoftGate scalable data center (HA)
 
 

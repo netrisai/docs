@@ -1,15 +1,17 @@
 .. meta::
   :description: Netris VPC anywhere upstream peering options
 
-**************************************************************
-Connecting VPC to upstream networks (use one of two options)
-**************************************************************
+***********************************
+Connecting VPC to upstream networks
+***********************************
+
+There are two connection options available for VPC anywhere. Please choose to use one of them.
 
 Using a VLAN with public IP addresses (DMZ)
 ===========================================
 Netris VPC can use a traditional subnet or vlan with public IP addresses (a DMZ network) for upstream network peering. 
 
-In this scenario, Upstream ISP provides a subnet with default gateway to reach Internet. Typically each SoftGate node will use an IP address from ISP's subnet. It is possible to assign multiple IP addresses on SoftGate nodes enabling SoftGates to act as :ref:`"L3 Load Balancer"<l3lb_def>`, :ref:`"L4 Load Balancer"<l4lb_def>`, :ref:`"NAT functionality"<nat_def>`  (including 1 to 1 NAT) <<OTHERS?>>.
+In this scenario, Upstream ISP provides a subnet with default gateway to reach Internet. Typically each SoftGate node will use an IP address from ISP's subnet and will use default gateway provided by ISP. It is possible to assign multiple IP addresses on SoftGate nodes enabling SoftGates to act as :ref:`"L3 Load Balancer"<l3lb_def>`, :ref:`"L4 Load Balancer"<l4lb_def>`, :ref:`"NAT functionality"<nat_def>`  (including 1 to 1 NAT) <<OTHERS?>>.
 
 **logical diagram**
 
@@ -21,8 +23,9 @@ In this scenario, Upstream ISP provides a subnet with default gateway to reach I
 
 Traditional subnet: configuration
 ---------------------------------
-The configuration starts from defining the subnet in Net->IPAM section, this process is documented in details in :ref:`"IP Address Management"<ipam_def>` section.
-After defining the subnet the required services can be enabled from corresponding sections.
+| The configuration starts from defining the subnet(s) reqired in Net->IPAM section, this process is documented in details in :ref:`"IP Address Management"<ipam_def>` section. Minimum two IP subnets are needed, one for management and second for connecting to ISP.
+
+
 
 
 BGP Upstream
@@ -67,8 +70,4 @@ Check BGP neighbor statuses under the Net->E-BGP
 To check/trobleshoot BGP use Net->Looking Glass
 
 .. image:: images/bgp-looking-glass.png
-
-
-
-
 

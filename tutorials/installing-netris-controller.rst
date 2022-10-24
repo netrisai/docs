@@ -5,9 +5,9 @@
 Installing a Netris Controller
 ==============================
 
-You can install the Netris controller almost on any 64-bit Linux host. Netris Controller may or may not be on the same network as the managed network nodes are. In fact if there are multiple Netris managed deployments there’s no need for an individual controller for each deployment.
+You can install the Netris controller almost on any 64-bit Linux host. Netris Controller may or may not be on the same network as the managed network nodes are. In fact if there are multiple Netris managed deployments there's no need for an individual controller for each deployment.
 
-It doesn’t matter where you host the Netris controller. What matters is that 1) the Netris controller needs to be accessible over the Internet. 2) You can access the web console. 3) Nodes that are going to be managed by Netris have access to the Netris controller through their management network interface. 
+It doesn't matter where you host the Netris controller. What matters is that 1) the Netris controller needs to be accessible over the Internet. 2) You can access the web console. 3) Nodes that are going to be managed by Netris have access to the Netris controller through their management network interface. 
 
 **Linux host requirements**
 
@@ -39,7 +39,7 @@ Ensure that newly created domain name resolves to the right IP address of the ma
   curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt
   
 .. note::
-  The Netris Controller installer will create a K3s cluster and then will deploy Netris Controller on top of it using Helm Chart.  The “--ctl-ssl-issuer” will instruct the installer to generate a Let’s Encrypt SSL certificate and the "--ctl-hostname" will hint for what domain name the certificate must be generated. That’s why it is important to create the DNS record before this step. Detailed info here: `doc <https://www.netris.io/docs/en/stable/controller-k3s-installation.html>`_.
+  The Netris Controller installer will create a K3s cluster and then will deploy Netris Controller on top of it using Helm Chart.  The “--ctl-ssl-issuer” will instruct the installer to generate a Let's Encrypt SSL certificate and the "--ctl-hostname" will hint for what domain name the certificate must be generated. That's why it is important to create the DNS record before this step. Detailed info here: `doc <https://www.netris.io/docs/en/stable/controller-k3s-installation.html>`_.
 
 .. image:: images/netris-controller-installed.png
     :align: center

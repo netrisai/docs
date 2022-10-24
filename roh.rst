@@ -44,15 +44,15 @@ Description of ROH instance fields:
 .. tip:: Many switches can’t autodetect old 1Gbps ports. If attaching hosts with 1Gbps ports to 10Gpbs switch ports, you’ll need to change the speed for a given Switch Port from Auto(default) to 1Gbps. You can edit a port in Net→Switch Ports individually or in bulk.
 
 .. image:: images/ROH-instance.png
-   :align: center
-   :class: with-shadow
-   :alt: ROH Instances
+  :align: center
+  :class: with-shadow
+  :alt: ROH Instances
 
 Example: Adding an ROH instance.  (Yes, you can use A.B.C.0/32 and A.B.C.255/32)
 
 .. image:: images/ROH-listing.png
-   :align: center
-   :class: with-shadow
-   :alt: ROH Listings
+  :align: center
+  :class: with-shadow
+  :alt: ROH Listings
 
 Expanded view of ROH listing. BGP sessions are up, and the expected IP is in fact received from the actual ROH server. Traffic stats are available per port.

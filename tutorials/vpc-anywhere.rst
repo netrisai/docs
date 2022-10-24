@@ -9,5 +9,5 @@ VPC Anywhere Getting Started Guide
    vpc-anywhere-concept
    vpc-anywhere-controller-installation
    vpc-anywhere-check-default-site
-   vpc-anywhere-softgate-provisioning
+   vpc-anywhere-softgate-installation
    vpc-anywhere-upstream-peering

@@ -30,8 +30,8 @@ Example: Declare a basic BGP neighbor
 Example2: Declare BGP neighbor terminated on V-Net. Netris will automatically configure BGP session on the switch closest to the remote IP.    
 
 .. image:: images/add-bgp-basic-2.png
-    :align: center
-    :class: with-shadow
+  :align: center
+  :class: with-shadow
 
 
 ############
@@ -45,7 +45,6 @@ Click Advanced to expand the BGP neighbor add/edit window.
    :file: tables/bgp-advanced.csv
    :widths: 25, 75
    :header-rows: 0
-
 
 --------------------------
 

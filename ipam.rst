@@ -89,8 +89,8 @@ Add a Subnet
         - *inactive* - can't be used in any services, useful for reserving/documenting prefixes for future use.
 
 .. image:: images/add-subnet.png
-   :align: center
-   :alt: Add a New Subnet
-   :class: with-shadow
+  :align: center
+  :alt: Add a New Subnet
+  :class: with-shadow
 
 Add Subnet Window

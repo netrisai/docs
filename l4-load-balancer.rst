@@ -17,17 +17,17 @@ The IP address pool for L4LB can be defined in the Net→IPAM section by adding 
 Example: Adding a load-balancer IP pool assignment.
 
 .. image:: images/add-allocation.png
-   :align: center
-   :class: with-shadow
-   :alt: Add an IP Allocation
+  :align: center
+  :class: with-shadow
+  :alt: Add an IP Allocation
     
     
 Screenshot: Listing of Net→IPAM after adding a load-balancer assignment
 
 .. image:: images/list-subnets.png
-   :align: center
-   :class: with-shadow
-   :alt: List IP Subnets 
+  :align: center
+  :class: with-shadow
+  :alt: List IP Subnets 
     
     
 Consuming L4LB service

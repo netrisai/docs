@@ -24,10 +24,41 @@ The following are some recommendations for BIOS settings. Different vendors will
 * Disable all virtualization options when you test the physical function of the NIC, and turn off VT-d
 * Disable Hyper-Threading
 
-Install the Netris Agent 
-========================
-Requires freshly installed Ubuntu Linux 18.04 LTS and internet connectivity configured from netplan via management port.
+OS requirements for Netris SoftGate PRO installation   
+====================================================
+The SoftGate PRO deployment needs a freshly installed Ubuntu Linux 18.04 LTS.
+During the installation process please consider following:
 
+1) The management interface must be defined with valid IP address from **Management IP Address** field (mng). This IP address must have access to internet.
+2) Most of the settings can be left with default values. For your convenience OpenSSH server should be enabled.
+3) The host name doesn't matter, the installer will set the hostname to the name defined in the controller.
+4) Do not set the loopback address as it will be set by the Netris Agent.
+5) After OS installer finishes the machine will automatically reboot. After first boot it is recommended to remove unnecessary packages by performing:
+   
+.. code-block:: shell-session
+
+  $ sudo apt purge -y cloud-init snapd open-iscsid modemmanager multipath-tools
+
+Then perfom cleanup of remaining orphaned packages:
+
+.. code-block:: shell-session
+
+  $ sudo apt autoremove
+
+6) Finally please update the operationg system to include the latest security updates.
+
+.. code-block:: shell-session
+
+  $ sudo apt update
+
+Followed by
+
+.. code-block:: shell-session
+  
+  $ sudo apt upgrade -y
+
+Provision Netris SoftGate software
+==================================
 1. Add the SoftGate in the controller **Inventory** or **Topology** section. Detailed configuration documentation is available here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
 2. Once the SoftGate is created, navigate to the **Inventory** section, click the **three vertical dots (⋮)** on the right side of the newly created SoftGate and select the **Install Agent** option.
 3. Copy the agent install line to your clipboard and run it on the SoftGate as an ordinary user.
