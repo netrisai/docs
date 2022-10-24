@@ -38,7 +38,7 @@ The process will take some time, after installation complete, reboot is mandator
 
 .. warning:: 
   
-  The installation will wipe all the data on the switch, including the keys and ssh identity. After the reboot, a new ssh identity is generated. Because of that, you will be prompted with an identity mismatch message on the first login attempt. Please use your OS-specific procedure to remove the old key.
+  The installation will wipe all the data on the switch, including the admin user password, the authorized keys and ssh identity. After the reboot, a new ssh identity is generated. Because of that, you will be prompted with an identity mismatch message on the first login attempt. Please use your OS-specific procedure to remove the old key.
 
 2. Login to the switch and verify that the OS version is updated
 
