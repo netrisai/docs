@@ -16,25 +16,25 @@ Minimum Hardware Requirements
 OS requirements for Netris SoftGate installation   
 ================================================
 The SoftGate deployment needs a freshly installed Ubuntu Linux 22.04 LTS.
-During the installation process please consider following:
+During the installation process please consider the following:
 
-1) The management interface must be defined with valid IP address from **Management IP Address** field (mng). This IP address must have access to internet.
+1) The management interface must be defined with a valid IP address from **Management IP Address** field (mng). This IP address must have internet access.
 2) Most of the settings can be left with default values. For your convenience OpenSSH server should be enabled.
-3) The host name doesn't matter, the installer will set the hostname to the name defined in the controller.
+3) The hostname doesn't matter, the installer will set the hostname to the name defined in the controller.
 4) Do not set the loopback address as it will be set by the Netris Agent.
-5) After OS installer finishes reboot is necessary. After first boot it is recommended to remove unnecessary packages by performing:
+5) After the OS installer finishes reboot is necessary. After the first boot it is recommended to remove unnecessary packages by performing:
    
 .. code-block:: shell-session
 
   sudo apt purge -y cloud-init snapd open-iscsi modemmanager multipath-tools
 
-Then perfom cleanup of remaining orphaned packages:
+Then perform cleanup of remaining orphaned packages:
 
 .. code-block:: shell-session
 
   sudo apt autoremove -y
 
-6) Finally please update the operationg system to include the latest security updates.
+6) Finally please update the operating system to include the latest security updates.
 
 .. code-block:: shell-session
 
@@ -56,7 +56,7 @@ Provision Netris SoftGate software
     :align: center
 
 .. note::
-  Please note that Netris installation script replaces the default Netplan networking backend with regular ifupdown and attempts to migrate the configuration set during installation to /etc/network/interfaces.
+  Please note that the Netris installation script replaces the default Netplan networking backend with regular ifupdown and attempts to migrate the configuration set during installation to /etc/network/interfaces.
 
 3) Handoff Netris the bond0 interface for further automatic operations. Netris will automatically create necessary subinterfaces under your bond0 interface. (bond0.<xyz>). But you need to manually configure which physical interfaces should bind under the bond0 interface. Netris will only make changes to your bond0 and loopback interfaces; all other interfaces will remain as described in /etc/network/interfaces.
 
