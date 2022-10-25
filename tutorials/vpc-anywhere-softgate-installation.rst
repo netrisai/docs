@@ -1,6 +1,8 @@
 .. meta::
   :description: Netris SoftGate Installation
 
+.. _softgate-installation-vpc_def:
+
 ***************************
 SoftGate Installation
 ***************************
@@ -20,24 +22,24 @@ During the installation process please consider following:
 2) Most of the settings can be left with default values. For your convenience OpenSSH server should be enabled.
 3) The host name doesn't matter, the installer will set the hostname to the name defined in the controller.
 4) Do not set the loopback address as it will be set by the Netris Agent.
-5) After OS installer finishes the machine will automatically reboot. After first boot it is recommended to remove unnecessary packages by performing:
+5) After OS installer finishes reboot is necessary. After first boot it is recommended to remove unnecessary packages by performing:
    
 .. code-block:: shell-session
 
-  $ sudo apt purge -y cloud-init snapd open-iscsid modemmanager multipath-tools
+  sudo apt purge -y cloud-init snapd open-iscsi modemmanager multipath-tools
 
 Then perfom cleanup of remaining orphaned packages:
 
 .. code-block:: shell-session
 
-  $ sudo apt autoremove
+  sudo apt autoremove -y
 
 6) Finally please update the operationg system to include the latest security updates.
 
 .. code-block:: shell-session
 
-  $ sudo apt update
-  $ sudo apt upgrade -y
+  sudo apt update
+  sudo apt upgrade -y
 
 .. note:: Netris controller ships with two SoftGate nodes pre-defined in the Default site. (softgate1-default, softgate2-default). We recommend using settings from these if you are new to Netris. Alternatively, you can learn how to define new SoftGate nodes here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
 
@@ -60,7 +62,7 @@ Provision Netris SoftGate software
 
 .. code-block:: shell-session
 
-  user@host:~$ sudo vim /etc/network/interfaces
+  sudo vim /etc/network/interfaces
   
 .. code-block:: shell-session
 
@@ -102,6 +104,6 @@ Provision Netris SoftGate software
 
 .. code-block:: shell-session
 
-  user@host:~$ sudo reboot
+  sudo reboot
 
 Once the server boots up, you should see its heartbeat going from Critical to OK in **Net→Inventory**, **Telescope→Dashboard**, and the SoftGate color will reflect its health in **Net→Topology**.
