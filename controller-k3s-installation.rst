@@ -149,13 +149,25 @@ Restore
 
 In order to restore DB from a database snapshot, follow these steps:
 
-1. Copy snapshot file to the MariaDB container:
+1. Drop the current database by running the following command:
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "DROP DATABASE $MARIADB_DATABASE"'
+
+2. Create a new database:
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "CREATE DATABASE $MARIADB_DATABASE"'
+
+3. Copy snapshot file to the MariaDB container:
 
 .. code-block:: shell-session
 
   kubectl -n netris-controller cp db-snapshot.sql netris-controller-mariadb-0:/opt/db-snapshot.sql
 
-2. Run the restore command:
+4. Run the restore command:
 
 .. code-block:: shell-session
 
