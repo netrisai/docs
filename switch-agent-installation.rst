@@ -14,7 +14,7 @@ Prerequisite Steps
 Nvidia Cumulus Linux Devices
 ============================
 Requirements:
-* Fresh install of Cumulus Linux v. 3.7.(x) - Cumulus 4.X is in the process of validation and will be supported in the next Netris release.
+* Fresh install of Cumulus Linux v. 3.7.(x) or Cumulus 5.x.
 
 Configure the OOB Management IP address
 ***************************************
