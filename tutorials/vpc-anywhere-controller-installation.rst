@@ -21,14 +21,14 @@ It doesn't matter where to host the Netris controller. What does matter is that 
 
 **DNS record**
 
-In my example my host got a public IP address 54.183.23.201. While it is OK for users and nodes to refer to the Netris Controller through an IP address, we recommend using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
+In my example, my host got a public IP address 54.183.23.201. While it is OK for users and nodes to refer to the Netris Controller through an IP address, we recommend using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
 
-Below is example using Cloudflare DNS service. (same idea with any DNS software or service)
+Below is an example using Cloudflare DNS service. (same idea with any DNS software or service)
 
 .. image:: images/dns-record-netrisctl.png
     :align: center
 
-Ensure that newly created domain name indeed resolves into the right IP address of the machine that you are going to install the Netris Controller.
+Ensure that the newly created domain name indeed resolves into the right IP address of the machine that you are going to install the Netris Controller.
 
 .. code-block:: shell-session
 
@@ -47,9 +47,7 @@ Ensure that newly created domain name indeed resolves into the right IP address 
 .. image:: images/netris-controller-installed.png
     :align: center
 
-
-Once installation process is finished you will be able to access your newly installed Netris Controller web console using netris/newNet0ps credentials.
-
+Once the installation process is finished you will be able to access your newly installed Netris Controller web console using netris/newNet0ps credentials.
 
 Security Matters
 ----------------
@@ -68,7 +66,6 @@ Accounts → Users → +Add
 .. image:: images/create-new-admin-user.png
     :align: center
     
-
 **Restrict incoming TCP requests to the list below:**
 
 +----------+--------------------------------+

@@ -27,11 +27,11 @@ Traditional subnet: configuration
 
 .. image:: images/vpc-anywhere-softgates-green.png
 
-| The configuration starts from defining the subnet(s) required in Net->IPAM section, this process is documented in details in :ref:`"IP Address Management"<ipam_def>` section..
+| The configuration starts from defining the subnet(s) required in the Net->IPAM section, this process is documented in detail in :ref:`"IP Address Management"<ipam_def>` section..
 
 .. image:: images/vpc-anywhere-add-subnet.png
 
-| Next, navigate to Services->V-Net section to create a new V-Net. Detailed description of fields can be found in :ref:`"V-Net"<v-net_def>`
+| Next, navigate to Services->V-Net section to create a new V-Net. A detailed description of fields can be found in :ref:`"V-Net"<v-net_def>`
 
 .. image:: images/vpc-anywhere-add-v-net.png
 

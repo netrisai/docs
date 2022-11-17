@@ -18,23 +18,10 @@ OS requirements for Netris SoftGate installation
 The SoftGate deployment needs a freshly installed Ubuntu Linux 22.04 LTS.
 During the installation process please consider the following:
 
-1) The management interface must be defined with a valid IP address from **Management IP Address** field (mng). This IP address must have internet access.
-2) Most of the settings can be left with default values. For your convenience OpenSSH server should be enabled.
+1) The management interface must be defined with a valid IP address with Internet access.
+2) Most of the settings can be left with default values. For later setup convenience OpenSSH server should be enabled.
 3) The hostname doesn't matter, the installer will set the hostname to the name defined in the controller.
-4) Do not set the loopback address as it will be set by the Netris Agent.
-5) After the OS installer finishes reboot is necessary. After the first boot it is recommended to remove unnecessary packages by performing:
-   
-.. code-block:: shell-session
-
-  sudo apt purge -y cloud-init snapd open-iscsi modemmanager multipath-tools
-
-Then perform cleanup of remaining orphaned packages:
-
-.. code-block:: shell-session
-
-  sudo apt autoremove -y
-
-6) Finally please update the operating system to include the latest security updates.
+4) Please update the operating system to include the latest security updates.
 
 .. code-block:: shell-session
 
@@ -74,7 +61,7 @@ Provision Netris SoftGate software
   auto ensZ
   iface ensZ inet static
       address <Management IP address/prefix length>
-      # Please delete or comment the line below if Netris Controller is located in the same network with the SoftGate node, otherwise adjust the line
+      # Please delete or comment out the line below if Netris Controller is located in the same network with the SoftGate node, otherwise adjust the line
       # according to your setup. 
       up ip route add <Controller IP address> via <Management network gateway> 
 
