@@ -13,25 +13,14 @@ Minimum Hardware Requirements
 * 16 GB RAM
 * 300 GB HDD
 
-OS requirements for Netris SoftGate installation   
-================================================
+
+SoftGate software provisioning
+==============================
 The SoftGate deployment needs a freshly installed Ubuntu Linux 22.04 LTS.
-During the installation process please consider the following:
 
-1) The management interface must be defined with a valid IP address with Internet access.
-2) Most of the settings can be left with default values. For later setup convenience OpenSSH server should be enabled.
-3) The hostname doesn't matter, the installer will set the hostname to the name defined in the controller.
-4) Please update the operating system to include the latest security updates.
+.. note:: 
+  Netris controller ships with two SoftGate nodes pre-defined in the Default site. (softgate1-default, softgate2-default). We recommend using these if you are new to Netris. Alternatively, you can learn how to define new SoftGate nodes here: “Adding SoftGates”.
 
-.. code-block:: shell-session
-
-  sudo apt update
-  sudo apt upgrade -y
-
-.. note:: Netris controller ships with two SoftGate nodes pre-defined in the Default site. (softgate1-default, softgate2-default). We recommend using settings from these if you are new to Netris. Alternatively, you can learn how to define new SoftGate nodes here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
-
-Provision Netris SoftGate software
-==================================
 1) Navigate to the **Net-->Inventory** section and click the **three vertical dots (⋮)** on the right side of the SoftGate node you are provisioning. Then click **Install Agent** and copy the one-line installer command to your clipboard.
 
 .. image:: /images/softgate-install-agent.png
@@ -86,6 +75,8 @@ Provision Netris SoftGate software
 
   source /etc/network/interfaces.d/*
 
+.. note:: 
+  Ensure that the Management network interface IP address is as expected so the SoftGate node will maintain IP connectivity with Netris Controller after reboot.
 
 4) Reboot the SoftGate
 
