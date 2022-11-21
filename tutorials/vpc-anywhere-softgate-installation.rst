@@ -19,7 +19,7 @@ SoftGate software provisioning
 The SoftGate deployment needs a freshly installed Ubuntu Linux 22.04 LTS.
 
 .. note:: 
-  Netris controller ships with two SoftGate nodes pre-defined in the Default site. (softgate1-default, softgate2-default). We recommend using these if you are new to Netris. Alternatively, you can learn how to define new SoftGate nodes here: “Adding SoftGates”.
+  Netris controller ships with two SoftGate nodes pre-defined in the Default site. (softgate1-default, softgate2-default). We recommend using these if you are new to Netris. Alternatively, you can learn how to define new SoftGate nodes here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
 
 1) Navigate to the **Net-->Inventory** section and click the **three vertical dots (⋮)** on the right side of the SoftGate node you are provisioning. Then click **Install Agent** and copy the one-line installer command to your clipboard.
 
