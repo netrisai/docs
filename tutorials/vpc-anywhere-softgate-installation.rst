@@ -85,3 +85,6 @@ The SoftGate deployment needs a freshly installed Ubuntu Linux 22.04 LTS.
   sudo reboot
 
 Once the server boots up, you should see its heartbeat going from Critical to OK in **Net→Inventory**, **Telescope→Dashboard**, and the SoftGate color will reflect its health in **Net→Topology**.
+
+.. image:: images/vpc-anywhere-softgates-green.png
+  :align: center
