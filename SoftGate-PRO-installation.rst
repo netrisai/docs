@@ -27,35 +27,35 @@ The following are some recommendations for BIOS settings. Different vendors will
 OS requirements for Netris SoftGate PRO installation   
 ====================================================
 The SoftGate PRO deployment needs a freshly installed Ubuntu Linux 18.04 LTS.
-During the installation process please consider following:
+During the installation process please consider the following:
 
-1) The management interface must be defined with valid IP address from **Management IP Address** field (mng). This IP address must have access to internet.
+1) The management IP address must have internet access.
 2) Most of the settings can be left with default values. For your convenience OpenSSH server should be enabled.
-3) The host name doesn't matter, the installer will set the hostname to the name defined in the controller.
+3) The hostname doesn't matter, the installer will set the hostname to the name defined in the controller.
 4) Do not set the loopback address as it will be set by the Netris Agent.
-5) After OS installer finishes the machine will automatically reboot. After first boot it is recommended to remove unnecessary packages by performing:
+5) After OS installer finishes the machine will automatically reboot. After the first boot it is recommended to remove unnecessary packages by performing:
    
 .. code-block:: shell-session
 
-  $ sudo apt purge -y cloud-init snapd open-iscsid modemmanager multipath-tools
+  user@host:~$ sudo apt purge -y cloud-init snapd open-iscsid modemmanager multipath-tools
 
-Then perfom cleanup of remaining orphaned packages:
-
-.. code-block:: shell-session
-
-  $ sudo apt autoremove
-
-6) Finally please update the operationg system to include the latest security updates.
+Then perform cleanup of remaining orphaned packages:
 
 .. code-block:: shell-session
 
-  $ sudo apt update
+  user@host:~$ sudo apt autoremove
+
+6) Finally please update the operating system to include the latest security updates.
+
+.. code-block:: shell-session
+
+  user@host:~$ sudo apt update
 
 Followed by
 
 .. code-block:: shell-session
   
-  $ sudo apt upgrade -y
+  user@host:~$ sudo apt upgrade -y
 
 Provision Netris SoftGate software
 ==================================
