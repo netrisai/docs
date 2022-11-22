@@ -1,38 +1,37 @@
 .. meta::
   :description: Netris SoftGate Installation
 
-*********************
-SoftGate Installation
-*********************
+.. _softgate-installation-vpc_def:
 
-Hardware Requirements
-=====================
-* 8 CPU cores
-* 16 GB RAM
-* 300 GB HDD
+****************************
+Adding Netris SoftGate nodes
+****************************
+For SoftGate nodes you can start with two servers of the smallest flavor. In the future if you happen to need to upgrade to high-performance SoftGate PRO (with DPDK acceleration) you can upgrade the servers one-by-one.
 
-SoftGate software provisioning
-==============================
-Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity. 
+1) Request two servers from Equinix Metal with Ubuntu 22.04 OS and wait until provisioned. After provisioning complete, you should see the newly created servers as **“Equinix Metal Server”** in Netris Controller listing, in **Net-->Inventory** section.
 
-.. note::
-  Netris controller ships with two SoftGate nodes pre-defined in the Default site. (softgate1-default, softgate2-default). We recommend using these if you are new to Netris. Alternatively, you can learn how to define  new SoftGate nodes here: :ref:`"Adding SoftGates"<topology-management-adding-softgates>`.
+.. image:: /tutorials/images/softgate-nodes-created-in-equinix.png
+    :align: center
 
-1. Navigate to the **Net-->Inventory** section and click the **three vertical dots (⋮)** on the right side of the SoftGate node you are provisioning. Then click **Install Agent** and copy the one-line installer command to your clipboard.
+
+2) Then in Equinix console click on each server name, then click **tag**, and add a tag **netris-softgate**. This tag will signal Netris Controller that these two servers are going to be used as Netris SoftGate nodes in this particular site (Project+Location).
+
+ After tags are added, you should see in Netris web console that description changes from **Equinix Metal Server** to **Softgate Softgate1(2)**. You will also notice the IP addresses populated per SoftGate, and Heartbeat state as **CRIT**. We will bring Heartbeat to **OK** in next step.
+
+3) Navigate to the **Net-->Inventory** section and click the **three vertical dots (⋮)** on the right side of the SoftGate node you are provisioning. Then click **Install Agent** and copy the one-line installer command to your clipboard.
 
 .. image:: /images/softgate-install-agent.png
     :align: center
 
-
-2. Paste the one-line install command on your SoftGate node as an ordinary user. (keep in mind that one-line installer commands are unique for each node)
+4) Paste the one-line install command on your SoftGate node as an ordinary user. (keep in mind that one-line installer commands are unique for each node)
 
 .. image:: /images/softgate-provisioning-cli-output.png
     :align: center
 
 .. note::
-  Please note that Netris replaces Netplan with regular ifupdown and attempts to migrate any prior configuration to /etc/network/interfaces.
+  Please note that the Netris installation script replaces the default Netplan networking backend with regular ifupdown and attempts to migrate the configuration set during installation to /etc/network/interfaces.
 
-3. Handoff Netris the bond0 interface for further automatic operations. Netris will automatically create necessary subinterfaces under your bond0 interface. (bond0.<xyz>). But you need to manually configure which physical interfaces should bind under the bond0 interface. Netris will only make changes to your bond0 and loopback interfaces; all other interfaces will remain as you describe in /etc/network/interfaces.
+3) Handoff Netris the bond0 interface for further automatic operations. Netris will automatically create necessary subinterfaces under your bond0 interface. (bond0.<xyz>). But you need to manually configure which physical interfaces should bind under the bond0 interface. Netris will only make changes to your bond0 and loopback interfaces; all other interfaces will remain as described in /etc/network/interfaces.
 
 .. code-block:: shell-session
 
@@ -44,43 +43,39 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
   auto lo
   iface lo inet loopback
 
+  # The management network interface
+  auto ensZ
+  iface ensZ inet static
+      address <Management IP address/prefix length>
+      # Please delete or comment out the line below if Netris Controller is located in the same network with the SoftGate node, otherwise adjust the line
+      # according to your setup. 
+      up ip route add <Controller IP address> via <Management network gateway> 
+
   # Physical port on SoftGate node connected to a TRUNK port of your network
   auto ens<X> 
   iface ens<x> inet static 
       address 0.0.0.0/0
       
- # Optionally you can add more physical interfaces under your bond0
-  auto ens<Y> 
-  iface ens<Y> inet static 
-      address 0.0.0.0/0
+  # Optionally you can add more physical interfaces under your bond0, uncomment as needed
+  #auto ens<Y>
+  #iface ens<Y> inet static 
+  #    address 0.0.0.0/0
 
   # Bond interface 
   auto bond0
   iface bond0 inet static
       address 0.0.0.0/0
-      bond-slaves ens<X> ens<Y> # Please replace the ensX/Y with actual interface names present in the OS.
-      bond-mode active-backup # Optional, please adjust the bonding mode according to the desired functionality.
+      # Please replace/remove the ensX/Y with actual interface name(s) below to one(s) present in the OS.
+      bond-slaves ens<X> ens<Y>
+      # Optional, please adjust the bonding mode below according to the desired functionality. 
+      bond-mode active-backup
 
   source /etc/network/interfaces.d/*
 
+.. note:: 
+  Ensure that the Management network interface IP address is as expected so the SoftGate node will maintain IP connectivity with Netris Controller after reboot.
 
-4. Ensure that SoftGate node will maintain IP connectivity with Netris Controller after reboot.
-
-
-.. code-block:: shell-session
-
-  user@host:~$ sudo vim /etc/network/interfaces
-
-.. code-block:: shell-session
-
-  # The management network interface
-  auto ensZ
-  iface ensZ inet static
-      address <Management IP address/prefix length>
-      up ip route add <Controller address> via <Management network gateway> # Please delete this line if Netris Controller is located in the same network with the SoftGate node.
- 
-
-5. Reboot the SoftGate
+4) Reboot the SoftGate
 
 .. code-block:: shell-session
 
@@ -88,7 +83,5 @@ Requires freshly installed Ubuntu Linux 22.04 LTS and internet connectivity.
 
 Once the server boots up, you should see its heartbeat going from Critical to OK in **Net→Inventory**, **Telescope→Dashboard**, and the SoftGate color will reflect its health in **Net→Topology**.
 
-
-.. image:: images/vpc-anywhere-softgates-green.png
-  :align: center
-
+.. image:: /tutorials/images/softgate-green.png
+    :align: center
