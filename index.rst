@@ -92,4 +92,4 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :maxdepth: 4
    :caption: Lab Scenarios
    
-   onprem-k8s
+   sandbox/Sandbox1/onprem-k8s

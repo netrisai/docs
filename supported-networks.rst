@@ -7,7 +7,7 @@ Reference Network Architectures
 
 
 Unmanaged Switch & Netris SoftGate 
----------------------------
+----------------------------------
 
 .. image:: images/slide-1.png
    :align: center
@@ -34,10 +34,10 @@ Netris Managed Switch & SoftGate (HA)
 --------------------------
 
 Netris Managed Switch & SoftGate scalable data center (HA)
---------------------------------------------
+----------------------------------------------------------
 
 .. image:: images/slide-4.png
-   :align: center
-   :alt: Netris Managed Switch & SoftGate scalable data center (HA)
+  :align: center
+  :alt: Netris Managed Switch & SoftGate scalable data center (HA)
 
---------------------------
+

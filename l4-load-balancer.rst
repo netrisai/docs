@@ -1,6 +1,7 @@
 .. meta::
     :description: Netris Services and Configuration Examples
   
+.. _l4lb_def:
 
 #######################
 L4 Load Balancer (L4LB)
@@ -16,17 +17,17 @@ The IP address pool for L4LB can be defined in the Net→IPAM section by adding 
 Example: Adding a load-balancer IP pool assignment.
 
 .. image:: images/add-allocation.png
-   :align: center
-   :class: with-shadow
-   :alt: Add an IP Allocation
+  :align: center
+  :class: with-shadow
+  :alt: Add an IP Allocation
     
     
 Screenshot: Listing of Net→IPAM after adding a load-balancer assignment
 
 .. image:: images/list-subnets.png
-   :align: center
-   :class: with-shadow
-   :alt: List IP Subnets 
+  :align: center
+  :class: with-shadow
+  :alt: List IP Subnets 
     
     
 Consuming L4LB service
@@ -73,11 +74,11 @@ Add new L4 Load Balancer fields are described below:
    :class: with-shadow
    :alt: Request an L4 Load Balancer
     
-   Example: Requesting an L4 Load Balancer service.
+Example: Requesting an L4 Load Balancer service.
 
 .. image:: images/list-l4-load-balancers.png
    :align: center
    :class: with-shadow
    :alt: List L4 Load Balancers
 
-   Example: Listing of L4 Load Balancer services
+Example: Listing of L4 Load Balancer services

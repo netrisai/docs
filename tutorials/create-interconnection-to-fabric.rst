@@ -5,7 +5,7 @@
 Creating an Interconnection to Equinix Fabric
 =============================================
 
-Once you have successfully setup Netris on Equinix Metal, you may want to use it to connect your private networks from Equinix Fabric back to Metal.
+Once you have successfully set up Netris on Equinix Metal, you may want to use it to connect your private networks from Equinix Fabric back to Metal.
 
 Netris can easily manage the routing and other required VPC services for this.
 

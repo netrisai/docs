@@ -24,7 +24,7 @@ There are 2 main types of IP prefixes - allocation and subnet. Allocations are I
    :alt: IPAM Tree View
    :class: with-shadow
 
-   IPAM Tree View
+IPAM Tree View
 
 --------------------------
 
@@ -54,7 +54,7 @@ Add an Allocation
    :class: with-shadow
    :alt: Add a New IP Allocation
 
-   Add Allocation Window
+Add Allocation Window
 
 --------------------------
 
@@ -86,11 +86,11 @@ Add a Subnet
         - *management* - subnet which specifies the out-of-band management IP addresses for Netris hardware (switches and softgates).
         - *load-balancer* - hosts of this subnet are used in L4LB services only. Useful for deploying on-prem kubernetes with cloud-like experience.
         - *nat* - hosts of this subnet or subnet itself can be used to define NAT services.
-        - *inactive* - can’t be used in any services, useful for reserving/documenting prefixes for future use.
+        - *inactive* - can't be used in any services, useful for reserving/documenting prefixes for future use.
 
 .. image:: images/add-subnet.png
-   :align: center
-   :alt: Add a New Subnet
-   :class: with-shadow
+  :align: center
+  :alt: Add a New Subnet
+  :class: with-shadow
 
-   Add Subnet Window
+Add Subnet Window

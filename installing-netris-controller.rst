@@ -7,7 +7,7 @@ Installing a Netris Controller
 
 You can install the Netris controller almost on any 64-bit Linux host. Netris Controller may or may not be on the same network as the managed network nodes are. In fact if there are multiple Netris managed deployments there’s no need for an individual controller for each deployment.
 
-It doesn’t matter where to host the Netris controller. What matters is that the Netris controller needs to be accessible over the Internet. So you can access the console, and nodes that are going to be managed by Netris need to have access to the Netris controller through their management network interface. 
+It doesn't matter where to host the Netris controller. What matters is that the Netris controller needs to be accessible over the Internet. So you can access the console, and nodes that are going to be managed by Netris need to have access to the Netris controller through their management network interface. 
 
 Linux Host requirements
 
@@ -18,7 +18,7 @@ Linux Host requirements
 
 In this example I am running my Netris controller on an AWS hosted virtual machine (EC2) which has got  a public IP address 54.219.211.71. While it is OK for users and nodes to refer to the Netris Controller through an IP address, I like using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
 
-I’m using Cloudflare to create this “example-netris-controller.netris.dev” DNS record to point to the public IP address of my EC2 : 54.219.211.71. 
+I'm using Cloudflare to create this “example-netris-controller.netris.dev” DNS record to point to the public IP address of my EC2 : 54.219.211.71. 
 
 .. image:: images/cloudflare-dns-record.png
     :align: center

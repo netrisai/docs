@@ -1,5 +1,5 @@
 .. meta::
-    :description: Layer-3 Load Balancer (Anycast)
+   :description: Layer-3 Load Balancer (Anycast)
 
 .. _l3lb_def:
 
@@ -23,22 +23,22 @@ To configure L3 (Anycast) load balancing:
 #. This will create a service under Services→Load Balancer and permit using the Anycast IP address in multiple ROH instances. 
 
 .. image:: images/add-l3-lb.png
-   :align: center
-   :class: with-shadow
-   :alt: Add a L3 LB
+  :align: center
+  :class: with-shadow
+  :alt: Add a L3 LB
    
-   Example: Adding an Anycast IPv4 address 
+Example: Adding an Anycast IPv4 address 
 
 .. image:: images/list-l3-lb.png
-   :align: center
-   :class: with-shadow
-   :alt: List L3 LBs
+  :align: center
+  :class: with-shadow
+  :alt: List L3 LBs
    
-   Example: Under Services→Load Balancer, you can find the listing of L3 (Anycast) Load Balancers, service statuses, and you can add/remove more ROH instances and/or health checks.
+Example: Under Services→Load Balancer, you can find the listing of L3 (Anycast) Load Balancers, service statuses, and you can add/remove more ROH instances and/or health checks.
 
 .. image:: images/list-l3-lb-detail.png
-   :align: center
-   :class: with-shadow
-   :alt: List L3 LB Details
+  :align: center
+  :class: with-shadow
+  :alt: List L3 LB Details
    
-   Screenshot: L3 (Anycast) Load Balancer Detail
+Screenshot: L3 (Anycast) Load Balancer Detail
