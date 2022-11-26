@@ -1,3 +1,23 @@
+.netris-header {
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border-bottom: 1px solid #e9e9e9;
+    position: fixed;
+    z-index: 3179;
+}
+.netris-slack-btn {
+    border-radius: 3px;
+    width: 100px;
+    text-align: right;
+    border-color: lightpink;
+    margin-left: 10;
+}
+
+.netris-logo{
+    max-width: 95px;
+}
+
 pre.literal-block {
     white-space: pre;
     margin: 0 !important;
@@ -9,7 +29,18 @@ pre.literal-block {
     color: #404040;
 }
 
+.wy-nav-top {
+    top: 50px;
+
+}
+
+.wy-nav-content {
+    margin: 50px 0 0 0;
+    max-width: 100%;
+}
+
 .wy-nav-side {
+    top:50px;
     background: #ffffff;
 }
 
