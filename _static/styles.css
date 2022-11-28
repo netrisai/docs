@@ -82,16 +82,6 @@ a.gh-btn:active {
     z-index: 3179;
 }
 
-/*
-.netris-slack-btn {
-    border-radius: 3px;
-    width: 105px;
-    text-align: right;
-    border-color: lightpink;
-    margin-left: 10;
-}
-*/
-
 .wy-side-scroll {
     height: 94%;
 }
@@ -111,9 +101,14 @@ pre.literal-block {
     color: #404040;
 }
 
+
 .wy-nav-top {
     top: 50px;
 
+}
+
+.wy-nav-content {
+  margin-top: 50px !important;
 }
 
 .wy-nav-content-wrap {
