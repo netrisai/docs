@@ -14,6 +14,11 @@
     margin-left: 10;
 }
 
+
+.wy-side-scroll {
+    height: 94%;
+}
+
 .netris-logo{
     max-width: 95px;
 }
