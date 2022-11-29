@@ -1,0 +1,16 @@
+<div class="netris-header">
+  <span>
+    {% if logo %}
+    <a href="https://www.netris.ai" target="_blank">
+      <img width="95px" src="{{ pathto('_static/' + logo, 1) }}" class="netris-logo" alt="{{ _('Logo') }}" />
+    </a>
+    <span class="github-btn github-btn-large">
+      <a class="gh-btn" href="https://netris.io/slack" rel="noopener noreferrer" target="_blank"
+        style="margin-left: 15px;">
+        <img style="height: 1em;" src="{{ pathto('_static/slack.svg', 1) }}" alt="slack_icon">
+        Join Slack
+      </a>
+    </span>
+    {% endif %}
+  </span>
+</div>
