@@ -146,16 +146,18 @@ For the SoftGate agent, first SSH to the SoftGate and run the following command:
 
 2. Restore the database from the previously taken snapshot.
 
-Copy the backup file from the controller host system to the MariaDB container by running the following command after SSHing to the Controller:
+Drop the current database and create a new one by running the following command after SSHing to the Controller:
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "DROP DATABASE $MARIADB_DATABASE"'
+  kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "CREATE DATABASE $MARIADB_DATABASE"'
+
+While still connected to the Controller, copy the backup file from the controller host system to the MariaDB container and restore the database:
 
 .. code-block:: shell-session
 
   kubectl -n netris-controller cp db-snapshot.sql netris-controller-mariadb-0:/opt/db-snapshot.sql
-
-While still connected to the Controller, restore the database:
-
-.. code-block:: shell-session
-
   kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE < /opt/db-snapshot.sql'
 
 3. Downgrade Netris Controller application with the following command.
