@@ -18,6 +18,7 @@ In this example, the new V-NET has VLAN ID 2, subnet 10.0.0.0/24, and gateway 10
 
 Another option is turning the existing Layer-2 network (VLAN) into Netris V-Net. All VLANs in the particular project that aren't used in other services, like an E-BGP, are visible as "unmanaged" in the  V-Net section.
 
+.. image:: /tutorials/images/unmanaged-vlan-equinix.png
 .. image:: /tutorials/images/unmanaged-vnet.png
 
 Note that you can use Services --> ACLs for granular control over traffic between multiple V-NETs as well as to/from outside (Internet or other. remote sites)  
