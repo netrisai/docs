@@ -1,5 +1,4 @@
 .. meta::
-    :description: Upgrading Netris
 
 .. raw:: html
 
