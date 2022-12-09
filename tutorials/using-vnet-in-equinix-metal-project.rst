@@ -1,11 +1,3 @@
-.. meta::
-
-.. raw:: html
-  
-.. role:: green
-
-.. role:: red
-
 ########################################################################
 Using V-Net (isolated virtual network) services in Equinix Metal Project
 ########################################################################
@@ -49,10 +41,9 @@ Another option is turning the existing Layer-2 network (VLAN) into Netris V-Net.
 
 The "manage" button will open a dialogue window where it's also possible to add a default gateway for the appropriate VLAN.
 
-.. warning::
 
+**Warning**
 Once the VLAN is being converted into V-Net, it will be managed by Netris and no longer manageable through Equinix Metal console.
-
 
 .. image:: /tutorials/images/manage-vnet.gif
     :align: center
