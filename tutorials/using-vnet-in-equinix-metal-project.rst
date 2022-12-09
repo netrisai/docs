@@ -35,6 +35,15 @@ Unmanaged
 Another option is turning the existing Layer-2 network (VLAN) into Netris V-Net. All VLANs in the particular project that aren't used in other services, like an E-BGP, are visible as "unmanaged" in the  V-Net section.
 
 .. image:: /tutorials/images/unmanaged-vlan-equinix.png
+    :align: center
 .. image:: /tutorials/images/unmanaged-vnet.png
+    :align: center
 
+The "manage" button will open a dialogue window where it's also possible to add a default gateway for the appropriate VLAN.
+
+.. note::
+VLAN is being converted into Netris V-Net. This service will now be managed by Netris and no longer manageable through Equinix Metal console.
+
+.. image:: /tutorials/images/manage-vnet.gif
+    :align: center
 Note that you can use Services --> ACLs for granular control over traffic between multiple V-NETs as well as to/from outside (Internet or other. remote sites)  
