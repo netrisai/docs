@@ -1,9 +1,6 @@
 .. meta::
 
 .. raw:: html
-
-    <style> .green {color:#2fa84f} </style>
-    <style> .red {color:red} </style>
   
 .. role:: green
 
