@@ -14,7 +14,7 @@ Netris VPC for Equinix Metal
    enable-services-on-equinix-metal-project
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Use
 
    using-vnet-in-equinix-metal-project

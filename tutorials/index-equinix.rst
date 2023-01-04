@@ -19,7 +19,7 @@ This `video <https://vimeo.com/723912838>`_ walks through Netris VPC setup steps
    adding-netris-softgate-nodes-in-equinix-metal
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Examples of Using Netris VPC on Equinix Metal Project
 
    using-vnet-in-equinix-metal-project
