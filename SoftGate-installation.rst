@@ -2,7 +2,7 @@
   :description: Netris SoftGate Installation
 
 ***************************
-SoftGate Installation 
+SoftGate Installation
 ***************************
 
 Minimum Hardware Requirements
