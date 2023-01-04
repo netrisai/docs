@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to Netris Documentation
-==================================================
+===================================================
 
 Learn how to get started with Netris VPC Networking for your network environment.
 
