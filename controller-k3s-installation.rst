@@ -143,6 +143,19 @@ To take database snapshot run the following command:
 
 After command execution, you can find ``db-snapshot-YYYY-MM-DD-HH-MM-SS.sql`` file in the current working directory.
 
+.. _ctl-secret-key-backup:
+
+
+
+Secret Key
+~~~~~~~~~~
+
+Netris Controller generates a unique secret key at the first installation. If you're moving or reinstalling your controller, it makes sense to take note of the secret key for restoring purpose in the future. Overwise, you have to reinitiate all devices connected to the controller.
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller get secret netris-controller-grpc-secret -o jsonpath='{.data.secret-key}{"\n"}'
+
 
 Restore
 -------
@@ -177,3 +190,28 @@ In order to restore DB from a database snapshot, follow these steps:
 
   In this example the snapshot file name is db-snapshot.sql and it's located in the current working directory
 
+
+Secret Key
+~~~~~~~~~~
+
+If you want to restore the controller secret key too (you might want to do that if you're reinstalling or moving the controller to the other place), follow these steps:
+
+1. Set ``OLD_SECRET`` environment variable (the secret key taken from :ref:`the old controller<ctl-secret-key-backup>`):
+
+.. code-block:: shell-session
+  
+  export OLD_SECRET=<Your old secret key>
+
+example: ``export OLD_SECRET=VUdodFFSakJCU2lFVVA4T1c0cnpuUmdiMkQxem85Y2dnS3pkajlNSg==``
+
+2. Replace the secret key:
+
+.. code-block:: shell-session
+  
+  kubectl -n netris-controller patch secret netris-controller-grpc-secret --type='json' -p='[{"op" : "replace" ,"path" : "/data/secret-key" ,"value" : "'$OLD_SECRET'"}]'
+
+3. Restart all Netris Controller's microservices
+
+.. code-block:: shell-session
+
+  kubectl -n netris-controller rollout restart deployments
