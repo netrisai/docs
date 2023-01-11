@@ -204,13 +204,13 @@ If you want to restore the controller secret key too (you might want to do that 
 
 example: ``export OLD_SECRET=VUdodFFSakJCU2lFVVA4T1c0cnpuUmdiMkQxem85Y2dnS3pkajlNSg==``
 
-2. Replace the secret key:
+2. Update the secret key of the new controller:
 
 .. code-block:: shell-session
   
   kubectl -n netris-controller patch secret netris-controller-grpc-secret --type='json' -p='[{"op" : "replace" ,"path" : "/data/secret-key" ,"value" : "'$OLD_SECRET'"}]'
 
-3. Restart all Netris Controller's microservices
+3. Restart Netris Controller's all microservices
 
 .. code-block:: shell-session
 
