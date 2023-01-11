@@ -147,8 +147,8 @@ After command execution, you can find ``db-snapshot-YYYY-MM-DD-HH-MM-SS.sql`` fi
 
 
 
-Secret Key
-~~~~~~~~~~
+Backup the Secret Key
+~~~~~~~~~~~~~~~~~~~~~
 
 Netris Controller generates a unique secret key at the first installation. If you're moving or reinstalling your controller, it makes sense to take note of the secret key for restoring purpose in the future. Overwise, you have to reinitiate all devices connected to the controller.
 
@@ -191,8 +191,8 @@ In order to restore DB from a database snapshot, follow these steps:
   In this example the snapshot file name is db-snapshot.sql and it's located in the current working directory
 
 
-Secret Key
-~~~~~~~~~~
+Restore the Secret Key
+~~~~~~~~~~~~~~~~~~~~~~
 
 If you want to restore the controller secret key too (you might want to do that if you're reinstalling or moving the controller to the other place), follow these steps:
 
