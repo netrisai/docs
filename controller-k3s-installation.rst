@@ -1,6 +1,7 @@
-
 .. meta::
   :description: Controller Generic Linux Host
+
+.. _ctl-k3s-def:
 
 ######################################################
 Netris Controller installation on a generic Linux host
@@ -125,6 +126,8 @@ To uninstall Netris Controller and K3s from a server node, run:
 
   /usr/local/bin/k3s-uninstall.sh
 
+
+.. _ctl-backup-restore:
 
 Backup and Restore
 ==================
