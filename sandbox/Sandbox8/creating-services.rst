@@ -62,8 +62,8 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
 
   7. For the **VLAN ID** field, uncheck the **Untag** check-box and type in ``1082``.
   8. In the **Neighbor AS** field, type in ``65007``.
-  9. In the **Local IP** field, type in ``50.117.59.126``.
-  10. In the **Remote IP** field, type in ``50.117.59.125``.
+  9. In the **Local IP** field, type in ``50.117.59.110``.
+  10. In the **Remote IP** field, type in ``50.117.59.109``.
   11. Expand the **Advanced** section
   12. In the **Prefix List Inbound** field, type in ``permit 0.0.0.0/0`` 
   13. In the **Prefix List Outbound** field, type in ``permit 50.117.59.176/28 le 32``
