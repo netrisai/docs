@@ -89,13 +89,15 @@ Now on-demand (elastic) load balancer service is enabled and can be consumed eit
 Please note that in this example we left the field Tenant set to Admin. Tenancy is used for role based access control and resource delegation. In other words you may want to create a user role and tenant for your colleagues that are supposed to consume Netris VPC services, but not administer it. 
 
    
-.. 2. Enable NAT
-.. -------------
+2. Enable NAT
+-------------
 
-.. To enable NAT, you need to repurpose a subnet for NAT. In the below example, I’m repurposing the second of the newly requested /29 subnets for NAT.
+To enable NAT, you need to create a smaller subnet with the purpose of “nat”.
 
-.. .. image:: /tutorials/images/phoenixnap-netris-ipam-nat-purpose.png
-..     :align: center
+Click the **+ Add** button in the top right corner, type a “Prefix” for a new subnet, type a descriptive “Name” for it, select the desired tenant name from the dropdown menu next to the “Tenant” field, select “Subnet” from the “Type” dropdown menu, select “nat” from the “Purpose” dropdown menu, and select the appropriate site from the “Sites” dropdown menu.
 
-.. Then You need to create a NAT rule. In the Net → NAT section of Netris web console. Netris supports most of the standard rules for SNAT and DNAT.
+.. image:: /tutorials/images/phoenixnap-netris-ipam-nat-purpose-slash-28.png
+    :align: center
+
+Then You need to create a NAT rule. In the Net → NAT section of Netris web console. Netris supports most of the standard rules for SNAT and DNAT.
 
