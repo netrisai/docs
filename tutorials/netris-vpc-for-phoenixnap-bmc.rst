@@ -11,3 +11,9 @@ Netris VPC for phoenixNAP BMC
    phoenixnap-bmc-api-integration-enablement
    phoenixnap-bmc-adding-netris-softgate-nodes
    phoenixnap-bmc-enable-services
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Use
+
+   phoenixnap-bmc-using-vnet
