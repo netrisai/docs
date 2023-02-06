@@ -27,6 +27,10 @@ Due to potential database structural changes between Netris versions, it's highl
 
 Ensure that SQL file ``db-snapshot.sql`` is generated and present in the current directory.
 
+.. note::
+  
+  An SQL dump is enough for this scenario, but that's not Netris-Controller's entire backup procedure. Get familiar with the Backup/Restore documentation :ref:`here<ctl-backup-restore>`.
+
 2. Stop all Netris agents on devices managed by the controller (switch & SoftGate).
 
 For the switch agent, first SSH to the switch and run the following command:
