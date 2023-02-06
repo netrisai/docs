@@ -1,3 +1,8 @@
+.. meta::
+  :description: Using V-Net (isolated virtual network) services in phoenixNAP BMC
+
+.. _phxnap_vnet:
+
 ##################################################################
 Using V-Net (isolated virtual network) services in phoenixNAP BMC
 ##################################################################

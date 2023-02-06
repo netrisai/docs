@@ -1,3 +1,8 @@
+.. meta::
+  :description: Enabling services (NAT, Load Balancer)
+
+.. _phxnap_services:
+
 ######################################
 Enabling services (NAT, Load Balancer)
 ######################################

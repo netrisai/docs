@@ -1,3 +1,8 @@
+.. meta::
+  :description: Provisioning Netris SoftGate nodes in phoenixNAP BMC
+
+.. _phxnap_sgs:
+
 ####################################################
 Provisioning Netris SoftGate nodes in phoenixNAP BMC
 ####################################################

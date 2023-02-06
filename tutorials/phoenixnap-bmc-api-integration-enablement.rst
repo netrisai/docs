@@ -1,5 +1,7 @@
 .. meta::
-    :description: Getting Started for phoenixNAP BMC
+    :description: Enable phoenixNAP BMC API integration
+
+.. _phxnap_api:
 
 #####################################
 Enable phoenixNAP BMC API integration
