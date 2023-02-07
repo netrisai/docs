@@ -15,7 +15,7 @@ There is **an agent** inside the Netris VPC controller for phoenixNAP BMC that c
 
 **SoftGate** is a highly optimized automatic Linux gateway, which in turn communicates with the Netris VPC controller through an encrypted management link. A SoftGate node (typically two of them for redundancy) is a regular BMC server that should be deployed on desired phoenixNAP location. Once the server has been :ref:`deployed and provisioned<phxnap_sgs>`, it starts consuming the BMC public and private networks with various VLANS. 
 
-.. image:: images/vpc-anywhere-solution-traffic-flows.png
+.. image:: images/phoenixnap-concept-solution-traffic-flows.png
   :align: center
 
 Due to phoenixNAP BMC creating a new VLAN for each server's Public IP Allocation and Public Network/Private Network, we decided to use the upper VLANS Range - 3000-4094 (if you need to change the default range, that can be done in the Netris Site settings). Netris will consume VLANS only from that Range. Thus safely isolating VPC traffic flows from all other traffic flows that may exist on the BMC network. 
