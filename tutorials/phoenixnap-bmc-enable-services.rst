@@ -106,3 +106,11 @@ Click the **+ Add** button in the top right corner, type a “Prefix” for a ne
 
 Then You need to create a NAT rule. In the Net → NAT section of Netris web console. Netris supports most of the standard rules for SNAT and DNAT.
 
+Note*
+=====
+
+It doesn't matter with what Option (1,2) you will go. Once the Public IP Allocation has been replicated in the Netris IPAM, Netris will automatically reserve the network, first usable, and broadcast IP addresses because they are unusable in this (phoenixNAP BMC) scenario.
+
+.. image:: /tutorials/images/phoenixnap-reserved-ips.png
+    :align: center
+
