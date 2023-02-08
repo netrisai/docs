@@ -10,27 +10,27 @@ Installation Steps
 
 You can install the Netris controller almost on any 64-bit Linux host. You can use a single Netris controller for operating multiple sites (regions).
 
-**Request a server**
-
-The smallest flavor, s0.d1.small, is enough for most users. 
-
-.. image:: images/phoenixnap-request-ctl-server.png
-  :align: center
-
-if you decide to use a VM, please see below the minimal VM requirements. 
+**Minimum Hardware Requirements**
 
 * RAM: 8 GB
 * CPU: 4 Cores
 * Disk: 50GB
 * OS: Linux 64-bit
 
+**Deploy New Server**
+
+Deploy a new server in phoenixNAP BMC: select the Location, choose the server flavor (the smallest flavor, s0.d1.small, is enough for most users), type some name for Controller Server, request a new /31 public allocation for this instance. 
+
+.. image:: images/phoenixnap-request-ctl-server.png
+  :align: center
+
 **DNS record**
 
-In my example my host got a public IP address 139.178.89.255. While it is OK for users and nodes to refer to the Netris Controller through an IP address, we recommend using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
+In my example my host got a public IP address 131.153.154.61. While it is OK for users and nodes to refer to the Netris Controller through an IP address, we recommend using a DNS record (this way it will be easier to potentially move Netris Controller somewhere with a different IP address). 
 
 Below is example using Cloudflare DNS service. (same idea with any DNS software or service)
 
-.. image:: images/dns-cloudflare-equinix-ip.png
+.. image:: images/phoenixnap-dns-cloudflare.png
     :align: center
 
 Ensure that newly created domain name indeed resolves into the right IP address of the machine that you are going to install the Netris Controller.
@@ -38,7 +38,7 @@ Ensure that newly created domain name indeed resolves into the right IP address 
 .. code-block:: shell-session
 
    host netrisctl.netris.dev
-   netrisctl.netris.dev has address 139.178.89.255
+   netrisctl.netris.dev has address 131.153.154.61
 
 **Install Netris Controller software and dependencies**
 
