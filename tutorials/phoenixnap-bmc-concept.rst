@@ -40,5 +40,6 @@ SoftGate node becomes the default gateway for the workloads consuming the VPC ne
 
 .. toctree::
    :maxdepth: 1
-
+    
+   phoenixnap-bmc-using-nat
    phoenixnap-bmc-using-vnet

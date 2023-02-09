@@ -17,4 +17,5 @@ Netris VPC for phoenixNAP BMC
    :maxdepth: 2
    :caption: Use
 
+   phoenixnap-bmc-using-nat
    phoenixnap-bmc-using-vnet
