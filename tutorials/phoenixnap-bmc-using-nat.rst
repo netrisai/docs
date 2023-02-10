@@ -7,7 +7,7 @@
 Using NAT services in phoenixNAP BMC
 ####################################
 
-NAT, under Net --> NAT, is a Network Address Translation (NAT) service. Netris supports most of the standard rules for MASQUERADE, SNAT, and DNAT. In this scenario, I am enabling instances in a private network with a subnet of 10.0.0.0/8 to have access to services outside their VPC. The goal is to provide bare-metal servers/VMs with the capability to connect to the Internet through NAT for outbound access. You can always have more granular control either through NAT rule or using Services → ACLs.
+NAT, under Net --> NAT, is a Network Address Translation (NAT) service. Netris supports most of the standard rules for MASQUERADE, SNAT, and DNAT. In this scenario, I am enabling instances in a private network with a subnet of 10.0.0.0/8 to have access to services outside their VPC. The goal is to provide bare-metal servers/VMs with the capability to connect to the Internet through NAT for outbound access.
 
 Option 1 - MASQUERADE
 =====================
@@ -25,3 +25,6 @@ Unlike MASQUERADE, the SNAT requires having a dedicated subnet with a :ref:`NAT 
 
 .. image:: images/phoenixnap-nat-snat.png
   :align: center
+
+
+You can always have more granular control either through NAT rule or using Services → ACLs.
