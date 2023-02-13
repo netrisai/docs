@@ -43,3 +43,4 @@ SoftGate node becomes the default gateway for the workloads consuming the VPC ne
     
    phoenixnap-bmc-using-nat
    phoenixnap-bmc-using-vnet
+   phoenixnap-bmc-using-l4lb

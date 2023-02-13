@@ -19,3 +19,4 @@ Netris VPC for phoenixNAP BMC
 
    phoenixnap-bmc-using-nat
    phoenixnap-bmc-using-vnet
+   phoenixnap-bmc-using-l4lb
