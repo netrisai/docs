@@ -72,4 +72,22 @@ This feature is even more efficient when you build your infrastructure via Terra
 .. image:: /tutorials/images/phoenixnap-vnet-with-tag-terraform.png
     :align: center
 
+
+Unmanaged
+---------
+
+Another option is turning the existing private network into Netris V-Net. All private networks from allowed VLAN IDs range and in the proper location that Netris don't create are visible as "unmanaged" in the V-Net section.
+
+.. image:: /tutorials/images/phoenixnap-vnet-unmanaged-vnet.png
+    :align: center
+
+The "manage" button will open a dialogue window where it's also possible to add a default gateway for the appropriate VLAN.
+
+
+.. warning::
+  Once the private network is being converted into V-Net, it will be managed by Netris and no longer manageable through phoenixNAP BMC console.
+
+.. image:: /tutorials/images/phoenixnap-vnet-managed-vnet.png
+    :align: center
+
 Note that you can use Services --> ACLs for granular control over traffic between multiple V-NETs as well as to/from outside (Internet or other. remote sites)  
