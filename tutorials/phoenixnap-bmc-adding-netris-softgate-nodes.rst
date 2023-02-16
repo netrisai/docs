@@ -12,6 +12,10 @@ For SoftGate nodes you can start with two ``s2.c1.small`` or larger servers. In 
 1) Request two servers (s2.c1.small) from phoenixNAP BMC with Ubuntu Jammy OS, type ``netris-softgate`` in the "Server Description" field, 
 choose a /31 Public IP Allocation and wait until provisioned. 
 
+.. note::
+
+  It’s required to type the ``netris-softgate`` in the description. This signals Netris Controller that those are not regular bare-metal servers, and they should be synced with the type of SoftGate.
+
 .. image:: /tutorials/images/phoenixnap-softgate-nodes-creation.png
     :align: center
 

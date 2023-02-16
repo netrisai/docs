@@ -76,7 +76,7 @@ This feature is even more efficient when you build your infrastructure via Terra
 Unmanaged
 ---------
 
-Another option is turning the existing private network into Netris V-Net. All private networks from allowed VLAN IDs range and in the proper location that Netris don't create are visible as "unmanaged" in the V-Net section.
+Another option is turning the existing private network into Netris V-Net. All private networks from the allowed VLAN IDs range and in the proper location that Netris has not created are visible as "unmanaged" in the V-Net section.
 
 .. image:: /tutorials/images/phoenixnap-vnet-unmanaged-vnet.png
     :align: center
