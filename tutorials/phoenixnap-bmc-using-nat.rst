@@ -27,4 +27,14 @@ Unlike MASQUERADE, the SNAT requires having a dedicated subnet with a :ref:`NAT 
   :align: center
 
 
+DNAT
+====
+
+A DNAT (Destination Network Address Translation) allows incoming traffic to be redirected from a destination IP address and port to a  "DNAT to IP/Port". This type of rule is often used in scenarios where you want to forward incoming traffic to a specific server within your network, such as a web server or database.
+
+I'm creating a DNAT rule for the ssh port in the example below. It forwards the public IP's 55022 port to the local IP's 22 port. Once the rule is applied, you can easily establish a remote SSH connection to the server.
+
+.. image:: images/phoenixnap-nat-dnat.png
+  :align: center
+
 You can always have more granular control either through NAT rule or using Services → ACLs.
