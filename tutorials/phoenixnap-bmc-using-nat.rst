@@ -27,6 +27,9 @@ Unlike MASQUERADE, the SNAT requires having a dedicated subnet with a :ref:`NAT 
   :align: center
 
 
+You can always have more granular control either through NAT rule or using Services → ACLs.
+
+
 DNAT
 ====
 
@@ -37,4 +40,3 @@ I'm creating a DNAT rule for the ssh port in the example below. It forwards the 
 .. image:: images/phoenixnap-nat-dnat.png
   :align: center
 
-You can always have more granular control either through NAT rule or using Services → ACLs.
