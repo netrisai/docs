@@ -1,11 +1,11 @@
 .. meta::
-  :description: Enabling services (NAT, Load Balancer)
+  :description: IPAM Setup for Services
 
 .. _phxnap_services:
 
-######################################
-Enabling services (NAT, Load Balancer)
-######################################
+#######################
+IPAM Setup for Services
+#######################
 
 Although bare metal servers in phoenixNAP BMC may get a public IP address and can access the Internet, it’s not the case with the VMs. When you use server virtualization, something needs to be the gateway for your virtual networks. That gateway will provide packet forwarding with access control between your virtual private networks, will provide NAT, and on-demand (Elastic) Load Balancer services. Physically that gateway is Netris SoftGate. And it operates automatically, providing you with the VPC-like networking capabilities.
 

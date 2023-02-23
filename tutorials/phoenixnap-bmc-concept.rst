@@ -32,7 +32,7 @@ SoftGate node becomes the default gateway for the workloads consuming the VPC ne
 * :doc:`Installing a Netris Controller on phoenixNAP BMC server <phoenixnap-bmc-install-netris-controller>` 
 * :doc:`Enable phoenixNAP BMC API integration <phoenixnap-bmc-api-integration-enablement>` 
 * :doc:`Provisioning Netris SoftGate nodes in phoenixNAP BMC <phoenixnap-bmc-adding-netris-softgate-nodes>` 
-* :doc:`Enabling services (NAT, Load Balancer) <phoenixnap-bmc-enable-services>` 
+* :doc:`IPAM Setup for Services <phoenixnap-bmc-ipam-setup>` 
 
 
 Usage
