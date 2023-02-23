@@ -26,21 +26,17 @@ SoftGate node becomes the default gateway for the workloads consuming the VPC ne
   :align: center
 
 
-.. toctree::
-   :maxdepth: 1
-   :caption: What's next
 
-   phoenixnap-bmc-install-netris-controller
-   phoenixnap-bmc-api-integration-enablement
-   phoenixnap-bmc-adding-netris-softgate-nodes
-   phoenixnap-bmc-enable-services
+**What's next**
+
+* :doc:`Installing a Netris Controller on phoenixNAP BMC server <phoenixnap-bmc-install-netris-controller>` 
+* :doc:`Enable phoenixNAP BMC API integration <phoenixnap-bmc-api-integration-enablement>` 
+* :doc:`Provisioning Netris SoftGate nodes in phoenixNAP BMC <phoenixnap-bmc-adding-netris-softgate-nodes>` 
+* :doc:`Enabling services (NAT, Load Balancer) <phoenixnap-bmc-enable-services>` 
 
 
-**Usage**
+Usage
 
-.. toctree::
-   :maxdepth: 1
-    
-   phoenixnap-bmc-using-nat
-   phoenixnap-bmc-using-vnet
-   phoenixnap-bmc-using-l4lb
+* :doc:`Using NAT services in phoenixNAP BMC <phoenixnap-bmc-using-nat>` 
+* :doc:`Using V-Net (isolated virtual network) services in phoenixNAP BMC <phoenixnap-bmc-using-vnet>` 
+* :doc:`Using on-demand (elastic) L4 Load Balancer service in phoenixNAP BMC <phoenixnap-bmc-using-l4lb>` 
