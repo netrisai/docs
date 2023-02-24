@@ -11,7 +11,7 @@ Netris VPC for phoenixNAP BMC
    phoenixnap-bmc-install-netris-controller
    phoenixnap-bmc-api-integration-enablement
    phoenixnap-bmc-adding-netris-softgate-nodes
-   phoenixnap-bmc-enable-services
+   phoenixnap-bmc-ipam-setup
 
 .. toctree::
    :maxdepth: 2

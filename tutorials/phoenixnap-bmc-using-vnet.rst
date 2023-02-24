@@ -33,17 +33,17 @@ In this example, the new V-NET has VLAN ID 3000, subnet 10.128.1.0/24, and gatew
     :align: center
 
 
-Import a new server into an existing V-Net
+Deploy a new server into an existing V-Net
 ------------------------------------------
 
-Netris creates a private network in phoenixNAP BMC based on declared V-Nets. Besides creation, Netris continuously monitors that private networks. As a result of this continuous monitoring, you can't edit private networks created by Netris from the phoenixNAP BMC side. However, if any modifications are made, Netris will automatically roll everything back to its state. 
+Netris creates a private network in phoenixNAP BMC based on declared V-Nets. Besides creation, Netris continuously monitors that private networks. As a result of this continuous monitoring, you can't edit private networks created by Netris from the phoenixNAP BMC console. However, if any modifications are made, Netris will automatically roll everything back to its state. 
 
-The only exception is a case with newly created servers. When you request a server from phoenixNAP BMC without any public IP address, use some Netris V-Net as a private network and mark the DHCP checkbox "**Use your own privately managed DHCP server (Obtain IP address automatically)**" - Netris will import that server to the V-Net.
+The only exception is a case with newly deployed servers. When you request a server from phoenixNAP BMC without any public IP address, use some Netris V-Net as a private network and mark the DHCP checkbox "**Use your own privately managed DHCP server (Obtain IP address automatically)**" - Netris will automatically add that server into the V-Net.
 
 .. image:: /tutorials/images/phoenixnap-vnet-import-a-new-server.png
     :align: center
 
-Thanks to that "import" functionality, you can request a bare-metal server directly into Netris V-Net. As a result, you will have bare-metal servers in a private subnet that can connect to services outside your VPC (since we have enabled NAT globally in previous chapters), but external services cannot initiate a connection with those servers. Once the servers have been provisioned, they will get a private IP from Netris DHCP, and you can find those IPs by pressing the "**IP/MAC Info**" button on the V-NET.
+Thanks to that functionality, you can request a bare-metal server directly into Netris V-Net. As a result, you will have bare-metal servers in a private subnet that can connect to services outside your VPC (since we have enabled NAT globally in previous chapters), but external services cannot initiate a connection with those servers. Once the servers have been provisioned, they will get a private IP from Netris DHCP, and you can find those IPs by pressing the "**IP/MAC Info**" button on the V-NET.
 
 .. image:: /tutorials/images/phoenixnap-vnet-imported-new-server.png
     :align: center
