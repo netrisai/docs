@@ -31,6 +31,8 @@ The on-demand L4 (elastic) Load Balancer service has been successfully activated
 
 It is worth noting that in the example provided, the Tenant field was left at its default setting of "Admin." Tenancy is a feature that enables role-based access control and resource delegation. To illustrate, you may want to establish a user role and tenant for your colleagues who are meant to consume Netris VPC services but are not authorized to administer them.
 
+.. _vpc_anywhere_ipam_nat:
+
 Enable Network Address Translation (NAT)
 ========================================
 

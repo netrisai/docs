@@ -22,3 +22,4 @@ VPC Anywhere Getting Started Guide
    :maxdepth: 2
    :caption: Use
 
+   vpc-anywhere-using-nat
