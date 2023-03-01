@@ -56,7 +56,7 @@ To enable NAT, you need to repurpose a subnet for NAT. In the below example, I�
 .. image:: /tutorials/images/phoenixnap-netris-ipam-nat-purpose.png
     :align: center
 
-Then You need to create a NAT rule. In the Net → NAT section of Netris web console. Netris supports most of the standard rules for SNAT and DNAT.
+Then You need to create a NAT rule in the Net → NAT section of Netris web console. Netris supports most of the standard rules for SNAT and DNAT.
 
 
 Option 2 - Splitting single allocation into different subnets
@@ -104,7 +104,7 @@ Click the **+ Add** button in the top right corner, type a “Prefix” for a ne
 .. image:: /tutorials/images/phoenixnap-netris-ipam-nat-purpose-slash-28.png
     :align: center
 
-Then You need to create a NAT rule. In the Net → NAT section of Netris web console. Netris supports most of the standard rules for SNAT and DNAT.
+Then You need to create a NAT rule in the Net → NAT section of Netris web console. Netris supports most of the standard rules for SNAT and DNAT.
 
 Note*
 =====
