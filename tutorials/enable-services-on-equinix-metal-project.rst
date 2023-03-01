@@ -60,7 +60,7 @@ To enable NAT, you need to repurpose a block of IP addresses for NAT. In the bel
 .. image:: /tutorials/images/netris-ipam-nat.png
     :align: center
 
-Then You need to create a NAT rule. In the Net → NAT section of Netris web console. Netris supports most of the standard rules for SNAT and DNAT. In this example I’m enabling SNAT for the entire 10.0.0.0/8 private network, so basically I just want to ensure that VMs that will get IPs from private networks will get outbound Internet access through NAT. You can always have more granular control either through NAT rule or using Services → ACLs.
+Then You need to create a NAT rule in the Net → NAT section of Netris web console. Netris supports most of the standard rules for SNAT and DNAT. In this example I’m enabling SNAT for the entire 10.0.0.0/8 private network, so basically I just want to ensure that VMs that will get IPs from private networks will get outbound Internet access through NAT. You can always have more granular control either through NAT rule or using Services → ACLs.
 
 .. image:: /tutorials/images/netris-create-nat-rule.png
     :align: center
