@@ -90,4 +90,4 @@ The "manage" button will open a dialogue window where it's also possible to add 
 .. image:: /tutorials/images/phoenixnap-vnet-managed-vnet.png
     :align: center
 
-Note that you can use Services --> ACLs for granular control over traffic between multiple V-NETs as well as to/from outside (Internet or other. remote sites)  
+Note that you can use Services --> ACLs for granular control over traffic between multiple V-NETs as well as to/from outside (Internet or other remote sites)  

@@ -23,3 +23,4 @@ VPC Anywhere Getting Started Guide
    :caption: Use
 
    vpc-anywhere-using-nat
+   vpc-anywhere-using-vnet
