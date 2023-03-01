@@ -25,3 +25,4 @@ VPC Anywhere Getting Started Guide
    vpc-anywhere-using-nat
    vpc-anywhere-using-vnet
    vpc-anywhere-using-l4lb
+   vpc-anywhere-using-multi-interface-softgate
