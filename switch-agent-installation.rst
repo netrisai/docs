@@ -11,10 +11,10 @@ Prerequisite Steps
 ******************
 
 ============================
-Nvidia Cumulus Linux Devices
+Nvidia Cumulus 3.7.x Linux Devices
 ============================
 Requirements:
-* Fresh install of Cumulus Linux v. 3.7.(x) or Cumulus 5.x.
+* Fresh install of Cumulus Linux v. 3.7.(x)
 
 Configure the OOB Management IP address
 ***************************************
@@ -51,6 +51,58 @@ Configure Nvidia Cumulus Linux License
  sudo cl-license -i
 
 Copy/paste the Cumulus Linux license string then press ctrl-d.
+
+Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` section.
+
+============================
+Nvidia Cumulus 5.x Linux Devices
+============================
+Requirements:
+* Fresh install of Cumulus Linux v. Cumulus 5.x.
+
+Disable ztp:
+
+.. code-block:: shell-session
+
+    sudo su
+    ztp -d
+
+.. code-block:: shell-session
+
+After installing Cumulus Linux v5.x, you will be in the default 'mgmt' VRF. To switch to the default VRF, follow these steps:
+
+.. code-block:: shell-session
+
+    ip vrf exec default bash
+    
+.. code-block:: shell-session
+
+Configure the OOB Management IP address
+***************************************
+Configure internet connectivity via management port like following and remove "mgmt" vrf configuration:
+
+.. code-block:: shell-session
+
+    sudo vim /etc/network/interfaces
+
+.. code-block:: shell-session
+
+ # The loopback network interface
+ auto lo
+ iface lo inet loopback
+ 
+ # The primary network interface
+ auto eth0
+ iface eth0 inet static
+         address <management IP address/prefix length>
+         gateway <gateway of management network>
+ 
+ source /etc/network/interfaces.d/*
+
+.. code-block:: shell-session
+
+ sudo ifreload -a
+ echo "nameserver <dns server>" > /etc/resolv.conf
 
 Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` section.
 
