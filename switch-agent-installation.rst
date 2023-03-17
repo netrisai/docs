@@ -64,18 +64,15 @@ Disable ztp:
 
 .. code-block:: shell-session
 
-    sudo su
-    ztp -d
+    sudo ztp -d
 
-.. code-block:: shell-session
 
 After installing Cumulus Linux v5.x, you will be in the default 'mgmt' VRF. To switch to the default VRF, follow these steps:
 
 .. code-block:: shell-session
 
-    ip vrf exec default bash
-    
-.. code-block:: shell-session
+    sudo ip vrf exec default bash
+
 
 Configure the OOB Management IP address
 ***************************************
@@ -102,7 +99,7 @@ Configure internet connectivity via management port like following and remove "m
 .. code-block:: shell-session
 
  sudo ifreload -a
- echo "nameserver <dns server>" > /etc/resolv.conf
+ sudo echo "nameserver <dns server>" > /etc/resolv.conf
 
 Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` section.
 
