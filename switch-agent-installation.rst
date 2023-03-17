@@ -14,7 +14,7 @@ Prerequisite Steps
 Nvidia Cumulus 3.7.x Linux Devices
 ============================
 Requirements:
-* Fresh install of Cumulus Linux v. 3.7.(x)
+* Fresh install of Cumulus Linux v3.7.(x)
 
 Configure the OOB Management IP address
 ***************************************
@@ -58,7 +58,7 @@ Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-t
 Nvidia Cumulus 5.x Linux Devices
 ============================
 Requirements:
-* Fresh install of Cumulus Linux v. Cumulus 5.x.
+* Fresh install of Cumulus Linux Cumulus v5.x.
 
 Disable ztp:
 
@@ -99,7 +99,7 @@ Configure internet connectivity via management port like following and remove "m
 .. code-block:: shell-session
 
  sudo ifreload -a
- sudo echo "nameserver <dns server>" > /etc/resolv.conf
+ echo "nameserver <dns server>" | sudo tee /etc/resolv.conf
 
 Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` section.
 
