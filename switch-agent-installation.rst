@@ -102,9 +102,7 @@ Configure internet connectivity via management port like following and remove "m
  
 .. note::
 You might see a one-time warning in the output of ifreload, which you can ignore: 
-.. code-block:: shell-session
-warning: mgmt: cmd '/usr/lib/vrf/vrf-helper delete mgmt 1001' failed: returned 1 (Failed to delete cgroup for vrf mgmt
-)
+warning: mgmt: cmd '/usr/lib/vrf/vrf-helper delete mgmt 1001' failed: returned 1 (Failed to delete cgroup for vrf mgmt)
  
 .. code-block:: shell-session
  
