@@ -99,6 +99,13 @@ Configure internet connectivity via management port like following and remove "m
 .. code-block:: shell-session
 
  sudo ifreload -a
+ 
+ .. note::
+ warning: mgmt: cmd '/usr/lib/vrf/vrf-helper delete mgmt 1001' failed: returned 1 (Failed to delete cgroup for vrf mgmt
+)
+ 
+ .. code-block:: shell-session
+ 
  echo "nameserver <dns server>" | sudo tee /etc/resolv.conf
 
 Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` section.
