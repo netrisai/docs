@@ -100,11 +100,11 @@ Configure internet connectivity via management port like following and remove "m
 
  sudo ifreload -a
  
- .. note::
+.. note::
  warning: mgmt: cmd '/usr/lib/vrf/vrf-helper delete mgmt 1001' failed: returned 1 (Failed to delete cgroup for vrf mgmt
 )
  
- .. code-block:: shell-session
+.. code-block:: shell-session
  
  echo "nameserver <dns server>" | sudo tee /etc/resolv.conf
 
