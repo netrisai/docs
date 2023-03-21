@@ -101,7 +101,9 @@ Configure internet connectivity via management port like following and remove "m
  sudo ifreload -a
  
 .. note::
-You might see a one-time warning in the output of ifreload, which you can ignore: 
+
+You might see a one-time warning in the output of ifreload, which you can ignore:
+
 warning: mgmt: cmd '/usr/lib/vrf/vrf-helper delete mgmt 1001' failed: returned 1 (Failed to delete cgroup for vrf mgmt)
  
 .. code-block:: shell-session
