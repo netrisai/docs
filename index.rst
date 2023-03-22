@@ -18,6 +18,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    tutorials/vpc-anywhere
    tutorials/netris-vpc-for-equinix-metal
    tutorials/netris-vpc-for-phoenixnap-bmc
+   tutorials/netris-vpc-for-aws
 
 .. toctree::
    :maxdepth: 4
