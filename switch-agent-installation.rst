@@ -1,14 +1,10 @@
-.. _switch-agent-installation:
+.. _Network-Switch-initial-setup:
 .. meta::
-  :description: Netris Switch Agent Installation
+  :description: Network Switch initial setup
 
 #########################
 Switch Agent Installation
 #########################
-
-******************
-Prerequisite Steps
-******************
 
 ============================
 Nvidia Cumulus 3.7.x Linux Devices
