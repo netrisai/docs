@@ -3,9 +3,11 @@
   :description: Network Switch initial setup
 
 #########################
-Switch Agent Installation
+Network Switch initial setup
 #########################
 
+
+.. include:: Nvidia-Cumulus-v5-Switch-initial-setup.rst
 ============================
 Nvidia Cumulus 3.7.x Linux Devices
 ============================
