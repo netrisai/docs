@@ -16,3 +16,18 @@ Due to Netris Softgate is a network device capable of supporting numerous networ
   :align: center
 
 To enable connectivity with other Netris sites, it is essential to create the EC2 instance in the desired VPC. Therefore, provision a new EC2 instance with the Ubuntu 22.04 operating system installed, utilizing an instance type that meets the minimum hardware requirements of 2 virtual CPUs and 4 GB of RAM, such as t2.medium/t3.medium or any other type that satisfies these specifications. It is also recommended to allocate at least 30 GB of drive space.
+
+
+.. image:: images/aws-softgate-deployed.png
+  :align: center
+
+After successfully deploying the EC2 instance, it is crucial to take note of its Public IPv4 address. This address will be required in the upcoming step.
+
+
+Configure Netris Controller
+===========================
+
+In the Netris Controller, the initial step involves creating a new site. To do so, go to Netris Web Console → Net → Sites and click +Add. Here, create a new site by selecting "Dot1q Trunk" as the "Switch Fabric," inputting a descriptive name for the site, and specifying "65500" in the "Public ASN" field.
+
+.. image:: images/aws-netris-site-create.png
+  :align: center
