@@ -1,5 +1,5 @@
 ============================
-Nvidia Cumulus 3.7.x Linux Devices
+Nvidia Cumulus v3.7 Switch Initial Setup
 ============================
 Requirements:
 * Fresh install of Cumulus Linux v3.7.(x)
