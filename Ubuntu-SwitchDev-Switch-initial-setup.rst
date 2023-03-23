@@ -68,8 +68,6 @@ Default username/password
 ``netris/newNet0ps``
 
 Configure the OOB Management IP address
-***************************************
-Configure internet connectivity via management port.
 
 .. code-block:: shell-session
 
