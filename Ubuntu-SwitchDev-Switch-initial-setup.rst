@@ -1,5 +1,5 @@
 ============================
-Ubuntu SwitchDev Devices
+Ubuntu SwitchDev Switch Initial Setup
 ============================
 
 .. note::
