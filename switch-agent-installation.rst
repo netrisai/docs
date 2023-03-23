@@ -2,9 +2,9 @@
 .. meta::
   :description: Network Switch initial setup
 
-#########################
+############################
 Network Switch initial setup
-#########################
+############################
 
 .. toctree::
    :maxdepth: 2
@@ -14,6 +14,8 @@ Network Switch initial setup
    EdgeCore-SONiC-Switch-initial-setup
    Nvidia-Cumulus-v3.7-Switch-initial-setup
 
+
+.. _switch-agent-installation-install-the-netris-agent:
 
 ************************
 Install the Netris Agent 
