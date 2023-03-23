@@ -1,5 +1,5 @@
 ============================
-EdgeCore SONiC Devices
+EdgeCore SONiC Switch Initial Setup
 ============================
 
 .. note::
