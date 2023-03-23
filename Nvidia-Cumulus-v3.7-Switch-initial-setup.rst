@@ -21,12 +21,19 @@ Once it's done, the switch will automatically reboot and get ready for the insta
 If there is no DHCP in the management network, stop the onie-discovery service and configure an IP address and default gateway manually. 
 
 .. code-block:: shell-session
+
   onie-discovery-stop
+  
 .. code-block:: shell-session
+
   ip addr add <management IP address/prefix> dev eth0
+  
 .. code-block:: shell-session
+
   ip route add default via <gateway of the management network>
+  
 .. code-block:: shell-session
+
   echo "nameserver <DNS server address>" > /etc/resolv.conf
 
 The Cumulus image should be available on a web server to which the switch has access through the local network or the Internet.
