@@ -6,11 +6,10 @@ Nvidia Cumulus v3.7 Switch Initial Setup
   Further installation requires a Console and Internet connectivity via the management port!
 
 If the switch has pre-installed network operating system (NOS), it needs to be uninstalled first
-Follow the below steps for NOS and Netris agent installation:
 
 1. NOS Uninstall (if pre-installed)
 
-To uninstall the current NOS, enter into **ONIE** from the GRUB menu, then **Uninstall OS**:
+To uninstall the current NOS, access **ONIE** from the GRUB menu and select the  **Uninstall OS** option.
    
 .. image:: images/uninstallOS.png
    :align: center
@@ -19,18 +18,15 @@ Once it's done, the switch will automatically reboot and get ready for the insta
 
 2. NOS Install
 
-To install the Cumulus, enter into **ONIE** from the grub menu, then **Install OS**:
-
-.. image:: images/installOS.png
-   :align: center
-
 If there is no DHCP in the management network, stop the onie-discovery service and configure an IP address and default gateway manually. 
 
 .. code-block:: shell-session
-
   onie-discovery-stop
+.. code-block:: shell-session
   ip addr add <management IP address/prefix> dev eth0
+.. code-block:: shell-session
   ip route add default via <gateway of the management network>
+.. code-block:: shell-session
   echo "nameserver <DNS server address>" > /etc/resolv.conf
 
 The Cumulus image should be available on a web server to which the switch has access through the local network or the Internet.
@@ -48,6 +44,8 @@ To login use the default username and password for Cumulus v3.7:
 ``cumulus/CumulusLinux!``
 
 3. Set up the Out-of-Band (OOB) Management.
+
+Open the network interfaces file and add the IP address and other required details.
 
 .. code-block:: shell-session
 
