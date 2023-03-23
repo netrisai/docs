@@ -40,7 +40,6 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
    installation
    switch-agent-installation
-    Nvidia-Cumulus-v5-Switch-initial-setup
    SoftGate-installation
    SoftGate-PRO-installation
 
