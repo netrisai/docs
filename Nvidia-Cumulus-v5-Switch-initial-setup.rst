@@ -2,12 +2,8 @@
 .. meta::
   :description: Network Switch initial setup
 
-#########################
-Network Switch initial setup - Nvidia Cumulus v5
-#########################
-
 ============================
-Nvidia Cumulus 5.x Linux Devices
+Nvidia Cumulus v5 Switch Initial Setup
 ============================
 Requirements:
 * Fresh install of Cumulus Linux Cumulus v5.x.
