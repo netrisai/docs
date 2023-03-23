@@ -6,7 +6,7 @@ set -x
 ###################
 
 apt-get update
-apt-get -y install git rsync python3-pip python3-virtualenv python3-setuptools
+apt-get -y install git git-lfs rsync python3-pip python3-virtualenv python3-setuptools
 
 python3 -m pip install --upgrade sphinx-rtd-theme==0.5.1 importlib-metadata==4.0.1 gitpython docutils==0.16 rinohtype pygments sphinx-copybutton
 
@@ -128,6 +128,13 @@ You can view the actual documentation as it's intended to be viewed at [https://
 
 If you're looking to update our documentation, check the relevant development branch's ['docs'](https://github.com/netrisai/docs).
 EOF
+
+# Install the Git Large File Storage (git-lfs)
+git-lfs install
+
+# Select the file types to be tracked by lfs
+git lfs track "*.pdf"
+git lfs track "*.epub"
 
 # copy the resulting html pages built from sphinx above to our new git repo
 git add .
