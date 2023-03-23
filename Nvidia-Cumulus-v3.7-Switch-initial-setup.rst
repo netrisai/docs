@@ -9,10 +9,6 @@ First, uninstall the current operating system.
 1. NOS Uninstall
 
 To uninstall the current NOS, enter into **ONIE** from the grub menu, then **Uninstall OS**:
-
-
-.. image:: images/GRUB-menu.png
-   :align: center
    
 .. image:: images/uninstallOS.png
    :align: center
