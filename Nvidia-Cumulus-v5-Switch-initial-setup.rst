@@ -112,7 +112,7 @@ Open the network interfaces file, add the IP address and other required details,
 
 4. Netris agent installation.
 
-Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the SoftGate node you are provisioning. Then click Install Agent and copy the one-line installer command to your clipboard.
+Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the switch you are provisioning. Then click Install Agent and copy the one-line installer command to your clipboard.
 
 .. image:: images/Switch-agent-installation-Inventory.png
    :align: center
