@@ -129,6 +129,9 @@ You can view the actual documentation as it's intended to be viewed at [https://
 If you're looking to update our documentation, check the relevant development branch's ['docs'](https://github.com/netrisai/docs).
 EOF
 
+# Clean UP current lfs
+git-lfs uninstall
+
 # Install the Git Large File Storage (git-lfs)
 git-lfs install
 
