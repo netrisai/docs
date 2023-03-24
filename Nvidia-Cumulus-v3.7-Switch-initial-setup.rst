@@ -5,7 +5,7 @@ Nvidia Cumulus v3.7 Switch Initial Setup
 
   Further installation requires a Console and Internet connectivity via the management port!
 
-If the switch has pre-installed network operating system (NOS), it needs to be uninstalled first
+If the switch has pre-installed network operating system (NOS), it needs to be uninstalled first.
 
 1. NOS Uninstall (if pre-installed)
 
