@@ -87,7 +87,7 @@ Copy/paste the Cumulus Linux license string, then press ctrl-d.
 
 5. Netris agent installation.
 
-Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the SoftGate node you are provisioning. Then click Install Agent and copy the one-line installer command to your clipboard.
+Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the switch you are provisioning. Then click Install Agent and copy the one-line installer command to your clipboard.
 
 .. image:: images/Switch-agent-installation-Inventory.png
    :align: center
