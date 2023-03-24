@@ -1,63 +1,43 @@
 ============================
 Ubuntu SwitchDev Switch Initial Setup
 ============================
-
 .. note::
 
   Further installation requires a Console and Internet connectivity via management port!
-  
-1. NOS Uninstall
+ 
 
-Uninstall current NOS using **Uninstall OS** from grub menu:
+If the switch has pre-installed network operating system (NOS), it needs to be uninstalled first.
 
+1. NOS Uninstall (if pre-installed)
+
+To uninstall the current NOS, access **ONIE** from the GRUB menu and select the  **Uninstall OS** option.
+   
 .. image:: images/uninstallOS.png
    :align: center
-    
-Once the uninstallation is completed, the switch will reboot automatically.
+   
+Once it's done, the switch will automatically reboot and get ready for the installation of the Ubuntu SwitchDev.
 
-2. Update ONIE
+2. NOS Install
 
-Select **Update ONIE** from grub menu:
-
-.. image:: images/updateONIE.png
-   :align: center
-
-In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
+If there is no DHCP in the management network, stop the onie-discovery service and configure an IP address and default gateway manually. 
 
 .. code-block:: shell-session
 
   onie-discovery-stop
-  ip addr add <management IP address/prefix> dev eth0
-  ip route add default via <gateway of management network>
-  echo "nameserver <dns server>" > /etc/resolv.conf
-
-Update ONIE to the supported version. 
-
-.. note::
-
-  ONIE image available for Mellanox switches only!
-
+  
 .. code-block:: shell-session
 
-  onie-self-update http://downloads.netris.ai/onie-updater-x86_64-mlnx_x86-r0
-
-3. NOS Install
-
-Select **Install OS** from grub menu:
-
-.. image:: images/installOS.png
-   :align: center
-
-In case you don't have DHCP in the management network, then stop ONIE discovery service and configure IP address and default gateway manually:
-
+  ip addr add <management IP address/prefix> dev eth0
+  
 .. code-block:: shell-session
 
-  onie-discovery-stop
-  ip addr add <management IP address/prefix> dev eth0
-  ip route add default via <gateway of management network>
-  echo "nameserver <dns server>" > /etc/resolv.conf
+  ip route add default via <gateway of the management network>
+  
+.. code-block:: shell-session
 
-Install Ubuntu-SwitchDev from the Netris custom image:
+  echo "nameserver <DNS server address>" > /etc/resolv.conf
+  
+Install Ubuntu SwitchDev using the Netris customized image:
 
 .. code-block:: shell-session
 
@@ -67,7 +47,9 @@ Default username/password
  
 ``netris/newNet0ps``
 
-Configure the OOB Management IP address
+3. Set up the Out-of-Band (OOB) Management.
+
+Open the network interfaces file and add the IP address and other required details.
 
 .. code-block:: shell-session
 
@@ -92,4 +74,21 @@ Configure the OOB Management IP address
 
  sudo ifreload -a
 
-Continue to :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` section.
+5. Netris agent installation.
+
+Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the SoftGate node you are provisioning. Then click Install Agent and copy the one-line installer command to your clipboard.
+
+.. image:: images/Switch-agent-installation-Inventory-ubuntu.png
+   :align: center
+
+.. image:: images/Switch-agent-installation-oneliner-ubuntu.png
+   :align: center
+
+.. image:: images/Switch-agent-installation-cli-ubuntu.png
+   :align: center
+
+6. Reboot the switch
+
+.. code-block:: shell-session
+
+ sudo reboot
