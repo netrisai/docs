@@ -63,3 +63,36 @@ After creating a softgate resource in Netris Controller, the next step is to ins
 
 .. image:: images/aws-netris-provision-sg.png
   :align: center
+
+
+Configure AWS VPC
+=================
+
+Adding routes
+-------------
+
+To enable specific traffic to be routed to the Netris Softgate EC2 instance in your AWS VPC, you need to modify your VPC's Route Table. To get started, go to the AWS Console and navigate to your VPC's Route Table. From there, click the "Edit routes" button to access the routing table, and then click "Add route" to create a new routing entry.
+
+In the "Destination" field, enter the subnet CIDR block for the Netris other Sites' subnets you want to access from this VPC. Next, in the "Target" field, select the "Instance" option and then select the Netris Softgate EC2 instance you previously created. This will ensure that traffic for those subnets is directed to the Softgate instance.
+
+
+.. image:: images/aws-vpc-routes-created.png
+  :align: center
+
+EC2 Source / destination check
+------------------------------
+
+To allow Netris SoftGate to work properly, it is necessary to disable the 'Source / destination check' for the SoftGate's EC2 Instance. To do so, follow the steps below:
+
+1. Go to the AWS Console and navigate to the EC2 service page.
+2. Select the SoftGate EC2 instance.
+3. Click on the "Actions" button in the "Networking" section.
+4. Select "Change Source / destination check".
+5. Mark the "Stop" checkbox to disable the feature.
+6. Click "Save" to apply the changes.
+
+.. image:: images/aws-ec2-stop-fwd-check.png
+  :align: center
+
+
+By disabling the "Source / destination check", the SoftGate EC2 instance can receive and forward traffic between the Netris other Sites and AWS VPC subnets.
