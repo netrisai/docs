@@ -32,12 +32,30 @@ Prior to defining a Softgate in the Netris Controller, certain pre-requisite ste
 Pre-Requisite Steps
 -------------------
 
-In the Netris Controller, the initial step involves creating a new site. To do so, go to Netris Web Console → Net → Sites and click +Add. Here, create a new site by selecting "Dot1q Trunk" as the "Switch Fabric" inputting a descriptive name for the site, and specifying "65500" in the "Public ASN" field.
+In the Netris Controller, the initial step involves creating a new site. To create it, follow the steps below:
+
+1. Open the Netris Web Console.
+2. Navigate to "Net" and select "Sites".
+3. Click on the "+ Add" button.
+4. Select "Dot1q Trunk" as the "Switch Fabric".
+5. Input a descriptive name for the site.
+6. Specify "65500" in the "Public ASN" field.
+7. Click "Add" to create the new site.
 
 .. image:: images/aws-netris-site-create.png
   :align: center
 
-Subsequently, it is necessary to create a private subnet for Softgate management. To achieve this, navigate to the "IPAM" section under the "Net" tab and click the "+ Add" button located at the top-right corner. Next, input a unique "Prefix" for the new subnet, such as "10.255.255.0/24," and a descriptive "Name". From the "Tenant" dropdown menu, select the desired tenant name, and from the "Type" dropdown menu, select "Subnet". Then, select "management" from the "Purpose" dropdown menu and choose the appropriate site from the "Sites" dropdown menu.
+Subsequently, it is necessary to create a private subnet for Softgate management. To achieve this, follow the steps below:
+
+1. Go to the "IPAM" section under the "Net" tab.
+2. Click on the "+ Add" button located at the top-right corner.
+3. Enter a unique "Prefix" for the new subnet, such as "10.255.255.0/24".
+4. Type a descriptive "Name" for the subnet.
+5. Select the desired tenant name from the "Tenant" dropdown menu.
+6. From the "Type" dropdown menu, select "Subnet".
+7. Select "management" from the "Purpose" dropdown menu.
+8. Choose the appropriate site from the "Sites" dropdown menu.
+9. Click on the "Add" button to create the subnet.
 
 
 .. image:: images/aws-netris-ipam-mgmt.png
@@ -93,7 +111,18 @@ Here are the steps to create the static route:
 Add Softgate into the Netris Controller
 ---------------------------------------
 
-After completing all the pre-required steps, the next step is to create a Softgate in the Netris Controller. To do this, navigate to Net → Inventory and click on the +Add button. Provide a descriptive name for the Softgate in the "Name" field. From the "Tenant" dropdown menu, select the same tenant name that was used in the previous step when creating the subnets. From the "Type" dropdown menu, select "SoftGate", and choose the appropriate site from the "Sites" dropdown menu. For the "Main IP address" and "Management IP Address" fields, select "Assign automatically". Finally, add "int=eth0" into the "Description" field to specify that Netris should use the softgate's eth0 interface instead of the default bond0 interface that Netris Softgate Agent looks for.
+After completing all the pre-required steps, the next step is to create a Softgate in the Netris Controller. Here is a step-by-step guide:
+
+1. Ensure that you have completed all the pre-required steps.
+2. Navigate to the "Net" tab in the Netris Controller and select the "Inventory" section.
+3. Click on the "+Add" button to create a new Softgate.
+4. Provide a descriptive name for the Softgate in the "Name" field.
+5. From the "Tenant" dropdown menu, select the same tenant name used in the pre-required steps when creating the subnets.
+6. From the "Type" dropdown menu, select "SoftGate".
+7. Choose the appropriate site from the "Site" dropdown menu.
+8. For the "Main IP address" and "Management IP Address" fields, select "Assign automatically".
+9. In the "Description" field, add "int=eth0" to specify that Netris should use the softgate's eth0 interface instead of the default bond0 interface that Netris Softgate Agent looks for.
+10. Finally, click on the "Add" button to create the Softgate.
 
 .. image:: images/aws-netris-create-sg.png
   :align: center
