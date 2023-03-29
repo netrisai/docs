@@ -167,3 +167,17 @@ To allow Netris SoftGate to work properly, it is necessary to disable the 'Sourc
 
 
 By disabling the "Source / destination check", the SoftGate EC2 instance can receive and forward traffic between the Netris other Sites and AWS VPC subnets.
+
+
+Enabling Site-to-Site Mesh
+==========================
+
+To enable Site-to-Site Mesh, in Netris Controller, navigate to the "Net" tab and select "Sites". Next, click on the three vertical dots (⋮) on the right side of the AWS site and select "Edit", and then from the "Site Mesh" dropdown menu, select "Hub". Save the changes. Repeat these steps for all sites that need to have meshed.
+
+.. image:: images/aws-netris-enable-site-mesh.png
+  :align: center
+
+The Site Mesh status can be viewed by navigating to the "Site Mesh" section under the "Net" tab. This will display the current status of Site Mesh for all Sites.
+
+.. image:: images/aws-netris-site-mesh-status.png
+  :align: center
