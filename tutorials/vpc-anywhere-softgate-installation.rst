@@ -69,7 +69,7 @@ The SoftGate deployment needs a freshly installed Ubuntu Linux 22.04 LTS.
   iface bond0 inet static
       address 0.0.0.0/0
       # Please replace/remove the ensX/Y with actual interface name(s) below to one(s) present in the OS.
-      bond-slaves ens<X> ens<Y>
+      bond-slaves ens<X>
       # Optional, please adjust the bonding mode below according to the desired functionality. 
       bond-mode active-backup
 
