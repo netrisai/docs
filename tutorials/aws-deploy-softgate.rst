@@ -48,6 +48,48 @@ Following the creation of the private subnet for Softgate management, it is nece
 .. image:: images/aws-netris-ipam-lo.png
   :align: center
 
+
+Add AWS VPC Subnet into the Netris Controller
+---------------------------------------------
+
+To register your AWS VPC's entire CIDR block into Netris IPAM, follow these steps:
+
+1. From the AWS Console, navigate to your VPC and take note of your CIDR blocks.
+2. In Netris Controller, go to the "IPAM" section under the "Net" tab.
+3. Click the "+ Add" button located at the top-right corner.
+4. Enter the VPC CIDR block into the "Prefix" field for the new subnet. For example, if your CIDR block is "172.31.0.0/16", enter that value.
+5. Type a descriptive name for the subnet.
+6. From the "Tenant" dropdown menu, select the desired tenant name.
+7. From the "Type" dropdown menu, select "Subnet".
+8. Select "inactive" from the "Purpose" dropdown menu.
+9. Choose the appropriate site from the "Sites" dropdown menu.
+10. Click the "Add" button.
+
+.. image:: images/aws-vpc-cidr-to-netris.png
+  :align: center
+
+
+Static route for AWS VPC Subnet in Netris Controller
+----------------------------------------------------
+
+In the previous step, we added the AWS VPC CIDR block into Netris IPAM. However, Netris Softgate creates a blackhole route for each subnet. This means that Softgate will not be able to reach EC2 instances in other Availability Zones (AZs). To prevent this from happening, we need to create a static route in Netris. The prefix for the route will be the AWS VPC CIDR block, and the next-hop will be the default gateway of Netris Softgate EC2. Follow these steps:
+
+Here are the steps to create the static route:
+
+1. Securely log in to the Netris Softgate's EC2 instance using SSH.
+2. Retrieve the default gateway address by typing the command "ip route show default".
+3. In Netris Controller, go to the "Routes" section under the "Net" tab.
+4. Click on the "+ Add" button located at the top-right corner of the screen.
+5. Enter your VPC CIDR block in the "Prefix" field.
+6. Enter the default gateway of the Netris Softgate EC2 instance in the "Next-Hop" field.
+7. Select the appropriate site from the "Site" dropdown menu.
+8. Finally, click on the "Add" button to create the static route.
+
+
+.. image:: images/aws-netris-static-route.png
+  :align: center
+
+
 Add Softgate into the Netris Controller
 ---------------------------------------
 
