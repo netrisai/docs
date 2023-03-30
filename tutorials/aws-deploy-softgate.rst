@@ -67,8 +67,8 @@ Following the creation of the private subnet for Softgate management, it is nece
   :align: center
 
 
-Add AWS VPC Subnet into the Netris Controller
----------------------------------------------
+Add AWS VPC Subnet into the Netris
+----------------------------------
 
 To register your AWS VPC's entire CIDR block into Netris IPAM, follow these steps:
 
