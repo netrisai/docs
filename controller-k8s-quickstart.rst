@@ -21,7 +21,7 @@ Quickstart Process
 
 .. code-block:: shell-session
 
-    curl -sfL https://get.netris.ai | sh -
+    curl -sfL https://get.netris.io | sh -
 
 2. When the installation completes, you will be provided with the login for the web UI.  Login with the provided credentials.
 

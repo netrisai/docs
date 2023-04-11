@@ -63,7 +63,7 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
 
 .. code-block:: shell-session
 
-  curl -sfL https://get.netris.ai | sh -
+  curl -sfL https://get.netris.io | sh -
 
 .. note::
   
@@ -174,7 +174,7 @@ Example:
 
 .. code-block:: shell-session
 
-  curl -sfL https://get.netris.ai | sh -s -- --ctl-version 3.0.10-031
+  curl -sfL https://get.netris.io | sh -s -- --ctl-version 3.0.10-031
 
 Afterwards, verify that the version of the "*Netris Version*" reflects the downgraded version by navigating to *Setting → General* in the Netris Controller.
 

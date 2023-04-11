@@ -39,7 +39,7 @@ VM Controller Installation
 
   cd /var/lib/libvirt/images 
 
-  sudo wget http://img.netris.ai/netris-controller3.qcow2 
+  sudo wget http://img.netris.io/netris-controller3.qcow2 
 
 2. Download VM definition file.
 
@@ -47,7 +47,7 @@ VM Controller Installation
 
   cd /etc/libvirt/qemu
 
-  sudo wget http://img.netris.ai/netris-controller3.xml
+  sudo wget http://img.netris.io/netris-controller3.xml
 
 3. Define the KVM virtual machine
 

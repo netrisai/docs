@@ -33,7 +33,7 @@ The following command will install the Netris Controller on your Linux server:
 
 .. code-block:: shell-session
 
-  curl -sfL https://get.netris.ai | sh -
+  curl -sfL https://get.netris.io | sh -
 
 Once installed, you will be able to log in to Netris Controller using your host's IP address.
 
@@ -54,7 +54,7 @@ In order to set the specific ingress host name to the Netris Controller, use the
 
 .. code-block:: shell-session
 
-  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com
+  curl -sfL https://get.netris.io | sh -s -- --ctl-hostname netris.example.com
 
 A self-signed SSL certificate will be generated from that host name.
 
@@ -72,7 +72,7 @@ Run the following command to install Netris Controller and use ``letsencrypt`` C
 
 .. code-block:: shell-session
 
-  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt
+  curl -sfL https://get.netris.io | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt
 
 .. note:: 
 
@@ -90,7 +90,7 @@ In order to install Netris Controller with the custom SSL issuer, you need to ru
 
 .. code-block:: shell-session
 
-  curl -sfL https://get.netris.ai | sh -s -- --ctl-hostname netris.example.com
+  curl -sfL https://get.netris.io | sh -s -- --ctl-hostname netris.example.com
 
 Once the installation is complete, create a yaml file with the ``ClusterIssuer`` resource, suitable for your requirements, and apply it:
 
@@ -102,7 +102,7 @@ Then rerun the installation script with the ``--ctl-ssl-issuer`` argument:
 
 .. code-block:: shell-session
 
-  curl -sfL https://get.netris.ai | sh -s -- --ctl-ssl-issuer <Your ClusterIssuer resource name>
+  curl -sfL https://get.netris.io | sh -s -- --ctl-ssl-issuer <Your ClusterIssuer resource name>
 
 
 Upgrading
@@ -112,7 +112,7 @@ To upgrade the Netris Controller to the latest version simply run the script:
 
 .. code-block:: shell-session
 
-  curl -sfL https://get.netris.ai | sh -
+  curl -sfL https://get.netris.io | sh -
 
 If a newer version of Netris Controller is available, it will be updated in a few minutes.
 

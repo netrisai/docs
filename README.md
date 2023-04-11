@@ -4,7 +4,7 @@ This repository stores external documentation related to the Netris Automatic Ne
 
 More Information:
 
-hello@netris.ai
+hello@netris.io
 
 https://netris.io
 
