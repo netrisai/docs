@@ -69,10 +69,13 @@ Open the network interfaces file and add the IP address and other required detai
   iface eth0 inet static
          address <management IP address/prefix length>
          gateway <gateway of management network>
-         dns-nameserver <dns server>
  
   source /etc/network/interfaces.d/*
 
+.. code-block:: shell-session
+
+  echo "nameserver <dns server>" | sudo tee /etc/resolv.conf
+  
 .. code-block:: shell-session
 
   sudo ifreload -a
