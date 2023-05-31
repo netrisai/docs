@@ -20,6 +20,7 @@ EVPN Multi-Homing (EVPN-MH) offers robust support for an all-active redundancy m
 **EVPN-MH Limitations:**
 
 * Switch OS Cumulus 5.3 or higher. 
+* Netris 3.5 or higher.
 * One port per switch (can be overcome in Custom LAG).
 * Only two switches in EVPN-MH domain with ASIC Spectrum A1.
 
