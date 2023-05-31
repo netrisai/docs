@@ -48,18 +48,15 @@ To create a Custom LAG go to Network → Network Interfaces.
 .. image:: images/lag_add_lag.png
    :align: center
    :alt: Add Custom LAG
-   :class: with-shadow
 
 Add a new LAG.
 
 .. image:: images/lag_add_lag2.png
    :align: center
    :alt: Add Custom LAG
-   :class: with-shadow
  
 Set necessary options.
   
 .. image:: images/lag_add_lag3.png
    :align: center
    :alt: Add Custom LAG
-   :class: with-shadow
