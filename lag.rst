@@ -17,10 +17,11 @@ Automatic LAG and EVPN Multi-homing
 
 EVPN Multi-Homing (EVPN-MH) offers robust support for an all-active redundancy model for servers. This means that all connections from a server to multiple switches are concurrently active and operational, ensuring high availability, load balancing, and seamless failover capabilities. As a result, EVPN-MH enhances network resilience and continuity of service.
 
-Limitations:
-Switch OS Cumulus 5.3 or higher. 
-One port per switch (can be overcome in Custom LAG).
-Only two switches in EVPN-MH domain with ASIC Spectrum A1.
+**EVPN-MH Limitations:**
+
+* Switch OS Cumulus 5.3 or higher. 
+* One port per switch (can be overcome in Custom LAG).
+* Only two switches in EVPN-MH domain with ASIC Spectrum A1.
 
 When you add switch ports to a V-net service, Netris agents automatically configure LAG and apply LACP with EVPN-MH and LACP fallback. If you hit EVPN Multi-Homing limitations, regular LACP LAG will be configured. This configuration results in an active-standby link setup from the server's perspective. Furthermore, if the server does not have LACP configured, one link will still remain active due to the implementation of LACP fallback.
 
@@ -29,7 +30,7 @@ To create a V-net with EVPN-MH go to Service → V-net → +Add
 .. image:: images/lag_add_vnet.png
    :align: center
    :alt: Add LAG to V-net
-   :class: with-shadow
+
    
 
 Custom LAG
