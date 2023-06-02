@@ -20,6 +20,8 @@ Netris supports Automatic and Custom modes of configuring LAGs, each described b
 Automatic LAG with EVPN Multi-homing
 -----------------------------------
 
+If LACP is configured on the server side, then Netris will automatically identify the corresponding switch port pairs and form a LAG with EVPN Multihoming enabled for any switch ports participating in a V-Net service.
+
 EVPN Multi-Homing (EVPN-MH) offers robust support for an all-active redundancy model for servers. This means that all connections from a server to multiple switches are concurrently active and operational, ensuring high availability, load balancing, and seamless failover capabilities. As a result, EVPN-MH enhances network resilience and continuity of service.
 
 .. image:: images/lag_diagram2.png
@@ -34,16 +36,16 @@ EVPN Multi-Homing (EVPN-MH) offers robust support for an all-active redundancy m
 * One port per switch (can be overcome in Custom LAG).
 * Only two switches in EVPN-MH domain with ASIC Spectrum A1.
 
-When you add switch ports to a V-net service, Netris agents automatically configure LAG and apply LACP with EVPN-MH and LACP fallback. If Active-Active Multi Homing is not supported on your hardware, Active-Standby LACP LAG will be configured. 
+When you add switch ports to a V-Net service, Netris agents automatically configure LAG and apply LACP with EVPN-MH and LACP fallback. If Active-Active Multi Homing is not supported on your hardware, Active-Standby LACP LAG will be configured. 
 
 Both in Active-Active and Active-Standby cases LACP should be configured on the server side. If the server does not have LACP configured, the LAG will fallback into non LACP mode and one of two links will still remain active.
 
 
-To create a V-net with EVPN-MH go to Service → V-net → +Add
+To create a V-Net with EVPN-MH go to Service → V-Net → +Add
 
 .. image:: images/lag_add_vnet.png
    :align: center
-   :alt: Add LAG to V-net
+   :alt: Add LAG to V-Net
 
    
 
@@ -55,7 +57,7 @@ There are several use cases when you may need a Custom (manually configured) LAG
 * Aggregate more than one port per each switch (with or without EVPN).
 * LACP fallback is not sufficient and needs to be unconditionally disabled on the switch side. EVPN-MH will be deactivated in this case. 
 
-Please note that a Custom LAG can only be created with one switch. However, if you add two or more Custom LAGs to a V-net, EVPN-MH will be automatically activated.
+Please note that a Custom LAG can only be created with one switch. However, if you add two or more Custom LAGs to a V-Net, EVPN-MH will be automatically activated.
 
 To create a Custom LAG go to Network → Network Interfaces.
 
@@ -68,9 +70,13 @@ Add a new LAG.
 .. image:: images/lag_add_lag2.png
    :align: center
    :alt: Add Custom LAG
+   :width: 543
+   :height: 337
  
 Set necessary options.
   
 .. image:: images/lag_add_lag3.png
    :align: center
    :alt: Add Custom LAG
+   :width: 543
+   :height: 337
