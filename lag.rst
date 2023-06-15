@@ -57,6 +57,10 @@ There are several use cases when you may need a Custom (manually configured) LAG
 * Aggregate more than one port per each switch (with or without EVPN).
 * LACP fallback is not sufficient and needs to be unconditionally disabled on the switch side. EVPN-MH will be deactivated in this case. 
 
+.. image:: images/lag_diagram3.png
+   :align: center
+   :alt: Custom LAG diagram
+
 Please note that a Custom LAG can only be created with one switch. However, if you add two or more Custom LAGs to a V-Net, EVPN-MH will be automatically activated.
 
 To create a Custom LAG go to Network → Network Interfaces.
