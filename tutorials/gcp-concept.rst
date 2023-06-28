@@ -1,11 +1,11 @@
-###################################
-Site-to-Site Mesh with GCP Overview
-###################################
+###########################
+Site Mesh with GCP Overview
+###########################
 
 Introduction
 -------------
 
-This guide provides a step-by-step process to set up and configure Netris Softgate in GCP for establishing a site-to-site mesh network between the user's on-premises, GCP, and other cloud environments.
+This guide provides a step-by-step process to set up and configure Netris Softgate in GCP for establishing a site mesh network between the user's on-premises, GCP, and other cloud environments.
 
 
 Concept
@@ -16,4 +16,4 @@ Netris Softgate in GCP is an VM instance that runs the Netris software. Therefor
 .. image:: images/gcp-concept-traffic-flows.png
   :align: center
 
-Once the routes are configured, you can enable a site-to-site mesh between Netris Softgate instances in different environments. Enabling the site-to-site mesh allows for secure communication between different environments and enables you to route traffic between the different subnets in a secure and efficient way.
+Once the routes are configured, you can enable a site mesh between Netris Softgate instances in different environments. Enabling the site mesh allows for secure communication between different environments and enables you to route traffic between the different subnets in a secure and efficient way.

@@ -26,7 +26,7 @@ Afterward, a VM instance can be created using the network tag above.
 .. image:: images/gcp-firewall-rule.png
   :align: center
 
-To enable connectivity with other Netris sites, creating the VM instance in the desired VPC is essential. Therefore, provision a new VM instance with the **Ubuntu 22.04** operating system installed, utilizing an instance type that meets the minimum hardware requirements of **2** virtual CPUs, **4 GB** of RAM, and **30 GB** of drive space, such as e2-medium or any other type that satisfies these specifications. From the Advanced Networking options enable ``IP forwarding`` and specify the previously created ``allow-all`` network tag.
+To enable connectivity with other Netris sites, creating the VM instance in the desired VPC is essential. Therefore, deploy a new VM instance with the **Ubuntu 22.04** operating system installed, utilizing an instance type that meets the minimum hardware requirements of **2** virtual CPUs, **4 GB** of RAM, and **30 GB** of drive space, such as e2-medium or any other type that satisfies these specifications. From the Advanced Networking options enable ``IP forwarding`` and specify the previously created ``allow-all`` network tag.
 
 .. image:: images/gcp-softgate-deployed.png
   :align: center
@@ -76,8 +76,8 @@ Following the creation of the private subnet for Softgate management, it is nece
 .. image:: images/gcp-netris-ipam-lo.png
   :align: center
 
-Add Softgate into the Netris Controller
----------------------------------------
+Create the Softgate in the Netris Controller
+--------------------------------------------
 
 After completing the pre-required steps, the next step is to create a Softgate in the Netris Controller. Here is a step-by-step guide:
 
@@ -96,8 +96,8 @@ After completing the pre-required steps, the next step is to create a Softgate i
   :align: center
 
 
-Add GCP VPC Subnet(s) into the Netris
--------------------------------------
+Add GCP VPC Subnet(s) into the Netris Controller
+------------------------------------------------
 
 The next step involves registering into Netris IPAM the subnet of the region where the SoftGate node has been created. Follow the steps below to accomplish this:
 
@@ -123,7 +123,7 @@ Once the subnet of the region where the SoftGate node was created has been succe
 Static route for GCP VPC Subnet(s) in Netris Controller
 -------------------------------------------------------
 
-In the previous step, we added the GCP VPC Subnet(s) into Netris IPAM. However, Netris Softgate creates a blackhole route for each subnet. This means that Softgate will not be able to reach VM instances in that regions. To prevent this from happening, we need to create a static route in Netris. The prefix for the route will be the GCP VPC Subnet(s), and the next-hop will be the default gateway of Netris Softgate VM Instance.
+We need to create route entries in Netris. The prefix for the route will be the GCP VPC Subnet(s), and the next-hop will be the default gateway of Netris Softgate VM Instance.
 
 Here are the steps to create the static route:
 
@@ -145,8 +145,8 @@ Repeat these steps for each GCP VPC Subnet that has been registered in Netris IP
   :align: center
 
 
-Install Netris Softgate Agent on VM instance
----------------------------------------------
+Netris SoftGate node provisioning
+---------------------------------
 
 After creating a softgate resource in Netris Controller and defining all necessary routes, the next step is to install the softgate agent. This can be done by clicking the three vertical dots (⋮) on the right side of the created SoftGate node and selecting "Install Agent". Copy the one-line installer command to your clipboard and connect to your VM instance via SSH. Paste the copied command into the terminal and wait for the provisioning to finish. Once it's done, reboot the server.
 
@@ -154,8 +154,8 @@ After creating a softgate resource in Netris Controller and defining all necessa
   :align: center
 
 
-Adding GCP VPC routes
-=====================
+Configure routing in GCP VPC
+============================
 
 To ensure that specific traffic is directed to the Netris Softgate VM instance within your GCP VPC, it is necessary to configure new route entries in VPC routes. Follow the step-by-step guide below to add GCP VPC routes:
 
@@ -182,10 +182,10 @@ Repeat these steps for any additional routes you need to add.
   :align: center
 
 
-Enabling Site-to-Site Mesh
-==========================
+Enabling Site Mesh
+==================
 
-To enable Site-to-Site Mesh, in Netris Controller, navigate to the "Net" tab and select "Sites". Next, click on the three vertical dots (⋮) on the right side of the GCP site and select "Edit", and then from the "Site Mesh" dropdown menu, select "Hub". Save the changes. Repeat these steps for all sites that need to have meshed.
+To enable Site Mesh, in Netris Controller, navigate to the "Net" tab and select "Sites". Next, click on the three vertical dots (⋮) on the right side of the GCP site and select "Edit", and then from the "Site Mesh" dropdown menu, select "Hub". Save the changes. Repeat these steps for all sites that need to have meshed.
 
 .. image:: images/gcp-netris-enable-site-mesh.png
   :align: center
