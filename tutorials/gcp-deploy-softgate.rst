@@ -5,10 +5,10 @@
 Deploy a Softgate in GCP
 ########################
 
-As stated in the previous section, the following sequence of actions must be taken in order to proceed: create an VM instance, add Softgate into the Netris Controller, install Netris Softgate software on the VM instance, and configure routes in GCP VPC. Let's commence with these steps in the specified order.
+As stated in the previous section, the following sequence of actions must be taken in order to proceed: create a VM instance, add Softgate into the Netris Controller, install Netris Softgate software on the VM instance, and configure routes in GCP VPC. Let's commence with these steps in the specified order.
 
-Create an VM instance
-======================
+Create a VM instance
+====================
 
 Due to Netris Softgate is a network device capable of supporting numerous network services and being equipped with its own firewall, it is advisable to open all ports for the associated VM instance. To achieve this, create a VPC firewall rule with the following parameters:
 
@@ -21,12 +21,12 @@ Due to Netris Softgate is a network device capable of supporting numerous networ
 * Source IPv4 ranges: ``0.0.0.0/0``
 * Protocols and ports: "Allow all"
 
-Afterward, an VM instance can be created using the network tag above.
+Afterward, a VM instance can be created using the network tag above.
 
 .. image:: images/gcp-firewall-rule.png
   :align: center
 
-To enable connectivity with other Netris sites, creating the VM instance in the desired VPC is essential. Therefore, provision a new VM instance with the **Ubuntu 22.04** operating system installed, utilizing an instance type that meets the minimum hardware requirements of **2** virtual CPUs, **4 GB** of RAM, and **30 GB** of drive space, such as e2-medium or any other type that satisfies these specifications. From Advanced Networking options enable ``IP forwarding`` and specify the previously created ``allow-all`` network tag.
+To enable connectivity with other Netris sites, creating the VM instance in the desired VPC is essential. Therefore, provision a new VM instance with the **Ubuntu 22.04** operating system installed, utilizing an instance type that meets the minimum hardware requirements of **2** virtual CPUs, **4 GB** of RAM, and **30 GB** of drive space, such as e2-medium or any other type that satisfies these specifications. From the Advanced Networking options enable ``IP forwarding`` and specify the previously created ``allow-all`` network tag.
 
 .. image:: images/gcp-softgate-deployed.png
   :align: center
@@ -105,7 +105,7 @@ The next step involves registering into Netris IPAM the subnet of the region whe
 2. Take note of the Internal IP range associated with the relevant region.
 3. In Netris Controller, go to the "IPAM" section under the "Net" tab.
 4. Click the "+ Add" button located at the top-right corner.
-5. Enter the region Internal IP range into the "Prefix" field for the new subnet. For example, if your Internal IP range is "10.150.0.0/20", enter that value.
+5. Enter the region's Internal IP range into the "Prefix" field for the new subnet. For example, if your Internal IP range is "10.150.0.0/20", enter that value.
 6. Type a descriptive name for the subnet.
 7. From the "Tenant" dropdown menu, select the desired tenant name.
 8. From the "Type" dropdown menu, select "Subnet".
@@ -169,7 +169,7 @@ To ensure that specific traffic is directed to the Netris Softgate VM instance w
   * Network: Select the appropriate network for the route.
   * Destination IP Range: Specify the subnets of other Netris sites that you wish to access from this VPC.
   * Next hop: From the dropdown menu, select the "Specify an instance"
-  * Next hop instance: From the dropdown menu, select the SoftGate's VM Instance
+  * Next hop instance: From the dropdown menu, select the SoftGate VM Instance
 
 6. Review the route configuration and ensure all the details are accurate.
 7. Click the "Create" button to add the route to the GCP VPC network.
