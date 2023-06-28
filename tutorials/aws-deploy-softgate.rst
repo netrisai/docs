@@ -15,7 +15,7 @@ Due to Netris Softgate is a network device capable of supporting numerous networ
 .. image:: images/aws-security-group.png
   :align: center
 
-To enable connectivity with other Netris sites, it is essential to create the EC2 instance in the desired VPC. Therefore, provision a new EC2 instance with the Ubuntu 22.04 operating system installed, utilizing an instance type that meets the minimum hardware requirements of 2 virtual CPUs and 4 GB of RAM, such as t2.medium/t3.medium or any other type that satisfies these specifications. It is also recommended to allocate at least 30 GB of drive space.
+To enable connectivity with other Netris sites, it is essential to create the EC2 instance in the desired VPC. Therefore, deploy a new EC2 instance with the Ubuntu 22.04 operating system installed, utilizing an instance type that meets the minimum hardware requirements of 2 virtual CPUs and 4 GB of RAM, such as t2.medium/t3.medium or any other type that satisfies these specifications. It is also recommended to allocate at least 30 GB of drive space.
 
 
 .. image:: images/aws-softgate-deployed.png
@@ -67,8 +67,8 @@ Following the creation of the private subnet for Softgate management, it is nece
   :align: center
 
 
-Add AWS VPC Subnet into the Netris
-----------------------------------
+Add AWS VPC Subnet into the Netris Controller
+---------------------------------------------
 
 To register your AWS VPC's entire CIDR block into Netris IPAM, follow these steps:
 
@@ -90,7 +90,7 @@ To register your AWS VPC's entire CIDR block into Netris IPAM, follow these step
 Static route for AWS VPC Subnet in Netris Controller
 ----------------------------------------------------
 
-In the previous step, we added the AWS VPC CIDR block into Netris IPAM. However, Netris Softgate creates a blackhole route for each subnet. This means that Softgate will not be able to reach EC2 instances in other Availability Zones (AZs). To prevent this from happening, we need to create a static route in Netris. The prefix for the route will be the AWS VPC CIDR block, and the next-hop will be the default gateway of Netris Softgate EC2.
+We need to create route entry in Netris. The prefix for the route will be the AWS VPC CIDR block, and the next-hop will be the default gateway of Netris Softgate EC2.
 
 Here are the steps to create the static route:
 
@@ -108,8 +108,8 @@ Here are the steps to create the static route:
   :align: center
 
 
-Add Softgate into the Netris Controller
----------------------------------------
+Create the Softgate in the Netris Controller
+--------------------------------------------
 
 After completing all the pre-required steps, the next step is to create a Softgate in the Netris Controller. Here is a step-by-step guide:
 
@@ -127,8 +127,8 @@ After completing all the pre-required steps, the next step is to create a Softga
 .. image:: images/aws-netris-create-sg.png
   :align: center
 
-Install Netris Softgate Agent on EC2 instance
----------------------------------------------
+Netris SoftGate node provisioning
+---------------------------------
 
 After creating a softgate resource in Netris Controller, the next step is to install the softgate agent. This can be done by clicking the three vertical dots (⋮) on the right side of the created SoftGate node and selecting "Install Agent". Copy the one-line installer command to your clipboard and connect to your EC2 instance via SSH. Paste the copied command into the terminal and wait for the provisioning to finish. Once it's done, reboot the server.
 
@@ -169,10 +169,10 @@ To allow Netris SoftGate to work properly, it is necessary to disable the 'Sourc
 By disabling the "Source / destination check", the SoftGate EC2 instance can receive and forward traffic between the Netris other Sites and AWS VPC subnets.
 
 
-Enabling Site-to-Site Mesh
-==========================
+Enabling Site Mesh
+==================
 
-To enable Site-to-Site Mesh, in Netris Controller, navigate to the "Net" tab and select "Sites". Next, click on the three vertical dots (⋮) on the right side of the AWS site and select "Edit", and then from the "Site Mesh" dropdown menu, select "Hub". Save the changes. Repeat these steps for all sites that need to have meshed.
+To enable Site Mesh, in Netris Controller, navigate to the "Net" tab and select "Sites". Next, click on the three vertical dots (⋮) on the right side of the AWS site and select "Edit", and then from the "Site Mesh" dropdown menu, select "Hub". Save the changes. Repeat these steps for all sites that need to have meshed.
 
 .. image:: images/aws-netris-enable-site-mesh.png
   :align: center

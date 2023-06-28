@@ -1,15 +1,15 @@
 ===========================
-Enabling Site Mesh with AWS
+Enabling Site Mesh with GCP
 ===========================
 
 
 .. toctree::
    :maxdepth: 2
 
-   aws-concept
+   gcp-concept
 
 .. toctree::
    :maxdepth: 2
    :caption: Setup
 
-   aws-deploy-softgate
+   gcp-deploy-softgate
