@@ -53,6 +53,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    ipam
    topology-management
    switch-ports
+   lag
 
 .. toctree::
    :maxdepth: 4
