@@ -349,9 +349,9 @@ else:
 	# set this build's current version by looking at the branch
 	current_version = repo.active_branch.name
 
-# rename the 'master' bracnh to be version = 'stable'
+# rename the 'master' bracnh to be version = 'latest'
 if current_version == 'master':
-	current_version = 'stable'
+	current_version = 'latest'
 
 # tell the theme which version we're currently on ('current_version' affects
 # the lower-left rtd menu and 'version' affects the logo-area version)
@@ -378,9 +378,9 @@ for ref in remote_refs:
 
 for version in versions:
 
-	# special override to rename 'master' branch to 'stable'
+	# special override to rename 'master' branch to 'latest'
 	if version == 'master':
-		version = 'stable'
+		version = 'latest'
 
 	html_context['versions'].append( (version, '/docs/' +language+ '/' +version+ '/') )
 

@@ -39,7 +39,7 @@ Ensure that newly created domain name resolves to the right IP address of the ma
   curl -sfL https://get.netris.io | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt
   
 .. note::
-  The Netris Controller installer will create a K3s cluster and then will deploy Netris Controller on top of it using Helm Chart.  The “--ctl-ssl-issuer” will instruct the installer to generate a Let's Encrypt SSL certificate and the "--ctl-hostname" will hint for what domain name the certificate must be generated. That's why it is important to create the DNS record before this step. Detailed info here: `doc <https://www.netris.io/docs/en/stable/controller-k3s-installation.html>`_.
+  The Netris Controller installer will create a K3s cluster and then will deploy Netris Controller on top of it using Helm Chart.  The “--ctl-ssl-issuer” will instruct the installer to generate a Let's Encrypt SSL certificate and the "--ctl-hostname" will hint for what domain name the certificate must be generated. That's why it is important to create the DNS record before this step. Detailed info here: `doc <https://www.netris.io/docs/en/latest/controller-k3s-installation.html>`_.
 
 .. image:: images/netris-controller-installed.png
     :align: center
