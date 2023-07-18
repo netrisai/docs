@@ -38,9 +38,9 @@ for current_version in ${versions}; do
 	export current_version
 	git checkout -B ${current_version} refs/remotes/origin/${current_version}
 
-	# rename "master" to "stable"
+	# rename "master" to "latest"
 	if [[ "${current_version}" == "master" ]]; then
-		current_version="stable"
+		current_version="latest"
 	fi
 
 	echo "INFO: Building sites for ${current_version}"
