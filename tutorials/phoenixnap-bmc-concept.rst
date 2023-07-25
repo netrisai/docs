@@ -11,9 +11,9 @@ Netris VPC for phoenixNAP BMC is a solution that enables VPC network functionali
 Concept
 --------
 
-There is **an agent** inside the Netris VPC controller for phoenixNAP BMC that communicates to phoenixNAP API once the :ref:`integration has been enabled<phxnap_api>`. That agent is responsible for metadata synchronization between phoenixNAP BMC and Netris VPC controller. Also, it configures the BMC network services based on the services defined in the Netris VPC controller. 
+There is **an agent** inside the Netris VPC controller for phoenixNAP BMC that communicates to phoenixNAP API once the `integration has been enabled <https://phoenixnap.com/kb/netris-bare-metal-cloud#ftoc-heading-7>`_. That agent is responsible for metadata synchronization between phoenixNAP BMC and Netris VPC controller. Also, it configures the BMC network services based on the services defined in the Netris VPC controller. 
 
-**SoftGate** is a highly optimized automatic Linux gateway, which in turn communicates with the Netris VPC controller via an encrypted protocol. A SoftGate node (typically two of them for redundancy) is a regular BMC server that should be deployed on desired phoenixNAP location. Once the server has been :ref:`deployed and provisioned<phxnap_sgs>`, it starts consuming the BMC public and private networks with various VLANS. 
+**SoftGate** is a highly optimized automatic Linux gateway, which in turn communicates with the Netris VPC controller via an encrypted protocol. A SoftGate node (typically two of them for redundancy) is a regular BMC server that should be deployed on desired phoenixNAP location. Once the server has been `deployed <https://phoenixnap.com/kb/netris-bare-metal-cloud#deploy-netris-softgate>`_, it starts consuming the BMC public and private networks with various VLANS. 
 
 .. image:: images/phoenixnap-concept-solution-traffic-flows.png
   :align: center
@@ -29,9 +29,7 @@ SoftGate node becomes the default gateway for the workloads consuming the VPC ne
 
 **What's next**
 
-* :doc:`Installing a Netris Controller on phoenixNAP BMC server <phoenixnap-bmc-install-netris-controller>` 
-* :doc:`Enable phoenixNAP BMC API integration <phoenixnap-bmc-api-integration-enablement>` 
-* :doc:`Provisioning Netris SoftGate nodes in phoenixNAP BMC <phoenixnap-bmc-adding-netris-softgate-nodes>` 
+* :doc:`Installing Netris on phoenixNAP BMC <phoenixnap-bmc-link-to-installation>` 
 * :doc:`IPAM Setup for Services <phoenixnap-bmc-ipam-setup>` 
 
 
