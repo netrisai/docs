@@ -12,8 +12,8 @@ Netris VPC for phoenixNAP BMC
    :maxdepth: 2
    :caption: Setup
 
-   phoenixnap-bmc-ipam-setup
    phoenixnap-bmc-link-to-installation
+   phoenixnap-bmc-ipam-setup
 
 .. toctree::
    :maxdepth: 2
