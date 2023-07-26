@@ -34,6 +34,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
    introduction
    netris-architecture
+   vpc
    supported-networks
 
 .. toctree::
