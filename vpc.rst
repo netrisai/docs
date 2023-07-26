@@ -2,7 +2,7 @@
     :description: Netris VPC
 
 ======================
-VPC
+Netris VPC
 ======================
 
 The Netris VPC offers you the ability to operate your resources within a logically segregated virtual network, which you have the power to define dynamically. The VPC acts as a VRF in traditional networking, providing the flexibility to employ identical IP ranges across various VPCs while maintaining secure management and operation of resources.
