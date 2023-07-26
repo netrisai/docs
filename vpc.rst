@@ -1,5 +1,5 @@
 .. meta::
-    :description: VPC
+    :description: Netris VPC
 
 ======================
 VPC
