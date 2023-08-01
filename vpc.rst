@@ -5,9 +5,9 @@
 Netris VPC
 ======================
 
-The Netris VPC offers you the ability to operate your resources within a logically segregated virtual network, which you have the power to define dynamically. The VPC acts as a VRF in traditional networking, providing the flexibility to employ identical IP ranges across various VPCs while maintaining secure management and operation of resources.
+The Netris VPC offers you the ability to operate your resources within a logically segregated virtual network. You can create, edit, and remove VPCs as needed. The VPC acts as a VRF in traditional networking, providing the flexibility to employ identical IP ranges across various VPCs while maintaining secure management and operation of resources.
 
-Included with the Netris Controller is a preconfigured Default System VPC-1. For those who do not require additional VPC services, the default VPC should suffice for your needs.
+Netris Controller is preconfigured with a default system VPC-1. Use the default VPC, and create additional VPCs as needed in the future.
 
 The following diagram shows a VPC concept in the Netris Controller. 
 
