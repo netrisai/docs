@@ -5,7 +5,7 @@
 Netris VPC
 ======================
 
-The Netris VPC offers you the ability to operate your resources within a logically segregated virtual network. You can create, edit, and remove VPCs as needed. The VPC acts as a VRF in traditional networking, providing the flexibility to employ identical IP ranges across various VPCs while maintaining secure management and operation of resources.
+The Netris VPC offers you the ability to operate your resources within a logically segregated virtual network. You can create, edit, and remove VPCs as needed. The VPC acts as a VRF in traditional networking, providing the flexibility to employ overlapping IP ranges across various VPCs while maintaining secure management and operation of resources.
 
 Netris Controller is preconfigured with a default system VPC-1. Use the default VPC, and create additional VPCs as needed in the future.
 
@@ -21,9 +21,10 @@ Take a look at the VPC features and services.
 Sites
 -----
 
-For each individual deployment, such as a data center, you should define it as a Site. All network components and resources should be associated with their respective Site and VPC. Netris offers integrations with Metal and Cloud providers, which are also considered Sites. 
+For each individual deployment/region, you should define a Site. All network components and resources should be associated with their respective Site and VPC.
 
 Physically connected sites function like an availability zone. This means that two V-Nets (Subnets) will communicate using the direct link, and even a single V-Net can span within an availability zone. Sites that are not physically connected function like regions. And Netris SiteMesh, a Wireguard-based site-to-site VPN, can be used to enable communication between these regions.
+
 
 IPAM
 ----
