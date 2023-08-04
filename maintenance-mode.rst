@@ -17,7 +17,9 @@ Maintenance mode is designed to help gracefully offload the traffic from a speci
     
 Maintenance Mode for Softgate
 ========
+
 When enabling **Maintenance Mode** for the softgate following actions are automatically done behind the scenes to offload the traffic from the softgate:
+
   - Decrease BGP local preference attribute for all external and internal peers.
   - Prepend all routes 10x times for outbound direction for all external and internal peers.
   - Increase BGP MED attribute for all external and internal peers.
