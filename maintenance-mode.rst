@@ -15,11 +15,19 @@ Maintenance mode is designed to help gracefully offload the traffic from a speci
 .. note:: 
   Maintenance mode does its best to offload the traffic from the current device however it DOES NOT ensure that traffic will be completely offloaded.
     
-API Logs
+Maintenance Mode for Softgate
 ========
-Comprehensive logging of all API calls sent to Netris Controller with the ability to search by various attributes, sort by each column, and filter by method type.
+When enabling **Maintenance Mode** for the softgate following actions are automatically done behind the scenes to offload the traffic from the softgate:
+  - Decrease BGP local preference attribute for all external and internal peers.
+  - Prepend all routes 10x times for outbound direction for all external and internal peers.
+  - Increase BGP MED attribute for all external and internal peers.
+  - Decrease BGP origin attribute for all external and internal peers.
+  - Connection oriented services like SNAT and L4LB will be automatically migrated to second softgate causing a reestablishment of TCP connections.
 
-Dashboard
+.. note:: 
+  - Ensure that second softgate is functioning properly before turning on the maintenance mode.
+  
+Maintenance Mode for Switch
 =========
 Netris, besides automatic configuration, also provides automatic monitoring of the entire network without the need for configuration of the monitoring systems.
 
