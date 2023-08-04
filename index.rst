@@ -77,6 +77,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :caption: Operations
 
    visibility
+   maintenance-mode
    accounts
    
 .. toctree::
