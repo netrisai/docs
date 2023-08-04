@@ -31,29 +31,14 @@ When enabling **Maintenance Mode** for the softgate following actions are automa
   
 Maintenance Mode for Switch
 =========
-Netris, besides automatic configuration, also provides automatic monitoring of the entire network without the need for configuration of the monitoring systems.
 
-Telescope→Dashboard summarizes Network Health, which can also be accessed by clicking on the Netris icon in the top left corner.
+When enabling **Maintenance Mode** for the switch following actions are automatically done behind the scenes to offload the traffic from the switch:
 
-Description of the pie charts.
+  - Decrease BGP local preference attribute for all external and internal peers.
+  - Prepend all routes 10x times for outbound direction for all external and internal peers.
+  - Increase BGP MED attribute for all external and internal peers.
+  - Decrease BGP origin attribute for all external and internal peers.
+  - LACP system ID will be changed for EVPN Multihomed hosts causing reshuffling of traffic from ports facing to multihomed hosts to other switches where these hosts are also connected.
 
-* **Hardware Health** - summary of CPU, RAM, disk utilization. Statuses of power supplies, fans, temperature sensors, critical system services, and time synchronization. Statuses of switch port link, utilization, optical signal levels, and BGP sessions. 
-* **E-BGP** - Statuses of external BGP sessions.
-* **LB VIP** - Statuses of Load Balancer frontend / VIP availability.
-* **LB Members** - Statuses of Load Balancer backend members.
-
-By clicking on each title you can see the details of the checks on the right side.
-
-Screenshot: Dashboard showing details of “Hardware Health.”
-
-.. image:: images/hardware_health.png
-    :align: center
-
-Port up/down state can be set to “Save as normal.” So the system will alarm only if the actual state is different from the saved as the normal state. 
-
-Screenshot: “Save as normal” on selected ports.
-
-.. image:: images/saveasnormal.png
-    :align: center
-        
-
+.. note:: 
+  - If a host is multhihomed to 2 switches and first one is in **Maintenance Mode**, and the link connected to the second switch flaps, then the link connected to the first switch will become active and will not automatically reshuffle back to the second switch.
