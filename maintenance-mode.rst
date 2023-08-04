@@ -12,6 +12,9 @@ Maintenance mode is designed to help gracefully offload the traffic from a speci
 .. image:: images/maintenance-mode.png
     :align: center
 
+.. note:: 
+  Maintenance mode does its best to offload the traffic from the current device however it DOES NOT ensure that traffic will be completely offloaded.
+    
 API Logs
 ========
 Comprehensive logging of all API calls sent to Netris Controller with the ability to search by various attributes, sort by each column, and filter by method type.
