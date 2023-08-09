@@ -7,13 +7,13 @@ Maintenance Mode
 
 Overview
 =================
-Maintenance mode is designed to help gracefully offload the traffic from a specific device from your inventory in order to perform maintenance on the current device with minimal impact on your network. You should turn on **Maintenance Mode** before starting the maintenance on the device and once it is finished, turn off again. To enable/disable **Maintenance Mode** go to **Inventory** section, choose the device you want, from 3-dot menu click edit, turn on **Maintenance Mode** by clicking on the checkbox and then save your changes as shown in the screenshot below:
+Maintenance mode is intended to assist in smoothly redirecting traffic away from a particular device in your inventory. This redirection allows for maintenance to be carried out on the device without causing significant disruptions to your network. It's advisable to activate Maintenance Mode prior to initiating maintenance procedures on the device. Once the maintenance is completed, you can deactivate Maintenance Mode. To toggle Maintenance Mode on or off, navigate to the Inventory section. Select the desired device, click on the three-dot menu, choose the "Edit" option, and then enable Maintenance Mode by selecting the checkbox and saving the changes as illustrated in the screenshot below:
 
 .. image:: images/maintenance-mode.png
     :align: center
 
 .. note:: 
-  Maintenance mode does its best to offload the traffic from the current device however it DOES NOT ensure that traffic will be completely offloaded.
+  Maintenance mode strives to redirect traffic away from the current device; however, please note that it does not guarantee the complete offloading of traffic.
     
 Maintenance Mode for Softgate
 ========
