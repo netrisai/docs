@@ -27,7 +27,7 @@ When you activate Maintenance Mode for the softgate, several automatic actions a
   - Connection-oriented services such as SNAT and L4LB will be transferred to the second softgate, resulting in a reestablishment of TCP connections.
 
 .. note:: 
-  - Before activating the maintenance mode, make sure that the second softgate is operating correctly.
+  Before activating the maintenance mode, make sure that the second softgate is operating correctly.
   
 Maintenance Mode for Switch
 =========
@@ -41,4 +41,4 @@ When you activate Maintenance Mode for the switch, several automatic actions are
   - The LACP system ID will undergo modification for EVPN Multihomed hosts, resulting in a reorganization of traffic from ports that connect to these multihomed hosts. This traffic will be redirected to other switches where these hosts are also linked.
 
 .. note:: 
-  - If a host is connected to two switches, and the first switch is in Maintenance Mode, if the link connected to the second switch experiences instability (flaps), the connection linked to the first switch will become active. However, this connection will not automatically revert back to the second switch once it stabilizes.
+  If a host is connected to two switches, and the first switch is in Maintenance Mode, if the link connected to the second switch experiences instability (flaps), the connection linked to the first switch will become active. However, this connection will not automatically revert back to the second switch once it stabilizes.
