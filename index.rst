@@ -20,6 +20,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    tutorials/netris-vpc-for-phoenixnap-bmc
    tutorials/netris-vpc-for-aws
    tutorials/netris-vpc-for-gcp
+   tutorials/vpc-gateways-with-managed-fabric.rst
 
 .. toctree::
    :maxdepth: 4
