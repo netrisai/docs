@@ -2,11 +2,6 @@
 Getting Started with Switch-Fabric Manager & VPC
 ================================================
 
-==================================
-VPC Anywhere Getting Started Guide
-==================================
-
-
 .. toctree::
    :maxdepth: 2
 
