@@ -16,17 +16,17 @@ Getting Started with Switch-Fabric Manager & VPC
 .. toctree::
    :maxdepth: 2
 
-    new-site-setup
+   new-site-setup
 
 .. toctree::
    :maxdepth: 2
 
-    vpc-setup
+   vpc-setup
 
 .. toctree::
    :maxdepth: 2
 
-    ipam-setup
+   ipam-setup
 
 .. toctree::
    :maxdepth: 2
@@ -36,7 +36,7 @@ Getting Started with Switch-Fabric Manager & VPC
 .. toctree::
    :maxdepth: 2
 
-    topology-setup
+   topology-setup
 
 
 .. toctree::
@@ -47,7 +47,7 @@ Getting Started with Switch-Fabric Manager & VPC
 .. toctree::
    :maxdepth: 2
 
-    netris-switch-agent-installation
+   netris-switch-agent-installation
 
 .. toctree::
    :maxdepth: 2
@@ -62,14 +62,14 @@ Getting Started with Switch-Fabric Manager & VPC
 .. toctree::
    :maxdepth: 2
 
-    enabling-nat-services
+   enabling-nat-services
 
 .. toctree::
    :maxdepth: 2
 
-    enabling-load-balancing-services
+   enabling-load-balancing-services
 
 .. toctree::
    :maxdepth: 2
 
-    more-features
+   more-features
