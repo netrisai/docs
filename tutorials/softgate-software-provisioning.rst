@@ -31,6 +31,7 @@ Copy the one-liner displayed in the window and execute it as a regular user on t
   user@host:~$ sudo vim /etc/network/interfaces
 
 .. code-block:: shell-session
+
   # The loopback network interface
   auto lo
   iface lo inet loopback
