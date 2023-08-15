@@ -11,8 +11,7 @@ Network → Sites → +Add
 * Enter your public Autonomous System Number (ASN) if you have one. If not, use a private ASN within the range of 64512 to 65534.
 * Choose Switch fabric type “Netris”.
 
-If you're implementing the Zero Trust security model, you may want to select the ACL Default Policy "Deny." More details can be found :ref:`"here"<acls>`.
-https://www.netris.io/docs/en/latest/acls.html#acl-default-policy
+If you're implementing the Zero Trust security model, you may want to select the ACL Default Policy "Deny." More details can be found :ref:`"here"<../acls>`.
 
 .. image:: /tutorials/images/site_setup.png
    :align: center
