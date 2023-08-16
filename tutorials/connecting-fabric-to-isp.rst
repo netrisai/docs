@@ -6,12 +6,12 @@ BGP is used to connect the Netris managed fabric to an ISP for internet access. 
 
 To create a BGP session go to Network → E-BGP → +Add
 
-.. image:: /images/create_bgp.png
+.. image:: images/create_bgp.png
     :align: center
 
 If everything is correct, State, port and BGP will get green status.
 
-.. image:: /images/bgp_status.png
+.. image:: images/bgp_status.png
     :align: center
 
 Check out advanced BGP configuration here, if you require additional features.
