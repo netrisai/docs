@@ -10,5 +10,5 @@ https://www.netris.io/docs/en/stable/terraform-integration.html
 
 Below is a screenshot of requesting a Load Balancer service through the Netris web console. Navigate to Services → L4 Load Balancer → +Add
 
-.. image:: /images/l4lb_create.png
+.. image:: images/l4lb_create.png
     :align: center
