@@ -12,12 +12,12 @@ Navigate to Network → NAT → +Add
 
 Create a SNAT service to allow connections from your hosts to the Internet.
 
-.. image:: /images/snat_add.png
+.. image:: images/snat_add.png
     :align: center
 
 Selecting a SNAT pool will allocate the entire pool for this service, preventing the use of IP addresses from the pool for DNAT or other SNAT purposes.
 
 Create a DNAT service to allow connections from the Internet to your internal hosts with private IP.
 
-.. image:: /images/dnat_add.png
+.. image:: images/dnat_add.png
     :align: center
