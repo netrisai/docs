@@ -8,4 +8,4 @@ Navigate to Services → V-Net → +Add
 .. image:: images/vnet.png
     :align: center
 
-If you are planning to use Link Aggregation in your setup, please take a look at the options provided by Netris here [link to the LAG section]
+If you are planning to use Link Aggregation in your setup, please take a look at the options provided by Netris :doc:`here</lag>`.
