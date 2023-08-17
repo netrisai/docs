@@ -12,7 +12,7 @@ Network → Sites → +Add
 * Choose Switch fabric type “Netris”.
 
 If you're implementing the Zero Trust security model, you may want to select the ACL Default Policy "Deny." More details can be found 
-:doc:`here</acls>`   :ref:`"here"</acls>`.
+:doc:`here</acls>`.
 
 .. image:: /tutorials/images/site_setup.png
    :align: center
