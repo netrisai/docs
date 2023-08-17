@@ -8,7 +8,7 @@ SoftGate PRO (100G) software provisioning
 
 SoftGate PRO is the high performance version that takes advantage of DPDK and SmartNIC technologies.
 
-Check hardware requirements and BIOS configuration here.
+Check hardware requirements and BIOS configuration :doc:`here</SoftGate-PRO-installation>`.
 
 **Install the Netris Agent**
 
