@@ -12,7 +12,7 @@ Right-click on the desired device and choose "Create Link". Select switch-ports 
 .. image:: images/topology_create_link.png
     :align: center
 
-.. image:: images/topology_1.png
+.. image:: images/topology_completed.png
     :align: center
 
 Once the links have been defined, the network is automatically configured as long as physical connectivity is in place and Netris Agents can communicate with the Netris Controller.
