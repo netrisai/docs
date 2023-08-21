@@ -125,39 +125,34 @@ Add Subnet Window
 Basic BGP
 #########
 
-BGP neighbors can be declared in the Net→E-BGP section. Netris will automatically generate and program the network configuration to meet the requirements. 
+BGP neighbors can be declared in the Network → E-BGP section. Netris software will automatically generate and program the network configuration to meet the requirements.
 
 Adding BGP Peers
 ----------------
-#. Navigate to Net→E-BGP in the web UI
-#. Click the **Add** button
-#. Fill in the fields as described in the table below
-#. Click the **Add** button
+#. Navigate to Network → E-BGP in the web UI.
+#. Click the Add button.
+#. Fill in the fields as described in the table below.
+#. Click the Add button.
+
 
 .. csv-table:: BGP Peer Fields
    :file: tables/bgp-basic.csv
    :widths: 25, 75
    :header-rows: 0
 
-Example: Declare a basic BGP neighbor
+Example: Declare a basic BGP neighbor.
 
-.. image:: images/add-bgp-basic.png
+.. image:: images/create_bgp.png
     :align: center
-    :class: with-shadow
-
-Example2: Declare BGP neighbor terminated on V-Net. Netris will automatically configure BGP session on the switch closest to the remote IP.    
-
-.. image:: images/add-bgp-basic-2.png
-  :align: center
-  :class: with-shadow
-
 
 ############
 Advanced BGP
 ############
-BGP neighbor declaration can optionally include advanced BGP attributes and BGP route-maps for fine-tuning of BGP policies. 
+
+BGP neighbor declaration can optionally include advanced BGP attributes and BGP route-maps for fine-tuning of BGP policies.
 
 Click Advanced to expand the BGP neighbor add/edit window.
+
 
 .. csv-table:: BGP Peer Fields - Advanced
    :file: tables/bgp-advanced.csv
@@ -168,7 +163,7 @@ Click Advanced to expand the BGP neighbor add/edit window.
 
 BGP Objects
 -----------
-| Under Net→E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.
+| Under Network → E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.
 | Supported objects include:
 
 * IPv4 Prefix
@@ -180,8 +175,8 @@ BGP Objects
 
 IPv4 Prefix
 ^^^^^^^^^^^
-| Rules defined one per line. 
-| Each line in IPv4 prefix list field consists of three parts: 
+| The rules are defined one per line.  
+| Each line in IPv4 prefix list field consists of three parts:
 
 * Action - Possible values are: permit or deny (mandatory).
 * IP Prefix - Any valid IPv4 prefix (mandatory).
@@ -189,9 +184,8 @@ IPv4 Prefix
 
 Example: Creating an IPv4 Prefix list.
 
-.. image:: images/IPv4-Prefix.png
+.. image:: images/ipv4_prefix.png
     :align: center
-    :class: with-shadow
     
 IPv6 Prefix
 ^^^^^^^^^^^
@@ -204,9 +198,8 @@ IPv6 Prefix
 
 Example: Creating an IPv6 Prefix list.
 
-.. image:: images/IPv6-Prefix.png
+.. image:: images/ipv6_prefix.png
     :align: center
-    :class: with-shadow
     
 Community
 ^^^^^^^^^
@@ -219,8 +212,7 @@ Example: Creating community.
 
 .. image:: images/community.png
     :align: center
-    :class: with-shadow
-    
+
 --------------------------
 
 BGP route-maps
