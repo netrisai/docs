@@ -142,7 +142,7 @@ Adding BGP Peers
 
 Example: Declare a basic BGP neighbor.
 
-.. image:: images/create_bgp.png
+.. image:: images/bgp_empty.png
     :align: center
 
 ############
@@ -217,7 +217,8 @@ Example: Creating community.
 
 BGP route-maps
 --------------
-| Under the Net→E-BGP Route-maps section, you can define route-map policies, which can be associated with the BGP neighbors inbound or outbound. 
+| Under the Network → E-BGP Route-maps section, you can define route-map policies, which can be associated with the BGP neighbors inbound or outbound.
+
 | Description of route-map fields:
 
 * **Sequence Number** - Automatically assigned a sequence number. Drag and move sequences to organize the order.
@@ -245,12 +246,12 @@ Example: route-map
 ##############
 Static Routing
 ##############
-Located under Net→Routes is a method for describing static routing policies that Netris will dynamically inject on switches and/or SoftGate where appropriate.
-We recommend using the Routes only if BGP is not supported by the remote end. 
+Located under Network → Routes is a method for describing static routing policies that Netris will dynamically inject on switches and/or SoftGate where appropriate. We recommend using the Routes only if BGP is not supported by the remote end.
+
 
 | Typical use cases for static routing:
 
-* To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported. 
+* To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported.
 * Temporary interconnection with the old network for a migration. 
 * Routing a subnet behind a VM hypervisor machine for an internal VM network.
 * Specifically routing traffic destined to a particular prefix through an out-of-band management network.
@@ -260,28 +261,26 @@ We recommend using the Routes only if BGP is not supported by the remote end.
 * **Prefix** - Route destination to match. 
 * **Next-Hop** - Traffic destined to the Prefix will be routed towards the Next-Hop. Note that static routes will be injected only on units that have the Next-Hop as a connected network.
 * **Description** - Free description.
+* **VPC** - Select a VPC to which the static route belongs.
 * **Site** - Site where Route belongs. 
 * **State** - Administrative (enable/disable) state of the Route. 
 * **Apply to** -  Limit the scope to particular units. It's typically used for Null routes.
 
 
-Example: Default route pointing to a Next-Hop that belongs to one of V-NETs. 
+Example: Default route pointing to a Next-Hop that belongs to one of V-Nets. 
 
-.. image:: images/defaultroute.png
+.. image:: images/static_route_empty.png
     :align: center
-    :class: with-shadow
 
-Example: Adding a back route to 10.254.0.0/16 through an out-of-band management network.  
+Example: Adding a back route to 10.254.0.0/16 through an out-of-band management network.
 
-.. image:: images/static_route.png
+.. image:: images/static_route2_empty.png
     :align: center
-    :class: with-shadow
     
-Screenshot: This Shows that my back route is actually applied on leaf1 and spine1.
+Screenshot shows that the back route is actually applied on Softgate1 and Softgate2 .
 
-.. image:: images/leaf1_spine1.png
+.. image:: images/static_route3.png
     :align: center
-    :class: with-shadow
 
 --------------------------
 
@@ -291,99 +290,95 @@ Screenshot: This Shows that my back route is actually applied on leaf1 and spine
 NAT
 ###
 
-Netris SoftGate nodes are required to support NAT (Network Address Translation). 
+Netris SoftGate nodes are required forNAT (Network Address Translation) functionality to work. 
+
+**Note: works only in the system default VPC (limitation is planned to be lifted in Netris v. 4.1.0).**
 
 Enabling NAT
 ------------
-To enable NAT for a given site, you first need to create a subnet with NAT purpose in the IPAM section. NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need.
+To enable NAT for a given site, you first need to create a subnet with NAT purpose in the IPAM section. The NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need.
+Adding an IP Subnet under Network → IPAM.
+
 
 1. Allocate a public IP subnet for NAT under Net→IPAM. 
 
 Example: Adding an IP allocation under Net→Subnets.
 
-.. image:: images/IP-allocation.png
+.. image:: images/nat_subnet_empty.png
     :align: center
-    :class: with-shadow
-
-1. Attach NAT IP addresses and/or NAT IP Pools to just one SoftGate node. Other SoftGate Nodes on the same site will automatically add the same NAT IP/Pool resources for proper consistency and high availability.
-
-Example: Adding NAT IP addresses and NAT IP Address Pools to a SoftGate node.
-
-.. image:: images/NATIP-address.png
-    :align: center
-    :class: with-shadow
 
 
 Defining NAT rules
 ------------------
-NAT rules are defined under Net→NAT.
+NAT rules are defined under Network → NAT.
 
 .. list-table:: NAT Rule Fields
   :widths: 25 75
   :header-rows: 1
 
   * - Name
-    - Unique name
+    - Unique name.
   * - **State**
-    - State of rule (enabled or disabled)
+    - State of rule (enabled or disabled).
   * - **Site** 
-    - Site to apply the rule
+    - Site to apply the rule.
   * - **Action**
-    - *SNAT* - Replace the source IP address with specified NAT IP along with port overloading
-      *DNAT* - Replace the destination IP address and/or destination port with specified NAT IP
-      *ACCEPT* - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule
-      *MASQUERADE* - Replace the source IP address with the IP address of the exit interface
+    - *SNAT* - Replace the source IP address with specified NAT IP along with port overloading.
+      *DNAT* - Replace the destination IP address and/or destination port with specified NAT IP.
+      *ACCEPT* - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule.
+      *MASQUERADE* - Replace the source IP address with the IP address of the exit interface.
   * - **Protocol**
-    - *All* - Match any IP protocol
-      *TCP* - Match TCP traffic and ports
-      *UDP* - Match UDP traffic and ports
-      *ICMP* - Match ICMP traffic
+    - *All* - Match any IP protocol.
+      *TCP* - Match TCP traffic and ports.
+      *UDP* - Match UDP traffic and ports.
+      *ICMP* - Match ICMP traffic.
   * - **Source**
-    - *Address* - Source IP address to match
-      *Port* - Source ports range to match with this value (TCP/UDP)
+    - *Address* - Source IP address to match.
+      *Port* - Source ports range to match with this value (TCP/UDP).
   * - **Destination**
-    - *Address* - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses
-      *Port* - For DNAT only, to match a single destination port
-      *Ports* - For SNAT/ACCEPT only. Destination ports range  to match with this value (TCP/UDP)
+    - *Address* - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses.
+      *Port* - For DNAT only, to match a single destination port.
+      *Ports* - For SNAT/ACCEPT only. Destination ports range  to match with this value (TCP/UDP).
   * - **DNAT to IP** 
-    - The global IP address for SNAT to be visible on the Public Internet. The internal IP address for DNAT to replace the original destination address with
+    - The global IP address for SNAT to be visible on the Public Internet. The internal IP address for DNAT to replace the original destination address with.
   * - **DNAT to Port** 
-    - The Port to which destination Port of the packet should be NAT'd
+    - The Port to which destination Port of the packet should be NAT'd.
   * - **Status**
-    - Administrative state (enable/disable)
+    - Administrative state (enable/disable).
   * - **Comment**
-    - Free optional comment
+    - Free optional comment.
 
 
-Example: SNAT all hosts on 10.0.0.0/8 to the Internet using 198.51.100.65 as a global IP. 
+Example: SNAT all hosts on 10.0.1.0/24subnet to the Internet using 192.0.2.128as a global IP.
 
-.. image:: images/globalIP.png
+.. image:: images/create_snat_empty.png
     :align: center
-    :class: with-shadow
     
-Example: Port forwarding. DNAT the traffic destined to 198.51.100.66:80 to be forwarded to the host 10.0.4.10 on port tcp/1080. 
+Example: Port forwarding. DNAT the traffic destined to 192.0.2.130:8080 to be forwarded to the host 10.0.1.100 on port tcp/80.
 
-.. image:: images/Port-Forwarding.png
+.. image:: images/create_dnat_empty.png
     :align: center
-    :class: with-shadow
 
 --------------------------
 
 ########
 SiteMesh
 ########
-SiteMesh is a Netris service for site-to-site interconnects over the public Internet. SiteMesh automatically generates configuration for WireGuard to create encrypted tunnels between participating sites and automatically generates a configuration for FRR to run dynamic routing. Hence, sites learn how to reach each other over the mesh WireGuard tunnels. The SiteMesh feature requires a SoftGate node at each participating site. 
 
-Edit Net->Sites, do declare what sites should form a SiteMesh. See SiteMesh types described below.
+SiteMesh is a Netris service for site-to-site interconnection over the public Internet. SiteMesh automatically generates configuration for WireGuard to create encrypted tunnels between participating sites and automatically generates a configuration for FRR to run dynamic routing. Hence, sites learn how to reach each other over the mesh WireGuard tunnels. The SiteMesh feature requires a SoftGate node at each participating site.
+
+**Note: works only in the system default VPC (limitation is planned to be lifted in Netris v. 4.1.0).**
+
+Edit Network → Sites, do declare what sites should form a SiteMesh. See SiteMesh types described below.
 
 * **Disabled** - Do not participate in SiteMesh.
 * **Hub** - Hub sites form full-mesh tunnels with all other sites (Hub and non-Hub) and can carry transit traffic for non-Hub sites. (usually major data center sites)
 * **Spoke** - Spoke sites form tunnels with all Hub sites. Spoke to Spoke traffic will transit a Hub site. (small data center sites or major office sites)
 * **Dynamic Spoke** - Dynamic Spoke is like Spoke, but it will maintain a tunnel only with one Hub site, based on dynamic connectivity measurements underneath and mathematical modeling. (small office sites)
 
-Screenshot: Site Mesh parameter editing a Site under Net→Sites.
+Screenshot: Site Mesh parameter editing a Site under Network → Sites.
 
-.. image:: images/Site_Mesh.png
+.. image:: images/sitemesh_edit.png
     :align: center  
     
 You only need to define your site-to-site VPN architecture policy by selecting SiteMesh mode for every site. Netris will generate the WireGuard tunnels (using randomly generated keys, and generate FRR rules to get the dynamic routing to converge.
@@ -391,7 +386,7 @@ You only need to define your site-to-site VPN architecture policy by selecting S
 .. image:: images/SiteMesh_modes.png
     :align: center  
     
-Check the Net→Site Mesh section for the listing of tunnel statuses.
+Check the Network → Site Mesh section for the listing of tunnel statuses.
 
 Screenshot: Listing of SiteMesh tunnels and BGP statuses (Net→Site Mesh)
 
@@ -403,56 +398,47 @@ Screenshot: Listing of SiteMesh tunnels and BGP statuses (Net→Site Mesh)
 #############
 Looking Glass
 #############
-The Looking Glass Is a GUI-based tool for looking up routing information from a switch or SoftGate perspective. You can access the Looking Glass either from Topology, individually for every device (right click on device → details → Looking Glass), or by navigating to Net→Looking Glass then selecting the device from the top-left dropdown menu. 
+
+The Looking Glass Is a GUI-based tool for looking up routing information from a switch or SoftGate perspective. You can access the Looking Glass either from Topology, individually for every device (right click on device → details → Looking Glass), or by navigating to Network → Looking Glass then selecting the device from the top-left dropdown menu.
 
 Looking Glass controls described for IPv4/IPv6 protocol families.
 
+* **VPC** - select a VPC.
 * **BGP Summary** - Shows the summary of BGP adjacencies with neighbors, interface names, prefixes received. You can click on the neighbor name then query for the list of advertised/received prefixes.
 * **BGP Route** - Lookup the BGP table (RIB) for the given address.
 * **Route** - Lookup switch routing table for the given address.
 * **Traceroute** - Conduct a traceroute from the selected device towards the given destination, optionally allowing to determine the source IP address.
 * **Ping** - Execute a ping on the selected device towards the given destination, optionally allowing to select the source IP address.
 
-Example: Spine1: listing BGP neighbors and number of received prefixes.
+Example: listing BGP neighbors of a switch and number of received prefixes for the Underlay VPC.
 
-.. image:: images/Spine1.png
+.. image:: images/lg_summary.png
     :align: center
-    :class: with-shadow
     
-Example: BGP Route - looking up my leaf1 switch’s loopback address from spine1’s perspective. Spine1 is load balancing between two available paths. 
+Example: BGP Route - looking up V-Net subnet from switch11 perspective. Switch11 is load balancing between four available paths.
 
-.. image:: images/BGP_route.png
+.. image:: images/lg_bgp_route.png
     :align: center
-    :class: with-shadow
 
 Example: Ping.
 
-.. image:: images/ping.png
+.. image:: images/lg_ping.png
     :align: center
-    :class: with-shadow
 
 | Looking Glass controls described for the EVPN family.
 
+* **VPC** - select a VPC.
 * **BGP Summary** - Show brief summary of BGP adjacencies with neighbors, interface names, and EVPN prefixes received.
 * **VNI** - List VNIs learned.
 * **BGP EVPN** - List detailed EVPN routing information optionally for the given route distinguisher. 
 * **MAC table** - List MAC address table for the given VNI.
 
+Example: Listing MAC addresses on VNI 50.
 
-Example: Listing of adjacent BGP neighbors and number of EVPN prefixes received.
-
-.. image:: images/BGP_neighbors_listing.png
+.. image:: images/lg_mac.png
     :align: center
-    :class: with-shadow
-
-Example: Listing MAC addresses on VNI 2.
-
-.. image:: images/MAC_listing.png
-    :align: center
-    :class: with-shadow
 
 Example: EVPN routing information listing for a specified route distinguisher.
 
-.. image:: images/EVPN_routing.png
+.. image:: images/lg_rd.png
     :align: center
-    :class: with-shadow
