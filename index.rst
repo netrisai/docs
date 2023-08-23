@@ -39,31 +39,6 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    supported-networks
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Detailed Installation
-
-   installation
-   switch-agent-installation
-   SoftGate-installation
-   SoftGate-PRO-installation
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Switch-fabric Configuration
-
-   definitions
-   ipam
-   topology-management
-   switch-ports
-   lag
-
-.. toctree::
-   :maxdepth: 4
-   :caption: Network Policies
-
-   network-policies
-
-.. toctree::
    :maxdepth: 4
    :caption: Network Services
 
@@ -75,11 +50,40 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
 .. toctree::
    :maxdepth: 4
+   :caption: Network Policies
+
+   network-policies
+
+
+.. toctree::
+   :maxdepth: 4
    :caption: Operations
 
    visibility
    maintenance-mode
    accounts
+
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Switch-fabric Management
+
+   definitions
+   ipam
+   topology-management
+   switch-ports
+   lag
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Detailed Installation
+
+   installation
+   switch-agent-installation
+   SoftGate-installation
+   SoftGate-PRO-installation
+
    
 .. toctree::
    :maxdepth: 4
