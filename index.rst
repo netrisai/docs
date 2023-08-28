@@ -33,6 +33,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :maxdepth: 2
    :caption: Netris Fundamentals
 
+   definitions
    introduction
    netris-architecture
    vpc
@@ -69,7 +70,6 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :maxdepth: 2
    :caption: Switch-fabric Management
 
-   definitions
    ipam
    topology-management
    switch-ports
