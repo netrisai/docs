@@ -1,13 +1,13 @@
 **Name**,Name of the device
-**Owner Tenant**,Owner tenant of the device
+**Owner Tenant**,Owner tenant of the device (usually Admin)
 **Description**,Description of the device
-**Type**,There are 3 types of devices that users can add/edit - Switch/Softgate/Controller. Other types are added automatically when creating services like ROH
-**NOS**,Operating system of the device; applicable for switches only 
+**Type**,Select Switch
+**NOS**,Operating system of the device; applicable to switches only 
 **Site**,Site where the devices reside
-**AS Number**,Private AS number of the device; applicable for switches only; recommended to be assigned automatically
-**Profile**,Inventory profile for current device. Profiles are used for security hardening the devices
-**Main IP address**,Main loopback IP address for the device. Can be configured manually or assigned automatically from subnet with *loopback* purpose defined for current site.
-**Management IP address**,Management IP address for the device. Can be configured manually or assigned automatically from subnet with *management* purpose defined for current site. This IP address is configured on the out-of-band management interface of the device. 
-**MAC address**,MAC address of the device; applicable for switches only
-**Preliminary port count**,Used for definition of topology. When the device registers with the controller the real ports are synced with inventory
-**Add Link**,Provides functionality to define the connections between devices; mandatory for Switch and Softgate physical interconnections
+**AS Number**,Private AS number of the device; applicable to switches only; recommended to be assigned automatically
+**Profile**,Inventory profile for the current device. Profiles are used for the security hardening of the devices
+**Main IP address**,Main loopback IP address for the device. A subnet with purpose set to *loopback* needs to be defined in IPAM for the current site
+**Management IP address**,Management IP address for the device. A subnet with purpose set to *Management* needs to be defined in IPAM for the current site 
+**MAC address**,MAC address of the device; applicable to switches only (reserved for future use)
+**Preliminary port count**,Used for definition of topology. When the device registers with the controller the actual ports will synchronize with inventory
+**Add Link**,Used for describing physical connections between switches and SoftGates
