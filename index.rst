@@ -70,7 +70,6 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :maxdepth: 2
    :caption: Switch-fabric Management
 
-   ipam
    topology-management
    switch-ports
    lag
