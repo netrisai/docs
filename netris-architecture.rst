@@ -7,25 +7,25 @@
 Netris Architecture
 ###################
 
-A Netris system is composed of 4 elements:
+A Netris system is composed of 3 elements:
 
 * Netris Controller
 * Netris Switch Agent
 * Netris SoftGate
-* Customer Application Servers
 
 .. _netris_controller_def:
 
 Netris Controller
 =================
-Netris Controller is the main operations control center for engineers using GUI/RestAPI/Kubernetes, systems, and network devices. The Netris Controller stores the data representing the user-defined network services and policies, health, statistics, analytics received from the network devices, and information from integration modules with external systems (Kubernetes). Netris Controller can run as a VM or container, on/off-prem, or in Netris cloud. 
+
+Netris Controller is the main operations control center for engineers using GUI/RestAPI/Kubernetes, systems, and network devices. The Netris Controller stores the data representing the user-defined network services and policies, health, statistics, analytics received from the network devices, and information from integration modules with external systems (Kubernetes, Terraform, etc.). Netris Controller can run as a VM or container, on/off-prem, or in Netris cloud.
 
 Diagram: High level Netris architecture
 
 .. image:: images/netris_controller_diagram.png
     :align: center
   
-* **Controller HA** We highly recommend running more than one copy of the controller for database replication. 
+* **Controller HA** We highly recommend running more than one copy of the controller for database replication. Find here :doc: `backup and restore</controller-k3s-installation>` procedure.
 * **Multiple sites** Netris is designed to operate multiple sites with just a single controller with HA.
 * **What if the controller is unreachable.** Netris operated switches/routers can tolerate the unreachability of the Netris Controller. Changes and stats collection will be unavailable during the controller unavailability window; however, switches/routers core operations will not be affected.
 
