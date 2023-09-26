@@ -45,23 +45,26 @@ In the Netris Controller, the initial step involves creating a new site. To crea
 .. image:: images/aws-netris-site-create.png
   :align: center
 
-Subsequently, it is necessary to create a private subnet for Softgate management. To achieve this, follow the steps below:
+Subsequently, it is necessary to create a subnet with the "Purpose" of loopback within Netris IPAM. The subnet's "Prefix" will match the External IP of the AWS EC2 instance, with a netmask length of /32. For instance, if the EC2 instance's External IP address is 54.176.11.144, then the "Prefix" for the loopback subnet will be 54.176.11.144/32. It's important to note that an allocation for this "Prefix" must be created prior to creating the loopback subnet. To achieve this, follow the steps below: 
 
 1. Go to the "IPAM" section under the "Net" tab.
 2. Click on the "+ Add" button located at the top-right corner.
-3. Enter a unique "Prefix" for the new subnet, such as ``10.255.255.0/24``.
-4. Type a descriptive "Name" for the subnet.
+3. Enter the "Prefix" for the new allocation, such as ``54.176.11.144/32``.
+4. Type a descriptive "Name" for the allocation.
 5. Select the desired tenant name from the "Tenant" dropdown menu.
-6. From the "Type" dropdown menu, select "Subnet".
-7. Select "management" from the "Purpose" dropdown menu.
-8. Choose the appropriate site from the "Sites" dropdown menu.
-9. Click on the "Add" button to create the subnet.
+6. Click on the "Add" button to create the allocation.
 
+Once the allocation is created, proceed with the creation of the subnet as follows:
 
-.. image:: images/aws-netris-ipam-mgmt.png
-  :align: center
+1.  Click on the "+ Add" button located at the top-right corner.
+2.  Enter the "Prefix" for the new subnet, such as ``54.176.11.144/32``.
+3.  Type a descriptive "Name" for the subnet.
+4.  Select the desired tenant name from the "Tenant" dropdown menu.
+5.  From the "Type" dropdown menu, select "Subnet".
+6.  Select "loopback" from the "Purpose" dropdown menu.
+7.  Choose the appropriate site from the "Sites" dropdown menu.
+8.  Click on the "Add" button to create the subnet.
 
-Following the creation of the private subnet for Softgate management, it is necessary to create another subnet with the "Purpose" of loopback. The "Prefix" for this subnet will be the Public IPv4 address of the AWS EC2 instance with a netmask length of /32. For instance, if the EC2 instance's IP address is 54.176.11.144, then the "Prefix" for the loopback subnet will be 54.176.11.144/32. However, unlike the subnet for Softgate management, an allocation for that "Prefix" must first be created before creating the subnet for loopback.
 
 .. image:: images/aws-netris-ipam-lo.png
   :align: center
@@ -120,9 +123,10 @@ After completing all the pre-required steps, the next step is to create a Softga
 5. From the "Tenant" dropdown menu, select the same tenant name used in the pre-required steps when creating the subnets.
 6. From the "Type" dropdown menu, select "SoftGate".
 7. Choose the appropriate site from the "Site" dropdown menu.
-8. For the "Main IP address" and "Management IP Address" fields, select "Assign automatically".
-9. In the "Description" field, add ``int=eth0`` to specify that Netris should use the softgate's eth0 interface instead of the default bond0 interface that Netris Softgate Agent looks for.
-10. Finally, click on the "Add" button to create the Softgate.
+8. For the "Main IP address" field, select "Assign automatically".
+9. For the "Management IP Address" field, select "None".
+10. In the "Description" field, add ``int=eth0`` to specify that Netris should use the softgate's eth0 interface instead of the default bond0 interface that Netris Softgate Agent looks for.
+11. Finally, click on the "Add" button to create the Softgate.
 
 .. image:: images/aws-netris-create-sg.png
   :align: center
