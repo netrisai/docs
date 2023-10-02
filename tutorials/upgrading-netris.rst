@@ -18,7 +18,7 @@ Netris upgrade Procedure
 ========================
 
 Backup current database
-+++++++++++++++++++++++
+-----------------------
 
 SSH to the host running the Netris Controller and execute below command.
 
@@ -33,7 +33,7 @@ Ensure that SQL file ``db-snapshot.sql`` is generated and present in the current
   An SQL dump is enough for this basic upgrade scenario, however detailed backup & restore procedure is described in :ref:`here<ctl-backup-restore>`.
 
 Stop Netris Agents
-++++++++++++++++++
+------------------
 
 Stop Netris agents on switches and SoftGate nodes.
 
@@ -63,7 +63,7 @@ Make sure that all devices in the *Network → Inventory* section are ":red:`red
 .. _upgrade 3:
 
 Check your current version
-++++++++++++++++++++++++++
+--------------------------
 
 Before upgrading the Netris Controller, take a note of the "*Netris Version*" by navigating to *Settings → General* in the Controller web interface. The current version number may be used in case of the hypothetical need to perform a rollback procedure.
 
@@ -72,7 +72,7 @@ Before upgrading the Netris Controller, take a note of the "*Netris Version*" by
     :alt: Netris Version Example
 
 Upgrade the Controller
-++++++++++++++++++++++
+----------------------
 
 SSH to the Controller host and execute the below command.
 
@@ -119,12 +119,12 @@ The output is similar to this:
   If, after 5 minutes, you see pods with a status other than "*Running*" or "*Completed*", please reach out to us via `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__.
 
 Check the upgraded version
-++++++++++++++++++++++++++
+--------------------------
 
 Make sure that the "*Netris Version*" reflects the version change by navigating to *Settings → General* in the Controller web interface.
 
 Upgrade Switches and SoftGate nodes
-+++++++++++++++++++++++++++++++++++
+-----------------------------------
 
 Once you have verified that the Netris controller is up-to-date, it is time to update the switch and SoftGate agents.
 
