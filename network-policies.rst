@@ -97,7 +97,7 @@ Add a Subnet
      - Unique prefix for subnet, ust be included in one of allocations.
    * - **Name**
      - Unique name for current subnet.
-   * - VPC
+   * - **VPC**
      - Select a VPC to which the subnet belongs.
    * - **Tenant**
      - Owner of the subnet.
