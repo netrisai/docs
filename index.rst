@@ -31,10 +31,12 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
 .. toctree::
    :maxdepth: 2
-   :caption: Netris Fundamentals
+   :caption: Concepts
 
    definitions
    introduction
+   supported-platform-matrix
+   supported-switch-hardware
    netris-architecture
    vpc
    supported-networks
