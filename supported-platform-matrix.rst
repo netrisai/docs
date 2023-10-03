@@ -5,12 +5,12 @@ Netris Platform Support Matrix
 .. list-table:: 
    :header-rows: 0
 
-   * - Netris Version
-     - SoftGate OS
-     - Switch OS
-     - BMC Platform
-     - Public Cloud
-     - Availability
+   * - **Netris Version**
+     - **SoftGate OS**
+     - **Switch OS**
+     - **BMC Platform**
+     - **Public Cloud**
+     - **Availability**
    * - 3.4.1
      - Ubuntu 20.04 (PRO), Ubuntu 22.04 (non-pro)
      - Cumulus 5.5
