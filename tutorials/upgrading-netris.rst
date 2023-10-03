@@ -37,7 +37,7 @@ Stop Netris Agents
 
 Stop Netris agents on switches and SoftGate nodes.
 
-*For Switches:*
+**For Switches:**
 
 SSH to the switch and run the following command:
 
@@ -45,7 +45,7 @@ SSH to the switch and run the following command:
 
   sudo systemctl stop netris-sw
 
-*For SoftGate nodes:*
+**For SoftGate nodes:**
 
 SSH to the SoftGate and run the following command:
 
@@ -144,7 +144,7 @@ After all the agents have finished the upgrade process, make sure all devices in
 
 In the event the "**check_agent**" status is "**Agent is unavailable**" after the agent upgrade has finished, perform agent restart on the affected device(s).
 
-*For Switches:*
+**For Switches:**
 
 SSH to the switch and run the following command:
 
@@ -152,7 +152,7 @@ SSH to the switch and run the following command:
 
   sudo systemctl restart netris-sw
 
-*For SoftGate nodes:* 
+**For SoftGate nodes:** 
 
 SSH to the SoftGate and run the following command:
 
@@ -170,7 +170,7 @@ Stop Netris Agents
 
 Stop all Netris agents on the devices managed by the controller (switch & SoftGate).
 
-*For Switches:*
+**For Switches:**
 
 SSH to the switch and run the following command:
 
@@ -178,7 +178,7 @@ SSH to the switch and run the following command:
 
   sudo systemctl stop netris-sw
 
-*For SoftGate nodes:*
+**For SoftGate nodes:**
 
 SSH to the SoftGate and run the following command:
 
@@ -238,7 +238,7 @@ After all the switches and SoftGates have been successfully downgraded, make sur
 
 In case the "**check_agent**" status is "**Agent is unavailable**" after agent downgrade, perform agent restart.
 
-*For Switches:*
+**For Switches:**
 
 SSH to the switch and run the following command:
 
@@ -246,7 +246,7 @@ SSH to the switch and run the following command:
 
   sudo systemctl restart netris-sw
 
-*For SoftGate nodes:*
+**For SoftGate nodes:**
 
 SSH to the SoftGate and run the following command:
 
