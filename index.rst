@@ -14,7 +14,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :maxdepth: 2
    :caption: Tutorials
 
-   tutorials/index
+   tutorials/installing-netris-controller
    tutorials/vpc-anywhere
    tutorials/netris-vpc-for-equinix-metal
    tutorials/netris-vpc-for-phoenixnap-bmc
@@ -62,10 +62,10 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :maxdepth: 4
    :caption: Operations
 
-   visibility
-   maintenance-mode
    accounts
-
+   maintenance-mode
+   upgrading-netris
+   visibility
 
 
 .. toctree::
