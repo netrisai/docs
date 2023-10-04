@@ -64,7 +64,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
    accounts
    maintenance-mode
-   upgrading-netris
+   tutorials/upgrading-netris
    visibility
 
 
