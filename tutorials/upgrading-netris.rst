@@ -10,9 +10,9 @@
 
 .. role:: red
 
-***************************
-Netris Upgrade and Rollback
-***************************
+********************
+Upgrade and Rollback
+********************
 
 Netris upgrade Procedure
 ========================
