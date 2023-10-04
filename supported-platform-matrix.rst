@@ -1,6 +1,6 @@
-==============================
-Netris Platform Support Matrix
-==============================
+=========================
+Supported Platform Matrix
+=========================
 
 .. list-table:: 
    :header-rows: 0
