@@ -40,6 +40,10 @@ Netris creates a private network in phoenixNAP BMC based on declared V-Nets. Bes
 
 The only exception is a case with newly deployed servers. When you request a server from phoenixNAP BMC without any public IP address, use some Netris V-Net as a private network and mark the DHCP checkbox "**Use your own privately managed DHCP server (Obtain IP address automatically)**" - Netris will automatically add that server into the V-Net.
 
+.. note:: 
+  
+  Starting from Netris version `3.5.0 <https://www.netris.io/netris-3-5-0-release-notes>`_, Netris will also automatically add a server with a static IP address assignment into the V-Net. For more details, refer to the section on :ref:`"Deploy a new server w/ static IP into an existing V-Net"<phxnap_vnet_static_ip>`
+
 .. image:: /tutorials/images/phoenixnap-vnet-import-a-new-server.png
     :align: center
 
@@ -58,6 +62,32 @@ In order to connect via SSH to the newly deployed server, you can either create 
 .. image:: /tutorials/images/phoenixnap-vnet-ssh-to-server.png
     :align: center
 
+
+.. _phxnap_vnet_static_ip:
+
+
+Deploy a new server w/ static IP into an existing V-Net
+-------------------------------------------------------
+
+Starting from Netris `v3.5.0 <https://www.netris.io/netris-3-5-0-release-notes>`_, Netris creates private networks in phoenixNAP BMC with a CIDR based on the corresponding VNET gateway. Continuous monitoring by Netris prohibits direct editing of these private networks from the phoenixNAP BMC console. However, any modifications trigger Netris to automatically roll back all changes to their original state.
+
+When requesting a server from phoenixNAP BMC without any public IP address, select a Netris V-Net as a private network. Enter a valid IP address in the 'IP Addresses' text field and specify the Netris V-Net's gateway IP address in the 'Default Gateway' field. Then Netris will automatically add that server to the V-Net when the server is deployed.
+
+
+.. image:: /tutorials/images/phoenixnap-vnet-import-a-new-server-with-ip.png
+    :align: center
+
+Thanks to that functionality, you can request a bare-metal server directly into Netris V-Net. As a result, you will have bare-metal servers in a private subnet that can connect to services outside your VPC (since we have enabled NAT globally in previous chapters), but external services cannot initiate a connection with those servers.
+
+In order to connect via SSH to the newly deployed server, you can either create a DNAT rule and connect via Public IP, or if you don't need permanent ssh access to that server, you can simply connect using Softgate as a JumpHost.
+
+.. code-block:: shell-session
+
+  ssh -o ProxyCommand="ssh -W %h:%p ubuntu@<SoftGate Main IP>" ubuntu@<Server Private IP>
+
+
+.. image:: /tutorials/images/phoenixnap-vnet-ssh-to-server.png
+    :align: center
 
 Tags
 ----
