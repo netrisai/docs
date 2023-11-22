@@ -69,9 +69,9 @@ In order to connect via SSH to the newly deployed server, you can either create 
 Deploy a new server w/ static IP into an existing V-Net
 -------------------------------------------------------
 
-Starting from Netris `v3.5.0 <https://www.netris.io/netris-3-5-0-release-notes>`_, Netris creates private networks in phoenixNAP BMC with a CIDR based on the corresponding VNET gateway. Continuous monitoring by Netris prohibits direct editing of these private networks from the phoenixNAP BMC console. However, any modifications trigger Netris to automatically roll back all changes to their original state.
+Starting from Netris `v3.5.0 <https://www.netris.io/netris-3-5-0-release-notes>`_, Netris creates private networks in phoenixNAP BMC with a CIDR based on the corresponding VNET gateway. As before, Netris continuously monitors private networks. As a result of this continuous monitoring, you can't edit private networks created by Netris from the phoenixNAP BMC console. However, if any modifications are made, Netris will automatically roll everything back to its state. 
 
-When requesting a server from phoenixNAP BMC without any public IP address, select a Netris V-Net as a private network. Enter a valid IP address in the 'IP Addresses' text field and specify the Netris V-Net's gateway IP address in the 'Default Gateway' field. Then Netris will automatically add that server to the V-Net when the server is deployed.
+When you request a server from phoenixNAP BMC without any public IP address, select a Netris V-Net as a private network. Enter a valid IP address in the 'IP Addresses' text field and specify the Netris V-Net's gateway IP address in the 'Default Gateway' field. Then Netris will automatically add that server to the V-Net when the server is deployed.
 
 
 .. image:: /tutorials/images/phoenixnap-vnet-import-a-new-server-with-ip.png
