@@ -11,7 +11,7 @@ Request two servers(c3.small.x86) from Equinix Metal with Ubuntu 22.04 OS and wa
 .. image:: /tutorials/images/softgate-nodes-created-in-equinix.png
     :align: center
 
-2) When Equinix finishes provisioning of the servers, click on each server name, then click tag, and add a tag “netris-softgate”. 
+2) When Equinix finishes provisioning of the servers, click on each server name, then click "Tags", and add a tag “netris-softgate”. 
 
     Tag “netris-softgate” will signal Netris Controller that these two servers are going to be used as Netris SoftGate nodes in this particular site (Project+Location).
 

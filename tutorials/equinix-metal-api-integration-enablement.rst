@@ -26,7 +26,7 @@ You only need to deal with the below 5 fields. Leave the rest to default values 
    * - Equinix Project ID
      - Copy/Paste the Project ID from Equinix Metal portal under Project Settings → General → Project ID.
    * - Equinix Project API key
-     - Create a new Read/Write API key in Equinix Metal portal under Project Settings → Project API keys → + Add New Key. Then copy/paste here.
+     - Create a new Read/Write API key in Equinix Metal portal under Project Settings → API keys → + Add an API Key. Then copy/paste here.
    * - Equinix Location
      - Select your equinix location from the dropdown menu.
 
