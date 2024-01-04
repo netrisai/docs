@@ -10,7 +10,7 @@ Both NAT and on-demand Load Balancer services need public IP addresses.
 1) Requesting new Public IP address block
 =========================================
 
-Go to Equinix Metal web console and click on IPs & Networks → IPs (see the screenshot below)
+Go to Equinix Metal web console and click on Networking → IPs (see the screenshot below)
 
 In this example, I’m requesting two IP address blocks, one /30 (4 IPs) for NAT and one /28 (16 IPs) for Load Balancer. 
 
