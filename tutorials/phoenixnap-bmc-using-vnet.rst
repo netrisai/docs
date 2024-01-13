@@ -33,21 +33,23 @@ In this example, the new V-NET has VLAN ID 3000, subnet 10.128.1.0/24, and gatew
     :align: center
 
 
-Deploy a new server into an existing V-Net
-------------------------------------------
+Deploy a new server w/ dynamic IP into an existing V-Net
+--------------------------------------------------------
 
-Netris creates a private network in phoenixNAP BMC based on declared V-Nets. Besides creation, Netris continuously monitors that private networks. As a result of this continuous monitoring, you can't edit private networks created by Netris from the phoenixNAP BMC console. However, if any modifications are made, Netris will automatically roll everything back to its state. 
+Deploying a new server is significantly simpler when using Netris V-NET compared to the traditional process of setting up a server with a public IP.
 
-The only exception is a case with newly deployed servers. When you request a server from phoenixNAP BMC without any public IP address, use some Netris V-Net as a private network and mark the DHCP checkbox "**Use your own privately managed DHCP server (Obtain IP address automatically)**" - Netris will automatically add that server into the V-Net.
+The recommended steps:
 
-.. note:: 
-  
-  Starting from Netris version `3.5.0 <https://www.netris.io/netris-3-5-0-release-notes>`_, Netris will also automatically add a server with a static IP address assignment into the V-Net. For more details, refer to the section on :ref:`"Deploy a new server w/ static IP into an existing V-Net"<phxnap_vnet_static_ip>`
+1. **Request a Server:** When ordering a server from phoenixNAP BMC, opt for no public IP address.
+2. **Select Netris V-Net:** In the phoenixNAP web console, select a Netris V-Net (previously created in Netris) as your private network.
+3. **DHCP:** In the phoenixNAP web console, check the option "**Use your own privately managed DHCP server (Obtain IP address automatically)**". Make sure that DHCP is enabled for the given V-Net through the Netris web console.
+
+Netris will automatically include the server into the V-Net and will assign an IP configuration through Netris DHCP service.
 
 .. image:: /tutorials/images/phoenixnap-vnet-import-a-new-server.png
     :align: center
 
-Thanks to that functionality, you can request a bare-metal server directly into Netris V-Net. As a result, you will have bare-metal servers in a private subnet that can connect to services outside your VPC (since we have enabled NAT globally in previous chapters), but external services cannot initiate a connection with those servers. Once the servers have been provisioned, they will get a private IP from Netris DHCP, and you can find those IPs by pressing the "**IP/MAC Info**" button on the V-NET.
+As a result, you will have bare-metal servers in a private subnet that can connect to services outside your VPC (since we have enabled NAT globally in previous chapters), but external services cannot initiate a connection with those servers. Once the servers have been provisioned, they will get a private IP from Netris DHCP, and you can find those IPs by pressing the "**IP/MAC Info**" button on the V-NET.
 
 .. image:: /tutorials/images/phoenixnap-vnet-imported-new-server.png
     :align: center
@@ -69,15 +71,21 @@ In order to connect via SSH to the newly deployed server, you can either create 
 Deploy a new server w/ static IP into an existing V-Net
 -------------------------------------------------------
 
-Starting from Netris `v3.5.0 <https://www.netris.io/netris-3-5-0-release-notes>`_, Netris creates private networks in phoenixNAP BMC with a CIDR based on the corresponding VNET gateway. As before, Netris continuously monitors private networks. As a result of this continuous monitoring, you can't edit private networks created by Netris from the phoenixNAP BMC console. However, if any modifications are made, Netris will automatically roll everything back to its state. 
+Deploying a new server is significantly simpler when using Netris V-NET compared to the traditional process of setting up a server with a public IP.
 
-When you request a server from phoenixNAP BMC without any public IP address, select a Netris V-Net as a private network. Enter a valid IP address in the 'IP Addresses' text field and specify the Netris V-Net's gateway IP address in the 'Default Gateway' field. Then Netris will automatically add that server to the V-Net when the server is deployed.
+The recommended steps:
+
+1. **Request a Server:** When ordering a server from phoenixNAP BMC, opt for no public IP address.
+2. **Select Netris V-Net:** In the phoenixNAP web console, select a Netris V-Net (previously created in Netris) as your private network.
+3. **IP Configuration:** In the phoenixNAP web console, enter a valid IP address in the 'IP Addresses' text field and specify the Netris V-Net's gateway IP address in the 'Default Gateway' field. 
+
+Netris will automatically include the server into the V-Net.
 
 
 .. image:: /tutorials/images/phoenixnap-vnet-import-a-new-server-with-ip.png
     :align: center
 
-Thanks to that functionality, you can request a bare-metal server directly into Netris V-Net. As a result, you will have bare-metal servers in a private subnet that can connect to services outside your VPC (since we have enabled NAT globally in previous chapters), but external services cannot initiate a connection with those servers.
+As a result, you will have bare-metal servers in a private subnet that can connect to services outside your VPC (since we have enabled NAT globally in previous chapters), but external services cannot initiate a connection with those servers.
 
 In order to connect via SSH to the newly deployed server, you can either create a DNAT rule and connect via Public IP, or if you don't need permanent ssh access to that server, you can simply connect using Softgate as a JumpHost.
 
@@ -121,3 +129,8 @@ The "manage" button will open a dialogue window where it's also possible to add 
     :align: center
 
 Note that you can use Services --> ACLs for granular control over traffic between multiple V-NETs as well as to/from outside (Internet or other remote sites)  
+
+
+.. note:: 
+  
+  Netris creates a private network in phoenixNAP BMC based on declared V-Nets. Besides creation, Netris continuously monitors that private networks. As a result of this continuous monitoring, you can't edit private networks created by Netris from the phoenixNAP BMC console. However, if any modifications are made, Netris will automatically roll everything back to its state. 
