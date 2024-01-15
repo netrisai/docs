@@ -11,7 +11,7 @@ We need these BGP sessions for moving further. In the next chapters we are going
     :align: center
 
 You only need to activate BGP on the Equinix Metal Project. Netris will handle the rest.
-In the Equinix Metal web console go to IPs & Networks → BGP then click Activate BGP on This Project. (see below screenshots)
+In the Equinix Metal web console go to Networking → BGP then click Activate BGP on This Project. (see below screenshots)
 
 .. image:: /tutorials/images/equinix-metal-activate-bgp.png
     :align: center

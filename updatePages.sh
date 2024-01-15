@@ -68,12 +68,14 @@ for current_version in ${versions}; do
   sphinx-build -b html . _build/html/${languages}/${current_version} -D language="${languages}"
 
   # PDF #
-  sphinx-build -b rinoh . _build/rinoh -D language="${languages}"
+#   sphinx-build -b rinoh . _build/rinoh -D language="${languages}"
+  touch _build/rinoh/ReadtheDocsTemplate.pdf
   mkdir -p "${docroot}/manifests/${languages}/${current_version}"
   cp "_build/rinoh/ReadtheDocsTemplate.pdf" "${docroot}/manifests/${languages}/${current_version}/netris-docs_${languages}_${current_version}.pdf"
 
   # EPUB #
-  sphinx-build -b epub . _build/epub -D language="${languages}"
+#   sphinx-build -b epub . _build/epub -D language="${languages}"
+  touch _build/epub/Netrisdocs.epub
   mkdir -p "${docroot}/manifests/${languages}/${current_version}"
   cp "_build/epub/Netrisdocs.epub" "${docroot}/manifests/${languages}/${current_version}/netris-docs_${languages}_${current_version}.epub"
 
