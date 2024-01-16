@@ -3,9 +3,7 @@
 **Description**,Free text description
 **Hardware Type**,Select **SoftGate**
 **Site**,The data center where the current SoftGate node belongs.
-**Inventory Profile**,Profile describing the timezone; DNS; NTP; and Security features
+**Profile**,Inventory Profile describing the timezone; DNS; NTP; and Security features
 **IP Address**,IPv4 address for the loopback interface
 **Management IP address**,IPv4 address for the out of band management interface
-**NFV Node Port**,A physical port on a spine switch where the SoftGate node's first SmartNIC port is connected. Typically each spine switch has one SoftGate node connected to it. 
-**+NAT address**,Public IP addresses to be used as global IP for SNAT/DNAT. (check Enabling NAT section of Network Policies chapter)
-**+NAT address pool**,Public IP address subnets to be used as rolling global IP addresses for SNAT. (check Enabling NAT section of Network Policies chapter)
+**Add Links**,Used for describing physical connections between switches and SoftGates

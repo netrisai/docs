@@ -10,16 +10,17 @@
 
 .. role:: red
 
-**************************************
-Netris Upgrade and Rollback Procedures
-**************************************
+********************
+Upgrade and Rollback
+********************
 
-Upgrade Procedure
-=================
+Netris upgrade Procedure
+========================
 
-Due to potential database structural changes between Netris versions, it's highly recommended to take a backup of the database before upgrading. The backup will be used in the unlikely event of the need to perform a rollback.
+Backup current database
+-----------------------
 
-1. To create a database backup, run the following command by first SSHing the Controller:
+SSH to the host running the Netris Controller and execute below command.
 
 .. code-block:: shell-session
 
@@ -29,23 +30,31 @@ Ensure that SQL file ``db-snapshot.sql`` is generated and present in the current
 
 .. note::
   
-  An SQL dump is enough for this scenario, but that's not Netris-Controller's entire backup procedure. Get familiar with the Backup/Restore documentation :ref:`here<ctl-backup-restore>`.
+  An SQL dump is enough for this basic upgrade scenario, however detailed backup & restore procedure is described in :ref:`here<ctl-backup-restore>`.
 
-2. Stop all Netris agents on devices managed by the controller (switch & SoftGate).
+Stop Netris Agents
+------------------
 
-For the switch agent, first SSH to the switch and run the following command:
+Stop Netris agents on switches and SoftGate nodes.
+
+**For Switches:**
+
+SSH to the switch and run the following command:
 
 .. code-block:: shell-session
 
   sudo systemctl stop netris-sw
 
-For the SoftGate agent, first SSH to the SoftGate and run the following command:
+**For SoftGate nodes:**
+
+SSH to the SoftGate and run the following command:
 
 .. code-block:: shell-session
 
   sudo systemctl stop netris-sg
 
-Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with the "**check_agent**" status being "**Agent is unavailable**".
+Make sure that all devices in the *Network → Inventory* section are ":red:`red`" with the "**check_agent**" status being "**Agent is unavailable**".
+
 
 .. note::
   
@@ -53,13 +62,19 @@ Ensure that all devices in the *Net → Inventory* section are ":red:`red`" with
 
 .. _upgrade 3:
 
-3. Before upgrading the Netris Controller, take a note of the "*Netris Version*" by navigating to *Setting → General* in the Controller web interface. This version number will be used in case of the need to perform a rollback procedure.
+Check your current version
+--------------------------
+
+Before upgrading the Netris Controller, take a note of the "*Netris Version*" by navigating to *Settings → General* in the Controller web interface. The current version number may be used in case of the hypothetical need to perform a rollback procedure.
 
 .. image:: /tutorials/images/netris_version_example.png
     :align: center
     :alt: Netris Version Example
 
-4. Start the upgrade of the Netris Controller using the one-liner after SSHing to the Controller.
+Upgrade the Controller
+----------------------
+
+SSH to the Controller host and execute the below command.
 
 .. code-block:: shell-session
 
@@ -103,27 +118,43 @@ The output is similar to this:
   
   If, after 5 minutes, you see pods with a status other than "*Running*" or "*Completed*", please reach out to us via `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__.
 
-Then verify that the "*Netris Version*" reflects the version change by navigating to *Setting → General* in the Controller web interface.
+Check the upgraded version
+--------------------------
 
-5. Once you have verified that the Netris controller is up-to-date, it is time to update the switch and SoftGate agents.
+Make sure that the "*Netris Version*" reflects the version change by navigating to *Settings → General* in the Controller web interface.
 
-Upgrade the switch & SoftGate agents by copying the one-liner from the "*Install Agent*" option of the device's 3-dot menu found under the *Net → Inventory* section and pasting it after SSHing to the corresponding device.
+Upgrade Switches and SoftGate nodes
+-----------------------------------
+
+Once you have verified that the Netris controller is up-to-date, it is time to update the switch and SoftGate agents.
+
+Upgrade the switch & SoftGate agents by copying the one-liner from the "*Install Agent*" option of the device’s 3-dot menu found under the *Network → Inventory* section and pasting it into appropriate devices by SSHing to the corresponding device.
+
+.. note::
+
+  These one-liners include a unique identifier for binding the physical device with the virtual object in the Controller. Please make sure 
+  to copy/paste into the right devices.
+
 
 .. image:: /tutorials/images/install_agent.gif
     :align: center
     :alt: Install Agent
 
-After all the agents have finished the upgrade process, make sure all devices in the *Net → Inventory* section have a ":green:`green`" status and the *Netris version* for each device reflects the version change.
+After all the agents have finished the upgrade process, make sure all devices in the *Network → Inventory* section have a ":green:`green`" status and the *Netris version* for each device reflects the version change.
 
 In the event the "**check_agent**" status is "**Agent is unavailable**" after the agent upgrade has finished, perform agent restart on the affected device(s).
 
-For the switch agent, first SSH to the switch and run the following command:
+**For Switches:**
+
+SSH to the switch and run the following command:
 
 .. code-block:: shell-session
 
   sudo systemctl restart netris-sw
 
-For the SoftGate agent, first SSH to the SoftGate and run the following command:
+**For SoftGate nodes:** 
+
+SSH to the SoftGate and run the following command:
 
 .. code-block:: shell-session
 
@@ -132,23 +163,33 @@ For the SoftGate agent, first SSH to the SoftGate and run the following command:
 Rollback Procedure
 ==================
 
-A rollback procedure can be executed in the event the upgrade introduced any adverse impact on the production traffic.
+A rollback procedure can be executed in the event the upgrade introduces any adverse impact on the production traffic.
 
-1. Stop all Netris agents on the devices managed by the controller (switch & SoftGate).
+Stop Netris Agents
+------------------
 
-For the switch agent, first SSH to the switch and run the following command:
+Stop all Netris agents on the devices managed by the controller (switch & SoftGate).
+
+**For Switches:**
+
+SSH to the switch and run the following command:
 
 .. code-block:: shell-session
 
   sudo systemctl stop netris-sw
 
-For the SoftGate agent, first SSH to the SoftGate and run the following command:
+**For SoftGate nodes:**
+
+SSH to the SoftGate and run the following command:
 
 .. code-block:: shell-session
 
   sudo systemctl stop netris-sg
 
-2. Restore the database from the previously taken snapshot.
+Restore The Database
+--------------------
+
+Restore the database from the previously taken snapshot.
 
 Drop the current database and create a new one by running the following command after SSHing to the Controller:
 
@@ -164,7 +205,10 @@ While still connected to the Controller, copy the backup file from the controlle
   kubectl -n netris-controller cp db-snapshot.sql netris-controller-mariadb-0:/opt/db-snapshot.sql
   kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE < /opt/db-snapshot.sql'
 
-3. Downgrade Netris Controller application with the following command.
+Downgrade the Controller Software
+---------------------------------
+
+Downgrade Netris Controller application with the following command.
 
 .. note::
   
@@ -176,23 +220,35 @@ Example:
 
   curl -sfL https://get.netris.io | sh -s -- --ctl-version 3.0.10-031
 
-Afterwards, verify that the version of the "*Netris Version*" reflects the downgraded version by navigating to *Setting → General* in the Netris Controller.
+Afterwards, verify that the version of the "*Netris Version*" reflects the downgraded version by navigating to *Settings → General* in the Netris Controller.
 
-4. Once you have verified that the Netris controller has been downgraded to the correct version, it is time to downgrade the switch and SoftGate agents. 
+Downgrade Netris Agent Software
+-------------------------------
 
-Install the correct and appropriate versions of the switch & SoftGate agents simply by copying the one-liner from the "*Install Agent*" option of the device's 3-dot menu found under the *Net → Inventory* section and pasting it after SSHing to the corresponding device.
+Once you have verified that the Netris controller has been downgraded to the correct version, it is time to downgrade the switch and SoftGate agents. 
 
-After all the switches and SoftGates have been successfully downgraded, make sure all the devices in the *Net → Inventory* section have a ":green:`green`" status and the *Netris version* for each device reflects the version downgrade.
+Install the appropriate version of switch & SoftGate agents by copying the one-liner from the "*Install Agent*" option of the device’s 3-dot menu found under the *Network → Inventory* section and pasting it into appropriate devices by SSHing to the corresponding device.
+
+.. note::
+
+  One-liners include a unique identifier for binding the physical device with the virtual object in the Controller. Please make sure to copy/paste into the right devices.
+
+
+After all the switches and SoftGates have been successfully downgraded, make sure all the devices in the *Network → Inventory* section have a ":green:`green`" status and the *Netris version* for each device reflects the version downgrade.
 
 In case the "**check_agent**" status is "**Agent is unavailable**" after agent downgrade, perform agent restart.
 
-For the switch agent, first SSH to the switch and run the following command:
+**For Switches:**
+
+SSH to the switch and run the following command:
 
 .. code-block:: shell-session
 
   sudo systemctl restart netris-sw
 
-For the SoftGate agent, first SSH to the SoftGate and run the following command:
+**For SoftGate nodes:**
+
+SSH to the SoftGate and run the following command:
 
 .. code-block:: shell-session
 

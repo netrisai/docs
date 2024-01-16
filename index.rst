@@ -14,12 +14,13 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :maxdepth: 2
    :caption: Tutorials
 
-   tutorials/index
+   tutorials/installing-netris-controller
    tutorials/vpc-anywhere
    tutorials/netris-vpc-for-equinix-metal
    tutorials/netris-vpc-for-phoenixnap-bmc
    tutorials/netris-vpc-for-aws
    tutorials/netris-vpc-for-gcp
+   tutorials/vpc-gateways-with-managed-fabric.rst
 
 .. toctree::
    :maxdepth: 4
@@ -30,36 +31,15 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
 .. toctree::
    :maxdepth: 2
-   :caption: Netris Fundamentals
-
-   introduction
-   netris-architecture
-   supported-networks
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Detailed Installation
-
-   installation
-   switch-agent-installation
-   SoftGate-installation
-   SoftGate-PRO-installation
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Switch-fabric Configuration
+   :caption: Concepts
 
    definitions
-   ipam
-   topology-management
-   switch-ports
-   lag
-
-.. toctree::
-   :maxdepth: 4
-   :caption: Network Policies
-
-   network-policies
+   introduction
+   supported-platform-matrix
+   supported-switch-hardware
+   netris-architecture
+   vpc
+   supported-networks
 
 .. toctree::
    :maxdepth: 4
@@ -73,10 +53,38 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
 .. toctree::
    :maxdepth: 4
+   :caption: Network Policies
+
+   network-policies
+
+
+.. toctree::
+   :maxdepth: 4
    :caption: Operations
 
-   visibility
    accounts
+   maintenance-mode
+   tutorials/upgrading-netris
+   visibility
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Switch-fabric Management
+
+   topology-management
+   switch-ports
+   lag
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Detailed Installation
+
+   installation
+   switch-agent-installation
+   SoftGate-installation
+   SoftGate-PRO-installation
+
    
 .. toctree::
    :maxdepth: 4

@@ -22,53 +22,48 @@ Description of User account fields:
 * **Permission Group** - User permissions for viewing and editing parts of the Netris Controller. (if User Role is not used)
 * **+Tenant** - User permissions for viewing and editing services using Switch Port and IP resources assigned to various Tenants. (if User Role is not used)
 
-Example: Creating a user with full access to all sections of Netris Controller, read-only access to resources managed by any Tenant, and full access to resources assigned to the Tenant Admin. 
+Example: Creating a user with full access to all sections of Netris Controller, read-only access to resources managed by any Tenant, and full access to resources assigned to the Tenant Admin.
 
-.. image:: images/users.png
+.. image:: images/add_user.png
     :align: center
-    :class: with-shadow
     :alt: User Management
     
 **Password**: To set a password or email the user for a password form, go to the listing of usernames and click the menu on the right side. 
 
-Example: Listing of user accounts.
-
-
-.. image:: images/password.png
+.. image:: images/user_set_password.png
     :align: center
-    :class: with-shadow
     :alt:  List User Accounts
     
 Tenants
 =======
-IP addresses and Switch Ports are network resources that can be assigned to different Tenants to have under their management. Admin is the default tenant, and by default, it owns all the resources. The concept of Tenants can be used for sharing and delegation of control over the network resources, typically used by network teams to grant access to other teams for requesting & managing network services using the Netris Controller as a self service portal or programmatically (with Kubernetes CRDs) as part of DevOps/NetOps pipeline. 
+
+IP addresses and Network Interfaces are resources that can be assigned to different Tenants for their management. Admin is the default tenant, and by default, it owns all the resources. The concept of Tenants can be used for sharing and delegation of control over the network resources, typically used by network teams to grant access to other teams for requesting & managing network services using the Netris Controller as a self service portal or programmatically (with Kubernetes CRDs or Terraform) as part of DevOps/NetOps pipeline.
 
 A Tenant has just two fields, the unique name and custom description.
 
 Example: Adding a tenant.
 
-.. image:: images/tenants.png
+.. image:: images/add_tenant.png
     :align: center
-    :class: with-shadow
     :alt: Adding Tenants
     
 Permission Groups
 =================
-Permission Groups are a list of permissions on a per section basis that can be attached individually to a User or a User Role. Every section has a View and Edit attribute. The view defines if users with this Permission Group can see the particular section at all. Edit defines if users with this Permission Group can edit services and policies in specific sections. 
+
+Permission Groups are a list of permissions on a per section basis that can be attached individually to a User or a User Role. Every section has a View and Edit attribute. The view defines if users with this Permission Group can see the particular section at all. Edit defines if users with this Permission Group can edit services and policies in specific sections.
 
 Example: Permission Group.
 
-.. image:: images/permission_group.png
+.. image:: images/add_perm_group.png
     :align: center
-    :class: with-shadow
     :alt: Managing Permissions 
     
 User Roles
 ==========
-Permission Groups and Tenants can be either linked directly to an individual username or can be linked to a User Role object which then can be linked to an individual username.  
 
-.. image:: images/user_role.png
+Permission Groups and Tenants can be either linked directly to an individual username or can be linked to a User Role object which then can be linked to an individual username. 
+
+.. image:: images/add_user_role.png
     :align: center
-    :class: with-shadow
     :alt: User Roles
     

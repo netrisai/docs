@@ -6,19 +6,20 @@ Visibility (Telescope)
 **********************
 
 Graph Boards
-=================
+============
+
 You can create custom graph boards with data sources available in different parts of the system. You can even sum multiple graphs and visualize them in a single view.
 
-To start with Graph Boards, first, you need to add a new Graph Board. 
+To start with Graph Boards, first, you need to add a new Graph Board.
 
-1. Navigate to Telescope→Graph Boards, open the dropdown menu in the top left corner, then click +Add board.
+1. Navigate to Telescope → Graph Boards, open the dropdown menu in the top left corner, then click + button.
 
-.. image:: images/telescope.png
+.. image:: images/add_board.png
     :align: center
     
 2. Type a name and assign it to one of the tenants that you manage. Later on, you can optionally mark the Graph Board as public if you want the particular board to be visible to all users across multiple tenants.  
 
-.. image:: images/createboard.png
+.. image:: images/create_board.png
     :align: center
     
 Now you can add graphs by clicking +Add graph. 
@@ -36,19 +37,19 @@ Description of +Add graph fields:
 - **Function** - Currently, only summing is supported.
 - **+Member** - Add data sources by service (E-BGP, V-NET, etc..) or by Switch Port.
 
-Example: Sum of traffic on two ISP(Iris1 + Iris2) links.
+Example: Sum of traffic on two ISP uplinks.
 
-.. image:: images/ISP_Iris.png
+.. image:: images/add_graph.png
     :align: center
 
-Example: Sum of the traffic on all ports under the service called “my V-NET”
+Example: Sum of the traffic on all ports under the service called “PC06 V-NET”.
 
-.. image:: images/V_NET.png
+.. image:: images/add_graph2.png
     :align: center
 
 Screenshot: Listing of a Graph Board with the explanation of the controls.
 
-.. image:: images/graphboard.png
+.. image:: images/graph_board.png
     :align: center
 
 API Logs
@@ -59,7 +60,8 @@ Dashboard
 =========
 Netris, besides automatic configuration, also provides automatic monitoring of the entire network without the need for configuration of the monitoring systems.
 
-Telescope→Dashboard summarizes Network Health, which can also be accessed by clicking on the Netris icon in the top left corner.
+Telescope → Dashboard summarizes Network Health, which can also be accessed by clicking on the Netris icon in the top left corner.
+
 
 Description of the pie charts.
 
