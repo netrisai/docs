@@ -1,11 +1,11 @@
 .. meta::
-  :description: Using Multi-interface SoftGate (experimental)
+  :description: Using Multi-interface SoftGate
 
-#############################################
-Using Multi-interface SoftGate (experimental)
-#############################################
+##############################
+Using Multi-interface SoftGate
+##############################
 
-By default, Netris uses the bond0 interface of SoftGates exclusively. For each V-NET, Netris creates a new subinterface (e.g., bond0.700) with the next available VLAN ID from the :doc:`Site's defined VLAN ID range <vpc-anywhere-check-default-site>`. However, a proposed experimental solution aims to modify this behavior.
+By default, Netris uses the bond0 interface of SoftGates exclusively. For each V-NET, Netris creates a new subinterface (e.g., bond0.700) with the next available VLAN ID from the :doc:`Site's defined VLAN ID range <vpc-anywhere-check-default-site>`. However, a proposed solution aims to modify this behavior.
 
 
    
