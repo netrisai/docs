@@ -27,19 +27,20 @@ Let's create a V-Net service to give server **srv05-nyc** the ability to reach i
   2. Click the **+ Add** button in the top right corner of the page to get started with creating a new V-Net service.
   3. Define a name in the **Name** field (e.g. ``vnet-customer``).
   4. From the **Sites** drop-down menu, select "**US/NYC**".
-  5. From the **Owner** drop-down menu, select "**Demo**".
-  6. From the **IPv4 Gateway** drop-down menu, select the "**192.168.46.0/24(CUSTOMER)**" subnet.
-  7. The first available IP address "**192.168.46.1**" is automatically selected in the second drop-down menu of the list of IP addresses. This matches the results of the ``ip route ls`` command output on **srv05-nyc** we observed earlier.
-  8. From the **Add Network Interface** drop-down menu put a check mark next to switch port "**swp2(swp2 | srv05-nyc)@sw22-nyc (Demo)**", which we can see is the the port where **srv05-nyc** is wired into when we reference the :ref:`"Sandbox Topology diagram"<s11-topology>`.
+  5. From the **VLAN ID** drop-down menu, select "**Enter manually**" and type in "**46**" in the field to the right.
+  6. From the **Owner** drop-down menu, select "**Demo**".
+  7. From the **IPv4 Gateway** drop-down menu, select the "**192.168.46.0/24(CUSTOMER)**" subnet.
+  8. The first available IP address "**192.168.46.1**" is automatically selected in the second drop-down menu of the list of IP addresses. This matches the results of the ``ip route ls`` command output on **srv05-nyc** we observed earlier.
+  9. From the **Add Network Interface** drop-down menu put a check mark next to both network interfaces "**swp5(swp5 | srv05-nyc)@sw12-nyc (Demo)**" and "**swp5(swp5 | srv05-nyc)@sw21-nyc (Demo)**", which we can see are the interfaces where **srv05-nyc** is wired into when we reference the :ref:`"Sandbox Topology diagram"<s15-topology>`.
 
-    *  The drop-down menu only contains this single switch port as it is the only port that has been assigned to the **Demo** tenant.
+    *  The drop-down menu only contains these two network interfaces as they are the only interfaces that have been assigned to the **Demo** tenant.
 
-  9. Check the **Untag** check-box and click the **Add** button.
-  10. Click the **Add** button at the bottom right of the "**Add new V-Net**" window and the service will start provisioning.
+  10. Check the **Untagged** check-box and click the **Add** button.
+  11. Click the **Add** button at the bottom right of the "**Add new V-Net**" window and the service will start provisioning.
 
-After just a few seconds, once fully provisioned, you will start seeing successful ping replies, similar in form to "**64 bytes from 192.168.46.1: icmp_seq=55 ttl=64 time=1.66 ms**", to the ping that was previously started in the terminal window, indicating that now the gateway address is reachable from host **srv05-nyc**.
+After just a few seconds, once fully provisioned, you will start seeing successful ping replies, similar in form to "**64 bytes from 192.168.46.1: icmp_seq=55 ttl=64 time=1.66 ms**", to the ping that was previously started in the terminal window, indicating that now the gateway address is accessible from host **srv05-nyc**.
 
-More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-NET"<v-net_def>` page.
+More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`"V-Network"<v-net_def>` page.
 
 .. _s15-e-bgp:
 
@@ -51,7 +52,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox15.netris.io <https://sandbox15.netris.io>`_ and navigate to **Net → E-BGP**.
+  1. Log into the Netris Controller by visiting `https://sandbox15.netris.io <https://sandbox15.netris.io>`_ and navigate to **Network → E-BGP**.
   2. Click the **+ Add** button in the top right corner of the page to configure a new E-BGP session.
   3. Define a name in the **Name** field (e.g. ``iris-isp2-ipv4-customer``).
   4. From the **Site** drop-down menu, select "**US/NYC**".
@@ -60,7 +61,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
 
     * For the purposes of this exercise, the required switch port can easily be found by typing ``ISP2`` in the Search field.
 
-  7. For the **VLAN ID** field, uncheck the **Untag** check-box and type in ``1152``.
+  7. For the **VLAN ID** field, type in ``1152`` while leaving the **Untagged** check-box unchecked.
   8. In the **Neighbor AS** field, type in ``65007``.
   9. In the **Local IP** field, type in ``45.38.161.214``.
   10. In the **Remote IP** field, type in ``45.38.161.213``.
@@ -69,10 +70,11 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   13. In the **Prefix List Outbound** field, type in ``permit 45.38.161.192/28 le 32``
   14. And finally click **Add**
 
-Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Net → E-BGP** page as well as on **Telescope → Dashboard** pages will turn green, indication a successfully established BGP session. We can glean further insight into the BGP session details by navigating to **Net → Looking Glass**.
+Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Network → E-BGP** page as well as on **Telescope → Dashboard** pages will turn green, indication a successfully established BGP session. We can glean further insight into the BGP session details by navigating to **Net → Looking Glass**.
 
-  1. Select "**SoftGate2(45.38.161.193)**" (the border router where our newly created BGP session is terminated on) from the **Select device** drop-down menu.
-  2. Leaving the **Family** drop-down menu on IPv4 and the **Command** drop-down menu on "**BGP Summary**", click on the **Submit** button.
+  1. Make sure "**vpc-1:Default**" is selected from the **VPC** drop-down menu.
+  2. Select "**SoftGate2(45.38.161.193)**" (the border router where our newly created BGP session is terminated on) from the **Hardware** drop-down menu.
+  3. Leaving the **Address Family** drop-down menu on "**Family: IPV4**" and the **Command** drop-down menu on "**Command: BGP Summary**", click on the **Submit** button.
 
 We are presented with the summary of the BGP sessions terminated on **SoftGate2**. You can also click on each BGP neighbor name to further see the "**Advertised routes**" and "**Routes**" received to/from that BGP neighbor.
 
@@ -91,23 +93,23 @@ Now that we have both internal and external facing services, we can aim for our 
   3. Start a ping session towards any public IP address (e.g. ``ping 1.1.1.1``).
   4. Keep the ping running as an indicator for when the service starts to work.
 
-Let's configure a source NAT so our Customer subnet **192.168.46.0/24**, which is used in the V-Net services called **vnet-customer**, can communicate with the Internet.
+Let's configure a Source NAT so our Customer subnet **192.168.46.0/24**, which is used in the V-Net services called **vnet-customer**, can communicate with the Internet.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox15.netris.io <https://sandbox15.netris.io>`_ and navigate to **Net → NAT**.
+  1. Log into the Netris Controller by visiting `https://sandbox15.netris.io <https://sandbox15.netris.io>`_ and navigate to **Network → NAT**.
   2. Click the **+ Add** button in the top right corner of the page to define a new NAT rule.
   3. Define a name in the **Name** field (e.g. ``NAT Customer``).
   4. From the **Site** drop-down menu, select "**US/NYC**".
   5. From the **Action** drop-down menu, select "**SNAT**".
-  6. From the **Protocol** drop-down menu, select "**ALL**".
+  6. Leave **ALL** selected in the **Protocol** drop-down menu.
   7. In the **Source Address** field, type in ``192.168.46.0/24``.
-  8. In the **Destination Address** field, type in ``0.0.0.0/0``.
+  8. In the **Destination Address** field, leave the default value of ``0.0.0.0/0``.
   9. Toggle the switch from **SNAT to Pool** to **SNAT to IP**.
   10. From the **Select subnet** drop-down menu, select the "**45.38.161.196/30 (NAT)**" subnet. 
   11. From the **Select IP** drop-down menu, select the "**45.38.161.196/32**" IP address.
 
-    * This public IP is part of **45.38.161.196/30 (NAT)** subnet which is configured in the **NET → IPAM** section with the purpose of **NAT** and indicated in the SoftGate configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`..
+    * This public IP is part of **45.38.161.196/30 (NAT)** subnet which is configured in the **Network → IPAM** section with the purpose of **NAT** and indicated in the **SoftGate** configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`.
 
   12. Click **Add**
 
@@ -117,9 +119,9 @@ More details about NAT (Network Address Translation) can be found on the :ref:`"
 
 .. _s15-l3lb:
 
-L3LB (Anycast L3 load balancer)
+L3LB (Anycast L3 Load Balancer)
 ===============================
-In this exercise we will quickly configure an Anycast IP address in the Netris Controller for two of our :ref:`"ROH (Routing on the Host)"<roh_def>` servers (**srv01-nyc** & **srv02-nyc**) which both have a running Web Server configured to display a simple HTML webpage and observe **ECMP** load balancing it in action.
+In this exercise we will quickly configure an Anycast IP address in the Netris Controller for two of our :ref:`"ROH (Routing on the Host)"<roh_def>` servers (**srv01-nyc** & **srv02-nyc**) which both have a running **Web Server** configured to display a simple HTML webpage and observe **ECMP** load balancing it in action.
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
@@ -142,7 +144,7 @@ In this exercise we will quickly configure an Anycast IP address in the Netris C
 .. image:: /images/l3lb_srv01.png
     :align: center
 
-In order to trigger the L3 load balancer to switch directing the traffic towards the other backend server (in this case from **srv01-nyc** to **srv02-nyc**, which based on the unique hash in your situation could be the other way around), we can simulate the unavailability of backend server we ended up on by putting it in **Maintenance** mode.
+In order to trigger the L3 load balancer to switch directing the traffic towards the other backend server (in this case from **srv01-nyc** to **srv02-nyc**, which based on the unique hash in your situation could be the other way around), we can simulate the unavailability of the backend server we ended up on by putting it in **Maintenance** mode.
 
 * Back in the Netris Controller, navigate to **Services → L3 Load Balancer**.
 
@@ -176,12 +178,12 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
-  1. Log into the Netris Controller by visiting `https://sandbox15.netris.io <https://sandbox15.netris.io>`_ and navigate to **Net → Sites**.
+  1. Log into the Netris Controller by visiting `https://sandbox15.netris.io <https://sandbox15.netris.io>`_ and navigate to **Network → Sites**.
   2. Click **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the **UC/NYC** site.
   3. From the **ACL Default Policy** drop-down menu, change the value from "**Permit**" to "**Deny**".
   4. Click **Save**.
 
-Soon you will notice that there are no new replies to our previously started ``ping 1.1.1.1`` command in the terminal window, indicating that the **1.1.1.1** IP address is no longer reachable.Now that the **Default ACL Policy** is set to **Deny**, we need to configure an **ACL** entry that will allow the **srv05-nyc** server to communicate with the Internet.
+Soon you will notice that there are no new replies to our previously started ``ping 1.1.1.1`` command in the terminal window, indicating that the **1.1.1.1** IP address is no longer reachable. Now that the **Default ACL Policy** is set to **Deny**, we need to configure an **ACL** entry that will allow the **srv05-nyc** server to communicate with the Internet.
 
 * Back in the web browser: (*\*Fields not specified should remain unchanged and retain default values*)
 
@@ -192,9 +194,7 @@ Soon you will notice that there are no new replies to our previously started ``p
   5. In the Source field, type in ``192.168.46.0/24``.
   6. In the Destination field, type in ``0.0.0.0/0``.
   7. Click **Add**.
-  8. Select **Approve** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the newly created "**V-Net Customer to WAN**" ACL.
-  9. Click **Approve** one more time in the pop-up window.
 
-Once the Netris Controller has finished syncing the new ACL policy with all member devices, we can see in the terminal window that replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again..
+You can observer the status of the syncing process by clicking on the **Syncing** yellow label at the top right of the **ACL** windown. Once the Netris Controller has finished syncing the new ACL policy with all relevant member devices, the label will turn green and read as **Synced**. Back in the terminal window we can observer that the replies to our ``ping 1.1.1.1`` command have resumed, indicating that the **srv05-nyc** server can communicate with the Internet once again..
 
 More details about ACL (Access Control List) can be found on the :ref:`"ACL"<acl_def>` page.

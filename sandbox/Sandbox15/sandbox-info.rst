@@ -22,10 +22,10 @@ The Sandbox environment includes:
 Topology diagram
 ================
 
-.. image:: /images/sandbox_topology.png
+.. image:: /images/sandbox_topology_new.png
     :align: center
     :alt: Sandbox Topology
-    :target: ../../_images/sandbox_topology.png
+    :target: ../../_images/sandbox_topology_new.png
 
 
 
@@ -37,9 +37,10 @@ Linux servers
 =============
 
 Example pre-configured Netris services:
- * **srv01-nyc**, **srv02-nyc**, **srv03-nyc** & **Netris Controller** - are consuming :ref:`"ROH (Routing on the Host)"<roh_def>` Netris example service, see **Services → ROH.**
- * **srv01-nyc**, **srv02-nyc** - are behind :ref:`"Anycast L3 load balancer"<l3lb_def>`, see **Services → Load Balancer**.
- * **srv04-nyc**, **srv05-nyc** - are consuming :ref:`"V-NET (routed VXLAN)"<v-net_def>` Netris service, see **Services → V-NET**.
+ * **srv01-nyc**, **srv02-nyc**, **srv03-nyc** & **Netris Controller** - are consuming :ref:`"ROH (Routing on the Host)"<roh_def>` Netris example service, see **Services → ROH.**.
+ * **srv01-nyc**, **srv02-nyc** - can be configured with :ref:`"L3 Load Balancer (Anycast LB)"<l3lb_def>`, see **Services → L3 Load Balancer**.
+ * **srv04-nyc**, **srv05-nyc**, **srv06-nyc**, **srv07-nyc** & **srv08-nyc** - are consuming :ref:`"V-Net (routed VXLAN)"<v-net_def>` Netris service, see **Services → V-Net**.
+ * **srv06-nyc**, **srv07-nyc**, **srv08-nyc** - are members of a 3 node Kubernetes cluser, and the K8s API servers are behind :ref:`"L4 Load Balancer (L4LB)"<l4lb_def>`, see **Services → L4 Load Balancer**.
 
 
 **Accessing the Linux servers:**
@@ -61,7 +62,7 @@ This Sandbox provides an up and running 3 node Kubernetes cluster. You can integ
 Upstream ISP
 ============
 This Sandbox also provides an upstream ISP service with real-world Internet routing configured through :ref:`"BGP"<bgp_def>`. 
-There are two pre-configured examples under **NET → E-BGP** , one using IPv4 and the other using IPv6, which are advertising the public IP subnets belonging to the sandbox to the upstream ISP IRIS.
+There are two pre-configured examples under **Network → E-BGP** , one using IPv4 and the other using IPv6, which are advertising the public IP subnets belonging to the sandbox to the upstream ISP IRIS.
 
 ISP settings:
 
@@ -101,7 +102,7 @@ ISP settings:
 
 Networks Used 
 =============
-Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Net → IPAM**.
+Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Network → IPAM**.
 
 .. code-block:: shell-session
 

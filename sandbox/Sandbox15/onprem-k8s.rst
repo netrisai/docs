@@ -7,6 +7,8 @@ Learn Netris operations with Kubernetes
 .. contents:: 
    :local: 
 
+.. _s15-k8s:
+
 Intro
 =====
 This Sandbox environment provides an existing Kubernetes cluster that has been deployed via `Kubespray <https://github.com/kubernetes-sigs/kubespray>`_. For this scenario, we will be using the `external LB <https://github.com/kubernetes-sigs/kubespray/blob/master/docs/ha-mode.md>`_ option in Kubespray. A dedicated Netris L4LB service has been created in the Sandbox Controller to access the k8s apiservers from users and non-master nodes sides.
