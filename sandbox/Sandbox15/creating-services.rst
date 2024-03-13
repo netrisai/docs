@@ -4,6 +4,9 @@
 Learn by Creating Services
 **************************
 
+.. contents:: 
+   :local: 
+
 Following these short exercises we will be able to demonstrate how the :ref:`Netris Controller<netris_controller_def>`, in conjunction with the :ref:`Netris Agents<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision the desired services within a matter of seconds.
 
 .. _s15-v-net:
@@ -35,7 +38,7 @@ Let's create a V-Net service to give server **srv05-nyc** the ability to reach i
 
     *  The drop-down menu only contains these two network interfaces as they are the only interfaces that have been assigned to the **Demo** tenant.
 
-  10. Check the **Untagged** check-box and click the **Add** button.
+  10. Click the **Add** button.
   11. Click the **Add** button at the bottom right of the "**Add new V-Net**" window and the service will start provisioning.
 
 After just a few seconds, once fully provisioned, you will start seeing successful ping replies, similar in form to "**64 bytes from 192.168.46.1: icmp_seq=55 ttl=64 time=1.66 ms**", to the ping that was previously started in the terminal window, indicating that now the gateway address is accessible from host **srv05-nyc**.
@@ -65,10 +68,9 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   8. In the **Neighbor AS** field, type in ``65007``.
   9. In the **Local IP** field, type in ``45.38.161.214``.
   10. In the **Remote IP** field, type in ``45.38.161.213``.
-  11. Expand the **Advanced** section
-  12. In the **Prefix List Inbound** field, type in ``permit 0.0.0.0/0`` 
-  13. In the **Prefix List Outbound** field, type in ``permit 45.38.161.192/28 le 32``
-  14. And finally click **Add**
+  11. Expand the **Advanced** section 
+  12. In the **Prefix List Outbound** field, type in ``permit 45.38.161.192/28 le 32``
+  13. And finally click **Add**
 
 Allow up to 1 minute for both sides of the BGP sessions to come up and then the BGP state on **Network → E-BGP** page as well as on **Telescope → Dashboard** pages will turn green, indication a successfully established BGP session. We can glean further insight into the BGP session details by navigating to **Net → Looking Glass**.
 
@@ -109,7 +111,7 @@ Let's configure a Source NAT so our Customer subnet **192.168.46.0/24**, which i
   10. From the **Select subnet** drop-down menu, select the "**45.38.161.196/30 (NAT)**" subnet. 
   11. From the **Select IP** drop-down menu, select the "**45.38.161.196/32**" IP address.
 
-    * This public IP is part of **45.38.161.196/30 (NAT)** subnet which is configured in the **Network → IPAM** section with the purpose of **NAT** and indicated in the **SoftGate** configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`.
+    * This public IP address is part of **45.38.161.196/30 (NAT)** subnet which is configured in the **Network → IPAM** section with the purpose of **NAT** and indicated in the **SoftGate** configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`.
 
   12. Click **Add**
 
@@ -148,7 +150,7 @@ In order to trigger the L3 load balancer to switch directing the traffic towards
 
 * Back in the Netris Controller, navigate to **Services → L3 Load Balancer**.
 
-  1. Expand the **LB Vip** that was created when we defined the **Anycast** IP address earlier by clicking on the **>** to the left of "**45.38.161.200 (name_45.38.161.200)**".
+  1. Expand the **LB Vip** that was created when we defined the **Anycast** IP address earlier by clicking on the **>** button to the left of "**45.38.161.200 (name_45.38.161.200)**".
   2. Click **Action v** to the right of the server you originally ended up on (in this case **srv01-nyc**).
   3. Click **Maintenance on**.
   4. Click **Maintenance** one more time in the pop-up window.

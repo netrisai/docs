@@ -2,10 +2,13 @@
 Welcome to Netris Sandbox
 *************************
 
+.. contents:: 
+   :local: 
+
 Netris Sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
 We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s15-pre-configured>` document. Feel free to view, edit, delete, and create new services. In case of any questions, reach out to us on `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__. 
 
-The credentials for the sandbox have been provided to you by email in response to your Sandbox request.
+The credentials for the sandbox have been provided to you via email in response to your Sandbox request.
 
 The Sandbox environment includes:
 
@@ -62,7 +65,7 @@ This Sandbox provides an up and running 3 node Kubernetes cluster. You can integ
 Upstream ISP
 ============
 This Sandbox also provides an upstream ISP service with real-world Internet routing configured through :ref:`"BGP"<bgp_def>`. 
-There are two pre-configured examples under **Network → E-BGP** , one using IPv4 and the other using IPv6, which are advertising the public IP subnets belonging to the sandbox to the upstream ISP IRIS.
+There are two pre-configured examples under **Network → E-BGP** , one using IPv4 and the other using IPv6, which are advertising the public IP subnets belonging to the Sandbox to the upstream ISP IRIS.
 
 ISP settings:
 

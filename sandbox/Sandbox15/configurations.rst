@@ -3,6 +3,10 @@
 ********************************
 Provided Example Configurations
 ********************************
+
+.. contents:: 
+   :local: 
+
 Once you log into the Netris Controller, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
 
 V-Net (Ethernet/Vlan/VXlan) Example
@@ -26,7 +30,7 @@ You may also verify that the service is working properly from within the GUI: (*
 7. Type ``192.168.45.64`` (the IP address configured on **bond0.45** on **srv04-nyc**) in the field labeled **IPv4 address**.
 8. Click **Submit**.
 
-The result should look similar to the output below, indicating that the communication between switch **sw21-nyc** and server **srv04-nyc** is working properly thanks to the configured V-Net service.
+The result should look similar to the output below, indicating that the communication between SoftGate **SoftGate1** and server **srv04-nyc** is working properly thanks to the configured V-Net service.
 
 .. code-block:: shell-session
 

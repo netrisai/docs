@@ -1,39 +1,39 @@
 .. _s15-k8s:
 
 ***************************************
-Learn Netris operations with Kubernetes
+Learn Netris Operations with Kubernetes
 ***************************************
 
 .. contents:: 
    :local: 
 
-.. _s15-k8s:
-
 Intro
 =====
-The Sandbox environment offers a pre-existing Kubernetes cluster deployed through K3S in `HA Mode <https://docs.k3s.io/datastore/ha-embedded>`_. To enable user access to the Kubernetes API, a dedicated Netris L4LB service has been created in the Sandbox Controller. Furthermore, this L4LB address serves as ``K3S_URL`` environment variable for all nodes within the cluster.
+The Sandbox environment offers a pre-existing 3 node Kubernetes cluster deployed through K3S in `HA Mode <https://docs.k3s.io/datastore/ha-embedded>`_. To enable user access to the Kubernetes API, a dedicated Netris L4LB service has been created in the Sandbox Controller. Furthermore, this L4LB address serves as ``K3S_URL`` environment variable for all nodes within the cluster.
 
 .. image:: /images/sandbox-l4lb-kubeapi.png
     :align: center
 
-To access the built-in Kubernetes cluster, put "Kubeconfig" file which you received by the introductory email into your ``~/.kube/config`` or set "KUBECONFIG" environment variable ``export KUBECONFIG=~/Downloads/config`` on your local machine. After that try to connect to the k8s cluster:
+To access the built-in Kubernetes cluster, put the "Kubeconfig" file which you received via the introductory email into your ``~/.kube/config`` or set "KUBECONFIG" environment variable using ``export KUBECONFIG=~/Downloads/config`` on your local machine. Afterwards, try to connect to the k8s cluster:
 
 .. code-block:: shell-session
 
   kubectl cluster-info
 
-The output below means you've successfully connected to the sandbox cluster:
+If your output matches the one below, that means you've successfully connected to the Sandbox cluster:
 
 .. code-block:: shell-session
 
-    Kubernetes master is running at https://api.k8s-sandbox15.netris.io:6443
+  Kubernetes control plane is running at https://api.k8s-sandbox15.netris.io:6443
+  CoreDNS is running at https://api.k8s-sandbox15.netris.io:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+  Metrics-server is running at https://api.k8s-sandbox15.netris.io:6443/api/v1/namespaces/kube-system/services/https:metrics-server:https/proxy
 
-    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+  To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 Install Netris Operator
 =======================
 
-The first step to integrate the Netris Controller with the Kubernetes API is to install the Netris Operator. Installation can be accomplished by installing regular manifests or a `helm chart <https://github.com/netrisai/netris-operator/tree/master/deploy/charts/netris-operator>`_.  For this example we will use the Kubernetes regular manifests:
+The first step to integrate the Netris Controller with the Kubernetes API is to install the Netris Operator. Installation can be accomplished by installing a regular manifests or a `helm chart <https://github.com/netrisai/netris-operator/tree/master/deploy/charts/netris-operator>`_.  For this example we will use the Kubernetes regular manifests:
 
 1. Install the latest Netris Operator:
 
@@ -87,11 +87,12 @@ As you can see, the service type is "ClusterIP":
 .. code-block:: shell-session
 
   NAME                           READY   STATUS    RESTARTS   AGE
-  pod/podinfo-576d5bf6bd-7z9jl   1/1     Running   0          49s
-  pod/podinfo-576d5bf6bd-nhlmh   1/1     Running   0          33s
-  
-  NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
-  service/podinfo      ClusterIP   172.21.65.106   <none>        9898/TCP,9999/TCP   50s
+  pod/podinfo-7cf557d9d7-6gfwx   1/1     Running   0          34s
+  pod/podinfo-7cf557d9d7-nb2t7   1/1     Running   0          18s
+
+  NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
+  service/kubernetes   ClusterIP   10.43.0.1      <none>        443/TCP             33m
+  service/podinfo      ClusterIP   10.43.68.103   <none>        9898/TCP,9999/TCP   35s
 
 In order to request access from outside, change the type to "LoadBalancer":
 
@@ -109,8 +110,9 @@ Now we can see that the service type has changed to LoadBalancer, and "EXTERNAL-
 
 .. code-block:: shell-session
 
-   NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                         AGE
-   podinfo      LoadBalancer   172.21.65.106   <pending>     9898:32584/TCP,9999:30365/TCP   8m57s
+  NAME         TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                         AGE
+  kubernetes   ClusterIP      10.43.0.1      <none>          443/TCP                         37m
+  podinfo      LoadBalancer   10.43.68.103   <pending>       9898:32486/TCP,9999:30455/TCP   3m45s
 
 Going into the Netris Controller web interface, navigate to **Services → L4 Load Balancer**, and you may see L4LBs provisioning in real-time. If you do not see the provisioning process it is likely because it already completed. Look for the service with the name **"podinfo-xxxxxxxx"**
 
@@ -127,8 +129,9 @@ You can see that "EXTERNAL-IP" has been injected into Kubernetes:
 
 .. code-block:: shell-session
   
-  NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)                         AGE
-  podinfo      LoadBalancer   172.21.65.106   45.38.161.205   9898:32584/TCP,9999:30365/TCP   9m17s
+  NAME         TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                         AGE
+  kubernetes   ClusterIP      10.43.0.1      <none>          443/TCP                         29m
+  podinfo      LoadBalancer   10.43.42.190   45.38.161.205   9898:30771/TCP,9999:30510/TCP   5m14s
 
 Let's try to curl it (remember to replace the IP below with the IP that has been assigned in the previous command):
 
@@ -141,17 +144,17 @@ The application is now accessible directly on the internet:
 .. code-block:: json
   
   {
-   "hostname": "podinfo-576d5bf6bd-nhlmh",
-   "version": "6.0.0",
-   "revision": "",
-   "color": "#34577c",
-   "logo": "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif",
-   "message": "greetings from podinfo v6.0.0",
-   "goos": "linux",
-   "goarch": "amd64",
-   "runtime": "go1.16.5",
-   "num_goroutine": "8",
-   "num_cpu": "4"
+    "hostname": "podinfo-7cf557d9d7-6gfwx",
+    "version": "6.6.0",
+    "revision": "357009a86331a987811fefc11be1350058da33fc",
+    "color": "#34577c",
+    "logo": "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif",
+    "message": "greetings from podinfo v6.6.0",
+    "goos": "linux",
+    "goarch": "amd64",
+    "runtime": "go1.21.7",
+    "num_goroutine": "8",
+    "num_cpu": "2"
   }
 
 As seen, "PodInfo" developers decided to expose 9898 port for HTTP, let's switch it to 80:
@@ -176,17 +179,17 @@ The output is similar to this:
 .. code-block:: json
   
   {
-   "hostname": "podinfo-576d5bf6bd-nhlmh",
-   "version": "6.0.0",
-   "revision": "",
-   "color": "#34577c",
-   "logo": "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif",
-   "message": "greetings from podinfo v6.0.0",
-   "goos": "linux",
-   "goarch": "amd64",
-   "runtime": "go1.16.5",
-   "num_goroutine": "8",
-   "num_cpu": "4"
+    "hostname": "podinfo-7cf557d9d7-6gfwx",
+    "version": "6.6.0",
+    "revision": "357009a86331a987811fefc11be1350058da33fc",
+    "color": "#34577c",
+    "logo": "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif",
+    "message": "greetings from podinfo v6.6.0",
+    "goos": "linux",
+    "goarch": "amd64",
+    "runtime": "go1.21.7",
+    "num_goroutine": "8",
+    "num_cpu": "2"
   }
 
 You can also verify the application is reachable by putting this IP address directly into your browser.
@@ -218,8 +221,8 @@ As you can see, there are two L4LB resources, one for each podinfo's service por
 .. code-block:: shell-session
 
   NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS   AGE
-  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-80     active   45.38.161.205   80/TCP     US/NYC   Admin    OK       33m
-  podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9999   active   45.38.161.205   9999/TCP   US/NYC   Admin    OK       32m
+  podinfo-default-5bdf0a53-027d-449f-8896-547e06028c6b-tcp-80     active   45.38.161.205   80/TCP     US/NYC   Admin    OK       7m21s
+  podinfo-default-5bdf0a53-027d-449f-8896-547e06028c6b-tcp-9999   active   45.38.161.205   9999/TCP   US/NYC   Admin    OK       15m
 
 You can't edit/delete them, because Netris Operator will recreate them based on what was originally deployed in the service specifications.
 
@@ -266,9 +269,9 @@ As you can see, provisioning started:
 .. code-block:: shell-session
 
   NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS         AGE
-  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-80     active   45.38.161.205   80/TCP     US/NYC   Admin    OK             2m17s
-  podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-9999   active   45.38.161.205   9999/TCP   US/NYC   Admin    OK             3m47s
-  srv04-5-nyc-http                                                active   45.38.161.206   80/TCP     US/NYC   Admin    Provisioning   6s
+  podinfo-default-5bdf0a53-027d-449f-8896-547e06028c6b-tcp-80     active   45.38.161.205   80/TCP     US/NYC   Admin    OK             9m56s
+  podinfo-default-5bdf0a53-027d-449f-8896-547e06028c6b-tcp-9999   active   45.38.161.205   9999/TCP   US/NYC   Admin    OK             17m
+  srv04-5-nyc-http                                                active   45.38.161.206   80/TCP     US/NYC   Admin    Provisioning   5s
 
 When provisioning is finished, you should be able to connect to L4LB. Try to curl, using the L4LB frontend address displayed in the above command output:
 
@@ -300,16 +303,20 @@ Let's create our V-Net manifest:
   apiVersion: k8s.netris.ai/v1alpha1
   kind: VNet
   metadata:
-   name: vnet-customer
+    name: vnet-customer
   spec:
-   ownerTenant: Demo
-   guestTenants: []
-   sites:
-     - name: US/NYC
-       gateways:
-         - 192.168.46.1/24
-       switchPorts:
-         - name: swp2@sw22-nyc
+    ownerTenant: Demo
+    guestTenants: []
+    vlanId: "46"
+    sites:
+      - name: US/NYC
+        gateways:
+          - prefix: 192.168.46.1/24
+        switchPorts:
+          - name: swp5@sw12-nyc
+            untagged: "no"
+          - name: swp5@sw21-nyc
+            untagged: "no"
   EOF
 
 And apply it:
@@ -349,7 +356,7 @@ As we can see, the curl request shows the behavior of "round robin" between the 
   SRV05-NYC
   curl 45.38.161.206
   
-  SRV05-NYC
+  SRV04-NYC
   curl 45.38.161.206
   
   SRV04-NYC
@@ -366,18 +373,22 @@ BTW, if you already created "vnet-customer" V-Net as described in the :ref:`"Lea
   apiVersion: k8s.netris.ai/v1alpha1
   kind: VNet
   metadata:
-   name: vnet-customer
-   annotations:
-     resource.k8s.netris.ai/import: "true"
+    name: vnet-customer
+    annotations:
+      resource.k8s.netris.ai/import: "true"
   spec:
-   ownerTenant: Demo
-   guestTenants: []
-   sites:
-     - name: US/NYC
-       gateways:
-         - 192.168.46.1/24
-       switchPorts:
-         - name: swp2@sw22-nyc
+    ownerTenant: Demo
+    guestTenants: []
+    vlanId: "46"
+    sites:
+      - name: US/NYC
+        gateways:
+          - prefix: 192.168.46.1/24
+        switchPorts:
+          - name: swp5@sw12-nyc
+            untagged: "no"
+          - name: swp5@sw21-nyc
+            untagged: "no"
   EOF
 
 Apply it:
@@ -393,7 +404,7 @@ After applying the manifest containing "import" annotation, the V-Net, created f
   kubectl get vnet
 
   NAME            STATE    GATEWAYS          SITES    OWNER   STATUS   AGE
-  vnet-customer   active   192.168.46.1/24   US/NYC   Demo    Active   7s
+  vnet-customer   active   192.168.46.1/24   US/NYC   Demo    Active   2m
 
 BGP Custom Resource
 -------------------
@@ -419,8 +430,6 @@ Create a yaml file:
     localIP: 45.38.161.214/30
     remoteIP: 45.38.161.213/30
     description: Example BGP to ISP2
-    prefixListInbound:
-      - permit 0.0.0.0/0
     prefixListOutbound:
       - permit 45.38.161.192/28 le 32
   EOF
@@ -454,12 +463,12 @@ The output is similar to this:
 
 .. code-block:: shell-session
 
-  NAME                      STATE     BGP STATE                                       PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
-  iris-isp2-ipv4-customer   enabled   bgp: Established; prefix: 160; time: 00:01:27   Link Up      65007         45.38.161.214/30   45.38.161.213/30   2m3s
+NAME                      STATE     BGP STATE                                          PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE
+iris-isp2-ipv4-customer   enabled   bgp: Established; prefix: 957240; time: 00:04:02                65007         45.38.161.214/30   45.38.161.213/30   2m3s
 
 Feel free to use the import annotation for this BGP if you created it from the Netris Controller web interface previously.
 
-Return to the Netris Controller and navigate to **Net → Topology** to see the new BGP neighbor you created.
+Return to the Netris Controller and navigate to **Network → Topology** to see the new BGP neighbor you created.
 
 Importing Existing Resources from Netris Controller to Kubernetes
 -----------------------------------------------------------------
@@ -493,7 +502,7 @@ Just add this annotation in any custom resource while creating it. Or if the cus
 Netris Calico CNI Integration
 =============================
 
-Netris Operator can integrate with Calico CNI, in your Sandbox k8s cluster, Calico has already been configured as the CNI, so you can try this integration. It will automatically create BGP peering between cluster nodes and the leaf/TOR switch for each node, then to clean up it will disable Calico Node-to-Node mesh. To understand why you need to configure peering between Kubernetes nodes and the leaf/TOR switch, and why you should disable Node-to-Node mesh, review the `calico docs <https://docs.projectcalico.org/networking/bgp>`_.
+Netris Operator can integrate with Calico CNI, in your Sandbox k8s cluster, Calico has already been configured as the CNI, so you can try this integration. It will automatically create BGP peering between cluster nodes and the leaf/TOR switch for each node, then to clean up it will disable Calico Node-to-Node mesh. To understand why you need to configure peering between Kubernetes nodes and the leaf/TOR switch, and why you should disable Node-to-Node mesh, review the `Calico docs <https://docs.projectcalico.org/networking/bgp>`_.
 
 Integration is very simple, you just need to add the annotation in calico's ``bgpconfigurations`` custom resource. Before doing that, let's see the current state of ``bgpconfigurations``:
 
@@ -501,11 +510,11 @@ Integration is very simple, you just need to add the annotation in calico's ``bg
 
   kubectl get bgpconfigurations default -o yaml
 
-As we can see, ``nodeToNodeMeshEnabled`` is enabled, and ``asNumber`` is 64512 (it's Calico default AS number):
+As we can see, ``nodeToNodeMeshEnabled`` is enabled:
 
 .. code-block:: yaml
 
-  apiVersion: crd.projectcalico.org/v1
+  apiVersion: projectcalico.org/v3
   kind: BGPConfiguration
   metadata:
    annotations:
@@ -513,8 +522,6 @@ As we can see, ``nodeToNodeMeshEnabled`` is enabled, and ``asNumber`` is 64512 (
    name: default
    ...
   spec:
-   asNumber: 64512
-   logSeverityScreen: Info
    nodeToNodeMeshEnabled: true
 
 Let's enable the "netris-calico" integration:
@@ -533,11 +540,11 @@ Here are our freshly created BGPs, one for each k8s node:
 
 .. code-block:: shell-session
 
-  NAME                                 STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  iris-isp2-ipv4-customer              enabled   bgp: Established; prefix: 160; time: 00:06:18  Link Up      65007         45.38.161.214/30   45.38.161.213/30    7m59s
-  sandbox15-srv06-nyc-192.168.110.66   enabled                                                               4230000000    192.168.110.1/24   192.168.110.66/24   26s
-  sandbox15-srv07-nyc-192.168.110.67   enabled                                                               4230000001    192.168.110.1/24   192.168.110.67/24   26s
-  sandbox15-srv08-nyc-192.168.110.68   enabled                                                               4230000002    192.168.110.1/24   192.168.110.68/24   26s  
+  NAME                           STATE     BGP STATE                                          PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
+  iris-isp2-ipv4-customer        enabled   bgp: Established; prefix: 957241; time: 00:15:03                65007         45.38.161.214/30   45.38.161.213/30    16m
+  sandbox-srv06-192.168.110.66   enabled                                                                   4230000000    192.168.110.1/24   192.168.110.66/24   37s
+  sandbox-srv07-192.168.110.67   enabled                                                                   4230000001    192.168.110.1/24   192.168.110.67/24   37s
+  sandbox-srv08-192.168.110.68   enabled                                                                   4230000002    192.168.110.1/24   192.168.110.68/24   37s  
 
 You might notice that peering neighbor AS is different from Calico's default 64512.  The is because the Netris Operator is setting a particular AS number for each node.
 
@@ -551,11 +558,11 @@ As we can see, our BGP peers have become established:
 
 .. code-block:: shell-session
 
-  NAME                                 STATE     BGP STATE                                       PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
-  iris-isp2-ipv4-customer              enabled   bgp: Established; prefix: 160; time: 00:07:48   Link Up      65007         45.38.161.214/30   45.38.161.213/30    8m41s
-  sandbox15-srv06-nyc-192.168.110.66   enabled   bgp: Established; prefix: 5; time: 00:00:44     N/A          4230000000    192.168.110.1/24   192.168.110.66/24   68s
-  sandbox15-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19     N/A          4230000001    192.168.110.1/24   192.168.110.67/24   68s
-  sandbox15-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44     N/A          4230000002    192.168.110.1/24   192.168.110.68/24   68s
+  NAME                           STATE     BGP STATE                                          PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE
+  iris-isp2-ipv4-customer        enabled   bgp: Established; prefix: 957194; time: 00:18:24                65007         45.38.161.214/30   45.38.161.213/30    19m
+  sandbox-srv06-192.168.110.66   enabled   bgp: Established; prefix: 1; time: 00:01:26        N/A          4230000000    192.168.110.1/24   192.168.110.66/24   2m7s
+  sandbox-srv07-192.168.110.67   enabled   bgp: Established; prefix: 1; time: 00:01:26        N/A          4230000001    192.168.110.1/24   192.168.110.67/24   2m7s
+  sandbox-srv08-192.168.110.68   enabled   bgp: Established; prefix: 1; time: 00:01:26        N/A          4230000002    192.168.110.1/24   192.168.110.68/24   2m7s
 
 Now let's check if ``nodeToNodeMeshEnabled`` is still enabled:
 
@@ -567,16 +574,16 @@ It is disabled, which means the "netris-calico" integration process is finished:
 
 .. code-block:: yaml
 
-  apiVersion: crd.projectcalico.org/v1
+  apiVersion: projectcalico.org/v3
   kind: BGPConfiguration
   metadata:
     annotations:
+      ...
       manage.k8s.netris.ai/calico: "true"
       ...
     name: default
     ...
   spec:
-    asNumber: 64512
     nodeToNodeMeshEnabled: false
 
 .. note::
@@ -594,17 +601,17 @@ Yes, it works:
 .. code-block:: json
 
   {
-   "hostname": "podinfo-576d5bf6bd-mfpdt",
-   "version": "6.0.0",
-   "revision": "",
-   "color": "#34577c",
-   "logo": "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif",
-   "message": "greetings from podinfo v6.0.0",
-   "goos": "linux",
-   "goarch": "amd64",
-   "runtime": "go1.16.5",
-   "num_goroutine": "8",
-   "num_cpu": "4"
+    "hostname": "podinfo-7cf557d9d7-nb2t7",
+    "version": "6.6.0",
+    "revision": "357009a86331a987811fefc11be1350058da33fc",
+    "color": "#34577c",
+    "logo": "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif",
+    "message": "greetings from podinfo v6.6.0",
+    "goos": "linux",
+    "goarch": "amd64",
+    "runtime": "go1.21.7",
+    "num_goroutine": "8",
+    "num_cpu": "2"
   }
 
 Disabling Netris-Calico Integration
@@ -620,4 +627,4 @@ or change its value to ``"false"``.
 
 .. topic:: Milestone 2
 
-  Congratulations!  You completed Milestone 2.  Time to get yourself another iced coffee or even a beer depending on what time it is!
+  Congratulations on completing Milestone 2!
