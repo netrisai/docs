@@ -31,7 +31,6 @@ Topology diagram
     :target: ../../_images/sandbox_topology_new.png
 
 
-
 Netris Controller
 =================
 https://sandbox15.netris.io

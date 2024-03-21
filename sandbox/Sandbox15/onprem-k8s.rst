@@ -13,6 +13,8 @@ The Sandbox environment offers a pre-existing 3 node Kubernetes cluster deployed
 
 .. image:: /images/sandbox-l4lb-kubeapi.png
     :align: center
+    :alt: Sandbox L4LB KubeAPI
+    :target: ../../_images/sandbox-l4lb-kubeapi.png
 
 To access the built-in Kubernetes cluster, put the "Kubeconfig" file which you received via the introductory email into your ``~/.kube/config`` or set "KUBECONFIG" environment variable using ``export KUBECONFIG=~/Downloads/config`` on your local machine. Afterwards, try to connect to the k8s cluster:
 
@@ -118,6 +120,8 @@ Going into the Netris Controller web interface, navigate to **Services → L4 Lo
 
 .. image:: /images/sandbox-podinfo-prov.png
     :align: center
+    :alt: Sandbox PodInfo Provisioning
+    :target: ../../_images/sandbox-podinfo-prov.png
 
 After provisioning has finished, let's one more time look at service in k8s:
 
@@ -167,6 +171,8 @@ Wait a few seconds, you can see the provisioning process on the controller:
 
 .. image:: /images/sandbox-podinfo-ready.png
     :align: center
+    :alt: Sandbox PodInfo Ready
+    :target: ../../_images/sandbox-podinfo-ready.png
 
 Curl again, without specifying a port:
 
@@ -289,6 +295,8 @@ You can also inspect the L4LB in the Netris Controller web interface:
 
 .. image:: /images/sandbox-l4lbs.png
     :align: center
+    :alt: Sandbox L4LBs
+    :target: ../../_images/sandbox-l4lbs.png
 
 V-Net Custom Resource
 ---------------------

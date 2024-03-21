@@ -145,6 +145,8 @@ In this exercise we will quickly configure an Anycast IP address in the Netris C
 
 .. image:: /images/l3lb_srv01.png
     :align: center
+    :alt: SRV01 L3LB
+    :target: ../../_images/l3lb_srv01.png
 
 In order to trigger the L3 load balancer to switch directing the traffic towards the other backend server (in this case from **srv01-nyc** to **srv02-nyc**, which based on the unique hash in your situation could be the other way around), we can simulate the unavailability of the backend server we ended up on by putting it in **Maintenance** mode.
 
@@ -161,6 +163,8 @@ In order to trigger the L3 load balancer to switch directing the traffic towards
 
 .. image:: /images/l3lb_srv02.png
     :align: center
+    :alt: SRV02 L3LB
+    :target: ../../_images/l3lb_srv02.png
 
 More details about AL3LB (Anycast L3 load balancer) can be found on the :ref:`"L3 Load Balancer (Anycast LB)"<l3lb_def>` page.
 
