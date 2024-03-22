@@ -10,4 +10,4 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
    vpc-anywhere-concept
    vpc-anywhere-controller-installation
-   vpc-anywhere-softgate-provisioning
+   vpc-anywhere-softgate-installation

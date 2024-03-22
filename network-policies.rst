@@ -1,5 +1,6 @@
 .. meta::
     :description: Netris Network Policies & Protocol Configuration
+
 ###
 VPC
 ###
@@ -19,7 +20,7 @@ Adding new VPC
 .. image:: images/vpc_empty.png
     :align: center
 
-.. _ipam_def:
+.. _ipam_def_vpc:
 
 
 #####################
@@ -135,10 +136,10 @@ Adding BGP Peers
 #. Click the Add button.
 
 
-.. csv-table:: BGP Peer Fields
-   :file: tables/bgp-basic.csv
-   :widths: 25, 75
-   :header-rows: 0
+.. .. csv-table:: BGP Peer Fields
+..    :file: tables/bgp-basic.csv
+..    :widths: 25, 75
+..    :header-rows: 0
 
 Example: Declare a basic BGP neighbor.
 
@@ -154,10 +155,10 @@ BGP neighbor declaration can optionally include advanced BGP attributes and BGP 
 Click Advanced to expand the BGP neighbor add/edit window.
 
 
-.. csv-table:: BGP Peer Fields - Advanced
-   :file: tables/bgp-advanced.csv
-   :widths: 25, 75
-   :header-rows: 0
+.. .. csv-table:: BGP Peer Fields - Advanced
+..    :file: tables/bgp-advanced.csv
+..    :widths: 25, 75
+..    :header-rows: 0
 
 --------------------------
 

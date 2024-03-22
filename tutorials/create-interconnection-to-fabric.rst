@@ -65,7 +65,7 @@ On the Netris Controller, go to Net -> E-BGP, then click Add.
 
 Fill in the following information:
 
-.. code-block:: None
+.. code-block:: shell-session
 
  
     Name: Choose any name
@@ -94,7 +94,7 @@ On the Netris Controller, go to Net -> E-BGP, then click Add.
 
 Fill in the following information:
 
-.. code-block:: None
+.. code-block:: shell-session
 
  
     Name: Choose any name

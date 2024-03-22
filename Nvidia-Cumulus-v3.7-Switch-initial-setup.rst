@@ -1,6 +1,6 @@
-============================
+========================================
 Nvidia Cumulus v3.7 Switch Initial Setup
-============================
+========================================
 .. note::
 
   Further installation requires a Console and Internet connectivity via the management port!

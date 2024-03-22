@@ -1,6 +1,6 @@
-============================
+=====================================
 Ubuntu SwitchDev Switch Initial Setup
-============================
+=====================================
 .. note::
 
   Further installation requires a Console and Internet connectivity via management port!

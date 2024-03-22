@@ -6,7 +6,7 @@ Maintenance Mode
 **********************
 
 Overview
-=================
+========
 Maintenance mode is intended to assist in smoothly redirecting traffic away from a particular device for a maintenance to be carried out with minimal impact on your network. It's advisable to activate Maintenance Mode, wait a few minutes and ensure that traffic has been re-routed, prior to initiating maintenance procedures on the device. Once the maintenance is completed, you should deactivate Maintenance Mode to switchover the traffic back to normal. 
 To toggle Maintenance Mode on or off, navigate to the Inventory section, or Topology manager (more convenient for switch-fabric). Edit the devices, and use the Maintenance Mode checkbox to enable/disable. 
 
@@ -17,7 +17,7 @@ To toggle Maintenance Mode on or off, navigate to the Inventory section, or Topo
     Maintenance mode strives to redirect traffic away from the current device; however, please note that it does not guarantee the complete offloading of traffic.
     
 Maintenance Mode for Softgate - What’s happening behind the scenes?
-========
+===================================================================
 
 When you activate Maintenance Mode for the softgate, several automatic actions are undertaken behind the scenes to redirect traffic away from the softgate:
 
@@ -31,7 +31,7 @@ When you activate Maintenance Mode for the softgate, several automatic actions a
   Before activating the maintenance mode, make sure that the second softgate is operating correctly.
   
 Maintenance Mode for Switch - What’s happening behind the scenes?
-=========
+=================================================================
 
 When you activate Maintenance Mode for the switch, several automatic actions are undertaken behind the scenes to redirect traffic away from the switch:
 

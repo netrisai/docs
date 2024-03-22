@@ -18,7 +18,7 @@ Netris supports Automatic and Custom modes of configuring LAGs, each described b
 
 
 Automatic LAG with EVPN Multi-homing
------------------------------------
+------------------------------------
 
 If LACP is configured on the server side, then Netris will automatically identify the corresponding switch port pairs and form a LAG with EVPN Multihoming enabled for any switch ports participating in a V-Net service.
 

@@ -23,7 +23,7 @@
   45.38.161.192/30           # PUBLIC LOOPBACK subnet
   45.38.161.193              # PUBLIC Loopback IPv4 of SoftGate2
   45.38.161.196/30           # PUBLIC IPv4 NAT Subnet
-  45.38.161.196/32           # CUSTOMER V-NET SNAT IP
+  45.38.161.196/32           # CUSTOMER V-Net SNAT IP
   45.38.161.200/30           # L3LB Subnet 
   45.38.161.200/32           # L3LB IP
   45.38.161.204/30           # L4LB Subnet
