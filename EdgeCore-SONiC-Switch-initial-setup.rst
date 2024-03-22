@@ -1,6 +1,6 @@
-============================
+===================================
 EdgeCore SONiC Switch Initial Setup
-============================
+===================================
 .. note::
 
   Further installation requires a Console and Internet connectivity via the management port!
