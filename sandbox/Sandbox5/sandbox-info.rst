@@ -2,10 +2,13 @@
 Welcome to Netris Sandbox
 *************************
 
-Netris Sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
-We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s5-pre-configured>` document. Feel free to view, edit, delete, and create new services. In case of any questions, reach out to us on `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__. 
+.. contents::
+   :local:
 
-The credentials for the sandbox have been provided to you by email in response to your Sandbox request.
+Netris Sandbox is a ready-to-use environment for testing Netris automatic NetOps.
+We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s5-pre-configured>` document. Feel free to view, edit, delete, and create new services. In case of any questions, reach out to us on `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__.
+
+The credentials for the sandbox have been provided to you via email in response to your Sandbox request.
 
 The Sandbox environment includes:
 
@@ -22,11 +25,10 @@ The Sandbox environment includes:
 Topology diagram
 ================
 
-.. image:: /images/sandbox_topology.png
+.. image:: /images/sandbox_topology_new.png
     :align: center
     :alt: Sandbox Topology
-    :target: ../../_images/sandbox_topology.png
-
+    :target: ../../_images/sandbox_topology_new.png
 
 
 Netris Controller
@@ -37,21 +39,22 @@ Linux servers
 =============
 
 Example pre-configured Netris services:
- * **srv01-nyc**, **srv02-nyc**, **srv03-nyc** & **Netris Controller** - are consuming :ref:`"ROH (Routing on the Host)"<roh_def>` Netris example service, see **Services → ROH.**
- * **srv01-nyc**, **srv02-nyc** - are behind :ref:`"Anycast L3 load balancer"<l3lb_def>`, see **Services → Load Balancer**.
- * **srv04-nyc**, **srv05-nyc** - are consuming :ref:`"V-NET (routed VXLAN)"<v-net_def>` Netris service, see **Services → V-NET**.
+ * **srv01-nyc**, **srv02-nyc**, **srv03-nyc** & **Netris Controller** - are consuming :ref:`"ROH (Routing on the Host)"<roh_def>` Netris example service, see **Services → ROH.**.
+ * **srv01-nyc**, **srv02-nyc** - can be configured with :ref:`"L3 Load Balancer (Anycast LB)"<l3lb_def>`, see **Services → L3 Load Balancer**.
+ * **srv04-nyc**, **srv05-nyc**, **srv06-nyc**, **srv07-nyc** & **srv08-nyc** - are consuming :ref:`"V-Net (routed VXLAN)"<v-net_def>` Netris service, see **Services → V-Net**.
+ * **srv06-nyc**, **srv07-nyc**, **srv08-nyc** - are members of a 3 node Kubernetes cluser, and the K8s API servers are behind :ref:`"L4 Load Balancer (L4LB)"<l4lb_def>`, see **Services → L4 Load Balancer**.
 
 
 **Accessing the Linux servers:**
-  
-.. code-block:: shell-session  
-  
+
+.. code-block:: shell-session
+
   srv01-nyc: ssh demo@166.88.17.187 -p 30061
   srv02-nyc: ssh demo@166.88.17.187 -p 30062
   srv03-nyc: ssh demo@166.88.17.187 -p 30063
   srv04-nyc: ssh demo@166.88.17.187 -p 30064
   srv05-nyc: ssh demo@166.88.17.187 -p 30065
-  
+
 
 Kubernetes cluster
 ==================
@@ -61,12 +64,12 @@ This Sandbox provides an up and running 3 node Kubernetes cluster. You can integ
 Upstream ISP
 ============
 This Sandbox also provides an upstream ISP service with real-world Internet routing configured through :ref:`"BGP"<bgp_def>`. 
-There are two pre-configured examples under **NET → E-BGP** , one using IPv4 and the other using IPv6, which are advertising the public IP subnets belonging to the sandbox to the upstream ISP IRIS.
+There are two pre-configured examples under **Network → E-BGP** , one using IPv4 and the other using IPv6, which are advertising the public IP subnets belonging to the Sandbox to the upstream ISP IRIS.
 
 ISP settings:
 
 .. code-block:: shell-session
- 
+
  (pre-configured examples)
  Name:                           iris-isp1-ipv4-example
  BGP Router:                     Softage1
@@ -77,7 +80,7 @@ ISP settings:
  Remote Address:                 50.117.59.81/30
  Prefix List Inbound:            permit 0.0.0.0/0
  Prefix List Outbound:           permit 50.117.59.128/28 le 32
- 
+
  Name:                           iris-isp1-ipv6-example
  BGP Router:                     Softage1
  Switch Port:                    swp16@sw01-nyc
@@ -94,18 +97,18 @@ ISP settings:
  Neighbor AS:                    65007
  VLAN ID:                        1052
  Local Address:                  50.117.59.86/30
- Remote Address:                 50.117.59.85/30 
+ Remote Address:                 50.117.59.85/30
  Prefix List Inbound:            permit 0.0.0.0/0
  Prefix List Outbound:           permit 50.117.59.128/28 le 32
 
 
-Networks Used 
+Networks Used
 =============
-Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Net → IPAM**.
+Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Network → IPAM**.
 
 .. code-block:: shell-session
 
-  | MANAGEMENT Allocation:       10.254.45.0/24 
+  | MANAGEMENT Allocation:       10.254.45.0/24
   |___ MANAGEMENT Subnet:        10.254.45.0/24
 
   | LOOPBACK Allocation:         10.254.46.0/24
@@ -131,4 +134,3 @@ Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Net → IPA
 
   | EXAMPLE IPv6 Allocation:     2607:f358:11:ffc5::/64
   |___ EXAMPLE IPv6 Subnet:      2607:f358:11:ffc5::/64
-  
