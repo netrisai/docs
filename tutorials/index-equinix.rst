@@ -16,7 +16,6 @@ This `video <https://vimeo.com/723912838>`_ walks through Netris VPC setup steps
    adding-netris-softgate-nodes-in-equinix-metal
    activating-bgp-on-equinix-metal-project
    enable-services-on-equinix-metal-project
-   adding-netris-softgate-nodes-in-equinix-metal
 
 .. toctree::
    :maxdepth: 1
