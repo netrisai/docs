@@ -60,4 +60,4 @@ The process will take some time, after installation complete, reboot is mandator
   Serial Number: REDACTED
   Uptime: 00:06:00,  1 user,  load average: 1.39, 2.08, 2.29
 
-3. Perform netris agent installation steps 2 to 4 from :ref:`"Install the Netris Agent"<switch-agent-installation-install-the-netris-agent>` tutorial.
+3. Perform Netris agent installation step 4 from :ref:`"Install the Netris Agent"<sonic-switch-agent-installation>` tutorial.
