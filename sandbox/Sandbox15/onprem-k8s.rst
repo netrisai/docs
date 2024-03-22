@@ -4,8 +4,8 @@
 Learn Netris Operations with Kubernetes
 ***************************************
 
-.. contents:: 
-   :local: 
+.. contents::
+   :local:
 
 Intro
 =====
@@ -64,13 +64,13 @@ Example output demonstrating the successful operation of Netris Operator:
   {"level":"info","ts":1629994653.6441543,"logger":"controller","msg":"Starting workers","reconcilerGroup":"k8s.netris.ai","reconcilerKind":"L4LB","controller":"l4lb","worker count":1}
 
 .. note::
-  
-  After installing the Netris Operator, your Kubernetes cluster and physical network control planes are connected. 
+
+  After installing the Netris Operator, your Kubernetes cluster and physical network control planes are connected.
 
 Deploy an Application with an On-Demand Netris Load Balancer
 ============================================================
 
-In this scenario we will be installing a simple application that requires a network load balancer: 
+In this scenario we will be installing a simple application that requires a network load balancer:
 
 Install the application `"Podinfo" <https://github.com/stefanprodan/podinfo>`_:
 
@@ -132,7 +132,7 @@ After provisioning has finished, let's one more time look at service in k8s:
 You can see that "EXTERNAL-IP" has been injected into Kubernetes:
 
 .. code-block:: shell-session
-  
+
   NAME         TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                         AGE
   kubernetes   ClusterIP      10.43.0.1      <none>          443/TCP                         29m
   podinfo      LoadBalancer   10.43.42.190   45.38.161.205   9898:30771/TCP,9999:30510/TCP   5m14s
@@ -146,7 +146,7 @@ Let's try to curl it (remember to replace the IP below with the IP that has been
 The application is now accessible directly on the internet:
 
 .. code-block:: json
-  
+
   {
     "hostname": "podinfo-7cf557d9d7-6gfwx",
     "version": "6.6.0",
@@ -183,7 +183,7 @@ Curl again, without specifying a port:
 The output is similar to this:
 
 .. code-block:: json
-  
+
   {
     "hostname": "podinfo-7cf557d9d7-6gfwx",
     "version": "6.6.0",
@@ -346,7 +346,7 @@ As you can see, provisioning for our new V-Net has started:
   NAME            STATE    GATEWAYS          SITES    OWNER   STATUS   AGE
   vnet-customer   active   192.168.46.1/24   US/NYC   Demo    Active   10s
 
-After provisioning has completed, the L4LB's checks should work for both backend servers, and incoming requests should be balanced between them. 
+After provisioning has completed, the L4LB's checks should work for both backend servers, and incoming requests should be balanced between them.
 
 Let's curl several times to see that:
 
@@ -360,13 +360,13 @@ As we can see, the curl request shows the behavior of "round robin" between the 
 
   SRV05-NYC
   curl 45.38.161.206
-  
+
   SRV05-NYC
   curl 45.38.161.206
-  
+
   SRV04-NYC
   curl 45.38.161.206
-  
+
   SRV04-NYC
 
 .. note::
@@ -488,7 +488,7 @@ Importing Existing Resources from Netris Controller to Kubernetes
   resource.k8s.netris.ai/import: "true"
 
 Otherwise, if try to apply them without the "import" annotation, the Netris Operator will complain that the resource with such name or specs already exists.
- 
+
 After importing resources to k8s, they will belong to the Netris Operator, and you won't be able to edit/delete them directly from the Netris Controller web interface, because the Netris Operator will put everything back, as declared in the custom resources.
 
 Reclaim Policy

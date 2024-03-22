@@ -4,16 +4,16 @@
 Provided Example Configurations
 ********************************
 
-.. contents:: 
-   :local: 
+.. contents::
+   :local:
 
 Once you log into the Netris Controller, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the :ref:`"Learn by Creating Services"<s15-learn-by-doing>` document.
 
 V-Net (Ethernet/Vlan/VXlan) Example
 ===================================
-To access the V-Net service example, first log into the Netris Controller by visiting `https://sandbox15.netris.io <https://sandbox15.netris.io>`_ and navigating to **Services → V-Net**, where you will find a pre-configured V-Net service named "**vnet-example**" available as an example. 
+To access the V-Net service example, first log into the Netris Controller by visiting `https://sandbox15.netris.io <https://sandbox15.netris.io>`_ and navigating to **Services → V-Net**, where you will find a pre-configured V-Net service named "**vnet-example**" available as an example.
 
-To examine the service settings, select **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**vnet-example**" service, where you'll see that the V-Net service is configured with VLAN ID **45** in order to enable **EVPN Multihoming** on the underlying switches. 
+To examine the service settings, select **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**vnet-example**" service, where you'll see that the V-Net service is configured with VLAN ID **45** in order to enable **EVPN Multihoming** on the underlying switches.
 
 You'll also see that the V-Net service is configured with both an IPv4 gateway (**192.168.45.1**) from the "**192.168.45.0/24 (EXAMPLE)**" subnet and an IPv6 gateway (**2607:f358:11:ffcf::1**) from the "**2607:f358:11:ffcf::/64 (EXAMPLE IPv6)**" subnet.
 
@@ -52,7 +52,7 @@ More details about V-Net (Ethernet/Vlan/VXlan) can be found on the the :ref:`V-N
 E-BGP (Exterior Border Gateway Protocol) Example
 ================================================
 
-Navigate to **Network → E-BGP**. Here, aside from the required system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( **SoftGate1** & **SoftGate2** ) and the rest of the switching fabric (which can be toggled on/off using the **Show System Generated** toggle at the top of the page), you will also find two E-BGP sessions named "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" configured as examples with **IRIS ISP1**. This ensures communication between the internal network and the Internet. 
+Navigate to **Network → E-BGP**. Here, aside from the required system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( **SoftGate1** & **SoftGate2** ) and the rest of the switching fabric (which can be toggled on/off using the **Show System Generated** toggle at the top of the page), you will also find two E-BGP sessions named "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" configured as examples with **IRIS ISP1**. This ensures communication between the internal network and the Internet.
 
 You may examine the particular session configurations of the E-BGP connections by selecting **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of either the "**iris-isp1-ipv4-example**" and "**iris-isp1-ipv6-example**" connections. You may also expand the **Advanced** section located toward the bottom of the **Edit** window to be able to access the more advanced settings available while configuring an E-BGP session.
 
@@ -62,14 +62,14 @@ More details about E-BGP (Exterior Border Gateway Protocol) can be found on the 
 
 NAT (Network Address Translation) Example
 =========================================
-Navigate to **Network → NAT** and you will find a NAT rule named "**NAT Example**" configured as an example for you. The configured "**SNAT**" rule ensures that there can be communication between the the private "**192.168.45.0/24 (EXAMPLE)**" subnet and the Internet. 
+Navigate to **Network → NAT** and you will find a NAT rule named "**NAT Example**" configured as an example for you. The configured "**SNAT**" rule ensures that there can be communication between the the private "**192.168.45.0/24 (EXAMPLE)**" subnet and the Internet.
 
 You can examine the particular settings of the NAT rule by clicking **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**NAT Example**" service.
 
 You may also observe the functioning NAT rule in action by pinging any public IP address (e.g. **1.1.1.1**)  from the **srv04-nyc** server.
 
-* In a terminal window:                                                                                   
-                             
+* In a terminal window:
+
   1. SSH to server **srv04-nyc**: ``ssh demo@50.117.27.86 -p 30064``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session: ``ping4 1.1.1.1``
@@ -82,7 +82,7 @@ More details about NAT (Network Address Translation) can be found on the :ref:`"
 
 ACL (Access Control List) Example
 =================================
-Navigate to **Services → ACL** and you will find an ACL services named "**V-Net Example to WAN**" set up as an example for you. This particular ACL ensures that the connectivity between the the private "**192.168.45.0/24 (EXAMPLE)**" subnet and the Internet is permitted through all protocols and ports, even in a scenario where the the "**ACL Default Policy**" for the "**US/NYC**" site configured under **Network → Sites** in our Sandbox is changed from **Permit** to **Deny**. 
+Navigate to **Services → ACL** and you will find an ACL services named "**V-Net Example to WAN**" set up as an example for you. This particular ACL ensures that the connectivity between the the private "**192.168.45.0/24 (EXAMPLE)**" subnet and the Internet is permitted through all protocols and ports, even in a scenario where the the "**ACL Default Policy**" for the "**US/NYC**" site configured under **Network → Sites** in our Sandbox is changed from **Permit** to **Deny**.
 
 You can examine the particular settings of this ACL policy by selecting **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**V-Net Example to WAN**" ACL policy.
 

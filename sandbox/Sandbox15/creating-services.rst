@@ -4,8 +4,8 @@
 Learn by Creating Services
 **************************
 
-.. contents:: 
-   :local: 
+.. contents::
+   :local:
 
 Following these short exercises we will be able to demonstrate how the :ref:`Netris Controller<netris_controller_def>`, in conjunction with the :ref:`Netris Agents<netris_sw_agent>` deployed on the switches and SoftGates, is able to intelligently and automagically deploy the necessary configurations across the network fabric to provision the desired services within a matter of seconds.
 
@@ -20,7 +20,7 @@ Let's create a V-Net service to give server **srv05-nyc** the ability to reach i
   1. SSH to server **srv05-nyc**: ``ssh demo@50.117.27.86 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Type ``ip route ls`` and we can see **192.168.46.1** is configured as the default gateway, indicated by the "**default via 192.168.46.1 dev eth1 proto kernel onlink**" line in the output.
-  4. Start a ping session towards the default gateway: ``ping 192.168.46.1`` 
+  4. Start a ping session towards the default gateway: ``ping 192.168.46.1``
   5. Keep the ping running as an indicator for when the service becomes fully provisioned.
   6. Until the service is provisioned, we can see that the destination is not reachable judging by the outputs in the form of "**From 192.168.46.64 icmp_seq=1 Destination Host Unreachable**".
 
@@ -68,7 +68,7 @@ Optionally you can configure an E-BGP session to IRIS ISP2 for fault tolerance.
   8. In the **Neighbor AS** field, type in ``65007``.
   9. In the **Local IP** field, type in ``45.38.161.214``.
   10. In the **Remote IP** field, type in ``45.38.161.213``.
-  11. Expand the **Advanced** section 
+  11. Expand the **Advanced** section
   12. In the **Prefix List Outbound** field, type in ``permit 45.38.161.192/28 le 32``
   13. And finally click **Add**
 
@@ -108,7 +108,7 @@ Let's configure a Source NAT so our Customer subnet **192.168.46.0/24**, which i
   7. In the **Source Address** field, type in ``192.168.46.0/24``.
   8. In the **Destination Address** field, leave the default value of ``0.0.0.0/0``.
   9. Toggle the switch from **SNAT to Pool** to **SNAT to IP**.
-  10. From the **Select subnet** drop-down menu, select the "**45.38.161.196/30 (NAT)**" subnet. 
+  10. From the **Select subnet** drop-down menu, select the "**45.38.161.196/30 (NAT)**" subnet.
   11. From the **Select IP** drop-down menu, select the "**45.38.161.196/32**" IP address.
 
     * This public IP address is part of **45.38.161.196/30 (NAT)** subnet which is configured in the **Network → IPAM** section with the purpose of **NAT** and indicated in the **SoftGate** configurations to be used as a global IP for NAT by the :ref:`"Netris SoftGate Agent"<netris_sg_agent>`.
@@ -131,7 +131,7 @@ In this exercise we will quickly configure an Anycast IP address in the Netris C
   2. Click **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**srv01-nyc**" server.
   3. From the **IPv4** drop-down menu, select the "**45.38.161.200/30 (L3 LOAD BALANCER)**" subnet.
   4. From the second drop-down menu that appears to the right, select the first available IP "**45.38.161.200**".
-  5. Check the **Anycast** check-box next to the previously selected IP and click the **Save** button. 
+  5. Check the **Anycast** check-box next to the previously selected IP and click the **Save** button.
   6. Repeat steps **3** through **4** for "**srv02-nyc**" by first clicking **Edit** from the **Actions** menu indicated by three vertical dots (**⋮**) on the right side of the "**srv02-nyc**" server.
 
     * While editing "**srv02-nyc**", after selecting the "**45.38.161.200**" IP address , the **Anycast** check-box will already be automatically checked as we had designated the IP address as such in step **5**.

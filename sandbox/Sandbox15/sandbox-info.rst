@@ -2,11 +2,11 @@
 Welcome to Netris Sandbox
 *************************
 
-.. contents:: 
-   :local: 
+.. contents::
+   :local:
 
-Netris Sandbox is a ready-to-use environment for testing Netris automatic NetOps. 
-We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s15-pre-configured>` document. Feel free to view, edit, delete, and create new services. In case of any questions, reach out to us on `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__. 
+Netris Sandbox is a ready-to-use environment for testing Netris automatic NetOps.
+We have pre-created some example services for you, details of which can be found in the :ref:`"Provided Example Configurations"<s15-pre-configured>` document. Feel free to view, edit, delete, and create new services. In case of any questions, reach out to us on `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__.
 
 The credentials for the sandbox have been provided to you via email in response to your Sandbox request.
 
@@ -46,15 +46,15 @@ Example pre-configured Netris services:
 
 
 **Accessing the Linux servers:**
-  
-.. code-block:: shell-session  
-  
+
+.. code-block:: shell-session
+
   srv01-nyc: ssh demo@50.117.27.86 -p 30061
   srv02-nyc: ssh demo@50.117.27.86 -p 30062
   srv03-nyc: ssh demo@50.117.27.86 -p 30063
   srv04-nyc: ssh demo@50.117.27.86 -p 30064
   srv05-nyc: ssh demo@50.117.27.86 -p 30065
-  
+
 
 Kubernetes cluster
 ==================
@@ -69,7 +69,7 @@ There are two pre-configured examples under **Network → E-BGP** , one using IP
 ISP settings:
 
 .. code-block:: shell-session
- 
+
  (pre-configured examples)
  Name:                           iris-isp1-ipv4-example
  BGP Router:                     Softage1
@@ -80,7 +80,7 @@ ISP settings:
  Remote Address:                 45.38.161.209/30
  Prefix List Inbound:            permit 0.0.0.0/0
  Prefix List Outbound:           permit 45.38.161.192/28 le 32
- 
+
  Name:                           iris-isp1-ipv6-example
  BGP Router:                     Softage1
  Switch Port:                    swp16@sw01-nyc
@@ -97,18 +97,18 @@ ISP settings:
  Neighbor AS:                    65007
  VLAN ID:                        1152
  Local Address:                  45.38.161.214/30
- Remote Address:                 45.38.161.213/30 
+ Remote Address:                 45.38.161.213/30
  Prefix List Inbound:            permit 0.0.0.0/0
  Prefix List Outbound:           permit 45.38.161.192/28 le 32
 
 
-Networks Used 
+Networks Used
 =============
 Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Network → IPAM**.
 
 .. code-block:: shell-session
 
-  | MANAGEMENT Allocation:       10.254.45.0/24 
+  | MANAGEMENT Allocation:       10.254.45.0/24
   |___ MANAGEMENT Subnet:        10.254.45.0/24
 
   | LOOPBACK Allocation:         10.254.46.0/24
@@ -134,4 +134,3 @@ Allocations and subnets defined under :ref:`"IPAM"<ipam_def>`, see **Network →
 
   | EXAMPLE IPv6 Allocation:     2607:f358:11:ffcf::/64
   |___ EXAMPLE IPv6 Subnet:      2607:f358:11:ffcf::/64
-  
