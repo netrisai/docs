@@ -55,6 +55,7 @@ If the Netris agent is able to reach the controller, please remove/comment the G
 3. Reboot the SoftGate.
 
 .. code-block:: shell-session
+
   user@host:~$ sudo reboot
 
 Once the server boots up you should see its heartbeat going from Critical to OK in Network → Inventory.
@@ -114,6 +115,7 @@ If the Netris agent is able to reach the controller, please remove/comment the G
 3. Reboot the SoftGate.
 
 .. code-block:: shell-session
+
   user@host:~$ sudo reboot
 
 Once the server boots up you should see its heartbeat going from Critical to OK in Network → Inventory.
