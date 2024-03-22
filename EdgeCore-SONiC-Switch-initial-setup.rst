@@ -72,6 +72,8 @@ Configure the IP address, default gateway, and DNS to establish Internet connect
 
   echo "nameserver <dns server>" > /etc/resolv.conf
 
+.. _sonic-switch-agent-installation:
+
 4. Netris agent installation.
 
 Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the switch you are provisioning. Then click Install Agent and copy the one-line installer command to your clipboard.
@@ -85,7 +87,7 @@ Navigate to the Net–>Inventory section and click the three vertical dots (⋮)
 .. image:: images/Switch-agent-installation-cli.png
    :align: center
 
-6. Reboot the switch
+5. Reboot the switch
 
 .. code-block:: shell-session
 
