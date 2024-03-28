@@ -6,7 +6,7 @@ from collections import OrderedDict
 
 # Path to index.rst files
 source_path = 'Sandbox15/index.rst'
-dest_path = 'Sandbox4/index.rst'
+dest_path = 'Sandbox1/index.rst'
 source_folder = os.path.dirname(source_path)
 dest_folder = os.path.dirname(dest_path)
 
