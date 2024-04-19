@@ -7,7 +7,7 @@
   ------------------------------------------------------------------------------------------------ 
   Sandbox1                   # Sandbox name Uppercase(case sensitive)
   sandbox1                   # Sandbox name Lowercase
-  216.172.128.201               # Hypervisor PUBLIC IP
+  216.172.128.201            # Hypervisor PUBLIC IP
   10.254.45.0/24             # *STATIC NO NEED TO REPLACE* MANAGEMENT Allocation/Subnet
   10.254.46.0/24             # *STATIC NO NEED TO REPLACE* LOOPBACK Allocation/Subnet
   192.168.44.0/24            # *STATIC NO NEED TO REPLACE* ROH Allocation/Subnet
