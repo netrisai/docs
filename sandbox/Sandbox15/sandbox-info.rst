@@ -49,11 +49,11 @@ Example pre-configured Netris services:
 
 .. code-block:: shell-session
 
-  srv01-nyc: ssh demo@50.117.27.86 -p 30061
-  srv02-nyc: ssh demo@50.117.27.86 -p 30062
-  srv03-nyc: ssh demo@50.117.27.86 -p 30063
-  srv04-nyc: ssh demo@50.117.27.86 -p 30064
-  srv05-nyc: ssh demo@50.117.27.86 -p 30065
+  srv01-nyc: ssh demo@216.172.128.215 -p 30061
+  srv02-nyc: ssh demo@216.172.128.215 -p 30062
+  srv03-nyc: ssh demo@216.172.128.215 -p 30063
+  srv04-nyc: ssh demo@216.172.128.215 -p 30064
+  srv05-nyc: ssh demo@216.172.128.215 -p 30065
 
 
 Kubernetes cluster
