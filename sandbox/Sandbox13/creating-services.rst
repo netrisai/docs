@@ -17,7 +17,7 @@ Let's create a V-Net service to give server **srv05-nyc** the ability to reach i
 
 * In a terminal window:
 
-  1. SSH to server **srv05-nyc**: ``ssh demo@50.117.27.84 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@216.172.128.213 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Type ``ip route ls`` and we can see **192.168.46.1** is configured as the default gateway, indicated by the "**default via 192.168.46.1 dev eth1 proto kernel onlink**" line in the output.
   4. Start a ping session towards the default gateway: ``ping 192.168.46.1``
@@ -90,7 +90,7 @@ Now that we have both internal and external facing services, we can aim for our 
 
 * In a terminal window:
 
-  1. SSH to server **srv05-nyc**: ``ssh demo@50.117.27.84 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@216.172.128.213 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session towards any public IP address (e.g. ``ping 1.1.1.1``).
   4. Keep the ping running as an indicator for when the service starts to work.
@@ -176,7 +176,7 @@ Now that **srv05-nyc** can communicate with both internal and external hosts, le
 
 * In a terminal window:
 
-  1. SSH to server **srv05-nyc**: ``ssh demo@50.117.27.84 -p 30065``.
+  1. SSH to server **srv05-nyc**: ``ssh demo@216.172.128.213 -p 30065``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session: ``ping 1.1.1.1``.
   4. If the previous steps were followed, you should see successful ping replies in the form of "**64 bytes from 1.1.1.1: icmp_seq=55 ttl=62 time=1.23 ms**".
