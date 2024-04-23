@@ -70,7 +70,7 @@ You may also observe the functioning NAT rule in action by pinging any public IP
 
 * In a terminal window:
 
-  1. SSH to server **srv04-nyc**: ``ssh demo@166.88.17.189 -p 30064``.
+  1. SSH to server **srv04-nyc**: ``ssh demo@216.172.128.203 -p 30064``.
   2. Enter the password provided in the introductory e-mail.
   3. Start a ping session: ``ping4 1.1.1.1``
 
