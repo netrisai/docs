@@ -12,6 +12,18 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
 .. toctree::
    :maxdepth: 2
+   :caption: Concepts
+
+   definitions
+   introduction
+   supported-platform-matrix
+   supported-switch-hardware
+   netris-architecture
+   vpc
+   supported-networks
+
+.. toctree::
+   :maxdepth: 2
    :caption: Tutorials
 
    tutorials/index
@@ -29,17 +41,6 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    kubernetes-integration
    terraform-integration
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Concepts
-
-   definitions
-   introduction
-   supported-platform-matrix
-   supported-switch-hardware
-   netris-architecture
-   vpc
-   supported-networks
 
 .. toctree::
    :maxdepth: 4
