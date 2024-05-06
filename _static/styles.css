@@ -109,6 +109,7 @@ pre.literal-block {
 
 .wy-nav-content {
   margin-top: 50px !important;
+  max-width: none;
 }
 
 .wy-nav-content-wrap {
