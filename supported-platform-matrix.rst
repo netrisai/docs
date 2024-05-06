@@ -18,25 +18,25 @@ Netris Supported Platforms & Versions
    * - 4.2.0
      - Nvidia Cumulus 5.7, Dell SONiC 4.1, EdgeCore SONiC 12.3 
      - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 (non-pro)
+     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - Mid May 2024
    * - 4.1.1
      - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3 
      - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 (non-pro)
+     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - Released
    * - 4.0.0
      - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3 
      - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 (non-pro)
+     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - Released
    * - 3.5.0
      - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3 
      - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 (non-pro)
+     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - Released
    * - 3.4.1
      - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3 
      - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 (non-pro)
+     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - Released
