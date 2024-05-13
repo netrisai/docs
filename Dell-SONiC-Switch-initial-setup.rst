@@ -14,7 +14,7 @@ To uninstall the current NOS, access **ONIE** from the GRUB menu and select the 
 .. image:: images/uninstallOS.png
    :align: center
     
-Once it's done, the switch will automatically reboot and get ready for the installation of EC SONiC.
+Once it's done, the switch will automatically reboot and get ready for the installation of Dell SONiC.
 
 2. NOS Install
 
@@ -36,13 +36,13 @@ If there is no DHCP in the management network, stop the onie-discovery service a
 
   echo "nameserver <DNS server address>" > /etc/resolv.conf
 
-The Cumulus image should be available on a web server to which the switch has access through the local network or the Internet.
+The Dell SONiC image should be available on a web server to which the switch has access through the local network or the Internet.
 
 Example:
 
 .. code-block:: shell-session
 
-  onie-nos-install http://192.168.100.10/Edgecore-SONiC_20211125_074752_ec202012_227.bin
+  onie-nos-install http://192.168.100.10/Enterprise_SONiC_OS_4.1.1_Enterprise_Premium.bin
 
 After completion of the installation, the switch will automatically reboot.
 
@@ -52,39 +52,49 @@ To login use the default username and password:
 
 3. Set up the Out-of-Band (OOB) Management.
 
-Disable ztp:
+Upon the initial boot of the newly installed NOS, please wait until the message "System is ready" appears, typically resembling the following:
 
 .. code-block:: shell-session
   
-  ztp disable -y
+  May 03 15:02:35.430469 System is ready
   
-Configure the IP address, default gateway, and DNS to establish Internet connectivity via the management port.
+Once this message is displayed, proceed to disable ZTP using the following commands:
 
 .. code-block:: shell-session
   
-  ip addr add <management IP address/prefix> dev eth0
+  admin@sonic:~$ sonic-cli
+  sonic# configure
+  sonic(config)# no ztp enable
+
+Wait once more until the "System is ready" message reappears. This may take approximately 1-2 minutes.
+If there isn't a DHCP server available in the Out-of-Band (OOB) management network to ensure the switch's connection to the internet, you'll need to configure the Management IP address, gateway, and nameservers using the following commands:
 
 .. code-block:: shell-session
 
-  ip route add default via <gateway of management network>
-
-.. code-block:: shell-session
-
-  echo "nameserver <dns server>" > /etc/resolv.conf
+  admin@sonic:~$ sonic-cli
+  sonic# configure
+  sonic(config-if-Management0)# interface Management 0
+  sonic(config-if-Management0)# ip address <MGMT-IPv4>/<MGMT-SUBNET-MASK> gwaddr <MGMT-SUBNET-GATEWAY>
+  sonic(config)# exit
+  sonic(config)# ip name-server <DNS-SERVER1>
+  sonic(config)# ip name-server <DNS-SERVER2>
+  sonic(config)# end
+  sonic# write memory
+  sonic# exit
 
 .. _sonic-switch-agent-installation:
 
 4. Netris agent installation.
 
-Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the switch you are provisioning. Then click Install Agent and copy the one-line installer command to your clipboard.
+Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the switch you are provisioning. Then click Install Agent, copy the one-line installer command to your clipboard and paste in the switch.
 
-.. image:: images/Switch-agent-installation-Inventory.png
+.. image:: images/Dell-Switch-agent-installation-Inventory.png
    :align: center
 
-.. image:: images/Switch-agent-installation-oneliner.png
+.. image:: images/Dell-Switch-agent-installation-oneliner.png
    :align: center
 
-.. image:: images/Switch-agent-installation-cli.png
+.. image:: images/Dell-Switch-agent-installation-cli.png
    :align: center
 
 5. Reboot the switch
