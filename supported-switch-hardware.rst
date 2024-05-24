@@ -132,56 +132,56 @@ Dell
      - 12 x 25G SFP28 + 3 x 100GbE QSFP28
      - Dell-SONiC
      - 
-     - Mid May 2024
+     - GA
    * - Dell
      - PowerSwitch S Series S5224F-ON
      - Broadcom Trident III
      - 24 x 25G SFP28 + 4 x 100GbE QSFP28
      - Dell-SONiC
      - 
-     - Mid May 2024
+     - GA
    * - Dell
      - PowerSwitch S Series S5232F-ON
      - Broadcom Trident III
      - 32 x 100GbE QSFP28
      - Dell-SONiC
      - 
-     - Mid May 2024
+     - GA
    * - Dell
      - PowerSwitch S Series S5248F-ON
      - Broadcom Trident III
      - 48 x 25G SFP28 + 4 x 100GbE QSFP28 + 2 x 200GbE QSFP28
      - Dell-SONiC
      - 
-     - Mid May 2024
+     - GA
    * - Dell
      - PowerSwitch S Series S5296F-ON
      - Broadcom Trident III
      - 96 x 25G SFP28 + 8 x 100GbE QSFP28
      - Dell-SONiC
      - 
-     - Mid May 2024
+     - GA
    * - Dell
      - PowerSwitch S Series S5448F-ON
      - Broadcom Trident IV
      - 48 x QSFP-DD 100GbE + 8 x QSFP-DD 400GbE
      - Dell-SONiC
      - 
-     - Coming soon
+     - GA
    * - Dell
      - PowerSwitch Z Series Z9664F-ON
      - Broadcom Tomahawk IV
      - 64 x QSFP-DD 400GbE
      - Dell-SONiC
      - 
-     - Coming soon
+     - GA
    * - Dell
      - PowerSwitch Z Series Z9432F-ON
      - Broadcom Trident IV
      - 32 x QSFP-DD 400GbE
      - Dell-SONiC
      - 
-     - Coming soon
+     - GA
 
 
 EdgeCore
