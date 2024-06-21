@@ -77,6 +77,7 @@ If there is no DHCP server in the OOB management network, then IP/Gateway/DNS in
     nv set interface eth0 ip gateway <DEFAULT-GATEWAY>
     nv set service dns mgmt server <DNS-SERVER1>
     nv set service dns mgmt server <DNS-SERVER2>
+    nv unset interface eth0 ip address dhcp
     nv config apply -y
     nv config save
 
