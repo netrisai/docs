@@ -9,6 +9,7 @@ Network Switch Initial Setup
 .. toctree::
    :maxdepth: 2
 
+   Nvidia-Cumulus-v5.9+-Switch-initial-setup
    Nvidia-Cumulus-v5-Switch-initial-setup
    Ubuntu-SwitchDev-Switch-initial-setup
    EdgeCore-SONiC-Switch-initial-setup
