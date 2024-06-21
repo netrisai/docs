@@ -30,7 +30,7 @@ If there is no DHCP in the management network, stop the onie-discovery service a
 
 .. code-block:: shell-session
 
-  onie-discovery-stop
+  onie-stop
   
 .. code-block:: shell-session
 
