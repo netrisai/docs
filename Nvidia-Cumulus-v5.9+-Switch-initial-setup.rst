@@ -103,7 +103,7 @@ Navigate to the Net–>Inventory section and click the three vertical dots (⋮)
 
 7. Netris agent connected to the controller.
 
-.. image:: images/Switch-agent-installation-Inventory-online-cl5.9
+.. image:: images/Switch-agent-installation-Inventory-online-cl5.9.png
    :align: center
 
 Once the switch is back, the Heartbeat status should be "OK" in the Netris controller.
