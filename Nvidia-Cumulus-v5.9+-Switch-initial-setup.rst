@@ -86,13 +86,13 @@ If there is no DHCP server in the OOB management network, then IP/Gateway/DNS in
 
 Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the switch you are provisioning. Then click Install Agent and copy the one-line installer command to your clipboard.
 
-.. image:: images/Switch-agent-installation-Inventory.png
+.. image:: images/Switch-agent-installation-Inventory-cl5.9.png
    :align: center
 
-.. image:: images/Switch-agent-installation-oneliner.png
+.. image:: images/Switch-agent-installation-oneliner-cl5.9.png
    :align: center
 
-.. image:: images/Switch-agent-installation-cli.png
+.. image:: images/Switch-agent-installation-cli-cl5.9.png
    :align: center
 
 6. Reboot the switch
@@ -100,3 +100,10 @@ Navigate to the Net–>Inventory section and click the three vertical dots (⋮)
 .. code-block:: shell-session
 
  sudo reboot
+
+7. Netris agent connected to the controller.
+
+.. image:: images/Switch-agent-installation-Inventory-online-cl5.9
+   :align: center
+
+Once the switch is back, the Heartbeat status should be "OK" in the Netris controller.
