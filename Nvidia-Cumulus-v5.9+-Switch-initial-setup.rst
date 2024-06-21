@@ -3,7 +3,7 @@
   :description: Network Switch Initial Setup
 
 ======================================
-Nvidia Cumulus v5 Switch Initial Setup
+Nvidia Cumulus v5.9+ Switch Initial Setup
 ======================================
 
 
@@ -50,18 +50,18 @@ Example:
 
 .. code-block:: shell-session
 
-  onie-nos-install http://192.168.100.10/cumulus-linux-5.4.0-mlx-amd64.bin
+  onie-nos-install http://192.168.100.10/cumulus-linux-5.9.1-mlx-amd64.bin
 
 After completion of the installation, the switch will automatically reboot.
 
-To login use the default username and password for Cumulus v5:
+To login use the default username and password for Cumulus v5.9:
  
 ``cumulus/cumulus``
 
 
 3. Set up the Out-of-Band (OOB) Management.
 
-Upon installation of Cumulus Linux v5, the default Virtual Routing and Forwarding (VRF) is set to 'mgmt.' To switch to the default VRF, please refer to the following instructions:
+Upon installation of Cumulus Linux v5.9 or later ZTP must be disabled and internet connectivity must be provided to the switch via OOB management network:
 
 Disable ztp:
 
@@ -69,45 +69,16 @@ Disable ztp:
 
     sudo ztp -d
 
-.. code-block:: shell-session
-
-    sudo ip vrf exec default bash
-
-Open the network interfaces file, add the IP address and other required details, and ensure that you remove the 'mgmt' VRF configuration:
+If there is no DHCP server in the OOB management network, then IP/Gateway/DNS information must be configured manually:
 
 .. code-block:: shell-session
 
-    sudo vim /etc/network/interfaces
-
-.. code-block:: shell-session
-
- # The loopback network interface
- auto lo
- iface lo inet loopback
- 
- # The primary network interface
- auto eth0
- iface eth0 inet static
-         address <management IP address/prefix length>
-         gateway <gateway of management network>
- 
- source /etc/network/interfaces.d/*
-
-.. code-block:: shell-session
- 
- echo "nameserver <dns server>" | sudo tee /etc/resolv.conf
- 
-.. code-block:: shell-session
-
- sudo ifreload -a
- 
-.. note::
-
-  You might see a one-time warning in the output of ifreload, which you can ignore:
-  
-.. code-block:: shell-session
-  
-  warning: mgmt: cmd '/usr/lib/vrf/vrf-helper delete mgmt 1001' failed: returned 1 (Failed to delete cgroup for vrf mgmt)
+    nv set interface eth0 ip address <IP-ADDRESS/MASK>
+    nv set interface eth0 ip gateway <DEFAULT-GATEWAY>
+    nv set service dns mgmt server <DNS-SERVER1>
+    nv set service dns mgmt server <DNS-SERVER2>
+    nv config apply -y
+    nv config save
 
 
 4. Netris agent installation.
