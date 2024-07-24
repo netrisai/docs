@@ -241,6 +241,254 @@ Cloud Networking Constructs
       - GA (single VPC)
 
 
+Overlay features supported
+==========================
+.. list-table:: 
+   :header-rows: 0
+
+   *  - Function
+      - Description
+      - Nvidia Spectrum
+      - Dell-SONiC
+      - Arista EOS
+      - EdgeCore-SONiC
+      - Equinix Metal
+      - PhoenixNAP
+   *  - L2VPN VXLAN VLAN Aware
+      - L2VPN VXLAN with VLAN tagged or untagged termination on switch port.
+      - GA
+      - GA
+      - Dec/2024
+      - GA
+      - N/A	
+      - N/A
+   *  - L2VPN VXLAN VLAN Unaware	
+      - L2VPN VXLAN with VLAN tagged or untagged termination on switch port supporting different VLAN IDs on different end points.	
+      - N/A
+      - N/A
+      - Dec/2024
+      - N/A
+      - N/A
+      - N/A
+   *  - L3VPN VXLAN
+      - L3VPN VXLAN, Commonly used in high performance computing, such as AI clusters.
+      - July/31/2024
+      - TBD	
+      - TBD
+      - TBD
+      - N/A
+      - N/A
+   *  - VXLAN-MH / VXLAN+ESI
+      - Active-Active server multihoming with automatic configuration
+      - GA
+      - TBD
+      - Dec/2024
+      - TBD	
+      - N/A
+      - N/A
+   *  - LACP
+      - Link Aggregation or Active-Standby server multihoming.	
+      - GA
+      - GA	
+      - Dec/2024
+      - GA
+      - N/A
+      - N/A
+
+
+AI Specific Functions	
+=====================
+.. list-table:: 
+   :header-rows: 0
+
+   *  - Function
+      - Description
+      - Nvidia Spectrum
+      - Dell-SONiC
+      - Arista EOS
+      - EdgeCore-SONiC
+      - Equinix Metal
+      - PhoenixNAP
+   *  - Spectrum-X
+      - AI GPU cluster switch fabric operation for Nvidia Spectrum-X
+      - July/31/2024	
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+   *  - Rail-optimized designs
+      - Topology and best practices initialization module for rail-optimized fabrics
+      - July/31/2024
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+   *  - QoS for RoCE
+      - Enable QoS for RoCE workloads	
+      - July/31/2024
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+   *  - RoCE Adaptive Routing
+      - Enable RoCE adaptive routing
+      - July/31/2024
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+   *  - RoCE Congestion Control
+      - Enable automatic congestion control for RoCE workloads
+      - July/31/2024
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+   *  - DPU/Host zero-touch configuration
+      - Automatically configure IP addresses, routing, RoCE and other DPU/SuperNIC specific configuration on GPU servers
+      - July/31/2024
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+      - N/A
+							
+
+Security
+========
+.. list-table:: 
+   :header-rows: 0
+
+   *  - Function
+      - Description
+      - Nvidia Spectrum
+      - Dell-SONiC
+      - Arista EOS
+      - EdgeCore-SONiC
+      - Equinix Metal
+      - PhoenixNAP
+   *  - Network ACLs
+      - Centralized Network Access Control Lists.
+      - GA
+      - GA
+      - Dec/2024
+      - GA
+      - N/A
+      - N/A
+   *  - Managed Device Profiling
+      - Managed switch & Softgate protection from unwanted access, push administrative and system settings (NTP, DNS, timezone, etc.)
+      - GA
+      - GA
+      - Dec/2024
+      - TBD
+      - N/A
+      - N/A
+   *  - Audit Logs
+      - Log all access and changes.	
+      - GA
+      - GA
+      - Dec/2024
+      - GA
+      - N/A
+      - N/A
+
+
+Administration							
+==============
+
+.. list-table:: 
+   :header-rows: 0
+						
+   *  - Function
+      - Description
+      - Globally					
+   *  - Role Based Access Control
+      - Who can view and edit which aspects of the system.
+      - GA					
+   *  - Multi-Tenancy
+      - Network resource delegation to tenants.
+      - GA					
+							
+Management Interfaces	
+=====================
+
+.. list-table:: 
+   :header-rows: 0
+						
+   *  - Function
+      - Description
+      - Globally		
+   *  - Web Console
+      - Manage through intuitive web interface.
+      - GA					
+   *  - RestAPI
+      - Integrate your other systems or your customer-facing portal with Netris consuming RestAPIs.
+      - GA					
+   *  - IaC: Terraform
+      - Manage your infrastructure as a code using Terraform.
+      - GA					
+							
+							
+Hypervisor/Worker node specific functionality
+=============================================
+
+.. list-table:: 
+   :header-rows: 0
+						
+   *  - Function
+      - Description
+      - Kubernetes
+      - Vmware
+      - Apache Cloud Stack
+      - OpenStack
+      - Harvester
+      - Proxmox
+   *  - L4 Load Balancer
+      - Layer-4 container or vm/server load balancer with health checks.
+      - GA (native & automatic)
+      - GA (need to specify backend IPs)
+      - Oct/2024
+      - GA (need to specify backend IPs)
+      - GA (need to specify backend IPs)	
+      - GA (need to specify backend IPs)
+   *  - VPC to internal routing peering
+      - Automatically route internal networks into VPC routing table (allow containers communicate with VMs).
+      - GA
+      - N/A	
+      - TBD
+      - Dec/2024
+      - TBD
+      - TBD
+   *  - Automatic VXLAN/VLAN
+      - Automatically provision VXLAN/VLAN on switch fabric and include appropriate switch ports when virtual network is created in the hypervisor.	
+      - TBD
+      - GA
+      - GA
+      - Dec/2024
+      - TBD
+      - TBD
+   *  - HBN	Host-based networking. 
+      - Terminate VTEPs on the hypervisor host. Scale beyond VLAN limits
+      - Dec/2024
+      - TBD
+      - Oct/2024
+      - Dec/2024
+      - TBD
+      - TBD
+   *  - HBN on DPU
+      - Host-based networking. Terminate VTEPs on the hypervisor host DPU. Scale beyond VLAN limits with accelerated performance
+      - 2025
+      - TBD
+      - 2025
+      - 2025
+      - TBD
+      - TBD			
+
 =====================================
 Netris Supported Platforms & Versions
 =====================================
