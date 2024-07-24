@@ -17,7 +17,7 @@ When configuring and operating a Netris system, the following nomenclature is im
 
 * **User Role** - Group of user permissions and tenants for role-based access control (RBAC).
 
-* **Site** - Each separate deployment (each data center) should be defined as a Site. All network units and resources are attached to a site. Netris Controller comes with a “default” site preconfigured. Site entry defines global attributes such as; AS numbers, default ACL policy, and Site Mesh (site to site VPN) type.
+* **Site** - Each separate deployment (each data center) should be defined as a Site. All network units and resources are attached to a site. Site entry defines global attributes such as; AS numbers, default ACL policy, Site Mesh (site to site VPN), and other site-level parameters.
 
 * **Subnet** - IPv4/IPv6 address resources linked to *Sites* and *Tenants* 
 
