@@ -200,7 +200,7 @@ Cloud Networking Constructs
       - GA
       - GA
    *  - Server Cluster (Profiling)
-      - Profiling create and apply network constructs to list of servers (not switch ports)
+      - Create network constructs template, then apply it on groups of servers. 
       - July/31/2024
       - TBD
       - Dec/2024
@@ -489,9 +489,9 @@ Hypervisor/Worker node specific functionality
       - TBD
       - TBD			
 
-=====================================
-Netris Supported Platforms & Versions
-=====================================
+============================================
+Netris and NOS versions compatibility matrix
+============================================
 
 .. list-table:: 
    :header-rows: 0
