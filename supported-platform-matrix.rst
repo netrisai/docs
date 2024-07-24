@@ -1,3 +1,97 @@
+=================================================
+Netris Supported Functionality & Platforms Matrix
+=================================================
+
+Network Management
+==================
+.. list-table:: 
+   :header-rows: 0
+
+   *  - Function	
+      - Description	
+      - Nvidia Spectrum Switches
+      - Dell-SONiC
+      - EdgeCore-SONiC
+      - Equinix Metal
+      - PhoenixNAP
+   *  - Fabric Manager	
+      - Day0, Day1, and Day2 switch fabric operations.	
+      - GA	
+      - GA	
+      - GA
+      - N/A	
+      - N/A
+   *  - Parallel Fabrics
+      - Manage multiple isolated switch fabrics. (example: East-West and North-South)
+      - GA
+      - GA
+      - GA
+      - N/A
+      - N/A
+   *  - Topology Manager
+      - Design and operate the switch fabric.
+      - GA
+      - GA
+      - GA
+      - N/A
+      - N/A
+   *  - Maintenance Mode
+      - Offload a network node for a maintenance.
+      - GA
+      - GA
+      - GA
+      - GA
+      - GA
+   *  - IPAM
+      - Manage IP subnets. Assign RBAC, multi-tenancy, and service-based rules and roles to IP address resources.
+      - GA
+      - GA
+      - GA
+      - GA
+      - GA
+   *  - Looking Glass
+      - Lookup underlay and overlay routing info of any managed network node without SSH-ing.
+      - GA
+      - GA
+      - GA
+      - GA
+      - GA
+   *  - Monitoring: Switch Ports
+      - Automatic monitoring of Link statuses, link utilization, laser signal levels, errors, packets. 	
+      - GA
+      - GA
+      - GA
+      - N/A
+      - N/A
+   *  - Monitoring: Resources
+      - Automatic monitoring of CPU, RAM, Disk, and ASIC resources.
+      - GA
+      - GA
+      - GA
+      - GA
+      - GA
+   *  - Monitoring: Sensors
+      - Automatic monitoring of temperature, fans, power supply statuses.
+      - GA
+      - GA
+      - GA
+      - N/A
+      - N/A
+   *  - Monitoring: System Processes
+      - Automatic monitoring of critical system processes.
+      - GA
+      - GA
+      - GA
+      - GA
+      - GA
+   *  - Topology Validation
+      - Detect wiring errors.
+      - July/31/2024
+      - -
+      - -	
+      - N/A
+      - N/A
+
 =====================================
 Netris Supported Platforms & Versions
 =====================================
