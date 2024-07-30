@@ -489,9 +489,9 @@ Hypervisor/Worker node specific functionality
       - TBD
       - TBD			
 
-===========================
-SoftGate Data Plane Flavors
-===========================
+==============================
+SoftGate Data Plane Variations
+==============================
 
 SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access Control, Elastic Load Balancer, and Site-to-Site VPN functions.											
 
@@ -555,11 +555,11 @@ SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access 
 	- 2025
 	- Multi
 	- VXLAN
-	- Netris DPDK
+	- Netris
 	- Active/Active - Horizontally scalable
 	- Netris Switch-Fabric
 	- Nvidia Connect-X 5, 6, 7
-	- Intel XEON (required for DPDK)
+	- Intel, AMD (TBD) 
 	- 256GB+
 	- 300GB
 	- TBD
