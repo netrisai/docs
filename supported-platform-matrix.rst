@@ -489,6 +489,81 @@ Hypervisor/Worker node specific functionality
       - TBD
       - TBD			
 
+===========================
+SoftGate Data Plane Flavors
+===========================
+
+SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access Control, Elastic Load Balancer, and Site-to-Site VPN functions.											
+
+.. list-table:: 
+  :header-rows: 0
+
+  * 	- Flavor
+	- Common Use Case
+	- Availability
+	- Tenancy/VPC
+	- Handoff
+	- Packet Forwarding
+	- HA & Scalability
+	- Ethernet Environment
+	- NIC	
+	- CPU
+	- RAM
+	- Disk
+	- Performance (w/ 100 NAT rules)
+  *     - SoftGate
+	- Bare metal cloud site, Edge site, Remote office.
+	- GA
+	- Single
+	- VLAN
+	- Linux w/ Netris optimizations
+	- Active/Standby - 2 nodes
+	- Dot1q: Equinix Metal, PhoenixNAP, pre-configured VLAN-range on any Ethernet switches.
+	- Any
+	- Intel or AMD
+	- 16-64GB
+	- 300GB
+	- Dual Gold 6336Y (48c x 2.3GHz) - 11Gbps / 1.8Mpps
+  *	- SoftGate PRO
+	- Private Cloud, Public Cloud Border Gateway, Enterprise Cloud, Vmware NSX alternative.
+	- GA
+	- Single
+	- VLAN
+	- Netris DPDK
+	- Active/Standby - 2 nodes
+	- Netris Switch-Fabric
+	- Nvidia Connect-X 5, 6 100Gbe
+	- Intel XEON (required for DPDK)
+	- 128GB
+	- 300GB
+	- Intel XEON Platinum 20+ cores - 100Gbps / 25Mpps
+  *	- SoftGate HS (HyperScale)
+	- Scalable GPU & CPU Cloud Services Provider.
+	- Aug/15/2024
+	- Multi
+	- VXLAN
+	- Linux w/ Netris optimizations
+	- Active/Active - Horizontally scalable (Netris 4.4.0 - Oct/2024)
+	- Netris Switch-Fabric
+	- Any OK. Nvidia Connect-X is recommended
+	- Intel or AMD
+	- 128-256GB
+	- 300GB
+	- Dual Platinum 8352Y (64c x 2.2GHz) - 22Gbps / 3.5 Mpps
+  *	- SoftGate HS PRO
+	- Scalable GPU & CPU Cloud Services Provider.
+	- 2025
+	- Multi
+	- VXLAN
+	- Netris DPDK
+	- Active/Active - Horizontally scalable
+	- Netris Switch-Fabric
+	- Nvidia Connect-X 5, 6, 7
+	- Intel XEON (required for DPDK)
+	- 256GB+
+	- 300GB
+	- TBD
+
 ============================================
 Netris and NOS versions compatibility matrix
 ============================================
