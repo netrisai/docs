@@ -12,7 +12,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
 .. toctree::
    :maxdepth: 2
-   :caption: Concepts
+   :caption: General Information
 
    definitions
    introduction
@@ -89,9 +89,8 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    
 .. toctree::
    :maxdepth: 4
-   :caption: Updates
+   :caption: Miscellaneous
 
-   release-notes
    softgate-performance
 
 .. toctree::
