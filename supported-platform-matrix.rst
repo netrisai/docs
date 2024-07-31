@@ -97,7 +97,7 @@ Switch Fabric Management Functions
       - GA
    *  - Topology Validation
       - Detect wiring errors.
-      - July/31/2024
+      - GA
       - TBD
       - Dec/2024
       - TBD	
@@ -113,7 +113,7 @@ Switch Fabric Management Functions
       - N/A
    *  - BGP Numbered
       - Any network topology with BGP numbered underlay
-      - July/31/2024
+      - GA
       - TBD
       - Dec/2024
       - TBD
@@ -201,7 +201,7 @@ Cloud Networking Constructs
       - GA
    *  - Server Cluster (Profiling)
       - Create network constructs template, then apply it on groups of servers. 
-      - July/31/2024
+      - GA
       - TBD
       - Dec/2024
       - TBD
@@ -209,7 +209,7 @@ Cloud Networking Constructs
       - TBD
    *  - Internet Gateway
       - Provide shared Internet access to V-Nets and VPC
-      - GA (single VPC) - Multi-VPC July/31/2024
+      - GA (Multi VPC)
       - GA (single VPC)
       - Dec/2024
       - GA (single VPC)
@@ -217,7 +217,7 @@ Cloud Networking Constructs
       - GA (single VPC)
    *  - NAT Gateway
       - Provide shared DNAT, PAT, 1:1 NAT to V-Nets and VPCs
-      - GA (single VPC) - Multi-VPC July/31/2024
+      - GA (Multi VPC)
       - GA (single VPC)
       - Dec/2024
       - GA (single VPC)
@@ -272,7 +272,7 @@ Overlay features supported
       - N/A
    *  - L3VPN VXLAN
       - L3VPN VXLAN, Commonly used in high performance computing, such as AI clusters.
-      - July/31/2024
+      - GA
       - TBD	
       - TBD
       - TBD
@@ -311,7 +311,7 @@ AI Specific Functions
       - PhoenixNAP
    *  - Spectrum-X
       - AI GPU cluster switch fabric operation for Nvidia Spectrum-X
-      - July/31/2024	
+      - GA	
       - N/A
       - N/A
       - N/A
@@ -319,7 +319,7 @@ AI Specific Functions
       - N/A
    *  - Rail-optimized designs
       - Topology and best practices initialization module for rail-optimized fabrics
-      - July/31/2024
+      - GA
       - N/A
       - N/A
       - N/A
@@ -327,7 +327,7 @@ AI Specific Functions
       - N/A
    *  - QoS for RoCE
       - Enable QoS for RoCE workloads	
-      - July/31/2024
+      - GA
       - N/A
       - N/A
       - N/A
@@ -335,7 +335,7 @@ AI Specific Functions
       - N/A
    *  - RoCE Adaptive Routing
       - Enable RoCE adaptive routing
-      - July/31/2024
+      - GA
       - N/A
       - N/A
       - N/A
@@ -343,7 +343,7 @@ AI Specific Functions
       - N/A
    *  - RoCE Congestion Control
       - Enable automatic congestion control for RoCE workloads
-      - July/31/2024
+      - GA
       - N/A
       - N/A
       - N/A
@@ -351,7 +351,7 @@ AI Specific Functions
       - N/A
    *  - DPU/Host zero-touch configuration
       - Automatically configure IP addresses, routing, RoCE and other DPU/SuperNIC specific configuration on GPU servers
-      - July/31/2024
+      - GA
       - N/A
       - N/A
       - N/A
@@ -580,7 +580,7 @@ Netris and NOS versions compatibility matrix
      - Nvidia Cumulus 5.9, Dell SONiC 4.1, EdgeCore SONiC 12.3 
      - Equinix Metal, PhoenixNAP BMC
      - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 (non-pro)
-     - July 31 2024
+     - GA
    * - 4.2.0
      - Nvidia Cumulus 5.7, Dell SONiC 4.1, EdgeCore SONiC 12.3 
      - Equinix Metal, PhoenixNAP BMC
