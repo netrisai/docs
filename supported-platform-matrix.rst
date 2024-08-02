@@ -291,7 +291,7 @@ Overlay features supported
       - GA
       - GA	
       - Dec/2024
-      - GA
+      - TBD
       - N/A
       - N/A
 
@@ -377,7 +377,7 @@ Security
       - GA
       - GA
       - Dec/2024
-      - GA
+      - TBD
       - N/A
       - N/A
    *  - Managed Device Profiling
@@ -389,7 +389,7 @@ Security
       - N/A
       - N/A
    *  - Audit Logs
-      - Log all access and changes.	
+      - Log all controller access and changes.	
       - GA
       - GA
       - Dec/2024
@@ -539,11 +539,11 @@ SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access 
 	- Intel XEON Platinum 20+ cores - 100Gbps / 25Mpps
   *	- SoftGate HS (HyperScale)
 	- Scalable GPU & CPU Cloud Services Provider.
-	- Aug/15/2024
+	- Sep/15/2024
 	- Multi
 	- VXLAN
 	- Linux w/ Netris optimizations
-	- Active/Active - Horizontally scalable (Netris 4.4.0 - Oct/2024)
+	- Active/Active - Horizontally scalable 
 	- Netris Switch-Fabric
 	- Any OK. Nvidia Connect-X is recommended
 	- Intel or AMD
