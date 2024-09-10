@@ -19,13 +19,18 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    supported-platform-matrix
    supported-switch-hardware
    netris-architecture
-   vpc
-   supported-networks
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Testing & Learning using Netris AIR Infrastructure Simulation Platform
+
+   air/index
 
 .. toctree::
    :maxdepth: 2
    :caption: Tutorials
 
+   vpc
    tutorials/index
    tutorials/vpc-anywhere
    tutorials/netris-vpc-for-equinix-metal
@@ -33,6 +38,8 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    tutorials/netris-vpc-for-aws
    tutorials/netris-vpc-for-gcp
    tutorials/vpc-gateways-with-managed-fabric.rst
+
+
 
 .. toctree::
    :maxdepth: 4
@@ -93,8 +100,5 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
    softgate-performance
 
-.. toctree::
-   :maxdepth: 4
-   :caption: Lab Scenarios
    
    sandbox/Sandbox1/onprem-k8s
