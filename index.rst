@@ -22,7 +22,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
 .. toctree::
    :maxdepth: 2
-   :caption: Testing & Learning using Netris AIR Infrastructure Simulation Platform
+   :caption: Try & Learn Netris 
 
    air/index
 
