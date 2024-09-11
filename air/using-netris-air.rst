@@ -1,3 +1,6 @@
+.. meta::
+    :description: Netris Air
+
 =============================================
 Netris Air Infrastructure Simulation Platform
 =============================================
