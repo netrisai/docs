@@ -36,4 +36,29 @@ Go back to the SSH session and cd to ``/home/ubuntu/netris-air``
 
 Execute pulumi up or pulumi destroy to start/stop a simulation of what’s described in the Netris Controller.
 
+Netris Monitoring Dashboard
+===========================
+
 Once simulation creation is done, go back to the Netris web console and wait up to 5 minutes for the infrastructure to come up. You can monitor the status of the network either from the dashboard (click on the Netris icon in the top left corner) or from the Topology section.
+
+Click on ``Agent Heartbeats`` donut to see its detailed view on the right. Agent Heartbeats section shows whether Netris agent heartbeat is being received from each Netris-managed host.
+
+Once heartbeats are received, automatic configuration will start, as well as automatic monitoring. Netris automatic monitoring provides information about the health of your network, such as Interface up/down status, BGP status, Topology/Wiring errors, RAM/CPU/PSU/Fan status, and else. 
+
+Click on the ``Managed HW Health`` donut to see monitoring check statuses for each Netris-managed node on the right side.
+
+Netris Topology
+===============
+
+The group of spine and leaf switches at the top part is the east-west network (backend network). The group of spine and leaf switches in the bottom is the north-south network (Tennant Access Network). GPU servers are located in the middle between two switch fabrics. If you zoom in, you can see that eth ports 1-8 of each GPU server are connected to the east-west fabric through rail-optimized design - that's where high-performance computing traffic runs. Interfaces 9-10 are connected to the leaf switches of north-south fabric, later you will see that interfaces 9 & 10 will be bonded from the GPU server side - that's where production traffic, storage traffic, dataset management, and workload management traffic runs. Finally, interface 11 is connected to the OOB (out of band) management switch. OOB interfaces are used for PXE booting the GPU nodes. (in the current simulation there's no PXE booting - the VMs that simulate GPU servers just come alive from an image)
+
+``Network->Topology`` The main purpose of the topology section is to define the topology. In this scenario, the topology has been defined by means of the initialization module. However, manual changes can still be done through the web console. 
+
+When deploying with physical hardware, the procedure would be to wire the switches and servers according to the topology diagram in Netris. During that process, the MAC address of each physical switch should be entered into the Netris controller through Topology, by editing every switch node (only for switches) and entering the actual MAC address. These MAC addresses will be required for binding the physical switches to logical switches in the Netris controller.
+
+When running a simulation, like in this scenario there's no need to enter any MAC addresses. The simulation platform will take care of everything.
+
+The Topology section also reflects some monitoring information. Links change their color based on link status and utilization. You can zoom in/out and then right-click on any link to check its details to see traffic statistics and any relevant healthcheck info. Switch and SoftGate nodes show numbers on a red/yellow/green background reflecting the quantity of critical/warning/ok checks per each node.
+
+Once your newly created simulation is converged, you will see only 1 check in critical state on every switch - that's the time synchronization, which takes up to 10 minutes to go green. 
+
