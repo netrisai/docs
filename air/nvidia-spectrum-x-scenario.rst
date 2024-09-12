@@ -11,10 +11,11 @@ Optionally Edit ``terraform.tfvars`` file to set cluster scale parameters.
 
 Below, we describe the role of a few parameters that directly define the scale. The description of the rest of the parameters is available in the ``terraform.tfvars`` file itself. For the purpose of this try & learn scenario, there is no need to change the other parameters.
 
-The east-west switch fabric is responsible for high performance data transmission between GPU servers. It rail-optimized design allows to non-blocking max-rate data transmission between any GPUs on the network. You only need to define the number of GPU servers in the ``terraform.tfvars`` file. When you execute the initialization module, it will automatically calculate the proper number of links and will generate the rail-optimized blueprint in the Netris controller according to the NVIDIA Spectrum-X guidelines.
-* Define GPU (HGX/DGX) servers count by setting ``gpu-server-count`` to increments of 32 (1 SU = 32 servers, 2 SUs = 64 servers, etc.)
+The **east-west** switch fabric is responsible for high performance data transmission between GPU servers. It rail-optimized design allows to non-blocking max-rate data transmission between any GPUs on the network. You only need to define the number of GPU servers in the ``terraform.tfvars`` file. When you execute the initialization module, it will automatically calculate the proper number of links and will generate the rail-optimized blueprint in the Netris controller according to the NVIDIA Spectrum-X guidelines.
 
-The north-south switch fabric is responsible for everything else - for connectivity from the outside, to manage the GPU nodes and run workloads. OOB management switches are responsible for out-of-band management of the network switches and GPU servers. OOB management is also used in production for PXE booting the GPU servers. In this simulation scenario, GPU servers will be booted by means of the Netris infrastructure simulation platform for your conveninece of teasting and learning.
+* Define ``gpu-server-count`` using increments of 32 (1 SU = 32 servers, 2 SUs = 64 servers, etc.)
+
+The **north-south** switch fabric is responsible for everything else - for connectivity from the outside, to manage the GPU nodes and run workloads. OOB management switches are responsible for out-of-band management of the network switches and GPU servers. OOB management is also used in production for PXE booting the GPU servers. In this simulation scenario, GPU servers will be booted by means of the Netris infrastructure simulation platform for your conveninece of teasting and learning.
 
 * Define ``leaf-count`` - the rule of thumb is that at least 1/4th of the number of SUs - so 4 leaf switches can handle up to 4 SUs
 * Define ``oob-leaf-count`` - Should be equal to the number of SUs.
