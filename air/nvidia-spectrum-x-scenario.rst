@@ -244,4 +244,66 @@ While the Server Cluster is being provisioned, check out what primitive objects 
 
 Go ahead, and create another Server Cluster, and include the next 10 servers - or any other servers. The system won't let you "double-book" any server in more than one cluster to avoid conflicts.
 
+Checking the connectivity
+=========================
+
+SSH to GPU server host 0 SU 0.
+
+.. code-block:: shell-session
+
+ ubuntu@test-ctl:~$ ssh root@192.168.16.2
+ Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.0-119-generic x86_64)
+
+
+Cluster-ping the neighboring GPU servers. SU0 host 0-9 
+
+.. code-block:: shell-session
+
+ root@hgx-pod00-su0-h00:~# ./cluster-ping.sh 0 9
+ Usage: ./cluster-ping.sh <SU> <Host>
+ 
+ Ping from hgx-pod00-su0-h00 to SU:0 host:9
+ 
+ ------ East-West Fabric ------
+ ping rail0 (172.0.0.18)    : OK
+ ping rail1 (172.32.0.18)   : OK
+ ping rail2 (172.64.0.18)   : OK
+ ping rail3 (172.96.0.18)   : OK
+ ping rail4 (172.128.0.18)  : OK
+ ping rail5 (172.160.0.18)  : OK
+ ping rail6 (172.192.0.18)  : OK
+ ping rail7 (172.224.0.18)  : OK
+ 
+ ------ North-South Fabric ------
+ ping bond0  (192.168.0.10)  : OK
+ ping default GW (192.168.7.254)  : OK
+ 
+ ------ IPMI/BMC ------
+ ping eth11 (192.168.8.10)  : OK
+ ping default GW (192.168.15.254)  : OK
+ 
+ 
+ root@hgx-pod00-su0-h00:~# 
+
+Since GPU servers from 0 to 9 are in the same cluster, you should be able to cluster-ping all of them. If you try to cluster-ping other nodes, you will get timeouts because they are not in the same Server Cluster - so the Netris-generated configuration of the switches will contain the access within a single VPC using various configurations throughout the network. 
+
+You can SSH to GPU server SU0 host 10, which belongs in the second cluster, and cluster-ping its neighbors.
+
+.. code-block:: shell-session
+
+ ubuntu@test-ctl:~$ ssh root@192.168.16.12
+ Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.0-119-generic x86_64)
+
+
+Cleanup the Controller
+======================
+
+At this point this Netris Try & Learn scenario has been concluded. You may want to clean up the lab to let your colleagues run through the scenario or if you are working on another one. There is no need to clean up if you are about to return the environment to the Netris team -- we are going to recycle and reinstall the environment anyway.
+
+1. Delete Server Clusters from the ``Services->Server Cluster`` menu.
+2. Delete Server Cluster Profile from the ``Services->Server Cluster Profile`` menu.
+3. SSH to the Netris controller server, ``cd /home/ubuntu/netris-air``, and execute ``pulumi destroy`` to destroy the infrastructure simulation.
+4. ``cd /home/ubuntu/netris-init/netris-spectrum-x-init`` and execute tofu-destroy to remove the objects from the Netris controller that were created through the initialization module.
+
+Please let us know your feedback and questions.
 
