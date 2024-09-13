@@ -1,3 +1,7 @@
+==================
+Netris Try & Learn
+==================
+
 .. toctree::
    :maxdepth: 2
 
