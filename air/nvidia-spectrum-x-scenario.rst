@@ -15,7 +15,7 @@ The **east-west** switch fabric is responsible for high performance data transmi
 
 * Define ``gpu-server-count`` using increments of 32 (1 SU = 32 servers, 2 SUs = 64 servers, etc.)
 
-The **north-south** switch fabric is responsible for everything else - for connectivity from the outside, to manage the GPU nodes and run workloads. OOB management switches are responsible for out-of-band management of the network switches and GPU servers. OOB management is also used in production for PXE booting the GPU servers. In this simulation scenario, GPU servers will be booted by means of the Netris infrastructure simulation platform for your conveninece of teasting and learning.
+The **north-south** switch fabric is responsible for everything else - for connectivity from the outside, to manage the GPU nodes and operate workloads. OOB management switches are responsible for out-of-band management of the network switches and GPU servers. In production, OOB management is also used for PXE booting the GPU servers. In this simulation scenario, GPU servers will be booted by means of the Netris infrastructure simulation platform for your conveninece of teasting and learning.
 
 * Define ``leaf-count`` - the rule of thumb is that at least 1/4th of the number of SUs - so 4 leaf switches can handle up to 4 SUs
 * Define ``oob-leaf-count`` - Should be equal to the number of SUs.
@@ -87,7 +87,7 @@ SSH to GPU servers
 
 GPU servers are connected to the east-west and north-south fabrics. At this point of the lab scenario, we haven't created any VPC/V-Net/VLAN services to instruct the fabric to provide connectivity to any interfaces of any GPU nodes. However, for the purpose of learning and experimenting, the simulation platform has an additional management network that allows you to connect to GPU servers anytime. 
 
-Please SSH from the Netris controller server to a few GPU servers using 'root' username and IP addresses starting 192.168.16.2. ( 192.168.16.2 is host 0 in SU0, 192.168.16.3 is host 1 in SU0, etc.) 
+SSH from the Netris controller server to a few GPU servers using 'root' username and IP addresses starting 192.168.16.2. ( 192.168.16.2 is host 0 in SU0, 192.168.16.3 is host 1 in SU0, etc.) 
 
 Example:
 
@@ -156,3 +156,92 @@ In the below example, the host pings itself. So, local interface IPs are respond
   
   
   root@hgx-pod00-su0-h00:~# 
+
+NHN (Netris host networking plugin)
+===================================
+
+Netris host networking plugin is an optional plugin that runs on a GPU host for automatic configuration of IP addresses, static routes, and DPU parameters. The plugin does not use any management network and does not carry any sensitive information. It's important for multi-tenant situations because the cloud provider should not have access to the tenant servers -- therefore, any host configuration method shall not use any kind of shared management network. Also, the tenant should not be able to access any sensitive information of the cloud provider or other tenants. Netris host networking plugin addresses both issues. The plugin reads the necessary IP and static route information by leveraging LLDP, topology discovery, and custom TLVs.
+
+The below example shows how to check if the pluggin is running:
+
+.. code-block:: shell-session
+
+ root@hgx-pod00-su0-h00:~# systemctl status netris-hnp.service 
+ ● netris-hnp.service - Netris Host Networking Plugin
+      Loaded: loaded (/etc/systemd/system/netris-hnp.service; enabled; vendor preset: enabled)
+      Active: active (running) since Thu 2024-09-12 23:01:22 UTC; 21h ago
+    Main PID: 2906 (netris-hnp)
+       Tasks: 4 (limit: 1102)
+      Memory: 7.7M
+         CPU: 3min 35.913s
+      CGroup: /system.slice/netris-hnp.service
+              └─2906 /opt/netris/bin/netris-hnp
+
+You can also check the running IP addresses and static routes on the GPU server, and if you right-click on the server to switch links in the Network->Topology and check the details, you will see that the actual IP addresses on the GPU servers are aligned with those in the Topology blueprint.
+
+Server Cluster Template
+=======================
+
+Now, when the switch fabric is in an operational state, the underlay is established, it is the time to start defining cloud networking constructs such as VPCs, Subnets, etc., in order to ask the system to provision network access to certain groups of servers.
+
+One way to do that would be to navigate to ``Network->VPC``, ``Network->IPAM``, and ``Services->V-Net`` sections and create these objects, list switch ports, and then Netris will implement the necessary confogurations.
+
+Before that, there is one more important concept that we want you to learn. Server Cluster and Server Cluster Template.
+Server Cluster allows the creation of VPC, IPAM, and V-Net objects by listing server names instead of switch ports -- this is critical for cloud providers because cloud users don't want to deal with switch ports.
+
+In the web console, navigate to ``Services->Server Cluster Template`` - click ``+Add``, give the template some name 'GPU-Cluster-Template' or something, and copy/paste the below in the JSON area.
+
+The Template is basically telling the system to what server interfaces should be groupped into what V-Nets. Netris will find out the appropriate switch ports by looking up the topology.
+
+.. code-block:: shell-session
+
+ [
+     {
+         "postfix": "East-West",
+         "type": "l3vpn",
+         "vlan": "untagged",
+         "vlanID": "auto",
+         "serverNics": [
+             "eth1",
+             "eth2",
+             "eth3",
+             "eth4",
+             "eth5",
+             "eth6",
+             "eth7",
+             "eth8"
+         ]
+     },
+     {
+         "postfix": "North-South-in-band-and-storage",
+         "type": "l2vpn",
+         "vlan": "untagged",
+         "vlanID": "auto",
+         "serverNics": [
+             "eth9",
+             "eth10"
+         ],
+         "ipv4Gateway": "192.168.7.254/21"
+     },
+     {
+         "postfix": "OOB-Management",
+         "type": "l2vpn",
+         "vlan": "untagged",
+         "vlanID": "auto",
+         "serverNics": [
+             "eth11"
+         ],
+         "ipv4Gateway": "192.168.15.254/21"
+     }
+ ]
+
+Server Cluster
+==============
+
+Now, navigate to ``Services->Server Cluster`` and click +Add. Give the new cluster some name, set Admin to Admin (this is related to Netris internal permissions of who can edit/delete this cluster), set the site to your site (Datacenter-1 is the default name), set VPC to 'create new', select the Template (you'll see the Template created in the last step), and click +Add server and include first 10 servers (from 0 to 9). Click Add.
+
+While the Server Cluster is being provisioned, check out what primitive objects have been created in the Netris controller driven by the Server Cluster and Server Cluster Template constructs. Navigate to ``Network->VPC``, and you'll see a newly created VPC. Navigate to ``Network->IPAM``, then open the VPC filter and make it filter the IPAM by your new VPC, you'll see some subnets created and assigned to that new VPC. Navigate to ``Services->V-Net``, and you'll see some 3 V-Nets created, one for the east-west fabric (L3VPN VXLAN), one for north-south (L2VPN VXLAN - this one will have EVPN-MH bonding enabled, you'll see in next steps), and one for OOB.
+
+Go ahead, and create another Server Cluster, and include the next 10 servers - or any other servers. The system won't let you "double-book" any server in more than one cluster to avoid conflicts.
+
+
