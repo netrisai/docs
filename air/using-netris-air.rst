@@ -4,7 +4,7 @@ Netris Test Controller & Infrastructure Simulation
 
 This document provides general tips and tricks for using the Netris test controller and Netris infrastructure simulation. Please refer to individual scenarios in this section to experiment around a specific use case.
 
-Once your Try & Learn through Netris Air platform is approved you will receive credentials for accessing a Netris controller with a trial license hosted in Netris Air.
+Once your Try & Learn through Netris Infrastructure Simulation platform is approved you will receive credentials for accessing a Netris controller with a trial license hosted in Netris Infrastructure Simulation platform.
 
 Controller FQDN: example-ctl.netris.dev
 Password: NetrisProvidedPassword
