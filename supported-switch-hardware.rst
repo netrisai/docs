@@ -196,23 +196,22 @@ EdgeCore
      - **NOS**
      - **Caveats**
      - **Netris Support**
-
    * - EdgeCore
-     - AS5835-54X
+     - DCS201 (AS5835-54X)
      - Broadcom Trident III
      - 48 x 10G SFP+ + 6 x 100G QSFP28
      - EC-SONiC
      - 
      - GA
    * - EdgeCore
-     - AS5835-54T
+     - DCS202 (AS5835-54T)
      - Broadcom Trident III
      - 48 x 10G RJ-45 + 6 x 100G QSFP28
      - EC-SONiC
      - 
      - GA
    * - EdgeCore
-     - AS7326-56X
+     - DCS203 (AS7326-56X)
      - Broadcom Trident III
      - 48 x 25G SFP28 + 8 x 100G QSFP28+ 2 x 10G
      - EC-SONiC
@@ -225,3 +224,24 @@ EdgeCore
      - EC-SONiC
      - 
      - GA
+   * - EdgeCore
+     - DCS510 (AS9716-32D)
+     - Broadcom Tomahawk 3
+     - 32 x 400G QSFP-DD 
+     - EC-SONiC
+     - 
+     - Nov/2024
+   * - EdgeCore
+     - DCS511 (AS9737-32DB)
+     - Broadcom Tomahawk 4
+     - 32 x 400G QSFP56-DD
+     - EC-SONiC
+     - 
+     - Nov/2024
+   * - EdgeCore
+     - AIS800-64O
+     - Broadcom Tomahawk 5
+     - 64 x OSFP800
+     - EC-SONiC
+     - 
+     - Nov/2024
