@@ -32,7 +32,7 @@ Start a simulation
 
 Check ``Inventory``, ``IPAM``, and ``Topology`` sections under ``Network`` menu in the Netris controller web console. (In the topology section, you may need to select the right site to see a diagram)
 
-Go back to the SSH session and cd to ``/home/ubuntu/netris-air``
+Go back to the SSH session and cd to ``/home/ubuntu/netris-cloudsim``
 
 Execute pulumi up or pulumi destroy to start/stop a simulation of what’s described in the Netris Controller.
 
@@ -74,7 +74,7 @@ Example:
 
 .. code-block:: shell-session
 
- ubuntu@test-ctl:~/netris-air$ ssh cumulus@10.7.0.4
+ ubuntu@test-ctl:~/netris-cloudsim$ ssh cumulus@10.7.0.4
  Debian GNU/Linux 12
  Linux leaf-pod00-su0-r3 6.1.0-cl-1-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.38-4+cl5.9.1u6 (2024-05-13) x86_64
  Last login: Thu Sep 12 16:21:35 2024 from 10.8.0.2
@@ -302,7 +302,7 @@ At this point this Netris Try & Learn scenario has been concluded. You may want 
 
 1. Delete Server Clusters from the ``Services->Server Cluster`` menu.
 2. Delete Server Cluster Profile from the ``Services->Server Cluster Profile`` menu.
-3. SSH to the Netris controller server, ``cd /home/ubuntu/netris-air``, and execute ``pulumi destroy`` to destroy the infrastructure simulation.
+3. SSH to the Netris controller server, ``cd /home/ubuntu/netris-cloudsim``, and execute ``pulumi destroy`` to destroy the infrastructure simulation.
 4. ``cd /home/ubuntu/netris-init/netris-spectrum-x-init`` and execute tofu-destroy to remove the objects from the Netris controller that were created through the initialization module.
 
 Please let us know your feedback and questions.
