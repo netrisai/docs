@@ -20,7 +20,7 @@ Netris upgrade Procedure
 Backup current database
 -----------------------
 
-SSH to the host running the Netris Controller and execute below command.
+Always have a backup, just in case anything hypothetically goes wrong. SSH to the host running the Netris Controller and execute below command.
 
 .. code-block:: shell-session
 
