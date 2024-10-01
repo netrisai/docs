@@ -24,7 +24,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :maxdepth: 2
    :caption: Try & Learn Netris 
 
-   air/index
+   try-learn/index
 
 .. toctree::
    :maxdepth: 2
