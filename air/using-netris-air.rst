@@ -51,7 +51,7 @@ Go to:
 
 .. code-block:: shell-session
 
- cd /home/ubuntu/netris-air
+ cd /home/ubuntu/netris-cloudsim
 
 Execute ``pulumi up`` or ``pulumi destroy`` to start/stop a simulation of what's described in the Netris Controller
 
