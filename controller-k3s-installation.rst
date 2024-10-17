@@ -267,7 +267,10 @@ The output of the script will look similar to this:
 
 The script will output the local repository URL. Copy and paste this URL into the Netris Controller Web UI under **Settings** section (as shown in the screenshots below). Additionally, it provides the host system path, which you may want to use to host your custom ISOs for your servers, softgates, or switches.
 
-.. image:: images/create_board.png
+.. image:: images/Global-settings-edit.png
+    :align: center
+
+.. image:: images/Global-settings-save.png
     :align: center
 
 
