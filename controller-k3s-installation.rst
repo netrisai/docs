@@ -265,7 +265,9 @@ The output of the script will look similar to this:
 
   Path to upload custom ISOs: /var/lib/rancher/k3s/storage/pvc-ea0dd3ef-ded1-49d3-bbd8-b797c91d76b5_netris-controller_netris-local-repo-pvc/repo/isos
 
-The script will output the local repository URL. Copy and paste this URL into the Netris Controller Web UI under **Settings** section (as shown in the screenshots below). Additionally, it provides the host system path, which you may want to use to host your custom ISOs for your servers, softgates, or switches.
+The script will output the local repository URL. Copy and paste this URL into the Netris Controller Web UI under **Settings** section (as shown in the screenshots below).
+
+Additionally, it provides the host system path, which you may want to use to host your custom ISOs for your servers, softgates, or switches.
 
 .. image:: images/Global-settings-edit.png
     :align: center
