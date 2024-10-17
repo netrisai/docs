@@ -62,7 +62,7 @@ Once the local repository function is enabled in the Netris Controller Settings,
 
 .. note::
 
-  The local repository includes all the necessary scripts and dependency packets for the Netris NVUE (Cumulus 5.9 and higher) and Netris SoftGate HS (Ubuntu 24.04) agents.
+  The local repository includes all the necessary scripts and dependency packages for the Netris NVUE (Cumulus 5.9 and higher) and Netris SoftGate HS (Ubuntu 24.04) agents.
 
 
 .. image:: images/oneliner-from-local-repo.png
