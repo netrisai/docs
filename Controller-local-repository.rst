@@ -55,3 +55,10 @@ Additionally, it provides the host system path, which you may want to use to hos
 
 How to consume local repository
 -------------------------------
+
+Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).
+
+*Note: The local repository includes all the necessary scripts and dependency packets for the Netris NVUE (Cumulus 5.9 and higher) and Netris SoftGate HS (Ubuntu 24.04) agents.
+
+.. image:: images/oneliner-from-local-repo.png
+    :align: center
