@@ -41,8 +41,8 @@ The output of the script will look similar to this:
   Netris local repository pod is now running.
 
   Path to upload custom ISOs: /var/lib/rancher/k3s/storage/pvc-ea0dd3ef-ded1-49d3-bbd8-b797c91d76b5_netris-controller_netris-local-repo-pvc/repo/isos
-  Local repository URL: http://rhel-ctl.netris.dev/repo/
-  URL to ISOs directory: http://rhel-ctl.netris.dev/repo/isos/
+  Local repository URL: http://netris.example.com/repo/
+  URL to ISOs directory: http://netris.example.com/repo/isos/
 
 The script will output the local repository URL and URL to ISOs directory. Copy and paste this URL of the Local repository into the Netris Controller Web UI under **Settings** section (as shown in the screenshots below).
 
