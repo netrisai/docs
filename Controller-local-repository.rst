@@ -41,8 +41,10 @@ The output of the script will look similar to this:
   Netris local repository pod is now running.
 
   Path to upload custom ISOs: /var/lib/rancher/k3s/storage/pvc-ea0dd3ef-ded1-49d3-bbd8-b797c91d76b5_netris-controller_netris-local-repo-pvc/repo/isos
+  Local repository URL: http://rhel-ctl.netris.dev/repo/
+  URL to ISOs directory: http://rhel-ctl.netris.dev/repo/isos/
 
-The script will output the local repository URL. Copy and paste this URL into the Netris Controller Web UI under **Settings** section (as shown in the screenshots below).
+The script will output the local repository URL and URL to ISOs directory. Copy and paste this URL of the Local repository into the Netris Controller Web UI under **Settings** section (as shown in the screenshots below).
 
 Additionally, it provides the host system path, which you may want to use to host your custom ISOs for your servers, softgates, or switches.
 
@@ -59,6 +61,7 @@ How to consume local repository
 Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).
 
 .. note::
+
 The local repository includes all the necessary scripts and dependency packets for the Netris NVUE (Cumulus 5.9 and higher) and Netris SoftGate HS (Ubuntu 24.04) agents.
 
 .. image:: images/oneliner-from-local-repo.png
