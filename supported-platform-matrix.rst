@@ -204,7 +204,7 @@ Cloud Networking Functions & Constructs
       -  ✔
       - TBD
       - Nov/2024
-      - TBD
+      - Dec/2024
       - TBD
       - TBD
    *  - Internet Gateway
@@ -275,7 +275,7 @@ Overlay Network Features
       -  ✔
       - TBD	
       - TBD
-      - TBD
+      - Dec/2024
       - N/A
       - N/A
    *  - EVPN-MH / VXLAN-ESI
@@ -283,7 +283,7 @@ Overlay Network Features
       -  ✔
       - TBD
       - Nov/2024
-      - TBD	
+      - N/A	
       - N/A
       - N/A
    *  - LACP
@@ -291,7 +291,7 @@ Overlay Network Features
       -  ✔
       -  ✔	
       - Nov/2024
-      - TBD
+      - Dec/2024
       - N/A
       - N/A
    *  - MC-LAG
