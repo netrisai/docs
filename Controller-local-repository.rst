@@ -67,3 +67,27 @@ Once the local repository function is enabled in the Netris Controller Settings,
 
 .. image:: images/oneliner-from-local-repo.png
     :align: center
+
+
+Upgrade Local-Repo Cache
+------------------------
+
+To update the local repository, restart the `local-repo` deployment in the controller. Then, verify the deployment status to ensure the rollout succeeds:
+
+.. code-block:: shell-session
+
+  kubectl -nnetris-controller rollout restart deploy/netris-local-repo-nginx
+  kubectl -nnetris-controller rollout status deploy/netris-local-repo-nginx
+
+
+Expected output:
+
+.. code-block:: shell-session
+
+  ubuntu@netris:~$ kubectl -nnetris-controller rollout restart deploy/netris-local-repo-nginx
+  deployment.apps/netris-local-repo-nginx restarted
+
+  ubuntu@netris:~$ kubectl -nnetris-controller rollout status deploy/netris-local-repo-nginx
+  Waiting for deployment "netris-local-repo-nginx" rollout to finish: 1 old replicas are pending termination...
+  Waiting for deployment "netris-local-repo-nginx" rollout to finish: 1 old replicas are pending termination...
+  deployment "netris-local-repo-nginx" successfully rolled out
