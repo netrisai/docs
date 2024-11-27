@@ -98,7 +98,7 @@ Switch Fabric Management Functions
    *  - Topology Validation
       - Detect wiring errors.
       -  ✔
-      - TBD
+      - Dec/2024
       - Nov/2024
       - Dec/2024	
       - N/A
@@ -114,7 +114,7 @@ Switch Fabric Management Functions
    *  - BGP Numbered
       - Any network topology with BGP numbered underlay
       -  ✔
-      - TBD
+      - Dec/2024
       - Nov/2024
       - Dec/2024
       - N/A
@@ -202,7 +202,7 @@ Cloud Networking Functions & Constructs
    *  - Server Cluster (Profiling)
       - Create network constructs template, then apply it on groups of servers. 
       -  ✔
-      - TBD
+      - Dec/2024
       - Nov/2024
       - Dec/2024
       - TBD
@@ -234,7 +234,7 @@ Cloud Networking Functions & Constructs
    *  - SiteMesh
       - Wireguard-based Site-to-Site VPN between multiple regions/sites. (single VPC)
       -  ✔
-      -  ✔
+      - TBD
       - Nov/2024
       -  ✔
       -  ✔
@@ -281,7 +281,7 @@ Overlay Network Features
    *  - EVPN-MH / VXLAN-ESI
       - EVPN MultiHoming based on VXLAN and ESI for automatic Active-Active server network multihoming
       -  ✔
-      - TBD
+      - Dec/2024
       - Nov/2024
       - N/A	
       - N/A
@@ -585,7 +585,7 @@ Netris and NOS versions compatibility matrix
      - **SoftGate OS**
      - **Availability**
    * - 4.4.0
-     - Nvidia Cumulus 5.9, Dell SONiC 4.1, EdgeCore SONiC 202211
+     - Nvidia Cumulus 5.11, Dell SONiC 4.4, EdgeCore SONiC 202211-331
      - Equinix Metal, PhoenixNAP BMC
      - SoftGate HS: Ubuntu 24.04, SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 
      - Dec/2024
