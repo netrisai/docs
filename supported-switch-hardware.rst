@@ -245,3 +245,23 @@ EdgeCore
      - EC-SONiC
      - 
      - Nov/2024
+
+Arista
+========
+.. list-table:: 
+   :header-rows: 0
+
+   * - **Manufacturer**
+     - **Model**
+     - **ASIC**
+     - **Ports**
+     - **NOS**
+     - **Caveats**
+     - **Netris Support**
+   * - Arista
+     - 7050X3
+     - Broadcom Trident III
+     - 32 x QSFP100; 48 x SFP25 + 12 x QSFP100; 48 x SFP25 + 8 x QSFP100; 48 x 10G-T + 8 x QSFP100
+     - EC-SONiC
+     - 
+     - GA
