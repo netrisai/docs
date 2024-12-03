@@ -547,7 +547,7 @@ SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access 
 	- Intel XEON Platinum 20+ cores - 100Gbps / 25Mpps
   *	- SoftGate HS (HyperScale)
 	- Scalable GPU & CPU Cloud Services Provider.
-	- Sep/15/2024
+	- ✔
 	- Multi
 	- VXLAN
 	- Linux w/ Netris optimizations
@@ -560,7 +560,7 @@ SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access 
 	- Dual Platinum 8352Y (64c x 2.2GHz) - 22Gbps / 3.5 Mpps
   *	- SoftGate HS PRO
 	- Scalable GPU & CPU Cloud Services Provider.
-	- 2025
+	- 2025/Q2
 	- Multi
 	- VXLAN
 	- Netris
