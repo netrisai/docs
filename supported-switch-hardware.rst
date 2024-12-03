@@ -262,6 +262,62 @@ Arista
      - 7050X3
      - Broadcom Trident III
      - 32 x QSFP100; 48 x SFP25 + 12 x QSFP100; 48 x SFP25 + 8 x QSFP100; 48 x 10G-T + 8 x QSFP100
-     - EC-SONiC
+     - EOS
      - 
-     - GA
+     - Dec/2024
+   * - Arista
+     - 7050X4
+     - Trident-4
+     - 32 QSFP-DD 400G + 2SFP+; 32 OSFP 400G + 2SFP+; 48 SFP-DD 100G + 8 QSFP-DD 400G; 48 DSFP 100G + 8 QSFPDD 400G; 24 QSFP56 200G + 8 QSFPDD 400G + 2SFP+; 48 QSFP28 + 8 QSFP-DD 400G + 2SFP+
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
+     - 7060X4
+     - Trident-4
+     - 32 x QSFP-DD 800G + 2 x SFP+; 32 x QSFP-DD 800G + 2 x SFP+; 32 x OSFP 800G + 2 x SFP+; 64 x QSFP-DD 400G, 2 x SFP+; 32 x QSFP-DD + 1x SFP+; 56x QSFP100, 8 x QSFP-DD 400G + 1x SFP+
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
+     - 7280R3A
+     - Jericho2
+     - 144 x 100G or 36 x 400G 
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
+     - 7280R3
+     - Jericho2
+     - 24 x 400G; 96 x 100G; 25G + 8 x 100G
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
+     - 7358X4
+     - Trident-4
+     - 128 x QSFP or 32 x OSFP / QSFP-DD
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
+     - 7358X4
+     - Trident-4
+     - 128 x QSFP or 32 x OSFP / QSFP-DD
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
+     - 7300R3
+     - Trident-4
+     - 256 wire-speed 40GbE ports 
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
+     - 7500R3
+     - Jericho, Jericho2
+     - Up to 288 wire-speed 400G ports
+     - EOS
+     - 
+     - Dec/2024
