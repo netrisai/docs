@@ -259,6 +259,13 @@ Arista
      - **Caveats**
      - **Netris Support**
    * - Arista
+     - 7020R
+     - Qumran
+     - 24 x 10G + 2 QSFP100; 32 x 10G + 2 QSFP100; 48 x 100/1000Mb + 6 SFP+; 48 x 100/1000Mb + 6 SFP+
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
      - 7050X3
      - Broadcom Trident III
      - 32 x QSFP100; 48 x SFP25 + 12 x QSFP100; 48 x SFP25 + 8 x QSFP100; 48 x 10G-T + 8 x QSFP100
@@ -276,6 +283,13 @@ Arista
      - 7060X4
      - Trident-4
      - 32 x QSFP-DD 800G + 2 x SFP+; 32 x QSFP-DD 800G + 2 x SFP+; 32 x OSFP 800G + 2 x SFP+; 64 x QSFP-DD 400G, 2 x SFP+; 32 x QSFP-DD + 1x SFP+; 56x QSFP100, 8 x QSFP-DD 400G + 1x SFP+
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
+     - 7060X5
+     - Tomahawk 4
+     - 32 x QSFP-DD 800G + 2x SFP+; 32 x QSFP-DD 800G + 2x SFP+; 32 x OSFP 800G + 2x SFP+; 64 x QSFP-DD 400G + 2x SFP+; : 32 x QSFP-DD + 1 x SFP+; 56x QSFP100, 8 x QSFP-DD 400G, 1x SFP+
      - EOS
      - 
      - Dec/2024
@@ -304,6 +318,13 @@ Arista
      - 7358X4
      - Trident-4
      - 128 x QSFP or 32 x OSFP / QSFP-DD
+     - EOS
+     - 
+     - Dec/2024
+   * - Arista
+     - 7368X4
+     - Tomahawk 3
+     - 128 x 100G or 32 x 400G
      - EOS
      - 
      - Dec/2024
