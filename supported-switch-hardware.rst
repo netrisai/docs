@@ -51,7 +51,7 @@ We recommend two Ubuntu 24.04 servers with the below specs. Netris controller ca
      - 10 TB
      - 2x 10GbE+ NIC
 
-Netris SoftGate HS (Horizontally Scalable)
+Netris SoftGate HS (The Horizontally Scalable version)
 ==========================================
 
 A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward the stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can be scaled horizontally by deploying more servers as CPU & RAM utilization necessitates.
@@ -64,7 +64,7 @@ Server specs:
    * - 
      - **Minimum**
      - **Recommended**
-   * - CPU
+   * - CPU (Modern Intel/AMD X86)
      - 16 Cores
      - 32 Cores
    * - RAM
