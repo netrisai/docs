@@ -1,3 +1,77 @@
+=====================
+Hardware Requirements
+=====================
+
+Netris Controller
+=================
+
+We recommend two Ubuntu 24.04 servers with the below specs. Netris controller can also run on other Linux OSes or on a shared Kubernetes cluster. 
+
+.. list-table:: 
+   :header-rows: 0
+
+   * - **Use Case**
+     - **CPU Cores**
+     - **RAM**
+     - **SSD/NVME**
+     - **Network**
+   * - Leaf/Spine 1-30 switches
+     - 4
+     - 32 GB
+     - 300 GB
+     - 2x 1GbE+ NIC
+   * - Leaf/Spine 30-100 switches
+     - 8
+     - 32 GB
+     - 600 GB
+     - 2x 1GbE+ NIC
+   * - Spectrum-X 1-8 SUs
+     - 16
+     - 64 GB
+     - 1 TB
+     - 2x 10GbE+ NIC
+   * - Spectrum-X 16-32 SUs
+     - 32
+     - 128 GB
+     - 2 TB
+     - 2x 10GbE+ NIC
+   * - Spectrum-X 32+ SUs
+     - 64
+     - 256 GB
+     - 10 TB
+     - 2x 10GbE+ NIC
+
+Netris SoftGate HS (Horizontally Scalable)
+==========================================
+
+A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward the stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can be scaled horizontally by deploying more servers as CPU & RAM utilization necessitates.
+
+Server specs:
+
+.. list-table:: 
+   :header-rows: 0
+
+   * - 
+     - **Minimum**
+     - **Recommended**
+   * - CPU
+     - 16 Cores
+     - 32 Cores
+   * - RAM
+     - 128 GB
+     - 256 GB
+   * - NIC prod
+     - 2x 10GbE
+     - 2x 25GbE
+   * - NIC OOB
+     - 1x 1GbE
+     - 1x 1GbE
+   * - Disk
+     - 300 GB
+     - 300 GB
+
+
+
 =========================
 Supported Switch Hardware
 =========================
