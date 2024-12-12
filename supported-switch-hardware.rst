@@ -314,21 +314,21 @@ EdgeCore
      - 32 x 400G QSFP-DD 
      - EC-SONiC
      - 
-     - Nov/2024
+     - GA
    * - EdgeCore
      - DCS511 (AS9737-32DB)
      - Broadcom Tomahawk 4
      - 32 x 400G QSFP56-DD
      - EC-SONiC
      - 
-     - Nov/2024
+     - GA
    * - EdgeCore
      - AIS800-64O
      - Broadcom Tomahawk 5
      - 64 x OSFP800
      - EC-SONiC
      - 
-     - Nov/2024
+     - GA
 
 Arista
 ========
