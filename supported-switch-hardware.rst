@@ -25,6 +25,16 @@ We recommend two Ubuntu 24.04 servers with the below specs. Netris controller ca
      - 32 GB
      - 600 GB
      - 2x 1GbE+ NIC
+   * - Leaf/Spine 100-300 switches
+     - 16
+     - 64 GB
+     - 1 TB
+     - 2x 10GbE+ NIC
+   * - Leaf/Spine 300+ switches
+     - 32
+     - 128 GB
+     - 2 TB
+     - 2x 10GbE+ NIC
    * - Spectrum-X 1-8 SUs
      - 16
      - 64 GB
