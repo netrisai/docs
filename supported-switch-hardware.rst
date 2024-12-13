@@ -79,6 +79,9 @@ Server specs:
    * - Disk
      - 300 GB
      - 300 GB
+   * - OS
+     - Ubuntu 24.04
+     - Ubuntu 24.04
 
 
 
