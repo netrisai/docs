@@ -10,7 +10,6 @@ Air-gapped environments are isolated from the public internet to ensure heighten
 
 Netris provides a way to install the Netris Controller in air-gapped environments to cater to these requirements, ensuring seamless deployment without relying on internet access.
 
----
 
 How to Install the Netris Controller
 -------------------------------------
@@ -28,11 +27,11 @@ Steps to Install
 
   Contact Netris to obtain the required installation file (``netris-controller.tar.gz``).
 
-1. **Transfer the File to the Server**
+2. **Transfer the File to the Server**
 
   Use a secure file transfer method (e.g., SCP or USB) to copy the tar.gz file to the target Ubuntu 24.04 server.
 
-1. **Extract the Tarball**
+3. **Extract the Tarball**
 
   Run the following command to extract the contents of the tarball:  
 
@@ -40,21 +39,24 @@ Steps to Install
 
     tar -xzvf netris-controller.tar.gz
 
-1. **Navigate to the Installation Directory**  
+4. **Navigate to the Installation Directory**
+
    Move into the extracted directory:  
    
   .. code-block:: shell-session
 
     cd netris-controller
 
-5. **Run the Installation Script**  
+5. **Run the Installation Script**
+
    Execute the installation script with the ``ctl-hostname`` argument, specifying the desired hostname for your controller. For example:  
 
   .. code-block:: shell-session
 
     ./install.sh --ctl-hostname netris.example.com
 
-6. **Verify Installation**  
+6. **Verify Installation**
+
    Once the script is complete, follow any on-screen instructions to verify the installation. The Netris Controller should now be operational in your air-gapped environment.
 
 

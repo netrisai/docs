@@ -34,7 +34,7 @@ In order to install the Helm chart, you must follow these steps:
 
    kubectl create namespace netris-controller
 
-1. Install helm chart with netris-controller:
+2. Install helm chart with netris-controller:
 
 .. code-block::
 
