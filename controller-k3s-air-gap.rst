@@ -65,7 +65,24 @@ After Installation
 
 The air-gapped Netris Controller will also include a local repository/registry. This repository provides all the necessary packages and images for installing various types of Netris agents.
 
-To learn how to use the Netris local repository, please refer to the documentation here: `How to Consume Local Repository <https://www.netris.io/docs/en/latest/Controller-local-repository.html#how-to-consume-local-repository>`_
+The script will output the local repository URL. Copy and paste this URL of the Local repository into the Netris Controller Web UI under **Settings** section (as shown in the screenshots below).
+
+.. image:: images/Global-settings-edit.png
+    :align: center
+
+.. image:: images/Global-settings-save.png
+    :align: center
+
+
+How to consume local repository
+-------------------------------
+
+Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).
+
+
+.. image:: images/oneliner-from-local-repo.png
+    :align: center
+
 
 ---
 
