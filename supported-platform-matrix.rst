@@ -328,9 +328,9 @@ AI Specific Functions
    *  - Rail-optimized designs
       - Topology and best practices initialization module for rail-optimized fabrics
       -  ✔
-      - N/A
-      - N/A
-      - Dec/2024
+      -  ✔
+      -  ✔
+      -  ✔
       - N/A
       - N/A
    *  - QoS for RoCE
@@ -338,7 +338,7 @@ AI Specific Functions
       -  ✔
       - N/A
       - N/A
-      - N/A
+      - Coming Soon
       - N/A
       - N/A
    *  - RoCE Adaptive Routing
@@ -346,7 +346,7 @@ AI Specific Functions
       -  ✔
       - N/A
       - N/A
-      - N/A
+      - Coming Soon
       - N/A
       - N/A
    *  - RoCE Congestion Control
@@ -362,10 +362,50 @@ AI Specific Functions
       -  ✔
       - N/A
       - N/A
+      - Coming Soon
       - N/A
       - N/A
+
+
+Compute Platform Integrations
+========
+.. list-table:: 
+   :header-rows: 0
+
+   *  - Function
+      - Description
+      - Nvidia Spectrum
+      - Dell-SONiC
+      - Arista EOS
+      - EdgeCore-SONiC
+      - Equinix Metal
+      - PhoenixNAP
+   *  - Kubernetes Operator
+      - Automatically serve Kubernetes LoadBalancer Type service
+      -  ✔
+      -  ✔
+      -  ✔
+      -  ✔
+      -  ✔
+      -  ✔
+   *  - Apache Cloud Stack
+      - Netris VXLAN isolation & VR replacement 
+      - Feb/2025
+      -  ✔
+      - TBD
+      - TBD
       - N/A
-							
+      - N/A
+   *  - VMware VSphere
+      - Automatically provision VSphere defined VLANs in VXLAN/EVPN switch fabric	
+      -  ✔
+      -  ✔
+      -  ✔
+      -  ✔
+      - N/A
+      - N/A
+
+
 
 Security
 ========
