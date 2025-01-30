@@ -13,7 +13,10 @@ Netris-CloudStack Integration
    :caption: Setup
 
    netris-cloudstack_p2
+   netris-cloudstack_p3
 
 .. toctree::
    :maxdepth: 2
    :caption: Use
+
+   netris-cloudstack_p4

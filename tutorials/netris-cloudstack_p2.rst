@@ -319,3 +319,432 @@ The following Terraform configuration example demonstrates how to **automate ser
      underlay = "enabled"
      depends_on = [netris_server.server_2, netris_switch.leaf1]
    }
+
+
+Optimize BGP Overlay for Hypervisor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This step is crucial for **BGP/EVPN VXLAN integration** with hypervisor networking. Enabling this optimization ensures that a large number of **hypervisor virtual networking EVPN prefixes** do not overflow the **switch TCAM**, maintaining efficient and scalable routing within the network fabric.
+
+⚠ **Warning: This is a disruptive action!**
+
+  Do **not** apply this change in a **production environment** without proper planning and scheduled maintenance. Enabling this setting **reconfigures the fabric**, which may cause temporary disruptions in **BGP peerings and VXLAN routing**.
+
+**Navigate to Inventory Profiles**
+
+  #. Go to **Network** → **Inventory Profiles**.
+  #. Open the **inventory profile** used during the creation of the switches.
+
+**Enable the Optimize BGP Overlay Option**
+
+  #. Locate the **Fabric Settings** section within the profile.
+  #. **Enable** the checkbox for **Optimize BGP Overlay for Hypervisor Integrated Fabric**.
+  #. **Leave all other fabric-related settings unchanged.** 
+      (Modifying unrelated settings may lead to unexpected behavior.)
+
+**Save and Apply Changes**
+
+  #. **Review** the updated settings to confirm accuracy.
+  #. Click **Save** to apply the changes.
+
+Once saved, this setting will **optimize BGP overlays** for hypervisor networking, improving the efficiency of **routing between the hypervisors and the fabric**.
+
+.. warning:: 
+
+  This step is limited to enabling the Optimize BGP Overlay option. Other parameters within the inventory profile are irrelevant to this process and should remain unchanged to avoid unnecessary complexity.
+
+
+Adding Subnets for CloudStack Cluster
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In this step, we’ll configure multiple subnets within the **Netris IPAM** to support the **CloudStack deployment**. These subnets are categorized based on their purpose and usage within the infrastructure. We will create five **Common-purpose subnets** and one **NAT-purpose subnet** to fulfill the network requirements of CloudStack.
+
+.. note::
+   The subnet sizes provided in this section are **examples**. You should allocate subnet sizes based on your specific requirements and infrastructure constraints.
+
+
+Example IP Plan for CloudStack
+""""""""""""""""""""""""""""""
+
+This section provides **example allocations** for a CloudStack deployment. You can adjust these based on your network design.
+
+**Private RFC1918 IP Address Space (Example)**
+
+::
+
+   10.0.0.0/8 (Allocation) – Private IP range
+   ├── 10.99.0.0/21 (Subnet) - CloudStack Management (Management Nodes)
+   ├── 10.100.0.0/21 (Subnet) - CloudStack Management (Hypervisor Nodes)
+
+**Publicly Routable IP Address Space (Example)**
+
+::
+
+   203.0.113.0/24 (Allocation) – Public range
+   ├── 203.0.113.0/27 (Subnet) - ACS System VMs
+   ├── 203.0.113.32/27 (Subnet) - Infrastructure NAT
+   ├── 203.0.113.128/25 (Subnet) - ACS Virtual Routers
+
+**Public Allocation for Netris Services (Example)**
+
+::
+
+   198.51.100.0/24 (Allocation) – Public range for Netris services
+   ├── 198.51.100.0/25 (Subnet) - Netris services subnet for ACS
+
+
+
+Define Subnets for CloudStack Management
+""""""""""""""""""""""""""""""""""""""""
+
+**Step 1: Add the Subnet for CloudStack Management Nodes**
+
+::
+
+   - Prefix: 10.99.0.0/21 (Example)
+   - Name: CloudStack Management Nodes
+   - Purpose: Common
+   - VPC: Select vpc-1:Default
+   - Tenant: Assign to Admin
+   - Type: Subnet
+   - Sites: Select the relevant site.
+
+**Step 2: Add the Subnet for CloudStack Hypervisor Nodes**
+
+::
+
+   - Prefix: 10.100.0.0/21 (Example)
+   - Name: CloudStack Hypervisor Nodes
+   - Purpose: Common
+   - VPC: Select vpc-1:Default
+   - Tenant: Assign to Admin
+   - Type: Subnet
+   - Sites: Select the relevant site.
+
+
+Define Public Allocation
+""""""""""""""""""""""""
+
+**Step 3: Create a Public Allocation for CloudStack**
+
+::
+
+   - Navigate to: Network → IPAM → +Add
+   - Prefix: (e.g., 203.0.113.0/24) or a public range provided by your ISP
+   - Name: Public Allocation 1
+   - VPC: Select vpc-1:Default
+   - Tenant: Assign to Admin
+   - Type: Allocation
+
+
+Define CIDR for CloudStack System VMs
+"""""""""""""""""""""""""""""""""""""
+
+In this step, we define a dedicated **subnet** for CloudStack **System VMs**, which will be used as their primary network in the subsequent steps. On cloudstack side, this CIDR will be **exclusively** reserved for system VMs
+
+::
+
+   - Prefix: Use a portion of the public allocation (e.g., 203.0.113.0/27)
+   - Name: Public Subnet for System VMs
+   - Purpose: Common
+   - VPC: Select vpc-1:Default
+   - Tenant: Assign to Admin
+   - Type: Subnet
+   - Sites: Select the relevant site.
+
+
+Defining CIDR for Internal Use (Infrastructure NAT)
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+This subnet is used for **internal NAT purposes**, such as:
+  - Accessing CloudStack GUI using a public IP.
+  - Providing internet access (SNAT) for all servers.
+
+This subnet is designed to handle infrastructure-level NAT requirements efficiently while keeping the IP allocation minimal.
+
+::
+
+   - Prefix: Use a portion of the public allocation (e.g., 203.0.113.32/27)
+   - Name: Public Subnet for Infrastructure NAT
+   - Purpose: NAT
+   - VPC: Select vpc-1:Default
+   - Tenant: Assign to Admin
+   - Type: Subnet
+   - Sites: Select the relevant site.
+
+
+Define CIDR for CloudStack Virtual Routers (VRs)
+""""""""""""""""""""""""""""""""""""""""""""""""
+
+This step involves defining the CIDR for **CloudStack Virtual Routers (VRs)**, which will be used in the **ACS Virtual Routers V-Net**. Each **VPC’s VR** will pick an **IP address** from this pool.
+
+**Why Use Public IPs for Virtual Routers?**
+
+CloudStack’s VPN services require **publicly routable IPs** for VPN connectivity. However, if:
+  - VPN is not required or
+  - A private VPN endpoint is already operational in your infrastructure, then using a private IP range is a valid alternative.
+
+**Example Configuration**
+
+::
+
+   - Prefix: (Choose based on your requirements)
+     - Public: Use a portion of the public allocation (e.g., 203.0.113.128/25)
+     - Private: Use an internal range (e.g., 10.200.0.0/24)
+   - Name: Subnet for Virtual Routers
+   - Purpose: Common
+   - VPC: Select vpc-1:Default
+   - Tenant: Assign to Admin
+   - Type: Subnet
+   - Sites: Select the relevant site.
+
+
+Defining CIDR for Netris Services
+"""""""""""""""""""""""""""""""""
+
+This CIDR is used by **CloudStack** to manage NAT and Load Balancer services directly in **Netris**, bypassing the Virtual Routers (VRs). When a user creates a NAT rule or Load Balancer in CloudStack, the system selects a free IP from this range and creates that service in **Netris**.
+
+**Step 4: Create a Public Allocation for Netris Services**
+
+::
+
+   - Navigate to: Network → IPAM → +Add
+   - Prefix: (e.g., 198.51.100.0/24) or a public range provided by your ISP
+   - Name: Public Allocation for Netris Services
+   - VPC: Select vpc-1:Default
+   - Tenant: Assign to Admin
+   - Type: Allocation
+
+**Step 5: Define the Netris Services Subnet**
+
+::
+
+   - Prefix: Use a portion of the public allocation (e.g., 198.51.100.0/25)
+   - Name: Subnet for Netris Services
+   - Purpose: Common
+   - VPC: Select vpc-1:Default
+   - Tenant: Assign to Admin
+   - Type: Subnet
+   - Sites: Select the relevant site.
+
+
+Summary
+"""""""
+
+- Subnet sizes are **examples** and should be **adjusted based on your needs**.
+- **Public vs. Private subnets**: Some services require public allocations, while others can operate on private ranges.
+- **Netris handles NAT and Load Balancing**: CloudStack automatically provisions these services in Netris.
+- **Infrastructure NAT ensures external connectivity** for ACS services like the GUI and outbound SNAT.
+
+This completes the subnet setup for **CloudStack deployment in Netris**.
+
+
+Enabling Internet Connectivity for ACS Servers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To provide **outbound connectivity** for both **CloudStack Management Nodes** and **Hypervisor Nodes**, we will configure **SNAT (Source NAT) rules** in the **Netris Controller**. These rules utilize the previously defined **203.0.113.32/27 NAT pool** to enable access to external networks.
+
+.. note::
+   This configuration ensures that ACS servers can reach external resources while maintaining internal network security.
+
+Step 1: Navigate to NAT
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. Go to: **Network → NAT → +Add**
+
+Step 2: Configure SNAT Rules
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+**SNAT Rule for CloudStack Management Nodes**
+
+::
+
+   - Name: **SNAT CloudStack Management Nodes**
+   - Site: **Select the relevant site.**
+   - State: **Enabled**
+   - Action: **SNAT**
+   - Local VPC: **Select vpc-1:Default.**
+   - Protocol: **ALL**
+   - Source Address: **10.99.0.0/21** (Example)
+   - Destination Address: **0.0.0.0/0** (Allowing outbound traffic to any destination)
+   - SNAT to: **SNAT to IP**
+   - IP: **203.0.113.32/32** (Example IP from previously created NAT Pool)
+   - Comment: *(Optional, e.g., "Outbound access for CloudStack Management Nodes")*
+
+Click **Add** to save the rule.
+
+
+**SNAT Rule for CloudStack Hypervisor Nodes**
+
+::
+
+   - Name: **SNAT CloudStack Management Hypervisors**
+   - Site: **Select the relevant site.**
+   - State: **Enabled**
+   - Action: **SNAT**
+   - Local VPC: **Select vpc-1:Default.**
+   - Protocol: **ALL**
+   - Source Address: **10.100.0.0/21** (Example)
+   - Destination Address: **0.0.0.0/0** (Allowing outbound traffic to any destination)
+   - SNAT to: **SNAT to IP**
+   - IP: **203.0.113.32/32** (Example IP from previously created NAT Pool)
+   - Comment: *(Optional, e.g., "Outbound access for CloudStack Hypervisors")*
+
+Click **Add** to save the rule.
+
+
+Step 3: Verify Configurations
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. Navigate to **Network → NAT** in the **Netris Controller**.
+2. Verify that both **SNAT rules** are listed with:
+   - The correct **source addresses**.
+   - The assigned **SNAT IP**.
+
+
+Enabling Access to CloudStack Management GUI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To provide external access to the **CloudStack Management GUI** hosted on **Server 1**, we need to create a **DNAT rule**. This rule will forward traffic from the public NAT IP to the internal management IP of Server 1 on port **8080**, enabling users to access the CloudStack GUI externally once CloudStack is installed and configured.
+
+Step 1: Navigate to NAT
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. Go to: **Network → NAT → +Add.**
+
+Step 2: Configure the DNAT Rule
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. Fill in the fields as follows:
+
+::
+
+   - Name: **DNAT CloudStack GUI**
+   - Site: **Select the relevant site.**
+   - State: **Enabled**
+   - Action: **DNAT**
+   - Local VPC: **Select vpc-1:Default.**
+   - Protocol: **TCP**
+   - Source Address: **0.0.0.0/0** (to allow access from any external address).
+   - Source Port: **1-65535** (allow any source port).
+   - Destination Address: **Select available public NAT IP from previously created NAT Pool** (e.g., 203.0.113.33/32).
+   - Destination Port: **80** (HTTP).
+   - DNAT to IP: **Set to the internal IP of Server 1 (10.99.1.1/32).**
+   - DNAT to Port: **8080** (CloudStack Management GUI port).
+   - ACL Port Group: **Set to None unless specific ACL rules are required.**
+   - Comment: **Optional.**
+
+2. Save the rule by clicking **Add**.
+
+Step 3: Reminder
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+This rule will not take effect until:
+
+1. **Server 1 is configured** with the IP address **10.99.1.1**.
+2. **CloudStack Management software is installed** on Server 1, and it is set to listen on **port 8080** for its GUI.
+
+
+
+Creating CloudStack Networks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**V-Nets** define the foundational **network segments** (**VXLANs** or **VLANs** with **default gateway IP**) within Netris, serving as the backbone for CloudStack’s management and system-level operations. In this step, we’ll create four distinct **V-Nets**, each serving a specific purpose within the CloudStack infrastructure.
+
+Overview of V-Nets and Their Purpose
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. **CloudStack Management (Management Nodes)**:
+   - A subnet for CloudStack Management Node (Server 1).
+   - Used to handle internal traffic between the management node and other components in the environment.
+
+2. **CloudStack Management (Hypervisor Nodes)**:
+   - A subnet dedicated to managing hypervisor traffic.
+   - Configured with a special tag (**system.cloudstack.management**) to instruct the Netris-CloudStack Agent that this V-Net is mapped to **cloudbr0**.
+
+3. **CloudStack System VMs**:
+   - A subnet to provide a **public IP range** for System VMs that manage internal CloudStack operations (e.g., console proxy, secondary storage VM).
+   - Public-facing as required for certain services.
+
+4. **CloudStack Virtual Routers (VRs)**:
+   - A subnet to provide IPs for **Virtual Routers** used within VPCs.
+   - Handles tenant network services, such as **DHCP, DNS, and VPN**.
+   - Can use either a **public or private subnet** based on whether public-facing services (e.g., VPN) are required.
+
+Step 1: Navigate to V-Net
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. Go to: **Services → V-Net → +Add**.
+
+Step 2: Configure V-Nets
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+**1. CloudStack Management (Management Nodes)**
+::
+
+   - Name: **CloudStack Management (Management Nodes)**
+   - VPC: **Select vpc-1:Default.**
+   - Sites: **Select the relevant site.**
+   - VLAN ID: **Assign Automatically.**
+   - Owner: **Assign to Admin.**
+   - V-Net State: **Active.**
+   - IPv4 Gateway: **Use 10.99.0.1 (from the 10.99.0.0/21 subnet).**
+   - Network Interface Tags:
+     - Add the tag **CS-Cloud1-MGMT** and mark the **‘Untagged’** checkbox.
+     - These tags guide Netris to discover and associate the correct server NICs with this V-Net.
+   - Click **Save**.
+
+**2. CloudStack Management (Hypervisor Nodes)**
+::
+
+   - Name: **CloudStack Management (Hypervisor Nodes)**
+   - VPC: **Select vpc-1:Default.**
+   - Sites: **Select the relevant site.**
+   - VLAN ID: **Assign Automatically.**
+   - Owner: **Assign to Admin.**
+   - V-Net State: **Active.**
+   - IPv4 Gateway: **Use 10.100.0.1 (from the 10.100.0.0/21 subnet).**
+   - Tags:
+     - Add **CS-Cloud1-Compute**.
+     - Add **system.cloudstack.management** (special tag that instructs the Netris-CloudStack Agent this V-Net is used for **cloudbr0**).
+   - Click **Save**.
+
+**3. CloudStack System VMs**
+::
+
+   - Name: **CloudStack System VMs**
+   - VPC: **Select vpc-1:Default.**
+   - Sites: **Select the relevant site.**
+   - VLAN ID: **Disabled.**
+   - Owner: **Assign to Admin.**
+   - V-Net State: **Active.**
+   - IPv4 Gateway: **Use an appropriate gateway from the public subnet for system VMs (e.g., 203.0.113.1/27).**
+   - Tags: **Add CS-Cloud1-Compute**.
+   - Click **Save**.
+
+**4. CloudStack Virtual Routers (VRs)**
+::
+
+   - Name: **CloudStack VRs**
+   - VPC: **Select vpc-1:Default.**
+   - Sites: **Select the relevant site.**
+   - VLAN ID: **Disabled.**
+   - Owner: **Assign to Admin.**
+   - V-Net State: **Active.**
+   - IPv4 Gateway: **Use an appropriate gateway from the public or private subnet for VRs** (depending on your environment, e.g., 203.0.113.129/25).
+   - Tags: **Add CS-Cloud1-Compute**.
+   - Click **Save**.
+
+Step 3: Review and Verify
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. Navigate to **Services → V-Net**.
+2. Confirm the following for all four V-Nets:
+   - **Management V-Nets** have automatically assigned VLAN IDs.
+   - **System V-Nets** have VLAN IDs **disabled**.
+   - **Tags** are applied correctly:
+
+     - **CS-Cloud1-MGMT** for Management Nodes. (Network Interface Tag)
+     - **CS-Cloud1-Compute** and **system.cloudstack.management** for Hypervisor Nodes. (Regular Tags)
+3. Confirm the **IPv4 Gateways** match the correct subnets for each V-Net.
+
