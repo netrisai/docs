@@ -20,3 +20,4 @@ Netris-CloudStack Integration
    :caption: Use
 
    netris-cloudstack_p4
+   netris-cloudstack_p5

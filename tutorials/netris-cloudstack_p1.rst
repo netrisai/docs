@@ -41,8 +41,8 @@ Use Cases
 * Enterprises transforming their traditional data centers into private cloud environments.
 * Hosting providers seeking AWS-like network functionality for their customers.
 
-	[todo][Insert Diagram 1: High-level overview of Netris-CloudStack integration]
-	[todo][Insert Diagram 2: BGP EVPN signaling between CloudStack hypervisors and physical switches]
+.. image:: images/acs-infra-diagram.png
+  :align: center
 
 
 Compute and Network Architecture

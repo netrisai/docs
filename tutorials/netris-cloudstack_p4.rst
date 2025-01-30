@@ -36,19 +36,18 @@ Steps to Initialize CloudStack
 Access the Dashboard
 """"""""""""""""""""
 
-1. Once logged into the CloudStack GUI, navigate to the **Dashboard** where the initial setup guide is displayed.
-2. Click **Continue with Installation** to proceed.
+- Once logged into the CloudStack GUI, navigate to the **dashboard** where the initial setup guide is displayed.
+- Click **Continue with Installation** to proceed.
 
 Add a Zone
 """"""""""
 
-1. Set a new password to start the process of adding a new **zone**. Zones are logical data center constructs that define network and compute resources.
+- Set a new password to start the process of adding a new **zone**. Zones are logical data center constructs that define network and compute resources.
 
 Step 1: Zone Type
 """"""""""""""""""
 
-- Select **Core** as the zone type.
-- Core zones are ideal for data center-based deployments with full networking capabilities.
+- Select **Core** as the zone type. Core zones are ideal for data center-based deployments with full networking capabilities.
 - Click **Next**.
 
 Step 2: Core Zone Type
@@ -135,7 +134,7 @@ Click **Add** for each network and verify that the details align with your **Net
 Then click **Next**.
 
 Step 7: Netris Public IP Pool
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""
 
 - Add the **public IP pool** from the **Netris Subnet for Netris Services**. This pool is consumed by **CloudStack** for **NAT and Load Balancer services**.
 
@@ -152,42 +151,129 @@ Click **Add** and then **Next**.
 Step 8: Configuring Pod Management Network
 """""""""""""""""""""""""""""""""""""""""""
 
-On this page, configure the **Pod’s management network**. This network is essential for **internal communication** within the **Pod** and is derived from the **Netris CloudStack Management (Hypervisor Nodes) VNet**.
+On this page, you will configure the Pod’s management network. This network is essential for internal communication within the Pod and is derived from the Netris CloudStack Management (Hypervisor Nodes) VNet.
 
-Example Configuration:
+**Fields Explained**
 
-- **Pod Name**: `pod1`
-- **Reserved System Gateway**: `10.100.0.1`
-- **Reserved System Netmask**: `255.255.248.0`
-- **Start Reserved System IP**: `10.100.5.1`
-- **End Reserved System IP**: `10.100.5.255`
+1. **Pod Name**:
+
+   - Provide a name for the Pod. In this example, it is ``pod1``.
+
+2. **Reserved System Gateway**:
+
+   - Use the gateway of the **CloudStack Management (Hypervisor Nodes) VNet** in **Netris**.
+   - Example: ``10.100.0.1``.
+
+3. **Reserved System Netmask**:
+
+   - This is the subnet mask of the **VNet**.
+   - Example: ``255.255.248.0`` (for a ``/21`` subnet).
+
+4. **Start Reserved System IP**:
+
+   - Specify the starting IP address within the range of the **VNet**. Ensure this IP **does not overlap** with the hypervisors’ IPs.
+
+5. **End Reserved System IP**:
+
+   - Specify the ending IP address within the range of the **VNet** for the reserved IP pool. Again, ensure this range **does not overlap** with hypervisors’ IPs.
+
+**Purpose of This Configuration**
+
+The **reserved system IP range** is used **internally by CloudStack** to manage communication between various system components. This pool must not interfere with **other IPs assigned to the hypervisors or other devices**.
+
+**Example Configuration**
+
+Using data from the corrected **hypervisor management subnet (10.100.0.0/21)** in **Netris**:
+
+- **Pod Name**: ``pod1``
+- **Reserved System Gateway**: ``10.100.0.1``
+- **Reserved System Netmask**: ``255.255.248.0``
+- **Start Reserved System IP**: ``10.100.5.1``
+- **End Reserved System IP**: ``10.100.5.255``
+
+.. note::
+   Ensure the start and end IPs **are within the VNet range** and **do not overlap** with hypervisor IPs (e.g., ``10.100.1.x`` for hypervisors).
 
 Click **Next** to proceed.
 
 Step 9: Configuring VPC Tiers VXLAN Range
-"""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""
 
-On this page, configure the **VXLAN range** for **VPC tiers**. This range defines the **VXLAN Network Identifiers (VNIs)** used for isolating **guest traffic** within the cloud.
+On this page, you will configure the **VXLAN range for VPC tiers**. This range defines the **VXLAN Network Identifiers (VNIs)** used for isolating guest traffic within the cloud.
 
-Example Configuration:
+**Fields Explained**
 
-- **VXLAN Range**:
-  - **Start**: `1000000`
-  - **End**: `2000000`
-  - If needed, extend the range to allow for additional **VPC tiers**.
 
-Click **Next** to proceed.
+1. **VXLAN Range**:
+
+   - Specify the start and end values for the VXLAN range.
+   - **Example Values**:
+  
+     - **Start**: `1000000`
+     - **End**: `2000000`
+  
+   - If needed, you can extend the range to allow for additional VPC tiers.
+
+**Purpose of This Configuration**
+
+The **VXLAN range** defines the **pool of VNIs** that CloudStack will use to create isolated network tiers for VPCs. Each tier will be assigned a **unique identifier** from this range, ensuring that traffic between different VPCs remains **securely segregated**.
+
+**Steps**
+
+
+1. **Enter the Start and End Range**:
+
+   - Enter `1000000` as the **start** value and `2000000` as the **end** value (or extend the range based on your needs).
+
+2. **Validate the Range**:
+
+   - Ensure that the range is **large enough** to accommodate the anticipated number of **VPC tiers**.
+
+3. **Click “Next”**:
+
+   - Once the range is configured, proceed to the next step by clicking **Next**.
+
+.. note::
+   Using a **large VXLAN range** allows for greater flexibility in **scaling your cloud network**, especially in **multi-tenant environments**.
 
 Step 10: Final Steps in Zone Configuration
-""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""
 
-The final steps in configuring the **CloudStack zone** involve setting up **essential components** for the **cluster**. These include:
+The final steps in configuring the **CloudStack zone** involve setting up essential components for the **cluster**. These steps include setting the cluster name, adding the first hypervisor, and attaching both primary and secondary storage.
 
-1. **Setting the Cluster Name**
-2. **Adding the First Hypervisor**
-3. **Attaching Primary Storage**
-4. **Attaching Secondary Storage**
+- **Setting the cluster name**
+- **Adding the first hypervisor**
+- **Attaching primary storage**
+- **Attaching secondary storage**
 
-Since **Netris** is **not involved** in these processes, no specific recommendations or guidance are necessary from **Netris**.
+Since **Netris is not involved** in these processes, no specific recommendations or guidance are necessary from Netris.
 
-**Recommendation**: Users should refer to the `Apache CloudStack Documentation <https://cloudstack.apache.org/>`_ for detailed guidance on these steps.
+**Steps Overview**
+
+1. **Setting the Cluster Name**:
+
+   - The **cluster name** identifies the group of hypervisors in your **CloudStack setup**.
+   - Users should **choose a meaningful name** based on their **organizational** or **deployment** preferences.
+
+2. **Adding the First Hypervisor**:
+
+   - Users need to **add at least one hypervisor** to the cluster.
+   - The **hypervisor** should already be **configured** and **accessible**.
+
+3. **Attaching Primary Storage**:
+
+   - **Primary storage** is used to host **virtual machine (VM) instances** and their **root volumes**.
+   - Users must specify the **storage type** and connect the storage to the **cluster**.
+
+4. **Attaching Secondary Storage**:
+
+   - **Secondary storage** is used for **templates, ISOs, and snapshots**.
+   - This storage should also be **configured** and **attached** as part of the **zone setup**.
+
+**Why This Section is Brief**
+
+Since these steps are **unrelated to Netris functionality and configuration**, users should follow **CloudStack’s standard documentation** or their **internal policies** to complete these tasks.
+
+.. note::
+   Users should refer to the `Apache CloudStack Documentation <https://docs.cloudstack.apache.org/>`_ for detailed guidance on these steps if needed.
+
