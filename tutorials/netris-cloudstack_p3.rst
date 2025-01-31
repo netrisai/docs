@@ -128,7 +128,51 @@ Netris Fabric Integration
 Install Netris-CloudStack Agent on Hypervisor Servers
 ---------------------------------------------------------
 
-The **netris-cloudstack agent** acts as a bridge between CloudStack and the Netris Controller. It automates the provisioning and configuration of network resources required for CloudStack’s operations on hypervisor nodes. The agent ensures seamless integration by performing the following key functions:
+The **netris-cloudstack agent** acts as a bridge between **CloudStack** and the **Netris Controller**. It automates the **provisioning** and **configuration** of network resources required for **CloudStack’s operations on hypervisor nodes**.
+
+.. note::
+   - If your infrastructure **does not have an OOB network**, your hypervisors will **not have internet access**.  
+     Follow the **pre-installation steps** below to temporarily configure internet access **before proceeding** with the installation.
+   - If you **have an OOB network**, proceed directly to **Installation Steps**.
+
+---
+
+Pre-Installation Steps (For Deployments Without OOB)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. warning::
+   These steps are **only for users without an OOB network**. If your hypervisors **already have internet access via OOB**, **skip this section**.
+
+1. **Assign an IP address** to the hypervisor’s **NIC connected to the Netris fabric**:
+
+   .. code-block:: shell
+
+      ip address add 10.55.1.1/21 dev ens3
+
+2. **Set a temporary default route** via the **temporary OOB gateway**:
+
+   .. code-block:: shell
+
+      ip route add default via 10.55.0.1 metric 10
+
+3. **Set DNS resolvers** to enable domain name resolution:
+
+   .. code-block:: shell
+
+      echo "nameserver 1.1.1.1" > /etc/resolv.conf
+      echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+
+4. **Verify connectivity**:
+
+   .. code-block:: shell
+
+      ip addr show ens3      # Ensure the IP is assigned
+      ping -c 4 10.55.0.1    # Check connectivity to the temporary gateway
+      ping -c 4 1.1.1.1      # Check external connectivity
+      curl -I https://www.google.com  # Verify internet access
+
+After confirming connectivity, proceed with the **Netris-CloudStack Agent installation**.
+
 
 Key Functions of the Netris-CloudStack Agent
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -140,23 +184,25 @@ Key Functions of the Netris-CloudStack Agent
 
 2. **Network Automation**:
 
-  - Configures VXLAN overlays to extend Layer 2 networks across the Netris fabric.
-  - Integrates with Netris EVPN to enable dynamic exchange of MAC and IP address information.
+  - Configures **VXLAN overlays** to extend **Layer 2 networks** across the **Netris fabric**.
+  - Integrates with **Netris EVPN** to enable **dynamic exchange of MAC and IP address information**.
 
 Installation Steps
 ^^^^^^^^^^^^^^^^^^
 
-To provision the **netris-cloudstack agent** on the hypervisor servers (Server 2-4):
+To provision the **netris-cloudstack agent** on the hypervisor servers (**Server 2-4**):
 
 1. Navigate to: **Net → Inventory**.
 2. Locate the desired server node (e.g., **Server 2**).
-3. Click the three vertical dots (**⋮**) on the right-hand side of the node and select **Install Agent**.
-4. A **one-line installer command** will appear. Copy this command to your clipboard.
+3. Click the **three vertical dots (⋮)** on the right-hand side of the node and select **Install Agent**.
+4. A **one-line installer command** will appear. **Copy this command** to your clipboard.
 
-   - **Note:** Each installer command is unique to the specific node.
-  
-5. SSH into the server and execute the copied command:
-6. Repeat this process for each hypervisor server (**Servers 2, 3, and 4**).
+   - **Note:** Each installer command is **unique to the specific node**.
+
+5. **SSH into the server** and execute the copied command:
+
+6. **Repeat this process** for each hypervisor server (**Servers 2, 3, and 4**).
+
 
 Example Successful Output of One-Liner Script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -177,6 +223,7 @@ Below is an example of a successful installation output after executing the **on
   === Netris-CloudStack Agent is now installed! ===
   + Get started with Netris: https://netris.io/docs/en/stable/
 
+
 Verification Steps
 ^^^^^^^^^^^^^^^^^^
 
@@ -186,12 +233,126 @@ Verification Steps
 
       systemctl status netris-cloudstack-agent.service
 
-2. **Confirm that the `cloudbr0` bridge has been created**, has the correct IP address, and that the default gateway is reachable:
+2. **Confirm that the `cloudbr0` bridge has been created** and has the correct IP address:
 
    .. code-block:: shell
 
       ip addr show cloudbr0
-      ping 10.100.0.1
+
+---
+
+Checking Network Connectivity
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+   - If your infrastructure **has an OOB network**, and **Underlay was enabled during link setup**, you **should be able to ping the VXLAN gateway (e.g., 10.100.0.1) now**.
+   - If your infrastructure **does not have an OOB network**, and **Underlay is still disabled**, you **will NOT be able to ping the VXLAN gateway yet**.  
+     Proceed to the **next step** to enable underlay.
+
+.. tabs::
+
+   .. group-tab:: With OOB (Underlay Enabled)
+
+      **Verify connectivity:**
+      
+      .. code-block:: shell
+
+         ping -c 4 10.100.0.1  # This should work if underlay is enabled.
+
+   .. group-tab:: Without OOB (Underlay Disabled)
+
+      - **Skip connectivity checks for now.**
+      - Proceed to **Enabling Underlay for Hypervisors** in the next step.
+
+---
+
+Finalizing the Network Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+   - If your infrastructure **did not have an OOB network**, and you created a **temporary OOB VNet**,  
+     now is the time to **switch from the temporary connection** to **underlay networking**.
+
+Step 1: Enable Underlay for Hypervisor Links
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. **Navigate to**: **Netris Controller → Net → Topology**.
+2. **Find the hypervisor’s links** (e.g., Server 2 → Leaf-1).
+3. **Right-click on the link** and select **Edit**.
+4. **Enable the "Underlay" checkbox**.
+5. **Click Save**.
+6. **Repeat for all hypervisors (Server 2, 3, and 4)**.
+
+Step 2: Verify VXLAN Connectivity
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. **Reconnect to the server using the new cloudbr0 IP**:
+
+   .. code-block:: shell
+
+      ssh root@10.100.1.1
+
+2. **Confirm that the gateway of the VXLAN VNet is now reachable**:
+
+   .. code-block:: shell
+
+      ping -c 4 10.100.0.1  # Now the gateway should respond
+
+Step 3: Remove Temporary Configurations
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+1. **Delete the temporary default route**:
+
+   .. code-block:: shell
+
+      ip route del default via 10.55.0.1
+
+2. **Verify that the server is now using `cloudbr0` for network access**:
+
+   .. code-block:: shell
+
+      ip route show
+      ip addr show cloudbr0
+      ping -c 4 1.1.1.1
+      curl -I https://www.google.com
+
+
+**Keeping the Temporary OOB VNet for Emergency Access**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+   If your infrastructure **does not have a dedicated OOB network**, you can **retain the temporary VNet** as an **emergency access method**.
+
+Why Keep the Emergency OOB?
+""""""""""""""""""""""""""""""""""""
+
+- **Allows access to the hypervisors if underlay networking fails**.
+- **Can be used for troubleshooting or upgrades** without disrupting the overlay network.
+- **Provides a backup path to manage servers** without depending on cloudbr0.
+
+How to Use Emergency OOB?
+""""""""""""""""""""""""""""""""""""
+
+1. **Disable underlay** on a hypervisor link:
+
+   ..
+
+      Navigate to Net > Topology, edit the link, and uncheck "Underlay"
+
+2. **Reconnect to the hypervisor using the OOB IP**:
+
+   .. code-block:: shell
+
+      ssh root@10.55.1.1
+
+3. **Perform necessary maintenance**, then **re-enable underlay** when done.
+
+.. note::
+
+   **Persisting OOB IP Configuration (Recommended)**
+
+   For long-term usability, configure the **emergency OOB IP persistently** using **Netplan**:
+
 
 
 Install CloudStack Management Service
