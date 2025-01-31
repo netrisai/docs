@@ -625,7 +625,11 @@ Enabling Internet Connectivity for ACS Servers
 To provide **outbound connectivity** for both **CloudStack Management Nodes** and **Hypervisor Nodes**, we will configure **SNAT (Source NAT) rules** in the **Netris Controller**. These rules utilize the previously defined **203.0.113.32/27 NAT pool** to enable access to external networks.
 
 .. note::
-   This configuration ensures that ACS servers can reach external resources while maintaining internal network security.
+
+   - This configuration ensures that ACS servers can reach external resources while maintaining internal network security.
+   - If your infrastructure **does not have an OOB network** and you **created a temporary OOB subnet**,  
+     you must also enable **SNAT** for that subnet to allow internet access for installing the `netris-cloudstack-agent` on hypervisors.
+
 
 Step 1: Navigate to NAT
 """""""""""""""""""""""""""""""""""""""""""""""""
@@ -673,11 +677,34 @@ Click **Add** to save the rule.
 Click **Add** to save the rule.
 
 
+**(Optional) SNAT Rule for Temporary OOB Subnet**
+
+.. note::
+   If your infrastructure **does not have an OOB network** and you **created a temporary OOB subnet**,  
+   configure **SNAT for that subnet** so that hypervisors can reach external repositories to install the `netris-cloudstack-agent`.
+
+::
+
+   - Name: **SNAT Temporary OOB Network**
+   - Site: **Select the relevant site.**
+   - State: **Enabled**
+   - Action: **SNAT**
+   - Local VPC: **Select vpc-1:Default.**
+   - Protocol: **ALL**
+   - Source Address: **10.55.0.0/21** (Example)
+   - Destination Address: **0.0.0.0/0** (Allowing outbound traffic to any destination)
+   - SNAT to: **SNAT to IP**
+   - IP: **203.0.113.32/32** (Example IP from previously created NAT Pool)
+   - Comment: *(Optional, e.g., "Temporary internet access for CloudStack Hypervisors")*
+
+Click **Add** to save the rule.
+
+
 Step 3: Verify Configurations
 """""""""""""""""""""""""""""""""""""""""""""""""
 
 1. Navigate to **Network → NAT** in the **Netris Controller**.
-2. Verify that both **SNAT rules** are listed with:
+2. Verify that all **SNAT rules** are listed with:
    - The correct **source addresses**.
    - The assigned **SNAT IP**.
 
