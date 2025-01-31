@@ -48,51 +48,53 @@ Use Cases
 Compute and Network Architecture
 ================================
 
-The current infrastructure for Netris-CloudStack integration is designed to support scalable and dynamic networking for cloud workloads. Below is a breakdown of the key components and their roles:
+The current infrastructure for Netris-CloudStack integration is designed to support **scalable and dynamic** networking for cloud workloads.  This section outlines the key infrastructure components and their roles.
 
 Diagram Overview
 ----------------
 
-The diagram illustrates the interconnected infrastructure, consisting of:
+The diagram represents the interconnected infrastructure, consisting of:
 
-1. Leaf and Spine Switches:
+1. **Leaf and Spine Switches**:
 
-  * These form the core networking layer, enabling high-speed and fault-tolerant connections.
-  * Spine switches (Spine 1 and Spine 2) aggregate traffic and connect to the leaf switches.
-  * Leaf switches (Leaf 1 and Leaf 2) connect directly to the compute nodes and softgates, ensuring efficient traffic distribution and handling VXLAN traffic.
+   - These switches form the **core networking fabric**, ensuring **high-speed, redundant, and fault-tolerant connectivity**.
+   - **Spine switches** (Spine 1 and Spine 2) aggregate traffic and connect to **leaf switches**.
+   - **Leaf switches** (Leaf 1 and Leaf 2) connect directly to **compute nodes and softgates**, handling **VXLAN encapsulation**.
 
-2. Softgates:
+2. **Softgates**:
 
-  * Softgates play a critical role in integrating physical and virtual network environments. They are responsible for:
-  
-    * NAT Function: Enabling secure communication between private and external networks.
-    * Elastic Load Balancer: Distributing traffic across multiple resources for high availability and scalability.
-    * Network Access Control: Enforcing access policies for secure communication.
-  
-  * Additionally, they bridge VXLAN and traditional networks and support BGP/EVPN-based signaling for dynamic routing.
+  - Softgates play a critical role in integrating physical and virtual network environments. They are responsible for:
 
-3. Servers:
+     - **NAT Functionality**: Facilitates secure communication between **private and external networks**.
+     - **Elastic Load Balancer**: Distributes inbound traffic to multiple backend instances.
+     - **Network Access Control**: Enforces security policies at the edge.
 
-  * Server 1: Designated as the CloudStack Management Node, responsible for orchestrating the environment.
-  * Server 2, Server 3, and Server 4: These are KVM hypervisors managed by CloudStack, functioning as VTEPs for VXLAN tunnels.
+   - Additionally, Softgates bridge **VXLAN and traditional networking** and support **BGP/EVPN for dynamic routing**.
 
-4. OOB (Out-of-Band) Switch:
+3. **Servers**:
 
-  * An Out-of-Band (OOB) switch connects all servers for administrative purposes.
-  * This switch allows administrators to:
-  * Access servers during emergencies.
-  * Install software packages and perform updates.
-  * Troubleshoot and manage servers independently of the main network.
+   - **Server 1**:
 
-5. Internet eBGP:
+     - Designated as the **CloudStack Management Node**, responsible for orchestrating the environment.
+   - **Server 2, Server 3, and Server 4**:
 
-  * Leaf switches are connected to external networks via eBGP, ensuring reachability for public and private traffic.
+     - These **KVM hypervisors** are managed by **CloudStack** and function as **VXLAN Tunnel Endpoints (VTEPs)**.
+
+4. **OOB (Out-of-Band) Switch (If Present)**:
+
+   - If available, an **OOB switch** provides an independent **management network** for accessing servers.
+   - Allows administrators to:
+
+     - Perform **software installations and updates**.
+     - Troubleshoot and manage servers independently of the main network.
 
 
 Network Flow
 ------------
-#. Traffic flows between hypervisors (VTEPs) over VXLAN tunnels. These tunnels are dynamically configured using BGP/EVPN signaling.
-#. Softgates handle routing between overlay and underlay networks, ensuring seamless communication for workloads.
-#. The CloudStack Controller communicates with the Netris Controller API to coordinate network configurations.
-#. Leaf and spine switches provide a robust and scalable fabric to support high availability and performance.
-#. The OOB switch provides an independent path for server management, ensuring operational reliability.
+
+1. **Hypervisor traffic** traverses **VXLAN tunnels**, dynamically configured via **BGP/EVPN**.
+2. **Softgates handle routing** between overlay and underlay networks, ensuring seamless workload communication.
+3. **CloudStack Controller** communicates with **Netris Controller API** to synchronize network configurations.
+4. **Leaf and Spine switches** ensure a **highly available and scalable** fabric for compute workloads.
+5. If an **OOB switch is available**, it provides **direct administrative access** to all servers.
+6. **Softgates establish BGP sessions** for external connectivity, ensuring **public and private traffic reachability**.

@@ -42,11 +42,14 @@ Allocations represent IP ranges assigned to an organization, such as private IP 
 
 
 Create Subnets
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Subnets are prefixes that fall under allocations and are used for specific purposes. Let’s create two subnets within the allocation for management and loopback purposes.
+Subnets are **prefixes** that fall under **allocations** and serve specific purposes. In this step, we define **loopback and management subnets** within the Netris allocation.
 
-1. Loopback Subnet:
+Loopback Subnet
+""""""""""""""""""""""""""""""
+
+The **loopback subnet** is used for assigning **unique IPs** to each device (e.g., hypervisors, softgates) for **BGP peering and internal communication**.
 
   * **Prefix**: 10.0.0.0/16.
   * **Name**: “Loopback IP Subnet”.
@@ -56,7 +59,10 @@ Subnets are prefixes that fall under allocations and are used for specific purpo
   * **Purpose**: Choose Loopback.
   * **Sites**: Associate with your Netris site.
 
-2. Management Subnet:
+Management Subnet (Optional)
+""""""""""""""""""""""""""""""""""
+
+The **management subnet** provides connectivity for **server administration**.
 
   * **Prefix**: 10.10.0.0/16.
   * **Name**: “OOB Management Subnet”.
@@ -64,15 +70,25 @@ Subnets are prefixes that fall under allocations and are used for specific purpo
   * **Tenant**: Assign to “Admin”.
   * **Type**: Select Subnet.
   * **Purpose**: Choose Management.
-  * **Default Gateway**: Set to 10.10.0.1.
+  * **Default Gateway**: 10.10.0.1.
   * **Sites**: Associate with your Netris site.
 
-3. Click **Add** after filling in the fields for each subnet.
+.. note::
+
+   If your infrastructure does **not** have a dedicated **management network**, you can **skip this step**.
+
+
+**Adding Subnets in Netris**
+
+
+1. Navigate to **Network → IPAM → +Add**.
+2. Fill in the fields for each subnet as per the configurations above.
+3. Click **Add** to save.
 
 Refer to the screenshots for guidance:
 
-  * Loopback Subnet: 
-  * Management Subnet: 
+- **Loopback Subnet Configuration**
+- **Management Subnet Configuration** (if applicable)
 
 
 Inventory Setup
