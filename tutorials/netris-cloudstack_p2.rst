@@ -94,81 +94,88 @@ Refer to the screenshots for guidance:
 Inventory Setup
 ---------------
 
-The Inventory Setup in Netris allows you to add and manage devices such as switches, SoftGates, and servers.
+The **Inventory Setup** in Netris allows you to **add and manage** devices such as **switches, SoftGates, and servers**.
 
 Adding Servers
 ^^^^^^^^^^^^^^
 
-In this step, we’ll configure the servers for the **Netris inventory**. The first server **(Server 1)** will be configured differently from the remaining three servers **(Server 2, 3, and 4)**, which act as CloudStack KVM hypervisors.
+In this step, we’ll configure the servers for the **Netris inventory**. The first server (**Server 1**) will be configured differently from the remaining three servers (**Server 2, 3, and 4**), which act as **CloudStack KVM hypervisors**.
 
-
+Step 1: Navigate to Topology
+""""""""""""""""""""""""""""""""""""""""""
 1. Go to: **Network** → **Topology** → **+Add**.
 
 **Prerequisites**:
-
-  * **Loopback subnet** must be defined in **Netris IPAM**.
-  * **Management subnet** must be defined in **Netris IPAM**.
-
-2. Add Servers
-
-* **Server 1 (CloudStack Management Node)**:
   
-  * **Name**: Server 1
-  * **Tenant**: Assign to Admin.
-  * **Description**: Leave blank or add relevant details.
-  * **Type**: Select Server.
-  * **Site**: Assign to your site.
-  * **AS Number**: Assign automatically or provide a unique ASN.
-  * **Main IP Address**: Select Disabled (as no Main IP is needed).
-  * **Management IP Address**: Assign 10.10.10.1 (from the Management Subnet).
-  * **Role**: Generic.
-  * **Port Count**: Set to 4.
-  * **Tags**:
+  - **Loopback subnet** must be defined in **Netris IPAM**.
+  - **Management subnet** must be defined in **Netris IPAM** (*Skip if not applicable*).
 
-    * iface.eth1=CS-Cloud1-MGMT
-    * iface.eth2=CS-Cloud1-MGMT
+Step 2: Add Servers
+""""""""""""""""""""""""""""""""""""""""""
+
+**Server 1 (CloudStack Management Node)**:
+
+  - **Name**: Server 1
+  - **Tenant**: Assign to Admin.
+  - **Description**: Leave blank or add relevant details.
+  - **Type**: Select Server.
+  - **Site**: Assign to your site.
+  - **AS Number**: Assign automatically or provide a unique ASN.
+  - **Main IP Address**: Select `Disabled` (as no Main IP is needed).
+  - **Management IP Address**:
+    
+    - Assign an IP from the **Management** Subnet (e.g., 10.10.10.1) if OOB is **available**.
+    - Select `Disabled` if **no management network** is present.
+
+  - **Role**: Generic.
+  - **Port Count**: Set to `4`.
+  - **Tags**:
+    
+    - `iface.eth1=CS-Cloud1-MGMT`
+    - `iface.eth2=CS-Cloud1-MGMT`
 
 Click **Add** to save the configuration for **Server 1**.
 
-📌 **Why isn’t underlay enabled for Server 1?**
+.. note::
 
-	Server 1 does not run the netris-cloudstack-agent, and its traffic will be encapsulated in **traditional VLAN** instead of **VXLAN**.
+   **Why isn’t underlay enabled for Server 1?**  
+   Server 1 does **not** run the `netris-cloudstack-agent`, and its traffic will be **encapsulated in VLAN** instead of VXLAN.
 
+**Server 2, 3, and 4 (CloudStack KVM Hypervisors)**:
 
-* **Server 2, 3, and 4 (CloudStack KVM Hypervisors)**:
+  - **Name**:
+    
+    - `Server 2` for the first hypervisor.
+    - `Server 3` for the second hypervisor.
+    - `Server 4` for the third hypervisor.
 
-  * **Name**:
-  
-    * Server 2 for the first hypervisor.
-    * Server 3 for the second hypervisor.
-    * Server 4 for the third hypervisor.
-  
-  * **Tenant**: Assign to Admin.
-  * **Description**: Leave blank or add relevant details.
-  * **Type**: Select Server.
-  * **Site**: Assign to your site.
-  * **AS Number**: Assign automatically or provide a unique ASN.
-  
-  * **Main IP Address**: Assign from the **Loopback Subnet**:
-  
-    * 10.0.8.2 for **Server 2**.
-    * 10.0.8.3 for **Server 3**.
-    * 10.0.8.4 for **Server 4**.
-  
-  * **Management IP Address**: Assign from the **Management Subnet**:
-  
-    * 10.10.10.2 for **Server 2**.
-    * 10.10.10.3 for **Server 3**.
-    * 10.10.10.4 for **Server 4**.
-  
-  * **Role**: Hypervisor:CloudStack.
-  * **Port Count**: Set to 4.
-  * **Tags**:
+  - **Tenant**: Assign to Admin.
+  - **Description**: Leave blank or add relevant details.
+  - **Type**: Select Server.
+  - **Site**: Assign to your site.
+  - **AS Number**: Assign automatically or provide a unique ASN.
 
-    * iface.eth1=CS-Cloud1-Compute
-    * iface.eth2=CS-Cloud1-Compute
-  
-  * **Custom Field**:
+  - **Main IP Address**: Assign from the **Loopback Subnet**:
+    
+    - `10.0.8.2` for **Server 2**.
+    - `10.0.8.3` for **Server 3**.
+    - `10.0.8.4` for **Server 4**.
+
+  - **Management IP Address**:  
+    (*If OOB is present, set the IP. Otherwise, select `Disabled`.*)
+
+    - `10.10.10.2` for **Server 2**.
+    - `10.10.10.3` for **Server 3**.
+    - `10.10.10.4` for **Server 4**.
+
+  - **Role**: `Hypervisor:CloudStack`
+  - **Port Count**: Set to 4.
+  - **Tags**:
+
+    - `iface.eth1=CS-Cloud1-Compute`
+    - `iface.eth2=CS-Cloud1-Compute`
+
+  - **Custom Field**:
   
   For each server, use the following JSON with the specific **ipv4** address:
 
@@ -215,6 +222,14 @@ Click **Add** to save the configuration for **Server 1**.
       }
 
 
+
+For **each server**, click **Add** to save the configuration.
+
+.. note::
+
+  If you **don’t have a management network**, simply **select `Disabled`** in the **Management IP Address** field.
+
+
 Repeat the process for **Server 2**, **Server 3**, and **Server 4**, updating the Main and Management IP addresses and JSON as per the above configuration.
 
 
@@ -223,10 +238,6 @@ Repeat the process for **Server 2**, **Server 3**, and **Server 4**, updating th
 * **Tags** will be used later in network assignments (V-Nets) to ensure that networks are correctly assigned to the hypervisors.
 * **JSON Configuration** serves as a **template** that the ``netris-cloudstack-agent`` will use to configure cloudbr0 on the hypervisor nodes.
 
-
-3. Save the Configuration
-
-  * For each server, click **Add** to save the configuration.
 
 Terraform Example for Adding a Server
 """""""""""""""""""""""""""""""""""""
@@ -270,46 +281,67 @@ The following Terraform configuration example demonstrates how to **automate ser
 Creating Servers’ Links
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-To fully establish the network topology, you need to create the links between leaf switches and servers as illustrated in the first diagram. This section explains how to create the links step-by-step.
+To fully establish the network topology, you need to **create links** between the **leaf switches and servers** as illustrated in the **first diagram**.  
 
-**Navigate to the Device**
-
-#. In the Topology view, right-click on one of the leaf switch that will be part of the link (e.g., Leaf-1).
-#. Select Create Link from the context menu.
-
-
-**Configure the Link**
-
-1. **From Section:**
-
-  * **Device**: Automatically selected based on the device you right-clicked.
-  * **Port**: Choose the port on the selected device (e.g., swp1 on Leaf-1).
+This section explains how to create the links **step-by-step** while considering **two scenarios**:
   
+  - **If an OOB network exists**: Enable **Underlay** on all **hypervisor links**.
+  - **If no OOB network exists**: Leave **Underlay disabled** on hypervisors **initially**, then enable it after the **Netris-CloudStack Agent is installed**.
+
+Step 1: Navigate to Topology
+"""""""""""""""""""""""""""""""""""
+
+1. In the **Topology view**, right-click on one of the **leaf switches** that will be part of the link (e.g., `Leaf-1`).
+2. Select **Create Link** from the context menu.
+
+Step 2: Configure the Link
+"""""""""""""""""""""""""""""""""""
+
+1. **From Section**:
+
+   - **Device**: Automatically selected based on the device you right-clicked.
+   - **Port**: Choose the port on the selected device (e.g., `swp1` on `Leaf-1`).
+
 2. **To Section**:
 
-  * **Device**: Select the other device participating in the link (e.g., Leaf-1).
-  * **Port**: Choose the appropriate port on the second device (e.g., eth1 on Server 1).
+   - **Device**: Select the other device participating in the link (e.g., `Server 1`).
+   - **Port**: Choose the appropriate port on the second device (e.g., `eth1` on `Server 1`).
 
 3. **Options**:
 
-  * **Underlay**:
-    * **Mark** the checkbox for all links **except the link involving Server 1**.
+   - **Underlay**:
+   
+     - If an **OOB network exists**, **mark** the checkbox for **all hypervisor links**.
+     - If **no OOB network exists**, **leave Underlay unchecked** on hypervisors for now.
 
 4. Click **Add** to save the link.
 
+Step 3: Repeat for All Server Interfaces
+"""""""""""""""""""""""""""""""""""""""""
 
-**Repeat for All other servers’ interfaces**
+- Follow the same **link creation process** for all **server interfaces**.
+- Ensure that **Underlay is unchecked** for **Server 1**.
+
+.. note::
+
+   **Handling Deployments Without OOB**  
+   If your infrastructure **does not have an OOB network**, you will initially **leave Underlay disabled on hypervisors**.  
+   In the next steps, you will configure a **temporary VLAN-based VNet** to provide **temporary internet access** for installing the `netris-cloudstack-agent`.  
+   Once the agent is installed, you will **return to these links** and **enable Underlay** for full integration.
 
 
-**Notes**:
+Key Considerations
+"""""""""""""""""""""""""""""""""""
 
-  * For links involving **Server 1**, leave the **Underlay** checkbox **unmarked**.
+✔ **Server 1 Does Not Use Underlay**  
+   Unlike CloudStack hypervisors, **Server 1 does not have the Netris-CloudStack Agent installed**.  
+   This means it does **not require VXLAN encapsulation** and instead **operates on a VLAN-based connection**.
 
-Unlike CloudStack hypervisors, **Server 1 does not have the Netris-CloudStack Agent installed**. This means it does not need dynamic networking capabilities or VXLAN encapsulation. Instead, its traffic remains inside a **traditional VLAN**. Disabling **Underlay** for Server 1 ensures:
+✔ **Dynamic Hypervisor Integration**  
+   - **With OOB**: Hypervisors get **instant network provisioning** via `netris-cloudstack-agent`.  
+   - **Without OOB**: Hypervisors initially operate on **VLAN-based temporary connectivity**, later transitioning to **Underlay-enabled VXLAN networking**.
 
-  * CloudStack **management traffic remains isolated**.
-  * Management traffic **does not require VXLAN encapsulation**.
-  * It uses **a simpler VLAN-based connection** instead of participating in the Netris overlay network.
+This **ensures flexibility**, whether an **OOB network exists or not**, while maintaining a **structured and seamless deployment process**. 🚀
 
 
 Terraform Example for Creating Servers’ Links
@@ -373,10 +405,19 @@ Once saved, this setting will **optimize BGP overlays** for hypervisor networkin
 Adding Subnets for CloudStack Cluster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this step, we’ll configure multiple subnets within the **Netris IPAM** to support the **CloudStack deployment**. These subnets are categorized based on their purpose and usage within the infrastructure. We will create five **Common-purpose subnets** and one **NAT-purpose subnet** to fulfill the network requirements of CloudStack.
+In this step, we’ll configure multiple subnets within the **Netris IPAM** to support the **CloudStack deployment**.  
+These subnets are categorized based on their purpose and usage within the infrastructure.  
+
+We will create:
+
+- Five **Common-purpose subnets**.
+- One **NAT-purpose subnet**.
+- An **Optional OOB subnet** (for infrastructures without an existing OOB network).
 
 .. note::
-   The subnet sizes provided in this section are **examples**. You should allocate subnet sizes based on your specific requirements and infrastructure constraints.
+
+   The subnet sizes provided in this section are **examples**.  
+   You should allocate subnet sizes based on your specific requirements and infrastructure constraints.
 
 
 Example IP Plan for CloudStack
@@ -389,6 +430,7 @@ This section provides **example allocations** for a CloudStack deployment. You c
 ::
 
    10.0.0.0/8 (Allocation) – Private IP range
+   ├── 10.55.0.0/21 (Subnet) - Temporary OOB Network (for non-OOB infrastructures)
    ├── 10.99.0.0/21 (Subnet) - CloudStack Management (Management Nodes)
    ├── 10.100.0.0/21 (Subnet) - CloudStack Management (Hypervisor Nodes)
 
@@ -409,11 +451,35 @@ This section provides **example allocations** for a CloudStack deployment. You c
    ├── 198.51.100.0/25 (Subnet) - Netris services subnet for ACS
 
 
+Optional: Defining a Temporary OOB Network
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. note::
+   **If your infrastructure does not have an OOB network**, you must define a **temporary OOB subnet**  
+   to provide **internet access** for installing the `netris-cloudstack-agent` on hypervisors.
+
+- This subnet will later be used to **create a VNet**, which will act as a temporary OOB.
+- It allows servers to **use traditional VLAN encapsulation** before transitioning to VXLAN.
+
+**Example Temporary OOB Subnet**
+
+::
+
+   - Prefix: 10.55.0.0/21 (Example)
+   - Name: Temporary OOB Subnet
+   - Purpose: Common
+   - VPC: Select vpc-1:Default
+   - Tenant: Assign to Admin
+   - Type: Subnet
+   - Sites: Select the relevant site.
+
+.. note::
+   If your infrastructure already has an **OOB network**, **skip this step**.
+
 
 Define Subnets for CloudStack Management
-""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-**Step 1: Add the Subnet for CloudStack Management Nodes**
 
 ::
 
@@ -425,7 +491,6 @@ Define Subnets for CloudStack Management
    - Type: Subnet
    - Sites: Select the relevant site.
 
-**Step 2: Add the Subnet for CloudStack Hypervisor Nodes**
 
 ::
 
@@ -439,9 +504,8 @@ Define Subnets for CloudStack Management
 
 
 Define Public Allocation
-""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
 
-**Step 3: Create a Public Allocation for CloudStack**
 
 ::
 
@@ -454,7 +518,7 @@ Define Public Allocation
 
 
 Define CIDR for CloudStack System VMs
-"""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 In this step, we define a dedicated **subnet** for CloudStack **System VMs**, which will be used as their primary network in the subsequent steps. On cloudstack side, this CIDR will be **exclusively** reserved for system VMs
 
@@ -470,7 +534,8 @@ In this step, we define a dedicated **subnet** for CloudStack **System VMs**, wh
 
 
 Defining CIDR for Internal Use (Infrastructure NAT)
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 This subnet is used for **internal NAT purposes**, such as:
   - Accessing CloudStack GUI using a public IP.
@@ -490,7 +555,8 @@ This subnet is designed to handle infrastructure-level NAT requirements efficien
 
 
 Define CIDR for CloudStack Virtual Routers (VRs)
-""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 This step involves defining the CIDR for **CloudStack Virtual Routers (VRs)**, which will be used in the **ACS Virtual Routers V-Net**. Each **VPC’s VR** will pick an **IP address** from this pool.
 
@@ -515,12 +581,12 @@ CloudStack’s VPN services require **publicly routable IPs** for VPN connectivi
    - Sites: Select the relevant site.
 
 
-Defining CIDR for Netris Services
-"""""""""""""""""""""""""""""""""
+Public Allocation/Subnet for Netris Services
+"""""""""""""""""""""""""""""""""""""""
+
 
 This CIDR is used by **CloudStack** to manage NAT and Load Balancer services directly in **Netris**, bypassing the Virtual Routers (VRs). When a user creates a NAT rule or Load Balancer in CloudStack, the system selects a free IP from this range and creates that service in **Netris**.
 
-**Step 4: Create a Public Allocation for Netris Services**
 
 ::
 
@@ -531,7 +597,7 @@ This CIDR is used by **CloudStack** to manage NAT and Load Balancer services dir
    - Tenant: Assign to Admin
    - Type: Allocation
 
-**Step 5: Define the Netris Services Subnet**
+**Define the Netris Services Subnet**
 
 ::
 
@@ -544,15 +610,13 @@ This CIDR is used by **CloudStack** to manage NAT and Load Balancer services dir
    - Sites: Select the relevant site.
 
 
-Summary
-"""""""
+**Summary**
+""""""""""""""
 
 - Subnet sizes are **examples** and should be **adjusted based on your needs**.
-- **Public vs. Private subnets**: Some services require public allocations, while others can operate on private ranges.
-- **Netris handles NAT and Load Balancing**: CloudStack automatically provisions these services in Netris.
-- **Infrastructure NAT ensures external connectivity** for ACS services like the GUI and outbound SNAT.
+- **The temporary OOB subnet is only needed if there's no existing OOB network**.
+- **Public vs. Private subnets**: Some services require public subnets, while others can operate on private ranges.
 
-This completes the subnet setup for **CloudStack deployment in Netris**.
 
 
 Enabling Internet Connectivity for ACS Servers
