@@ -17,6 +17,11 @@ Once the CloudStack Management service is installed and running, the next step i
   #. Enable the Netris plugin by toggling the switch to "ON."
   #. Save the settings.
 
+
+.. image:: images/acs-enable-netris-plugin.png
+  :align: center
+
+
 After enabling the plugin, restart the CloudStack Management service to apply the changes:
 
    .. code-block:: shell
@@ -70,6 +75,11 @@ Fill in the following details for your zone:
 
 Click **Next** to continue the setup process.
 
+
+.. image:: images/acs-wizard-zone-details.png
+  :align: center
+
+
 Step 4: Network
 """"""""""""""""
 
@@ -87,6 +97,11 @@ Define the physical network for the zone.
 
 Click **Next** to proceed.
 
+
+.. image:: images/acs-wizard-physical-network.png
+  :align: center
+
+
 Step 5: Netris Provider Configuration
 """""""""""""""""""""""""""""""""""""
 
@@ -102,6 +117,10 @@ On the **Netris Provider** page, provide the following information:
 - **Netris Tag**: Ensure this matches the tag defined for the **CloudStack Management (Hypervisor Nodes) VNet** in **Netris**. For this example, use `CS-Cloud1-Compute`.
 
 Click **Next** to proceed.
+
+.. image:: images/acs-wizard-netris-details.png
+  :align: center
+
 
 Step 6: Public Traffic Configuration
 """""""""""""""""""""""""""""""""""""
@@ -120,6 +139,11 @@ Example Configuration:
   - **VXLAN/VNI**: Use the **VXLAN ID** from **Netris** for **System VMs** (e.g., `vxlan://12`).
   - **Start and End IP**: `203.0.113.2 - 203.0.113.30`
 
+
+.. image:: images/acs-wizard-public-network1.png
+  :align: center
+
+
 - **Virtual Routers Public Network**:
 
   - **Gateway**: `203.0.113.129`
@@ -133,6 +157,10 @@ Click **Add** for each network and verify that the details align with your **Net
 
 Then click **Next**.
 
+.. image:: images/acs-wizard-public-network2.png
+  :align: center
+
+
 Step 7: Netris Public IP Pool
 """""""""""""""""""""""""""""""""""""
 
@@ -142,11 +170,16 @@ Example Configuration:
 
 - **Gateway**: `198.51.100.1` (from the **Subnet for Netris Services** in **Netris IPAM**).
 - **Netmask**: `255.255.255.128`.
-- **Start and End IP**: `198.51.100.2 - 198.51.100.254`.
+- **Start and End IP**: `198.51.100.2 - 198.51.100.126`.
 
 **Note**: For the **Netris Public IP Pool**, the **VLAN/VNI** field is **inactive** because this is not a **VNet**, but a **pool of IPs** that **CloudStack** will consume to create services like **NAT and load balancers**.
 
 Click **Add** and then **Next**.
+
+
+.. image:: images/acs-wizard-public-netris-pool.png
+  :align: center
+
 
 Step 8: Configuring Pod Management Network
 """""""""""""""""""""""""""""""""""""""""""
@@ -196,6 +229,11 @@ Using data from the corrected **hypervisor management subnet (10.100.0.0/21)** i
 
 Click **Next** to proceed.
 
+
+.. image:: images/acs-wizard-pod1-details.png
+  :align: center
+
+
 Step 9: Configuring VPC Tiers VXLAN Range
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -236,6 +274,11 @@ The **VXLAN range** defines the **pool of VNIs** that CloudStack will use to cre
 .. note::
    Using a **large VXLAN range** allows for greater flexibility in **scaling your cloud network**, especially in **multi-tenant environments**.
 
+
+.. image:: images/acs-wizard-vxlan-range.png
+  :align: center
+
+
 Step 10: Final Steps in Zone Configuration
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -269,6 +312,11 @@ Since **Netris is not involved** in these processes, no specific recommendations
 
    - **Secondary storage** is used for **templates, ISOs, and snapshots**.
    - This storage should also be **configured** and **attached** as part of the **zone setup**.
+
+
+.. image:: images/acs-wizard-launch-zone.png
+  :align: center
+
 
 **Why This Section is Brief**
 

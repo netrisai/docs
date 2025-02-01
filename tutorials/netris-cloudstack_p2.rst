@@ -38,7 +38,8 @@ Allocations represent IP ranges assigned to an organization, such as private IP 
 
 3. Click **Add** to create the allocation.
 
-[todo]Refer to the screenshot for guidance:
+.. image:: images/acs-private-allocation.png
+  :align: center
 
 
 Create Subnets
@@ -59,6 +60,11 @@ The **loopback subnet** is used for assigning **unique IPs** to each device (e.g
   * **Purpose**: Choose Loopback.
   * **Sites**: Associate with your Netris site.
 
+
+.. image:: images/acs-lo-subnet.png
+  :align: center
+
+
 Management Subnet (Optional)
 """"""""""""""""""""""""""""""""""
 
@@ -77,6 +83,9 @@ The **management subnet** provides connectivity for **server administration**.
 
    If your infrastructure does **not** have a dedicated **management network**, you can **skip this step**.
 
+
+.. image:: images/acs-mgmt-subnet.png
+  :align: center
 
 **Adding Subnets in Netris**
 
@@ -115,12 +124,12 @@ Step 2: Add Servers
 
 **Server 1 (CloudStack Management Node)**:
 
-  - **Name**: Server 1
+  - **Name**: Server-1
   - **Tenant**: Assign to Admin.
   - **Description**: Leave blank or add relevant details.
   - **Type**: Select Server.
   - **Site**: Assign to your site.
-  - **AS Number**: Assign automatically or provide a unique ASN.
+  - **AS Number**: Select `Disabled`.
   - **Main IP Address**: Select `Disabled` (as no Main IP is needed).
   - **Management IP Address**:
     
@@ -145,9 +154,9 @@ Click **Add** to save the configuration for **Server 1**.
 
   - **Name**:
     
-    - `Server 2` for the first hypervisor.
-    - `Server 3` for the second hypervisor.
-    - `Server 4` for the third hypervisor.
+    - `Server-2` for the first hypervisor.
+    - `Server-3` for the second hypervisor.
+    - `Server-4` for the third hypervisor.
 
   - **Tenant**: Assign to Admin.
   - **Description**: Leave blank or add relevant details.
@@ -221,6 +230,9 @@ Click **Add** to save the configuration for **Server 1**.
         }
       }
 
+
+.. image:: images/acs-server2-creation.png
+  :align: center
 
 
 For **each server**, click **Add** to save the configuration.
@@ -330,6 +342,10 @@ Step 3: Repeat for All Server Interfaces
    Once the agent is installed, you will **return to these links** and **enable Underlay** for full integration.
 
 
+.. image:: images/acs-link-creation.png
+  :align: center
+
+
 Key Considerations
 """""""""""""""""""""""""""""""""""
 
@@ -400,6 +416,11 @@ Once saved, this setting will **optimize BGP overlays** for hypervisor networkin
 .. warning:: 
 
   This step is limited to enabling the Optimize BGP Overlay option. Other parameters within the inventory profile are irrelevant to this process and should remain unchanged to avoid unnecessary complexity.
+
+
+.. image:: images/acs-inventory-profile.png
+  :align: center
+
 
 
 Adding Subnets for CloudStack Cluster
@@ -503,6 +524,10 @@ Define Subnets for CloudStack Management
    - Sites: Select the relevant site.
 
 
+.. image:: images/acs-mng-hyper-subnet.png
+  :align: center
+
+
 Define Public Allocation
 """"""""""""""""""""""""""""""
 
@@ -515,6 +540,10 @@ Define Public Allocation
    - VPC: Select vpc-1:Default
    - Tenant: Assign to Admin
    - Type: Allocation
+
+
+.. image:: images/acs-public-allocation.png
+  :align: center
 
 
 Define CIDR for CloudStack System VMs
@@ -531,6 +560,11 @@ In this step, we define a dedicated **subnet** for CloudStack **System VMs**, wh
    - Tenant: Assign to Admin
    - Type: Subnet
    - Sites: Select the relevant site.
+
+
+.. image:: images/acs-system-vms-subnet.png
+  :align: center
+
 
 
 Defining CIDR for Internal Use (Infrastructure NAT)
@@ -552,6 +586,11 @@ This subnet is designed to handle infrastructure-level NAT requirements efficien
    - Tenant: Assign to Admin
    - Type: Subnet
    - Sites: Select the relevant site.
+
+
+.. image:: images/acs-public-nat-subnet.png
+  :align: center
+
 
 
 Define CIDR for CloudStack Virtual Routers (VRs)
@@ -582,7 +621,7 @@ CloudStack’s VPN services require **publicly routable IPs** for VPN connectivi
 
 
 Public Allocation/Subnet for Netris Services
-"""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""
 
 
 This CIDR is used by **CloudStack** to manage NAT and Load Balancer services directly in **Netris**, bypassing the Virtual Routers (VRs). When a user creates a NAT rule or Load Balancer in CloudStack, the system selects a free IP from this range and creates that service in **Netris**.
@@ -656,6 +695,11 @@ Step 2: Configure SNAT Rules
    - Comment: *(Optional, e.g., "Outbound access for CloudStack Management Nodes")*
 
 Click **Add** to save the rule.
+
+
+.. image:: images/acs-snat-creation.png
+  :align: center
+
 
 
 **SNAT Rule for CloudStack Hypervisor Nodes**
@@ -743,6 +787,11 @@ Step 2: Configure the DNAT Rule
 
 2. Save the rule by clicking **Add**.
 
+
+.. image:: images/acs-dnat-creation.png
+  :align: center
+
+
 Step 3: Reminder
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -812,6 +861,11 @@ Step 2: Configure V-Nets
 
 Click **Save**.
 
+
+.. image:: images/acs-mng-mgmt-vnet.png
+  :align: center
+
+
 **2. CloudStack Management (Hypervisor Nodes)**
 ::
 
@@ -828,6 +882,11 @@ Click **Save**.
 
 Click **Save**.
 
+
+.. image:: images/acs-mng-cloudbr0-vnet.png
+  :align: center
+
+
 **3. CloudStack System VMs**
 ::
 
@@ -841,6 +900,11 @@ Click **Save**.
    - Tags: Add CS-Cloud1-Compute
 
 Click **Save**.
+
+
+.. image:: images/acs-system-vms-vnet.png
+  :align: center
+
 
 **4. CloudStack Virtual Routers (VRs)**
 ::
