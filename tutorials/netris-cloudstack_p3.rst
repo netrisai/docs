@@ -204,6 +204,10 @@ To provision the **netris-cloudstack agent** on the hypervisor servers (**Server
 6. **Repeat this process** for each hypervisor server (**Servers 2, 3, and 4**).
 
 
+.. image:: images/acs-server2-one-liner.png
+  :align: center
+
+
 Example Successful Output of One-Liner Script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -282,6 +286,15 @@ Step 1: Enable Underlay for Hypervisor Links
 4. **Enable the "Underlay" checkbox**.
 5. **Click Save**.
 6. **Repeat for all hypervisors (Server 2, 3, and 4)**.
+
+
+.. image:: images/acs-topology-link-edit.png
+  :align: left
+  :width: 330px
+  :height: 228px
+
+.. image:: images/acs-server2-link-edit.png
+  :align: center
 
 Step 2: Verify VXLAN Connectivity
 """"""""""""""""""""""""""""""""""""""""""""""""""""
