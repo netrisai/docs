@@ -130,12 +130,35 @@ Install Netris-CloudStack Agent on Hypervisor Servers
 
 The **netris-cloudstack agent** acts as a bridge between **CloudStack** and the **Netris Controller**. It automates the **provisioning** and **configuration** of network resources required for **CloudStack’s operations on hypervisor nodes**.
 
+
+Bringing Up NICs Before Installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For proper network initialization, ensure all NICs connected to the Netris fabric are brought up before installing the agent.
+
+Run the following command for each NIC that is physically connected to the fabric:
+
+.. code-block:: shell
+
+  ip link set ens3 up
+  ip link set ens4 up
+  ip link set ens5 up  # Repeat for all NICs
+
+To verify, run:
+
+.. code-block:: shell
+
+  ip link show | grep 'state UP'
+
+Ensure all NICs are in the UP state before proceeding.
+
+
 .. note::
    - If your infrastructure **does not have an OOB network**, your hypervisors will **not have internet access**.  
      Follow the **pre-installation steps** below to temporarily configure internet access **before proceeding** with the installation.
    - If you **have an OOB network**, proceed directly to **Installation Steps**.
 
----
+
 
 Pre-Installation Steps (For Deployments Without OOB)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -365,6 +388,76 @@ How to Use Emergency OOB?
    **Persisting OOB IP Configuration (Recommended)**
 
    For long-term usability, configure the **emergency OOB IP persistently** using **Netplan**:
+
+
+
+
+Managing Additional NICs on the Server
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After the **Netris-CloudStack Agent** is installed and operational, it's important to understand how networking is handled for **other NICs** on the hypervisor.
+
+1. **Netris-CloudStack Agent Only Configures Underlay NICs**
+   
+   - The **Netris-CloudStack Agent** **only** configures **NICs that have their link marked as underlay** in **Netris**.
+   - Any **other NICs** on the server will remain **untouched** by the agent.
+   - This means that **you can configure and use other NICs just like on a normal server**.
+
+2. **Where Does Netris-CloudStack Agent Store Network Configurations?**
+   
+   - The **Netris-CloudStack Agent** configures the networking for **underlay-enabled NICs** using the following Netplan configuration file:
+
+   .. code-block:: shell
+
+      /etc/netplan/10-netris.yaml
+
+   - The agent **does not modify any other files**.
+
+3. **How to Configure Additional NICs Manually?**
+   
+   - If you need to **configure other NICs** on your server (e.g., for additional network connections, storage networks, or monitoring purposes), **do not modify `/etc/netplan/10-netris.yaml`**.
+   - Instead, create a **new** Netplan configuration file (e.g., `/etc/netplan/05-custom.yaml`):
+
+   .. code-block:: shell
+
+      sudo vim /etc/netplan/05-custom.yaml
+
+   - Add your custom network settings. For example:
+
+   .. code-block:: yaml
+
+      network:
+        version: 2
+        ethernets:
+          ens5:
+            dhcp4: no
+            addresses:
+              - 192.168.50.10/24
+
+   - Save the file and **apply the new configuration**:
+
+   .. code-block:: shell
+
+      sudo netplan apply
+
+4. **Important Warning: Restart FRR After Netplan Apply**
+   
+   - **Whenever you run `netplan apply`**, it may **remove BGP routes** that the **Netris-CloudStack Agent** has established through **FRR**.
+   - This can cause connectivity issues, especially for **BGP sessions that depend on those routes**.
+   - **Workaround**: **Restart the FRR service every time after running `netplan apply`**.
+
+   .. code-block:: shell
+
+      sudo systemctl restart frr
+
+   - This ensures that all **BGP routes are properly re-established** after Netplan makes changes.
+
+Summary
+"""""""""
+
+- ✔ The **Netris-CloudStack Agent** **only manages underlay-enabled NICs**, and other NICs are fully customizable.  
+- ✔ Always use a **separate Netplan file** (e.g., `/etc/netplan/05-custom.yaml`) for any manual network configurations.  
+- ✔ **If you apply Netplan changes (`netplan apply`), always restart FRR afterward** to prevent network disruptions.  
 
 
 
