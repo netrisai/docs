@@ -19,7 +19,7 @@ Switch Fabric Management Functions
       - Day0, Day1, and Day2 switch fabric operations.	
       - ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       - N/A	
       - N/A
@@ -27,7 +27,7 @@ Switch Fabric Management Functions
       - Manage multiple isolated switch fabrics. (example: East-West and North-South)
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       - N/A
       - N/A
@@ -35,7 +35,7 @@ Switch Fabric Management Functions
       - Design and operate the switch fabric.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       - N/A
       - N/A
@@ -43,7 +43,7 @@ Switch Fabric Management Functions
       - Offload a network node for a maintenance.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
@@ -51,7 +51,7 @@ Switch Fabric Management Functions
       - Manage IP subnets. Assign RBAC, multi-tenancy, and service-based rules and roles to IP address resources.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
@@ -59,7 +59,7 @@ Switch Fabric Management Functions
       - Lookup underlay and overlay routing info of any managed network node without SSH-ing.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
@@ -67,7 +67,7 @@ Switch Fabric Management Functions
       - Automatic monitoring of Link statuses, link utilization, laser signal levels, errors, packets. 	
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       - N/A
       - N/A
@@ -75,7 +75,7 @@ Switch Fabric Management Functions
       - Automatic monitoring of CPU, RAM, Disk, and ASIC resources.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
@@ -83,7 +83,7 @@ Switch Fabric Management Functions
       - Automatic monitoring of temperature, fans, power supply statuses.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       - N/A
       - N/A
@@ -91,32 +91,40 @@ Switch Fabric Management Functions
       - Automatic monitoring of critical system processes.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
    *  - Topology Validation
-      - Detect wiring errors.
+      - Detect wiring errors switch-to-switch & switch-to-SoftGate.
       -  ✔
-      - Dec/2024
-      - Nov/2024
-      - Dec/2024	
+      -  ✔
+      - Apr/2025
+      -  ✔
+      - N/A
+      - N/A
+   *  - Server Wiring Validation
+      - Detect wiring errors switch-to-server.
+      - Mar/2025
+      - Mar/2025
+      - Apr/2025
+      - Mar/2025
       - N/A
       - N/A
    *  - BGP Unnumbered
       - Any network topology with BGP unnumbered underlay
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       - N/A
       - N/A
    *  - BGP Numbered
       - Any network topology with BGP numbered underlay
       -  ✔
-      - Dec/2024
-      - Nov/2024
-      - Dec/2024
+      -  ✔
+      - Apr/2025
+      -  ✔
       - N/A
       - N/A
 
@@ -138,7 +146,7 @@ External Routing Functions
       - Terminate full routing table on SoftGate  Gateway-server.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
@@ -146,7 +154,7 @@ External Routing Functions
       - Peer with external routers.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       - N/A
       - N/A
@@ -154,7 +162,7 @@ External Routing Functions
       - Create chain of BGP rules.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
@@ -162,7 +170,7 @@ External Routing Functions
       - Define static routing rules.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
@@ -187,7 +195,7 @@ Cloud Networking Functions & Constructs
       - Isolated VPCs, VRFs. Overlapping IPs supported.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
@@ -195,47 +203,47 @@ Cloud Networking Functions & Constructs
       - L3VPN VXLAN or L2VPN VXLAN with an anycast default Gateway, and built-in DHCP.	
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
    *  - Server Cluster (Profiling)
       - Create network constructs template, then apply it on groups of servers. 
       -  ✔
-      - Dec/2024
-      - Nov/2024
-      - Dec/2024
+      -  ✔
+      - Apr/2025
+      -  ✔
       - TBD
       - TBD
    *  - Internet Gateway
       - Provide shared Internet access to V-Nets and VPC
       -  ✔ 
       -  ✔
-      - Nov/2024
-      - Dec/2024
+      - Apr/2025
+      -  ✔
       -  ✔ (single VPC)
       -  ✔ (single VPC)
    *  - NAT Gateway
       - Provide shared DNAT, PAT, 1:1 NAT to multiple V-Nets and multiple VPCs
       -  ✔
       -  ✔
-      - Nov/2024
-      - Dec/2024
+      - Apr/2025
+      -  ✔
       -  ✔ (single VPC)
       -  ✔ (single VPC)
    *  - L4 Load Balancer
       - Provide on-demand elastic load balancer service to hosts in multiple V-Nets and multiple VPCs
       -  ✔ 
       -  ✔
-      - Nov/2024
-      - Dec/2024
+      - Apr/2025
+      -  ✔
       -  ✔ (single VPC)
       -  ✔ (single VPC)
    *  - SiteMesh
       - Wireguard-based Site-to-Site VPN between multiple regions/sites. (single VPC)
       -  ✔
-      - TBD
-      - Nov/2024
+      -  ✔
+      - Apr/2025
       -  ✔
       -  ✔
       -  ✔
@@ -258,7 +266,7 @@ Overlay Network Features
       - L2VPN VXLAN with VLAN tagged or untagged termination on switch port.
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       - N/A	
       - N/A
@@ -266,7 +274,7 @@ Overlay Network Features
       - L2VPN VXLAN with VLAN tagged or untagged termination on switch port supporting different VLAN IDs on different end points.	
       - N/A
       - N/A
-      - Nov/2024
+      - Apr/2025
       - N/A
       - N/A
       - N/A
@@ -281,8 +289,8 @@ Overlay Network Features
    *  - EVPN-MH / VXLAN-ESI
       - EVPN MultiHoming based on VXLAN and ESI for automatic Active-Active server network multihoming
       -  ✔
-      - Dec/2024
-      - Nov/2024
+      -  ✔
+      - Apr/2025
       - N/A	
       - N/A
       - N/A
@@ -290,7 +298,7 @@ Overlay Network Features
       - Link Aggregation or Active-Standby server multihoming.	
       -  ✔
       -  ✔	
-      - Nov/2024
+      - Apr/2025
       - Dec/2024
       - N/A
       - N/A
@@ -390,7 +398,7 @@ Compute Platform Integrations
       -  ✔
    *  - Apache Cloud Stack
       - Netris VXLAN isolation & VR replacement 
-      - Feb/2025
+      - Mar/2025
       -  ✔
       - TBD
       - TBD
@@ -424,23 +432,23 @@ Security
       - Centralized Network Access Control Lists.
       -  ✔
       -  ✔
-      - Nov/2024
-      - Dec/2024
+      - Apr/2025
+      -  ✔
       - N/A
       - N/A
    *  - Managed Device Profiling
       - Managed switch & SoftGate protection from unwanted access, push administrative and system settings (NTP, DNS, timezone, etc.)
       -  ✔
       -  ✔
-      - Nov/2024
-      - Dec/2024
+      - Apr/2025
+      -  ✔
       - N/A
       - N/A
    *  - Audit Logs
       - Log all controller access and changes.	
       -  ✔
       -  ✔
-      - Nov/2024
+      - Apr/2025
       -  ✔
       - N/A
       - N/A
