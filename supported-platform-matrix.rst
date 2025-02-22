@@ -239,6 +239,14 @@ Cloud Networking Functions & Constructs
       -  ✔
       -  ✔ (single VPC)
       -  ✔ (single VPC)
+   *  - Subnet GLobal Routing
+      - Enable peering between a custom VPC and a System VPC on a per-subnet basis
+      -  Coming soon
+      -  ✔
+      - Apr/2025
+      -  Coming soon
+      -  N/A
+      -  N/A
    *  - SiteMesh
       - Wireguard-based Site-to-Site VPN between multiple regions/sites. (single VPC)
       -  ✔
