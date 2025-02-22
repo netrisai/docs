@@ -239,7 +239,7 @@ Cloud Networking Functions & Constructs
       -  ✔
       -  ✔ (single VPC)
       -  ✔ (single VPC)
-   *  - Subnet GLobal Routing
+   *  - Subnet Global Routing
       - Enable peering between a custom VPC and a System VPC on a per-subnet basis
       -  Coming soon
       -  ✔
