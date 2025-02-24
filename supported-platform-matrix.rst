@@ -9,124 +9,125 @@ Switch Fabric Management Functions
 
    *  - Function	
       - Description	
-      - Nvidia Spectrum
+      - NVIDIA Cumulus
       - Dell SONiC
       - Arista EOS
       - EdgeCore SONiC
-      - Equinix Metal
-      - PhoenixNAP
    *  - Fabric Manager	
       - Day0, Day1, and Day2 switch fabric operations.	
       - ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A	
-      - N/A
    *  - Parallel Fabrics
       - Manage multiple isolated switch fabrics. (example: East-West and North-South)
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A
-      - N/A
    *  - Topology Manager
       - Design and operate the switch fabric.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A
-      - N/A
    *  - Maintenance Mode
       - Offload a network node for a maintenance.
       -  ✔
       -  ✔
-      - Apr/2025
-      -  ✔
-      -  ✔
+      - May/2025
       -  ✔
    *  - IPAM
       - Manage IP subnets. Assign RBAC, multi-tenancy, and service-based rules and roles to IP address resources.
       -  ✔
       -  ✔
-      - Apr/2025
-      -  ✔
-      -  ✔
+      - May/2025
       -  ✔
    *  - Looking Glass
       - Lookup underlay and overlay routing info of any managed network node without SSH-ing.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
+      -  ✔
+   *  - BGP Unnumbered
+      - Any network topology with BGP unnumbered underlay
       -  ✔
       -  ✔
+      - May/2025
       -  ✔
+   *  - BGP Numbered
+      - Any network topology with BGP numbered underlay
+      -  ✔
+      -  ✔
+      - May/2025
+      -  ✔
+   *  - VXLAN/EVPN
+      - VXLAN over BGP/EVPN switch fabric
+      -  ✔
+      -  ✔
+      - May/2025
+      -  ✔
+   *  - AI switch fabric
+      - Optimizations for AI workloads. See AI functions section below.
+      -  ✔
+      - TBD
+      - TBD
+      -  ✔
+   *  - Compute VXLAN/EVPN extension
+      - Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.
+      - Coming Soon
+      -  ✔
+      - TBD
+      - TBD
+
+
+Monitoring & Telemetry
+==================================
+.. list-table:: 
+   :header-rows: 0
+
+   *  - Function	
+      - Description	
+      - NVIDIA Cumulus
+      - Dell SONiC
+      - Arista EOS
+      - EdgeCore SONiC
    *  - Monitoring: Switch Ports
       - Automatic monitoring of Link statuses, link utilization, laser signal levels, errors, packets. 	
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A
-      - N/A
    *  - Monitoring: Resources
       - Automatic monitoring of CPU, RAM, Disk, and ASIC resources.
       -  ✔
       -  ✔
-      - Apr/2025
-      -  ✔
-      -  ✔
+      - May/2025
       -  ✔
    *  - Monitoring: Sensors
       - Automatic monitoring of temperature, fans, power supply statuses.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A
-      - N/A
    *  - Monitoring: System Processes
       - Automatic monitoring of critical system processes.
       -  ✔
       -  ✔
-      - Apr/2025
-      -  ✔
-      -  ✔
+      - May/2025
       -  ✔
    *  - Topology Validation
       - Detect wiring errors switch-to-switch & switch-to-SoftGate.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A
-      - N/A
    *  - Server Wiring Validation
       - Detect wiring errors switch-to-server.
-      - Mar/2025
-      - Mar/2025
-      - Apr/2025
-      - Mar/2025
-      - N/A
-      - N/A
-   *  - BGP Unnumbered
-      - Any network topology with BGP unnumbered underlay
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A
-      - N/A
-   *  - BGP Numbered
-      - Any network topology with BGP numbered underlay
-      -  ✔
-      -  ✔
-      - Apr/2025
-      -  ✔
-      - N/A
-      - N/A
 
 External Routing Functions
 ==========================
@@ -136,7 +137,7 @@ External Routing Functions
 
    *  - Function
       - Description
-      - Nvidia Spectrum
+      - NVIDIA Cumulus
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
@@ -146,7 +147,7 @@ External Routing Functions
       - Terminate full routing table on SoftGate  Gateway-server.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       -  ✔
       -  ✔
@@ -154,7 +155,7 @@ External Routing Functions
       - Peer with external routers.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       - N/A
       - N/A
@@ -162,7 +163,7 @@ External Routing Functions
       - Create chain of BGP rules.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       -  ✔
       -  ✔
@@ -170,7 +171,7 @@ External Routing Functions
       - Define static routing rules.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       -  ✔
       -  ✔
@@ -185,7 +186,7 @@ Cloud Networking Functions & Constructs
 
    *  - Function
       - Description
-      - Nvidia Spectrum
+      - NVIDIA Cumulus
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
@@ -195,7 +196,7 @@ Cloud Networking Functions & Constructs
       - Isolated VPCs, VRFs. Overlapping IPs supported.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       -  ✔
       -  ✔
@@ -203,7 +204,7 @@ Cloud Networking Functions & Constructs
       - L3VPN VXLAN or L2VPN VXLAN with an anycast default Gateway, and built-in DHCP.	
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       -  ✔
       -  ✔
@@ -211,7 +212,7 @@ Cloud Networking Functions & Constructs
       - Create network constructs template, then apply it on groups of servers. 
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       - TBD
       - TBD
@@ -219,7 +220,7 @@ Cloud Networking Functions & Constructs
       - Provide shared Internet access to V-Nets and VPC
       -  ✔ 
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       -  ✔ (single VPC)
       -  ✔ (single VPC)
@@ -227,7 +228,7 @@ Cloud Networking Functions & Constructs
       - Provide shared DNAT, PAT, 1:1 NAT to multiple V-Nets and multiple VPCs
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       -  ✔ (single VPC)
       -  ✔ (single VPC)
@@ -235,89 +236,83 @@ Cloud Networking Functions & Constructs
       - Provide on-demand elastic load balancer service to hosts in multiple V-Nets and multiple VPCs
       -  ✔ 
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       -  ✔ (single VPC)
       -  ✔ (single VPC)
    *  - Subnet Global Routing
-      - Enable peering between a custom VPC and a System VPC on a per-subnet basis
-      -  Coming soon
+      - Enable Internet Routing between a custom VPC and a System VPC on a per-subnet basis. SoftGate HS only
       -  ✔
-      - Apr/2025
-      -  Coming soon
+      -  ✔
+      - May/2025
+      -  ✔
+      -  N/A
+      -  N/A
+   *  - VPC Peering
+      - Enable peering (route-leaking) between VPCs.
+      - Mar/2025
+      - May/2025
+      - May/2025
+      - Mar/2025
       -  N/A
       -  N/A
    *  - SiteMesh
       - Wireguard-based Site-to-Site VPN between multiple regions/sites. (single VPC)
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
       -  ✔
       -  ✔
 
 
-Overlay Network Features
+Overlay Network Functions
 ==========================
 .. list-table:: 
    :header-rows: 0
 
    *  - Function
       - Description
-      - Nvidia Spectrum
+      - NVIDIA Cumulus
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-      - Equinix Metal
-      - PhoenixNAP
    *  - L2VPN VXLAN VLAN Aware
       - L2VPN VXLAN with VLAN tagged or untagged termination on switch port.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A	
-      - N/A
    *  - L2VPN VXLAN VLAN Unaware	
       - L2VPN VXLAN with VLAN tagged or untagged termination on switch port supporting different VLAN IDs on different end points.	
       - N/A
       - N/A
-      - Apr/2025
-      - N/A
-      - N/A
+      - May/2025
       - N/A
    *  - L3VPN VXLAN
       - L3VPN VXLAN, Commonly used in high performance computing, such as AI clusters.
       -  ✔
       - TBD	
       - TBD
-      - Dec/2024
-      - N/A
-      - N/A
+      - TBD
    *  - EVPN-MH / VXLAN-ESI
       - EVPN MultiHoming based on VXLAN and ESI for automatic Active-Active server network multihoming
       -  ✔
       -  ✔
-      - Apr/2025
-      - N/A	
-      - N/A
-      - N/A
+      - May/2025
+      - TBD	
    *  - LACP
       - Link Aggregation or Active-Standby server multihoming.	
       -  ✔
       -  ✔	
-      - Apr/2025
-      - Dec/2024
-      - N/A
-      - N/A
+      - May/2025
+      - TBD
    *  - MC-LAG
       - Traditional MC-LAG-based server multihoming	
       -  ✔
       - TBD
       - TBD
-      - Dec/2024
-      - N/A
-      - N/A
+      - TBD
 
 
 AI Specific Functions	
@@ -327,60 +322,52 @@ AI Specific Functions
 
    *  - Function
       - Description
-      - Nvidia Spectrum
+      - NVIDIA Cumulus
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-      - Equinix Metal
-      - PhoenixNAP
    *  - Spectrum-X
-      - AI GPU cluster switch fabric operation for Nvidia Spectrum-X
+      - Switch-fabric management and automation optimized for NVIDIA Spectrum-X architecture
       -  ✔	
       - N/A
       - N/A
       - N/A
-      - N/A
-      - N/A
-   *  - Rail-optimized designs
-      - Topology and best practices initialization module for rail-optimized fabrics
+   *  - Rail-optimized topology
+      - Switch-fabric management and automation optimized for rail-optimized fabrics
       -  ✔
       -  ✔
       -  ✔
       -  ✔
-      - N/A
-      - N/A
    *  - QoS for RoCE
-      - Enable QoS for RoCE workloads	
+      - Enable QoS for RoCE based on best practices
       -  ✔
-      - N/A
-      - N/A
-      - Coming Soon
-      - N/A
-      - N/A
+      - TBD
+      - TBD
+      -  ✔
    *  - RoCE Adaptive Routing
-      - Enable RoCE adaptive routing
+      - Enable RoCE adaptive routing based on best practices
       -  ✔
-      - N/A
-      - N/A
-      - Coming Soon
-      - N/A
-      - N/A
+      - TBD
+      - TBD
+      -  ✔
    *  - RoCE Congestion Control
       - Enable automatic congestion control for RoCE workloads
       -  ✔
       - N/A
       - N/A
       - N/A
+   *  - RoCE and QoS fine tuning
+      - Allow fine tuning of QoS and other RoCE specific parameters
       - N/A
-      - N/A
+      - TBD
+      - TBD
+      - Mar/2025
    *  - DPU/Host zero-touch configuration
       - Automatically configure IP addresses, routing, RoCE and other DPU/SuperNIC specific configuration on GPU servers
       -  ✔
-      - N/A
-      - N/A
-      - Coming Soon
-      - N/A
-      - N/A
+      - TBD
+      - TBD
+      - TBD
 
 
 Compute Platform Integrations
@@ -390,7 +377,7 @@ Compute Platform Integrations
 
    *  - Function
       - Description
-      - Nvidia Spectrum
+      - NVIDIA Cumulus
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
@@ -430,7 +417,7 @@ Security
 
    *  - Function
       - Description
-      - Nvidia Spectrum
+      - NVIDIA Cumulus
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
@@ -440,26 +427,26 @@ Security
       - Centralized Network Access Control Lists.
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A
-      - N/A
+      -  ✔
+      -  ✔
    *  - Managed Device Profiling
       - Managed switch & SoftGate protection from unwanted access, push administrative and system settings (NTP, DNS, timezone, etc.)
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A
-      - N/A
+      -  ✔
+      -  ✔
    *  - Audit Logs
       - Log all controller access and changes.	
       -  ✔
       -  ✔
-      - Apr/2025
+      - May/2025
       -  ✔
-      - N/A
-      - N/A
+      -  ✔
+      -  ✔
 
 
 Administration							
@@ -516,7 +503,7 @@ Hypervisor/Worker node specific functionality
       - Layer-4 container or vm/server load balancer with health checks.
       -  ✔ (native & automatic)
       -  ✔ (need to specify backend IPs)
-      - Dec/2024
+      -  ✔
       -  ✔ (need to specify backend IPs)
       -  ✔ (need to specify backend IPs)	
       -  ✔ (need to specify backend IPs)
@@ -524,8 +511,8 @@ Hypervisor/Worker node specific functionality
       - Automatically route internal networks into VPC routing table (allow containers communicate with VMs).
       -  ✔
       - N/A	
-      - Dec/2024
-      - Dec/2024
+      -  ✔
+      - TBD
       - TBD
       - TBD
    *  - Automatic VXLAN/VLAN
@@ -533,15 +520,15 @@ Hypervisor/Worker node specific functionality
       - TBD
       -  ✔
       -  ✔
-      - Dec/2024
+      - TBD
       - TBD
       - TBD
    *  - HBN	Host-based networking. 
       - Terminate VTEPs on the hypervisor host. Scale beyond VLAN limits
       - Dec/2024
       - TBD
-      - Dec/2024
-      - Dec/2024
+      -  ✔
+      - TBD
       - TBD
       - TBD
    *  - HBN on DPU
@@ -619,7 +606,7 @@ SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access 
 	- 2025/Q2
 	- Multi
 	- VXLAN
-	- Netris
+	- Netris XDP
 	- Active/Active - Horizontally scalable
 	- Netris Switch-Fabric
 	- Nvidia Connect-X 5, 6, 7
@@ -644,7 +631,7 @@ Netris and NOS versions compatibility matrix
      - Nvidia Cumulus 5.11, Dell SONiC 4.4, EdgeCore SONiC 202211-331
      - Equinix Metal, PhoenixNAP BMC
      - SoftGate HS: Ubuntu 24.04, SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 
-     - Dec/2024
+     -  ✔
    * - 4.3.0
      - Nvidia Cumulus 5.9, Dell SONiC 4.1, EdgeCore SONiC 12.3 
      - Equinix Metal, PhoenixNAP BMC
