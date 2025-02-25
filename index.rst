@@ -75,6 +75,10 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    tutorials/upgrading-netris
    visibility
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Monitoring & Observability
+
    monitoring-observability/index
 
 .. toctree::
