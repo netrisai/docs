@@ -7,7 +7,12 @@ Topology & wiring validation is designed to identify wiring errors and suggest f
 Switch-to-switch and Switch-to-SoftGate
 #######################################
 
-Topology wiring validation between backbone links, switch-to-switch, and switch-to-SoftGate happens fully automatically without any user input. Netris agents running on switches and SoftGate nodes perform Lldp neighbor lookups and compare the actual neighbor device & interface with the blueprint (Network->Topology), and in case of a mismatch, report the inconsistency.
+Topology wiring validation between backbone links, switch-to-switch, and switch-to-SoftGate happens fully automatically without any user input. Netris agents running on switches and SoftGate nodes perform LLDP neighbor lookups and compare the actual neighbor device & interface with the blueprint (Network->Topology), and in case of a mismatch, report the inconsistency.
+
+The below screenshot demonstrates a case when two cables between the leaf and the spine switches are miswired.
+
+.. image:: switch-to-switch-cables-swapped.png
+  :align: center
 
 Switch-to-Server 
 ################
@@ -44,8 +49,12 @@ The JSON snippet below should be included in every server's custom field. Common
  }
 
 ``topology-validation`` tells Netris to enable server-to-switch wiring validation for the given server
-``"hostname": "hgx-pod00-su0-h00"`` tells Netris that the expected hostname of the server should be ``"hgx-pod00-su0-h00"`` -- so Netris will lldp lookup for the hostname and compare to this value.
+``"hostname": "hgx-pod00-su0-h00"`` tells Netris that the expected hostname of the server should be ``"hgx-pod00-su0-h00"`` -- so Netris will LLDP lookup for the hostname and compare to this value.
 ``"eth1": "enp10s0",`` lines tell Netris what should be the expected (normal) interface name (enp10s0 in this example) for the logical "eth1" in the Netris Topology. Typically, most users standardize groups of servers for interface order and names; that way, the mapping is the same for all servers in a given group (vendor/type). Typically this data is inserted through Terraform for convenience, or through the web console, one-by-one.
 
 
+The below screenshot demonstrates a case, from two leaf switches perspective, when two cables between two leaf switches and server NICs are miswired.
+
+.. image:: switch-to-server-cables-swapped.png
+  :align: center
 
