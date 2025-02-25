@@ -79,6 +79,18 @@ Switch Fabric Management Functions
       -  ✔
       - TBD
       - TBD
+   *  - ZTP
+      - Zero-touch provisioning of the NOS & Netris agent
+      - Coming Soon
+      - TBD
+      - TBD
+      - Coming Soon
+   *  - Upgrade/Downgrade
+      - Upgrade & Downgrade of Netris agent through the controller
+      - Coming Soon
+      - TBD
+      - TBD
+      - Coming Soon
 
 
 Monitoring & Telemetry
@@ -449,7 +461,7 @@ Security
       -  ✔
 
 
-Administration							
+Netris Controller Administration							
 ==============
 
 .. list-table:: 
@@ -461,9 +473,18 @@ Administration
    *  - Role Based Access Control
       - Who can view and edit which aspects of the system.
       -  ✔					
-   *  - Multi-Tenancy
+   *  - Tenant RBAC
       - Network resource delegation to tenants.
-      -  ✔					
+      -  ✔	
+   *  - Active/Standby
+      - Daily backup of Netris Controller on a Standby node
+      -  ✔	
+   *  - HA Controller
+      - 3-node, HA Netris Controller cluster
+      -  Coming Soon
+   *  - Air Gapped setup
+      - Run Netris controller in Air Gapped environment and host switch & SoftGate software for local install.
+      -  ✔
 							
 Management Interfaces	
 =====================
