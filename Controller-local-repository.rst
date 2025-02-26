@@ -13,7 +13,7 @@ How to Enable the Local Repository on the Netris Controller?
 ------------------------------------------------------------
 
 To install the Netris Local Repository on the controller host, run the following command:  
-*Note: The controller must be set up using the `--ctl-hostname` argument; otherwise, the Netris Local Repository setup script will exit with an error.*
+*Note: The controller must be set up using the ``--ctl-hostname`` argument; otherwise, the Netris Local Repository setup script will exit with an error.*
 
 .. code-block:: shell-session
 
