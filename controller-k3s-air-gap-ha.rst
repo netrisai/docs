@@ -54,7 +54,7 @@ Prerequisites
 Obtain the Installation File
 ----------------------------
 
-Contact `Netris <https://www.netris.io/slack/>`_ to acquire the air-gapped installation package, named **netris-controller-ha.tar.gz**. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.
+Contact `Netris <https://www.netris.io/demo/>`_ to acquire the air-gapped installation package, named **netris-controller-ha.tar.gz**. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.
 
 
 
@@ -558,10 +558,10 @@ The air-gapped Netris Controller also includes a local repository/registry. This
 
 Enable the Local repository in the Netris Controller Web UI under **Settings** section (as shown in the screenshots below).
 
-.. image:: images/Global-settings-edit.png
+.. image:: images/global-setting-local-repo.png
     :align: center
 
-.. image:: images/Global-settings-save.png
+.. image:: images/global-setting-local-repo-save.png
     :align: center
 
 
@@ -571,7 +571,7 @@ How to consume local repository
 Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).
 
 
-.. image:: images/oneliner-from-local-repo.png
+.. image:: images/one-liner-with-local-repo.png
     :align: center
 
 
