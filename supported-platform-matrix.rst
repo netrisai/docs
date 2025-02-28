@@ -140,6 +140,12 @@ Monitoring & Telemetry
       -  ✔
       - May/2025
       -  ✔
+   *  - NVIDIA NetQ integration
+      - Activate NVIDIA NetQ Blueprint through Netris topology
+      -  ✔
+      - N/A
+      - N/A
+      - N/A
 
 External Routing Functions
 ==========================
