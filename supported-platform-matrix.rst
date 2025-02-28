@@ -481,7 +481,7 @@ Netris Controller Administration
       -  ✔	
    *  - HA Controller
       - 3-node, HA Netris Controller cluster
-      -  Coming Soon
+      -  ✔
    *  - Air Gapped setup
       - Run Netris controller in Air Gapped environment and host switch & SoftGate software for local install.
       -  ✔
