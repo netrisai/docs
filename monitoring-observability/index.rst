@@ -6,3 +6,4 @@ Monitoring & Observability
    :maxdepth: 2
 
    topology-validation
+   netq
