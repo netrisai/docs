@@ -6,27 +6,29 @@ NVIDIA NetQ is a real-time network monitoring, visibility, and analytics solutio
 
 Although Netris has built-in automatic monitoring and observability functionalities, integration with NVIDIA NetQ allows our NVIDIA customers to gain additional real-time monitoring, deeper visibility, and smarter analytics. Critical for AI Infrastructure. 
 
-NVIDIA NetQ topology validation
+Topology Blueprint Activation
 ###############################
 
 NVIDIA NetQ requires the topology blueprint described in a .dot filw format. Netris is aware of the Netris-managed network topology and has built-in functionality for exporting .dot file in NVIDIA NetQ format.
 
 In the Netris controller, navigate to Network->Topology, select the appropriate site (datacenter), click Export and select NVIDIA NetQ - the web browser will download a .dot file.
 
-.. image:: net1-0.png
+.. image:: netq-0.png
   :align: center
 
 
 Upload the newly generated .dot file into the NVIDIA NetQ. Navigate to Validation, Create a validation, Run on all switches, Topology, and click Upload Blueprint file. 
 
-.. image:: net1-1.png
+.. image:: netq-1.png
   :align: center
 
-.. image:: net1-2.png
+.. image:: netq-2.png
   :align: center
 
-.. image:: net1-3.png
+.. image:: netq-3.png
   :align: center
 
-.. image:: net1-4.png
+.. image:: netq-4.png
   :align: center
+
+When you see the Blueprint successfully activated, your NVIDIA NetQ is aligned with the Netris topology and ready for further operation.
