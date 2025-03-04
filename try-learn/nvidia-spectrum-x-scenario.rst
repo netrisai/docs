@@ -17,7 +17,7 @@ The **east-west** switch fabric is responsible for high performance data transmi
 
 The **north-south** switch fabric is responsible for everything else - for connectivity from the outside, to manage the GPU nodes and operate workloads. OOB management switches are responsible for out-of-band management of the network switches and GPU servers. In production, OOB management is also used for PXE booting the GPU servers. In this simulation scenario, GPU servers will be booted by means of the Netris infrastructure simulation platform for your conveninece of teasting and learning.
 
-* Define ``leaf-count`` - the rule of thumb is that at least 1/4th of the number of SUs - so 4 leaf switches can handle up to 4 SUs
+* Define ``leaf-count`` - the rule of thumb is that at least 1/4th of the number of SUs - so 1 leaf switch can handle up to 4 SUs
 * Define ``oob-leaf-count`` - Should be equal to the number of SUs.
 * Define ``spine-count`` - Typically 2, although other values are welcome.
 
