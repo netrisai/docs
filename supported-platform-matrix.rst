@@ -159,15 +159,11 @@ External Routing Functions
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-      - Equinix Metal
-      - PhoenixNAP
    *  - External BGP (SoftGate)
       - Terminate full routing table on SoftGate  Gateway-server.
       -  ✔
       -  ✔
       - May/2025
-      -  ✔
-      -  ✔
       -  ✔
    *  - External BGP (Switch)
       - Peer with external routers.
@@ -175,23 +171,17 @@ External Routing Functions
       -  ✔
       - May/2025
       -  ✔
-      - N/A
-      - N/A
    *  - BGP Route-Maps
       - Create chain of BGP rules.
       -  ✔
       -  ✔
       - May/2025
       -  ✔
-      -  ✔
-      -  ✔
    *  - Static Routes
       - Define static routing rules.
       -  ✔
       -  ✔
       - May/2025
-      -  ✔
-      -  ✔
       -  ✔
 
 
@@ -208,15 +198,11 @@ Cloud Networking Functions & Constructs
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-      - Equinix Metal
-      - PhoenixNAP
    *  - VPC (Virtual Private Cloud)
       - Isolated VPCs, VRFs. Overlapping IPs supported.
       -  ✔
       -  ✔
       - May/2025
-      -  ✔
-      -  ✔
       -  ✔
    *  - V-Net (Subnet)
       - L3VPN VXLAN or L2VPN VXLAN with an anycast default Gateway, and built-in DHCP.	
@@ -224,63 +210,47 @@ Cloud Networking Functions & Constructs
       -  ✔
       - May/2025
       -  ✔
-      -  ✔
-      -  ✔
    *  - Server Cluster (Profiling)
       - Create network constructs template, then apply it on groups of servers. 
       -  ✔
       -  ✔
       - May/2025
       -  ✔
-      - TBD
-      - TBD
    *  - Internet Gateway
       - Provide shared Internet access to V-Nets and VPC
       -  ✔ 
       -  ✔
       - May/2025
       -  ✔
-      -  ✔ (single VPC)
-      -  ✔ (single VPC)
    *  - NAT Gateway
       - Provide shared DNAT, PAT, 1:1 NAT to multiple V-Nets and multiple VPCs
       -  ✔
       -  ✔
       - May/2025
       -  ✔
-      -  ✔ (single VPC)
-      -  ✔ (single VPC)
    *  - L4 Load Balancer
       - Provide on-demand elastic load balancer service to hosts in multiple V-Nets and multiple VPCs
       -  ✔ 
       -  ✔
       - May/2025
       -  ✔
-      -  ✔ (single VPC)
-      -  ✔ (single VPC)
    *  - Subnet Global Routing
       - Enable Internet Routing between a custom VPC and a System VPC on a per-subnet basis. SoftGate HS only
       -  ✔
       -  ✔
       - May/2025
       -  ✔
-      -  N/A
-      -  N/A
    *  - VPC Peering
       - Enable peering (route-leaking) between VPCs.
       - Mar/2025
       - May/2025
       - May/2025
       - Mar/2025
-      -  N/A
-      -  N/A
    *  - SiteMesh
       - Wireguard-based Site-to-Site VPN between multiple regions/sites. (single VPC)
       -  ✔
       -  ✔
       - May/2025
-      -  ✔
-      -  ✔
       -  ✔
 
 
@@ -312,7 +282,7 @@ Overlay Network Functions
       -  ✔
       - TBD	
       - TBD
-      - TBD
+      -  ✔
    *  - EVPN-MH / VXLAN-ESI
       - EVPN MultiHoming based on VXLAN and ESI for automatic Active-Active server network multihoming
       -  ✔
@@ -399,12 +369,8 @@ Compute Platform Integrations
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-      - Equinix Metal
-      - PhoenixNAP
    *  - Kubernetes Operator
       - Automatically serve Kubernetes LoadBalancer Type service
-      -  ✔
-      -  ✔
       -  ✔
       -  ✔
       -  ✔
@@ -415,17 +381,12 @@ Compute Platform Integrations
       -  ✔
       - TBD
       - TBD
-      - N/A
-      - N/A
    *  - VMware VSphere
       - Automatically provision VSphere defined VLANs in VXLAN/EVPN switch fabric	
       -  ✔
       -  ✔
       -  ✔
       -  ✔
-      - N/A
-      - N/A
-
 
 
 Security
@@ -439,15 +400,11 @@ Security
       - Dell-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-      - Equinix Metal
-      - PhoenixNAP
    *  - Network ACLs
       - Centralized Network Access Control Lists.
       -  ✔
       -  ✔
       - May/2025
-      -  ✔
-      -  ✔
       -  ✔
    *  - Managed Device Profiling
       - Managed switch & SoftGate protection from unwanted access, push administrative and system settings (NTP, DNS, timezone, etc.)
@@ -455,15 +412,11 @@ Security
       -  ✔
       - May/2025
       -  ✔
-      -  ✔
-      -  ✔
    *  - Audit Logs
       - Log all controller access and changes.	
       -  ✔
       -  ✔
       - May/2025
-      -  ✔
-      -  ✔
       -  ✔
 
 
