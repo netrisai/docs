@@ -5,7 +5,7 @@ Hardware Requirements
 Netris Controller
 =================
 
-We recommend two Ubuntu 24.04 servers with the below specs. Netris controller can also run on other Linux OSes or on a shared Kubernetes cluster. 
+We recommend three (for HA) Ubuntu 24.04 servers with the below specs. HA Netris Controller can run both in air-gapped or Internet accessible environments.
 
 .. list-table:: 
    :header-rows: 0
