@@ -214,6 +214,27 @@ Dell
      - **Caveats**
      - **Supported**
    * - Dell
+     - PowerSwitch N Series N3248-ON
+     - 
+     - 48x 10/100/1000Mb, 4x10G SFP+, 2x 100G QSFP28 
+     - Dell-SONiC
+     - 
+     - ✔
+   * - Dell
+     - PowerSwitch S Series S3248T-ON
+     - 
+     - 48 RJ45 1G, 4 SFP+ 10G, 2 QSFP28 100G
+     - Dell-SONiC
+     - 
+     - ✔
+   * - Dell
+     - PowerSwitch S Series S4348F-ON
+     - Broadcom Trident III
+     - 48 x SFP+ 6 x QSFP28
+     - Dell-SONiC
+     - 
+     - ✔
+   * - Dell
      - PowerSwitch S Series S5212F-ON
      - Broadcom Trident III
      - 12 x 25G SFP28 + 3 x 100GbE QSFP28
@@ -269,7 +290,27 @@ Dell
      - Dell-SONiC
      - 
      - ✔
-
+   * - Dell
+     - PowerSwitch Z Series Z9264F-ON
+     - Broadcom Trident IV
+     - 64 x 100GbE QSFP28
+     - Dell-SONiC
+     - 
+     - ✔
+   * - Dell
+     - PowerSwitch Z Series Z9332F-ON
+     - Broadcom Trident IV
+     - 32 x 400GbE QSFP56-DD
+     - Dell-SONiC
+     - 
+     - ✔
+   * - Dell
+     - PowerSwitch Z Series Z9864F-ON
+     - Tomahawk 5
+     - 64 x OSFP800
+     - Dell-SONiC
+     - 
+     - ✔
 
 EdgeCore
 ========
