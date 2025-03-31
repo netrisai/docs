@@ -30,6 +30,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    :maxdepth: 2
    :caption: Tutorials
 
+   ai-netris-host-networking
    vpc
    tutorials/index
    tutorials/vpc-anywhere
