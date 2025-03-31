@@ -18,6 +18,7 @@ Before you begin, ensure that you have the following:
 * A compatible operating system installed on the host (Ubuntu 24.04).
 * Access to the internet for downloading packages.
 * The following packages downloaded and hosted in the ``/opt/nvidia/v1.2.0`` directory of the server:
+
     * DOCA
     * BFB
     * NVN-CC
