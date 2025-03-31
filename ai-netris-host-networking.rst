@@ -13,17 +13,14 @@ Installation
 This tutorial provides a step-by-step guide for installing the Netris NHN software on your host system. Please follow the instructions carefully to ensure a successful installation.
 
 **Prerequisites**
-
 Before you begin, ensure that you have the following:
-A compatible operating system installed on the host (Ubuntu 24.04).
 
-Access to the internet for downloading packages.
-
-The following packages downloaded and ready to upload to the server:
-DOCA
-BFB
-NVN-CC
-Upload Directory: ``/opt/nvidia/v1.2.0``
+* A compatible operating system installed on the host (Ubuntu 24.04).
+* Access to the internet for downloading packages.
+* The following packages downloaded and hosted in the ``/opt/nvidia/v1.2.0`` directory of the server:
+    * DOCA
+    * BFB
+    * NVN-CC
 
 
 Step 1: Install the Netris NHN Plugin
@@ -90,6 +87,8 @@ If the service is not running, restart it using the following command:
  sudo systemctl restart netris-hnp.service
 
 
-**Important Note**
-The version of Netris NHN is aligned with the Spectrum-X guide version, which ensures compatibility with NVIDIA package versions. For example, Netris version 4.4.0 corresponds to Spectrum-X version 1.2.0.
+.. note::
+
+    The version of Netris NHN is aligned with the Spectrum-X guide version, which ensures compatibility with NVIDIA package versions. For example, Netris version 4.4.0 corresponds to Spectrum-X version 1.2.0.
+
 
