@@ -78,7 +78,7 @@ Once the file is on the servers, extract its contents:
 
 .. code-block:: shell
 
-  tar -xzvf netris-controller-ha.tar.gz
+  tar -xzvf netris-controller-ha-v4.x.x.tar.gz
 
 This will create a folder containing all necessary scripts, binaries, images, Helm charts, CRDs, and manifests.
 
@@ -90,7 +90,7 @@ On **all three nodes** change the directory to the extracted folder. For example
 
 .. code-block:: shell
 
-  cd netris-controller-ha
+  cd netris-controller-ha-v4.x.x
 
 All subsequent steps in this guide assume you’re working from within this netris-controller-ha/ directory.
 
@@ -241,7 +241,7 @@ Copy your Helm charts to the K3s static files directory on all three nodes:
 
 .. code-block:: shell
 
-  cp files/charts/* /var/lib/rancher/k3s/server/static/charts/
+  sudo cp files/charts/* /var/lib/rancher/k3s/server/static/charts/
 
 
 You can now perform kubectl or helm commands from any node or a remote machine (after adjusting kubeconfig to point to the VIP).
@@ -280,7 +280,14 @@ Confirm they have scaled:
 
 We need a second VIP for the Netris Controller load balancer.
 
-1. Edit ``manifests/kube-vip-cloud-controller.yaml``.
+
+1. On the **first node only**, open manifests/kube-vip-cloud-controller.yaml:
+
+.. code-block:: shell
+
+  vim manifests/kube-vip-cloud-controller.yaml
+
+
 2. Locate the ConfigMap and change cidr-global from 192.168.0.50/32 to your planned controller VIP.
 3. Apply:
 
@@ -522,7 +529,7 @@ The Netris Local Repository is essential for environments where switches, softga
 
   export PVC_PATH=$(kubectl get pv $(kubectl get pvc staticsite-$(kubectl -nnetris-controller get pod -l app.kubernetes.io/instance=netris-local-repo --field-selector spec.nodeName=$(hostname) --no-headers -o custom-columns=":metadata.name") -n netris-controller -o jsonpath="{.spec.volumeName}") -o jsonpath="{.spec.local.path}")
 
-  cp -r files/repo ${PVC_PATH}
+  sudo cp -r files/repo ${PVC_PATH}
 
 
 
