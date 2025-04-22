@@ -54,7 +54,7 @@ Prerequisites
 Obtain the Installation File
 ----------------------------
 
-Contact `Netris <https://www.netris.io/demo/>`_ to acquire the air-gapped installation package, named **netris-controller-ha.tar.gz**. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.
+Contact `Netris <https://www.netris.io/demo/>`_ to acquire the air-gapped installation package, named **netris-controller-ha-v4.x.x.tar.gz**. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.
 
 
 
@@ -68,7 +68,7 @@ Steps to Install
 1.1 Transfer the File to the Servers
 """"""""""""""""""""""""""""""""""""
 
-Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha.tar.gz file to all your **three** targets Ubuntu 24.04 (or supported Linux) nodes.
+Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your **three** targets Ubuntu 24.04 (or supported Linux) nodes.
 
 
 1.2 Extract the Tarball
@@ -92,7 +92,7 @@ On **all three nodes** change the directory to the extracted folder. For example
 
   cd netris-controller-ha-v4.x.x
 
-All subsequent steps in this guide assume you’re working from within this netris-controller-ha/ directory.
+All subsequent steps in this guide assume you’re working from within this netris-controller-ha-v4.x.x/ directory.
 
 
 2. Install K3s on All Nodes
@@ -237,7 +237,7 @@ On **all three nodes**, import container images:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-Copy your Helm charts to the K3s static files directory on all three nodes:
+Copy your Helm charts to the K3s static files directory on **all three nodes**:
 
 .. code-block:: shell
 
@@ -585,3 +585,125 @@ Once the local repository function is enabled in the Netris Controller Settings,
 ---
 
 For any issues or additional assistance, please contact Netris Support.
+
+
+.. _k3s-ha-upgrade:
+
+Upgrading HA Netris Controller in Air-Gapped Environments
+=========================================================
+
+Obtain the Upgrade File
+----------------------------
+
+Contact `Netris <https://www.netris.io/demo/>`_ to acquire the air-gapped upgrade package, named **netris-controller-ha-v4.x.x.tar.gz**. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.
+
+
+
+1. Preparing Each Node
+---------------------------
+
+1.1 Transfer the File to the Servers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your **three** nodes.
+
+
+1.2 Extract the Tarball
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once the file is on the servers, extract its contents:
+
+.. code-block:: shell
+
+  tar -xzvf netris-controller-ha-v4.x.x.tar.gz
+
+This will create a folder containing all necessary scripts, binaries, images, Helm charts, CRDs, and manifests.
+
+
+1.3 Navigate to the Installation Directory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On **all three nodes** change the directory to the extracted folder. For example:
+
+.. code-block:: shell
+
+  cd netris-controller-ha-v4.x.x
+
+All subsequent steps in this guide assume you’re working from within this netris-controller-ha-v4.x.x/ directory.
+
+
+
+2. Steps to Upgrade Controller
+-------------------------------
+
+*If you’re only upgrading the Local Netris Repository, you can skip this section and go directly to* :ref:`Section 3<local-repo-k3s-ha-upgrade>`
+
+2.1 Import Necessary Container Images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On **all three nodes**, import container images:
+
+
+1. Decompress the images archive:
+
+.. code-block:: shell
+
+  gunzip -f images.tar.gz
+
+
+2. Import them:
+
+.. code-block:: shell
+
+  sudo ctr images import images.tar
+
+2.2 Add Helm Chart Packages Upgrades to K3s
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Copy your Helm charts to the K3s static files directory on **all three nodes**:
+
+.. code-block:: shell
+
+  sudo cp files/charts/* /var/lib/rancher/k3s/server/static/charts/
+
+
+2.3 Upgrade Netris Controller
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On the **first node** only:
+
+
+1. Upgrade the **HelmChart** manifest:
+
+.. code-block:: shell
+
+  kubectl apply -f manifests/netris-controller/hc.yaml
+
+
+2. Wait 2-4 minutes for all pods to upgraded.
+
+3. Check:
+
+.. code-block:: shell
+
+  kubectl get pods -n netris-controller
+
+Look for multiple pods in Running and Completed states.
+
+
+.. _local-repo-k3s-ha-upgrade:
+
+3. Steps to Upgrade the Local Netris Repository
+-----------------------------------------------
+
+On **all three nodes**, copy the repository files into the Persistent Volume:
+
+.. code-block:: shell
+
+  export PVC_PATH=$(kubectl get pv $(kubectl get pvc staticsite-$(kubectl -nnetris-controller get pod -l app.kubernetes.io/instance=netris-local-repo --field-selector spec.nodeName=$(hostname) --no-headers -o custom-columns=":metadata.name") -n netris-controller -o jsonpath="{.spec.volumeName}") -o jsonpath="{.spec.local.path}")
+
+  sudo cp -r files/repo ${PVC_PATH}
+
+
+
+**Congratulations!** You have successfully upgraded your **highly available, air-gapped** Netris Controller.
