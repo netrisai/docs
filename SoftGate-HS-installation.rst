@@ -1,5 +1,5 @@
 .. meta::
-  :description: Netris SoftGate Installation
+  :description: Netris SoftGate HS Installation
 
 ***************************
 SoftGate HS Installation 
@@ -33,7 +33,7 @@ Requires freshly installed **Ubuntu Linux 24.04 LTS** and internet connectivity 
 .. note::
   Please note that Netris replaces Netplan with regular ifupdown and attempts to migrate any prior configuration to /etc/network/interfaces.
 
-6. Reboot the SoftGate
+3. Reboot the SoftGate
 
 .. code-block:: shell-session
 
