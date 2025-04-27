@@ -15,7 +15,7 @@ Minimum Hardware Requirements
 
 Provision Netris SoftGate software  
 ==================================
-Requires freshly installed Ubuntu Linux 24.04 LTS and internet connectivity (air-gapped installation is also avalible). 
+Requires freshly installed **Ubuntu Linux 24.04 LTS** and internet connectivity (air-gapped installation is also avalible). 
 
 1. Navigate to the **Net-->Inventory** section and click the **three vertical dots (⋮)** on the right side of the SoftGate node you are provisioning. Then click **Install Agent** and copy the one-line installer command to your clipboard.
 
@@ -25,10 +25,9 @@ Requires freshly installed Ubuntu Linux 24.04 LTS and internet connectivity (air
 .. image:: /images/softgate-hs-install-agent-onliner.png
     :align: center
 
-
 2. Paste the one-line install command on your SoftGate HS node as an ordinary user. (keep in mind that one-line installer commands are unique for each node)
 
-.. image:: softgate-hs-provisioning-cli-output.png
+.. image:: /images/softgate-hs-provisioning-cli-output.png
     :align: center
 
 .. note::
