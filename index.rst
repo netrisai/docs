@@ -96,6 +96,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
 
    installation
    switch-agent-installation
+   SoftGate-HS-installation
    SoftGate-installation
    SoftGate-PRO-installation
 
