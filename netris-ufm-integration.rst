@@ -145,9 +145,6 @@ Netris Controller Configuration
    * - NETRIS_SITE_NAME
      - The name of the site in Netris Controller to manage
      - Datacenter-1
-   * - NETRIS_VNET_OWNER
-     - The owner for virtual networks in Netris
-     - Admin
 
 NVIDIA UFM Configuration
 -----------------------
