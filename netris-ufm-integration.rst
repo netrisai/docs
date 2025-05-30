@@ -38,12 +38,40 @@ Prerequisites
 Before installing the Netris-UFM plugin, ensure:
 
 1. A functioning Netris Controller environment
-2. A properly configured NVIDIA UFM installation
+2. A properly configured NVIDIA UFM installation with limited membership enabled (see below)
 3. Network connectivity between both systems
 4. Appropriate access credentials for both platforms
 
+
+
+UFM Configuration Requirements
+================================
+
+To enable the UFM PKey REST API functionality required by the Netris-UFM integration, you must configure UFM to use limited membership by default.
+
+**Configure gv.cfg**
+
+Edit the UFM configuration file ``/opt/ufm/files/conf/gv.cfg`` and add or modify the following section:
+
+.. code-block:: ini
+
+   [MngNetwork]
+   default_membership = limited
+
+**Restart UFM Service**
+
+After making this configuration change, restart the UFM enterprise service:
+
+.. code-block:: bash
+
+   systemctl restart ufm-enterprise
+
+.. important::
+   This UFM configuration change is essential for the Netris-UFM integration to function properly. The setting enables limited membership by default, which allows servers on the subnet to communicate only when they have full membership in non-default partitions managed by the Netris-UFM plugin.
+
+
 Installation
-===========
+=============
 
 Option 1: Deploy within an existing Netris Controller Kubernetes cluster
 ------------------------------------------------------------------------
