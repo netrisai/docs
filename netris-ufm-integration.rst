@@ -143,7 +143,7 @@ This option is ideal for environments without Kubernetes or when you want to dep
         --env-file=env \
         --name=netris-ufm \
         --entrypoint "/app/servicebin" \
-        netrisai/bare-metal-netris-ufm-agent:0.1.1
+        netrisai/bare-metal-netris-ufm-agent:0.3.0
 
 Configuration Parameters
 ======================
@@ -512,7 +512,7 @@ Version Compatibility
      - Plugin Version
    * - 4.4.1+
      - 6.15.4+
-     - 0.1.1+
+     - 0.3.0+
 
 Getting Started Guide
 ======================
