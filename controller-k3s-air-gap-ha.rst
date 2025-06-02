@@ -707,3 +707,222 @@ On **all three nodes**, copy the repository files into the Persistent Volume:
 
 
 **Congratulations!** You have successfully upgraded your **highly available, air-gapped** Netris Controller.
+
+
+Maintenance Procedures
+=======================
+
+Proper maintenance procedures are critical for ensuring the continued stability and availability of your Netris Controller HA deployment. Improper shutdown or maintenance sequences can lead to database cluster inconsistencies, particularly with MariaDB, potentially resulting in service disruptions or data corruption.
+
+Node Maintenance Best Practices
+--------------------------------
+
+Individual Node Maintenance (Recommended Approach)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The safest approach is to perform maintenance on one node at a time, keeping the cluster operational throughout the process:
+
+1. **Identify the primary MariaDB node before starting maintenance**:
+
+   .. code-block:: bash
+
+      kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
+
+   Note the PRIMARY column output (e.g., ``netris-controller-ha-mariadb-ha-0``)
+
+2. **Find which physical node is hosting the primary MariaDB**:
+
+   .. code-block:: bash
+
+      kubectl -nnetris-controller get pod netris-controller-ha-mariadb-ha-0 -o wide
+
+   Note the NODE column (e.g., ``ctl-ha-node1``)
+
+3. **Plan your maintenance order**:
+
+   - Start with nodes NOT hosting the primary MariaDB
+   - Leave the node hosting the primary MariaDB for last
+
+4. **For each non-primary node**:
+
+   a. **Cordon the node** to prevent new pods from being scheduled:
+
+      .. code-block:: bash
+
+         kubectl cordon <node-name>
+
+   b. **Drain the node** safely to relocate all running pods:
+
+      .. code-block:: bash
+
+         kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data
+
+   c. **Verify pods have been relocated**:
+
+      .. code-block:: bash
+
+         kubectl get pods -A -o wide | grep <node-name>
+   
+   d. **Perform maintenance** on the node (updates, reboots, etc.)
+   
+   e. **Bring the node back online**
+   
+   f. **Verify node is ready**:
+
+      .. code-block:: bash
+
+         kubectl get nodes
+   
+   g. **Uncordon the node**:
+
+      .. code-block:: bash
+
+         kubectl uncordon <node-name>
+   
+   h. **Verify cluster health before proceeding to the next node**:
+
+      .. code-block:: bash
+
+         kubectl get pods -n netris-controller
+         kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
+
+5. **For the node hosting the primary MariaDB**:
+   
+   a. **Double-check it's still hosting the primary** (as failover might have occurred):
+
+      .. code-block:: bash
+
+         kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
+         kubectl -nnetris-controller get pod <primary-pod-name> -o wide
+   
+   b. Follow the same cordon, drain, maintenance, and uncordon steps as above
+
+Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you need to shut down multiple nodes simultaneously:
+
+1. **Identify the primary MariaDB node**:
+
+   .. code-block:: bash
+
+      kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
+
+   Note the PRIMARY column output (e.g., ``netris-controller-ha-mariadb-ha-0``)
+
+2. **Find which physical nodes are hosting each MariaDB instance**:
+
+   .. code-block:: bash
+
+      kubectl -nnetris-controller get pod -l app.kubernetes.io/name=mariadb-ha -o wide
+
+3. **Safe node shutdown sequence**:
+
+   a. **Shutdown secondary/replica nodes first**:
+
+      .. code-block:: bash
+
+         # For each non-primary node
+         kubectl cordon <non-primary-node>
+         kubectl drain <non-primary-node> --ignore-daemonsets --delete-emptydir-data
+         # Wait at least 1 minute before shutting down or proceeding to next node
+         sudo shutdown -h now  # Only on the drained node
+
+   b. **Shutdown the primary node last**:
+
+      .. code-block:: bash
+
+         kubectl cordon <primary-node>
+         kubectl drain <primary-node> --ignore-daemonsets --delete-emptydir-data
+         sudo shutdown -h now  # Only on the primary node
+
+4. **Safe node startup sequence**:
+
+   a. **Start the node that was hosting the primary MariaDB first**
+   
+   b. **Wait until it's fully online** (check with ``kubectl get nodes``)
+   
+   c. **Start the remaining nodes** one by one with at least 2 minutes between each
+   
+   d. **Uncordon each node after it's online**:
+
+      .. code-block:: bash
+
+         kubectl uncordon <node-name>
+
+5. **Verify cluster health**:
+
+   .. code-block:: bash
+
+      kubectl get nodes
+      kubectl -n netris-controller get pods
+      kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
+
+
+6. **Rebalance pods across all nodes**:
+
+   After all nodes are back online and uncordoned, restart all deployments to ensure even pod distribution:
+
+   .. code-block:: bash
+      
+      # This will restart all deployments in netris-controller namespace
+      kubectl -nnetris-controller rollout restart deployment
+
+   Wait for all pods to restart and reach Running state:
+
+   .. code-block:: bash
+   
+      kubectl -nnetris-controller get pods
+
+   Verify that pods are now distributed evenly across all nodes:
+
+   .. code-block:: bash
+   
+      kubectl -nnetris-controller get pods -o wide
+
+Verifying MariaDB Cluster Health
+----------------------------------
+
+After maintenance, verify the MariaDB cluster is healthy:
+
+1. **Check MaxScale status**:
+
+   .. code-block:: bash
+
+      kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
+
+   The STATUS should show ``Running`` and a PRIMARY should be identified
+
+2. **Verify all MariaDB pods are running**:
+
+   .. code-block:: bash
+
+      kubectl -n netris-controller get pods -l app.kubernetes.io/name=mariadb
+
+3. **If issues are detected**, check the operator logs:
+
+   .. code-block:: bash
+
+      kubectl -n netris-controller logs -l app.kubernetes.io/name=mariadb-operator
+
+Maintenance Best Practices
+----------------------------
+
+1. **Always perform one-node-at-a-time maintenance** when possible
+2. **Never simply power off nodes** without properly cordoning and draining
+3. **Always shut down secondary/replica database nodes before the primary**
+4. **Always start the primary node first** when bringing the system back online
+5. **Verify cluster health after each node** completes maintenance
+6. **Rebalance your workloads** by restarting deployments after all maintenance is complete
+7. **Schedule maintenance during low-usage periods**
+8. **Create a backup before maintenance**
+9. **Document all maintenance activities** in a maintenance log
+
+
+**For serious database issues**, contact Netris support with:
+
+- Output of ``kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb -o yaml``
+- Logs from MariaDB pods and operator
+
+
+By following these maintenance procedures, you can significantly reduce the risk of database inconsistencies and service disruptions during and after maintenance operations.
