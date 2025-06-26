@@ -89,6 +89,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    topology-management
    switch-ports
    lag
+   server-cluster
 
 .. toctree::
    :maxdepth: 2
