@@ -37,7 +37,7 @@ Typically, a Server Cluster Template is made up of just two key-value pairs:
   - **postfix**: A string appended to the server cluster name to form the V-Net name.
   - **type**: A string specifying the type of V-Net (l2vpn, l3vpn, infiniband, netris-ufm).
   - **vlan**: A string specifying whether the V-Net is tagged or untagged.
-  - **vlanID**: A sring specifying the VLAN ID, which can be set to 'auto' for automatic assignment.
+  - **vlanID**: A sring specifying the VLAN ID. Only `auto` is permitted at this time.
   - **serverNics**: An array of NIC names on the server that will be associated with this V-Net.
   - **ipv4Gateway** (optional): A string specifying the IPv4 gateway for the V-Net, or "specify" to force the operator to enter the gateway explicity at cluster creation, or an object (see Advanced Uses) with the following properties:
 
