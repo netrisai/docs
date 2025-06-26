@@ -1,9 +1,9 @@
 .. meta::
     :description: Server Cluster and Server Cluster Template
 
-============
+===========================================
 Server Cluster and Server Cluster Template
-============
+===========================================
 
 In Netris, A **Server Cluster** is a high-level abstraction representing a group of servers that share a uniform network configuration, driven by a common template. While it appears as a list of servers, its true function is to resolve into a deterministic set of switch port configurations and associated virtual networks.
 
@@ -30,22 +30,34 @@ Template Fields Explained:
 
 Typically, a Server Cluster Template is made up of just two key-value pairs:
 
-- Name: A descriptive name for the template.
+- **Name**: A descriptive name for the template.
 
-- Vnets: A JSON array defining the V-Nets to be created for each server in the cluster. Each object in the array includes:
+- **Vnets**: A JSON array defining the V-Nets to be created for each server in the cluster. Each object in the array includes:
 
-  - postfix: A string appended to the server cluster name to form the V-Net name.
-  - type: The type of V-Net (e.g., l2vpn, l3vpn, netris-ufm).
-  - vlan: Specifies whether the V-Net is tagged or untagged.
-  - vlanID: The VLAN ID, which can be set to 'auto' for automatic assignment.
-  - serverNics: An array of NIC names on the server that will be associated with this V-Net.
-  - ipv4Gateway (optional): The IPv4 gateway for the V-Net, if applicable.
-  - ipv4DhcpEnabled (optional): Boolean to enable/disable DHCP for IPv4.
-  - ipv6Gateway (optional): The IPv6 gateway for the V-Net, if applicable.
-  - Ufm (optional): UFM settings for type "netris-ufm". See UFM documentation for details.
-  - Pkey (optional): Pkey settings for type "netris-ufm". See UFM documentation for details.
+  - **postfix**: A string appended to the server cluster name to form the V-Net name.
+  - **type**: A string specifying the type of V-Net (l2vpn, l3vpn, infiniband, netris-ufm).
+  - **vlan**: A string specifying whether the V-Net is tagged or untagged.
+  - **vlanID**: A sring specifying the VLAN ID, which can be set to 'auto' for automatic assignment.
+  - **serverNics**: An array of NIC names on the server that will be associated with this V-Net.
+  - **ipv4Gateway** (optional): A string specifying the IPv4 gateway for the V-Net, or "specify" to force the operator to enter the gateway explicity at cluster creation, or an object (see Advanced Uses) with the following properties:
 
-- ID: A unique identifier for the template, typically auto-generated and is not exposed to the user.
+    - **assignType**: A string indicating the type of assignment ('auto', 'static').
+    - **allocation**: A string specifying the IPv4 address allocation, a supernet from which the child subnets will be derived.
+    - **childSubnetPrefixLength**: An integer specifying the prefix length for child subnets.
+    - **hostnum**: An integer specifying the host number for the gateway.
+
+  - **ipv4DhcpEnabled** (optional): Boolean to enable/disable DHCP for IPv4.
+  - **ipv6Gateway** (optional): A string specifying the IPv6 gateway for the V-Net, or "specify" to force the operator to enter the gateway explicity at cluster creation, or an object (see Advanced Uses) with the following properties:
+
+    - **assignType**: A string indicating the type of assignment ('auto', 'static').
+    - **allocation**: A string specifying the IPv6 address allocation, a supernet from which the child subnets will be derived.
+    - **childSubnetPrefixLength**: An integer specifying the prefix length for child subnets.
+    - **hostnum**: An integer specifying the host number for the gateway.
+
+  - **Ufm** (optional): UFM settings for type "netris-ufm". See UFM documentation for details.
+  - **Pkey** (optional): Pkey settings for type "netris-ufm". See UFM documentation for details.
+
+- **ID**: A unique identifier for the template, typically auto-generated and is not exposed to the user.
 
 Server Cluster Template Example
 --------------------------------
@@ -106,26 +118,143 @@ In this example, we have 11 NICs per server, where eth1-eth8 are for east-west t
 Adding a Server Cluster Template
 --------------------------------
 
-To define a Server Cluster Template in the web console, navigate to ``Services->Server Cluster Template`` - click ``+Add``, give the template a descriptive name like 'GPU-Cluster-Template'. Enter JSON style configuration defining V-Nets and which server NICs must be placed into these V-Nets. 
+To define a Server Cluster Template in the web console, navigate to ``Services->Server Cluster Template`` - click ``+Add``, give the template a descriptive name like 'GPU-Cluster-Template'. Enter JSON style configuration defining V-Nets and which server NICs must be placed into these V-Nets.
 
 .. image:: images/add-server-cluster-template.png
   :align: center
   :class: with-shadow
-  
+
 .. raw:: html
-  
+
   <br />
 
 Note that when using the UI, the JSON configuration shall only include the 'vnets' array, as the 'name' field is provided separately in the form. The 'id' field is auto-generated and should not be included in the UI input.
 
+Advanced Uses
+----------------
+
+Non-overlapping subnets
+~~~~~~~~~~~~~~~~~~~~~~~
+
+In some cases, you may want to define non-overlapping subnets for different V-Nets in a Server Cluster Template. This can be achieved by specifying the **allocation** field in the **ipv4Gateway** or **ipv6Gateway** objects. By providing a supernet from which child subnets will be derived, you can ensure that the IP addresses assigned to each V-Net do not overlap.
+
+This may be useful in scenarios where you have multiple clusters or V-Nets that need to coexist without IP address conflicts, such as in multi-tenant environments, when integrating with existing networks, or when planning to use VPC peering, which requires non-overlapping IP address spaces.
+
+For IPv4 and IPv6 gateways, you can specify an object with the following properties:
+
+- **assignType**: A string indicating the type of assignment ('auto', 'static').
+- **allocation**: A string specifying the IPv4 or IPv6 address allocation, which can be a supernet from which child subnets will be derived.
+- **childSubnetPrefixLength**: An integer specifying the prefix length for child subnets.
+- **hostnum**: An integer specifying the host number for the gateway.
+
+.. code-block:: shell-session
+
+  [
+    {
+        "postfix": "N-S",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": [
+            "eth9",
+            "eth10"
+        ],
+        "ipv4Gateway": {
+            "assignType": "auto",
+            "allocation": "10.0.0.0/16",
+            "childSubnetPrefixLength": 24,
+            "hostnum": 1
+        }
+    },
+    {
+        "postfix": "XYZ",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": [
+            "eth7",
+            "eth8"
+        ],
+        "ipv4Gateway": {
+            "assignType": "auto",
+            "allocation": "192.168.0.0/16",
+            "childSubnetPrefixLength": 24,
+            "hostnum": 254
+        },
+        "ipv4DhcpEnabled": true
+    },
+    {
+        "postfix": "OOB",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": [
+            "eth9",
+            "eth10"
+        ],
+        "ipv4Gateway": "192.168.0.254/24",
+        "ipv4DhcpEnabled": true
+    }
+  ]
+
+Specify gateway
+~~~~~~~~~~~~~~~~~~~~~~
+
+In some cases, you may want to force the operator to enter the gateway explicitly at the time of creating a Server Cluster. This can be achieved by setting the **ipv4Gateway** or **ipv6Gateway** field to `specify`. When this option is selected, the operator will be prompted to enter the gateway address during the cluster creation process.
+
+.. code-block:: shell-session
+
+  [
+    {
+        "postfix": "UFM8",
+        "type": "netris-ufm",
+        "ufm": "ufm-88",
+        "pkey": "auto"
+    },
+    {
+        "postfix": "L3VPN",
+        "type": "l3vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": [
+            "eth1",
+            "eth2"
+        ]
+    },
+    {
+        "postfix": "NS",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": [
+            "eth11",
+            "eth12"
+        ],
+        "ipv4Gateway": "specify",
+        "ipv4DhcpEnabled": true
+    },
+    {
+        "postfix": "EW",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": [
+            "eth9",
+            "eth10"
+        ],
+        "ipv4Gateway": "specify",
+        "ipv4DhcpEnabled": true
+    }
+  ]
+
 Server Cluster
 ==============
 
-With a Server Cluster Template defined, a Server Cluster can be instantiated by referencing that template and specifying a list of servers. This operation triggers the creation of network primitives—such as V-Nets, IP subnets, and switch port configurations—based on the template’s definitions. It is important to note that defining a template alone does not result in the creation of any network constructs; resources are only provisioned upon the creation of a Server Cluster that uses the template.
+With a Server Cluster Template defined, a Server Cluster can be instantiated by referencing that template and specifying a list of servers. This operation triggers the creation of network primitives—such as V-Nets, IP subnets, and switch port configurations—based on the template's definitions. It is important to note that defining a template alone does not result in the creation of any network constructs; resources are only provisioned upon the creation of a Server Cluster that uses the template.
 
-To define a Server CLuster navigate to ``Services->Server Cluster`` and click +Add. Give the new cluster a name, set Admin to the appropriate tenant (this is define who can edit/delete this cluster), set the site, set VPC to 'create new', select the Template created earlier, and click +Add server to start selecting server members. Click Add.
+To define a Server CLuster navigate to ``Services->Server Cluster`` and click ``+Add``. Give the new cluster a name, set Admin to the appropriate tenant (this is define who can edit/delete this cluster), set the site, set VPC to 'create new', select the Template created earlier, and click ``+Add server`` to start selecting server members. Click Add.
 
-Go ahead and create another Server Cluster, including the next 10 servers—or any other servers. The system won’t let you 'double-book' any server in more than one cluster, to avoid conflicts.
+Go ahead and create another Server Cluster, including the next 10 servers—or any other servers. The system won't let you 'double-book' any server in more than one cluster, to avoid conflicts.
 
 Shared Endpoints
 ----------------
@@ -149,27 +278,27 @@ Netris enforces exclusivity and sharing as mutually exclusive states. If an endp
 Additionally, Netris does not manage of influence the internal networking configurations of hypervisors or shared storage nodes. The responsibility for ensuring that virtual machines or storage services are correctly networked within their respective environments lies with the orchestrator or cloud operator.
 
 Server Cluster Fields Explained:
---------------------------
+--------------------------------
 
-- Name: A descriptive name for the server cluster.
-- Admin: The tenant that administers this server cluster.
-- Site: The site where the server cluster is located.
-- VPC: The VPC to which the server cluster belongs. Typically set to 'create new' to generate a new VPC.
-- Template: The Server Cluster Template that defines the network configuration for this cluster.
-- Servers: An array of server names that are exclusive members of this cluster.
-- SharedEndpoints: An array of server names that are shared members of this cluster.
+- **Name**: A descriptive name for the server cluster.
+- **Admin**: The tenant that administers this server cluster.
+- **Site**: The site where the server cluster is located.
+- **VPC**: The VPC to which the server cluster belongs. Typically set to 'create new' to generate a new VPC.
+- **Template**: The Server Cluster Template that defines the network configuration for this cluster.
+- **Servers**: An array of server names that are exclusive members of this cluster.
+- **SharedEndpoints**: An array of server names that are shared members of this cluster.
 
 Adding a Server Cluster
 -----------------------
 
-To define a Server Cluster in the web console, navigate to ``Services->Server Cluster`` - click ``+Add``, give the cluster a descriptive name. Set Admin to the appropriate tenant (this defines which tenant can edit/delete this cluster), set the site, set VPC to 'create new', select the Template created earlier, and click +Add server to start selecting server members. Click Add. 
+To define a Server Cluster in the web console, navigate to ``Services->Server Cluster`` - click ``+Add``, give the cluster a descriptive name. Set Admin to the appropriate tenant (this defines which tenant can edit/delete this cluster), set the site, set VPC to 'create new', select the Template created earlier, and click +Add server to start selecting server members. Click ``Add``.
 
 .. image:: images/add-server-cluster.png
   :align: center
   :class: with-shadow
-  
+
 .. raw:: html
-  
+
   <br />
 
 - VPC creation is only automatic when 'create new' is selected. If an existing VPC is chosen, the system will not create a new VPC, and it is assumed that the selected VPC already contains the necessary network constructs.
