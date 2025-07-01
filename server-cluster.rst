@@ -9,7 +9,7 @@ In the past, setting up servers in Netris required many steps. You had to go to 
 
 The **Server Cluster** makes this much easier. It is a construct that lets you group servers together and assign them to a tenant or VPC.
 
-You do this by creating a Server Cluster. You provide a list of server names and choose a Server Cluster Template. The template tells Netris which V-Net each server interface should belong to.
+You do this by creating a Server Cluster where you provide a list of server names and choose a Server Cluster Template. The template tells Netris which V-Net each server interface should belong to.
 
 Then, based on a Server Cluster Template, Netris will:
 - Set up the correct switch ports (front-end, back-end, InfiniBand)
@@ -20,7 +20,7 @@ This means you don't have to configure each switch port by hand. Instead, you ca
 
 This is helpful for cloud providers and AI infrastructure teams, who need to create isolated server environments quickly and safely.
 
-This means a Server Cluster acts as a blueprint-to-deployment bridge: a network engineer defines the design once in the template, and from there, DevOps or infrastructure teams can deploy and scale server environments with full network consistency and minimal involvement from the networking team.
+The Template acts as a blueprint; the Server Cluster turns it into deployment. A network engineer defines the design once in the template, and from there, DevOps or infrastructure teams can deploy and scale server environments with full network consistency and minimal involvement from the networking team.
 
 Server Cluster Template
 =======================
@@ -352,9 +352,10 @@ Shared endpoint = Tagged switch port
 
 This is the primary behavioral change triggered by marking an endpoint as shared.
 
-Server Clusters do not automatically follow where virtual machines move. You must make sure all the right hypervisors are added to the correct Server Cluster ahead of time.
+Server Clusters do not automatically follow where virtual machines move. You must make sure all the right hypervisors are added to the correct Server Cluster ahead of time. If VM1 can migrate between HostA and HostB, both must be in the Server Cluster.
 
-Shared endpoints cannot be used as exclusive endpoints and vice versa
+.. Note::
+  Shared endpoints cannot be used as exclusive endpoints and vice versa.
 
 Additionally, Netris does not manage of influence the internal networking configurations of hypervisors or shared storage nodes. The responsibility for ensuring that virtual machines or storage services are correctly networked within their respective environments lies with the orchestrator or cloud operator.
 
