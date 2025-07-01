@@ -1,29 +1,146 @@
 .. meta::
-    :description: Server Cluster and Server Cluster Template
+    :description: Server Cluster
 
-===========================================
-Server Cluster and Server Cluster Template
-===========================================
+==============
+Server Cluster
+==============
 
-In Netris, A **Server Cluster** is a high-level abstraction representing a group of servers that share a uniform network configuration, driven by a common template. While it appears as a list of servers, its true function is to resolve into a deterministic set of switch port configurations and associated virtual networks.
+In the past, setting up servers in Netris required many steps. You had to go to different menus to create VPCs, assign IP addresses, and link switch ports one by one. This was slow and easy to get wrong.
 
-By referencing a **Server Cluster Template** when defining a Server Cluster, Netris is able to  automatically infer which switch ports to configure, how to configure them (e.g., tagging, VLANs, LAGs), and which V-Nets to instantiate in the switch fabric and across those ports. This abstraction allows operators to manage complex, multi-server networking scenarios declaratively—without having to manually define VPCs, V-Nets, or individually select switchports to include.
+The **Server Cluster** makes this much easier. It is a construct that lets you group servers together and assign them to a tenant or VPC.
 
-In practice, this means a Server Cluster acts as a blueprint-to-deployment bridge: a network engineer defines the design once in the template, and from there, DevOps or infrastructure teams can deploy and scale server environments with full network consistency and minimal involvement from the networking team.
+You do this by creating a Server Cluster. You provide a list of server names and choose a Server Cluster Template. The template tells Netris which V-Net each server interface should belong to.
+
+Then, based on a Server Cluster Template, Netris will:
+- Set up the correct switch ports (front-end, back-end, InfiniBand)
+- Apply VLANs, LAGs, InfiniBand PKeys, and other fabric-specific settings
+- Create the right VPCs, VNets, and IP subnets
+
+This means you don't have to configure each switch port by hand. Instead, you can focus on servers, and Netris will build the network for you.
+
+This is helpful for cloud providers and AI infrastructure teams, who need to create isolated server environments quickly and safely.
+
+This means a Server Cluster acts as a blueprint-to-deployment bridge: a network engineer defines the design once in the template, and from there, DevOps or infrastructure teams can deploy and scale server environments with full network consistency and minimal involvement from the networking team.
 
 Server Cluster Template
 =======================
 
-Before a Server Cluster can be created, a Server Cluster Template must be defined. The template specifies the network configuration that will be applied consistently to every server in the cluster, including which network interfaces on the servers correspond to which V-Nets, VLAN tagging, IP addressing, and other relevant parameters.
+Before a Server Cluster can be created, a Server Cluster Template must be defined.
 
-Prior to the introduction of the Server Cluster and the Server Cluster Template functionality the engineer was required to navigate to ``Network->VPC``, ``Network->IPAM``, and ``Services->V-Net`` sections and create these objects, list switch ports for Netris to implement the necessary configurations.
+Prior to the introduction of the Server Cluster and the Server Cluster Template the engineer was required to navigate to ``Network->VPC``, ``Network->IPAM``, and ``Services->V-Net`` sections and create the required Netris primitives by hand, then using the ``Network->Network Interfaces`` list switch ports for Netris to implement the necessary configurations.
 
-With the introduction of Server Cluster and Server Cluster Template, the network engineer can now define these higher-level abstractions, and Netris will automatically create the necessary VPC, IPAM, and V-Net objects based on the server names and their network interfaces. This is particularly beneficial for cloud providers, as it abstracts away the complexity of dealing with individual switch ports, allowing cloud builders to focus on server-level configurations.
+With the introduction of the **Server Cluster Template** the **V-Nets**, **Allocations**, and **IP Subnet** primitives are defined in the template. You can more information about these primitives in the :doc:`V-Net </vnet>` and :doc:`IP Address Management </ipam>` documentation.
 
-Restrictions:
+Notes:
 -----------------
 
-* This functionality assumes that server NIC names are consistent across all servers in the cluster. For example, if eth1 is used for east-west traffic on one server, it should be the same on all other servers in that cluster.
+- This functionality assumes that server NIC names are consistent across all servers in the cluster. For example, if eth1 is used for east-west traffic on one server, it should be the same on all other servers in that cluster.
+
+Server Cluster Template Examples:
+--------------------------
+
+Ethernet-only Fabric Example
+
+.. code-block:: shell-session
+
+  {
+    "name": "ethernet-only-fabric-template",
+    "vnets": [
+      {
+        "postfix": "mgmt",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": ["eth0"],
+        "ipv4DhcpEnabled": true
+      },{
+        "postfix": "N-S-and-storage",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": ["eth1", "eth2"],
+        "ipv4Gateway": "192.168.10.254/24"
+      },
+      {
+        "postfix": "E-W-backend",
+        "type": "l3vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": ["eth3", "eth4"],
+        "ipv4Gateway": {
+          "assignType": "auto",
+          "allocation": "10.10.0.0/16",
+          "childSubnetPrefixLength": 24,
+          "hostnum": 1
+        }
+      }
+    ]
+  }
+
+Infiniband Fabric Example
+
+.. code-block:: shell-session
+
+  {
+    "name": "infini-band-template",
+    "vnets": [
+      {
+        "postfix": "mgmt",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": ["eth0"],
+        "ipv4DhcpEnabled": true
+      },
+      {
+        "postfix": "N-S-and-storage",
+        "type": "l3vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": ["eth1", "eth2"],
+        "ipv4Gateway": "192.168.100.1/24"
+      },
+      {
+        "postfix": "E-W-backend",
+        "type": "infiniband",
+        "pkey": "auto",
+        "serverNics": ["ib0", "ib1"]
+      }
+    ]
+  }
+
+Nvidia UFM Example
+
+.. code-block:: shell-session
+
+  {
+    "name": "Nvidia-ufm-template",
+    "vnets": [
+      {
+        "postfix": "mgmt",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": ["eth0"],
+        "ipv4DhcpEnabled": true
+      },
+      {
+        "postfix": "N-S-and-storage",
+        "type": "l3vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": ["eth1", "eth2"],
+        "ipv4Gateway": "192.168.20.1/24"
+      },
+      {
+        "postfix": "E-W-backend",
+        "type": "netris-ufm",
+        "ufm": "ufm-88",
+        "pkey": "auto"
+      }
+    ]
+  }
+
 
 Template Fields Explained:
 --------------------------
@@ -47,73 +164,11 @@ Typically, a Server Cluster Template is made up of just two key-value pairs:
     - **hostnum**: An integer specifying the host number for the gateway.
 
   - **ipv4DhcpEnabled** (optional): Boolean to enable/disable DHCP for IPv4.
-  - **ipv6Gateway** (optional): A string specifying the IPv6 gateway for the V-Net, or "specify" to force the operator to enter the gateway explicity at cluster creation, or an object (see Advanced Uses) with the following properties:
-
-    - **assignType**: A string indicating the type of assignment ('auto', 'static').
-    - **allocation**: A string specifying the IPv6 address allocation, a supernet from which the child subnets will be derived.
-    - **childSubnetPrefixLength**: An integer specifying the prefix length for child subnets.
-    - **hostnum**: An integer specifying the host number for the gateway.
-
+  - **ipv6Gateway** (optional): A string specifying the IPv6 gateway for the V-Net.
   - **Ufm** (optional): UFM settings for type "netris-ufm". See UFM documentation for details.
   - **Pkey** (optional): Pkey settings for type "netris-ufm". See UFM documentation for details.
 
 - **ID**: A unique identifier for the template, typically auto-generated and is not exposed to the user.
-
-Server Cluster Template Example
---------------------------------
-
-In this example, we have 11 NICs per server, where eth1-eth8 are for east-west traffic (L3VPN VXLAN), eth9-eth10 are for north-south traffic (L2VPN VXLAN with EVPN-MH bonding enabled), and eth11 is for out-of-band management (L2VPN VXLAN) and a UFM V-Net.
-
-.. code-block:: shell-session
-
-  {
-    "name": "My-Cluster-Template-flavor",
-    "vnets": [
-      {
-          "postfix": "East-West",
-          "type": "l3vpn",
-          "vlan": "untagged",
-          "vlanID": "auto",
-          "serverNics": [
-              "eth1",
-              "eth2",
-              "eth3",
-              "eth4",
-              "eth5",
-              "eth6",
-              "eth7",
-              "eth8"
-          ]
-      },
-      {
-          "postfix": "North-South-in-band-and-storage",
-          "type": "l2vpn",
-          "vlan": "untagged",
-          "vlanID": "auto",
-          "serverNics": [
-              "eth9",
-              "eth10"
-          ],
-          "ipv4Gateway": "192.168.7.254/21"
-      },
-      {
-          "postfix": "OOB-Management",
-          "type": "l2vpn",
-          "vlan": "untagged",
-          "vlanID": "auto",
-          "serverNics": [
-              "eth11"
-          ],
-          "ipv4Gateway": "192.168.15.254/21"
-      },
-      {
-          "postfix": "UFM8",
-          "type": "netris-ufm",
-          "ufm": "ufm-88",
-          "pkey": "auto"
-      }
-    ]
-  }
 
 Adding a Server Cluster Template
 --------------------------------
@@ -136,22 +191,17 @@ Advanced Uses
 Non-overlapping subnets
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-In some cases, you may want to define non-overlapping subnets for different V-Nets in a Server Cluster Template. This can be achieved by specifying the **allocation** field in the **ipv4Gateway** or **ipv6Gateway** objects. By providing a supernet from which child subnets will be derived, you can ensure that the IP addresses assigned to each V-Net do not overlap.
+While Netris fully supports overlapping IP addresses across multiple tenants and VPCs, some use cases such as shared storage access or external network integrations, may require globally unique subnets for north-south connectivity. In these cases, you can configure Netris to automatically allocate non-overlapping subnets from a larger pool, ensuring compatibility with such constraints.
 
-This may be useful in scenarios where you have multiple clusters or V-Nets that need to coexist without IP address conflicts, such as in multi-tenant environments, when integrating with existing networks, or when planning to use VPC peering, which requires non-overlapping IP address spaces.
+This is done by specifying the **allocation** field in the **ipv4Gateway** or **ipv6Gateway** objects and providing a supernet from which child subnets will be derived. This approach ensures that the IP addresses assigned to each V-Net do not overlap.
 
 For IPv4 and IPv6 gateways, you can specify an object with the following properties:
-
-- **assignType**: A string indicating the type of assignment ('auto', 'static').
-- **allocation**: A string specifying the IPv4 or IPv6 address allocation, which can be a supernet from which child subnets will be derived.
-- **childSubnetPrefixLength**: An integer specifying the prefix length for child subnets.
-- **hostnum**: An integer specifying the host number for the gateway.
 
 .. code-block:: shell-session
 
   [
     {
-        "postfix": "N-S",
+        "postfix": "N-S-and-storage",
         "type": "l2vpn",
         "vlan": "untagged",
         "vlanID": "auto",
@@ -167,7 +217,7 @@ For IPv4 and IPv6 gateways, you can specify an object with the following propert
         }
     },
     {
-        "postfix": "XYZ",
+        "postfix": "E-W-backend",
         "type": "l2vpn",
         "vlan": "untagged",
         "vlanID": "auto",
@@ -200,7 +250,7 @@ For IPv4 and IPv6 gateways, you can specify an object with the following propert
 Specify gateway
 ~~~~~~~~~~~~~~~~~~~~~~
 
-In some cases, you may want to force the operator to enter the gateway explicitly at the time of creating a Server Cluster. This can be achieved by setting the **ipv4Gateway** or **ipv6Gateway** field to `specify`. When this option is selected, the operator will be prompted to enter the gateway address during the cluster creation process.
+In some environments, IP address management is handled entirely outside of Netris by a customer-owned IPAM system or provisioning portal. In these cases, Netris cannot automatically assign subnets or gateways. Instead, the correct gateway address must be specified manually at the time of Server Cluster creation by setting ``ipv4Gateway`` (or ``ipv6Gateway``) to ``"specify"``. Doing so will force Netris to prompt for the exact gateway address at the time of defining the cluster. This enables seamless integration with external IPAM workflows while still leveraging Netris for declarative network provisioning.
 
 .. code-block:: shell-session
 
@@ -250,48 +300,26 @@ In some cases, you may want to force the operator to enter the gateway explicitl
 Server Cluster
 ==============
 
-With a Server Cluster Template defined, a Server Cluster can be instantiated by referencing that template and specifying a list of servers. This operation triggers the creation of network primitives—such as V-Nets, IP subnets, and switch port configurations—based on the template's definitions. It is important to note that defining a template alone does not result in the creation of any network constructs; resources are only provisioned upon the creation of a Server Cluster that uses the template.
+With a Server Cluster Template defined, a Server Cluster can be instantiated by referencing that template and specifying a list of servers. This operation triggers the creation of network primitives—such as V-Nets, IP subnets, Pkeys and other InfiniBand based on the template's definitions.
 
-To define a Server CLuster navigate to ``Services->Server Cluster`` and click ``+Add``. Give the new cluster a name, set Admin to the appropriate tenant (this is define who can edit/delete this cluster), set the site, set VPC to 'create new', select the Template created earlier, and click ``+Add server`` to start selecting server members. Click Add.
-
-Go ahead and create another Server Cluster, including the next 10 servers—or any other servers. The system won't let you 'double-book' any server in more than one cluster, to avoid conflicts.
-
-Shared Endpoints
-----------------
-
-In most cases, servers in a cluster are exclusively assigned. Each physical server belongs to one server cluster and is provisioned for a single tenant. This exclusive ownership model ensures clear operational boundaries, simplifies networking logic, and supports deterministic switch configuration. It is the expected behavior for bare metal infrastructure.
-
-However, certain infrastructure components, such as hypervisors or shared storage nodes, may need to serve multiple tenants simultaneously. In such cases, these endpoints must participate in more than one server cluster.
-
-To support this need, Netris allows administrators to designate specific endpoints as shared. A shared endpoint may be assigned to multiple server clusters, making it possible for virtualized workloads running on shared infrastructure (e.g., VMs) to be exposed across tenant boundaries.
-
-Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink. In essence:
-
-Shared endpoint = Tagged switch port
-
-This is the primary behavioral change triggered by marking an endpoint as shared.
-
-It is important to note that server clusters do not automatically account for hypervisor mobility scenarios (such as VM migration in platforms like VMware). Ensuring all relevant hypervisors are appropriately included in each server cluster is the responsibility of the orchestrator or cloud operator.
-
-Netris enforces exclusivity and sharing as mutually exclusive states. If an endpoint is added as a shared member in one server cluster, it must not appear as an exclusive member in another. The system will reject such conflicting configurations to avoid ambiguity in switch port management.
-
-Additionally, Netris does not manage of influence the internal networking configurations of hypervisors or shared storage nodes. The responsibility for ensuring that virtual machines or storage services are correctly networked within their respective environments lies with the orchestrator or cloud operator.
-
-Server Cluster Fields Explained:
---------------------------------
-
-- **Name**: A descriptive name for the server cluster.
-- **Admin**: The tenant that administers this server cluster.
-- **Site**: The site where the server cluster is located.
-- **VPC**: The VPC to which the server cluster belongs. Typically set to 'create new' to generate a new VPC.
-- **Template**: The Server Cluster Template that defines the network configuration for this cluster.
-- **Servers**: An array of server names that are exclusive members of this cluster.
-- **SharedEndpoints**: An array of server names that are shared members of this cluster.
+A Server Cluster Template serves as a reusable design blueprint. It defines how servers are connected to the fabric, but it doesn't provision any actual resources on its own. In practice, cloud service provider (CSP) admins typically create one or more templates to reflect common deployment patterns. Then day-to-day operations revolve around creating, editing, or deleting Server Clusters. Usually one or more clusters per tenant with each cluster triggering the actual provisioning of VPCs, V-Nets, and switch port configurations based on the selected template.
 
 Adding a Server Cluster
 -----------------------
 
-To define a Server Cluster in the web console, navigate to ``Services->Server Cluster`` - click ``+Add``, give the cluster a descriptive name. Set Admin to the appropriate tenant (this defines which tenant can edit/delete this cluster), set the site, set VPC to 'create new', select the Template created earlier, and click +Add server to start selecting server members. Click ``Add``.
+To define a Server CLuster navigate to ``Services->Server Cluster`` and click ``+Add``. Give the new cluster a name, set Admin to the appropriate tenant (this defines who can edit/delete this cluster), set the site, set VPC to 'create new', select the Template created earlier, and click ``+Add server`` to start selecting server members. Click ``Add``.
+
+.. image:: images/add-server-cluster-selecting-servers.png
+  :align: center
+  :class: with-shadow
+
+.. raw:: html
+
+  <br />
+
+When you click the blue ``Add`` button, Netris will create the VPC, V-Nets, and IP subnets as defined in the template. It will also configure the switch ports for each server based on the NIC names specified in the template.
+
+For every cluster Netris will create a new VPC, V-Nets, assign IP subnets. To add servers into an existing V-Net you should edit an existing cluster and add servers to it.
 
 .. image:: images/add-server-cluster.png
   :align: center
@@ -307,7 +335,41 @@ To define a Server Cluster in the web console, navigate to ``Services->Server Cl
 - To avoid misconfiguration, all servers in a cluster must share identical NIC names and counts. Templates assume symmetry; mismatched layouts will be rejected.
 - Shared endpoints must not be listed as exclusive members in any cluster. The system enforces this exclusivity to prevent configuration conflicts.
 
-Server Cluster Example
+
+
+Shared Endpoints
+----------------
+
+In most cases, servers in a cluster are exclusively assigned. Each physical server belongs to one server cluster and is provisioned for a single tenant.
+
+However, certain infrastructure components, such as hypervisors or shared storage nodes, may need to serve multiple tenants simultaneously. In such cases, these endpoints must participate in more than one server cluster.
+
+To support this need, Netris allows administrators to designate specific endpoints as shared. A shared endpoint may be assigned to multiple server clusters, making it possible for virtualized workloads running on shared infrastructure (e.g., VMs or shared storage) to be exposed across tenant boundaries.
+
+Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink. In essence:
+
+Shared endpoint = Tagged switch port
+
+This is the primary behavioral change triggered by marking an endpoint as shared.
+
+Server Clusters do not automatically follow where virtual machines move. You must make sure all the right hypervisors are added to the correct Server Cluster ahead of time.
+
+Shared endpoints cannot be used as exclusive endpoints and vice versa
+
+Additionally, Netris does not manage of influence the internal networking configurations of hypervisors or shared storage nodes. The responsibility for ensuring that virtual machines or storage services are correctly networked within their respective environments lies with the orchestrator or cloud operator.
+
+Server Cluster Fields Explained:
+--------------------------------
+
+- **Name**: A descriptive name for the server cluster.
+- **Admin**: The tenant that administers this server cluster.
+- **Site**: The site where the server cluster is located.
+- **VPC**: The VPC to which the server cluster belongs. Typically set to 'create new' to generate a new VPC.
+- **Template**: The Server Cluster Template that defines the network configuration for this cluster.
+- **Servers**: An array of server names that are exclusive members of this cluster.
+- **SharedEndpoints**: An array of server names that are shared members of this cluster.
+
+Server Cluster JSON Example
 --------------------------------
 
 In this example, we are creating a Server Cluster named 'My-Cluster-01' in Site-1, using the previously defined template 'My-Cluster-Template-flavor'. The cluster includes five servers for compute workloads and five servers designated for shared endpoints.
