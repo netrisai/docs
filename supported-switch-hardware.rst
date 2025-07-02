@@ -203,7 +203,7 @@ Nvidia
 
 Dell
 ======
-.. list-table:: 
+.. list-table::
    :header-rows: 0
 
    * - **Manufacturer**
@@ -214,102 +214,144 @@ Dell
      - **Caveats**
      - **Supported**
    * - Dell
-     - PowerSwitch N Series N3248-ON
-     - 
-     - 48x 10/100/1000Mb, 4x10G SFP+, 2x 100G QSFP28 
+     - PowerSwitch E Series E3248P-ON
+     - Broadcom Trident IV
+     - 48x 10/100/1000MB RJ45 PoE, 4x10G SFP+, 2x100G QSFP28
      - Dell-SONiC
-     - 
+     -
+     - ✔
+   * - Dell
+     - PowerSwitch E Series E3248PXE-ON
+     - Broadcom Trident IV
+     - 48x 1/2.5/5/10GbE RJ45 PoE, 4x25G SFP28, 2x100G QSFP28
+     - Dell-SONiC
+     -
      - ✔
    * - Dell
      - PowerSwitch S Series S3248T-ON
-     - 
-     - 48 RJ45 1G, 4 SFP+ 10G, 2 QSFP28 100G
+     - Broadcom Trident IV
+     - 48x 10M/100M/1G RJ45, 4x10G SFP+, 2x100G QSFP28
      - Dell-SONiC
-     - 
+     -
+     - ✔
+   * - Dell
+     - PowerSwitch N Series N3248P-ON
+     - Broadcom Trident IV
+     - 48x 10M/100M/1G RJ45 PoE, 4x10G SFP+, 2x 100G QSFP28
+     - Dell-SONiC
+     -
+     - ✔
+   * - Dell
+     - PowerSwitch N Series N3248TE-ON
+     - Broadcom Trident IV
+     - 48x 10M/100M/1G RJ45, 4x10G SFP+, 2x 100G QSFP28
+     - Dell-SONiC
+     -
+     - ✔
+   * - Dell
+     - PowerSwitch N Series N3248X-ON
+     - Broadcom Trident IV
+     - 48x 10M/100M/1G/2.5G/5G/10G RJ45, 4x25G SFP28, 2x 100G QSFP28
+     - Dell-SONiC
+     -
+     - ✔
+   * - Dell
+     - PowerSwitch N Series N3248PXE-ON
+     - Broadcom Trident IV
+     - 48x 10M/100M/1G/2.5G/5G/10G RJ45, 4x25G SFP28, 2x 100G QSFP28
+     - Dell-SONiC
+     -
      - ✔
    * - Dell
      - PowerSwitch S Series S4348F-ON
      - Broadcom Trident III
-     - 48 x SFP+ 6 x QSFP28
+     - 48x SFP+, 6x QSFP28
      - Dell-SONiC
-     - 
+     -
+     - ✔
+   * - Dell
+     - PowerSwitch S Series S4348T-ON
+     - Broadcom Trident III
+     - 48x 10G RJ45, 6x QSFP28
+     - Dell-SONiC
+     -
      - ✔
    * - Dell
      - PowerSwitch S Series S5212F-ON
      - Broadcom Trident III
-     - 12 x 25G SFP28 + 3 x 100GbE QSFP28
+     - 12x 25G SFP28,3x 100GbE QSFP28
      - Dell-SONiC
-     - 
+     -
      - ✔
    * - Dell
      - PowerSwitch S Series S5224F-ON
      - Broadcom Trident III
-     - 24 x 25G SFP28 + 4 x 100GbE QSFP28
+     - 24x 25G SFP28, 4x 100GbE QSFP28
      - Dell-SONiC
-     - 
+     -
      - ✔
    * - Dell
      - PowerSwitch S Series S5232F-ON
      - Broadcom Trident III
-     - 32 x 100GbE QSFP28
+     - 32x 100GbE QSFP28
      - Dell-SONiC
-     - 
+     -
      - ✔
    * - Dell
      - PowerSwitch S Series S5248F-ON
      - Broadcom Trident III
-     - 48 x 25G SFP28 + 4 x 100GbE QSFP28 + 2 x 200GbE QSFP28
+     - 48x 25G SFP28, 4x 100GbE QSFP28, 2x 200GbE QSFP28
      - Dell-SONiC
-     - 
+     -
      - ✔
    * - Dell
      - PowerSwitch S Series S5296F-ON
      - Broadcom Trident III
-     - 96 x 25G SFP28 + 8 x 100GbE QSFP28
+     - 96x 25G SFP28, 8x 100GbE QSFP28
      - Dell-SONiC
-     - 
+     -
      - ✔
    * - Dell
      - PowerSwitch S Series S5448F-ON
      - Broadcom Trident IV
-     - 48 x QSFP-DD 100GbE + 8 x QSFP-DD 400GbE
+     - 48x QSFP-DD 100GbE, 8x QSFP-DD 400GbE
      - Dell-SONiC
-     - 
-     - ✔
-   * - Dell
-     - PowerSwitch Z Series Z9664F-ON
-     - Broadcom Tomahawk IV
-     - 64 x QSFP-DD 400GbE
-     - Dell-SONiC
-     - 
-     - ✔
-   * - Dell
-     - PowerSwitch Z Series Z9432F-ON
-     - Broadcom Trident IV
-     - 32 x QSFP-DD 400GbE
-     - Dell-SONiC
-     - 
+     -
      - ✔
    * - Dell
      - PowerSwitch Z Series Z9264F-ON
      - Broadcom Trident IV
-     - 64 x 100GbE QSFP28
+     - 64x 100GbE QSFP28
      - Dell-SONiC
-     - 
+     -
      - ✔
    * - Dell
      - PowerSwitch Z Series Z9332F-ON
      - Broadcom Trident IV
-     - 32 x 400GbE QSFP56-DD
+     - 32x 400GbE QSFP56-DD
      - Dell-SONiC
-     - 
+     -
+     - ✔
+   * - Dell
+     - PowerSwitch Z Series Z9432F-ON
+     - Broadcom Trident IV
+     - 32x QSFP-DD 400GbE
+     - Dell-SONiC
+     -
+     - ✔
+   * - Dell
+     - PowerSwitch Z Series Z9664F-ON
+     - Broadcom Tomahawk IV
+     - 64x QSFP-DD 400GbE
+     - Dell-SONiC
+     -
      - ✔
    * - Dell
      - PowerSwitch Z Series Z9864F-ON
      - Tomahawk 5
-     - 64 x OSFP800
+     - 64x OSFP800
      - Dell-SONiC
-     - 
+     -
      - ✔
 
 EdgeCore
