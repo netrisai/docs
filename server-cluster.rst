@@ -399,7 +399,7 @@ Server Cluster Fields Explained:
 --------------------------------
 
 - **Name**: A descriptive name for the server cluster.
-- **Admin**: The administerative owner of this server cluster.
+- **Admin**: The administrative owner of this server cluster.
 - **Site**: The site where the server cluster is located.
 - **VPC**: The VPC to which the server cluster belongs. Typically set to 'create new' to generate a new VPC.
 - **Template**: The Server Cluster Template that defines the Netris primitives for this cluster.
