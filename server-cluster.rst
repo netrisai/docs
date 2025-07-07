@@ -43,7 +43,7 @@ Based on a Server Cluster Template, Netris will:
 - Apply VLANs, LAGs, InfiniBand PKeys, and other fabric-specific settings
 - Create VPCs, VNets, and IP subnets
 
-You no longer have to configure each switch port by hand. Instead, you focus on servers, and Netris will build the network for you.
+You no longer have to configure each switch port by hand. Instead, you focus on servers, and Netris will configure the network for you.
 
 .. warning::
 
