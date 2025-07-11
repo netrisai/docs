@@ -360,7 +360,7 @@ When you click the blue ``Add`` button, Netris will create the VPC, V-Nets, and 
 .. note::
 
   - A VPC will be created automatically when "Create New" is selected.
-  - After creation, the template, the VPC, and the site fields are locked. Servers may be added or removed, but only if their NIC layout matches the template.
+  - After creation, the template, the VPC, and the site fields are locked.
   - The same Netris NIC name must be used consistently across all server objects in a cluster. For example, when eth10 is assigned to a V-Net in the template, Netris will assign every switch port that corresponds to every server's eth10 to the same  V-Net throughout the server cluster.
 
 Shared Endpoints
@@ -370,7 +370,7 @@ Typically each physical server is dedicated to one server cluster and is provisi
 
 However, certain infrastructure components, such as hypervisors or shared storage nodes, may need to serve multiple VPCs simultaneously. In such cases, these endpoints must participate in more than one server cluster.
 
-To support this, Netris allows administrators to designate specific endpoints as shared. A shared endpoint may be assigned to multiple server clusters, making it possible for virtualized workloads running on shared infrastructure (e.g., VMs or shared storage) to be exposed across VPC boundaries.
+To support this, Netris allows administrators to designate specific endpoints as shared. A shared endpoint may be assigned to multiple server clusters, making it possible for Hypervisors, Storage, or other shared resources to be exposed across multiple VPCs.
 
 .. image:: images/add-server-cluster-selecting-servers-shared.png
   :align: center
