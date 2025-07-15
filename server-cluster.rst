@@ -52,19 +52,14 @@ This example is common for AI fabrics where both Frontned and Backend networks a
 
   [
     {
-      "postfix": "mgmt",
-      "type": "l2vpn",
+      "postfix": "E-W",
+      "type": "l3vpn",
       "vlan": "untagged",
       "vlanID": "auto",
       "serverNics": [
-        "eth0"
-      ],
-      "ipv4Gateway": {
-        "assignType": "auto",
-        "allocation": "10.10.0.0/16",
-        "childSubnetPrefixLength": 24,
-        "hostnum": 1
-      }
+        "eth3",
+        "eth4"
+      ]
     },
     {
       "postfix": "N-S",
@@ -79,14 +74,19 @@ This example is common for AI fabrics where both Frontned and Backend networks a
       "ipv4DhcpEnabled": true
     },
     {
-      "postfix": "E-W",
-      "type": "l3vpn",
+      "postfix": "mgmt",
+      "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
       "serverNics": [
-        "eth3",
-        "eth4"
-      ]
+        "eth0"
+      ],
+      "ipv4Gateway": {
+        "assignType": "auto",
+        "allocation": "10.10.0.0/16",
+        "childSubnetPrefixLength": 24,
+        "hostnum": 1
+      }
     }
   ]
 
@@ -99,15 +99,10 @@ This example is common for AI fabrics where the frontend is based on Ethernet an
 
   [
     {
-      "postfix": "mgmt",
-      "type": "l2vpn",
-      "vlan": "untagged",
-      "vlanID": "auto",
-      "serverNics": [
-        "eth0"
-      ],
-      "ipv4Gateway": "192.168.100.1/24",
-      "ipv4DhcpEnabled": true
+      "postfix": "E-W",
+      "type": "netris-ufm",
+      "ufm": "ufm-88",
+      "pkey": "auto"
     },
     {
       "postfix": "N-S",
@@ -120,10 +115,15 @@ This example is common for AI fabrics where the frontend is based on Ethernet an
       ]
     },
     {
-      "postfix": "E-W",
-      "type": "netris-ufm",
-      "ufm": "ufm-88",
-      "pkey": "auto"
+      "postfix": "mgmt",
+      "type": "l2vpn",
+      "vlan": "untagged",
+      "vlanID": "auto",
+      "serverNics": [
+        "eth0"
+      ],
+      "ipv4Gateway": "192.168.100.1/24",
+      "ipv4DhcpEnabled": true
     }
   ]
 
@@ -190,7 +190,7 @@ Each object in the **Vnets** JSON array may include a combination of the followi
   - **vlan**: A string specifying whether the V-Net is `tagged` or `untagged`.
   - **vlanID**: A string specifying the VLAN ID. Only `auto` is permitted at this time.
   - **serverNics**: An array of Netris server NIC names on the server that will be associated with this V-Net.
-  - **ipv4Gateway** (optional): When `type:l2vpn` one of the following values:
+  - **ipv4Gateway** (only used with `type:l2vpn`): When One of the following values:
 
     - A string specifying the IPv4 gateway for V-Net in CIDR notation
     - A string `specify` to force the operator to enter the gateway explicitly at cluster creation
@@ -201,7 +201,7 @@ Each object in the **Vnets** JSON array may include a combination of the followi
       - **childSubnetPrefixLength**: An integer specifying the prefix length for child subnets.
       - **hostnum**: An integer specifying the host number for the gateway.
 
-  - **ipv4DhcpEnabled** (optional): When `type:l2vpn` a boolean to enable/disable DHCP for IPv4. `ipv4Gateway` must be specified if DHCP is enabled.
+  - **ipv4DhcpEnabled** (only used with `ipv4Gateway`): A boolean to enable/disable DHCP for IPv4.
   - **ipv6Gateway** (optional): When `type:l2vpn` one of the following values:
 
     - A string specifying the IPv6 gateway for V-Net in CIDR notation
@@ -209,7 +209,7 @@ Each object in the **Vnets** JSON array may include a combination of the followi
     - an object (see :ref:`advanced-uses`) with the following properties:
 
       - **assignType**: A string indicating the type of assignment. Only `auto` is permitted at this time.
-      - **allocation**: A string specifying the IPv4 address allocation, a supernet from which the child subnets will be derived.
+      - **allocation**: A string specifying the IPv6 address allocation, a supernet from which the child subnets will be derived.
       - **childSubnetPrefixLength**: An integer specifying the prefix length for child subnets.
       - **hostnum**: An integer specifying the host number for the gateway.
 
@@ -239,11 +239,27 @@ Non-overlapping subnets
 
 Netris fully supports overlapping IP addresses across VPCs, but some use cases such as shared storage access or external network integrations, may require globally unique subnets for the north-south (frontend) fabric. In these cases, you can configure Netris to automatically allocate non-overlapping subnets from a larger pool, ensuring compatibility with such constraints.
 
-This is done by specifying the `allocation` field in the `ipv4Gateway` or `ipv6Gateway` object and providing a supernet from which child subnets will be derived. This approach ensures that the IP addresses assigned to each V-Net do not overlap.
+This is done by specifying the `allocation` key in the `ipv4Gateway` or `ipv6Gateway` object and providing a supernet from which child subnets will be derived. This approach ensures that the IP addresses assigned to each V-Net do not overlap.
 
 .. code-block:: shell-session
 
   [
+    {
+      "postfix": "E-W",
+      "type": "l2vpn",
+      "vlan": "untagged",
+      "vlanID": "auto",
+      "serverNics": [
+        "eth7",
+        "eth8"
+      ],
+      "ipv6Gateway": {
+        "assignType": "auto",
+        "allocation": "2001:DB8::/32",
+        "childSubnetPrefixLength": 64,
+        "hostnum": 1
+      }
+    },
     {
       "postfix": "N-S",
       "type": "l2vpn",
@@ -262,28 +278,12 @@ This is done by specifying the `allocation` field in the `ipv4Gateway` or `ipv6G
       "ipv4DhcpEnabled": true
     },
     {
-      "postfix": "E-W",
-      "type": "l2vpn",
-      "vlan": "untagged",
-      "vlanID": "auto",
-      "serverNics": [
-        "eth7",
-        "eth8"
-      ],
-      "ipv6Gateway": {
-        "assignType": "auto",
-        "allocation": "2001:DB8::/32",
-        "childSubnetPrefixLength": 64,
-        "hostnum": 1
-      }
-    },
-    {
       "postfix": "OOB",
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
       "serverNics": [
-        "eth1"
+        "eth11"
       ],
       "ipv4Gateway": "192.168.0.254/24",
       "ipv4DhcpEnabled": true
@@ -299,32 +299,31 @@ In case you want to specify the IP gateway manually when creating a Server Clust
 
   [
     {
-      "postfix": "UFM8",
+      "postfix": "UFM8-E-W",
       "type": "netris-ufm",
       "ufm": "ufm-88",
       "pkey": "auto"
     },
     {
-      "postfix": "L3VPN",
-      "type": "l3vpn",
-      "vlan": "untagged",
-      "vlanID": "auto",
-      "serverNics": [
-        "eth1",
-        "eth2"
-      ]
-    },
-    {
-      "postfix": "NS",
+      "postfix": "N-S",
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
       "serverNics": [
-        "eth11",
-        "eth12"
+        "eth9",
+        "eth10"
       ],
       "ipv4Gateway": "specify",
       "ipv6Gateway": "specify"
+    },
+    {
+      "postfix": "OOB-MGMT",
+      "type": "l2vpn",
+      "vlan": "untagged",
+      "vlanID": "auto",
+      "serverNics": [
+        "eth11"
+      ]
     }
   ]
 
