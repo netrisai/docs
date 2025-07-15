@@ -243,8 +243,8 @@ Cloud Networking Functions & Constructs
    *  - VPC Peering
       - Enable peering (route-leaking) between VPCs.
       - ✔
-      - June/2025
-      - June/2025
+      - September/2025
+      - August/2025
       - ✔
    *  - SiteMesh
       - Wireguard-based Site-to-Site VPN between multiple regions/sites. (single VPC)
