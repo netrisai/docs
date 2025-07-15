@@ -11,6 +11,8 @@ Switch Fabric Management Functions
       - Description
       - NVIDIA Cumulus
       - Dell SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore SONiC
    *  - Fabric Manager
@@ -102,6 +104,8 @@ Monitoring & Telemetry
       - Description
       - NVIDIA Cumulus
       - Dell SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore SONiC
    *  - Monitoring: Switch Ports
@@ -157,6 +161,8 @@ External Routing Functions
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - External BGP (SoftGate)
@@ -196,6 +202,8 @@ Cloud Networking Functions & Constructs
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - VPC (Virtual Private Cloud)
@@ -263,6 +271,8 @@ Overlay Network Functions
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - L2VPN VXLAN VLAN Aware
@@ -312,6 +322,8 @@ AI Specific Functions
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - Spectrum-X
@@ -367,6 +379,8 @@ Compute Platform Integrations
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - Kubernetes Operator
@@ -398,6 +412,8 @@ Security
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - Network ACLs
