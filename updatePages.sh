@@ -8,7 +8,7 @@ set -x
 apt-get update
 apt-get -y install git git-lfs rsync python3-pip python3-virtualenv python3-setuptools
 
-python3 -m pip install --upgrade sphinx-rtd-theme==0.5.1 importlib-metadata==4.0.1 gitpython docutils==0.16 rinohtype pygments sphinx-copybutton sphinx-tabs
+python3 -m pip install --upgrade sphinx-rtd-theme==3.0.2 importlib-metadata==8.7.0 gitpython docutils==0.21.2 rinohtype pygments sphinx-copybutton sphinx-tabs
 
 #######################################
 # SILENCE ALL SAFE.DIRECTORY WARNINGS #
