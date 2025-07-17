@@ -1,8 +1,7 @@
 <div class="netris-header">
   <span>
-    {% if logo %}
     <a href="https://www.netris.io" target="_blank">
-      <img width="95px" src="{{ pathto('_static/' + logo, 1) }}" class="netris-logo" alt="{{ _('Logo') }}" />
+      <img width="95px" src="{{ pathto('_static/logo.png', 1) }}" class="netris-logo" alt="{{ _('Logo') }}" />
     </a>
     <span class="github-btn github-btn-large">
       <a class="gh-btn" href="https://netris.io/slack" rel="noopener noreferrer" target="_blank"
@@ -11,6 +10,5 @@
         Join Slack
       </a>
     </span>
-    {% endif %}
   </span>
 </div>
