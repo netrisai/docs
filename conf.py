@@ -137,6 +137,7 @@ html_context = {
 	'github_user': 'netrisai',
 	'github_repo': 'docs',
 	'github_version': 'master/',
+	'logo': 'images/logo-600.png'
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
