@@ -1,20 +1,22 @@
 =================================================
 Netris Supported Functionality & Platforms Matrix
-================================================= 
+=================================================
 
 Switch Fabric Management Functions
 ==================================
-.. list-table:: 
+.. list-table::
    :header-rows: 0
 
-   *  - Function	
-      - Description	
+   *  - Function
+      - Description
       - NVIDIA Cumulus
       - Dell SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore SONiC
-   *  - Fabric Manager	
-      - Day0, Day1, and Day2 switch fabric operations.	
+   *  - Fabric Manager
+      - Day0, Day1, and Day2 switch fabric operations.
       - ✔
       - ✔
       - ✔
@@ -95,17 +97,19 @@ Switch Fabric Management Functions
 
 Monitoring & Telemetry
 ==================================
-.. list-table:: 
+.. list-table::
    :header-rows: 0
 
-   *  - Function	
-      - Description	
+   *  - Function
+      - Description
       - NVIDIA Cumulus
       - Dell SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore SONiC
    *  - Monitoring: Switch Ports
-      - Automatic monitoring of Link statuses, link utilization, laser signal levels, errors, packets. 	
+      - Automatic monitoring of Link statuses, link utilization, laser signal levels, errors, packets.
       - ✔
       - ✔
       - ✔
@@ -150,13 +154,15 @@ Monitoring & Telemetry
 External Routing Functions
 ==========================
 
-.. list-table:: 
+.. list-table::
    :header-rows: 0
 
    *  - Function
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - External BGP (SoftGate)
@@ -189,13 +195,15 @@ External Routing Functions
 Cloud Networking Functions & Constructs
 =======================================
 
-.. list-table:: 
+.. list-table::
    :header-rows: 0
 
    *  - Function
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - VPC (Virtual Private Cloud)
@@ -205,20 +213,20 @@ Cloud Networking Functions & Constructs
       - ✔
       - ✔
    *  - V-Net (Subnet)
-      - L3VPN VXLAN or L2VPN VXLAN with an anycast default Gateway, and built-in DHCP.	
+      - L3VPN VXLAN or L2VPN VXLAN with an anycast default Gateway, and built-in DHCP.
       - ✔
       - ✔
       - ✔
       - ✔
    *  - Server Cluster (Profiling)
-      - Create network constructs template, then apply it on groups of servers. 
+      - Create network constructs template, then apply it on groups of servers.
       - ✔
       - ✔
       - ✔
       - ✔
    *  - Internet Gateway
       - Provide shared Internet access to V-Nets and VPC
-      - ✔ 
+      - ✔
       - ✔
       - ✔
       - ✔
@@ -230,7 +238,7 @@ Cloud Networking Functions & Constructs
       - ✔
    *  - L4 Load Balancer
       - Provide on-demand elastic load balancer service to hosts in multiple V-Nets and multiple VPCs
-      - ✔ 
+      - ✔
       - ✔
       - ✔
       - ✔
@@ -243,8 +251,8 @@ Cloud Networking Functions & Constructs
    *  - VPC Peering
       - Enable peering (route-leaking) between VPCs.
       - ✔
-      - June/2025
-      - June/2025
+      - September/2025
+      - August/2025
       - ✔
    *  - SiteMesh
       - Wireguard-based Site-to-Site VPN between multiple regions/sites. (single VPC)
@@ -256,13 +264,15 @@ Cloud Networking Functions & Constructs
 
 Overlay Network Functions
 ==========================
-.. list-table:: 
+.. list-table::
    :header-rows: 0
 
    *  - Function
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - L2VPN VXLAN VLAN Aware
@@ -271,8 +281,8 @@ Overlay Network Functions
       - ✔
       - ✔
       - ✔
-   *  - L2VPN VXLAN VLAN Unaware	
-      - L2VPN VXLAN with VLAN tagged or untagged termination on switch port supporting different VLAN IDs on different end points.	
+   *  - L2VPN VXLAN VLAN Unaware
+      - L2VPN VXLAN with VLAN tagged or untagged termination on switch port supporting different VLAN IDs on different end points.
       - N/A
       - N/A
       - ✔
@@ -280,7 +290,7 @@ Overlay Network Functions
    *  - L3VPN VXLAN
       - L3VPN VXLAN, Commonly used in high performance computing, such as AI clusters.
       - ✔
-      - TBD	
+      - TBD
       - TBD
       - ✔
    *  - EVPN-MH / VXLAN-ESI
@@ -288,35 +298,37 @@ Overlay Network Functions
       - ✔
       - ✔
       - ✔
-      - TBD	
+      - TBD
    *  - LACP
-      - Link Aggregation or Active-Standby server multihoming.	
+      - Link Aggregation or Active-Standby server multihoming.
       - ✔
-      - ✔	
+      - ✔
       - ✔
       - TBD
    *  - MC-LAG
-      - Traditional MC-LAG-based server multihoming	
+      - Traditional MC-LAG-based server multihoming
       - ✔
       - TBD
       - TBD
       - TBD
 
 
-AI Specific Functions	
+AI Specific Functions
 =====================
-.. list-table:: 
+.. list-table::
    :header-rows: 0
 
    *  - Function
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - Spectrum-X
       - Switch-fabric management and automation optimized for NVIDIA Spectrum-X architecture
-      - ✔	
+      - ✔
       - N/A
       - N/A
       - N/A
@@ -359,14 +371,16 @@ AI Specific Functions
 
 
 Compute Platform Integrations
-========
-.. list-table:: 
+=================================
+.. list-table::
    :header-rows: 0
 
    *  - Function
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - Kubernetes Operator
@@ -376,13 +390,13 @@ Compute Platform Integrations
       - ✔
       - ✔
    *  - Apache Cloud Stack
-      - Netris VXLAN isolation & VR replacement 
+      - Netris VXLAN isolation & VR replacement
       - Mar/2025
       - ✔
       - TBD
       - TBD
    *  - VMware VSphere
-      - Automatically provision VSphere defined VLANs in VXLAN/EVPN switch fabric	
+      - Automatically provision VSphere defined VLANs in VXLAN/EVPN switch fabric
       - ✔
       - ✔
       - ✔
@@ -391,13 +405,15 @@ Compute Platform Integrations
 
 Security
 ========
-.. list-table:: 
+.. list-table::
    :header-rows: 0
 
    *  - Function
       - Description
       - NVIDIA Cumulus
       - Dell-SONiC
+
+        BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
    *  - Network ACLs
@@ -413,64 +429,64 @@ Security
       - ✔
       - ✔
    *  - Audit Logs
-      - Log all controller access and changes.	
+      - Log all controller access and changes.
       - ✔
       - ✔
       - ✔
       - ✔
 
 
-Netris Controller Administration							
-==============
+Netris Controller Administration
+================================
 
-.. list-table:: 
+.. list-table::
    :header-rows: 0
-						
+
    *  - Function
       - Description
-      - Globally					
+      - Globally
    *  - Role Based Access Control
       - Who can view and edit which aspects of the system.
-      - ✔					
+      - ✔
    *  - Tenant RBAC
       - Network resource delegation to tenants.
-      - ✔	
+      - ✔
    *  - Active/Standby
       - Daily backup of Netris Controller on a Standby node
-      - ✔	
+      - ✔
    *  - HA Controller
       - 3-node, HA Netris Controller cluster
       - ✔
    *  - Air Gapped setup
       - Run Netris controller in Air Gapped environment and host switch & SoftGate software for local install.
       - ✔
-							
-Management Interfaces	
+
+Management Interfaces
 =====================
 
-.. list-table:: 
+.. list-table::
    :header-rows: 0
-						
+
    *  - Function
       - Description
-      - Globally		
+      - Globally
    *  - Web Console
       - Manage through intuitive web interface.
-      - ✔					
+      - ✔
    *  - RestAPI
       - Integrate your other systems or your customer-facing portal with Netris consuming RestAPIs.
-      - ✔					
+      - ✔
    *  - IaC: Terraform
       - Manage your infrastructure as a code using Terraform.
-      - ✔					
-							
-							
+      - ✔
+
+
 Hypervisor/Worker node specific functionality
 =============================================
 
-.. list-table:: 
+.. list-table::
    :header-rows: 0
-						
+
    *  - Function
       - Description
       - Kubernetes
@@ -485,25 +501,25 @@ Hypervisor/Worker node specific functionality
       - ✔ (need to specify backend IPs)
       - ✔
       - ✔ (need to specify backend IPs)
-      - ✔ (need to specify backend IPs)	
+      - ✔ (need to specify backend IPs)
       - ✔ (need to specify backend IPs)
    *  - VPC to internal routing peering
       - Automatically route internal networks into VPC routing table (allow containers communicate with VMs).
       - ✔
-      - N/A	
+      - N/A
       - ✔
       - TBD
       - TBD
       - TBD
    *  - Automatic VXLAN/VLAN
-      - Automatically provision VXLAN/VLAN on switch fabric and include appropriate switch ports when virtual network is created in the hypervisor.	
+      - Automatically provision VXLAN/VLAN on switch fabric and include appropriate switch ports when virtual network is created in the hypervisor.
       - TBD
       - ✔
       - ✔
       - TBD
       - TBD
       - TBD
-   *  - HBN	Host-based networking. 
+   *  - HBN  Host-based networking.
       - Terminate VTEPs on the hypervisor host. Scale beyond VLAN limits
       - Dec/2024
       - TBD
@@ -518,88 +534,88 @@ Hypervisor/Worker node specific functionality
       - 2025
       - 2025
       - TBD
-      - TBD			
+      - TBD
 
 ==============================
 SoftGate Data Plane Variations
 ==============================
 
-SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access Control, Elastic Load Balancer, and Site-to-Site VPN functions.											
+SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access Control, Elastic Load Balancer, and Site-to-Site VPN functions.
 
-.. list-table:: 
-  :header-rows: 0
+.. list-table::
+   :header-rows: 0
 
-  * 	- Flavor
-	- Common Use Case
-	- Availability
-	- Tenancy/VPC
-	- Handoff
-	- Packet Forwarding
-	- HA & Scalability
-	- Ethernet Environment
-	- NIC	
-	- CPU
-	- RAM
-	- Disk
-	- Performance (w/ 100 NAT rules)
-  *     - SoftGate
-	- Bare metal cloud site, Edge site, Remote office.
-	- ✔
-	- Single
-	- VLAN
-	- Linux w/ Netris optimizations
-	- Active/Standby - 2 nodes
-	- Dot1q: Equinix Metal, PhoenixNAP, pre-configured VLAN-range on any Ethernet switches.
-	- Any
-	- Intel or AMD
-	- 16-64GB
-	- 300GB
-	- Dual Gold 6336Y (48c x 2.3GHz) - 11Gbps / 1.8Mpps
-  *	- SoftGate PRO
-	- Private Cloud, Public Cloud Border Gateway, Enterprise Cloud, Vmware NSX alternative.
-	- ✔
-	- Single
-	- VLAN
-	- Netris DPDK
-	- Active/Standby - 2 nodes
-	- Netris Switch-Fabric
-	- Nvidia Connect-X 5, 6 100Gbe
-	- Intel XEON (required for DPDK)
-	- 128GB
-	- 300GB
-	- Intel XEON Platinum 20+ cores - 100Gbps / 25Mpps
-  *	- SoftGate HS (HyperScale)
-	- Scalable GPU & CPU Cloud Services Provider.
-	- ✔
-	- Multi
-	- VXLAN
-	- Linux w/ Netris optimizations
-	- Active/Active - Horizontally scalable 
-	- Netris Switch-Fabric
-	- Any OK. Nvidia Connect-X is recommended
-	- Intel or AMD
-	- 128-256GB
-	- 300GB
-	- Dual Platinum 8352Y (64c x 2.2GHz) - 22Gbps / 3.5 Mpps
-  *	- SoftGate HS PRO
-	- Scalable GPU & CPU Cloud Services Provider.
-	- 2025/Q2
-	- Multi
-	- VXLAN
-	- Netris XDP
-	- Active/Active - Horizontally scalable
-	- Netris Switch-Fabric
-	- Nvidia Connect-X 5, 6, 7
-	- Intel, AMD (TBD) 
-	- 256GB+
-	- 300GB
-	- TBD
+   *  - Flavor
+      - Common Use Case
+      - Availability
+      - Tenancy/VPC
+      - Handoff
+      - Packet Forwarding
+      - HA & Scalability
+      - Ethernet Environment
+      - NIC
+      - CPU
+      - RAM
+      - Disk
+      - Performance (w/ 100 NAT rules)
+   *  - SoftGate
+      - Bare metal cloud site, Edge site, Remote office.
+      - ✔
+      - Single
+      - VLAN
+      - Linux w/ Netris optimizations
+      - Active/Standby - 2 nodes
+      - Dot1q: Equinix Metal, PhoenixNAP, pre-configured VLAN-range on any Ethernet switches.
+      - Any
+      - Intel or AMD
+      - 16-64GB
+      - 300GB
+      - Dual Gold 6336Y (48c x 2.3GHz) - 11Gbps / 1.8Mpps
+   *  - SoftGate PRO
+      - Private Cloud, Public Cloud Border Gateway, Enterprise Cloud, Vmware NSX alternative.
+      - ✔
+      - Single
+      - VLAN
+      - Netris DPDK
+      - Active/Standby - 2 nodes
+      - Netris Switch-Fabric
+      - Nvidia Connect-X 5, 6 100Gbe
+      - Intel XEON (required for DPDK)
+      - 128GB
+      - 300GB
+      - Intel XEON Platinum 20+ cores - 100Gbps / 25Mpps
+   *  - SoftGate HS (HyperScale)
+      - Scalable GPU & CPU Cloud Services Provider.
+      - ✔
+      - Multi
+      - VXLAN
+      - Linux w/ Netris optimizations
+      - Active/Active - Horizontally scalable
+      - Netris Switch-Fabric
+      - Any OK. Nvidia Connect-X is recommended
+      - Intel or AMD
+      - 128-256GB
+      - 300GB
+      - Dual Platinum 8352Y (64c x 2.2GHz) - 22Gbps / 3.5 Mpps
+   *  - SoftGate HS PRO
+      - Scalable GPU & CPU Cloud Services Provider.
+      - 2025/Q2
+      - Multi
+      - VXLAN
+      - Netris XDP
+      - Active/Active - Horizontally scalable
+      - Netris Switch-Fabric
+      - Nvidia Connect-X 5, 6, 7
+      - Intel, AMD (TBD)
+      - 256GB+
+      - 300GB
+      - TBD
 
 ============================================
 Netris and NOS versions compatibility matrix
 ============================================
 
-.. list-table:: 
+.. list-table::
    :header-rows: 0
 
    * - **Netris Version**
@@ -610,35 +626,35 @@ Netris and NOS versions compatibility matrix
    * - 4.4.0
      - Nvidia Cumulus 5.11, Dell SONiC 4.4, EdgeCore SONiC 202211-331
      - Equinix Metal, PhoenixNAP BMC
-     - SoftGate HS: Ubuntu 24.04, SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 
+     - SoftGate HS: Ubuntu 24.04, SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - ✔
    * - 4.3.0
-     - Nvidia Cumulus 5.9, Dell SONiC 4.1, EdgeCore SONiC 12.3 
+     - Nvidia Cumulus 5.9, Dell SONiC 4.1, EdgeCore SONiC 12.3
      - Equinix Metal, PhoenixNAP BMC
      - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 (non-pro)
      - ✔
    * - 4.2.0
-     - Nvidia Cumulus 5.7, Dell SONiC 4.1, EdgeCore SONiC 12.3 
+     - Nvidia Cumulus 5.7, Dell SONiC 4.1, EdgeCore SONiC 12.3
      - Equinix Metal, PhoenixNAP BMC
      - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - ✔
    * - 4.1.1
-     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3 
+     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
      - Equinix Metal, PhoenixNAP BMC
      - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - ✔
    * - 4.0.0
-     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3 
+     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
      - Equinix Metal, PhoenixNAP BMC
      - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - ✔
    * - 3.5.0
-     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3 
+     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
      - Equinix Metal, PhoenixNAP BMC
      - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - ✔
    * - 3.4.1
-     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3 
+     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
      - Equinix Metal, PhoenixNAP BMC
      - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
      - ✔
