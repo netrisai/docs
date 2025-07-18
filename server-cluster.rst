@@ -440,7 +440,7 @@ To support this, Netris allows administrators to designate specific endpoints as
 
   <br />
 
-Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink. 
+Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink.
 
 In essence: Shared endpoint = Tagged switch port
 
