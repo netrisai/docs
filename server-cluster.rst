@@ -26,7 +26,7 @@ A Server Cluster Template is a JSON array of V-Nets to create, their types, and 
 In a Server Cluster Template you define:
 
 - What V-Nets to create and their types (VXLAN, VLAN, UFM, NVLink, and others)
-- What subnets to assign to each these V-Net, when applicable
+- What subnets to assign to each these V-Nets, when applicable
 - Which server NICs map to these V-Nets
 - Other applicable settings specific to Ethernet, InfiniBand, and NVLink fabrics
 
@@ -46,7 +46,7 @@ Server Cluster Template Examples:
 Ethernet-only Fabric Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This example is common for AI fabrics where both Frontned and Backend networks are based on Ethernet. A Server Cluster referenced to this template will create two l2vpn VXLAN V-Nets and one l3vpn VXLAN V-Net. V-Net names will start with the name of the server cluster and end with the value of each postfix attribute.
+This example is common for AI fabrics where both Frontned and Backend networks are based on Ethernet. A Server Cluster referenced to this template will create two l2vpn VXLAN V-Nets and one l3vpn VXLAN V-Net. V-Net names will start with the name of the server cluster and end with the value of each `postfix` attribute.
 
 .. code-block:: shell-session
 
@@ -112,7 +112,9 @@ This example is common for AI fabrics where the frontend is based on Ethernet an
       "serverNics": [
         "eth1",
         "eth2"
-      ]
+      ],
+      "ipv4Gateway": "10.0.0.1/24",
+      "ipv4DhcpEnabled": true
     },
     {
       "postfix": "mgmt",
@@ -190,7 +192,7 @@ Each object in the **Vnets** JSON array may include a combination of the followi
   - **vlan**: A string specifying whether the V-Net is `tagged` or `untagged`.
   - **vlanID**: A string specifying the VLAN ID. Only `auto` is permitted at this time.
   - **serverNics**: An array of Netris server NIC names on the server that will be associated with this V-Net.
-  - **ipv4Gateway** (only used with `type:l2vpn`): When One of the following values:
+  - **ipv4Gateway**: When `type:l2vpn` one of the following values:
 
     - A string specifying the IPv4 gateway for V-Net in CIDR notation
     - A string `specify` to force the operator to enter the gateway explicitly at cluster creation
@@ -201,8 +203,8 @@ Each object in the **Vnets** JSON array may include a combination of the followi
       - **childSubnetPrefixLength**: An integer specifying the prefix length for child subnets.
       - **hostnum**: An integer specifying the host number for the gateway.
 
-  - **ipv4DhcpEnabled** (only used with `ipv4Gateway`): A boolean to enable/disable DHCP for IPv4.
-  - **ipv6Gateway** (optional): When `type:l2vpn` one of the following values:
+  - **ipv4DhcpEnabled**: A boolean to enable/disable DHCP for IPv4.
+  - **ipv6Gateway**: When `type:l2vpn` one of the following values:
 
     - A string specifying the IPv6 gateway for V-Net in CIDR notation
     - A string `specify` to force the operator to enter the gateway explicitly at cluster creation
@@ -213,8 +215,57 @@ Each object in the **Vnets** JSON array may include a combination of the followi
       - **childSubnetPrefixLength**: An integer specifying the prefix length for child subnets.
       - **hostnum**: An integer specifying the host number for the gateway.
 
-  - **Ufm** (required for `type:netris-ufm`): Nvidia UFM controller identifier (`ufm_id`) for V-Net `type:netris-ufm`. See :doc:`Netris UFM documentation </netris-ufm-integration>` for details.
-  - **Pkey** (required for `type:netris-ufm`): Pkey settings when V-Net `type:netris-ufm`. Only `auto` is permitted at this time.
+  - **Ufm**: Nvidia UFM controller identifier (`ufm_id`) for V-Net `type:netris-ufm`. See :doc:`Netris UFM documentation </netris-ufm-integration>` for details.
+  - **Pkey**: Pkey settings when V-Net `type:netris-ufm`. Only `auto` is permitted at this time.
+
+.. list-table:: V-Net Key/Value Requirements by Type
+   :header-rows: 1
+
+   * - Field
+     - type: l2vpn
+     - type: l3vpn
+     - type: netris-ufm
+   * - `postfix`
+     - ✅ required
+     - ✅ required
+     - ✅ required
+   * - `type`
+     - ✅ required
+     - ✅ required
+     - ✅ required
+   * - `vlan`
+     - ✅ required
+     - ✅ (must be "untagged")
+     - ❌
+   * - `vlanID`
+     - ✅ (`auto` only)
+     - ✅ (`auto` only)
+     - ❌
+   * - `serverNics`
+     - ✅ required
+     - ✅ required
+     - ❌
+   * - `ipv4Gateway`
+     - optional
+     - ❌
+     - ❌
+   * - `ipv4DhcpEnabled`
+     - optional (requires `ipv4Gateway`)
+     - ❌
+     - ❌
+   * - `ipv6Gateway`
+     - optional
+     - ❌
+     - ❌
+   * - `ufm`
+     - ❌
+     - ❌
+     - ✅ required
+   * - `pkey`
+     - ❌
+     - ❌
+     - ✅ (`auto` only)
+
 
 Adding a Server Cluster Template
 --------------------------------
@@ -323,7 +374,9 @@ In case you want to specify the IP gateway manually when creating a Server Clust
       "vlanID": "auto",
       "serverNics": [
         "eth11"
-      ]
+      ],
+      "ipv4Gateway": "specify",
+      "ipv6Gateway": "specify"
     }
   ]
 
@@ -387,19 +440,17 @@ To support this, Netris allows administrators to designate specific endpoints as
 
   <br />
 
-Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink. In essence:
+Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink. 
 
-Shared endpoint = Tagged switch port
+In essence: Shared endpoint = Tagged switch port
 
 This is the primary behavioral change triggered by marking an endpoint as shared.
 
-.. warning::
+.. note::
 
-  Server Clusters do not automatically include every node where virtual machines move. You must make sure all the right hypervisors are added to the correct Server Cluster ahead of time. If VM1 can migrate between HostA and HostB, both of these servers must be in the same Server Cluster.
-
-.. warning::
-
-  Netris does not manage or influence the internal networking configurations of hypervisors or shared storage nodes. The responsibility for ensuring that virtual machines or storage services are correctly networked within their respective environments lies with the orchestrator or the cloud operator.
+  - Ensure every hypervisor in the VM mobility scope is included in the server cluster.
+  - Ensure host networking is appropriately configured to work in a shared use case.
+  - `type:l3vpn` is silently ignored.
 
 Untagged VLAN on Shared Endpoints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
