@@ -59,6 +59,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    l4-load-balancer
    acls
    roh
+   server-cluster
 
 .. toctree::
    :maxdepth: 4
