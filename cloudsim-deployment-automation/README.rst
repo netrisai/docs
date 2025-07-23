@@ -89,29 +89,29 @@ Before deploying the Netris CloudSim environment, the server must be prepared to
    .. code-block:: yaml
 
       ...
-      bridges:
-          csim-ctl-mgmt:
-              interfaces: []
-              addresses:
-                  - 10.254.45.254/24  # Must match the value of netris_cloudsim_hyper_bridge_priv_mgmt_ip from inventory.yaml
-              mtu: 9000
-              parameters:
-                  stp: false
-              optional: true
-          br-mgmt:
-              interfaces: []
-              addresses: []
-              parameters:
-                  stp: false
-              optional: true
-          br-public:
-              interfaces:
-                  - eno4  # Name of interface leading to upstream BGP peer
-              mtu: 9000
-              addresses: []
-              parameters:
-                  stp: false
-              optional: true
+          bridges:
+              csim-ctl-mgmt:
+                  interfaces: []
+                  addresses:
+                      - 10.254.45.254/24  # Must match the value of netris_cloudsim_hyper_bridge_priv_mgmt_ip from inventory.yaml
+                  mtu: 9000
+                  parameters:
+                      stp: false
+                  optional: true
+              br-mgmt:
+                  interfaces: []
+                  addresses: []
+                  parameters:
+                      stp: false
+                  optional: true
+              br-public:
+                  interfaces:
+                      - eno4  # Name of interface leading to upstream BGP peer
+                  mtu: 9000
+                  addresses: []
+                  parameters:
+                      stp: false
+                  optional: true
       ...
 
 .. _configurable-inventory-variables:
