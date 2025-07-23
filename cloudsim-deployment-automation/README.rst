@@ -18,20 +18,20 @@ Features
 - **Modular Architecture**: Uses modular Ansible playbooks and OpenTofu configurations for maintainability and scalability.
 - **Template-Driven Configuration**: Includes Jinja2 templates for consistent VM, network, and Pulumi configurations.
 
-Assumptions
-===========
+Requirements
+============
 
-This project assumes the following prerequisites for successful deployment and operation:
+This project requires the following prerequisites for successful deployment and operation:
 
-- **Operating System**: The server must be running Ubuntu 24.04 LTS.
+- **Operating System**: The server must run Ubuntu 24.04 LTS.
 - **Network Interfaces**: The server must have at least two (2) network interfaces:
 
   - One interface configured with a public (or routable) IP address for internet connectivity.
   - A second interface configured to connect to an upstream BGP peer for routing.
 
-- **Hypervisor Readiness**: A KVM/QEMU hypervisor will be configured on the server during the preparation phase to support virtual machine provisioning for the Netris Internal CloudSim Controller and Nodes.
+- **Hypervisor Readiness**: A KVM/QEMU hypervisor must be configured on the server during the preparation phase to support virtual machine provisioning for the Netris Internal CloudSim Controller and Nodes.
 - **Management Network**: By default, Netris CloudSim uses the ``10.254.45.0/24`` private network for its management network. To modify this configuration if it conflicts with an existing network, configure the ``netris_cloudsim_priv_cidr``, ``netris_cloudsim_ctl_priv_ip``, and ``netris_cloudsim_hyper_bridge_priv_mgmt_ip`` variables as described in the :ref:`configurable-inventory-variables` section.
-- **Zip File Location**: The ``netris-internal-cloudsim-deployment-automation.zip`` file is located in the user’s home directory.
+- **Zip File Location**: The ``netris-internal-cloudsim-deployment-automation.zip`` file must be located in the user’s home directory.
 - **Netris Controller SSH Access**: By default, the automation exposes the Netris Controller VM to SSH access over the hypervisor’s public IP on port ``2222``. To modify this behavior, configure the ``netris_cloudsim_ssh_expose`` and ``netris_cloudsim_ssh_port`` variables as described in the :ref:`configurable-inventory-variables` section.
 
 .. _prepare-the-server:
