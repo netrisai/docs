@@ -13,7 +13,7 @@ The Netris-UFM plugin provides seamless integration between Netris Controller an
 Key Benefits
 --------------
 
-- **Unified Management Interface**: Define tenant isolation by simply listing servers in a server-cluster object
+- **Unified Management Interface**: Define tenant isolation by simply listing servers in a :doc:`server-cluster </server-cluster>` object
 - **Automated Provisioning**: Automatically configure both Ethernet (via Netris) and InfiniBand (via UFM) networks
 - **Simplified Operations**: Eliminate the need to manage SwitchPorts, VLANs, VRFs on Ethernet and GUIDs, PKeys, SHARP groups on InfiniBand separately
 
@@ -26,7 +26,7 @@ The Netris-UFM plugin acts as the integration layer between Netris Controller an
 2. **NVIDIA UFM**: Manages the InfiniBand switches and provides specialized InfiniBand functionality
 3. **Netris-UFM Plugin**: Synchronizes configurations between both systems
 
-When you define a server cluster in Netris, the plugin automatically:
+When you define a :doc:`server-cluster </server-cluster>` in Netris, the plugin automatically:
 
 - Discovers InfiniBand port GUIDs from UFM
 - Creates and manages appropriate PKeys in UFM
@@ -146,10 +146,10 @@ This option is ideal for environments without Kubernetes or when you want to dep
         netrisai/bare-metal-netris-ufm-agent:0.3.0
 
 Configuration Parameters
-======================
+========================
 
 Netris Controller Configuration
-------------------------------
+-------------------------------
 
 .. list-table::
    :widths: 30 50 20
@@ -175,7 +175,7 @@ Netris Controller Configuration
      - Datacenter-1
 
 NVIDIA UFM Configuration
------------------------
+------------------------
 
 .. list-table::
    :widths: 30 50 20
@@ -204,7 +204,7 @@ NVIDIA UFM Configuration
      - 100-7ffe
 
 Agent Configuration
------------------
+-------------------
 
 .. list-table::
    :widths: 30 40 15 15
@@ -243,83 +243,18 @@ The first step is to create servers in the Netris Controller inventory that matc
 2. Create a Server Cluster Template
 ------------------------------------
 
-Next, create a Server Cluster Template that defines the network configuration:
+Next, create a Server Cluster Template.
 
 1. Navigate to **Services** → **Server Cluster Template**.
 2. Click **Add** to create a new template
-3. Configure the template using JSON with specific sections for different network fabrics
+3. Configure the template using JSON with specific sections for different network fabrics. Use :ref:`infiniband-fabric-example`.
 
-Here's an example template that configures:
-
-- InfiniBand East-West fabric (managed by UFM)
-- Ethernet North-South fabric (for in-band and storage traffic)
-- OOB Management network
-
-.. code-block:: json
-
-   [
-       {
-           "postfix": "East-West",
-           "type": "netris-ufm",
-           "ufm": "ufm-lab",
-           "pkey": "auto"
-       },
-       {
-           "postfix": "North-South-in-band-and-storage",
-           "type": "l2vpn",
-           "vlan": "untagged",
-           "vlanID": "auto",
-           "serverNics": [
-               "eth9",
-               "eth10"
-           ],
-           "ipv4Gateway": "192.168.7.254/21"
-       },
-       {
-           "postfix": "OOB-Management",
-           "type": "l2vpn",
-           "vlan": "untagged",
-           "vlanID": "auto",
-           "serverNics": [
-               "eth11"
-           ],
-           "ipv4Gateway": "192.168.15.254/21"
-       }
-   ]
-
-Understanding the Template Structure
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- **East-West Fabric (UFM)**:
-  
-  - ``"type": "netris-ufm"`` - Identifies this as an InfiniBand fabric managed by UFM
-  - ``"ufm": "ufm-lab"`` - Specifies the UFM instance identifier
-  - ``"pkey": "auto"`` - Automatically assigns an appropriate PKey from the configured range
-
-- **North-South Fabric (Ethernet)**:
-  
-  - Standard Netris L2VPN configuration
-  - ``"serverNics": ["eth9", "eth10"]`` - Specifies which NICs (9, 10) connect to this fabric
-
-- **OOB Management**:
-  
-  - Separate network for out-of-band management
-  - ``"serverNics": ["eth11"]`` - Specifies NIC 11 for this network
-
-3. Create Server Clusters
+4. Create Server Clusters
 --------------------------
 
-After setting up the template, create actual server clusters:
+After setting up the template, create server clusters as described in :ref:`creating-server-cluster`.
 
-1. Navigate to **Services** → **Server Cluster**
-2. Click **Add** to create a new cluster
-3. Select Site and Admin
-4. Set VPC to 'create new'
-5. Select the template you created in the previous step
-6. Add the servers that should be part of this cluster
-7. Submit the configuration
-
-8. Verification
+3. Verification
 -----------------
 
 Once the server cluster is created:
@@ -337,7 +272,7 @@ Once the server cluster is created:
    - Test connectivity between servers in the cluster via InfiniBand
 
 
-3. Monitoring Integration Status
+4. Monitoring Integration Status
 ----------------------------------
 
 To monitor the status of the integration:
@@ -349,7 +284,7 @@ To monitor the status of the integration:
 
       # For Kubernetes
       kubectl logs -f deployment/netris-controller-nvidia-ufm-agent -n netris-controller
-      
+
       # For Docker
       docker logs -f netris-ufm
 
@@ -442,7 +377,7 @@ PKey Assignment Issues
    - Adjust the range if needed
 
 2. Verify server naming consistency:
-   
+
    - Server names must match exactly between Netris and UFM
    - Check for any server name discrepancies
 
@@ -452,7 +387,7 @@ PKey Assignment Issues
 
       # For Kubernetes
       kubectl logs -f deployment/netris-controller-nvidia-ufm-agent -n netris-controller | grep "PKey"
-      
+
       # For Docker
       docker logs -f netris-ufm | grep "PKey"
 
@@ -527,7 +462,7 @@ Quick Setup Example
 
       # For Kubernetes
       kubectl get pods -n netris-controller | grep ufm
-      
+
       # For Docker
       docker ps | grep netris-ufm
 
@@ -546,4 +481,4 @@ Additional Resources
 
 ---
 
-You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get additional support from our engineers and community. 
+You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get additional support from our engineers and community.
