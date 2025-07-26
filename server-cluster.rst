@@ -90,8 +90,9 @@ This example is common for AI fabrics where both Frontned and Backend networks a
     }
   ]
 
+.. _infiniband-fabric-example:
 Infiniband Fabric Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This example is common for AI fabrics where the frontend is based on Ethernet and the backend is based on InfiniBand. A Server Cluster referencing this template will create two l2vpn type VXLAN V-Nets and will automatically configure the Ethernet switches, and will configure one PKey with appropriate GUIDs in the NVIDIA UFM (Infiniband controller).
 
@@ -110,8 +111,8 @@ This example is common for AI fabrics where the frontend is based on Ethernet an
       "vlan": "untagged",
       "vlanID": "auto",
       "serverNics": [
-        "eth1",
-        "eth2"
+        "eth9",
+        "eth10"
       ],
       "ipv4Gateway": "10.0.0.1/24",
       "ipv4DhcpEnabled": true
@@ -122,7 +123,7 @@ This example is common for AI fabrics where the frontend is based on Ethernet an
       "vlan": "untagged",
       "vlanID": "auto",
       "serverNics": [
-        "eth0"
+        "eth11"
       ],
       "ipv4Gateway": "192.168.100.1/24",
       "ipv4DhcpEnabled": true
@@ -380,7 +381,7 @@ In case you want to specify the IP gateway manually when creating a Server Clust
     }
   ]
 
-
+.. _creating-server-cluster:
 Creating Server Cluster
 =======================
 
