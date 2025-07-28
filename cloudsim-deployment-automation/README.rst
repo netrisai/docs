@@ -126,8 +126,8 @@ Update the following variables in the ``$HOME/netris-internal-cloudsim-deploymen
    # USER-CONFIGURABLE VARIABLES: REPLACE DEFAULTS OR SET AS NEEDED
 
    # Netris Controller Version
-   # Specify the desired Netris Controller version. 4.5.1 is latest production release. Leave unchanged unless requested by Netris staff (e.g. netris_ctl_version: 4.5.1)
-   netris_ctl_version: 4.5.1
+   # Specify the desired Netris Controller version. 4.5.2 is latest production release. Leave unchanged unless requested by Netris staff (e.g. netris_ctl_version: 4.5.2)
+   netris_ctl_version: 4.5.2
 
    # Netris CloudSim Name Prefix
    # Set a lowercase prefix for CloudSim resources. Used for setting hostname and FQDN prefixes (e.g. netris_cloudsim_name_prefix: netris)
