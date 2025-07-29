@@ -303,8 +303,8 @@ At this point this Netris Try & Learn scenario has been concluded. You may want 
 1. Delete Server Clusters from the ``Services->Server Cluster`` menu.
 2. Delete Server Cluster Profile from the ``Services->Server Cluster Profile`` menu.
 3. SSH to the Netris controller server, ``cd /home/ubuntu/netris-cloudsim``, and execute ``pulumi destroy`` to destroy the infrastructure simulation.
-.. warning::
-   Do not run ``pulumi stack rm main`` after ``pulumi destroy`` unless instructed by Netris support. This may cause issues with your simulation environment. Use only ``pulumi destroy`` to safely stop a simulation.
+   .. warning::
+      Do not run ``pulumi stack rm main`` after ``pulumi destroy`` unless instructed by Netris support. This may cause issues with your simulation environment. Use only ``pulumi destroy`` to safely stop a simulation.
 4. ``cd /home/ubuntu/netris-init/netris-spectrum-x-init`` and execute tofu-destroy to remove the objects from the Netris controller that were created through the initialization module.
 
 Please let us know your feedback and questions.
