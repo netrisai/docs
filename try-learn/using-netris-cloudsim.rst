@@ -55,6 +55,9 @@ Go to:
 
 Execute ``pulumi up`` or ``pulumi destroy`` to start/stop a simulation of what's described in the Netris Controller
 
+.. warning::
+   Do not run ``pulumi stack rm main`` after ``pulumi destroy`` unless instructed by Netris support. This may cause issues with your simulation environment. Use only ``pulumi destroy`` to safely stop a simulation.
+
 
 
 
