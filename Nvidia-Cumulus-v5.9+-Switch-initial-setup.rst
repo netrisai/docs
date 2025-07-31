@@ -61,6 +61,7 @@ To login use the default username and password for Cumulus v5.9:
 
 3. Set up the Out-of-Band (OOB) Management.
 
+
 Upon installation of Cumulus Linux v5.9 or later ZTP must be disabled and internet connectivity must be provided to the switch via OOB management network:
 
 Disable ztp:
@@ -83,6 +84,9 @@ If there is no DHCP server in the OOB management network, then IP/Gateway/DNS in
 
 
 4. Netris agent installation.
+
+**A freshly installed Cumulus Linux is required with no configuration other than the eth0 IP commands above**
+
 
 Navigate to the Net–>Inventory section and click the three vertical dots (⋮) on the right side of the switch you are provisioning. Then click Install Agent and copy the one-line installer command to your clipboard.
 
