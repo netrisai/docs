@@ -48,7 +48,19 @@ Prerequisites
 
 3. **Default Gateway** configured on each server. If no default route exists, add a dummy route or black-hole route to satisfy K3s requirements.
 4. **Air-Gapped Artifacts**. You have the complete set of binaries, container images, Helm charts, CRDs, and manifests in the ``netris-controller-ha/`` folder.
+5. **Firewall Rules:** The following ports **must be open between all three nodes** to ensure proper K3s cluster functionality:
 
+  +----------+------------+--------------------------------------------------+
+  | Protocol | Port       | Description                                      |
+  +==========+============+==================================================+
+  | TCP      | 2379-2380  | Required only for HA with embedded etcd          |
+  +----------+------------+--------------------------------------------------+
+  | TCP      | 6443       | K3s supervisor and Kubernetes API Server         |
+  +----------+------------+--------------------------------------------------+
+  | UDP      | 8472       | Required only for Flannel VXLAN                  |
+  +----------+------------+--------------------------------------------------+
+  | TCP      | 10250      | Kubelet metrics                                  |
+  +----------+------------+--------------------------------------------------+
 
 
 Obtain the Installation File
