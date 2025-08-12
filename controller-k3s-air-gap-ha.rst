@@ -62,6 +62,16 @@ Prerequisites
   | TCP      | 10250      | Kubelet metrics                                  |
   +----------+------------+--------------------------------------------------+
 
+.. warning::
+   **CPU AVX Instruction Support Required:** MongoDB requires CPUs with AVX instruction set support. This is commonly missing in virtualized environments (KVM/Proxmox/VMware VMs). Check AVX support before installation:
+   
+   .. code-block:: bash
+   
+      cat /proc/cpuinfo | grep avx
+   
+   If no output is returned, enable AVX support before proceeding.
+
+
 
 Obtain the Installation File
 ----------------------------
