@@ -104,9 +104,17 @@ Before deploying the Netris CloudSim environment, the server must be prepared to
                   parameters:
                       stp: false
                   optional: true
-              br-public:
+              br-public-1:
                   interfaces:
-                      - eno4  # Name of interface leading to upstream BGP peer
+                      - eno3  # Name of interface leading to upstream BGP peer 1
+                  mtu: 9000
+                  addresses: []
+                  parameters:
+                      stp: false
+                  optional: true
+              br-public-2:
+                  interfaces:
+                      - eno4  # Name of interface leading to upstream BGP peer 1
                   mtu: 9000
                   addresses: []
                   parameters:
