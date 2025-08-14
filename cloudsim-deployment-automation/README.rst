@@ -107,7 +107,7 @@ Before deploying the Netris CloudSim environment, the server must be prepared to
               br-public-1:
                   interfaces:
                       - eno3  # Name of interface leading to upstream BGP peer 1
-                  mtu: 9000
+                  mtu: 1500
                   addresses: []
                   parameters:
                       stp: false
@@ -115,7 +115,7 @@ Before deploying the Netris CloudSim environment, the server must be prepared to
               br-public-2:
                   interfaces:
                       - eno4  # Name of interface leading to upstream BGP peer 2
-                  mtu: 9000
+                  mtu: 1500
                   addresses: []
                   parameters:
                       stp: false
@@ -178,7 +178,7 @@ Update the following variables in the ``$HOME/netris-internal-cloudsim-deploymen
    netris_cloudsim_hyper_pub_ip: null
 
    # BGP CIDR Block
-   # Replace 'null' with a public /29 CIDR block for BGP routing (e.g. netris_cloudsim_bgp_cidr: 45.38.161.0/29)
+   # Replace 'null' with a public /29 or /30 CIDR block for BGP routing (e.g. netris_cloudsim_bgp_cidr: 45.38.161.0/30)
    netris_cloudsim_bgp_cidr: null
 
    # NAT CIDR Block
