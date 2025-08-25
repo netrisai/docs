@@ -361,7 +361,7 @@ AI Specific Functions
       - N/A
       - TBD
       - TBD
-      - Mar/2025
+      - Coming Soon
    *  - DPU/Host zero-touch configuration
       - Automatically configure IP addresses, routing, RoCE and other DPU/SuperNIC specific configuration on GPU servers
       - ✔
@@ -391,7 +391,7 @@ Compute Platform Integrations
       - ✔
    *  - Apache Cloud Stack
       - Netris VXLAN isolation & VR replacement
-      - Mar/2025
+      - Coming Soon
       - ✔
       - TBD
       - TBD
@@ -521,7 +521,7 @@ Hypervisor/Worker node specific functionality
       - TBD
    *  - HBN  Host-based networking.
       - Terminate VTEPs on the hypervisor host. Scale beyond VLAN limits
-      - Dec/2024
+      - Coming Soon
       - TBD
       - ✔
       - TBD
@@ -558,38 +558,25 @@ SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access 
       - RAM
       - Disk
       - Performance (w/ 100 NAT rules)
-   *  - SoftGate
-      - Bare metal cloud site, Edge site, Remote office.
-      - ✔
-      - Single
-      - VLAN
-      - Linux w/ Netris optimizations
-      - Active/Standby - 2 nodes
-      - Dot1q: Equinix Metal, PhoenixNAP, pre-configured VLAN-range on any Ethernet switches.
-      - Any
-      - Intel or AMD
-      - 16-64GB
-      - 300GB
-      - Dual Gold 6336Y (48c x 2.3GHz) - 11Gbps / 1.8Mpps
    *  - SoftGate PRO
       - Private Cloud, Public Cloud Border Gateway, Enterprise Cloud, Vmware NSX alternative.
       - ✔
       - Single
       - VLAN
       - Netris DPDK
-      - Active/Standby - 2 nodes
+      - Active/Active - Horizontally scalable
       - Netris Switch-Fabric
       - Nvidia Connect-X 5, 6 100Gbe
       - Intel XEON (required for DPDK)
       - 128GB
       - 300GB
       - Intel XEON Platinum 20+ cores - 100Gbps / 25Mpps
-   *  - SoftGate HS (HyperScale)
+   *  - SoftGate HS (HyperScaler)
       - Scalable GPU & CPU Cloud Services Provider.
       - ✔
       - Multi
       - VXLAN
-      - Linux w/ Netris optimizations
+      - Linux w/ Netris optimizations. XDP acceleration coming soon.
       - Active/Active - Horizontally scalable
       - Netris Switch-Fabric
       - Any OK. Nvidia Connect-X is recommended
@@ -597,19 +584,6 @@ SoftGate is Netris data plane for Internet Gateway, NAT Gateway, Network Access 
       - 128-256GB
       - 300GB
       - Dual Platinum 8352Y (64c x 2.2GHz) - 22Gbps / 3.5 Mpps
-   *  - SoftGate HS PRO
-      - Scalable GPU & CPU Cloud Services Provider.
-      - 2025/Q2
-      - Multi
-      - VXLAN
-      - Netris XDP
-      - Active/Active - Horizontally scalable
-      - Netris Switch-Fabric
-      - Nvidia Connect-X 5, 6, 7
-      - Intel, AMD (TBD)
-      - 256GB+
-      - 300GB
-      - TBD
 
 ============================================
 Netris and NOS versions compatibility matrix
@@ -620,41 +594,61 @@ Netris and NOS versions compatibility matrix
 
    * - **Netris Version**
      - **Switch & OS**
-     - **Bare Metal Cloud**
-     - **SoftGate OS**
+     - **SoftGate PRO OS**
+     - **SoftGate HS OS**
      - **Availability**
+   * - 4.5.2
+     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - Ubuntu 20.04
+     - Ubuntu 24.04
+     - ✔
+   * - 4.5.1
+     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - Ubuntu 20.04
+     - Ubuntu 24.04
+     - ✔
+   * - 4.5.0
+     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - Ubuntu 20.04
+     - Ubuntu 24.04
+     - ✔
+   * - 4.4.1
+     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - Ubuntu 20.04
+     - Ubuntu 24.04
+     - ✔
    * - 4.4.0
-     - Nvidia Cumulus 5.11, Dell SONiC 4.4, EdgeCore SONiC 202211-331
-     - Equinix Metal, PhoenixNAP BMC
-     - SoftGate HS: Ubuntu 24.04, SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
+     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331
+     - Ubuntu 20.04
+     - Ubuntu 24.04
      - ✔
    * - 4.3.0
      - Nvidia Cumulus 5.9, Dell SONiC 4.1, EdgeCore SONiC 12.3
-     - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04 (non-pro)
+     - Ubuntu 20.04
+     - N/A
      - ✔
    * - 4.2.0
      - Nvidia Cumulus 5.7, Dell SONiC 4.1, EdgeCore SONiC 12.3
-     - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
+     - Ubuntu 20.04
+     - N/A
      - ✔
    * - 4.1.1
      - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
-     - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
+     - Ubuntu 20.04
+     - N/A
      - ✔
    * - 4.0.0
      - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
-     - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
+     - Ubuntu 20.04
+     - N/A
      - ✔
    * - 3.5.0
      - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
-     - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
+     - Ubuntu 20.04
+     - N/A
      - ✔
    * - 3.4.1
      - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
-     - Equinix Metal, PhoenixNAP BMC
-     - SoftGate Pro: Ubuntu 20.04, SoftGate: Ubuntu 22.04
+     - Ubuntu 20.04
+     - N/A
      - ✔
