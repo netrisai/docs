@@ -40,6 +40,9 @@ Based on a Server Cluster Template, Netris will:
 
 Here are several template examples followed by detailed descriptions of every field.
 
+.. warning::
+   For l3vpn type to function properly, the /31 links' addresses must be prepopulated. This is best done with Terraform during the server onboarding phase. See :doc:`Netris Terraform Provider </terraform-integration>` for details.
+
 Server Cluster Template Examples:
 ---------------------------------
 
