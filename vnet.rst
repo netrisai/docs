@@ -17,12 +17,12 @@ Introduction
 
 A **V-Net (Virtual Network)** is a Netris construct for grouping switch ports into a defined network segment—much like a traditional VLAN or a public cloud subnet.
 
-To build a V-Net you only need to supply **a list of switch ports**, **a name**, :doc:`parent VPC </vpc>`, **and site(s)**. Optionally IP subnet, gateway, and DHCP settings.
+To build a V-Net you only need to supply **a list of switch ports**, **a name**, **parent** :doc:`VPC </vpc>`, **and site(s)**. Optionally IP subnet, gateway, and DHCP settings.
 
 Netris, having already configured the EVPN underlay, then automatically pushes the entire under-the-hood V-Net configuration to every Ethernet switch and DPU in the fabric:
 
 * **VLAN-to-VNI mapping**, when needed
-* **Anycast gateway** IP/MAC on every leaf that hosts the V-Net, when a gateway is specified
+* **Anycast gateway IP/MAC** on every leaf that hosts the V-Net, when a gateway is specified
 * **Assign switch** ports to the appropriate VLANs or configure L3 physical/subinterfaces
 * **Set MTU**
 * Configure **custom LLDP TLVs**
@@ -31,14 +31,14 @@ Netris V-Net supports **two transport modes**:
 
 * **L2VPN** (Layer 2 Virtual Private Network) is similar to a traditional VLAN with modern and scalable implementation. It is typically used for front-end (north-south) or management/out-of-band networks. Add a gateway, and it behaves like a VLAN with an SVI / IRB.
 
-  L2VPN implemented with VXLAN (Virtual Extensible LAN) transport is a technology that enables the creation of Layer 2 switched overlays on top of a Layer 3 routed infrastructure. Often used in data centers to provide flexibility and scalability, VXLAN encapsulates Ethernet frames within UDP packets, enabling Layer 2 segments to span across a routed network.
+  L2VPN is implemented with VXLAN (Virtual Extensible LAN) transport and is a technology that enables the creation of Layer 2 switched overlays on top of a Layer 3 routed infrastructure. Often used in data centers to provide flexibility and scalability, VXLAN encapsulates Ethernet frames within UDP packets, enabling Layer 2 segments to span across a routed network.
   EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distribute MAC address information and manage traffic to enable efficient and scalable Layer 2 connectivity.
 
 * **L3VPN** is typically used for back-end (east–west) connectivity in GPU clusters on Ethernet-based AI fabrics such as NVIDIA Spectrum-X. Built as one mini-subnet per switch port, a VXLAN L3VPN is conceptually similar to MPLS L3VPN in provider networks.
 
   VXLAN L3VPN is implemented by extending VXLAN's overlay capabilities to support Layer 3 routing between different Layer 2 networks (VNIs). This is achieved by using an IP VRF and a Layer 3 VNI (VXLAN Network Identifier) within the VXLAN tunnel to forward routed traffic between VNIs. Essentially, VXLAN provides the encapsulation and tunneling, while EVPN (Ethernet VPN) distributes reachability information using BGP.
 
-  Each switch port gets its own /31 IPv4 (RFC 3021) or /127 IPv6 (RFC 6164) address; the leaf’s address becomes the server’s default gateway. All of those “2 host” subnets are advertised inside the VPC's VRF, so every server can reach every other purely through routing—there is no shared Layer-2 broadcast domain.
+  Each switch port gets its own /31 IPv4 (`RFC 3021 <https://datatracker.ietf.org/doc/html/rfc3021>`_) or /127 IPv6 (`RFC 6164 <https://datatracker.ietf.org/doc/html/rfc6164>`_) address; the leaf’s address becomes the server’s default gateway. All of those “2 host” subnets are advertised inside the VPC's VRF, so every server can reach every other purely through routing—there is no shared Layer-2 broadcast domain.
 
 L2VPN V-Nets
 ----------------
@@ -51,10 +51,10 @@ Every V-Net must include:
   - VLAN ID (for L2VPN V-Nets), which Netris will assign when set to Automatic,
   - Owner administering the V-Net,
   - V-Net state,
-  - List of switch ports to include in the V-Net, which can be explicitly listed or referenced through :ref:`Tags <tags>`.
+  - List of switch ports to include in the V-Net, which can be explicitly listed or referenced through :ref:`Labels <tags>`.
 
 Optionally V-Net definition can also include:
-  - :ref:`Tags <tags>` for dynamic switch port inclusion into the V-Net,
+  - :ref:`Labels <tags>` for dynamic switch port inclusion into the V-Net,
   - List of collaborators (Guest tenants) who can add or remove switch ports to and from the V-Net, but not edit any other properties of the V-Net,
   - IPv4 or IPv6 Gateway (for L2VPN V-Nets) to make the V-Net routable inside the VPC, i.e., add an SVI to the VLAN,
   - DHCP scope and option set (for L2VPN V-Nets),
@@ -105,7 +105,7 @@ Netris also enables you to define Custom DHCP Options.
 V-Net Fields explained
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: V-Net Fields
+.. list-table::
    :header-rows: 1
 
    * - **Field**
@@ -145,34 +145,34 @@ V-Net Fields explained
      - VLAN tags are only significant on each port’s ingress/egress unless VLAN aware mode is used.
 
 Advanced V-Net Fields explained
-^^^^^^^^^^^^^^^^^^^^^^^^
-.. list-table:: V-Net Fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. list-table::
    :header-rows: 1
 
-   * - Field
+   * - **Field**
      - What it does
      - When it appears
-   * - L3VPN
+   * - **L3VPN**
      - Puts the V-Net in Layer-3 mode: Netris assigns each switch port a /31 and sets the leaf’s IP as the host’s gateway.
      - Ethernet fabrics only. Enabling L3VPN forces VLAN ID = Disabled.
-   * - VLAN-aware
+   * - **VLAN-aware**
      - Lets one V-Net carry multiple VLAN tags inside a single VXLAN ID. Think of this like Q-in-Q, but it’s Q-in-VxLAN.
      - Requires switches that support VLAN-aware bridging.
-   * - Guest Tenants (Collaborators)
+   * - **Guest Tenants** (Collaborators)
      - Admin units that may add/remove switch ports but cannot change core settings.
      - Optional; owner always retains full control.
-   * - Anycast MAC address
+   * - **Anycast MAC address**
      - Overrides the auto-generated anycast MAC.
      - Leave blank to use the default.
-   * - VXLAN ID
+   * - **VXLAN ID**
      - VXLAN Network Identifier (1 – 16777216).
      - Auto-assigned unless you enter a value.
-   * - IPv4 Gateway / IPv6 Gateway
+   * - **IPv4 Gateway / IPv6 Gateway**
      - Anycast gateway IPs for Layer-3-enabled L2VPN.
      - Hidden when L3VPN is on. Leave blank for pure Layer-2 V-Net. Must be configured under ``Network -> IPAM`` as a subnet with purpose set to ``common``, assigned to the Owner, and available in the site where V-Net is intended to span.
 
 .. warning::
-    Many switches cannot autodetect 1Gbps ports. If attaching hosts with 1Gbps ports to 10Gbps switch ports, set the speed for the given Switch Port from Auto(default) to 1Gbps. You can edit a port in ``Network -> Network Interfaces`` individually or in bulk.
+    Many switches cannot autodetect 1Gbps link speed. If attaching hosts with 1Gbps NICs to 10Gbps switch ports, set the speed for the given Switch Port from Auto(default) to 1Gbps. You can edit a port in ``Network -> Network Interfaces`` individually or in bulk.
 
 
 
@@ -193,31 +193,33 @@ Any V-Net may span multiple sites. If the V-Net spans multiple sites and you add
 
 Link Aggregation and Multihoming
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Link Aggregation (LAG), also known as link bundling, Ethernet/network/NIC bonding, or port teaming, is a method of combining (aggregating) multiple network interfaces to increase throughput beyond what a single switch port could provide and/or provide redundancy in case one of the links fails.
+**Link Aggregation (LAG)**, also known as link bundling, Ethernet/network/NIC bonding, or port teaming, is a method of combining (aggregating) multiple network interfaces to increase throughput beyond what a single switch port could provide and/or provide redundancy in case one of the links fails.
+
 An endpoint may be connected to a single switch with multiple cables, which are aggregated into a single logical bonded interface. This is known as single-homing.
+
 An endpoint may be connected to two or more switches simultaneously, with these connections aggregated into a single logical bonded interface. Often done to eliminate single points of hardware failure, this method is known as multi-homing.
 
 .. image:: images/lag_diagram.png
     :align: center
     :alt: LAG diagram
 
-For best results, Netris recommends enabling Link Aggregation Control Protocol (LACP/802.3ad) when configuring server-side bonding.
+For best results, Netris recommends enabling **Link Aggregation Control Protocol (LACP/802.3ad)** when configuring server-side bonding.
 
 Netris fully supports both single-home and multi-home use cases, and for multi-home use cases, Netris supports EVPN-MH and MC-LAG, subject to switch hardware support.
 
-* EVPN-MH (recommended by Netris) is a standardized way to multi-home a device and uses BGP EVPN with Ethernet Segment Identifiers (ESI) for control plane and avoids loops with Designated Forwarder (DF) election. It supports all-active and single-active configurations, offering quick convergence via aliasing and multi-homing. Works with VXLAN overlays.
-* MC-LAG (or MLAG) is a switch vendor feature that extends LACP across two switches, avoiding loops with a shared control domain. It requires ICCP (Inter-Chassis Control Protocol), one or more peer-links, and typically scales to two devices, providing active-active L2 forwarding. Convergence and scaling are limited compared to EVPN-MH
+* **EVPN-MH** (recommended by Netris) is a standardized way to multi-home a device. It uses BGP EVPN with Ethernet Segment Identifiers (ESI) for control plane and Designated Forwarder (DF) election to avoid loops. EVPN-MH works with VXLAN overlays, supports all-active and single-active configurations, and offers quick convergence via aliasing and multi-homing.
+* **MC-LAG** (or MLAG) is a switch vendor feature that extends LACP across two switches, avoiding loops with a shared control domain. It requires ICCP (Inter-Chassis Control Protocol), one or more peer-links, and typically scales to two devices, providing active-active L2 forwarding. Convergence and scaling are limited compared to EVPN-MH
 
 Ethernet VPN Multi-Homing (EVPN-MH)
 """"""""""""""""""""""""""""""""""""
-Ethernet VPN Multi-Homing (EVPN-MH) is a standards-based network feature that allows a single endpoint to connect to two or more switches for redundancy and load sharing. This setup ensures that if one switch or link fails, traffic can continue to flow through the remaining connections without needing to reconfigure the network.
+**Ethernet VPN Multi-Homing** (EVPN-MH) is a standards-based network feature that allows a single endpoint to connect to two or more switches for redundancy and load sharing. This setup ensures that if one switch or link fails, traffic can continue to flow through the remaining connections without needing to reconfigure the network.
 
 You can configure EVPN-MH in Netris in one of two ways: **Automatic Link Aggregation** or **Server Object custom JSON**.
 
 Automatic Link Aggregation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Automatic Link Aggregation is a Netris feature that allows Netris to automatically create a bond interface for each switch port that is added to a V-Net. This prepares the network side to support bonded server connections without requiring manual configuration in the controller or switch port downtime.
+**Automatic Link Aggregation** is a Netris feature that allows Netris to automatically create a bond interface for each switch port that is added to a V-Net. This prepares the network side to support bonded server connections without requiring manual configuration in the controller or switch port downtime.
 
 The behavior of the bond is determined entirely by the **server-side configuration**. This gives the server administrator direct control over bonding behavior, enabling adjustments without waiting for network team changes, and allowing deployments to be adapted quickly and efficiently.
 
@@ -225,8 +227,8 @@ The behavior of the bond is determined entirely by the **server-side configurati
 * Active/Active with LACP: If the server bond uses LACP, Netris detects the LACP negotiation and automatically determines which switches and switch ports the member links connect to. It then configures EVPN-MH on those switches and ports, allowing the server to take advantage of multi-homing with active/active load sharing and fault tolerance.
 
 To enable Automatic Link Aggregation
-* Navigate to ``Network -> Inventory Profiles``.
-* Edit the Inventory Profile assigned to relevant switches and enable the ``Automatic Link Aggregation`` checkbox.
+  * Navigate to ``Network -> Inventory Profiles``.
+  * Edit the Inventory Profile assigned to relevant switches and enable the ``Automatic Link Aggregation`` checkbox.
 
 .. image:: images/inventory-profile-automatic-link-aggregation.png
    :align: center
@@ -270,11 +272,11 @@ In a server object definition, Netris supports the use of optional JSON snippets
     }
 
 .. warning::
-    The JSON method and Automatic Link Aggregation serve the same purpose. If Automatic Link Aggregation is turned on, any JSON entries are simply ignored.
+    The JSON method and Automatic Link Aggregation serve the same purpose. If Automatic Link Aggregation is turned on, any JSON entries are ignored.
 
 MC-LAG
 """""""""""""""""""""""
-Mult-chassis Link Aggregation (MC-LAG) is a switch vendor's proprietary link aggregation method available to you and supported by Netris. Please check our :ref:`Overlay Network Functions <overlay-network-functions>` to verify which switches support this functionality.
+**Mult-chassis Link Aggregation** (MC-LAG) is a switch vendor's proprietary link aggregation method available to you and supported by Netris. Please check our :ref:`Overlay Network Functions <overlay-network-functions>` to verify which switches support this functionality.
 
 In contrast to EVPN-MH, when using MC-LAG, users are expected to manually define the aggregation interfaces in the Netris controller and explicitly specify the switch ports to be added as bond members.
 
@@ -313,6 +315,7 @@ To define a peer link in Topology Manager
   - Select ``Create Link``.
   - In the *Create Link* dialog box, select the other switch in the MC-LAG pair in the *To Device* drop-down.
   - Set the ``MC-LAG Peer Link`` check box.
+  - ENter the shared MC-LAG IPv4 address and MC-LAG anycast MAC address.
 
 .. image:: images/create-mclag-peer-link.png
    :align: center
@@ -354,7 +357,7 @@ Click the ``ADD`` button and fill out other values as needed.
 
 You must set ``MC-LAG`` to *Enabled* and manually enter ``MC-LAG ID`` for Netris to configure the bond as MC-LAG instead of single switch LAG or EVPN-MH.
 
-.. important::
+.. tip::
     The MC-LAG ID value is locally significant to the switch pair.
 
 You can now add these new *aggX* interfaces to V-Nets the same way you normally add switch ports.
@@ -372,7 +375,7 @@ You can now add these new *aggX* interfaces to V-Nets the same way you normally 
 
 Labels
 ^^^^^^
-Labels (sometimes called tags) can be used to automatically place hundreds of switch ports into a V-Net. They can work together with :doc:`Server Cluster </server-cluster>` and manual methods, or they can replace those methods.
+Labels (sometimes called tags) can be used to automatically place hundreds of switch ports into a V-Net. They can work together with the :doc:`Server Cluster </server-cluster>` and manual methods, or they can replace those methods.
 
 Because Netris knows the topology, When you label server NICs, Netris can automatically identify the connected switch ports and place them into the V-Net.
 
@@ -400,7 +403,7 @@ When defining a server object in ``Network -> Inventory`` or ``Network -> Topolo
 
     <br />
 
-To automatically add switch ports to a V-Net based on a label:
+To automatically add switch ports to a V-Net based on a label, in the V-net definition dialog:
   - Click the ``Add Network Interface Label`` button.
   - Enter the “value” portion of the label. E.g., *storage* is the value of *iface.eth3=storage* label.
   - Specify whether you want the switch port to be 802.1q tagged or untagged.
@@ -524,7 +527,7 @@ L3VPNs are typically used for back-end (east–west) connectivity in GPU cluster
 
 L3VPN turns every switch port in the V-Net into its own **/31 IPv4 (or /127 IPv6) routed link** to the server. There is **no fabric-wide broadcast domain**; all traffic is routed from the first hop. The leaf-side switch port IP is the server’s gateway.
 
-This method is commonly used on rail-optimized AI fabrics where each server NIC is dedicated to a GPU and has an individual /31 IP. The thorough planning of the IP schema and server-side routing configuration is required for this to function. Contact Netris for more details.
+This method is commonly used on rail-optimized AI fabrics where each server NIC is dedicated to a GPU and has an individual /31 IP. Thorough planning of the IP schema and server-side routing configuration is required for this to function. Contact Netris for more details.
 
 Netris still moves packets over VXLAN and advertises the /31 prefixes with EVPN, giving you VRF-style isolation without MPLS.
 
@@ -545,7 +548,8 @@ L3VPN V-Nets require you to provide much the same information as the L2VPN V-Net
       - **VLAN ID** – optional; enter a tag to create a routed sub-interface instead.
       - **IPv4 / IPv6** – optional; leave blank to let Netris auto-allocate the /31 or a /127 pair.
 
-Typically /31s get assigned to links with Terraform during the onboarding phase.
+.. warning::
+    Typically /31s get assigned to links with Terraform during the onboarding phase.
 
 .. image:: images/vnet-l3vpn-set.png
     :align: center
