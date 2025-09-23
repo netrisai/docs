@@ -25,7 +25,7 @@ Steps to Install
 
 1. **Obtain the Installation File**
 
-  Contact Netris to obtain the required installation file (``netris-controller.tar.gz``).
+  Contact Netris to obtain the required installation file (``netris-controller-v4.x.x.tar.gz``).
 
 2. **Transfer the File to the Server**
 
@@ -37,7 +37,7 @@ Steps to Install
 
   .. code-block:: shell-session
 
-    tar -xzvf netris-controller.tar.gz
+    tar -xzvf netris-controller-v4.x.x.tar.gz
 
 4. **Navigate to the Installation Directory**
 
@@ -45,7 +45,7 @@ Steps to Install
    
   .. code-block:: shell-session
 
-    cd netris-controller
+    cd netris-controller-v4.x.x
 
 5. **Run the Installation Script**
 
