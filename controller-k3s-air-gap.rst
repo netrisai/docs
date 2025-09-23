@@ -49,11 +49,15 @@ Steps to Install
 
 5. **Run the Installation Script**
 
-   Execute the installation script with the ``ctl-hostname`` argument, specifying the desired hostname for your controller. For example:  
+   Execute the installation script. You can optionally specify the desired hostname for your controller using the ``ctl-hostname`` argument. For example:
 
   .. code-block:: shell-session
 
+    # With custom hostname
     ./install.sh --ctl-hostname netris.example.com
+   
+    # Or run with default settings
+    ./install.sh
 
 6. **Verify Installation**
 
