@@ -291,7 +291,7 @@ Overlay Network Functions
    *  - L3VPN VXLAN
       - L3VPN VXLAN, Commonly used in high performance computing, such as AI clusters.
       - ✔
-      - TBD
+      - ✔
       - TBD
       - ✔
    *  - EVPN-MH / VXLAN-ESI
