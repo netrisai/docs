@@ -2,7 +2,7 @@
     :description: Netris System Visibility, Monitoring & Telemetry
 
 **********************
-Visibility (Telescope)
+Graph Boards
 **********************
 
 Graph Boards
