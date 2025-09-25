@@ -14,6 +14,7 @@
 
 import sys
 import os
+import re
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -118,7 +119,7 @@ html_theme_options = {
     'analytics_id': 'UA-152905529-2',  #  Provided by Google in your dashboard
     'analytics_anonymize_ip': False,
     'logo_only': True,
-    'display_version': True,
+#    'display_version': True,
 #    'prev_next_buttons_location': 'bottom',
     'prev_next_buttons_location': 'both',
     'style_external_links': False,
@@ -351,10 +352,6 @@ else:
 	# set this build's current version by looking at the branch
 	current_version = repo.active_branch.name
 
-# rename the 'master' bracnh to be version = 'latest'
-if current_version == 'master':
-	current_version = 'latest'
-
 # tell the theme which version we're currently on ('current_version' affects
 # the lower-left rtd menu and 'version' affects the logo-area version)
 html_context['current_version'] = current_version
@@ -372,19 +369,17 @@ html_context['versions'] = list()
 
 # get list of remote branches, excluding HEAD and gh-pages
 remote_refs = repo.remote().refs
-versions = list()
-for ref in remote_refs:
-	ref = ref.name.split('/')[-1]
-	if ref != 'HEAD' and ref != 'gh-pages':
-		versions.append( ref )
+branches = [ref.name.split('/')[-1] for ref in remote_refs if ref.name.split('/')[-1] not in ('HEAD', 'gh-pages')]
 
-for version in versions:
+# Filter semver branches only
+semver_branches = [b for b in branches if re.match(r'^\d+\.\d+(\.\d+)?$', b)]
 
-	# special override to rename 'master' branch to 'latest'
-	if version == 'master':
-		version = 'latest'
+# Add all semver branches
+for version in sorted(semver_branches, key=lambda s: list(map(int, s.split('.')))):
+    html_context['versions'].append((version, f'/docs/{language}/{version}/'))
 
-	html_context['versions'].append( (version, '/docs/' +language+ '/' +version+ '/') )
+# Always include "latest" (alias for highest semver, handled in updatePages.sh)
+html_context['versions'].append(('latest', f'/docs/{language}/latest/'))
 
 # DOWNLOADS
 

@@ -5,8 +5,8 @@ set -x
 # INSTALL DEPENDS #
 ###################
 
-apt-get update
-apt-get -y install git git-lfs rsync python3-pip python3-virtualenv python3-setuptools
+sudo apt-get update
+sudo apt-get -y install git git-lfs rsync python3-pip python3-virtualenv python3-setuptools
 
 python3 -m pip install --upgrade sphinx-rtd-theme==3.0.2 importlib-metadata==8.7.0 gitpython docutils==0.21.2 rinohtype pygments sphinx-copybutton sphinx-tabs
 
@@ -36,18 +36,19 @@ docroot=`mktemp -d`
 make clean
 
 # get a list of branches, excluding 'HEAD' and 'gh-pages'
-versions="`git for-each-ref '--format=%(refname:lstrip=-1)' refs/remotes/origin/ | grep -viE '^(HEAD|gh-pages)$'`"
+branches="`git for-each-ref '--format=%(refname:lstrip=-1)' refs/remotes/origin/ | grep -viE '^(HEAD|gh-pages)$'`"
 
-for current_version in ${versions}; do
+# find version-like branches (x.y.z)
+version_branches=$(echo "$branches" | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V)
+
+# latest = highest x.y.z branch
+latest_branch=$(echo "$version_branches" | tail -n 1)
+
+for current_version in ${branches}; do
 
 	# make the current language available to conf.py
 	export current_version
 	git checkout -B ${current_version} refs/remotes/origin/${current_version}
-
-	# rename "master" to "latest"
-	if [[ "${current_version}" == "master" ]]; then
-		current_version="latest"
-	fi
 
 	echo "INFO: Building sites for ${current_version}"
 
@@ -78,6 +79,23 @@ for current_version in ${versions}; do
   touch _build/epub/Netrisdocs.epub
   mkdir -p "${docroot}/manifests/${languages}/${current_version}"
   cp "_build/epub/Netrisdocs.epub" "${docroot}/manifests/${languages}/${current_version}/netris-docs_${languages}_${current_version}.epub"
+
+  ##########
+  # ALIAS: latest
+  ##########
+  if [[ "${current_version}" == "${latest_branch}" ]]; then
+      echo "INFO: Aliasing ${current_version} as latest"
+
+      # HTML alias
+      rsync -a "_build/html/${languages}/${current_version}/" "_build/html/${languages}/latest/"
+
+      # PDF alias
+      mkdir -p "${docroot}/manifests/${languages}/latest"
+      cp "_build/rinoh/ReadtheDocsTemplate.pdf" "${docroot}/manifests/${languages}/latest/netris-docs_${languages}_latest.pdf"
+
+      # EPUB alias
+      cp "_build/epub/Netrisdocs.epub" "${docroot}/manifests/${languages}/latest/netris-docs_${languages}_latest.epub"
+  fi
 
   # copy the static assets produced by the above build into our docroot
   rsync -av "_build/html/" "${docroot}/"
@@ -149,6 +167,9 @@ msg="Updating Docs for commit ${GITHUB_SHA} made on `date -d"@${SOURCE_DATE_EPOC
 git commit -am "${msg}"
 
 # overwrite the contents of the gh-pages branch on our github.com repo
+# git push deploy gh-pages --force
+
+echo "INFO: Deploying to gh-pages from ${GITHUB_REF_NAME}"
 git push deploy gh-pages --force
 
 popd # return to main repo sandbox root
