@@ -351,10 +351,6 @@ else:
 	# set this build's current version by looking at the branch
 	current_version = repo.active_branch.name
 
-# rename the 'master' bracnh to be version = 'latest'
-if current_version == 'master':
-	current_version = 'latest'
-
 # tell the theme which version we're currently on ('current_version' affects
 # the lower-left rtd menu and 'version' affects the logo-area version)
 html_context['current_version'] = current_version
@@ -370,21 +366,26 @@ html_context['languages'] = [ ('en', '/en/' +current_version+ '/') ]
 # POPULATE LINKS TO OTHER VERSIONS
 html_context['versions'] = list()
 
+import re
+
 # get list of remote branches, excluding HEAD and gh-pages
 remote_refs = repo.remote().refs
 versions = list()
 for ref in remote_refs:
 	ref = ref.name.split('/')[-1]
-	if ref != 'HEAD' and ref != 'gh-pages':
+	if ref not in ('HEAD', 'gh-pages'):
 		versions.append( ref )
 
 for version in versions:
 
-	# special override to rename 'master' branch to 'latest'
-	if version == 'master':
-		version = 'latest'
+	# Only include semantic version branches (x.y.z) in the selector
+    if re.match(r'^\d+\.\d+\.\d+$', version):
+        html_context['versions'].append(
+            (version, f'/docs/{language}/{version}/')
+        )
 
-	html_context['versions'].append( (version, '/docs/' +language+ '/' +version+ '/') )
+# Note: "latest" alias is handled in updatePages.sh,
+# so it gets built as its own directory and included automatically.
 
 # DOWNLOADS
 
