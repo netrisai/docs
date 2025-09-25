@@ -170,11 +170,11 @@ git commit -am "${msg}"
 # git push deploy gh-pages --force
 
 # Only deploy if this is the master branch
-if [[ "${GITHUB_REF}" == "refs/heads/master" ]]; then
-  echo "INFO: Deploying to gh-pages from ${GITHUB_REF}"
+if [[ "${GITHUB_REF_NAME}" == "master" ]]; then
+  echo "INFO: Deploying to gh-pages from ${GITHUB_REF_NAME}"
   git push deploy gh-pages --force
 else
-  echo "INFO: Skipping deploy (branch = ${GITHUB_REF})"
+  echo "INFO: Skipping deploy (branch = ${GITHUB_REF_NAME})"
 fi
 
 popd # return to main repo sandbox root
