@@ -378,11 +378,14 @@ for ref in remote_refs:
 
 for version in versions:
 
-	# Only include semantic version branches (x.y.z) in the selector
-    if re.match(r'^\d+\.\d+\.\d+$', version):
+    # Show only semver (x.y.z) and latest
+    if version == 'latest' or re.match(r'^\d+\.\d+\.\d+$', version):
         html_context['versions'].append(
-            (version, f'/docs/{language}/{version}/')
+            (version, '/docs/' + language + '/' + version + '/')
         )
+    else:
+        # Still built and deployed, but not listed in selector
+        pass
 
 # Note: "latest" alias is handled in updatePages.sh,
 # so it gets built as its own directory and included automatically.
