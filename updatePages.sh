@@ -169,13 +169,8 @@ git commit -am "${msg}"
 # overwrite the contents of the gh-pages branch on our github.com repo
 # git push deploy gh-pages --force
 
-# Only deploy if this is the master branch
-if [[ "${GITHUB_REF_NAME}" == "master" ]]; then
-  echo "INFO: Deploying to gh-pages from ${GITHUB_REF_NAME}"
-  git push deploy gh-pages --force
-else
-  echo "INFO: Skipping deploy (branch = ${GITHUB_REF_NAME})"
-fi
+echo "INFO: Deploying to gh-pages from ${GITHUB_REF_NAME}"
+git push deploy gh-pages --force
 
 popd # return to main repo sandbox root
 
