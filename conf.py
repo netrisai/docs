@@ -14,6 +14,7 @@
 
 import sys
 import os
+import re
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -366,29 +367,19 @@ html_context['languages'] = [ ('en', '/en/' +current_version+ '/') ]
 # POPULATE LINKS TO OTHER VERSIONS
 html_context['versions'] = list()
 
-import re
-
 # get list of remote branches, excluding HEAD and gh-pages
 remote_refs = repo.remote().refs
-versions = list()
-for ref in remote_refs:
-	ref = ref.name.split('/')[-1]
-	if ref not in ('HEAD', 'gh-pages'):
-		versions.append( ref )
+branches = [ref.name.split('/')[-1] for ref in remote_refs if ref.name.split('/')[-1] not in ('HEAD', 'gh-pages')]
 
-for version in versions:
+# Filter semver branches only
+semver_branches = [b for b in branches if re.match(r'^\d+\.\d+(\.\d+)?$', b)]
 
-    # Show only semver (x.y.z) and latest
-    if version == 'latest' or re.match(r'^\d+\.\d+\.\d+$', version):
-        html_context['versions'].append(
-            (version, '/docs/' + language + '/' + version + '/')
-        )
-    else:
-        # Still built and deployed, but not listed in selector
-        pass
+# Add all semver branches
+for version in sorted(semver_branches, key=lambda s: list(map(int, s.split('.')))):
+    html_context['versions'].append((version, f'/docs/{language}/{version}/'))
 
-# Note: "latest" alias is handled in updatePages.sh,
-# so it gets built as its own directory and included automatically.
+# Always include "latest" (alias for highest semver, handled in updatePages.sh)
+html_context['versions'].append(('latest', f'/docs/{language}/latest/'))
 
 # DOWNLOADS
 
