@@ -362,40 +362,6 @@ Example: Port forwarding. DNAT the traffic destined to 192.0.2.130:8080 to be fo
 
 --------------------------
 
-########
-SiteMesh
-########
-
-SiteMesh is a Netris service for site-to-site interconnection over the public Internet. SiteMesh automatically generates configuration for WireGuard to create encrypted tunnels between participating sites and automatically generates a configuration for FRR to run dynamic routing. Hence, sites learn how to reach each other over the mesh WireGuard tunnels. The SiteMesh feature requires a SoftGate node at each participating site.
-
-**Note: works only in the system default VPC (limitation is planned to be lifted in Netris v. 4.1.0).**
-
-Edit Network → Sites, do declare what sites should form a SiteMesh. See SiteMesh types described below.
-
-* **Disabled** - Do not participate in SiteMesh.
-* **Hub** - Hub sites form full-mesh tunnels with all other sites (Hub and non-Hub) and can carry transit traffic for non-Hub sites. (usually major data center sites)
-* **Spoke** - Spoke sites form tunnels with all Hub sites. Spoke to Spoke traffic will transit a Hub site. (small data center sites or major office sites)
-* **Dynamic Spoke** - Dynamic Spoke is like Spoke, but it will maintain a tunnel only with one Hub site, based on dynamic connectivity measurements underneath and mathematical modeling. (small office sites)
-
-Screenshot: Site Mesh parameter editing a Site under Network → Sites.
-
-.. image:: images/sitemesh_edit.png
-    :align: center  
-    
-You only need to define your site-to-site VPN architecture policy by selecting SiteMesh mode for every site. Netris will generate the WireGuard tunnels (using randomly generated keys, and generate FRR rules to get the dynamic routing to converge.
-
-.. image:: images/SiteMesh_modes.png
-    :align: center  
-    
-Check the Network → Site Mesh section for the listing of tunnel statuses.
-
-Screenshot: Listing of SiteMesh tunnels and BGP statuses (Net→Site Mesh)
-
-.. image:: images/SiteMesh_listing.png
-    :align: center  
-
---------------------------
-
 #############
 Looking Glass
 #############
