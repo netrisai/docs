@@ -244,6 +244,78 @@ Example: route-map
 
 --------------------------    
 
+eBGP Importing Non-Default Routes into a VPC
+-----------------------------------------------
+
+In multi-uplink deployments SoftGate Hyperscale (SG-HS) nodes can be eBGP peered with different upstream networks. It is common for one SoftGate to receive only a default route (0.0.0.0/0), while another receives additional, more specific prefixes (e.g., /24, /22, etc.).
+
+By default, Netris SoftGates only redistribute the default route into tenant VPCs, regardless of what other prefixes they receive from upstream peers. This ensures a consistent routing table across all SoftGates, but can lead to suboptimal routing, where traffic from the VPC is always routed to the SoftGate receiving the default, even if another SoftGate has a better path via specific prefixes.
+
+Starting with version 4.5.4, Netris introduces a mechanism to selectively import non-default routes into VPCs by tagging them with a special **BGP community: 0:7**. Routes marked with this community will be redistributed into tenant VPCs alongside the default.
+
+How to Import Non-Default Prefixes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You have two options for tagging the desired prefixes with the required 0:7 community.
+
+**Option 1**: Tag Inbound in Netris (on SoftGate HS)
+
+If you manage the eBGP peer configuration using the Netris Controller, you can mark specific routes for redistribution into tenant VPCs by tagging them with the special BGP community 0:7.
+
+1.	Create a Prefix List under Network → E-BGP Objects
+
+.. tip::
+  Do not include 0.0.0.0/0 — it is automatically imported
+
+.. image:: images/prefix-list-imported-prefixes.png
+    :align: center
+    :alt: prefix list
+    :class: with-shadow
+
+.. raw:: html
+
+    <br/>
+
+2.	Create a Route Map under Network → E-BGP Route-Maps
+
+Add a new route-map that
+
+  -	Matches the prefix list created in Step 1
+  -	Sets the BGP community to ``0:7``
+
+.. image:: images/ebgp-route-map-set-07.png
+    :align: center
+    :alt: route-map
+    :class: with-shadow
+
+.. raw:: html
+
+    <br/>
+
+3.	Attach the Route Map to the eBGP Peer under Network → E-BGP
+
+Edit the relevant eBGP neighbor and under Advanced Settings, set the inbound route-map to the one created in Step 2
+
+.. image:: images/ebgp-advanced-inbound-route-map.png
+    :align: center
+    :alt: inbound route-map
+    :class: with-shadow
+
+.. raw:: html
+
+    <br/>
+
+Once applied, any matching prefixes received from this eBGP peer will be tagged with community 0:7, making them eligible for redistribution into tenant VPCs by the SoftGate.
+
+.. tip::
+  You can verify imported routes in the Network → Looking Glass section of the Controller UI.
+
+**Option 2**: Tag Outbound from External BGP Peer
+
+Alternatively, the external BGP speaker can set the 0:7 community on outbound updates before advertising routes to the SoftGate. This option does not require any configuration in Netris, as long as the incoming route already carries the community.
+
+This is useful when the upstream router is under the customer's control and managing policy from that side is preferred.
+
 ##############
 Static Routing
 ##############
