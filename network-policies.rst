@@ -45,7 +45,7 @@ Allocations are IP ranges allocated to an organization via RIR/LIR or private IP
 .. image:: images/ipam_tree_new.png
    :align: center
    :alt: IPAM Tree View
-   :class: with-
+   :class: with-shadow
 
 .. raw:: html
 
