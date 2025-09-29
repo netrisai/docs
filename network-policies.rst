@@ -9,7 +9,7 @@ Netris Controller is preconfigured with a default system VPC-1. Use the default 
 
 The VPC acts as a VRF in traditional networking, providing the ability to use overlapping IP ranges across various VPCs while maintaining safe management and operation of services.
 
-VPC can be created in the Network → VPC section. 
+VPC can be created in the Network → VPC section.
 
 Adding new VPC
 --------------
@@ -37,13 +37,19 @@ Each VPC has its own IPAM table.
 Allocations and Subnets
 -----------------------
 
-There are 2 main types of IP prefixes - allocation and subnet. Allocations are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network. Subnets are prefixes which are going to be used in services. Subnets are always childs of allocation. Allocations do not have parent subnets.
+There are 2 main types of IP prefixes - **allocation** and **subnet**.
+
+Allocations are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network. Subnets are prefixes which are going to be used in services. Subnets are always children of allocations. Allocations do not have parent subnets.
 
 
 .. image:: images/ipam_tree_new.png
    :align: center
    :alt: IPAM Tree View
-   :class: with-shadow
+   :class: with-
+
+.. raw:: html
+
+   <br>
 
 IPAM Tree View
 --------------------------
@@ -83,7 +89,7 @@ Add Allocation Window
 Add a Subnet
 ------------
 
-#. Navigate to Network → IPAM 
+#. Navigate to Network → IPAM
 #. Click the **Add** button
 #. Select **Subnet** from the bottom select box
 #. Fill in the rest of the fields based on the requirements listed below
@@ -136,10 +142,10 @@ Adding BGP Peers
 #. Click the Add button.
 
 
-.. .. csv-table:: BGP Peer Fields
-..    :file: tables/bgp-basic.csv
-..    :widths: 25, 75
-..    :header-rows: 0
+.. csv-table:: BGP Peer Fields
+    :file: tables/bgp-basic.csv
+    :widths: 25, 75, 25
+    :header-rows: 0
 
 Example: Declare a basic BGP neighbor.
 
@@ -155,10 +161,10 @@ BGP neighbor declaration can optionally include advanced BGP attributes and BGP 
 Click Advanced to expand the BGP neighbor add/edit window.
 
 
-.. .. csv-table:: BGP Peer Fields - Advanced
-..    :file: tables/bgp-advanced.csv
-..    :widths: 25, 75
-..    :header-rows: 0
+.. csv-table:: BGP Peer Fields - Advanced
+    :file: tables/bgp-advanced.csv
+    :widths: 25, 75, 25
+    :header-rows: 0
 
 --------------------------
 
@@ -176,32 +182,32 @@ BGP Objects
 
 IPv4 Prefix
 ^^^^^^^^^^^
-| The rules are defined one per line.  
+| The rules are defined one per line.
 | Each line in IPv4 prefix list field consists of three parts:
 
 * Action - Possible values are: permit or deny (mandatory).
 * IP Prefix - Any valid IPv4 prefix (mandatory).
-* Length - Possible values are: le <len>, ge <len> or ge <len> le <len>. 
+* Length - Possible values are: le <len>, ge <len> or ge <len> le <len>.
 
 Example: Creating an IPv4 Prefix list.
 
 .. image:: images/ipv4_prefix.png
     :align: center
-    
+
 IPv6 Prefix
 ^^^^^^^^^^^
 | Rules defined one per line.
-| Each line in IPv6 prefix list field consists of three parts: 
+| Each line in IPv6 prefix list field consists of three parts:
 
 * Action - Possible values are: permit or deny (mandatory).
 * IP Prefix - Any valid IPv6 prefix (mandatory).
-* Keyword - Possible values are: le <len>, ge <len> or ge <len> le <len>. 
+* Keyword - Possible values are: le <len>, ge <len> or ge <len> le <len>.
 
 Example: Creating an IPv6 Prefix list.
 
 .. image:: images/ipv6_prefix.png
     :align: center
-    
+
 Community
 ^^^^^^^^^
 | Community field has two parts:
@@ -227,22 +233,22 @@ BGP route-maps
 * **Policy** - Permit or deny the routes which match below all match clauses within the current sequence.
 * **Match** - Rules for route matching.
 
-  * **Type** - Type of the object to match: AS-Path, Community, Extended Community, Large Community, IPv4 prefix-list, IPv4 next-hop, Route Source, IPv6 prefix-list. IPv6 next-hop, local-preference, MED, Origin, Route Tag. 
-  * **Object** - Select an object from the list. 
-  
+  * **Type** - Type of the object to match: AS-Path, Community, Extended Community, Large Community, IPv4 prefix-list, IPv4 next-hop, Route Source, IPv6 prefix-list. IPv6 next-hop, local-preference, MED, Origin, Route Tag.
+  * **Object** - Select an object from the list.
+
 * **Action** - Action when all match clauses are met.
 
   * **Action type** - Define whether to manipulate a particular BGP attribute or go to another sequence.
   * **Attribute** - The attribute to be manipulated.
   * **Value** - New attribute value.
-    
+
 Example: route-map
 
 .. image:: images/route-map.png
     :align: center
     :class: with-shadow
 
---------------------------    
+--------------------------
 
 ##############
 Static Routing
@@ -253,22 +259,22 @@ Located under Network → Routes is a method for describing static routing polic
 | Typical use cases for static routing:
 
 * To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported.
-* Temporary interconnection with the old network for a migration. 
+* Temporary interconnection with the old network for a migration.
 * Routing a subnet behind a VM hypervisor machine for an internal VM network.
 * Specifically routing traffic destined to a particular prefix through an out-of-band management network.
 
 | Add new static route fields description:
 
-* **Prefix** - Route destination to match. 
+* **Prefix** - Route destination to match.
 * **Next-Hop** - Traffic destined to the Prefix will be routed towards the Next-Hop. Note that static routes will be injected only on units that have the Next-Hop as a connected network.
 * **Description** - Free description.
 * **VPC** - Select a VPC to which the static route belongs.
-* **Site** - Site where Route belongs. 
-* **State** - Administrative (enable/disable) state of the Route. 
+* **Site** - Site where Route belongs.
+* **State** - Administrative (enable/disable) state of the Route.
 * **Apply to** -  Limit the scope to particular units. It's typically used for Null routes.
 
 
-Example: Default route pointing to a Next-Hop that belongs to one of V-Nets. 
+Example: Default route pointing to a Next-Hop that belongs to one of V-Nets.
 
 .. image:: images/static_route_empty.png
     :align: center
@@ -277,7 +283,7 @@ Example: Adding a back route to 10.254.0.0/16 through an out-of-band management 
 
 .. image:: images/static_route2_empty.png
     :align: center
-    
+
 Screenshot shows that the back route is actually applied on Softgate1 and Softgate2 .
 
 .. image:: images/static_route3.png
@@ -291,7 +297,7 @@ Screenshot shows that the back route is actually applied on Softgate1 and Softga
 NAT
 ###
 
-Netris SoftGate nodes are required forNAT (Network Address Translation) functionality to work. 
+Netris SoftGate nodes are required forNAT (Network Address Translation) functionality to work.
 
 **Note: works only in the system default VPC (limitation is planned to be lifted in Netris v. 4.1.0).**
 
@@ -301,7 +307,7 @@ To enable NAT for a given site, you first need to create a subnet with NAT purpo
 Adding an IP Subnet under Network → IPAM.
 
 
-1. Allocate a public IP subnet for NAT under Net→IPAM. 
+1. Allocate a public IP subnet for NAT under Net→IPAM.
 
 Example: Adding an IP allocation under Net→Subnets.
 
@@ -321,7 +327,7 @@ NAT rules are defined under Network → NAT.
     - Unique name.
   * - **State**
     - State of rule (enabled or disabled).
-  * - **Site** 
+  * - **Site**
     - Site to apply the rule.
   * - **Action**
     - *SNAT* - Replace the source IP address with specified NAT IP along with port overloading.
@@ -340,9 +346,9 @@ NAT rules are defined under Network → NAT.
     - *Address* - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses.
       *Port* - For DNAT only, to match a single destination port.
       *Ports* - For SNAT/ACCEPT only. Destination ports range  to match with this value (TCP/UDP).
-  * - **DNAT to IP** 
+  * - **DNAT to IP**
     - The global IP address for SNAT to be visible on the Public Internet. The internal IP address for DNAT to replace the original destination address with.
-  * - **DNAT to Port** 
+  * - **DNAT to Port**
     - The Port to which destination Port of the packet should be NAT'd.
   * - **Status**
     - Administrative state (enable/disable).
@@ -354,7 +360,7 @@ Example: SNAT all hosts on 10.0.1.0/24subnet to the Internet using 192.0.2.128as
 
 .. image:: images/create_snat_empty.png
     :align: center
-    
+
 Example: Port forwarding. DNAT the traffic destined to 192.0.2.130:8080 to be forwarded to the host 10.0.1.100 on port tcp/80.
 
 .. image:: images/create_dnat_empty.png
@@ -381,7 +387,7 @@ Example: listing BGP neighbors of a switch and number of received prefixes for t
 
 .. image:: images/lg_summary.png
     :align: center
-    
+
 Example: BGP Route - looking up V-Net subnet from switch11 perspective. Switch11 is load balancing between four available paths.
 
 .. image:: images/lg_bgp_route.png
@@ -397,7 +403,7 @@ Example: Ping.
 * **VPC** - select a VPC.
 * **BGP Summary** - Show brief summary of BGP adjacencies with neighbors, interface names, and EVPN prefixes received.
 * **VNI** - List VNIs learned.
-* **BGP EVPN** - List detailed EVPN routing information optionally for the given route distinguisher. 
+* **BGP EVPN** - List detailed EVPN routing information optionally for the given route distinguisher.
 * **MAC table** - List MAC address table for the given VNI.
 
 Example: Listing MAC addresses on VNI 50.
