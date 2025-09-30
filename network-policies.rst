@@ -253,6 +253,9 @@ By default, Netris SoftGates only redistribute the default route into tenant VPC
 
 Starting with version 4.5.4, Netris introduces a mechanism to selectively import non-default routes into VPCs by tagging them with a special **BGP community: 0:7**. Routes marked with this community will be redistributed into tenant VPCs alongside the default.
 
+.. warning::
+  Keep in mind that importing additional prefixes into VPCs increases the size of the routing table on SoftGates and switches. Ensure that your hardware can handle the increased load, especially if you plan to import many prefixes.
+
 How to Import Non-Default Prefixes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
