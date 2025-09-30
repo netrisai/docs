@@ -102,6 +102,102 @@ Netris also enables you to define Custom DHCP Options.
 
   <br />
 
+DHCP Relay
+^^^^^^^^^^^^^^^^^^^^^^^^
+Netris supports using an external DHCP server (outside of Netris) by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC.
+
+To configure DHCP Relay in a V-Net:
+ - Specify the VPC where the DHCP server is located.
+ - Enter the IP addresses of the primary and (optionally) backup DHCP servers.
+  
+.. tip::
+  In a VPC a DHCP Relay service and a DHCP service cannot be enabled simultaneously.
+
+.. image:: images/dhcp-relay.png
+    :alt: DHCP Relay
+    :align: center
+    :class: with-shadow
+
+.. raw:: html
+
+    <br />
+
+.. note::
+  * VPC peering is mandatory on Cumulus Linux fabrics. Without it, relay traffic cannot reach the DHCP server. Configure peering under Network → VPC Peering in the Controller.
+  * Non-overlapping IP ranges are required between the client VPCs (Coke and Pepsi) and the DHCP server’s VPC (Shared). The DHCP server must be able to route back to both Coke and Pepsi.
+
+.. raw:: html
+
+  <br />
+
+Example:
+""""""""
+
+Suppose you have tenant workloads in VPC Coke and VPC Pepsi. Both need DHCP, but you want to run a single DHCP service in VPC Shared.
+
+.. image:: images/dhcp-relay-diagram.png
+    :alt: DHCP Relay
+    :align: center
+    :class: with-shadow
+
+.. raw:: html
+
+  <br />
+
+1. In each tenant’s V-Net (Coke and Pepsi), enable DHCP Relay and set the DHCP server address to the IPs of the DHCP servers in VPC Shared.
+
+  .. image:: images/dhcp-relay-coke.png
+      :alt: DHCP Relay
+      :align: center
+      :class: with-shadow
+
+  .. raw:: html
+
+    <br />
+
+  .. image:: images/dhcp-relay-pepsi.png
+      :alt: DHCP Relay
+      :align: center
+      :class: with-shadow
+
+  .. raw:: html
+
+    <br />
+
+  .. image:: images/dhcp-relay-shared.png
+      :alt: DHCP Relay
+      :align: center
+      :class: with-shadow
+
+  .. raw:: html
+
+    <br />
+
+2. Establish VPC peering between Coke ↔ Shared and Pepsi ↔ Shared.
+
+  .. image:: images/dhcp-relay-vpc-peer-coke.png
+      :alt: DHCP Relay
+      :align: center
+      :class: with-shadow
+
+  .. raw:: html
+
+    <br />
+
+  .. image:: images/dhcp-relay-vpc-peer-pepsi.png
+      :alt: DHCP Relay
+      :align: center
+      :class: with-shadow
+
+  .. raw:: html
+
+    <br />
+
+
+Now:
+ - DHCP clients in the tenant VPC (Coke and Pepsi) broadcast their DHCP requests normally in their respective V-Nets
+ - Netris configures the fabric to forward these requests across the peering link to the DHCP server in the shared VPC.
+
 V-Net Fields explained
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
