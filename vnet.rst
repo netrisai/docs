@@ -196,7 +196,7 @@ Suppose you have tenant workloads in VPC Coke and VPC Pepsi. Both need DHCP, but
 
 Now:
  - DHCP clients in the tenant VPC (Coke and Pepsi) broadcast their DHCP requests normally in their respective V-Nets
- - Netris forwards these requests across the peering link to the DHCP server in the shared VPC.
+ - Netris configures the fabric to forward these requests across the peering link to the DHCP server in the shared VPC.
 
 V-Net Fields explained
 ^^^^^^^^^^^^^^^^^^^^^^^^
