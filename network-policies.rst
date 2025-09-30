@@ -247,14 +247,14 @@ Example: route-map
 eBGP Importing Non-Default Routes into a VPC
 -----------------------------------------------
 
-In multi-uplink deployments SoftGate Hyperscale (SG-HS) nodes can be eBGP peered with different upstream networks. It is common for one SoftGate to receive only a default route (0.0.0.0/0), while another receives additional, more specific prefixes (e.g., /24, /22, etc.).
+In multi-uplink deployments SoftGate Hyperscale (SG-HS) nodes can be eBGP peered with different upstream networks.
 
 By default, Netris SoftGates only redistribute the default route into tenant VPCs, regardless of what other prefixes they receive from upstream peers. This ensures a consistent routing table across all SoftGates, but can lead to suboptimal routing, where traffic from the VPC is always routed to the SoftGate receiving the default, even if another SoftGate has a better path via specific prefixes.
 
 Starting with version 4.5.4, Netris introduces a mechanism to selectively import non-default routes into VPCs by tagging them with a special **BGP community: 0:7**. Routes marked with this community will be redistributed into tenant VPCs alongside the default.
 
 .. warning::
-  Keep in mind that importing additional prefixes into VPCs increases the size of the routing table on SoftGates and switches. Ensure that your hardware can handle the increased load, especially if you plan to import many prefixes.
+  Importing additional prefixes into VPCs increases the size of the routing table on SoftGates and switches. Ensure that your hardware can handle the increased load, especially if you plan to import many prefixes.
 
 How to Import Non-Default Prefixes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
