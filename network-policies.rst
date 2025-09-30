@@ -310,6 +310,9 @@ Once applied, any matching prefixes received from this eBGP peer will be tagged 
 .. tip::
   You can verify imported routes in the Network → Looking Glass section of the Controller UI.
 
+.. warning::
+  When configuring an inbound route-map on an eBGP peer, an outbound route-map must also be set. If no outbound route-map is needed, create a dummy one that permits all routes without modification and attach it to the outbound direction.
+
 **Option 2**: Tag Outbound from External BGP Peer
 
 Alternatively, the external BGP speaker can set the 0:7 community on outbound updates before advertising routes to the SoftGate. This option does not require any configuration in Netris, as long as the incoming route already carries the community.
