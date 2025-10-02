@@ -836,7 +836,7 @@ If you need to shut down multiple nodes simultaneously:
 
    .. code-block:: bash
 
-      kubectl -nnetris-controller get pod -l app.kubernetes.io/name=mariadb-ha -o wide
+      kubectl -nnetris-controller get pod -l app.kubernetes.io/name=mariadb -o wide
 
 3. **Safe node shutdown sequence**:
 
