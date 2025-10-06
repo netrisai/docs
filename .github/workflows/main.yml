@@ -8,24 +8,21 @@ jobs:
 
   update_docs:
     runs-on: ubuntu-latest
-    container: debian:buster-slim
+  #  container: debian:bullseye-slim
 
     steps:
+      # Properly check out the branch that triggered this workflow
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
 
-    - name: Prereqs
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        set -x
-        apt-get update
-        apt-get install -y git
-        git clone "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
-      shell: bash
-
-    - name: Execute script to build our documentation and update pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        chmod +x updatePages.sh
-        ./updatePages.sh
-      shell: bash
+      # Install deps and run your build script
+      - name: Execute script to build our documentation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          chmod +x updatePages.sh
+          ./updatePages.sh
+        shell: bash
