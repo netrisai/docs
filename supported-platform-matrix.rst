@@ -392,7 +392,7 @@ Compute Platform Integrations
       - ✔
    *  - Apache Cloud Stack
       - Netris VXLAN isolation & VR replacement
-      - Coming Soon
+      - ✔
       - ✔
       - TBD
       - TBD
