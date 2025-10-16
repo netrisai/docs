@@ -65,8 +65,8 @@ Server specs:
      - **Minimum**
      - **Recommended**
    * - CPU (Modern Intel/AMD X86)
-     - 16 Cores
      - 32 Cores
+     - 64 Cores
    * - RAM
      - 128 GB
      - 256 GB
