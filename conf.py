@@ -394,12 +394,12 @@ rinoh_logo = 'images/logo-600.png'
 today_fmt = "%B %d, %Y"
 
 # settings for EPUB
-epub_basename = 'Netrisdocs'
+#epub_basename = 'Netrisdocs'
 
-html_context['downloads'] = list()
-html_context['downloads'].append( ('pdf', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
+#html_context['downloads'] = list()
+#html_context['downloads'].append( ('pdf', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
 
-html_context['downloads'].append( ('epub', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
+#html_context['downloads'].append( ('epub', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
 
 # Variables
 
