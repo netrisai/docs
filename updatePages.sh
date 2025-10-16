@@ -70,15 +70,15 @@ for current_version in ${branches}; do
 
   # PDF #
 #   sphinx-build -b rinoh . _build/rinoh -D language="${languages}"
-  touch _build/rinoh/ReadtheDocsTemplate.pdf
-  mkdir -p "${docroot}/manifests/${languages}/${current_version}"
-  cp "_build/rinoh/ReadtheDocsTemplate.pdf" "${docroot}/manifests/${languages}/${current_version}/netris-docs_${languages}_${current_version}.pdf"
+#  touch _build/rinoh/ReadtheDocsTemplate.pdf
+#  mkdir -p "${docroot}/manifests/${languages}/${current_version}"
+#  cp "_build/rinoh/ReadtheDocsTemplate.pdf" "${docroot}/manifests/${languages}/${current_version}/netris-docs_${languages}_${current_version}.pdf"
 
   # EPUB #
 #   sphinx-build -b epub . _build/epub -D language="${languages}"
-  touch _build/epub/Netrisdocs.epub
-  mkdir -p "${docroot}/manifests/${languages}/${current_version}"
-  cp "_build/epub/Netrisdocs.epub" "${docroot}/manifests/${languages}/${current_version}/netris-docs_${languages}_${current_version}.epub"
+#  touch _build/epub/Netrisdocs.epub
+#  mkdir -p "${docroot}/manifests/${languages}/${current_version}"
+#  cp "_build/epub/Netrisdocs.epub" "${docroot}/manifests/${languages}/${current_version}/netris-docs_${languages}_${current_version}.epub"
 
   ##########
   # ALIAS: latest
@@ -90,11 +90,11 @@ for current_version in ${branches}; do
       rsync -a "_build/html/${languages}/${current_version}/" "_build/html/${languages}/latest/"
 
       # PDF alias
-      mkdir -p "${docroot}/manifests/${languages}/latest"
-      cp "_build/rinoh/ReadtheDocsTemplate.pdf" "${docroot}/manifests/${languages}/latest/netris-docs_${languages}_latest.pdf"
+#      mkdir -p "${docroot}/manifests/${languages}/latest"
+#      cp "_build/rinoh/ReadtheDocsTemplate.pdf" "${docroot}/manifests/${languages}/latest/netris-docs_${languages}_latest.pdf"
 
       # EPUB alias
-      cp "_build/epub/Netrisdocs.epub" "${docroot}/manifests/${languages}/latest/netris-docs_${languages}_latest.epub"
+#      cp "_build/epub/Netrisdocs.epub" "${docroot}/manifests/${languages}/latest/netris-docs_${languages}_latest.epub"
   fi
 
   # copy the static assets produced by the above build into our docroot
@@ -156,8 +156,8 @@ git-lfs uninstall
 git-lfs install
 
 # Select the file types to be tracked by lfs
-git lfs track "*.pdf"
-git lfs track "*.epub"
+#git lfs track "*.pdf"
+#git lfs track "*.epub"
 
 # copy the resulting html pages built from sphinx above to our new git repo
 git add .
