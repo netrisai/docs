@@ -87,3 +87,9 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    accounts
    softgate-performance
    sandbox/Sandbox1/onprem-k8s
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Release Notes
+
+   release-notes/index
