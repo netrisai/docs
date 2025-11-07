@@ -193,7 +193,7 @@ Each object in the **Vnets** JSON array may include a combination of the followi
 
   - **postfix**: A string appended to the server cluster name to form the V-Net name.
   - **type**: A string specifying the type of V-Net (`l2vpn`, `l3vpn`, `netris-ufm`).
-  - **vlan**: A string specifying whether the V-Net is `tagged` or `untagged`.
+  - **vlan**: A string specifying whether the V-Net is `tagged` or `untagged`. Only `untagged` is permitted at this time.
   - **vlanID**: A string specifying the VLAN ID. Only `auto` is permitted at this time.
   - **serverNics**: An array of Netris server NIC names on the server that will be associated with this V-Net.
   - **ipv4Gateway**: When `type:l2vpn` one of the following values:
@@ -238,7 +238,7 @@ Each object in the **Vnets** JSON array may include a combination of the followi
      - ✅ required
      - ✅ required
    * - `vlan`
-     - ✅ required
+     - ✅ (must be "untagged")
      - ✅ (must be "untagged")
      - ❌
    * - `vlanID`
@@ -455,6 +455,7 @@ This is the primary behavioral change triggered by marking an endpoint as shared
   - Ensure every hypervisor in the VM mobility scope is included in the server cluster.
   - Ensure host networking is appropriately configured to work in a shared use case.
   - `type:l3vpn` is silently ignored.
+  - `vlan` key is silently ignored.
 
 Untagged VLAN on Shared Endpoints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
