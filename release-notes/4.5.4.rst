@@ -16,7 +16,6 @@ Features
 .. New capabilities visible to customers. One line each; optional 1–2 lines of context.
 
 - **EVPN-on-Host. Linux Host VTEP.** Any Ubuntu 24.04 host can be configured as an EVPN VTEP, therefore extending the VXLAN overlay into the host.
-- **Controller self-monitoring.** The controller now shows the health status of each node in the controller HA cluster and each service running on the controller.
 - **eBGP imports non-default routes.** The operator may now apply a BGP community 0:7 to signal Netris to import any non 0.0.0.0/0 eBGP prefixes into the VPC.
 - **Control plane verification of VTEP reachability.** Netris managed VTEPs (switches and Softgates) keep track of the reachability of other Netris VTEPs.
 - **CloudStack supported with Cumulus Linux.** CloudStack now integrates with Spectrum-X fabrics running Cumulus Linux.
@@ -28,8 +27,6 @@ Bug fixes
 - **DHCP Relay** now supports inter-VPC routing on all :ref:`supported-switch-hardware`.
 - **L3VPN** now includes  :ref:`Dell and Broadcom SONiC <overlay-network-functions>`.
 - **Controller Management Address** can now be explicitly specified and is correctly reflected in the “one-liner” install command.
-- **ZTP API Endpoint.**
-- **ZTP properties in Inventory Profiles.**
 - **Controller Management IP** can be explicitly configured in one-liner
 - **Performance and UI improvements.**
 
@@ -51,7 +48,6 @@ Bug fixes
   - Fixed NVUE check_signal monitor false positives on optical switch ports.
   - Fixed ACL creation time stamp.
   - Fixed RX values in graphs.
-  - Fixed ZTP filed auto-fill.
   - Fixed filter reset button in ACL listing
 
 - **Deprecated**
