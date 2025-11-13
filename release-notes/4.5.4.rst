@@ -1,0 +1,76 @@
+.. include:: ../_includes/links.rst
+
+.. meta::
+    :description: Netris Release Notes 4.5.4
+
+.. _release_4.5.4:
+
+Netris 4.5.4 (Nov/30/2025)
+==================================
+
+What's new in Netris 4.5.4?
+-----------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **EVPN-on-Host. Linux Host VTEP.** Any Ubuntu 24.04 host can be configured as an EVPN VTEP, therefore extending the VXLAN overlay into the host.
+- **Controller self-monitoring.** The controller now shows the health status of each node in the controller HA cluster and each service running on the controller.
+- **eBGP imports non-default routes.** The operator may now apply a BGP community 0:7 to signal Netris to import any non 0.0.0.0/0 eBGP prefixes into the VPC.
+- **Control plane verification of VTEP reachability.** Netris managed VTEPs (switches and Softgates) keep track of the reachability of other Netris VTEPs.
+- **CloudStack supported with Cumulus Linux.** CloudStack now integrates with Spectrum-X fabrics running Cumulus Linux.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- **DHCP Relay** now supports inter-VPC routing on all :ref:`supported-switch-hardware`.
+- **L3VPN** now includes  :ref:`Dell and Broadcom SONiC <overlay-network-functions>`.
+- **Controller Management Address** can now be explicitly specified and is correctly reflected in the “one-liner” install command.
+- **ZTP API Endpoint.**
+- **ZTP properties in Inventory Profiles.**
+- **Controller Management IP** can be explicitly configured in one-liner
+- **Performance and UI improvements.**
+
+  - Added NIC stats for Generic/agentless server type derived from switch ports.
+  - Improved database scalability in larger deployments.
+  - Server Cluster UI now displays members in alphabetical order.
+  - Rename Topology Export Full to Cut Sheet.
+  - CloudStack agent automatically generates ACLs for intra-subnet communication.
+  - Improved collectd optical values export.
+  - System ASN range is now editable.
+
+- **Bug fixes.**
+
+  - Fixed backend crash after creating LB service.
+  - Fixed the inability to edit NAT rules when a VPC filter is applied.
+  - Fixed Inventory Filtering failing under certain conditions.
+  - Fixed filtering of ports with unknown states under certain conditions.
+  - Fixed NHN ifupdown and netplan support in Spectrum-X v1.2
+  - Fixed NVUE check_signal monitor false positives on optical switch ports.
+  - Fixed ACL creation time stamp.
+  - Fixed RX values in graphs.
+  - Fixed ZTP filed auto-fill.
+  - Fixed filter reset button in ACL listing
+
+- **Deprecated**
+
+  - Routing On Host ASN, Routing Profile
+  - VM ASN
+  - SoftGate (generic flavor)
+  - Calico ASN
+  - Built-in chat.
+
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+
+.. End of file

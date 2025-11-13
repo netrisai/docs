@@ -83,7 +83,7 @@ Server specs:
      - Ubuntu 24.04
      - Ubuntu 24.04
 
-
+.. _supported-switch-hardware:
 
 =========================
 Supported Switch Hardware
