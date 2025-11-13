@@ -690,7 +690,7 @@ The verifier performs read-only checks without making changes:
 
 8. **NVN Congestion Control Verification**
 
-9. **IPG Verification**
+9. **Inter Packet Gap Verification**
 
    - Checks IPG register value for L3EVPN.
 
