@@ -1,8 +1,8 @@
 .. meta::
     :description: Netris Host Networking Plugin
 
-Netris Host Networking - Complete User Guide
-============================================
+Netris Host Networking
+======================
 
 Overview
 --------
