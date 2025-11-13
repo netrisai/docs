@@ -7,15 +7,12 @@ Netris Host Networking - Complete User Guide
 Overview
 --------
 
-The Netris Host Networking suite provides automated network configuration management tools for bare-metal servers.
-The suite consists of two main components: **Netris Host Networking (NHN)** and **NHN-DOCA**.
+The Netris Host Networking plugin provides automated network configuration management tools for bare-metal servers deployed on NVIDIA Spectrum-X east-west fabrics. The plugin consists of two main components: **Netris Host Networking (NHN)** and **NHN-DOCA** (NVIDIA DOCA configuration and verification).
 
 Netris Host Networking (NHN)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**NHN** is an automated network configuration management tool designed for bare-metal servers and DPUs.
-It automatically discovers and configures network interfaces based on LLDP (Link Layer Discovery Protocol) information received from network switches,
-enabling zero-touch network provisioning.
+**NHN** is an automated network configuration management service designed for the east-west fabric of bare-metal servers with BlueField3 SuperNICs and based on the Spectrum-X architecture. It automatically discovers and configures network interfaces based on LLDP (Link Layer Discovery Protocol) information received from network switches, enabling zero-touch server-side network configuration.
 
 **Key Features**
 
@@ -23,6 +20,24 @@ enabling zero-touch network provisioning.
 - **LLDP-Based Configuration** - Receives network configuration from ToR (Top-of-Rack) switches via LLDP.
 - **Dual Network Manager Support** - Works with both netplan (systemd-networkd) and ifupdown network managers.
 - **Configuration Caching** - Maintains configuration resilience when LLDP is temporarily unavailable.
+
+**How NHN Works**
+
+NHN runs continuously on Linux hosts, performing these tasks:
+
+#. Discovers network interfaces on the system
+#. Queries the LLDP daemon for configuration information
+#. Parses custom LLDP TLVs containing network settings
+#. Generates appropriate network configuration files
+#. Applies the configuration to activate network settings
+#. Caches configuration for resilience
+
+NHN works on a "push" model where network switches provide configuration to hosts using Netris proprietary LLDP TLVs, rather than hosts pulling configuration from a central server.
+
+NHN also periodically runs NHN-DOCA commands for configuration and verification of the BlueField3 SuperNICs.
+
+- ``bf3-config`` (BlueField-3 NIC configuration)
+- ``verifier`` (BlueField-3 NIC configuration verification)
 
 NHN-DOCA
 ~~~~~~~~
@@ -38,36 +53,46 @@ NHN-DOCA
 
 **Includes Two Utilities**
 
-- **bf3-config** - Automatically configures BlueField-3 devices for east-west fabric networks.
-- **verifier** - Validates configurations and reports issues via LLDP.
+- ``bf3-config`` - Automatically configures BlueField-3 devices for east-west fabric networks.
+- ``verifier`` - Validates configurations and reports issues via LLDP.
+
+**How NHN-DOCA works:**
+
+#. The ``bf3-config`` queries LLDP information from each network interface
+#. It extracts the connected switch name from LLDP data
+#. The switch name is matched against this regex pattern
+#. Only interfaces connected to matching switches are configured
+
+Before You Begin
+-----------------
 
 System Requirements
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 Operating System
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - Linux (tested on Ubuntu)
 
 Hardware Requirements (for NHN-DOCA)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - NVIDIA BlueField-3 NICs
 - Connected to NVIDIA Cumulus Linux switches
 - LLDP enabled on connected switches
 
 Dependencies
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 For NHN
-^^^^^^^
+"""""""
 
-- **lldpd** - LLDP daemon (required)
-- **systemd** (for netplan mode) or **ifupdown** (for interfaces mode)
-- **netplan.io** (if using netplan/systemd-networkd)
+- ``lldpd`` - LLDP daemon (required)
+- ``systemd`` (for netplan mode) or ``ifupdown`` (for interfaces mode)
+- ``netplan.io`` (if using netplan/systemd-networkd)
 
 For NHN-DOCA
-^^^^^^^^^^^^
+"""""""""""""
 
 - ``doca-host`` - DOCA host software stack
 - ``doca-ofed`` - NVIDIA OFED drivers for DOCA
@@ -76,10 +101,10 @@ For NHN-DOCA
 - ``doca-nvn-cc`` - NVN Congestion Control daemon
 
 Recommended Component Versions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Spectrum-X v1.2.0
-^^^^^^^^^^^^^^^^^^
+"""""""""""""""""
 
 .. list-table::
    :header-rows: 1
@@ -98,7 +123,7 @@ Spectrum-X v1.2.0
      - 2.9.0072-1
 
 Spectrum-X v1.3.0
-^^^^^^^^^^^^^^^^^^
+"""""""""""""""""
 
 .. list-table::
    :header-rows: 1
@@ -117,63 +142,51 @@ Spectrum-X v1.3.0
      - 2.10
 
 Permissions
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 - Must run as root (requires access to netlink and network configuration)
+
+Installation Overview
+~~~~~~~~~~~~~~~~~~~~~~
+
+1. Install the netris-hnp Netris Host Networking package.
+2. Review the configuration file ``/opt/netris/etc/netris.conf``.
+3. Download the NVIDIA dependencies for the BlueField-3 SmartNICs.
+4. Run the SmartNIC configurator ``/opt/netris/bin/bf3-config``.
+5. Verify the SmartNIC configuration with ``/opt/netris/bin/verifier``.
+6. Start the NHN daemon.
 
 Installation
 ------------
 
-Add the Netris Package Repository
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Add the Netris Package Repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Download and install the GPG key for the Netris repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
    wget -qO - https://repo.netris.ai/repo/public.key | sudo gpg --dearmor -o /usr/share/keyrings/netris.gpg
 
 Add the Netris repository to your system's sources list
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
    echo "deb [signed-by=/usr/share/keyrings/netris.gpg] http://repo.netris.ai/repo/ noble main" | sudo tee /etc/apt/sources.list.d/netris.list
 
-Install the Netris NHN Package
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2. Install the Netris NHN Package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
    sudo apt update && sudo apt install netris-hnp
 
-Configure BlueField3 NICs
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Execute the command to configure the BlueField-3 NICs:
-
-.. code-block:: bash
-
-   /opt/netris/bin/bf3-config
-
-*Note:* The configurator may prompt a server reboot.
-If the server reboots, run the configurator again to ensure proper configuration.
-
-Verify BlueField3 NIC Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To ensure that the BlueField-3 parameters are correctly configured and there are no errors, run the following command:
-
-.. code-block:: bash
-
-   /opt/netris/bin/verifier
-
 Configuration
 -------------
 
-Configuration File
-~~~~~~~~~~~~~~~~~~
+
+1. Review the Configuration File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Default location: ``/opt/netris/etc/netris.conf``
 
@@ -210,11 +223,9 @@ The configuration file uses INI format with sections for different components.
    network_plugin_run_interval = 20
 
 
-Configuration Options
-~~~~~~~~~~~~~~~~~~~~~
+**Configuration Options:**
 
 [paths] Section
-^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -230,7 +241,6 @@ Configuration Options
      - ``/etc/network/interfaces.d``
 
 [intervals] Section
-^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -249,7 +259,6 @@ Configuration Options
      - seconds
 
 [netris-controller] Section
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -276,20 +285,11 @@ Configuration Options
      - Network plugin update interval
      - 20 seconds
 
-Important: ew-switch-name-template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. important::
 
-This is the most important configuration parameter for NHN-DOCA.
-It's a regex pattern used to identify which network interfaces are connected to the east-west fabric.
+   The ``ew-switch-name-template`` parameter is critical for identifying which network interfaces are connected to the east-west fabric. It's a regex pattern used to identify which network interfaces are connected to the east-west fabric.
 
-**How it works**
-
-1. The bf3-config queries LLDP information from each network interface.
-2. It extracts the connected switch name from LLDP data.
-3. The switch name is matched against this regex pattern.
-4. Only interfaces connected to matching switches are configured.
-
-**Examples**
+**Examples:**
 
 .. code-block:: ini
 
@@ -302,71 +302,51 @@ It's a regex pattern used to identify which network interfaces are connected to 
    # Match any switch with 'fabric' in the name
    ew-switch-name-template = .*fabric.*
 
+
+**How it works**
+
+1. The bf3-config queries LLDP information from each network interface.
+2. It extracts the connected switch name from LLDP data.
+3. The switch name is matched against this regex pattern.
+4. Only interfaces connected to matching switches are configured.
+
+2. Configure BlueField3 NICs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Place the downloaded dependency packages in one of the following directories, depending on your Spectrum-X version:
+
+- /opt/nvidia/v1.2.0 for Spectrum-X v1.2
+- /opt/nvidia/v1.3.0 for Spectrum-X v1.3
+
+Execute the command to configure the BlueField3 NICs
+
+``/opt/netris/bin/bf3-config``
+
+Note: The configurator may prompt a server reboot. If the server reboots, run the configurator again to ensure proper configuration.
+
+3. Verify BlueField3 NICs Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To ensure that the BlueField3 parameters are correctly configured and there are no errors, run the following command
+
+``/opt/netris/bin/verifier``
+
+4. Start the NHN daemon
+~~~~~~~~~~~~~~~~~~~~~~~
+
+After preparing the server and (if applicable) the SmartNIC, start NHN:
+
+``sudo systemctl start netris-nhp``
+
+NHN will begin discovering interfaces, reading LLDP information from the switches, and applying the correct host network configuration automatically.
+
 NHN: Network Configuration Management
 -------------------------------------
-
-How NHN Works
-~~~~~~~~~~~~~
-
-NHN is a daemon that runs continuously on Linux hosts, performing these tasks:
-
-1. **Discovers** network interfaces on the system.
-2. **Queries** LLDP daemon for configuration information.
-3. **Parses** custom LLDP TLVs containing network settings.
-4. **Generates** appropriate network configuration files.
-5. **Applies** the configuration to activate network settings.
-6. **Caches** configuration for resilience.
-
-This enables a *push model* where network switches provide configuration to hosts,
-rather than hosts pulling configuration from a central server.
-
-NHN runs additional commands periodically for configuration and verification of the BlueField-3 NICs:
-
-- ``bf3-config`` (BlueField-3 NIC configuration)
-- ``verifier`` (BlueField-3 NIC configuration verification)
-
-Architecture Overview
-~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block::
-
-   ┌─────────────────────────────────────────────────┐
-   │              Network Switch (ToR)               │
-   │          Sends LLDP with Custom TLVs            │
-   └──────────────────┬──────────────────────────────┘
-                      │ LLDP Packets
-                      ▼
-   ┌─────────────────────────────────────────────────┐
-   │                  lldpd Daemon                   │
-   │         Receives and stores LLDP info           │
-   └──────────────────┬──────────────────────────────┘
-                      │
-                      │ lldpctl queries
-                      ▼
-   ┌─────────────────────────────────────────────────┐
-   │                   NHN Process                   │
-   │  ┌───────────────────────────────────────────┐  │
-   │  │  Networking Routine (every 20s)           │  │──────────────┐───────────────┐
-   │  │  1. Discover interfaces                   │  │              |               |
-   │  │  2. Query LLDP data                       │  │              ▼               ▼
-   │  │  3. Parse custom TLVs                     │  │       ┌────────────┐       ┌────────────┐
-   │  │  4. Transform to config format            │  │       | bf3-config |       | verifier   |
-   │  │  5. Apply configuration                   │  │       └────────────┘       └────────────┘
-   │  │  6. Cache for resilience                  │  │
-   │  └───────────────────────────────────────────┘  │
-   └──────────────────┬──────────────────────────────┘
-                      │
-           ┌──────────┴──────────┐
-           ▼                     ▼
-   ┌───────────────┐    ┌──────────────────┐
-   │   netplan     │    │    ifupdown      │
-   │ (systemd)     │    │  (networking)    │
-   └───────────────┘    └──────────────────┘
 
 Workflow Cycle
 ~~~~~~~~~~~~~~
 
-Every 20 seconds (by default), NHN performs these steps:
+Every 20 seconds (set by the ``network_plugin_run_interval`` parameter), NHN performs these steps:
 
 1. **Interface Discovery**
 
@@ -380,7 +360,7 @@ Every 20 seconds (by default), NHN performs these steps:
 
 3. **Custom TLV Parsing**
 
-   - Extracts custom TLVs with OUI ``02:00:5E``.
+   - Extracts custom TLVs.
    - Decodes hex-encoded configuration data.
    - Parses IP addresses, gateways, routes, MTU, bond names.
 
@@ -464,12 +444,41 @@ Network Configuration Formats
 
 NHN supports two network configuration formats, automatically detected based on the system's network manager.
 
+Network Manager Auto-Detection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+NHN automatically detects which network manager to use:
+
+1. **Checks for systemd-networkd**
+
+   .. code-block:: bash
+
+      systemctl status systemd-networkd
+
+   If active → uses netplan.
+
+2. **Falls back to networking service**
+
+   .. code-block:: bash
+
+      systemctl status networking
+
+   If present → uses ifupdown.
+
 Netplan (systemd-networkd)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **When used:** System is running systemd-networkd
 
 **Generated file:** ``/etc/netplan/dpu_config.yaml``
+
+**Key Features**
+
+- YAML format.
+- Supports ethernets and bonds.
+- Routes configured per interface/bond.
+- MTU configuration.
+- LACP bonding with 802.3ad.
 
 **Example output**
 
@@ -503,20 +512,19 @@ Netplan (systemd-networkd)
            mii-monitor-interval: 100
            lacp-rate: fast
 
-**Key Features**
-
-- YAML format.
-- Supports ethernets and bonds.
-- Routes configured per interface/bond.
-- MTU configuration.
-- LACP bonding with 802.3ad.
-
 Ifupdown (Ubuntu interfaces)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **When used:** System is running networking service (not systemd-networkd).
 
 **Generated file:** ``/etc/network/interfaces.d/netris-nhn``
+
+**Key Features**
+
+- Text-based interface format.
+- Supports interfaces and bonds.
+- Routes via post-up/pre-down hooks.
+- LACP bonding.
 
 **Example output**
 
@@ -540,100 +548,13 @@ Ifupdown (Ubuntu interfaces)
        post-up ip route add 10.1.0.0/16 via 10.0.0.1 dev bond0 || true
        pre-down ip route del 10.1.0.0/16 via 10.0.0.1 dev bond0 || true
 
-**Key Features**
-
-- Text-based interface format.
-- Supports interfaces and bonds.
-- Routes via post-up/pre-down hooks.
-- LACP bonding.
-
-Network Manager Auto-Detection
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-NHN automatically detects which network manager to use:
-
-1. **Checks for systemd-networkd**
-
-   .. code-block:: bash
-
-      systemctl status systemd-networkd
-
-   If active → uses netplan.
-
-2. **Falls back to networking service**
-
-   .. code-block:: bash
-
-      systemctl status networking
-
-   If present → uses ifupdown.
-
 NHN-DOCA: BlueField3 Configuration
 ----------------------------------
-
-Using the bf3-config
-~~~~~~~~~~~~~~~~~~~~
-
-Basic Usage
-^^^^^^^^^^^^
-
-Run the bf3-config with root privileges:
-
-.. code-block:: bash
-
-   /opt/netris/bin/bf3-config
-
-Command-Line Options
-^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   /opt/netris/bin/bf3-config [OPTIONS]
-
-   Options:
-     -config <path>      Path to configuration file (default: /opt/netris/etc/netris.conf)
-     -debug              Enable debug logging for detailed output
-     -version            Display version information
-     -skip-install       Skip package and firmware installation checks
-     -attempts <n>       Number of LLDP discovery retry attempts (default: 5)
-
-Common Usage Examples
-^^^^^^^^^^^^^^^^^^^^^
-
-Standard Installation
-+++++++++++++++++++++
-
-.. code-block:: bash
-
-   /opt/netris/bin/bf3-config
-
-Installation with Debug Logging
-+++++++++++++++++++++++++++++++
-
-.. code-block:: bash
-
-   /opt/netris/bin/bf3-config -debug
-
-Skip Package Checks (if already installed)
-++++++++++++++++++++++++++++++++++++++++++
-
-.. code-block:: bash
-
-   /opt/netris/bin/bf3-config -skip-install
-
-Increase LLDP Discovery Retries
-+++++++++++++++++++++++++++++++
-
-If LLDP discovery is taking time to populate:
-
-.. code-block:: bash
-
-   /opt/netris/bin/bf3-config -attempts 10
 
 What the bf3-config Does
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The bf3-config performs these steps in order:
+The ``bf3-config`` performs these steps in order:
 
 1. **Pre-flight Checks**
 
@@ -682,58 +603,56 @@ The bf3-config performs these steps in order:
 
 9. **Inter-Packet Gap (IPG)**
 
-When Reboot Is Required
-~~~~~~~~~~~~~~~~~~~~~~~
+**When Reboot Is Required**
 
-The bf3-config will inform you if a reboot is necessary.
-Reboot is required when:
+The ``bf3-config`` will inform you if a reboot is necessary. A reboot is required when:
 
 - Firmware was updated.
 - Capabilities were changed.
 
-After rebooting, run bf3-config again to complete configuration.
+After rebooting, run ``bf3-config`` again to complete configuration.
 
-Using the Verifier
-~~~~~~~~~~~~~~~~~~
+Using the bf3-config
+~~~~~~~~~~~~~~~~~~~~
 
-Basic Usage
-^^^^^^^^^^^^
-
-Run the verifier with root privileges:
+**Command-Line Options**
 
 .. code-block:: bash
 
-   /opt/netris/bin/verifier
-
-Command-Line Options
-^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   /opt/netris/bin/verifier [OPTIONS]
+   /opt/netris/bin/bf3-config [OPTIONS]
 
    Options:
      -config <path>      Path to configuration file (default: /opt/netris/etc/netris.conf)
      -debug              Enable debug logging for detailed output
      -version            Display version information
+     -skip-install       Skip package and firmware installation checks
      -attempts <n>       Number of LLDP discovery retry attempts (default: 5)
 
-Common Usage Examples
-^^^^^^^^^^^^^^^^^^^^^
+**Examples:**
 
-Standard Verification
-+++++++++++++++++++++
+Standard Installation
 
 .. code-block:: bash
 
-   /opt/netris/bin/verifier
+   /opt/netris/bin/bf3-config
 
-Verification with Debug Logging
-+++++++++++++++++++++++++++++++
+Installation with Debug Logging
 
 .. code-block:: bash
 
-   /opt/netris/bin/verifier -debug
+   /opt/netris/bin/bf3-config -debug
+
+Skip Package Checks (if already installed)
+
+.. code-block:: bash
+
+   /opt/netris/bin/bf3-config -skip-install
+
+Increase LLDP discovery retries, if LLDP discovery is taking time to populate:
+
+.. code-block:: bash
+
+   /opt/netris/bin/bf3-config -attempts 10
 
 What the Verifier Does
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -781,159 +700,31 @@ The verifier performs read-only checks without making changes:
     - Writes configuration to ``/etc/lldpd.d/lldp-netris.conf``.
     - Restarts ``lldpd`` service if configuration changed.
 
-LLDP Error Reporting
-~~~~~~~~~~~~~~~~~~~~
+Using the Verifier
+~~~~~~~~~~~~~~~~~~
 
-The verifier generates LLDP custom TLV messages to report errors.
-This allows switches to collect error information even when other communication channels are unavailable.
-
-**LLDP configuration file:** ``/etc/lldpd.d/lldp-netris.conf``
-
-Error messages are:
-
-- Chunked into 500-byte segments.
-- Encoded with OUI ``02:00:5E``.
-- Transmitted via LLDP packets on each interface.
-
-Switches can parse these TLV messages to identify configuration issues.
-
-Device Discovery via LLDP
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The most critical aspect of the bf3-config/verifier is identifying which NICs are part of the east-west fabric.
-
-**Workflow**
-
-1. **Bring Up Interfaces**
-
-   - All network interfaces are brought up to enable LLDP.
-
-2. **Query LLDP Information**
-
-   - Runs ``lldpctl -f json`` to get LLDP neighbor data.
-   - LLDP provides information about connected switches.
-
-3. **Extract Switch Name**
-
-   - Extracts switch name or hostname from LLDP data.
-
-4. **Match Against Pattern**
-
-   - Compares switch name to ``ew-switch-name-template`` regex.
-   - Interfaces matching the pattern are identified as east-west fabric NICs.
-
-5. **Retry Mechanism**
-
-   - LLDP information may take time to propagate.
-   - Tool retries discovery (default 5 attempts).
-   - Use ``-attempts`` flag to increase retries if needed.
-
-Version Detection
-~~~~~~~~~~~~~~~~~
-
-The tool auto-detects the Spectrum-X version by examining the switch description in LLDP data:
-
-- Description contains "v5.11" → Spectrum-X v1.2.0
-- Description contains "v5.12" → Spectrum-X v1.3.0
-- Unknown → Defaults to v1.2.0
-
-This detection enables version-specific configurations, particularly for NVN Congestion Control.
-
-LLDP Custom TLVs
-----------------
-
-Both NHN and NHN-DOCA use custom LLDP TLVs with Organizationally Unique Identifier (OUI) ``02:00:5E``
-to communicate network configuration and status information.
-
-NHN: Receiving Configuration from Switches
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Supported TLV Subtypes
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :header-rows: 1
-
-   * - Subtype
-     - Name
-     - Purpose
-     - Format
-     - Example
-   * - 1
-     - SubTypeAddr
-     - IP address/CIDR
-     - ``IP/PREFIX LENGTH``
-     - ``192.168.1.10/24``
-   * - 2
-     - SubTypeGw
-     - Default gateway
-     - ``IP``
-     - ``192.168.1.1``
-   * - 3
-     - SubTypeRemotePortName
-     - Remote port identifier
-     - String
-     - ``swp1``
-   * - 4
-     - SubTypeBondName
-     - Bond/LAG group name
-     - String
-     - ``bond0``
-   * - 5
-     - SubTypeMTU
-     - Maximum Transmission Unit
-     - Integer
-     - ``9000``
-   * - 6
-     - SubTypeRoutes
-     - Static routes
-     - ``NETWORK/PREFIX LENGTH:GATEWAY``
-     - ``10.0.0.0/8:192.168.1.1``
-
-TLV Format
-~~~~~~~~~~
-
-LLDP TLVs are transmitted as hex-encoded strings and decoded by NHN.
-The format in LLDP packets:
-
-.. code-block::
-
-   TLV Type: 127 (Organizationally Specific)
-   OUI: 02:00:5E
-   Subtype: [1-6]
-   Value: [hex-encoded data]
-
-Example LLDP Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To configure an interface with IP address, gateway, and bond membership, the switch would send:
-
-.. code-block::
-
-   TLV: OUI=02:00:5E, Subtype=1, Value="192.168.1.10/24"
-   TLV: OUI=02:00:5E, Subtype=2, Value="192.168.1.1"
-   TLV: OUI=02:00:5E, Subtype=4, Value="bond0"
-   TLV: OUI=02:00:5E, Subtype=5, Value="9000"
-
-Configuring LLDP on Network Switches
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Example for Cumulus Linux / NVIDIA Spectrum switches:
+**Command-Line Options**
 
 .. code-block:: bash
 
-   # Configure LLDP to send custom TLVs
-   lldpcli configure lldp custom-tlv oui 02,00,5e subtype 1 oui-info "192.168.1.10/24"
-   lldpcli configure lldp custom-tlv oui 02,00,5e subtype 2 oui-info "192.168.1.1"
-   lldpcli configure lldp custom-tlv oui 02,00,5e subtype 4 oui-info "bond0"
-   lldpcli configure lldp custom-tlv oui 02,00,5e subtype 5 oui-info "9000"
+   /opt/netris/bin/verifier [OPTIONS]
 
-NHN-DOCA: Sending Error Reports to Switches
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   Options:
+     -config <path>      Path to configuration file (default: /opt/netris/etc/netris.conf)
+     -debug              Enable debug logging for detailed output
+     -version            Display version information
+     -attempts <n>       Number of LLDP discovery retry attempts (default: 5)
 
-The verifier component uses custom LLDP TLVs to report configuration errors back to switches:
+**Examples:**
 
-- **OUI:** ``02:00:5E`` (custom organizationally unique identifier)
-- **Subtype:** Incremental (0, 1, 2, ... for chunked messages)
-- **Max size:** 500 bytes per TLV
-- **Encoding:** Plain text error descriptions
+Standard Verification
+
+.. code-block:: bash
+
+   /opt/netris/bin/verifier
+
+Verification with Debug Logging
+
+.. code-block:: bash
+
+   /opt/netris/bin/verifier -debug
