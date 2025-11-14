@@ -194,23 +194,22 @@ The configuration file uses INI format with sections for different components.
 
 .. code-block:: ini
 
-   [paths]
-   netplan_path = /etc/netplan
-   interfaces_path = /etc/network/interfaces.d
+   [general]
 
-   [intervals]
-   networking_routine = 20
-   run_commands = 300
+   # Path to ifupdown configuration file
+   ifupdown_cfg_path = /etc/network/interfaces.d/dpu_config
 
-   [netris-controller]
    # Path to netplan configuration file
-   netplan_cfg_path = /etc/netplan/99-netris-controller.yaml
+   netplan_cfg_path = /etc/netplan/dpu_config.yaml
 
    # Cache directory for device information
    cache_file_path = /opt/netris/cache
 
    # Path to the verifier binary
-   verifier_bin_path = /opt/netris/bin/nhn-doca-verifier
+   verifier_bin_path = /opt/netris/bin/verifier
+
+   # Path to bf3-config binary
+   bf3config_bin_path= /opt/netris/bin/bf3-config
 
    # Regex pattern to match east-west fabric switch names
    # Default matches patterns like: su0-r0, su1-r1, su2-r3, etc.
@@ -219,71 +218,14 @@ The configuration file uses INI format with sections for different components.
    # How often to run verification (in seconds)
    verifier_run_interval = 300
 
+   # How often to run bf3-config with --skip-install option (in seconds)
+   bf3config_run_interval = 150
+
    # Network plugin update interval (in seconds)
    network_plugin_run_interval = 20
 
-
-**Configuration Options:**
-
-[paths] Section
-
-.. list-table::
-   :header-rows: 1
-
-   * - Parameter
-     - Description
-     - Default
-   * - ``netplan_path``
-     - Directory for netplan YAML files
-     - ``/etc/netplan``
-   * - ``interfaces_path``
-     - Directory for ifupdown interface files
-     - ``/etc/network/interfaces.d``
-
-[intervals] Section
-
-.. list-table::
-   :header-rows: 1
-
-   * - Parameter
-     - Description
-     - Default
-     - Unit
-   * - ``networking_routine``
-     - How often to check and update network config
-     - 20
-     - seconds
-   * - ``run_commands``
-     - How often to run auxiliary commands
-     - 300
-     - seconds
-
-[netris-controller] Section
-
-.. list-table::
-   :header-rows: 1
-
-   * - Parameter
-     - Description
-     - Default
-   * - ``netplan_cfg_path``
-     - Path to netplan configuration file
-     - ``/etc/netplan/99-netris-controller.yaml``
-   * - ``cache_file_path``
-     - Cache directory for device information
-     - ``/opt/netris/cache``
-   * - ``verifier_bin_path``
-     - Path to the verifier binary
-     - ``/opt/netris/bin/nhn-doca-verifier``
-   * - ``ew-switch-name-template``
-     - Regex pattern to match east-west fabric switch names
-     - ``su[0-9]-+r[0-3]+``
-   * - ``verifier_run_interval``
-     - How often to run verification
-     - 300 seconds
-   * - ``network_plugin_run_interval``
-     - Network plugin update interval
-     - 20 seconds
+   # If not empty force to use the selected network manager (supported values: ifupdown, netplan).
+   force_network_manager=
 
 .. important::
 
