@@ -1,0 +1,1553 @@
+<div class="netris-header">
+  <span>
+    <a href="https://www.netris.io" target="_blank">
+      <img width="95px" src="_static/logo.png" class="netris-logo" alt="Logo" />
+    </a>
+    <span class="github-btn github-btn-large">
+      <a class="gh-btn" href="https://netris.io/slack" rel="noopener noreferrer" target="_blank"
+        style="margin-left: 15px;">
+        <img style="height: 1em;" src="_static/slack.svg" alt="slack_icon">
+        Join Slack
+      </a>
+    </span>
+  </span>
+</div>
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Netris Host Networking Plugin" name="description" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netris Host Networking &mdash; Netris Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/styles.css?v=8456483b" />
+
+  
+    <link rel="shortcut icon" href="_static/netris_favicon.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=016f71bc"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Netris VPC" href="vpc.html" />
+    <link rel="prev" title="NVIDIA NetQ Integration" href="monitoring-observability/netq.html" /> 
+<script type="text/javascript">
+   $(document).ready(function () {
+    $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
+  });
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffffff" >
+
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to Netris</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html">Netris Supported Functionality &amp; Platforms Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#switch-fabric-management-functions">Switch Fabric Management Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#monitoring-telemetry">Monitoring &amp; Telemetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#external-routing-functions">External Routing Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#cloud-networking-functions-constructs">Cloud Networking Functions &amp; Constructs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#overlay-network-functions">Overlay Network Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#ai-specific-functions">AI Specific Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#compute-platform-integrations">Compute Platform Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#netris-controller-administration">Netris Controller Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#management-interfaces">Management Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#hypervisor-worker-node-specific-functionality">Hypervisor/Worker node specific functionality</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html#softgate-data-plane-variations">SoftGate Data Plane Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html#netris-and-nos-versions-compatibility-matrix">Netris and NOS versions compatibility matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported-switch-hardware.html">Hardware Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-controller">Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-softgate-hs-multi-vpc-version">Netris SoftGate HS (Multi-VPC version)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="supported-switch-hardware.html#supported-switch-hardware">Supported Switch Hardware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#nvidia">Nvidia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#edgecore">EdgeCore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#arista">Arista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="netris-architecture.html">Netris Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-controller">Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-switch-agent">Netris Switch Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-softgate">Netris SoftGate</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Try &amp; Learn Netris</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="try-learn/index.html">Netris Try &amp; Learn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="try-learn/netris-cloudsim.html">Netris Infrastructure Simulation Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="try-learn/using-netris-cloudsim.html">Netris Test Controller &amp; Infrastructure Simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/using-netris-cloudsim.html#web-console">Web Console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/using-netris-cloudsim.html#ssh">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/using-netris-cloudsim.html#netris-init-modules">Netris Init Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/using-netris-cloudsim.html#start-stop-a-simulation">Start/Stop a Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html">Lab Scenario: GPU-as-a-Service network with NVIDIA Spectrum-X architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#initialize-the-netris-controller">Initialize the Netris controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#start-a-simulation">Start a simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#monitoring-dashboard">Monitoring Dashboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#topology">Topology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#ssh-to-switches">SSH to Switches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#ssh-to-gpu-servers">SSH to GPU servers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#nhn-netris-host-networking-plugin">NHN (Netris host networking plugin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#server-cluster-template">Server Cluster Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#server-cluster">Server Cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#checking-the-connectivity">Checking the connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html#cleanup-the-controller">Cleanup the Controller</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Controller Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-installation.html">Netris Controller installation on a generic Linux host</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#linux-host-requirements">Linux Host requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-specific-host-name">Installation with the specific host name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-let-s-encrypt-ssl">Installation with the Let’s Encrypt SSL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-custom-ssl-issuer">Installation with the Custom SSL Issuer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#upgrading">Upgrading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#uninstalling">Uninstalling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#backup-and-restore">Backup and Restore</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#backup">Backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#restore">Restore</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html">Helm Chart Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Controller-local-repository.html">Netris Local Repository Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap.html">Installing Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#how-to-install-the-netris-controller">How to Install the Netris Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap.html#steps-to-install">Steps to Install</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#after-installation">After Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#how-to-consume-local-repository">How to consume local repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.3 Upgrade Netris Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="switch-agent-installation.html">Network Switch Initial Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5.9%2B-Switch-initial-setup.html">Nvidia Cumulus v5.9+ Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5-Switch-initial-setup.html">Nvidia Cumulus v5 Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EdgeCore-SONiC-Switch-initial-setup.html">EdgeCore SONiC Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dell-SONiC-Switch-initial-setup.html">Dell SONiC Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SoftGate-HS-installation.html">SoftGate HS Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SoftGate-HS-installation.html#minimum-hardware-requirements">Minimum Hardware Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SoftGate-HS-installation.html#provision-netris-softgate-software">Provision Netris SoftGate software</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SoftGate-PRO-installation.html">SoftGate PRO Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SoftGate-PRO-installation.html#minimum-hardware-requirements">Minimum Hardware Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SoftGate-PRO-installation.html#bios-configuration">BIOS Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SoftGate-PRO-installation.html#install-the-netris-agent">Install the Netris Agent</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#inventory-profiles">Inventory Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-softgates">Adding SoftGates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#viewing-inventory">Viewing Inventory</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topology-management.html#topology-manager">Topology Manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-links">Adding Links</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html">VPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#adding-new-vpc">Adding new VPC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#ip-address-management">IP Address Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#ipam-tree-view">IPAM Tree View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-an-allocation">Add an Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-a-subnet">Add a Subnet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#basic-bgp">Basic BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#adding-bgp-peers">Adding BGP Peers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#advanced-bgp">Advanced BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-objects">BGP Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#ipv4-prefix">IPv4 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#ipv6-prefix">IPv6 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#community">Community</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-route-maps">BGP route-maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#static-routing">Static Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#nat">NAT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#enabling-nat">Enabling NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#defining-nat-rules">Defining NAT rules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#looking-glass">Looking Glass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="switch-ports.html">Switch Ports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lag.html">Link Aggregation (LAG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lag.html#custom-lag">Custom LAG</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visibility.html">Graph Boards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visibility.html#id1">Graph Boards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visibility.html#api-logs">API Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visibility.html#dashboard">Dashboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="maintenance-mode.html">Maintenance Mode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maintenance-mode.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance-mode.html#maintenance-mode-for-softgate-whats-happening-behind-the-scenes">Maintenance Mode for Softgate - What’s happening behind the scenes?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance-mode.html#maintenance-mode-for-switch-whats-happening-behind-the-scenes">Maintenance Mode for Switch - What’s happening behind the scenes?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/upgrading-netris.html">Upgrade and Rollback</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#backup-current-database">Backup current database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#check-your-current-version">Check your current version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#id1">Stop Netris Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#restore-the-database">Restore The Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vnet.html">V-Net</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp">DHCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp-relay">DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vnet.html#example">Example:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#v-net-fields-explained">V-Net Fields explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#advanced-v-net-fields-explained">Advanced V-Net Fields explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#multisite-v-nets">Multisite V-Nets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vnet.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vnet.html#mc-lag">MC-LAG</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#labels">Labels</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vnet.html#how-labels-work">How labels work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vnet.html#rules-and-limits">Rules and limits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vnet.html#when-to-use-labels">When to use labels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#l3vpn">L3VPN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#creating-an-l3vpn-v-net">Creating an L3VPN V-Net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#id1">Rules and limits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#verification-tools">Verification Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#ui-tools">UI Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="server-cluster.html">Server Cluster</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="server-cluster.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server-cluster.html#server-cluster-template">Server Cluster Template</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#server-cluster-template-examples">Server Cluster Template Examples:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#ethernet-only-fabric-example">Ethernet-only Fabric Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#infiniband-fabric-example">Infiniband Fabric Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#ipv6-example">IPv6 Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#template-fields-explained">Template Fields Explained:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#adding-a-server-cluster-template">Adding a Server Cluster Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#advanced-uses">Advanced Uses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#non-overlapping-subnets">Non-overlapping subnets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#specify-gateway">Specify gateway</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="server-cluster.html#creating-server-cluster">Creating Server Cluster</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#shared-endpoints">Shared Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#server-cluster-fields-explained">Server Cluster Fields Explained:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="l4-load-balancer.html">L4 Load Balancer (L4LB)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="l4-load-balancer.html#enabling-l4lb-service">Enabling L4LB service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l4-load-balancer.html#consuming-l4lb-service">Consuming L4LB service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="acls.html">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#acl-default-policy">ACL Default Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#acl-rules">ACL Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#acl-approval-workflow">ACL Approval Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#acl-processing-order">ACL Processing Order</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Netris Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="netris-ufm-integration.html">NVIDIA UFM Integration Plugin for Netris Controller</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#key-benefits">Key Benefits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#ufm-configuration-requirements">UFM Configuration Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#option-1-deploy-within-an-existing-netris-controller-kubernetes-cluster">Option 1: Deploy within an existing Netris Controller Kubernetes cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#option-2-deploy-as-a-standalone-docker-container">Option 2: Deploy as a standalone Docker container</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#configuration-parameters">Configuration Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#netris-controller-configuration">Netris Controller Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#nvidia-ufm-configuration">NVIDIA UFM Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#agent-configuration">Agent Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#usage-guide">Usage Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">4. Create Server Clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">3. Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#monitoring-and-troubleshooting">Monitoring and Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#viewing-logs">Viewing Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-ufm-integration.html#connection-issues-to-netris-controller-or-ufm">Connection Issues to Netris Controller or UFM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-ufm-integration.html#pkey-assignment-issues">PKey Assignment Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-ufm-integration.html#sharp-reservation-issues">SHARP Reservation Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-ufm-integration.html#synchronization-delays">Synchronization Delays</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#version-compatibility">Version Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#getting-started-guide">Getting Started Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#quick-setup-example">Quick Setup Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kubernetes-integration.html">Kubernetes Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes-integration.html#install-netris-operator">Install Netris Operator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#helm-chart-method">Helm Chart Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#regular-manifest-method">Regular Manifest Method</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes-integration.html#using-type-loadbalancer">Using Type ‘LoadBalancer’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes-integration.html#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#l4lb-custom-resource">L4LB Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#v-net-custom-resource">V-Net Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#bgp-custom-resource">BGP Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#importing-existing-resources-from-netris-controller-to-kubernetes">Importing existing resources from Netris Controller to Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#reclaim-policy">Reclaim Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes-integration.html#calico-cni-integration">Calico CNI Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#disabling-netris-calico-integration">Disabling Netris-Calico Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/netris-cloudstack.html">Netris-CloudStack Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-cloudstack_p1.html">High-Level Concept of Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p1.html#how-it-works">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p1.html#challenges-addressed">Challenges Addressed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p1.html#benefits">Benefits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p1.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-cloudstack_p1.html#compute-and-network-architecture">Compute and Network Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p1.html#diagram-overview">Diagram Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p1.html#network-flow">Network Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#step-by-step-configuration-instructions-for-the-netris-controller">Step-by-Step Configuration Instructions for the Netris Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#ipam-setup">IPAM Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#create-an-allocation">Create an Allocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#create-subnets">Create Subnets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#inventory-setup">Inventory Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#creating-servers-links">Creating Servers’ Links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#optimize-bgp-overlay-for-hypervisor">Optimize BGP Overlay for Hypervisor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#adding-subnets-for-cloudstack-cluster">Adding Subnets for CloudStack Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#enabling-internet-connectivity-for-acs-servers">Enabling Internet Connectivity for ACS Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#enabling-access-to-cloudstack-management-gui">Enabling Access to CloudStack Management GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p2.html#creating-cloudstack-networks">Creating CloudStack Networks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html">Server Configuration and Software Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#configuring-network-on-cloudstack-management-server-server-1">Configuring Network on CloudStack Management Server (Server 1)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#understanding-the-network-layout">Understanding the Network Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#netplan-configuration">Netplan Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#install-netris-cloudstack-agent-on-hypervisor-servers">Install Netris-CloudStack Agent on Hypervisor Servers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#bringing-up-nics-before-installation">Bringing Up NICs Before Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#pre-installation-steps-for-deployments-without-oob">Pre-Installation Steps (For Deployments Without OOB)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#key-functions-of-the-netris-cloudstack-agent">Key Functions of the Netris-CloudStack Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#example-successful-output-of-one-liner-script">Example Successful Output of One-Liner Script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#verification-steps">Verification Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#checking-network-connectivity">Checking Network Connectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#finalizing-the-network-setup">Finalizing the Network Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#keeping-the-temporary-oob-vnet-for-emergency-access"><strong>Keeping the Temporary OOB VNet for Emergency Access</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#managing-additional-nics-on-the-server">Managing Additional NICs on the Server</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#install-cloudstack-management-service">Install CloudStack Management Service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p3.html#id1">Installation Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-cloudstack_p4.html">Configuring CloudStack for Netris Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p4.html#enabling-the-netris-plugin-in-cloudstack">Enabling the Netris Plugin in CloudStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p4.html#initializing-cloudstack-setup">Initializing CloudStack Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p4.html#steps-to-initialize-cloudstack">Steps to Initialize CloudStack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html">Using CloudStack with Netris Isolation Method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#creating-a-vpc">Creating a VPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#creating-a-network-tier">Creating a Network Tier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#port-forwarding">Port Forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#seamless-integration-between-cloudstack-and-netris">Seamless Integration Between CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#step-by-step-process-for-configuring-port-forwarding-in-cloudstack-with-netris">Step-by-Step Process for Configuring Port Forwarding in CloudStack with Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#key-notes">Key Notes:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#configuring-static-nat-in-cloudstack">Configuring Static NAT in CloudStack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#how-static-nat-works-with-cloudstack-and-netris">How Static NAT Works with CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#steps-to-configure-static-nat">Steps to Configure Static NAT:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#how-cloudstack-and-netris-work-together">How CloudStack and Netris Work Together</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/netris-cloudstack_p5.html#final-notes">Final Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="terraform-integration.html">Terraform: Netris provider</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="terraform-integration.html#install-terraform">Install Terraform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terraform-integration.html#create-a-directory-for-terraform-files">Create a directory for Terraform files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terraform-integration.html#configure-a-provider">Configure a provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terraform-integration.html#prepare-an-infrastructure-plan">Prepare an infrastructure plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terraform-integration.html#create-resources">Create resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terraform-integration.html#delete-resources">Delete resources</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/index.html">Monitoring &amp; Observability</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Netris Host Networking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#netris-host-networking-nhn">Netris Host Networking (NHN)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nhn-doca">NHN-DOCA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#before-you-begin">Before You Begin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-requirements">System Requirements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operating-system">Operating System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-requirements-for-nhn-doca">Hardware Requirements (for NHN-DOCA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recommended-component-versions">Recommended Component Versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#permissions">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-overview">Installation Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#add-the-netris-package-repository">1. Add the Netris Package Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-the-netris-nhn-package">2. Install the Netris NHN Package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#review-the-configuration-file">1. Review the Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-bluefield3-nics">2. Configure BlueField3 NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-bluefield3-nics-parameters">3. Verify BlueField3 NICs Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#start-the-nhn-daemon">4. Start the NHN daemon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nhn-network-configuration-management">NHN: Network Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#workflow-cycle">Workflow Cycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-nhn">Starting NHN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#as-a-systemd-service-recommended">As a Systemd Service (Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#manual-execution">Manual Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#monitoring-nhn">Monitoring NHN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#view-real-time-logs">View Real-Time Logs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#stopping-nhn">Stopping NHN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-configuration-formats">Network Configuration Formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-manager-auto-detection">Network Manager Auto-Detection</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#netplan-systemd-networkd">Netplan (systemd-networkd)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ifupdown-ubuntu-interfaces">Ifupdown (Ubuntu interfaces)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nhn-doca-bluefield3-configuration">NHN-DOCA: BlueField3 Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-the-bf3-config-does">What the bf3-config Does</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-bf3-config">Using the bf3-config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-the-verifier-does">What the Verifier Does</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-verifier">Using the Verifier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vpc.html">Netris VPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#sites">Sites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#ipam">IPAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#v-nets">V-Nets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#external-connections">External connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#sitemesh-connections">SiteMesh connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#nat-services">NAT services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#load-balancing-service">Load-balancing service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#access-lists">Access lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#working-with-netris-vpc">Working with Netris VPC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Netris Generic Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/installing-netris-controller.html">Installing a Netris Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/installing-netris-controller.html#security-matters">Security Matters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/upgrading-netris.html">Upgrade and Rollback</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#backup-current-database">Backup current database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#check-your-current-version">Check your current version</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#id1">Stop Netris Agents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#restore-the-database">Restore The Database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-managed-fabric-overview.html">Netris managed fabric Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-managed-fabric-overview.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-managed-fabric-overview.html#concept">Concept</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-controller-installation.html">Install a Netris Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-controller-installation.html#requirements-and-installation-steps">Requirements and Installation steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-controller-installation.html#security-matters">Security Matters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/new-site-setup.html">New Site setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/vpc-setup.html">VPC setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/ipam-setup.html">IPAM setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/inventory-setup.html">Inventory setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/topology-setup.html">Topology setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/softgate-software-provisioning.html">SoftGate software provisioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/softgate-software-provisioning.html#softgate-pro-100g-software-provisioning">SoftGate PRO (100G) software provisioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/softgate-software-provisioning.html#softgate-1g-10g-software-provisioning">SoftGate (1G, 10G) software provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-switch-agent-installation.html">Netris Switch Agent Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/connecting-fabric-to-isp.html">Connecting Netris managed fabric to an ISP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/connecting-servers-fabric.html">Connecting servers to the Netris managed fabric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/enabling-nat-services.html">Enabling NAT services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/enabling-load-balancing-services.html">Enabling Load-balancing services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/more-features.html">More features</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#permission-groups">Permission Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="softgate-performance.html">SoftGate Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html">Learn Netris Operations with Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#l4lb-custom-resource">L4LB Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#v-net-custom-resource">V-Net Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#bgp-custom-resource">BGP Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#importing-existing-resources-from-netris-controller-to-kubernetes">Importing Existing Resources from Netris Controller to Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#reclaim-policy">Reclaim Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sandbox/Sandbox1/onprem-k8s.html#disabling-netris-calico-integration">Disabling Netris-Calico Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffffff" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Netris docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!--
+<div class="header-wrapper">
+    <div>
+        <a class="underscore-transition" href="https://www.netris.io/overview/">
+            Product Overview
+        </a>
+        <a class="underscore-transition" href="https://www.netris.io/start/">
+            Get started
+        </a>
+        <a class="underscore-transition" href="https://www.netris.io/category/blog/">
+            Blog
+        </a>
+    </div>
+    <a class="button" href="https://netris.io/demo">
+        Schedule a demo
+    </a>
+</div>
+--><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Netris Host Networking</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/netrisai/docs/blob/master/ai-netris-host-networking.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="monitoring-observability/netq.html" class="btn btn-neutral float-left" title="NVIDIA NetQ Integration" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vpc.html" class="btn btn-neutral float-right" title="Netris VPC" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="netris-host-networking">
+<h1>Netris Host Networking<a class="headerlink" href="#netris-host-networking" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The Netris Host Networking plugin provides automated network configuration management tools for bare-metal servers deployed on NVIDIA Spectrum-X east-west fabrics. The plugin consists of two main components: <strong>Netris Host Networking (NHN)</strong> and <strong>NHN-DOCA</strong> (NVIDIA DOCA configuration and verification).</p>
+<section id="netris-host-networking-nhn">
+<h3>Netris Host Networking (NHN)<a class="headerlink" href="#netris-host-networking-nhn" title="Link to this heading"></a></h3>
+<p><strong>NHN</strong> is an automated network configuration management service designed for the east-west fabric of bare-metal servers with BlueField3 SuperNICs and based on the Spectrum-X architecture. It automatically discovers and configures network interfaces based on LLDP (Link Layer Discovery Protocol) information received from network switches, enabling zero-touch server-side network configuration.</p>
+<p><strong>Key Features</strong></p>
+<ul class="simple">
+<li><p><strong>Automatic Interface Discovery</strong> - Detects and configures network interfaces without manual intervention.</p></li>
+<li><p><strong>LLDP-Based Configuration</strong> - Receives network configuration from ToR (Top-of-Rack) switches via LLDP.</p></li>
+<li><p><strong>Dual Network Manager Support</strong> - Works with both netplan (systemd-networkd) and ifupdown network managers.</p></li>
+<li><p><strong>Configuration Caching</strong> - Maintains configuration resilience when LLDP is temporarily unavailable.</p></li>
+</ul>
+<p><strong>How NHN Works</strong></p>
+<p>NHN runs continuously on Linux hosts, performing these tasks:</p>
+<ol class="arabic simple">
+<li><p>Discovers network interfaces on the system</p></li>
+<li><p>Queries the LLDP daemon for configuration information</p></li>
+<li><p>Parses custom LLDP TLVs containing network settings</p></li>
+<li><p>Generates appropriate network configuration files</p></li>
+<li><p>Applies the configuration to activate network settings</p></li>
+<li><p>Caches configuration for resilience</p></li>
+</ol>
+<p>NHN works on a “push” model where network switches provide configuration to hosts using Netris proprietary LLDP TLVs, rather than hosts pulling configuration from a central server.</p>
+<p>NHN also periodically runs NHN-DOCA commands for configuration and verification of the BlueField3 SuperNICs.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bf3-config</span></code> (BlueField-3 NIC configuration)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verifier</span></code> (BlueField-3 NIC configuration verification)</p></li>
+</ul>
+</section>
+<section id="nhn-doca">
+<h3>NHN-DOCA<a class="headerlink" href="#nhn-doca" title="Link to this heading"></a></h3>
+<p><strong>NHN-DOCA</strong> is a configuration and verification tool for NVIDIA DOCA BlueField-3 NICs running in Spectrum-X networking fabric environments.</p>
+<p><strong>Key Features</strong></p>
+<ul class="simple">
+<li><p><strong>Automatic device discovery</strong> via LLDP.</p></li>
+<li><p><strong>Version-aware configuration</strong> (Spectrum-X v1.2.0 vs v1.3.0).</p></li>
+<li><p><strong>Comprehensive validation</strong> with detailed error reporting.</p></li>
+<li><p><strong>LLDP-based error propagation</strong> for switch-side monitoring.</p></li>
+</ul>
+<p><strong>Includes Two Utilities</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bf3-config</span></code> - Automatically configures BlueField-3 devices for east-west fabric networks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verifier</span></code> - Validates configurations and reports issues via LLDP.</p></li>
+</ul>
+<p><strong>How NHN-DOCA works:</strong></p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">bf3-config</span></code> queries LLDP information from each network interface</p></li>
+<li><p>It extracts the connected switch name from LLDP data</p></li>
+<li><p>The switch name is matched against this regex pattern</p></li>
+<li><p>Only interfaces connected to matching switches are configured</p></li>
+</ol>
+</section>
+</section>
+<section id="before-you-begin">
+<h2>Before You Begin<a class="headerlink" href="#before-you-begin" title="Link to this heading"></a></h2>
+<section id="system-requirements">
+<h3>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h3>
+<section id="operating-system">
+<h4>Operating System<a class="headerlink" href="#operating-system" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Linux (tested on Ubuntu)</p></li>
+</ul>
+</section>
+<section id="hardware-requirements-for-nhn-doca">
+<h4>Hardware Requirements (for NHN-DOCA)<a class="headerlink" href="#hardware-requirements-for-nhn-doca" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>NVIDIA BlueField-3 NICs</p></li>
+<li><p>Connected to NVIDIA Cumulus Linux switches</p></li>
+<li><p>LLDP enabled on connected switches</p></li>
+</ul>
+</section>
+<section id="dependencies">
+<h4>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h4>
+<section id="for-nhn">
+<h5>For NHN<a class="headerlink" href="#for-nhn" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lldpd</span></code> - LLDP daemon (required)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemd</span></code> (for netplan mode) or <code class="docutils literal notranslate"><span class="pre">ifupdown</span></code> (for interfaces mode)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">netplan.io</span></code> (if using netplan/systemd-networkd)</p></li>
+</ul>
+</section>
+<section id="for-nhn-doca">
+<h5>For NHN-DOCA<a class="headerlink" href="#for-nhn-doca" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">doca-host</span></code> - DOCA host software stack</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">doca-ofed</span></code> - NVIDIA OFED drivers for DOCA</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mft</span></code> - Mellanox Firmware Tools</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">netplan.io</span></code> - Network configuration management</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">doca-nvn-cc</span></code> - NVN Congestion Control daemon</p></li>
+</ul>
+</section>
+</section>
+<section id="recommended-component-versions">
+<h4>Recommended Component Versions<a class="headerlink" href="#recommended-component-versions" title="Link to this heading"></a></h4>
+<section id="spectrum-x-v1-2-0">
+<h5>Spectrum-X v1.2.0<a class="headerlink" href="#spectrum-x-v1-2-0" title="Link to this heading"></a></h5>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Components</p></th>
+<th class="head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cumulus Linux OS</p></td>
+<td><p>5.11.0.0026</p></td>
+</tr>
+<tr class="row-odd"><td><p>BlueField FW Bundle (BFB)</p></td>
+<td><p>2.9.0-90</p></td>
+</tr>
+<tr class="row-even"><td><p>BlueField-3 Firmware</p></td>
+<td><p>32.43.1014</p></td>
+</tr>
+<tr class="row-odd"><td><p>DOCA Host</p></td>
+<td><p>2.9.0-0.4.7</p></td>
+</tr>
+<tr class="row-even"><td><p>Spectrum-X Congestion Control Algorithm (SPC-X CC)</p></td>
+<td><p>2.9.0072-1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="spectrum-x-v1-3-0">
+<h5>Spectrum-X v1.3.0<a class="headerlink" href="#spectrum-x-v1-3-0" title="Link to this heading"></a></h5>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Components</p></th>
+<th class="head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cumulus Linux OS</p></td>
+<td><p>5.12.1.100</p></td>
+</tr>
+<tr class="row-odd"><td><p>BlueField FW Bundle (BFB)</p></td>
+<td><p>2.10.0-147_25.01</p></td>
+</tr>
+<tr class="row-even"><td><p>BlueField-3 Firmware</p></td>
+<td><p>32.44.1036</p></td>
+</tr>
+<tr class="row-odd"><td><p>DOCA Host</p></td>
+<td><p>2.10.0-0.5.3</p></td>
+</tr>
+<tr class="row-even"><td><p>Spectrum-X Congestion Control Algorithm (SPC-X CC)</p></td>
+<td><p>2.10</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="permissions">
+<h4>Permissions<a class="headerlink" href="#permissions" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Must run as root (requires access to netlink and network configuration)</p></li>
+</ul>
+</section>
+</section>
+<section id="installation-overview">
+<h3>Installation Overview<a class="headerlink" href="#installation-overview" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Install the netris-hnp Netris Host Networking package.</p></li>
+<li><p>Review the configuration file <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/netris.conf</span></code>.</p></li>
+<li><p>Download the NVIDIA dependencies for the BlueField-3 SmartNICs.</p></li>
+<li><p>Run the SmartNIC configurator <code class="docutils literal notranslate"><span class="pre">/opt/netris/bin/bf3-config</span></code>.</p></li>
+<li><p>Verify the SmartNIC configuration with <code class="docutils literal notranslate"><span class="pre">/opt/netris/bin/verifier</span></code>.</p></li>
+<li><p>Start the NHN daemon.</p></li>
+</ol>
+</section>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<section id="add-the-netris-package-repository">
+<h3>1. Add the Netris Package Repository<a class="headerlink" href="#add-the-netris-package-repository" title="Link to this heading"></a></h3>
+<p>Download and install the GPG key for the Netris repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-qO<span class="w"> </span>-<span class="w"> </span>https://repo.netris.ai/repo/public.key<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/netris.gpg
+</pre></div>
+</div>
+<p>Add the Netris repository to your system’s sources list</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [signed-by=/usr/share/keyrings/netris.gpg] http://repo.netris.ai/repo/ noble main&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/netris.list
+</pre></div>
+</div>
+</section>
+<section id="install-the-netris-nhn-package">
+<h3>2. Install the Netris NHN Package<a class="headerlink" href="#install-the-netris-nhn-package" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>netris-hnp
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<section id="review-the-configuration-file">
+<h3>1. Review the Configuration File<a class="headerlink" href="#review-the-configuration-file" title="Link to this heading"></a></h3>
+<p>Default location: <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/netris.conf</span></code></p>
+<p>The configuration file uses INI format with sections for different components.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[general]</span>
+
+<span class="c1"># Path to ifupdown configuration file</span>
+<span class="na">ifupdown_cfg_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/etc/network/interfaces.d/dpu_config</span>
+
+<span class="c1"># Path to netplan configuration file</span>
+<span class="na">netplan_cfg_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/etc/netplan/dpu_config.yaml</span>
+
+<span class="c1"># Cache directory for device information</span>
+<span class="na">cache_file_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/opt/netris/cache</span>
+
+<span class="c1"># Path to the verifier binary</span>
+<span class="na">verifier_bin_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/opt/netris/bin/verifier</span>
+
+<span class="c1"># Path to bf3-config binary</span>
+<span class="na">bf3config_bin_path</span><span class="o">=</span><span class="w"> </span><span class="s">/opt/netris/bin/bf3-config</span>
+
+<span class="c1"># Regex pattern to match east-west fabric switch names</span>
+<span class="c1"># Default matches patterns like: su0-r0, su1-r1, su2-r3, etc.</span>
+<span class="na">ew-switch-name-template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">su[0-9]-+r[0-3]+</span>
+
+<span class="c1"># How often to run verification (in seconds)</span>
+<span class="na">verifier_run_interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">300</span>
+
+<span class="c1"># How often to run bf3-config with --skip-install option (in seconds)</span>
+<span class="na">bf3config_run_interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">150</span>
+
+<span class="c1"># Network plugin update interval (in seconds)</span>
+<span class="na">network_plugin_run_interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">20</span>
+
+<span class="c1"># If not empty force to use the selected network manager (supported values: ifupdown, netplan).</span>
+<span class="na">force_network_manager</span><span class="o">=</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ew-switch-name-template</span></code> parameter is critical for identifying which network interfaces are connected to the east-west fabric. It’s a regex pattern used to identify which network interfaces are connected to the east-west fabric.</p>
+</div>
+<p><strong>Examples:</strong></p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Match switches named su0-r0, su1-r1, etc.</span>
+<span class="na">ew-switch-name-template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">su[0-9]-+r[0-3]+</span>
+
+<span class="c1"># Match switches with &#39;ew-&#39; prefix</span>
+<span class="na">ew-switch-name-template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ew-.+</span>
+
+<span class="c1"># Match any switch with &#39;fabric&#39; in the name</span>
+<span class="na">ew-switch-name-template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">.*fabric.*</span>
+</pre></div>
+</div>
+<p><strong>How it works</strong></p>
+<ol class="arabic simple">
+<li><p>The bf3-config queries LLDP information from each network interface.</p></li>
+<li><p>It extracts the connected switch name from LLDP data.</p></li>
+<li><p>The switch name is matched against this regex pattern.</p></li>
+<li><p>Only interfaces connected to matching switches are configured.</p></li>
+</ol>
+</section>
+<section id="configure-bluefield3-nics">
+<h3>2. Configure BlueField3 NICs<a class="headerlink" href="#configure-bluefield3-nics" title="Link to this heading"></a></h3>
+<p>Place the downloaded dependency packages in one of the following directories, depending on your Spectrum-X version:</p>
+<ul class="simple">
+<li><p>/opt/nvidia/v1.2.0 for Spectrum-X v1.2</p></li>
+<li><p>/opt/nvidia/v1.3.0 for Spectrum-X v1.3</p></li>
+</ul>
+<p>Execute the command to configure the BlueField3 NICs</p>
+<p><code class="docutils literal notranslate"><span class="pre">/opt/netris/bin/bf3-config</span></code></p>
+<p>Note: The configurator may prompt a server reboot. If the server reboots, run the configurator again to ensure proper configuration.</p>
+</section>
+<section id="verify-bluefield3-nics-parameters">
+<h3>3. Verify BlueField3 NICs Parameters<a class="headerlink" href="#verify-bluefield3-nics-parameters" title="Link to this heading"></a></h3>
+<p>To ensure that the BlueField3 parameters are correctly configured and there are no errors, run the following command</p>
+<p><code class="docutils literal notranslate"><span class="pre">/opt/netris/bin/verifier</span></code></p>
+</section>
+<section id="start-the-nhn-daemon">
+<h3>4. Start the NHN daemon<a class="headerlink" href="#start-the-nhn-daemon" title="Link to this heading"></a></h3>
+<p>After preparing the server and (if applicable) the SmartNIC, start NHN:</p>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">start</span> <span class="pre">netris-nhp</span></code></p>
+<p>NHN will begin discovering interfaces, reading LLDP information from the switches, and applying the correct host network configuration automatically.</p>
+</section>
+</section>
+<section id="nhn-network-configuration-management">
+<h2>NHN: Network Configuration Management<a class="headerlink" href="#nhn-network-configuration-management" title="Link to this heading"></a></h2>
+<section id="workflow-cycle">
+<h3>Workflow Cycle<a class="headerlink" href="#workflow-cycle" title="Link to this heading"></a></h3>
+<p>Every 20 seconds (set by the <code class="docutils literal notranslate"><span class="pre">network_plugin_run_interval</span></code> parameter), NHN performs these steps:</p>
+<ol class="arabic">
+<li><p><strong>Interface Discovery</strong></p>
+<ul class="simple">
+<li><p>Uses netlink to enumerate network interfaces.</p></li>
+<li><p>Excludes: bonds, bridges, VLANs, loopback, docker interfaces.</p></li>
+</ul>
+</li>
+<li><p><strong>LLDP Query</strong></p>
+<ul class="simple">
+<li><p>Runs <code class="docutils literal notranslate"><span class="pre">lldpctl</span> <span class="pre">-f</span> <span class="pre">json</span> <span class="pre">&lt;interface&gt;</span></code> for each interface.</p></li>
+<li><p>Retrieves LLDP neighbor information.</p></li>
+</ul>
+</li>
+<li><p><strong>Custom TLV Parsing</strong></p>
+<ul class="simple">
+<li><p>Extracts custom TLVs.</p></li>
+<li><p>Decodes hex-encoded configuration data.</p></li>
+<li><p>Parses IP addresses, gateways, routes, MTU, bond names.</p></li>
+</ul>
+</li>
+<li><p><strong>Network Manager Detection</strong></p>
+<ul class="simple">
+<li><p>Checks if systemd-networkd is active → use netplan.</p></li>
+<li><p>Otherwise checks networking service → use ifupdown.</p></li>
+</ul>
+</li>
+<li><p><strong>Configuration Transformation</strong></p>
+<ul class="simple">
+<li><p>Transforms parsed LLDP data to appropriate format.</p></li>
+<li><p>Handles bonding by grouping interfaces.</p></li>
+<li><p>Deduplicates addresses and routes.</p></li>
+</ul>
+</li>
+<li><p><strong>Configuration Application</strong></p>
+<ul>
+<li><p>Compares new config with existing config.</p></li>
+<li><p>If changed, writes new configuration file.</p></li>
+<li><p>Applies configuration:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Netplan: runs <code class="docutils literal notranslate"><span class="pre">netplan</span> <span class="pre">apply</span></code>.</p></li>
+<li><p>Ifupdown: runs <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">reload-or-restart</span> <span class="pre">networking</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>Caching</strong></p>
+<ul class="simple">
+<li><p>Saves LLDP packets to <code class="docutils literal notranslate"><span class="pre">/var/cache/nhn/lldp_cache.json</span></code>.</p></li>
+<li><p>Used when LLDP is temporarily unavailable.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="starting-nhn">
+<h3>Starting NHN<a class="headerlink" href="#starting-nhn" title="Link to this heading"></a></h3>
+<section id="as-a-systemd-service-recommended">
+<h4>As a Systemd Service (Recommended)<a class="headerlink" href="#as-a-systemd-service-recommended" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start the service</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>netris-nhp
+
+<span class="c1"># Check status</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>netris-nhp
+
+<span class="c1"># View logs</span>
+sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>netris-nhp<span class="w"> </span>-f
+</pre></div>
+</div>
+</section>
+<section id="manual-execution">
+<h4>Manual Execution<a class="headerlink" href="#manual-execution" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run in foreground</span>
+sudo<span class="w"> </span>/opt/netris/bin/netris-nhp<span class="w"> </span>-config<span class="w"> </span>/opt/netris/etc/netris.conf
+
+<span class="c1"># Run in foreground with debug logging</span>
+sudo<span class="w"> </span>/opt/netris/bin/netris-nhp<span class="w"> </span>-debug<span class="w"> </span>-config<span class="w"> </span>/opt/netris/etc/netris.conf
+</pre></div>
+</div>
+</section>
+</section>
+<section id="monitoring-nhn">
+<h3>Monitoring NHN<a class="headerlink" href="#monitoring-nhn" title="Link to this heading"></a></h3>
+<section id="view-real-time-logs">
+<h4>View Real-Time Logs<a class="headerlink" href="#view-real-time-logs" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Follow systemd logs</span>
+sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>netris-nhp<span class="w"> </span>-f
+
+<span class="c1"># View last 100 lines</span>
+sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>netris-nhp<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="stopping-nhn">
+<h3>Stopping NHN<a class="headerlink" href="#stopping-nhn" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stop the service</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>netris-nhp
+</pre></div>
+</div>
+</section>
+<section id="network-configuration-formats">
+<h3>Network Configuration Formats<a class="headerlink" href="#network-configuration-formats" title="Link to this heading"></a></h3>
+<p>NHN supports two network configuration formats, automatically detected based on the system’s network manager.</p>
+</section>
+<section id="network-manager-auto-detection">
+<h3>Network Manager Auto-Detection<a class="headerlink" href="#network-manager-auto-detection" title="Link to this heading"></a></h3>
+<p>NHN automatically detects which network manager to use:</p>
+<ol class="arabic">
+<li><p><strong>Checks for systemd-networkd</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>status<span class="w"> </span>systemd-networkd
+</pre></div>
+</div>
+<p>If active → uses netplan.</p>
+</li>
+<li><p><strong>Falls back to networking service</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>status<span class="w"> </span>networking
+</pre></div>
+</div>
+<p>If present → uses ifupdown.</p>
+</li>
+</ol>
+<section id="netplan-systemd-networkd">
+<h4>Netplan (systemd-networkd)<a class="headerlink" href="#netplan-systemd-networkd" title="Link to this heading"></a></h4>
+<p><strong>When used:</strong> System is running systemd-networkd</p>
+<p><strong>Generated file:</strong> <code class="docutils literal notranslate"><span class="pre">/etc/netplan/dpu_config.yaml</span></code></p>
+<p><strong>Key Features</strong></p>
+<ul class="simple">
+<li><p>YAML format.</p></li>
+<li><p>Supports ethernets and bonds.</p></li>
+<li><p>Routes configured per interface/bond.</p></li>
+<li><p>MTU configuration.</p></li>
+<li><p>LACP bonding with 802.3ad.</p></li>
+</ul>
+<p><strong>Example output</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">network</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networkd</span>
+<span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ens3</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">dhcp6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9000</span>
+<span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.10/24</span>
+<span class="w">      </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+<span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span>
+<span class="w">  </span><span class="nt">bonds</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">bond0</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">interfaces</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ens4</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ens5</span>
+<span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.10/24</span>
+<span class="w">      </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.1.0.0/16</span>
+<span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1</span>
+<span class="w">      </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">802.3ad</span>
+<span class="w">        </span><span class="nt">mii-monitor-interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">        </span><span class="nt">lacp-rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fast</span>
+</pre></div>
+</div>
+</section>
+<section id="ifupdown-ubuntu-interfaces">
+<h4>Ifupdown (Ubuntu interfaces)<a class="headerlink" href="#ifupdown-ubuntu-interfaces" title="Link to this heading"></a></h4>
+<p><strong>When used:</strong> System is running networking service (not systemd-networkd).</p>
+<p><strong>Generated file:</strong> <code class="docutils literal notranslate"><span class="pre">/etc/network/interfaces.d/netris-nhn</span></code></p>
+<p><strong>Key Features</strong></p>
+<ul class="simple">
+<li><p>Text-based interface format.</p></li>
+<li><p>Supports interfaces and bonds.</p></li>
+<li><p>Routes via post-up/pre-down hooks.</p></li>
+<li><p>LACP bonding.</p></li>
+</ul>
+<p><strong>Example output</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interface: ens3</span>
+<span class="n">auto</span> <span class="n">ens3</span>
+<span class="n">iface</span> <span class="n">ens3</span> <span class="n">inet</span> <span class="n">static</span>
+    <span class="n">address</span> <span class="mf">192.168.1.10</span><span class="o">/</span><span class="mi">24</span>
+    <span class="n">gateway</span> <span class="mf">192.168.1.1</span>
+    <span class="n">mtu</span> <span class="mi">9000</span>
+
+<span class="c1"># Bond: bond0</span>
+<span class="n">auto</span> <span class="n">bond0</span>
+<span class="n">iface</span> <span class="n">bond0</span> <span class="n">inet</span> <span class="n">static</span>
+    <span class="n">address</span> <span class="mf">10.0.0.10</span><span class="o">/</span><span class="mi">24</span>
+    <span class="n">bond</span><span class="o">-</span><span class="n">mode</span> <span class="mf">802.3</span><span class="n">ad</span>
+    <span class="n">bond</span><span class="o">-</span><span class="n">miimon</span> <span class="mi">100</span>
+    <span class="n">bond</span><span class="o">-</span><span class="n">lacp</span><span class="o">-</span><span class="n">rate</span> <span class="mi">1</span>
+    <span class="n">bond</span><span class="o">-</span><span class="n">slaves</span> <span class="n">ens4</span> <span class="n">ens5</span>
+    <span class="n">post</span><span class="o">-</span><span class="n">up</span> <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">10.1.0.0</span><span class="o">/</span><span class="mi">16</span> <span class="n">via</span> <span class="mf">10.0.0.1</span> <span class="n">dev</span> <span class="n">bond0</span> <span class="o">||</span> <span class="n">true</span>
+    <span class="n">pre</span><span class="o">-</span><span class="n">down</span> <span class="n">ip</span> <span class="n">route</span> <span class="k">del</span> <span class="mf">10.1.0.0</span><span class="o">/</span><span class="mi">16</span> <span class="n">via</span> <span class="mf">10.0.0.1</span> <span class="n">dev</span> <span class="n">bond0</span> <span class="o">||</span> <span class="n">true</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="nhn-doca-bluefield3-configuration">
+<h2>NHN-DOCA: BlueField3 Configuration<a class="headerlink" href="#nhn-doca-bluefield3-configuration" title="Link to this heading"></a></h2>
+<section id="what-the-bf3-config-does">
+<h3>What the bf3-config Does<a class="headerlink" href="#what-the-bf3-config-does" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">bf3-config</span></code> performs these steps in order:</p>
+<ol class="arabic simple">
+<li><p><strong>Pre-flight Checks</strong></p>
+<ul class="simple">
+<li><p>Verifies root privileges.</p></li>
+<li><p>Creates lock file to prevent concurrent runs.</p></li>
+<li><p>Loads configuration.</p></li>
+</ul>
+</li>
+<li><p><strong>Package Verification</strong> (unless <code class="docutils literal notranslate"><span class="pre">-skip-install</span></code> specified)</p>
+<ul class="simple">
+<li><p>Checks for required packages.</p></li>
+<li><p>Reports missing packages and exits if any are absent.</p></li>
+</ul>
+</li>
+<li><p><strong>Service Management</strong></p>
+<ul class="simple">
+<li><p>Starts and enables <code class="docutils literal notranslate"><span class="pre">rshim</span></code> service.</p></li>
+<li><p>Starts and enables <code class="docutils literal notranslate"><span class="pre">mst</span></code> service.</p></li>
+</ul>
+</li>
+<li><p><strong>Device Discovery</strong></p>
+<ul class="simple">
+<li><p>Enumerates MST devices using <code class="docutils literal notranslate"><span class="pre">mst</span> <span class="pre">status</span></code>.</p></li>
+<li><p>Brings up network interfaces.</p></li>
+<li><p>Queries LLDP information from each interface.</p></li>
+<li><p>Filters devices based on <code class="docutils literal notranslate"><span class="pre">ew-switch-name-template</span></code> regex.</p></li>
+<li><p>Auto-detects Spectrum-X version from switch description.</p></li>
+</ul>
+</li>
+<li><p><strong>Firmware Verification</strong></p>
+<ul class="simple">
+<li><p>Checks firmware version on each device.</p></li>
+<li><p>Validates against minimum version for detected Spectrum-X release.</p></li>
+<li><p>Flags devices needing updates.</p></li>
+</ul>
+</li>
+<li><p><strong>Capability Configuration</strong></p>
+<ul class="simple">
+<li><p><em>Note:</em> Changes require a reboot to take effect.</p></li>
+</ul>
+</li>
+<li><p><strong>RoCE QoS and Adaptive Routing</strong></p></li>
+<li><p><strong>NVN Congestion Control</strong></p>
+<ul class="simple">
+<li><p>Enables ECN on RoCE RP and NP.</p></li>
+<li><p>Spawns <code class="docutils literal notranslate"><span class="pre">doca_nvn_cc</span></code> daemon process.</p></li>
+<li><p>Applies version-specific configurations:</p>
+<ul>
+<li><p><strong>Spectrum-X v1.2:</strong> Disables DCQCN, configures RTT without counters.</p></li>
+<li><p><strong>Spectrum-X v1.3:</strong> Enables Base RTT, Global Min RTT, and counter-based mode.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Inter-Packet Gap (IPG)</strong></p></li>
+</ol>
+<p><strong>When Reboot Is Required</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">bf3-config</span></code> will inform you if a reboot is necessary. A reboot is required when:</p>
+<ul class="simple">
+<li><p>Firmware was updated.</p></li>
+<li><p>Capabilities were changed.</p></li>
+</ul>
+<p>After rebooting, run <code class="docutils literal notranslate"><span class="pre">bf3-config</span></code> again to complete configuration.</p>
+</section>
+<section id="using-the-bf3-config">
+<h3>Using the bf3-config<a class="headerlink" href="#using-the-bf3-config" title="Link to this heading"></a></h3>
+<p><strong>Command-Line Options</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/netris/bin/bf3-config<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">  </span>-config<span class="w"> </span>&lt;path&gt;<span class="w">      </span>Path<span class="w"> </span>to<span class="w"> </span>configuration<span class="w"> </span>file<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>/opt/netris/etc/netris.conf<span class="o">)</span>
+<span class="w">  </span>-debug<span class="w">              </span>Enable<span class="w"> </span>debug<span class="w"> </span>logging<span class="w"> </span><span class="k">for</span><span class="w"> </span>detailed<span class="w"> </span>output
+<span class="w">  </span>-version<span class="w">            </span>Display<span class="w"> </span>version<span class="w"> </span>information
+<span class="w">  </span>-skip-install<span class="w">       </span>Skip<span class="w"> </span>package<span class="w"> </span>and<span class="w"> </span>firmware<span class="w"> </span>installation<span class="w"> </span>checks
+<span class="w">  </span>-attempts<span class="w"> </span>&lt;n&gt;<span class="w">       </span>Number<span class="w"> </span>of<span class="w"> </span>LLDP<span class="w"> </span>discovery<span class="w"> </span>retry<span class="w"> </span>attempts<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">5</span><span class="o">)</span>
+</pre></div>
+</div>
+<p><strong>Examples:</strong></p>
+<p>Standard Installation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/netris/bin/bf3-config
+</pre></div>
+</div>
+<p>Installation with Debug Logging</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/netris/bin/bf3-config<span class="w"> </span>-debug
+</pre></div>
+</div>
+<p>Skip Package Checks (if already installed)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/netris/bin/bf3-config<span class="w"> </span>-skip-install
+</pre></div>
+</div>
+<p>Increase LLDP discovery retries, if LLDP discovery is taking time to populate:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/netris/bin/bf3-config<span class="w"> </span>-attempts<span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+</section>
+<section id="what-the-verifier-does">
+<h3>What the Verifier Does<a class="headerlink" href="#what-the-verifier-does" title="Link to this heading"></a></h3>
+<p>The verifier performs read-only checks without making changes:</p>
+<ol class="arabic simple">
+<li><p><strong>Pre-flight Checks</strong></p>
+<ul class="simple">
+<li><p>Verifies root privileges.</p></li>
+<li><p>Loads configuration.</p></li>
+</ul>
+</li>
+<li><p><strong>Package Verification</strong></p>
+<ul class="simple">
+<li><p>Checks for <code class="docutils literal notranslate"><span class="pre">doca-ofed</span></code> and <code class="docutils literal notranslate"><span class="pre">doca-host</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Service Status</strong></p>
+<ul class="simple">
+<li><p>Verifies <code class="docutils literal notranslate"><span class="pre">rshim</span></code> service is active.</p></li>
+</ul>
+</li>
+<li><p><strong>Device Discovery</strong></p>
+<ul class="simple">
+<li><p>Enumerates MST devices.</p></li>
+<li><p>Uses LLDP to identify east-west fabric NICs.</p></li>
+<li><p>Auto-detects Spectrum-X version.</p></li>
+</ul>
+</li>
+<li><p><strong>Firmware Verification</strong></p>
+<ul class="simple">
+<li><p>Checks firmware version meets minimum requirements.</p></li>
+</ul>
+</li>
+<li><p><strong>Capability Verification</strong></p>
+<ul class="simple">
+<li><p>Validates all Spectrum-X capabilities are enabled.</p></li>
+</ul>
+</li>
+<li><p><strong>RoCE QoS Verification</strong></p></li>
+<li><p><strong>NVN Congestion Control Verification</strong></p></li>
+<li><p><strong>Inter Packet Gap Verification</strong></p>
+<ul class="simple">
+<li><p>Checks IPG register value for L3EVPN.</p></li>
+</ul>
+</li>
+<li><p><strong>Error Reporting</strong></p>
+<ul class="simple">
+<li><p>Generates LLDP custom TLV messages with error details.</p></li>
+<li><p>Writes configuration to <code class="docutils literal notranslate"><span class="pre">/etc/lldpd.d/lldp-netris.conf</span></code>.</p></li>
+<li><p>Restarts <code class="docutils literal notranslate"><span class="pre">lldpd</span></code> service if configuration changed.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="using-the-verifier">
+<h3>Using the Verifier<a class="headerlink" href="#using-the-verifier" title="Link to this heading"></a></h3>
+<p><strong>Command-Line Options</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/netris/bin/verifier<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">  </span>-config<span class="w"> </span>&lt;path&gt;<span class="w">      </span>Path<span class="w"> </span>to<span class="w"> </span>configuration<span class="w"> </span>file<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>/opt/netris/etc/netris.conf<span class="o">)</span>
+<span class="w">  </span>-debug<span class="w">              </span>Enable<span class="w"> </span>debug<span class="w"> </span>logging<span class="w"> </span><span class="k">for</span><span class="w"> </span>detailed<span class="w"> </span>output
+<span class="w">  </span>-version<span class="w">            </span>Display<span class="w"> </span>version<span class="w"> </span>information
+<span class="w">  </span>-attempts<span class="w"> </span>&lt;n&gt;<span class="w">       </span>Number<span class="w"> </span>of<span class="w"> </span>LLDP<span class="w"> </span>discovery<span class="w"> </span>retry<span class="w"> </span>attempts<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">5</span><span class="o">)</span>
+</pre></div>
+</div>
+<p><strong>Examples:</strong></p>
+<p>Standard Verification</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/netris/bin/verifier
+</pre></div>
+</div>
+<p>Verification with Debug Logging</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/netris/bin/verifier<span class="w"> </span>-debug
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="monitoring-observability/netq.html" class="btn btn-neutral float-left" title="NVIDIA NetQ Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vpc.html" class="btn btn-neutral float-right" title="Netris VPC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Netris.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Alternate Versions</span>
+      v: NHN
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/docs/en/2.9/">2.9</a></dd>
+          
+        
+          
+          <dd><a href="/docs/en/3.0/">3.0</a></dd>
+          
+        
+          
+          <dd><a href="/docs/en/3.4/">3.4</a></dd>
+          
+        
+          
+          <dd><a href="/docs/en/4.5.3/">4.5.3</a></dd>
+          
+        
+          
+          <dd><a href="/docs/en/latest/">latest</a></dd>
+          
+        
+      </dl>
+      
+      
+      
+      <hr/>
+      Free theme by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-152905529-2', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
