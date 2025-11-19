@@ -64,6 +64,7 @@ You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get ad
    kubernetes-integration
    tutorials/netris-cloudstack
    terraform-integration
+   evpn-on-host
 
 .. toctree::
    :maxdepth: 2
