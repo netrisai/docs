@@ -419,6 +419,7 @@ When you click the blue ``Add`` button, Netris will create the VPC, V-Nets, and 
   - After creation, the template, the VPC, and the site fields are locked.
   - The same Netris NIC name must be used consistently across all server objects in a cluster. For example, when eth10 is assigned to a V-Net in the template, Netris will assign every switch port that corresponds to every server's eth10 to the same  V-Net throughout the server cluster.
 
+.. _server-cluster-shared-endpoints:
 Shared Endpoints
 ----------------
 
