@@ -381,42 +381,8 @@ Generated file: `/etc/netplan/dpu_config.yaml`
 Key features:
 
 - YAML format
-- Supports ethernets and bonds
 - Routes configured per interface/bond
 - MTU configuration
-- LACP bonding with 802.3ad
-
-Example output:
-
-::
-
-   network:
-     version: 2
-     renderer: networkd
-     ethernets:
-       ens3:
-         dhcp4: false
-         dhcp6: false
-         mtu: 9000
-         addresses:
-           - 192.168.1.10/24
-         routes:
-           - to: 0.0.0.0/0
-             via: 192.168.1.1
-     bonds:
-       bond0:
-         interfaces:
-           - ens4
-           - ens5
-         addresses:
-           - 10.0.0.10/24
-         routes:
-           - to: 10.1.0.0/16
-             via: 10.0.0.1
-         parameters:
-           mode: 802.3ad
-           mii-monitor-interval: 100
-           lacp-rate: fast
 
 Ifupdown (Ubuntu interfaces)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -428,28 +394,4 @@ Generated file: `/etc/network/interfaces.d/netris-nhn`
 Key features:
 
 - Text-based interface format
-- Supports interfaces and bonds
 - Routes via post-up/pre-down hooks
-- LACP bonding
-
-Example output:
-
-::
-
-   # Interface: ens3
-   auto ens3
-   iface ens3 inet static
-       address 192.168.1.10/24
-       gateway 192.168.1.1
-       mtu 9000
-
-   # Bond: bond0
-   auto bond0
-   iface bond0 inet static
-       address 10.0.0.10/24
-       bond-mode 802.3ad
-       bond-miimon 100
-       bond-lacp-rate 1
-       bond-slaves ens4 ens5
-       post-up ip route add 10.1.0.0/16 via 10.0.0.1 dev bond0 || true
-       pre-down ip route del 10.1.0.0/16 via 10.0.0.1 dev bond0 || true
