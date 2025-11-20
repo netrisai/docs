@@ -381,10 +381,8 @@ Generated file: `/etc/netplan/dpu_config.yaml`
 Key features:
 
 - YAML format
-- Supports ethernets and bonds
 - Routes configured per interface/bond
 - MTU configuration
-- LACP bonding with 802.3ad
 
 Ifupdown (Ubuntu interfaces)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -396,6 +394,4 @@ Generated file: `/etc/network/interfaces.d/netris-nhn`
 Key features:
 
 - Text-based interface format
-- Supports interfaces and bonds
 - Routes via post-up/pre-down hooks
-- LACP bonding
