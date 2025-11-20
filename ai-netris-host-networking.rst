@@ -34,7 +34,7 @@ System Requirements
 ~~~~~~~~~~~~~~~~~~~
 
 - Ubuntu Linux
-- NVIDIA BlueField3 DPUs in SuperNIC mode.
+- NVIDIA BlueField3 SuperNIC.
 - Netris-managed NVIDIA Cumulus Linux switches.
 - LLDP is enabled on the server.
 
