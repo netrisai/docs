@@ -198,7 +198,7 @@ In this V-Net, you must
 - Include the switch ports (directly, using :ref:`labels <tags>`, or through :doc:`Server Cluster </server-cluster>`) to which the EVPN-on-Host candidate servers are connected in the North-South fabric as **untagged**.
 
 .. warning::
-  The switch ports must be added to the V-Net as untagged. The untagged property of the switch port signals the system to configure the management V-Net gateway on the switch rather than on the host itself. By contrast, when tenants' V-Nets are provisioned on the host, as described later in this document, the same switch ports are added to the tenant's V-Nets as tagged, which signals the system to configure the gateway IP for those V-Nets on the host's VXLAN bridge interface.
+  The switch ports must be added to the management V-Net as untagged. The untagged property of the switch port signals the system to configure the management V-Net gateway on the switch rather than on the host itself. By contrast, when tenants' V-Nets are provisioned on the host, as described later in this document, the same switch ports are added to the tenant's V-Nets as tagged, which signals the system to configure the gateway IP for those V-Nets on the host's VXLAN bridge interface.
 
 .. tip::
   Netris recommends using a :ref:`label <tags>` to dynamically include the correct switch ports in the Management :doc:`V-Net <vnet>`.
