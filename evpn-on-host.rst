@@ -39,7 +39,7 @@ Use Cases
 Managed Kubernetes
 --------------------------
 
-Many major cloud providers offer a Managed Kubernetes service, where tenants consume a Kubernetes cluster without managing its underlying control plane (Kube API) or infrastructure. While it is necessary to organize multi-tenancy of the Kubernetes API itself, network-level multi-tenancy enforcement is essential to successfully providing a Managed K8S service. 
+Many major cloud providers offer a Managed Kubernetes service, where tenants consume a Kubernetes cluster without managing its underlying control plane (e.g., Kube API) or infrastructure. While it is necessary to organize multi-tenancy of the Kubernetes API itself, network-level multi-tenancy enforcement is essential to successfully providing a Managed K8S service. 
 
 The Kubernetes mechanisms alone are insufficient to achieve this, so the Netris EVPN-on-Host solution delivers the necessary network control plane extensions to the Kubernetes node, enabling you to offer a similar service with seamless integration between virtual and bare metal workloads within the same VPC and V-Net.
 
@@ -83,7 +83,7 @@ Netris EVPN-on-Host agent automatically generates the necessary network configur
 Netris:
 
 - Configures bridge interfaces, VNIs, and bridge-to-VNI mapping.
-- Installs the V-Net’s anycast gateways' IP addresses on the bridge interfaces.
+- Installs the V-Net's anycast gateways' IP addresses on the bridge interfaces.
 - Inserts bridge interfaces into appropriate VRFs.
 - Configures FRR to advertise the new VNIs towards the leaf switches.
 
@@ -109,10 +109,10 @@ Packet Flow
 
 **Diagram Legend.**
 
-- 10.188.1.0/24 – Tenant Red subnet.
-- 172.16.0.0/24 – Underlay prefix. Switch and EVPN-hosts VTEP loopback IPs are allocated from this prefix.
-- `mgmt-srv-01` is a hypervisor or a Kubernetes node hosting VMs or containers and runs Netris EVPN-on-Host agent. The host agent enables Netris to extend tenants’ VPCs (VRFs) and V-Nets (VXLANs) into the host and bridge them with tenants’ VMs and containers.
-- `gpu-node-10` is a bare metal host with no Netris software on it. A tenant’s access to this host type is defined through Netris and automatically enforced on the connected leaf switch.
+- 10.188.1.0/24 - Tenant Red subnet.
+- 172.16.0.0/24 - Underlay prefix. Switch and EVPN-hosts VTEP loopback IPs are allocated from this prefix.
+- `mgmt-srv-01` is a hypervisor or a Kubernetes node hosting VMs or containers and runs Netris EVPN-on-Host agent. The host agent enables Netris to extend tenants' VPCs (VRFs) and V-Nets (VXLANs) into the host and bridge them with tenants' VMs and containers.
+- `gpu-node-10` is a bare metal host with no Netris software on it. A tenant's access to this host type is defined through Netris and automatically enforced on the connected leaf switch.
 
 **Scenario.**
 
@@ -121,7 +121,7 @@ Packet Flow
 FRR running on the `mgmt-srv-01` node maintains EVPN BGP adjacencies with the directly connected physical leaf switches and exchanges IP/MAC reachability information between `mgmt-srv-01` and the physical switches. As a result, all VTEPs, such as `mgmt-srv-01` and any leaf switch, know how to reach a given IP/MAC within a given VPC (VRF).
 
 1. `Pod1` (IP: 10.188.1.10) in VPC Red running on node `mgmt-srv-01` (where EVPN-on-Host agent is installed) generates a packet destined to node `gpu-node-10` (IP 10.188.1.200) also in VPC `Red`.
-2. The packet hits the tenant’s VXLAN bridge (`vxlan1000`) on node `mgmt-srv-01`. The node’s Linux OS encapsulates the original packet as a payload into a VXLAN packet with destination IP 172.16.0.50 (`Leaf4` switch loopback IP), source IP 172.16.0.10 (node `mgmt-srv-01` loopback IP), and VNI 1000 in the outer header. Then, based on the routing table FRR installed on the node, the packet is sent out of one of the two server NICs (`eth9` or `eth10`, which are ECMP load balanced) connected to `Leaf1` and `Leaf2` switches.
+2. The packet hits the tenant's VXLAN bridge (`vxlan1000`) on node `mgmt-srv-01`. The node's Linux OS encapsulates the original packet as a payload into a VXLAN packet with destination IP 172.16.0.50 (`Leaf4` switch loopback IP), source IP 172.16.0.10 (node `mgmt-srv-01` loopback IP), and VNI 1000 in the outer header. Then, based on the routing table FRR installed on the node, the packet is sent out of one of the two server NICs (`eth9` or `eth10`, which are ECMP load balanced) connected to `Leaf1` and `Leaf2` switches.
 3. The receiving leaf switch (e.g., `Leaf2`) forwards the VXLAN packet to the spine and subsequently to the leaf switch connected to the bare metal node `gpu-node-10` (`Leaf4`) based on the 172.16.0.50 VXLAN packet destination IP address.
 4. The receiving leaf switch `Leaf4` decapsulates the payload from the VXLAN packet and sends the original IP packet directly to the bare metal server `gpu-node-10`.
 5. The bare metal server (g`pu-node-10`) receives the original packet destined to its IP 10.188.1.200, seeing the packet sourced from `Pod1` (IP: 10.188.1.10).
@@ -141,9 +141,9 @@ A management V-net is used to enable a variety of management flows, including
 
 - The initial server provisioning (e.g., PXE boot), 
 - Various ongoing administration tasks (e.g., SSH access and monitoring), 
-- The Netris agent’s installation and subsequent communication with the Netris controller.
+- The Netris agent's installation and subsequent communication with the Netris controller.
 
-Initially, before the EVPN-on-Host agent is installed, you assign the management IP to the server’s NIC (e.g., `mgmt-srv-01 eth9`).
+Initially, before the EVPN-on-Host agent is installed, you assign the management IP to the server's NIC (e.g., `mgmt-srv-01 eth9`).
 
 .. image:: images/evpn-on-host/EVPN-on-Host-Provisioning-V-net.svg
   :align: center
@@ -161,7 +161,7 @@ Initially, before the EVPN-on-Host agent is installed, you assign the management
 
 Once the Netris EVPN-on-Host agent is installed and able to communicate with the Netris controller, the agent creates a VXLAN bridge (e.g., `vxlan50` in the following diagram) for the management V-Net, configures FRR, and attempts to initiate EVPN BGP sessions with the directly connected leaf switches. The sessions will remain down until the user instructs the system by enabling the underlay mode on the switch-to-server links.
 
-When you enable the underlay mode on one or both of the switch-to-server links in the Netris controller, an EVPN BGP session per enabled link is established as a result. An ESTABLISHED EVPN BGP session triggers the Netris agent to automatically transfer the management IP (192.168.1.10/24) and the associated default route from the server’s NIC to the VXLAN bridge. This action keeps the server reachable via the same management IP. Without this action, the IP directly configured on a NIC would become inaccessible due to the switch-to-server links switching to the EVPN/VXLAN mode. 
+When you enable the underlay mode on one or both of the switch-to-server links in the Netris controller, an EVPN BGP session per enabled link is established as a result. An ESTABLISHED EVPN BGP session triggers the Netris agent to automatically transfer the management IP (192.168.1.10/24) and the associated default route from the server's NIC to the VXLAN bridge. This action keeps the server reachable via the same management IP. Without this action, the IP directly configured on a NIC would become inaccessible due to the switch-to-server links switching to the EVPN/VXLAN mode. 
 
 .. image:: images/evpn-on-host/EVPN-on-Host-Management-V-net.svg
   :align: center
@@ -190,24 +190,18 @@ The management V-Net is for the systems administrator, the Netris Controller, an
 
 - The initial server provisioning (e.g., PXE boot), 
 - Various ongoing administration tasks (e.g., SSH access and monitoring), 
-- The Netris agent’s installation
-- The Netris agent’s communication with the Netris controller.
+- The Netris agent's installation
+- The Netris agent's communication with the Netris controller.
 
 In this V-Net, you must
 
 - Include the switch ports (directly, using :ref:`labels <tags>`, or through :doc:`Server Cluster </server-cluster>`) to which the EVPN-on-Host candidate servers are connected in the North-South fabric as **untagged**.
-- Include the `system.force-gateway-on-switch` label.
 
-.. image:: images/evpn-on-host/EVPN-on-Host-vnet-management-system-label.png
-  :align: center
-  :class: with-shadow
-
-.. raw:: html
-
-    <br />
+.. warning::
+  The switch ports must be added to the management V-Net as untagged. The untagged property of the switch port signals the system to configure the management V-Net gateway on the switch rather than on the host itself. By contrast, when tenants' V-Nets are provisioned on the host, as described later in this document, the same switch ports are added to the tenant's V-Nets as tagged, which signals the system to configure the gateway IP for those V-Nets on the host's VXLAN bridge interface.
 
 .. tip::
-    Netris recommends using a :ref:`label <tags>` to dynamically include the correct switch ports in the Management :doc:`V-Net <vnet>`.
+  Netris recommends using a :ref:`label <tags>` to dynamically include the correct switch ports in the Management :doc:`V-Net <vnet>`.
 
 2. Server Objects
 ---------------------------
@@ -240,7 +234,7 @@ Navigate to ``Network → Inventory``, locate the subject node in the list, and 
 
     <br />
 
-Copy the one-liner command and paste it into the server’s CLI.
+Copy the one-liner command and paste it into the server's CLI.
 
 .. image:: images/evpn-on-host/EVPN-on-Host-install-agent-oneliner.png
   :align: center
@@ -300,7 +294,7 @@ There should be a new default route present via the management bridge.
     default via 10.12.0.1 dev nbr-14
 
 .. tip::
-    You can verify BGP and EVPN adjacencies using the FRR’s show bgp summary command
+    You can verify BGP and EVPN adjacencies using the FRR's show bgp summary command
 
 .. code-block:: shell
 
@@ -333,9 +327,9 @@ There should be a new default route present via the management bridge.
 Provisioning Tenants
 ==========================
 
-To provision a tenant’s Vnet on an EVPN-on-Host enabled server, add the switch ports connected to the EVPN-on-Host server to the tenant’s V-Net as tagged ports using any of the supported methods:
+To provision a tenant's Vnet on an EVPN-on-Host enabled server, add the switch ports connected to the EVPN-on-Host server to the tenant's V-Net as tagged ports using any of the supported methods:
 
-1. Add this node as a Shared Endpoint to that tenant’s :doc:`Server Cluster </server-cluster>`.
+1. Add this node as a Shared Endpoint to that tenant's :doc:`Server Cluster </server-cluster>`.
 
 .. image:: images/evpn-on-host/EVPN-on-Host-cluster-coke.png
   :align: center
