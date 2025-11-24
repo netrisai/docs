@@ -108,9 +108,9 @@ Installation Overview
 
 1. Install the netris-hnp Netris Host Networking package.
 2. Review the configuration file `/opt/netris/etc/netris.conf`.
-3. Download and install the NVIDIA dependencies for the BlueField-3 SmartNICs.
-4. Run the SmartNIC configurator `/opt/netris/bin/bf3-config`.
-5. Verify the SmartNIC configuration with `/opt/netris/bin/verifier`.
+3. Download and install the NVIDIA dependencies for the BlueField-3 SuperNICs.
+4. Run the SuperNIC configurator `/opt/netris/bin/bf3-config`.
+5. Verify the SuperNIC configuration with `/opt/netris/bin/verifier`.
 6. Start the NHN daemon.
 
 Installation
@@ -226,7 +226,7 @@ To ensure that the BlueField3 parameters are correctly configured and there are 
 4. Start the NHN daemon
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-After preparing the server and (if applicable) the SmartNIC, start NHN:
+After preparing the server and (if applicable) the SuperNIC, start NHN:
 
 ::
 
