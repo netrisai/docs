@@ -230,7 +230,7 @@ After preparing the server and (if applicable) the SuperNIC, start NHN:
 
 ::
 
-   sudo systemctl start netris-nhp
+   sudo systemctl start netris-hnp
 
 NHN will begin discovering interfaces, reading LLDP information from the switches, and applying the correct host network configuration automatically.
 
@@ -245,23 +245,23 @@ As a Systemd Service (Recommended)
 ::
 
    # Start the service
-   sudo systemctl start netris-nhp
+   sudo systemctl start netris-hnp
 
    # Check status
-   sudo systemctl status netris-nhp
+   sudo systemctl status netris-hnp
 
    # View logs
-   sudo journalctl -u netris-nhp -f
+   sudo journalctl -u netris-hnp -f
 
 Manual Execution
 
 ::
 
    # Run in foreground
-   sudo /opt/netris/bin/netris-nhp -config /opt/netris/etc/netris.conf
+   sudo /opt/netris/bin/netris-hnp -config /opt/netris/etc/netris.conf
 
    # Run in foreground with debug logging
-   sudo /opt/netris/bin/netris-nhp -debug -config /opt/netris/etc/netris.conf
+   sudo /opt/netris/bin/netris-hnp -debug -config /opt/netris/etc/netris.conf
 
 Monitoring NHN
 ~~~~~~~~~~~~~~
@@ -269,10 +269,10 @@ Monitoring NHN
 ::
 
    # Follow systemd logs
-   sudo journalctl -u netris-nhp -f
+   sudo journalctl -u netris-hnp -f
 
    # View last 100 lines
-   sudo journalctl -u netris-nhp -n 100
+   sudo journalctl -u netris-hnp -n 100
 
 Stopping NHN
 ~~~~~~~~~~~~
@@ -280,7 +280,7 @@ Stopping NHN
 ::
 
    # Stop the service
-   sudo systemctl stop netris-nhp
+   sudo systemctl stop netris-hnp
 
 Using the bf3-config
 --------------------
