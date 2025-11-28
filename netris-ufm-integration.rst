@@ -313,6 +313,89 @@ Functional Workflow
    - Ensures consistency between Ethernet and InfiniBand configurations
    - Reconciliation interval is configurable (default: 10 seconds)
 
+InfiniBand MKey Security (Recommended)
+======================================
+
+What is MKey Protection?
+------------------------
+
+MKey (Management Key) is InfiniBand's security mechanism that protects fabric devices from unauthorized management access. When enabled, only tools and managers with the correct MKey can perform configuration operations on switches and HCAs.
+We strongly recommend enabling MKey protection in production environments to prevent unauthorized fabric management operations and protect against rogue management tools.
+
+
+Impact on Netris Integration
+----------------------------
+
+MKey protection has **no impact** on the Netris-UFM integration. The Netris-UFM plugin communicates exclusively through UFM's REST API, and UFM (as the authorized Subnet Manager) handles all MKey authentication with fabric devices internally.
+
+Configuration Steps
+-------------------
+
+To enable MKey protection in UFM:
+
+1. Set the MKey Value
+^^^^^^^^^^^^^^^^^^^^^
+
+Edit ``/opt/ufm/files/conf/gv.cfg`` and in the ``[SubnetManager]`` section, set a non-zero value (e.g., ``0x2`` or any 64-bit hex value):
+
+  .. code-block:: ini
+
+     global_m_key_seed = 0x0000000000000002
+
+
+2. Enable MKey Protection Level
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Edit ``/opt/ufm/files/conf/opensm/opensm.conf`` and set:
+
+.. code-block:: ini
+
+   m_key_protection_level 2
+
+**Protection levels:**
+
+* ``0``: No protection (MKey set but not enforced)
+* ``1``: Basic protection (prevents unauthorized Set operations)
+* ``2``: Full protection (prevents unauthorized Get and Set operations) **← Recommended**
+
+3. Restart UFM Service
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   systemctl restart ufm-enterprise.service
+
+4. Verification
+^^^^^^^^^^^^^^^
+
+Verify MKey and protection level are applied:
+
+.. code-block:: bash
+
+   cat /opt/ufm/files/conf/opensm/opensm.conf | grep -E "^m_key|^m_key_protection_level"
+
+Should show:
+
+.. code-block:: text
+
+   m_key 0x0000000000000002
+   m_key_protection_level 2
+
+Test protection by querying a fabric device:
+
+.. code-block:: bash
+
+   # Without MKey - should timeout/fail
+   sudo smpquery portinfo <lid> 1
+   
+   # With correct MKey - should succeed
+   sudo smpquery --m_key 0x2 portinfo <lid> 1
+
+.. note::
+
+   Once MKey is enabled, diagnostic tools like ``ibdiagnet`` will need the ``--m_key`` parameter to access fabric devices. UFM itself continues to function normally as it manages the MKey internally.
+
+
 Monitoring and Troubleshooting
 ===============================
 
