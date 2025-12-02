@@ -1,7 +1,10 @@
 .. include:: ../_includes/links.rst
 
+.. |version| replace:: {{version}}
+.. _release_{{version}}:
+
 .. meta::
-    :description: Netris Release Notes {{version}}
+    :description: Netris Release Notes |version|
 
 .. -----------------------------------------------------------------------------
 .. Release Notes Template (RST) for Sphinx
@@ -12,9 +15,7 @@
 .. - Only include "Customer action required" callouts when true.
 .. -----------------------------------------------------------------------------
 
-.. _release_{{version}}:
-
-{{product}} {{version}} ({{date}})
+{{product}} |version| ({{date}})
 ==================================
 
 Compatibility
