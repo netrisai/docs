@@ -1,15 +1,16 @@
 .. include:: ../_includes/links.rst
 
-.. meta::
-    :description: Netris Release Notes 4.5.3
-
+.. |version| replace:: 4.5.3
 .. _release_4.5.3:
 
-Netris 4.5.3 (August/27/2025)
+.. meta::
+    :description: Netris Release Notes |version|
+
+Netris |version| (August/27/2025)
 ==================================
 
-What's new in Netris 4.5.3?
------------------------------
+What's new in Netris |version|?
+-------------------------------
 
 Features
 --------
