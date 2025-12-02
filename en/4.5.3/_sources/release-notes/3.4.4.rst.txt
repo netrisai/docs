@@ -1,0 +1,53 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 3.4.4
+.. _release_3.4.4:
+
+.. meta::
+    :description: Netris Release Notes |version|
+
+Netris |version| (Sep/29/2023)
+==================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+1. IPv6 Support for “Site Mesh” Service:
+
+    The “Site Mesh” (site-to-site VPN) service now fully supports IPv6.
+2. Customizable “Default private-network” in PhoenixNAP:
+
+    Now, it is possible to change the “default private-network” in PhoenixNAP deployment.
+3. VLAN Support for E-BGP Service in PhoenixNAP:
+
+    Our E-BGP service in PhoenixNAP deployments now includes VLAN support.
+4. Optional “Management” IP Address for SoftGate Nodes:
+
+    SoftGate nodes deployed in PhoenixNAP, AWS, and GCP environments no longer require a “Management” IP address, simplifying deployment options.
+5. Public IP Addresses for Upstream BGP Sessions in Equinix Metal:
+
+    In Equinix Metal deployments, upstream BGP sessions now utilize public IP addresses instead of private link-locals, aligning with Equinix’s requirements.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Impossible to utilize the unmanaged V-net functionality with the same VLAN ID across multiple sites in PhoenixNAP and Equinix Metal deployments.
+- The IPv6 Access Control List (ACL) did not accept “::/0” as a valid source value.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
