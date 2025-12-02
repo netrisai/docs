@@ -561,7 +561,3 @@ Additional Resources
 
 - `NVIDIA UFM Documentation <https://docs.nvidia.com/networking/display/ufmenterpriseumv6200/>`_
 - `Netris NVIDIA Spectrum-X Scenario <https://www.netris.io/docs/en/latest/try-learn/nvidia-spectrum-x-scenario.html>`_
-
----
-
-You are welcome to join our `Slack channel <https://netris.io/slack>`_ to get additional support from our engineers and community.

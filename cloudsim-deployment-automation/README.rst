@@ -218,7 +218,7 @@ The project includes three primary Ansible playbooks to manage the Netris Intern
 Support
 =======
 
-For assistance, contact Netris support at `support@netris.io <mailto:support@netris.io>`_, consult the Netris documentation at `netris.ai/docs <https://netris.ai/docs>`_, or join our Slack community at `netris.io/slack <https://netris.io/slack>`_ for real-time help.
+For assistance, contact Netris support at `support@netris.io <mailto:support@netris.io>`_, consult the Netris documentation at `netris.ai/docs <https://netris.ai/docs>`_, or join our Slack community for real-time help.
 
 Contributing
 ============

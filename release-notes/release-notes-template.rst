@@ -110,5 +110,6 @@ References
 - Schedule a Demo_
 - Follow us on LinkedIn_
 - Follow us on X-Twitter_
+- Join our Slack_
 
 .. End of file
