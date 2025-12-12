@@ -39,6 +39,7 @@ Bug fixes
 - Arista. Fixed EOS version not displaying in inventory.
 - Arista. Fixed bug where VLAN to VNI map was missing if BGP terminated on V-Net.
 - Arista. Keep AAA configuration intact.
+- Arista. Fixed VRF leaking not working properly in some cases.
 - AutoLAG. Now only applies to V-Net member ports.
 - SoftGate. Fixed crashing from configuring SNAT /32 with a blackhole.
 - SoftGate. Fixed ACL bug where ACLs wouldn’t install facing public connections.
@@ -48,8 +49,9 @@ Bug fixes
 - DHCP Relay. Prevent deletion of VPC if used for DHCP Relay.
 - EC-SONiC. Fixed incorrect l2vpn BGP configuration when V-Net terminates on SVI or Softgate.
 - Graphs. Fixed incorrect display RX values.
-- Fixed agent stuck in loop when creating/editing SNAT rules
-
+- Fixed agent stuck in loop when creating/editing SNAT rules.
+- Fixed signal level reporting for 8 lane optics.
+- NVUE. Fixed optical graphs under interfaces showing no data.
 
 References
 ----------

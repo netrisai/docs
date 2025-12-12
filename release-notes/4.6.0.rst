@@ -1,10 +1,10 @@
 .. include:: ../_includes/links.rst
 
-.. |version| replace:: 4.5.4
-.. _release_4.5.4:
+.. |version| replace:: 4.6.0
+.. _release_4.6.0:
 
 .. meta::
-    :description: Netris Release Notes 4.5.4
+    :description: Netris Release Notes |version|
 
 Netris |version| (Nov/30/2025)
 ==================================
@@ -17,9 +17,13 @@ Features
 .. New capabilities visible to customers. One line each; optional 1–2 lines of context.
 
 - **EVPN-on-Host. Linux Host VTEP.** Any Ubuntu 24.04 host can be configured as an EVPN VTEP, therefore extending the VXLAN overlay into the host.
+- **NVLink Multi-Node.** Netris can now create NVLink partitions in NVL72 and NVL144 equipped systems.
 - **eBGP imports non-default routes.** The operator may now apply a BGP community 0:7 to signal Netris to import any non 0.0.0.0/0 eBGP prefixes into the VPC.
 - **Control plane verification of VTEP reachability.** Netris managed VTEPs (switches and Softgates) keep track of the reachability of other Netris VTEPs.
 - **CloudStack supported with Cumulus Linux.** CloudStack now integrates with Spectrum-X fabrics running Cumulus Linux.
+- **Spectrum-X Deployment Guide compliance is automatic.** Netris will automatically apply correct configuration to appropriate Ethernet components based on the appropriate version of the Spectrum-X Deployment Guide based on the detected Cumulus Linux version.
+- **SNMPv2.** Netris can now configure SNMPv2 read-only access on supported switches
+- **Inventory Filtering.** Inventory API now supports filtering.
 
 Bug fixes
 ---------
@@ -31,6 +35,8 @@ Bug fixes
 - **Controller Management IP** can be explicitly configured in one-liner
 - **Performance and UI improvements.**
 
+  - Add Network > Links page showing all topology links.
+  - Tags are now Labels to remove confusion with VLAN tags.
   - Added NIC stats for Generic/agentless server type derived from switch ports.
   - Improved database scalability in larger deployments.
   - Server Cluster UI now displays members in alphabetical order.
@@ -38,6 +44,7 @@ Bug fixes
   - CloudStack agent automatically generates ACLs for intra-subnet communication.
   - Improved collectd optical values export.
   - System ASN range is now editable.
+  - Can now show more than 4 tx/rx optical signals in Optical Graph.
 
 - **Bug fixes.**
 
@@ -50,6 +57,17 @@ Bug fixes
   - Fixed ACL creation time stamp.
   - Fixed RX values in graphs.
   - Fixed filter reset button in ACL listing
+  - Fixed NVUE agent restarting, if the previous cycle takes too long.
+  - Fixed check_signal incorrectly identifying optical ports.
+  - Fixed signal level reporting on 8 lane optics.
+  - Fixed incorrectly displaying packet per second values for the RX lines.
+  - Fixed custom rules in inventory profile support for any port
+  - Fixed static routes applying to all switches when ApplyTo filter is used.
+  - Fixed ACLs sometimes filtering even if no filter is applied.
+  - Fixed ACL creation time stamp.
+  - Fixed tcp-establiashed rules in NVUE working, even when disabled.
+  - Fixed controller hanging when malformed create L4LB API request is received.
+
 
 - **Deprecated**
 
@@ -58,6 +76,7 @@ Bug fixes
   - SoftGate (generic flavor)
   - Calico ASN
   - Built-in chat.
+  - Remove Proxmox, Equinix metal, and PhoenixNap as supported platforms.
 
 
 References
