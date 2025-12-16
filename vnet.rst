@@ -125,6 +125,7 @@ To configure DHCP Relay in a V-Net:
 .. note::
   * VPC peering is mandatory on Cumulus Linux fabrics. Without it, relay traffic cannot reach the DHCP server. Configure peering under Network → VPC Peering in the Controller.
   * Non-overlapping IP ranges are required between the client VPCs (Coke and Pepsi) and the DHCP server’s VPC (Shared). The DHCP server must be able to route back to both Coke and Pepsi.
+  * Switch loopback IP is the source IP of relayed packets
 
 .. raw:: html
 
@@ -683,7 +684,7 @@ In larger fabrics Netris recommends turning on the optional /26 aggregation in t
     <br />
 
 Verification Tools
-----------------
+------------------
 
 UI Tools
 ^^^^^^^^^^
