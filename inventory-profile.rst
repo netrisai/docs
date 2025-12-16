@@ -29,7 +29,7 @@ Inventory profiles allow security hardening of inventory devices. By default all
 SNMPv2 credentials
 ==================
 
-Netris administers can define SNMPv2 credentials to monitor switches and SoftGates in the inventory. To add SNMPv2 credentials, expand the SNMPv2 section of the Inventory Profile form and fill in the fields as described below:
+Netris administers can define SNMPv2 credentials to monitor switches and SoftGates in the inventory. To add SNMPv2 credentials, expand the SNMPv2 section of the Inventory Profile form, set the checkbox to enabled, and fill in the fields as described below:
 
 .. list-table:: SNMPv2 Fields
 
