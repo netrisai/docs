@@ -41,7 +41,11 @@ Example:
          state: enabled
 
 
-3. create a file under /opt/netris/etc/nvue/ with the YAML content you retrieved in step 2. For example, create the file /opt/netris/etc/nvue/50-snmp-yaml with the content above.
+3. Create a file under ``/opt/netris/etc/nvue/`` with the YAML content you retrieved in step 2. For example, create the file ``/opt/netris/etc/nvue/50-snmp-yaml`` with the content above.
+
+.. raw:: html
+
+  <br />
 
 4. Check if the configuration on the file is correct:
 
