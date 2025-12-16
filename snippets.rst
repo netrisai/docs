@@ -47,7 +47,8 @@ Example:
 
 .. code-block:: bash
 
-  nv config patch /opt/netris/etc/<file> then nv config diff
+  nv config patch /opt/netris/etc/<file>
+  nv config diff
 
 5. Check for any configuration errors by applying manually
 
