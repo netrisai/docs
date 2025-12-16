@@ -6,7 +6,11 @@
 Inventory Profiles
 ==================
 
-Inventory profiles allow security hardening of inventory devices. By default all traffic flow destined to switch/SoftGate is allowed. As soon as the inventory profile is attached to a device it denies all traffic destined to the device except Netris-defined and user-defined custom flows. Automatically allowed flows include:
+Inventory profiles allow security hardening of inventory devices and fabric-wide configuration optimizations. 
+
+By default all traffic flow destined to switch/SoftGate is allowed. As soon as the inventory profile is attached to a device it denies all traffic destined to the device except Netris-defined and user-defined custom flows. 
+
+Automatically allowed flows include:
 
 *  SSH from user defined subnets
 *  NTP from user defined ntp services
