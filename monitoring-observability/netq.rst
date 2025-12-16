@@ -9,7 +9,7 @@ Although Netris has built-in automatic monitoring and observability functionalit
 Topology Blueprint Activation
 ###############################
 
-NVIDIA NetQ requires the topology blueprint described in a .dot filw format. Netris is aware of the Netris-managed network topology and has built-in functionality for exporting .dot file in NVIDIA NetQ format.
+NVIDIA NetQ requires the topology blueprint described in a .dot file format. Netris is aware of the Netris-managed network topology and has built-in functionality for exporting .dot file in NVIDIA NetQ format.
 
 In the Netris controller, navigate to Network->Topology, select the appropriate site (datacenter), click Export and select NVIDIA NetQ - the web browser will download a .dot file.
 
