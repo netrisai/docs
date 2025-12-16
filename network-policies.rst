@@ -212,8 +212,8 @@ Community
 ^^^^^^^^^
 | Community field has two parts:
 
-* Action - Possible values: permit or deny (mandatory).
-* Community string - format is AA:NN, where AA and NN are any number from 0 to 65535 range or alternatively well known string (local-AS|no-advertise|no-export|internet|additive).
+* **Action** - Possible values: permit or deny (mandatory).
+* **Community string** - Allowed format: ``< permit/deny> LINE``. LINE is AA:NN Community number in AA:NN format (where AA and NN are (0-65535)) or ``local-AS``, ``no-advertise``, ``no-export``, ``internet`` or ``additive``.
 
 Example: Creating community.
 
