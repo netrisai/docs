@@ -15,6 +15,8 @@ Automatically allowed flows include:
 *  SSH from user defined subnets
 *  NTP from user defined ntp services
 *  DNS from user defined DNS servers
+*  SNMP from user defined subnets
+*  BGP, ICMP, DHCP
 *  Custom user defined rules
 
 .. csv-table:: Inventory Profile Fields
