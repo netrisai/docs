@@ -41,7 +41,7 @@ Example:
          state: enabled
 
 
-3. Create a file under ``/opt/netris/etc/nvue/`` with the YAML content you retrieved in step 2. For example, create the file ``/opt/netris/etc/nvue/50-snmp-yaml`` with the content above.
+3. Create a file under ``/opt/netris/etc/nvue/`` with the YAML content you retrieved in step 2. For example, create the file ``/opt/netris/etc/nvue/50-snmp.yaml`` with the content above.
 
 .. raw:: html
 
@@ -51,7 +51,7 @@ Example:
 
 .. code-block:: bash
 
-  nv config patch /opt/netris/etc/<file>
+  nv config patch /opt/netris/etc/nvue/<file>
   nv config diff
 
 5. Check for any configuration errors by applying manually
