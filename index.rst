@@ -88,6 +88,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
    accounts
    softgate-performance
    sandbox/Sandbox1/onprem-k8s
+   snippets
 
 .. toctree::
    :maxdepth: 2
