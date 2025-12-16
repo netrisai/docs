@@ -8,29 +8,9 @@ Inventory
 
 The Inventory section allows you to add/edit/delete network switches and SoftGates (VPC gateways). Initial setup of a Netris managed network is a three step process:
 
-#. Create Inventory Profiles.
+#. Create :doc:`inventory-profile`.
 #. Adding Switches.
 #. Adding Softgates.
-
-Inventory Profiles
-==================
-
-Inventory profiles allow security hardening of inventory devices. By default all traffic flow destined to switch/SoftGate is allowed. As soon as the inventory profile is attached to a device it denies all traffic destined to the device except Netris-defined and user-defined custom flows. Automatically allowed flows include:
-
-*  SSH from user defined subnets
-*  NTP from user defined ntp services
-*  DNS from user defined DNS servers
-*  Custom user defined rules
-
-.. csv-table:: Inventory Profile Fields
-   :file: tables/inventory-profile-fields.csv
-   :widths: 25, 75
-   :header-rows: 0
-
-**Example:** This example Inventory profile is used to provide NTP and DNS services to the switches (common setup). A custom rule is created to allow UDP connections to the port 161.
-
-.. image:: images/inventory_profile_custom.png
-   :align: center
 
 .. _topology-management-adding-switches:
 
