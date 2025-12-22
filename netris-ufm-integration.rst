@@ -313,7 +313,7 @@ Functional Workflow
    - Ensures consistency between Ethernet and InfiniBand configurations
    - Reconciliation interval is configurable (default: 10 seconds)
 
-InfiniBand MKey Security (Recommended)
+InfiniBand Security (Recommended)
 ======================================
 
 What is MKey Protection?
@@ -358,21 +358,53 @@ Edit ``/opt/ufm/files/conf/opensm/opensm.conf`` and set:
 * ``1``: Basic protection (prevents unauthorized Set operations)
 * ``2``: Full protection (prevents unauthorized Get and Set operations) **← Recommended**
 
-3. Restart UFM Service
+
+3. Enable VSKey (Vendor Specific Key)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+VSKey provides security for NVIDIA/Mellanox vendor-specific operations that go beyond standard InfiniBand management.
+
+To configure it edit ``/opt/ufm/files/conf/opensm/opensm.conf`` and set:
+
+.. code-block:: ini
+
+   vs_key_enable 2
+   vs_key_lease_period = 60
+   vs_key_ci_protect_bits = 1
+   key_mgr_seed = 0x0000000000000000
+
+**VSKey Configuration Parameters:**
+
+* ``vs_key_enable``:
+  
+  * ``0`` – Ignore: No VS key configuration
+  * ``1`` – Disable: Ports set with zero values (no protection)
+  * ``2`` – Enable: Each port configured with unique VS Key **← Recommended**
+
+* ``vs_key_ci_protect_bits``: Protection level
+
+  * ``0`` – Key is protected but readable via KeyInfo GET
+  * ``1`` – Full protection; all VS MADs must have correct key **← Recommended**
+
+* ``vs_key_lease_period``: Duration in seconds before key expires (``60`` recommended)
+* ``key_mgr_seed``: Set to ``0`` to use MKey as seed for VS keys
+
+
+4. Restart UFM Service
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
    systemctl restart ufm-enterprise.service
 
-4. Verification
+5. Verification
 ^^^^^^^^^^^^^^^
 
 Verify MKey and protection level are applied:
 
 .. code-block:: bash
 
-   cat /opt/ufm/files/conf/opensm/opensm.conf | grep -E "^m_key|^m_key_protection_level"
+   cat /opt/ufm/files/conf/opensm/opensm.conf | grep -E "^m_key|^m_key_protection_level|^vs_key_enable"
 
 Should show:
 
@@ -380,6 +412,7 @@ Should show:
 
    m_key 0x0000000000000002
    m_key_protection_level 2
+   vs_key_enable 2
 
 Test protection by querying a fabric device:
 
@@ -561,7 +594,7 @@ Additional Resources
 
 - `NVIDIA UFM Documentation <https://docs.nvidia.com/networking/display/ufmenterpriseumv6200/>`_
 - `Netris NVIDIA Spectrum-X Scenario <https://www.netris.io/docs/en/latest/try-learn/nvidia-spectrum-x-scenario.html>`_
-
+  
 ---
 
 You are welcome to join our `Slack channel <https://join.slack.com/t/netris/shared_invite/zt-3ixzkhe6s-Zy_He7mek9jbe_T2wondww>`_ to get additional support from our engineers and community.
