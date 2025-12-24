@@ -1,0 +1,55 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.1.1
+.. _release_4.1.1:
+
+.. meta::
+    :description: Netris Release Notes |version|
+
+Netris |version| (Jan/31/2024)
+==================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+1. Custom Local ASN for E-BGP peers:
+
+    The Local ASN for E-BGP peers can now be either of Site Public ASN (default), Switch Local ASN, or Custom.
+2. Increased Inbound Max Prefix for BGP Peers terminated on a switch:
+
+    The “Prefix Inbound Max” for switch-terminated E-BGP peers can be any number up to 10,000(default) prefixes.
+3. Tech-Support data collection:
+
+    The Netris-tech-support data collection script is now also available for the Netris controller, to facilitate support processing.
+4. New location (Metro) of Equinix Metal:
+
+Netris now includes the new location (Metro) of Equinix Metal: Mumbai.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- In Equinix Metal, using tags to assign newly created servers to V-Net would previously cause the Layer-2 network provisioning to fail.
+- In Equinix Metal, adding a server to an existing V-Net while server provisioning is still in process would previously cause the Layer-2 network provisioning to fail.
+- The Web UI filter in the “Details” column of the E-BGP section was not working correctly with the “switch port” and “router” attributes.
+- The “last minute” in E-BGP peer bandwidth graphs was showing wrong data.
+- Bulk action was not working for LACP parameters of aggregate interfaces.
+- Search was not working in graph add/edit dialogue in Graph Boards.
+- The Monitoring notifications were missing for E-BGP peers terminated on a switch.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file

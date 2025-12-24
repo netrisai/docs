@@ -1,0 +1,49 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.3.0
+.. _release_4.3.0:
+
+.. meta::
+    :description: Netris Release Notes |version|
+
+Netris |version| (July/31/2024)
+==================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **Nvidia Spectrum-X**. Multi-tenant network automation, switch-fabric management, and cloud networking abstraction for Nvidia Spectrum-X AI/GPU cluster networks.
+- **Init workflow** (terraform module) for rail-optimized AI/GPU cluster network topologies.
+- **Netris2air**. Nvidia Air network simulation plugin that reads the inventory, IPAM, and topology data from Netris controller and creates a simulation (digital twin) of your network in Nvidia Air. Used to simulate fully functional networks before applying on the physical hardware.
+- **Parallel Fabrics**. This functionality allows for managing multiple physically separate switch fabrics logically defined in one Netris controller. A common example would be the East-West fabric for the RDMA compute network, the North-South fabric (or TAN—Tenant Access Network), and the out-of-band management (OOB) network.
+- **Topology validation**: Validate the actual wiring in comparison to wiring data defined in Netris Topology manager, detect and alarm wiring errors.
+- **Server Cluster (profiling)**. Create VPC, V-Net(VXLAN+Subnet), and other network services by providing a list of servers that should participate in the cluster. Create VRFs, VPCs, VXLANs by server endpoints, not switch ports.
+- **AI/GPU network optimization** services such as QoS for RoCE, RoCE Adaptive Routing, and RoCE Congestion Control.
+- **NHN Plugin** (Netris Host Networking Plugin) – AI/GPU host networking services for zero-touch configuration of IP addresses, static routes, SuperNIC firmware installation, and AI/GPU networking optimizations enablement on SuperNIC
+- **Cumulus Linux version 5.9.1** is now supported by the new NVUE Netris agent.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- **Netris Scalability** has been validated for up to 32000 active network links.
+- **BGP Numbered/UnNumbered**. The BGP underlay network now supports numbered BGP in addition to previously supported unnumbered.
+- **L3VPN VXLAN:** Netris V-Nets now support L3VPN VXLANs in addition to L2VPN.
+- **Performance improvements** to Netris controller.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
