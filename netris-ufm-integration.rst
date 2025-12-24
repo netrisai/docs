@@ -1,9 +1,9 @@
 .. meta::
-    :description: NVIDIA UFM Integration Plugin for Netris Controller
+    :description: NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller
 
-####################################################
-NVIDIA UFM Integration Plugin for Netris Controller
-####################################################
+################################################################
+NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller
+################################################################
 
 Overview
 ========

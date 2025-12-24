@@ -61,6 +61,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
    :caption: Netris Integrations
 
    netris-ufm-integration
+   netris-nvlink-integration
    kubernetes-integration
    tutorials/netris-cloudstack
    terraform-integration

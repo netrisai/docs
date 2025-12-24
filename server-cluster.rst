@@ -14,9 +14,9 @@ Introduction
 
 Netris **Server Cluster** makes it possible to define network boundaries by referencing a list of compute or storage nodes (Netris Server objects).
 
-Behind the scenes, Netris figures out which VXLANs, VLANs, and Pkeys to configure for every appropriate switch and switch port. The Server Cluster object will also create the underlying V-Net, VPC, and other Netris objects.
+Behind the scenes, Netris figures out which VXLANs, VLANs, Pkeys, and NVLink partitions, when appropriate to configure for every appropriate switch and switch port. The Server Cluster object will also create the underlying V-Net, VPC, and other Netris objects.
 
-This helps infrastructure operators create, edit, and delete network boundaries by focusing only on the list of servers and not worry about switch ports, GUIDs, or any other implementation details.
+This helps infrastructure operators create, edit, and delete network boundaries by focusing only on the list of servers and not worrying about switch ports, GUIDs, GPU UIDs,or any other implementation details.
 
 Server Cluster Template
 =======================
@@ -36,7 +36,7 @@ Based on a Server Cluster Template, Netris will:
 
 - Create VPCs, V-Nets, and IP allocations and subnets
 - Look up and configure the correct switch ports (front-end, back-end, management)
-- Apply VXLANs, VLANs, LAGs, InfiniBand PKeys, and other network configurations
+- Apply VXLANs, VLANs, LAGs, InfiniBand PKeys, NVLink partitions, and other network configurations
 
 Here are several template examples followed by detailed descriptions of every field.
 
@@ -49,7 +49,7 @@ Server Cluster Template Examples:
 Ethernet-only Fabric Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This example is common for AI fabrics where both Frontned and Backend networks are based on Ethernet. A Server Cluster referenced to this template will create two l2vpn VXLAN V-Nets and one l3vpn VXLAN V-Net. V-Net names will start with the name of the server cluster and end with the value of each `postfix` attribute.
+This example is common for AI fabrics where both Frontned (North-South) and Backend (East-West) networks are based on Ethernet. A Server Cluster referenced to this template will create two L2VPN VXLAN V-Nets and one L3VPN VXLAN V-Net. V-Net names will start with the name of the server cluster and end with the value of each `postfix` attribute.
 
 .. code-block:: shell-session
 
@@ -94,10 +94,11 @@ This example is common for AI fabrics where both Frontned and Backend networks a
   ]
 
 .. _infiniband-fabric-example:
+
 Infiniband Fabric Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This example is common for AI fabrics where the frontend is based on Ethernet and the backend is based on InfiniBand. A Server Cluster referencing this template will create two l2vpn type VXLAN V-Nets and will automatically configure the Ethernet switches, and will configure one PKey with appropriate GUIDs in the NVIDIA UFM (Infiniband controller).
+This example is common for AI fabrics where the frontend is based on Ethernet and the backend is based on InfiniBand. A Server Cluster referencing this template will create two L2VPN type VXLAN V-Nets and will automatically configure the Ethernet switches, and will configure one PKey with appropriate GUIDs in the NVIDIA UFM (Infiniband controller).
 
 .. code-block:: shell-session
 
@@ -133,6 +134,55 @@ This example is common for AI fabrics where the frontend is based on Ethernet an
     }
   ]
 
+You can find more details about NVIDIA UFM (InfiniBand) integration in :doc:`Netris UFM documentation </netris-ufm-integration>`.
+
+.. _nvlink-fabric-example:
+
+NVLink (NVL72 or NVL144) Fabric Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In systems where NVLink Multi-Node fabric is present, Netris can be configured to automatically create GPU partitions within the appropriate NVL72 or NVL144 NVLink domain.
+
+.. code-block:: shell-session
+
+  [
+      {
+        "postfix": "E-W",
+        "type": "netris-ufm",
+        "ufm": "ufm-88",
+        "pkey": "auto"
+      },
+      {
+        "postfix": "NVL",
+        "type": "netris-nvlink",
+        "partition": "auto"
+      },
+      {
+        "postfix": "N-S",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": [
+          "eth9",
+          "eth10"
+        ],
+        "ipv4Gateway": "10.0.0.1/24",
+        "ipv4DhcpEnabled": true
+      },
+      {
+        "postfix": "mgmt",
+        "type": "l2vpn",
+        "vlan": "untagged",
+        "vlanID": "auto",
+        "serverNics": [
+          "eth11"
+        ],
+        "ipv4Gateway": "192.168.100.1/24",
+        "ipv4DhcpEnabled": true
+      }    
+    ]
+
+You can find more detail about the NVIDIA NMX-C (NVLink Multi-Node / NVL72 / NVL144) integration in :doc:`NMX-C (NVLink) Integration Plugin for Netris Controller </netris-nvlink-integration>`.
 
 IPv6 Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -192,7 +242,7 @@ Template Fields Explained:
 Each object in the **Vnets** JSON array may include a combination of the following key-value pairs
 
   - **postfix**: A string appended to the server cluster name to form the V-Net name.
-  - **type**: A string specifying the type of V-Net (`l2vpn`, `l3vpn`, `netris-ufm`).
+  - **type**: A string specifying the type of V-Net (`l2vpn`, `l3vpn`, `netris-ufm`, `netris-nvlink`).
   - **vlan**: A string specifying whether the V-Net is `tagged` or `untagged`. Only `untagged` is permitted at this time.
   - **vlanID**: A string specifying the VLAN ID. Only `auto` is permitted at this time.
   - **serverNics**: An array of Netris server NIC names on the server that will be associated with this V-Net.
@@ -221,6 +271,7 @@ Each object in the **Vnets** JSON array may include a combination of the followi
 
   - **Ufm**: Nvidia UFM controller identifier (`ufm_id`) for V-Net `type:netris-ufm`. See :doc:`Netris UFM documentation </netris-ufm-integration>` for details.
   - **Pkey**: Pkey settings when V-Net `type:netris-ufm`. Only `auto` is permitted at this time.
+  - **partition**: NVLink partition settings when V-Net `type:netris-nvlink`. Only `auto` is permitted at this time.
 
 .. list-table:: V-Net Key/Value Requirements by Type
    :header-rows: 1
@@ -229,7 +280,9 @@ Each object in the **Vnets** JSON array may include a combination of the followi
      - type: l2vpn
      - type: l3vpn
      - type: netris-ufm
+     - type: netris-nvlink
    * - `postfix`
+     - ✅ required
      - ✅ required
      - ✅ required
      - ✅ required
@@ -237,39 +290,47 @@ Each object in the **Vnets** JSON array may include a combination of the followi
      - ✅ required
      - ✅ required
      - ✅ required
+     - ✅ required
    * - `vlan`
      - ✅ (must be "untagged")
      - ✅ (must be "untagged")
+     - ❌
      - ❌
    * - `vlanID`
      - ✅ (`auto` only)
      - ✅ (`auto` only)
      - ❌
+     - ❌
    * - `serverNics`
      - ✅ required
      - ✅ required
      - ❌
+     - ❌
    * - `ipv4Gateway`
      - optional
+     - ❌
      - ❌
      - ❌
    * - `ipv4DhcpEnabled`
      - optional (requires `ipv4Gateway`)
      - ❌
      - ❌
+     - ❌
    * - `ipv6Gateway`
      - optional
+     - ❌
      - ❌
      - ❌
    * - `ufm`
      - ❌
      - ❌
-     - ✅ required
+     - ✅ (`auto` only)
+     - ❌
    * - `pkey`
      - ❌
      - ❌
+     - ❌
      - ✅ (`auto` only)
-
 
 Adding a Server Cluster Template
 --------------------------------
@@ -385,6 +446,7 @@ In case you want to specify the IP gateway manually when creating a Server Clust
   ]
 
 .. _creating-server-cluster:
+
 Creating Server Cluster
 =======================
 
@@ -393,7 +455,7 @@ With templates defined, you can create Server Clusters by referencing these temp
 Adding a Server Cluster
 -----------------------
 
-To define a Server Cluster navigate to ``Services->Server Cluster`` and click ``+Add``. Give the new cluster a name, set Admin to the appropriate owner (this defines who can edit/delete this cluster and only servers already assigned to this owner will be available for selection), set the site, set VPC to "Create New", select the Template created earlier, and click ``+Add Server`` or ``+Add Shared Server`` to start selecting server members. Click Add.
+To define a Server Cluste, navigate to ``Services->Server Cluster`` and click ``+Add``. Give the new cluster a name, set Admin to the appropriate owner (this defines who can edit/delete this cluster and only servers already assigned to this owner will be available for selection), set the site, set VPC to "Create New", select the Template created earlier, and click ``+Add Server`` or ``+Add Shared Server`` to start selecting server members. Click Add.
 
 .. image:: images/add-server-cluster-selecting-servers.png
   :align: center
@@ -420,10 +482,11 @@ When you click the blue ``Add`` button, Netris will create the VPC, V-Nets, and 
   - The same Netris NIC name must be used consistently across all server objects in a cluster. For example, when eth10 is assigned to a V-Net in the template, Netris will assign every switch port that corresponds to every server's eth10 to the same  V-Net throughout the server cluster.
 
 .. _server-cluster-shared-endpoints:
+
 Shared Endpoints
 ----------------
 
-Typically each physical server is dedicated to one server cluster and is provisioned for a single VPC.
+Typically, each physical server is dedicated to one server cluster and is provisioned for a single VPC.
 
 However, certain infrastructure components, such as hypervisors or shared storage nodes, may need to serve multiple VPCs simultaneously. In such cases, these endpoints must participate in more than one server cluster.
 
@@ -461,7 +524,7 @@ This is the primary behavioral change triggered by marking an endpoint as shared
 Untagged VLAN on Shared Endpoints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In some cases, you may need to have an untagged VLAN on a switch port with a shared endpoint. For example, some storage solutions require untagged VLAN for internal communication.
+In some cases, you may need to have an untagged VLAN on a switch port with a shared endpoint. For example, some storage solutions require an untagged VLAN for internal communication.
 
 To enable this, a node can be added to one cluster as a dedicated member (e.g., to use native/untagged VLAN or its InfiniBand/NVLink equivalent). That same node can be added to any number of other clusters as a shared member, as long as it's not the same cluster where it is already dedicated. A node cannot be both a dedicated and a shared member of the same cluster.
 
