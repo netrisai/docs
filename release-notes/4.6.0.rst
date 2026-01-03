@@ -24,6 +24,9 @@ Features
 - **Spectrum-X Deployment Guide compliance is automatic.** Netris will automatically apply correct configuration to appropriate Ethernet components based on the appropriate version of the Spectrum-X Deployment Guide based on the detected Cumulus Linux version.
 - **SNMPv2.** Netris can now configure SNMPv2 read-only access on supported switches
 - **Inventory Filtering.** Inventory API now supports filtering.
+- **Topology View Filtering.** Topology view now supports filtering by device name.
+- **Dell/BC-SONiC VPC peering.** VPC peering can now be established on Dell/BC-SONiC Ethernet fabrics.
+- **Dell/BC-SONiC L3VPN.** L3VPN is now supported on Dell/BC-SONiC Ethernet fabrics.
 
 Bug fixes
 ---------
@@ -45,6 +48,9 @@ Bug fixes
   - Improved collectd optical values export.
   - System ASN range is now editable.
   - Can now show more than 4 tx/rx optical signals in Optical Graph.
+  - Improved SoftGate HS installation experience.
+  - Improved SoftGate HS DNAT and ACL scalability.
+  - Added XDP based acceleration for SoftGate HS data plane.
 
 - **Bug fixes.**
 
@@ -67,6 +73,13 @@ Bug fixes
   - Fixed ACL creation time stamp.
   - Fixed tcp-establiashed rules in NVUE working, even when disabled.
   - Fixed controller hanging when malformed create L4LB API request is received.
+  - Fixed CPU utilization graph showing incorrect data.
+  - Fixed packet fragmentation issue in SoftGate HS.
+  - Fixed ACL functionality when used with SNAT.
+  - Fixed SNAT to DNAT hairpinning issue.
+  - Fixed CloudStack forwarding behavior enforcement.
+  - Fixed NHN impacting North-South traffic when configuring East-West host networking.
+  - Fixed Topology>Interface>Details showing incorrect optical graph data.
 
 
 - **Deprecated**
