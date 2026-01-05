@@ -56,43 +56,42 @@ Bug fixes
 ---------
 .. Customer-facing defect fixes. If internal-only, keep wording generic.
 
-  - Fixed backend crash after creating LB service.
-  - Fixed the inability to edit NAT rules when a VPC filter is applied.
-  - Fixed Inventory Filtering failing under certain conditions.
-  - Fixed filtering of ports with unknown states under certain conditions.
-  - Fixed NHN ifupdown and netplan support in Spectrum-X v1.2
-  - Fixed NVUE check_signal monitor false positives on optical switch ports.
-  - Fixed ACL creation time stamp.
-  - Fixed RX values in graphs.
-  - Fixed filter reset button in ACL listing
-  - Fixed NVUE agent restarting, if the previous cycle takes too long.
-  - Fixed check_signal incorrectly identifying optical ports.
-  - Fixed signal level reporting on 8 lane optics.
-  - Fixed incorrectly displaying packet per second values for the RX lines.
-  - Fixed custom rules in inventory profile support for any port
-  - Fixed static routes applying to all switches when ApplyTo filter is used.
-  - Fixed ACLs sometimes filtering even if no filter is applied.
-  - Fixed ACL creation time stamp.
-  - Fixed tcp-establiashed rules in NVUE working, even when disabled.
-  - Fixed controller hanging when malformed create L4LB API request is received.
-  - Fixed CPU utilization graph showing incorrect data.
-  - Fixed packet fragmentation issue in SoftGate HS.
-  - Fixed ACL functionality when used with SNAT.
-  - Fixed SNAT to DNAT hairpinning issue.
-  - Fixed CloudStack forwarding behavior enforcement.
-  - Fixed NHN impacting North-South traffic when configuring East-West host networking.
-  - Fixed Topology>Interface>Details showing incorrect optical graph data.
+- Fixed backend crash after creating LB service.
+- Fixed the inability to edit NAT rules when a VPC filter is applied.
+- Fixed Inventory Filtering failing under certain conditions.
+- Fixed filtering of ports with unknown states under certain conditions.
+- Fixed NHN ifupdown and netplan support in Spectrum-X v1.2
+- Fixed NVUE check_signal monitor false positives on optical switch ports.
+- Fixed ACL creation time stamp.
+- Fixed RX values in graphs.
+- Fixed filter reset button in ACL listing
+- Fixed NVUE agent restarting, if the previous cycle takes too long.
+- Fixed check_signal incorrectly identifying optical ports.
+- Fixed signal level reporting on 8 lane optics.
+- Fixed incorrectly displaying packet per second values for the RX lines.
+- Fixed custom rules in inventory profile support for any port
+- Fixed static routes applying to all switches when ApplyTo filter is used.
+- Fixed ACLs sometimes filtering even if no filter is applied.
+- Fixed ACL creation time stamp.
+- Fixed tcp-establiashed rules in NVUE working, even when disabled.
+- Fixed controller hanging when malformed create L4LB API request is received.
+- Fixed CPU utilization graph showing incorrect data.
+- Fixed packet fragmentation issue in SoftGate HS.
+- Fixed ACL functionality when used with SNAT.
+- Fixed SNAT to DNAT hairpinning issue.
+- Fixed CloudStack forwarding behavior enforcement.
+- Fixed NHN impacting North-South traffic when configuring East-West host networking.
+- Fixed Topology>Interface>Details showing incorrect optical graph data.
 
 
-- **Deprecated**
+**Deprecation Notices**
 
-  - Routing On Host ASN, Routing Profile
-  - VM ASN
-  - SoftGate (generic flavor)
-  - Calico ASN
-  - Built-in chat.
-  - Remove Proxmox, Equinix metal, and PhoenixNap as supported platforms.
-
+- Routing On Host ASN, Routing Profile
+- VM ASN
+- SoftGate (generic flavor)
+- Calico ASN
+- Built-in chat.
+- Remove Proxmox, Equinix metal, and PhoenixNap as supported platforms.
 
 References
 ----------
