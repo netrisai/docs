@@ -84,15 +84,15 @@ If a dedicated server option is chosen, ensure that the server running the Netri
 .. code-block:: yaml
 
    nmx-config:
-   verify-ssl: true
-   cert-file: /home/ubuntu/netris-nvlink-agent/client.crt
-   key-file: /home/ubuntu/netris-nvlink-agent/client.key
-   root-ca: /home/ubuntu/netris-nvlink-agent/rootCA.crt
-   common-name: nmxc-01.acme.com
-   nmx-c:
-      nmxc_01:
-         addresses:
-         - nmxc-01.acme.com:8601
+     verify-ssl: true
+     cert-file: /home/ubuntu/netris-nvlink-agent/client.crt
+     key-file: /home/ubuntu/netris-nvlink-agent/client.key
+     root-ca: /home/ubuntu/netris-nvlink-agent/rootCA.crt
+     common-name: nmxc-01.acme.com
+     nmx-c:
+        nmxc_01:
+           addresses:
+           - nmxc-01.acme.com:8601
 
 
 3. Apply the configuration to your Kubernetes cluster:
@@ -132,7 +132,7 @@ Execute ``netris-nvl-loader`` script to import the GPU UID inventory into the Ne
 
 .. code-block:: bash
 
-   › /netris-nv-loader --csv-file gpu-mapping.csv --netris-url "https://conroller.acme.com" --username "admin" --password "passw0rd"
+   ./netris-nv-loader --csv-file gpu-mapping.csv --netris-url "https://conroller.acme.com" --username "admin" --password "passw0rd"
 
 Where 
 
@@ -188,6 +188,7 @@ The following configuration options are available in the Netris-NMX plugin YAML 
 - **root-ca**   - absolute path to the root CA certificate file. 
 - **common-name** - must match the value of the CN field of the certificate presented by the NMX-Controller.
 - **nmx-c**      - contains a mapping describing each NMX-Controller you’d like Netris to create NVLink partitions in. It must contain at least one key with a value of a list of hostnames and port numbers
+ 
   - **addresses** - is a list of hostnames and port numbers of each NMX-C node in an NMX-C HA cluster.
 
 Each NMX-C must be presented through a separate key. The ``addresses`` key is intended to contain a list of every node in a single NMX-C HA instance.
@@ -197,29 +198,26 @@ In the deployment where each NMX-Controller requires a separate client authentic
 .. code-block:: yaml
 
    nmx-config:
-   verify-ssl: true
-   nmx-c:
-      nmxc_01:
-         cert-file: /home/ubuntu/netris-nvlink-agent/client01.crt 
-         key-file: /home/ubuntu/netris-nvlink-agent/client01.key 
-         root-ca: /home/ubuntu/netris-nvlink-agent/rootCA.crt
-         common-name: nmxc-01.acme.com
-         addresses:
-         - nmxc-01.acme.com:8601
-   nmxc_02:
-         cert-file: /home/ubuntu/netris-nvlink-agent/client01.crt 
-         key-file: /home/ubuntu/netris-nvlink-agent/client01.key 
-         root-ca: /home/ubuntu/netris-nvlink-agent/rootCA.crt
-         common-name: nmxc-02.acme.com
-         addresses:
-         - nmxc-02.acme.com:8601
-   nmxc_03:
-         cert-file: /home/ubuntu/netris-nvlink-agent/client01.crt 
-         key-file: /home/ubuntu/netris-nvlink-agent/client.key 
-         root-ca: /home/ubuntu/netris-nvlink-agent/rootCA.crt
-         common-name: nmxc-03.acme.com
-         addresses:
-         - nmxc-03.acme.com:8681
+     verify-ssl: true
+     cert-file: /home/ubuntu/netris-nvlink-agent/client.crt
+     key-file: /home/ubuntu/netris-nvlink-agent/client.key
+     root-ca: /home/ubuntu/netris-nvlink-agent/rootCA.crt
+     common-name: nmxc-x.acme.com
+     nmx-c:
+        nmxc_01:
+           cert-file: /home/ubuntu/netris-nvlink-agent/client01.crt 
+           key-file: /home/ubuntu/netris-nvlink-agent/client01.key 
+           root-ca: /home/ubuntu/netris-nvlink-agent/rootCA.crt
+           common-name: nmxc-01.acme.com
+           addresses:
+           - nmxc-01.acme.com:8601
+        nmxc_02:
+           addresses:
+           - nmxc-02.acme.com:8601
+        nmxc_03:
+           addresses:
+           - nmxc-03.acme.com:8681
+           - nmxc-03.acme.com:8682
 
 After successfully installing and configuring the Netris-NMX agent, you can use :doc:`Server Cluster </server-cluster>` to create NVLink partitions via the creation of Server Clusters. You must update your Server Cluster Template to include NVLink integration. See the :doc:`Server Cluster documentation </server-cluster>` for more details.
 
