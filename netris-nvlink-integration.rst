@@ -26,6 +26,14 @@ The Netris-NMX plugin acts as the integration layer between Netris Controller an
 2. **NVIDIA NMX-C**: Manages the NVLink Multi-Node fabric switches and provides specialized NVLink functionality.
 3. **Netris-NMX Plugin**: Synchronizes configurations between both systems
 
+.. image:: images/NVIDIA_NVLink-Integration.svg
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+  <br />
+
 When you define a :doc:`Server Cluster </server-cluster>` in Netris, the plugin automatically:
 
 - Discovers GPU UIDs for each server using the preloaded GPU ledger.
