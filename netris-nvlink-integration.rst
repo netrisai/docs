@@ -34,6 +34,9 @@ The Netris-NMX plugin acts as the integration layer between Netris Controller an
 
   <br />
 
+.. tip:: 
+   NVIDIA NetQ (NMX-M) is not required by Netris, but it is recommended for granular Network + GPU telemetry
+
 When you define a :doc:`Server Cluster </server-cluster>` in Netris, the plugin automatically:
 
 - Discovers GPU UIDs for each server using the preloaded GPU ledger.
