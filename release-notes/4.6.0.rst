@@ -34,6 +34,7 @@ Enhancements
 
 - **DHCP Relay** now supports inter-VPC routing on all :ref:`supported-switch-hardware`.
 - **L3VPN** now includes  :ref:`Dell and Broadcom SONiC <overlay-network-functions>`.
+- **Centralized ACLs on Arista EOS** are now supported on :ref:`supported-switch-hardware`.
 - **Controller Management Address** can now be explicitly specified and is correctly reflected in the “one-liner” install command.
 - **Controller Management IP** can be explicitly configured in one-liner
 - **Performance and UI improvements.**
