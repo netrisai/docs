@@ -33,7 +33,6 @@ You are welcome to join our community Slack channel (see button at the top) to g
    installation
    switch-agent-installation
    SoftGate-HS-installation
-   SoftGate-PRO-installation
 
 .. toctree::
    :maxdepth: 2
