@@ -421,7 +421,7 @@ Security
       - Centralized Network Access Control Lists.
       - ✔
       - ✔
-      - ✔
+      - Q1 2026
       - ✔
    *  - Managed Device Profiling
       - Managed switch & SoftGate protection from unwanted access, push administrative and system settings (NTP, DNS, timezone, etc.)
