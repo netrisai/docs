@@ -363,8 +363,8 @@ AI Specific Functions
       - TBD
       - TBD
       - Coming Soon
-   *  - DPU/Host zero-touch configuration
-      - Automatically configure IP addresses, routing, RoCE and other DPU/SuperNIC specific configuration on GPU servers
+   *  - SuperNIC/Host zero-touch configuration
+      - Automatically configure IP addresses, routing, RoCE and other SuperNIC specific configuration on GPU servers
       - ✔
       - TBD
       - TBD
@@ -530,10 +530,10 @@ Hypervisor/Worker node specific functionality
       - TBD
    *  - HBN on DPU
       - Host-based networking. Terminate VTEPs on the hypervisor host DPU. Scale beyond VLAN limits with accelerated performance
-      - 2025
+      - 2026
       - TBD
-      - 2025
-      - 2025
+      - 2026
+      - 2026
       - TBD
       - TBD
 
@@ -598,6 +598,11 @@ Netris and NOS versions compatibility matrix
      - **SoftGate PRO OS**
      - **SoftGate HS OS**
      - **Availability**
+   * - 4.5.3
+     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - Ubuntu 20.04
+     - Ubuntu 24.04
+     - ✔
    * - 4.5.2
      - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
      - Ubuntu 20.04
