@@ -42,7 +42,7 @@ Getting Started with Switch-Fabric Manager & VPC
 .. toctree::
    :maxdepth: 2
 
-   ../netris-softgate-hs
+   ../netris-softgate-HS
 
 .. toctree::
    :maxdepth: 2

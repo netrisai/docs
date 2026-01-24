@@ -40,27 +40,9 @@ Every switch needs to be added to the Netris Controller inventory. You can add n
 
 Adding SoftGates
 ================
-Every SoftGate node needs to be added to the Netris Controller inventory. To add a SoftGate node:
-
-#. Navigate to **Network → Topology**
-#. Click **Add**
-#. Fill in the fields as described below
-#. Click the **Add** button
+Every SoftGate node needs to be added to the Netris Controller inventory.
 
 The installation process for SoftGate HS is described in the :ref:`SoftGate HS installation <netris-softgate-HS-installation>` section.
-
-Viewing Inventory
-=================
-
-Inventory Listing provides information about network nodes known to Netris.
-
-Heartbeat - Indicates whether the node can communicate with Netris Controller. 
-Health - Indicates the health status of the node.
-
-  .. image:: images/inventory-listing.png
-     :align: center    
-
-.. note:: You can also add new devices in the Topology view.
 
 ================
 Topology Manager

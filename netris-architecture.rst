@@ -44,4 +44,4 @@ Netris SoftGate
 In multi-tenant environments, tenants typically require controlled ingress and egress connectivity to their VPCs. For example, the workload access to and from the Internet.
 SoftGate is an optional, multi-tenant (VPC-aware) software component designed for cloud providers and scales horizontally to provide this ingress and egress connectivity services (NAT and L4LB). The SoftGate software runs on a dedicated set of operator-provided bare-metal servers and is tightly integrated with the Netris-managed North-South fabric
 
-You can learn more about SoftGate architecture and deployment scenarios in the :doc:`Netris SoftGate HS</netris-softgate-hs>` document.
+You can learn more about SoftGate architecture and deployment scenarios in the :doc:`Netris SoftGate HS <netris-softgate-HS>` document.

@@ -32,7 +32,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
 
    installation
    switch-agent-installation
-   netris-softgate-hs1
+   netris-softgate-HS
 
 .. toctree::
    :maxdepth: 2
