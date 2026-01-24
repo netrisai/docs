@@ -47,15 +47,7 @@ Every SoftGate node needs to be added to the Netris Controller inventory. To add
 #. Fill in the fields as described below
 #. Click the **Add** button
 
-.. csv-table:: Add Inventory Fields - SoftGate
-   :file: tables/inventory-add-softgate.csv
-   :widths: 25, 75
-   :header-rows: 0
-
-Example: Adding a SoftGate Node to Topology.
-
-.. image:: images/add-softgate.png
-   :align: center
+The installation process for SoftGate HS is described in the :ref:`SoftGate HS installation <netris-softgate-HS-installation>` section.
 
 Viewing Inventory
 =================

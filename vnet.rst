@@ -65,6 +65,8 @@ Optionally V-Net definition can also include:
     :align: center
     :class: with-shadow
 
+.. _vnet_dhcp:
+
 DHCP
 ^^^^^^^^^^^^^^^^^^^^^^^^
 L2VPN routed V-Nets (where an IP gateway is added) may also be configured with a DHCP service fully managed by Netris and hosted on SoftGate.

@@ -32,7 +32,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
 
    installation
    switch-agent-installation
-   SoftGate-HS-installation
+   netris-softgate-hs
 
 .. toctree::
    :maxdepth: 2
@@ -86,7 +86,6 @@ You are welcome to join our community Slack channel (see button at the top) to g
    :caption: Miscellaneous
 
    accounts
-   softgate-performance
    try-learn/onprem-k8s
    snippets
 

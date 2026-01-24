@@ -41,15 +41,7 @@ Netris Switch Agent is software running in the user space of the network operati
 Netris SoftGate
 ===============
 
-Netris SoftGate is a software for enabling border routing, Layer-4 Load Balancing, Network Address Translation (NAT), DHCP, Firewall, and site-to-site VPN function on a regular x86 server with a SmartNIC (optionally) card.
+In multi-tenant environments, tenants typically require controlled ingress and egress connectivity to their VPCs. For example, the workload access to and from the Internet.
+SoftGate is an optional, multi-tenant (VPC-aware) software component designed for cloud providers and scales horizontally to provide this ingress and egress connectivity services (NAT and L4LB). The SoftGate software runs on a dedicated set of operator-provided bare-metal servers and is tightly integrated with the Netris-managed North-South fabric
 
-Netris SoftGate supports a high-performance DPDK data plane running in the user-space. It configures the system so that packets entering the NIC (network interface card) bypass Linux Kernel and go directly to the user space application. So traffic from the NIC travels through the PCIe bus to the closest CPU’s last level cache and then into one of 8 cores, all reserved for the data-plane application. DPDK data-plane software processes the traffic for routing, load-balancing, NAT and makes necessary changes in the packet header (rewrites mac/VLAN-id) then returns the packet to the NIC, which sends it further into the switch for traveling further in Layer-2.
-
-The SoftGate PRO (the 100Gbps version) server has to have 2 x Intel CPUs (8+ cores each). One CPU (closest to the SmartNIC card) is reserved for the data-plane process only (OS will report 100% CPU usage). Another CPU is used for running Linux OS, routing control plane (FRR), Netris agent, and other standard Linux utilities.
-
-Netris agents can also configure Wireguard to form full mesh VPN tunnels between customer sites and then run necessary dynamic routing. So, servers and applications in multiple data centers can communicate over the Internet using encrypted tunnels.
-
-Diagram: Netris SoftGate high level architecture.
-
-.. image:: images/softgate_diagram.png
-    :align: center
+You can learn more about SoftGate architecture and deployment scenarios in the :doc:`Netris SoftGate HS</netris-softgate-hs>` document.
