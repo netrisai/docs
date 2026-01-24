@@ -20,19 +20,20 @@ Services Provided by SoftGate
 --------------------------------------------
 
 SoftGate provides the following network services on a per-tenant basis:
-* Source Network Address Translation (SNAT)
+
+* **Source Network Address Translation (SNAT)**
 
   Enables tenant workloads to initiate outbound connections to external networks while preserving tenant isolation.
 
-* Destination Network Address Translation (DNAT)
+* **Destination Network Address Translation (DNAT)**
 
   Enables inbound connections from external networks to reach tenant workloads. DNAT includes inbound port forwarding and 1:1 NAT, where traffic on all ports is forwarded unconditionally. The latter is functionally equivalent to an ElasticIP in AWS.
 
-* Layer-4 Load Balancing (L4LB)
+* **Layer-4 Load Balancing (L4LB)**
 
   Distributes inbound traffic across multiple backend endpoints within a tenant's VPC. L4LB service includes support for backend health checks.
 
-* DHCP Server
+* **DHCP Server**
 
   Provides IP address assignment for workloads connected to tenant networks. You can learn more about configuring the Netris DHCP service in the :ref:`DHCP section<vnet_dhcp>` of the Netris documentation.
 
@@ -41,11 +42,11 @@ What SoftGate does not do
 
 SoftGate is intentionally scoped to provide Layer-4 ingress and egress services and does not provide the following capabilities:
 
-* Next-generation firewall (NGFW) functionality
+* **Next-generation firewall (NGFW) functionality**
 
   SoftGate does not perform deep packet inspection, application-aware firewalling, or advanced security policy enforcement.
 
-* Application-layer load balancing
+* **Application-layer load balancing**
 
   SoftGate provides Layer-4 load balancing only and does not offer TLS, Layer-7, or application-aware load balancing capabilities.
 
@@ -56,8 +57,8 @@ A minimum of 4 dedicated servers are required for an HA (highly available) activ
 
 .. csv-table:: SoftGate HS Hardware Requirements
      :file: tables/softgate-hs-hardware.csv
-     :widths: 30, 30, 30
-     :header-rows: 0
+     :widths: 40, 40, 40
+     :header-rows: 1
      :align: center
 
 Performance
@@ -71,13 +72,15 @@ Architecture Overview
 ========================
 
 This section describes how SoftGate fits into a Netris-managed network and how it participates in providing ingress and egress connectivity for tenant VPCs.
+
 SoftGate is logically positioned at the edge of the Netris-managed North-South network. Its primary purpose is to provide IP address translation (NAT) and Layer-4 Load Balancing (L4LB) services for controlled ingress and egress of tenant traffic. 
+
 For use cases that require direct, high-performance connectivity into a tenant VPC without address translation—such as private network interconnects or dedicated external routing—Netris provides a separate VPC Connect feature. VPC Connect enables routed connectivity to tenant VPCs and does not require a SoftGate.
 
 .. image:: /images/softgate-hs-topology.svg
       :alt: SoftGate HS Topology
       :align: center
-      :width: 600px
+      :width: 800px
       :class: with-shadow
 
 .. raw:: html
@@ -263,6 +266,7 @@ A typical topology consists of:
 .. image:: /images/softgate-hs-upstream-routers.svg
       :alt: SoftGate HS Upstream Routers
       :align: center
+      :width: 800px
       :class: with-shadow
 
 .. raw:: html
@@ -390,8 +394,8 @@ The above approach allows the Netris SoftGate layer to remain highly available a
 
 In case of a SoftGate node failure
 
-* If the role of the failed SoftGate instance is General, an alarm is raised in the controller, but no further action is taken by the Netris algorithm.
-* If the role of the failed SoftGate instance is SNAT, all the SNAT rules that were assigned to the failed SoftGate instance are evenly redistributed to all other SoftGates with the role SNAT.
+* If the role of the failed SoftGate instance is **General**, an alarm is raised in the controller, but no further action is taken by the Netris algorithm.
+* If the role of the failed SoftGate instance is **SNAT**, all the SNAT rules that were assigned to the failed SoftGate instance are evenly redistributed to all other SoftGates with the role SNAT.
 
 Note that SNAT service is the only stateful translation service provided by SoftGates. SNAT connections will experience an interruption, as the SNAT rules are reconfigured on the surviving SoftGate nodes, and will have to be reestablished. However, DNAT and L4LB connections are stateless and will remain unimpacted in a SoftGate node failure scenario.
 
