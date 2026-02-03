@@ -150,7 +150,7 @@ SoftGate is logically positioned at the edge of the Netris-managed North–South
 
   <br />
 
-.. tip:: SoftGate HS is designed to provide address translation services (DNAT, SNAT, L4LB) at the edge of the North-South fabric. High-speed connectivity into a Netris VPC without address translation—such as private network interconnects or dedicated external routing—can be achieved with the Netris VPC Connect <link to VPC Connect user doc page> feature.
+.. tip:: SoftGate HS is designed to provide address translation services (DNAT, SNAT, L4LB) at the edge of the North-South fabric. High-speed connectivity into a Netris VPC without address translation—such as private network interconnects or dedicated external routing—can be achieved with the Netris VPC Connect feature.
 
 
 * **SoftGate integrates directly with the Netris-managed North–South EVPN fabric by acting as a VTEP.** The Netris SoftGate agent installed on each SoftGate node automatically configures the SoftGate node to establish EVPN BGP peering relationships with the Netris managed fabric without any input required from the user. SoftGate nodes become VTEPs in the North-South EVPN/VXLAN fabric, which enables them to exchange traffic with any Netris VPC.
