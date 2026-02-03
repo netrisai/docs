@@ -37,6 +37,7 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx_rtd_theme',
     'sphinx_copybutton',
+	'sphinx_design',
 	# 'sphinx_tabs.tabs',
 ]
 
