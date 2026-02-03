@@ -1,4 +1,3 @@
-
 .. meta::
   :description: Netris Controller Installation on Kubernetes
 
@@ -380,7 +379,7 @@ Netris-Controller telescope-notifier parameters
 Mariadb parameters
 ^^^^^^^^^^^^^^^^^^
 
-*Using default values* `from <https://github.com/bitnami/charts/tree/master/bitnami/mariadb/values.yaml>`_
+*Using default values* `from mariadb defaults <https://github.com/bitnami/charts/tree/master/bitnami/mariadb/values.yaml>`_
 
 .. list-table::
    :header-rows: 1
@@ -416,7 +415,7 @@ Mariadb parameters
 Mongodb parameters
 ^^^^^^^^^^^^^^^^^^
 
-*Using default values* `from <https://github.com/bitnami/charts/tree/master/bitnami/mongodb/values.yaml>`_
+*Using default values* `from mongodb defaults <https://github.com/bitnami/charts/tree/master/bitnami/mongodb/values.yaml>`_
 
 .. list-table::
    :header-rows: 1
@@ -449,7 +448,7 @@ Mongodb parameters
 Redis parameters
 ^^^^^^^^^^^^^^^^
 
-*Using default values* `from <https://github.com/bitnami/charts/tree/master/bitnami/redis/values.yaml>`_
+*Using default values* `from redis defaults <https://github.com/bitnami/charts/tree/master/bitnami/redis/values.yaml>`_
 
 .. list-table::
    :header-rows: 1
@@ -470,7 +469,7 @@ Redis parameters
 Smtp parameters
 ^^^^^^^^^^^^^^^
 
-*Using default values* `from <https://github.com/ntppool/charts/tree/main/charts/smtp/values.yaml>`_
+*Using default values* `from smtp defaults <https://github.com/ntppool/charts/tree/main/charts/smtp/values.yaml>`_
 
 .. list-table::
    :header-rows: 1
@@ -489,7 +488,7 @@ Smtp parameters
 HAproxy parameters
 ^^^^^^^^^^^^^^^^^^
 
-*Using default values* `from <https://github.com/haproxytech/helm-charts/tree/master/haproxy/values.yaml>`_
+*Using default values* `from haproxy defaults <https://github.com/haproxytech/helm-charts/tree/master/haproxy/values.yaml>`_
 
 .. list-table::
    :header-rows: 1
@@ -508,7 +507,7 @@ HAproxy parameters
 Graphite parameters
 ^^^^^^^^^^^^^^^^^^^
 
-*Using default values* `from <https://github.com/kiwigrid/helm-charts/tree/master/charts/graphite/values.yaml>`_
+*Using default values* `from graphite defaults <https://github.com/kiwigrid/helm-charts/tree/master/charts/graphite/values.yaml>`_
 
 .. list-table::
    :header-rows: 1

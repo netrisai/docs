@@ -120,7 +120,7 @@ Now that the **Default ACL Policy** is set to **Deny**, we need to configure an 
   8. Select **Approve** from the **Actions** menu indicated by three vertical dots (⋮) on the right side of the newly created "**V-Net to WAN Example**" ACL.
   9. Click **Approve** one more time in the pop-up window.
 
-|
+
 * Back in the terminal window again:
 
 Once the Netris software has finished syncing the new ACL policy with all the member devices, you can see that replies to our ``ping 8.8.8.8`` command have resumed, indicating that the **srv02-nyc** server can communicate with **8.8.8.8** once again.

@@ -124,9 +124,7 @@ Example: Running netris-setup
   * Update Grub
   └── 
 
-| *** ATTENTION: You must reboot SoftGate to complete the installation 
-| netris@ubuntu:~$ 
-|
+.. warning:: You must reboot SoftGate to complete the installation 
 
 8. Reboot the server
 

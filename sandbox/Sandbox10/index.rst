@@ -6,4 +6,6 @@ Sandbox10
    :maxdepth: 2
 
    Sandbox-info
+   Configurations
    creating-services
+   Diagram

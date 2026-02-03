@@ -20,7 +20,7 @@ Contents:
    controller-initial-configuration
    switch-agent-installation
    SoftGate-agent-installation
-   
+
 .. toctree::
    :maxdepth: 4
    :caption: Network Policies
@@ -47,3 +47,8 @@ Contents:
    
    release-notes
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Sandboxes
+
+   sandbox/index

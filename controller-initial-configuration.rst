@@ -46,8 +46,11 @@ Screenshot: Listing of the Subnets section after adding the new objects.
 
 .. image:: images/subnet_listing.png
     :align: center
-|
-|
+
+.. raw:: html
+
+    <br />
+
 Inventory Profiles 
 ==================
 Inventory profiles define access security, timezone, DNS, NTP settings profiles for network switches and SoftGate nodes.

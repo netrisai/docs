@@ -129,16 +129,19 @@ Example: route-map
 #######################
 Routes (static routing)
 #######################
+
 Located under Net→Routes is a method for describing static routing policies that Netris will dynamically inject on switches and/or SoftGate where appropriate.
 We recommend using the Routes only if BGP is not supported by the remote end. 
 
 | Typical use cases for Routes
+
 * To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported. 
 * Temporary interconnection with the old network for a migration. 
 * Routing a subnet behind a VM hypervisor machine for an internal VM network.
 * Specifically routing traffic destined to a particular prefix through an out-of-band management network.
 
 | Add new static route fields description:
+
 * **Prefix** - Route destination to match. 
 * **Next-Hop** - Traffic destined to the Prefix will be routed towards the Next-Hop. Note that static routes will be injected only on units that have the Next-Hop as a connected network.
 * **Description** - Free description.
@@ -233,7 +236,8 @@ Example: Port forwarding. DNAT the traffic destined to 198.51.100.66:80 to be fo
     :align: center
 
 SiteMesh
-========
+---------
+
 SiteMesh is a Netris service for site-to-site interconnects over the public Internet. SiteMesh automatically generates configuration for WireGuard to create encrypted tunnels between participating sites and automatically generates a configuration for FRR to run dynamic routing. Hence, sites learn how to reach each other over the mesh WireGuard tunnels. The SiteMesh feature requires a SoftGate node at each participating site. 
 
 Edit Net->Sites, do declare what sites should form a SiteMesh. See SiteMesh types described below.
@@ -289,6 +293,7 @@ Example: Ping.
     :align: center
 
 | Looking Glass controls described for the EVPN family.
+
 * **BGP Summary** - Show brief summary of BGP adjacencies with neighbors, interface names, and EVPN prefixes received. 
 * **VNI** - List VNIs learned.
 * **BGP EVPN** - List detailed EVPN routing information optionally for the given route distinguisher. 
