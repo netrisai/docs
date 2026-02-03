@@ -477,7 +477,7 @@ In case of a SoftGate node failure
 
 Note that SNAT service is the only stateful translation service provided by SoftGates. SNAT connections will experience an interruption, as the SNAT rules are reconfigured on the surviving SoftGate nodes, and will have to be reestablished. However, DNAT and L4LB connections are stateless and will remain unimpacted in a SoftGate node failure scenario.
 
-When a SNAT SoftGate recovers, Netris will… [to be completed] 
+When a SNAT SoftGate recovers, Netris will return the earlier redistributed SNAT rules to the recovered node. 
 
 When an additional SNAT SoftGate is added to the deployment, as opposed having recovered from an earlier failure, Netris will execute a SNAT rule reshuffle to redistribute all configured SNAT rules across all deployed SNAT SoftGates. This action may result in brief interruption to existing SNAT connections, as the rules are being redistributed.
 
