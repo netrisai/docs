@@ -15,9 +15,9 @@ CRITICAL - above Critical threshold",89% Used of 1709 MB,"Warning threshold defa
 Critical threshold default 90"
 Node Health,check_psu,Power Supply status,"OK - OK
 CRITICAL - BAD, FAILED and etc.","PSU1(OK), PSU2(OK)",
-Node Health,check_ratio,% of Netris agent config changes in 5 min?,"OK - below Warning threshold
+Node Health,check_ratio,Detects unusually frequent configuration changes that may indicate abnormal or unstable behavior,"OK - below Warning threshold
 WARNING - above Warning threshold
-CRITICAL - above Critical threshold",vxpd - 0%,
+CRITICAL - above Critical threshold",vxpd - 0%,"Critical threshold default 60"
 Node Health,check_temp,Temperature sensors status,"OK - OK
 CRITICAL - ABSENT, FAILED and etc.","PSU1 Temp Sensor(OK), PSU2 Temp Sensor(OK)",
 Node Health,health_monitoring,Checks that Netris self monitoring is active,"OK - Active
