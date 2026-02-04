@@ -1000,23 +1000,22 @@
 <li><p><strong>NVLink Multi-Node.</strong> Netris can now create NVLink partitions in NVL72 and NVL144 equipped systems.</p></li>
 <li><p><strong>eBGP imports non-default routes.</strong> The operator may now apply a BGP community 0:7 to signal Netris to import any non 0.0.0.0/0 eBGP prefixes into the VPC.</p></li>
 <li><p><strong>Control plane verification of VTEP reachability.</strong> Netris managed VTEPs (switches and Softgates) keep track of the reachability of other Netris VTEPs.</p></li>
-<li><p><strong>CloudStack supported with Cumulus Linux.</strong> CloudStack now integrates with Spectrum-X fabrics running Cumulus Linux.</p></li>
-<li><p><strong>Spectrum-X Deployment Guide compliance is automatic.</strong> Netris will automatically apply correct configuration to appropriate Ethernet components based on the appropriate version of the Spectrum-X Deployment Guide based on the detected Cumulus Linux version.</p></li>
+<li><p><strong>CloudStack supported with Cumulus Linux.</strong> CloudStack now integrates with Nvidia switch fabrics running Cumulus Linux.</p></li>
+<li><p><strong>Spectrum-X Deployment Guide v1.3 support</strong> Spectrum-X Deployment Guide v1.3 is now supported.</p></li>
 <li><p><strong>SNMPv2.</strong> Netris can now configure SNMPv2 read-only access on supported switches</p></li>
 <li><p><strong>Inventory Filtering.</strong> Inventory API now supports filtering.</p></li>
 <li><p><strong>Topology View Filtering.</strong> Topology view now supports filtering by device name.</p></li>
-<li><p><strong>Dell/BC-SONiC VPC peering.</strong> VPC peering can now be established on Dell/BC-SONiC Ethernet fabrics.</p></li>
-<li><p><strong>Dell/BC-SONiC L3VPN.</strong> L3VPN is now supported on Dell/BC-SONiC Ethernet fabrics.</p></li>
+<li><p><strong>Dell/BC-SONiC VPC peering.</strong> VPC peering can now be established on <a class="reference internal" href="../supported-platform-matrix.html#overlay-network-functions"><span class="std std-ref">Dell/BC-SONiC Ethernet</span></a> fabrics.</p></li>
+<li><p><strong>Dell/BC-SONiC L3VPN.</strong> L3VPN is now supported on <a class="reference internal" href="../supported-platform-matrix.html#overlay-network-functions"><span class="std std-ref">Dell/BC-SONiC Ethernet</span></a> fabrics.</p></li>
 </ul>
 </section>
 <section id="enhancements">
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading"></a></h2>
 <ul class="simple">
+<li><p><strong>XDP dataplane acceleration for SoftGate HS</strong>.</p></li>
 <li><p><strong>DHCP Relay</strong> now supports inter-VPC routing on all <a class="reference internal" href="../supported-switch-hardware.html#supported-switch-hardware"><span class="std std-ref">Supported Switch Hardware</span></a>.</p></li>
-<li><p><strong>L3VPN</strong> now includes  <a class="reference internal" href="../supported-platform-matrix.html#overlay-network-functions"><span class="std std-ref">Dell and Broadcom SONiC</span></a>.</p></li>
-<li><p><strong>Centralized ACLs on Arista EOS</strong> are now supported on <a class="reference internal" href="../supported-switch-hardware.html#supported-switch-hardware"><span class="std std-ref">Supported Switch Hardware</span></a>.</p></li>
+<li><p><strong>Centralized ACLs on Arista EOS</strong> are now available on <a class="reference internal" href="../supported-switch-hardware.html#supported-switch-hardware"><span class="std std-ref">Supported Switch Hardware</span></a>.</p></li>
 <li><p><strong>Controller Management Address</strong> can now be explicitly specified and is correctly reflected in the “one-liner” install command.</p></li>
-<li><p><strong>Controller Management IP</strong> can be explicitly configured in one-liner</p></li>
 <li><p><strong>Performance and UI improvements.</strong></p>
 <ul>
 <li><p>Add Network &gt; Links page showing all topology links.</p></li>
@@ -1031,7 +1030,6 @@
 <li><p>Can now show more than 4 tx/rx optical signals in Optical Graph.</p></li>
 <li><p>Improved SoftGate HS installation experience.</p></li>
 <li><p>Improved SoftGate HS DNAT and ACL scalability.</p></li>
-<li><p>Added XDP based acceleration for SoftGate HS data plane.</p></li>
 </ul>
 </li>
 </ul>

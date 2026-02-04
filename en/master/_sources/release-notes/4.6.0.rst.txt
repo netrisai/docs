@@ -20,23 +20,22 @@ Features
 - **NVLink Multi-Node.** Netris can now create NVLink partitions in NVL72 and NVL144 equipped systems.
 - **eBGP imports non-default routes.** The operator may now apply a BGP community 0:7 to signal Netris to import any non 0.0.0.0/0 eBGP prefixes into the VPC.
 - **Control plane verification of VTEP reachability.** Netris managed VTEPs (switches and Softgates) keep track of the reachability of other Netris VTEPs.
-- **CloudStack supported with Cumulus Linux.** CloudStack now integrates with Spectrum-X fabrics running Cumulus Linux.
-- **Spectrum-X Deployment Guide compliance is automatic.** Netris will automatically apply correct configuration to appropriate Ethernet components based on the appropriate version of the Spectrum-X Deployment Guide based on the detected Cumulus Linux version.
+- **CloudStack supported with Cumulus Linux.** CloudStack now integrates with Nvidia switch fabrics running Cumulus Linux.
+- **Spectrum-X Deployment Guide v1.3 support** Spectrum-X Deployment Guide v1.3 is now supported.
 - **SNMPv2.** Netris can now configure SNMPv2 read-only access on supported switches
 - **Inventory Filtering.** Inventory API now supports filtering.
 - **Topology View Filtering.** Topology view now supports filtering by device name.
-- **Dell/BC-SONiC VPC peering.** VPC peering can now be established on Dell/BC-SONiC Ethernet fabrics.
-- **Dell/BC-SONiC L3VPN.** L3VPN is now supported on Dell/BC-SONiC Ethernet fabrics.
+- **Dell/BC-SONiC VPC peering.** VPC peering can now be established on :ref:`Dell/BC-SONiC Ethernet <overlay-network-functions>` fabrics.
+- **Dell/BC-SONiC L3VPN.** L3VPN is now supported on :ref:`Dell/BC-SONiC Ethernet <overlay-network-functions>` fabrics.
 
 Enhancements
 ------------
 .. Customer-facing enhancements to existing functionality and features. If internal-only, keep wording generic.
 
+- **XDP dataplane acceleration for SoftGate HS**.
 - **DHCP Relay** now supports inter-VPC routing on all :ref:`supported-switch-hardware`.
-- **L3VPN** now includes  :ref:`Dell and Broadcom SONiC <overlay-network-functions>`.
-- **Centralized ACLs on Arista EOS** are now supported on :ref:`supported-switch-hardware`.
+- **Centralized ACLs on Arista EOS** are now available on :ref:`supported-switch-hardware`.
 - **Controller Management Address** can now be explicitly specified and is correctly reflected in the “one-liner” install command.
-- **Controller Management IP** can be explicitly configured in one-liner
 - **Performance and UI improvements.**
 
   - Add Network > Links page showing all topology links.
@@ -51,7 +50,6 @@ Enhancements
   - Can now show more than 4 tx/rx optical signals in Optical Graph.
   - Improved SoftGate HS installation experience.
   - Improved SoftGate HS DNAT and ACL scalability.
-  - Added XDP based acceleration for SoftGate HS data plane.
 
 Bug fixes
 ---------
