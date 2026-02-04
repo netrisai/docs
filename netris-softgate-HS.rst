@@ -466,7 +466,7 @@ Failover behavior
 
 Netris configures all DNAT and L4LB services on all SoftGate nodes with the role General.
 
-Netris configures any given SNAT rule on one and only one SoftGate node with the role SNAT.
+Netris configures a given SNAT rule on exactly one SoftGate node with the SNAT role. The specific node is chosen based on a deterministic and consistent hashing algorithm.
 
 The above approach allows the Netris SoftGate layer to remain highly available and robust in various hardware failure scenarios.
 
