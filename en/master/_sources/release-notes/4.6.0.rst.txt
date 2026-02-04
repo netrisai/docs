@@ -23,7 +23,6 @@ Features
 - **CloudStack supported with Cumulus Linux.** CloudStack now integrates with Nvidia switch fabrics running Cumulus Linux.
 - **Spectrum-X Deployment Guide v1.3 support** Spectrum-X Deployment Guide v1.3 is now supported.
 - **SNMPv2.** Netris can now configure SNMPv2 read-only access on supported switches
-- **Inventory Filtering.** Inventory API now supports filtering.
 - **Topology View Filtering.** Topology view now supports filtering by device name.
 - **Dell/BC-SONiC VPC peering.** VPC peering can now be established on :ref:`Dell/BC-SONiC Ethernet <overlay-network-functions>` fabrics.
 - **Dell/BC-SONiC L3VPN.** L3VPN is now supported on :ref:`Dell/BC-SONiC Ethernet <overlay-network-functions>` fabrics.
@@ -36,6 +35,7 @@ Enhancements
 - **DHCP Relay** now supports inter-VPC routing on all :ref:`supported-switch-hardware`.
 - **Centralized ACLs on Arista EOS** are now available on :ref:`supported-switch-hardware`.
 - **Controller Management Address** can now be explicitly specified and is correctly reflected in the “one-liner” install command.
+- **Inventory Filtering.** Inventory API now supports filtering by label, sites, types, health, and custom.
 - **Performance and UI improvements.**
 
   - Add Network > Links page showing all topology links.
@@ -88,9 +88,10 @@ Bug fixes
 - Routing On Host ASN, Routing Profile
 - VM ASN
 - SoftGate (generic flavor)
+- SoftGate PRO
 - Calico ASN
 - Built-in chat.
-- Remove Proxmox, Equinix metal, and PhoenixNap as supported platforms.
+- Proxmox, Equinix metal, and PhoenixNap as supported platforms.
 
 References
 ----------
