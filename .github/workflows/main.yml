@@ -1,28 +1,73 @@
 name: docs_pages_workflow
 
-# execute this workflow automatically when a we push to master
 on:
   push:
 
-jobs:
+permissions:
+  contents: write
 
-  update_docs:
+jobs:
+  build:
     runs-on: ubuntu-latest
-  #  container: debian:bullseye-slim
+    concurrency:
+      group: docs-build-${{ github.ref_name }}
+      cancel-in-progress: true
 
     steps:
-      # Properly check out the branch that triggered this workflow
-      - name: Check out repository
+      - name: Checkout docs repo at triggering branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.ref_name }}
 
-      # Install deps and run your build script
-      - name: Execute script to build our documentation
+      - name: Build only this branch (tooling action)
+        uses: netrisai/docs-tooling@v1
+        with:
+          mode: build-only
+          repo: ${{ github.repository }}
+          ref_name: ${{ github.ref_name }}
+          sha: ${{ github.sha }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-${{ github.ref_name }}-${{ github.sha }}
+          path: _build/html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: docs-deploy
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout docs repo (for gh-pages push)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Skip deploy if stale (branch advanced)
+        run: |
+          set -euo pipefail
+          git fetch origin "${{ github.ref_name }}" --depth=1
+          LATEST_SHA="$(git rev-parse FETCH_HEAD)"
+          if [[ "${LATEST_SHA}" != "${{ github.sha }}" ]]; then
+            echo "INFO: Skipping deploy. Run SHA=${{ github.sha }}, but branch is now at ${LATEST_SHA}."
+            exit 0
+          fi
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: html-${{ github.ref_name }}-${{ github.sha }}
+          path: _build/html
+
+      - name: Deploy subtree for this branch (+ latest if applicable)
+        uses: netrisai/docs-tooling@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          chmod +x updatePages.sh
-          ./updatePages.sh
-        shell: bash
+        with:
+          mode: deploy-only
+          repo: ${{ github.repository }}
+          ref_name: ${{ github.ref_name }}
+          sha: ${{ github.sha }}
