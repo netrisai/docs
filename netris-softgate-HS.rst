@@ -69,31 +69,23 @@ A minimum of 4 dedicated servers is required for an HA (highly available) active
 Performance
 ==================
 
-The Netris engineering team has performed SoftGate HS performance benchmarking using Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz with 64 byte packet size.
+The Netris engineering team has performed SoftGate HS performance benchmarking using 64 byte packet size on Intel and AMD CPUs. The results represent the performance of a single SoftGate HS node with the role General. The cumulative performance of the SoftGate cluster will depend on the number of deployed nodes and the traffic distribution between them. See the :ref:`High Availability and Load Distribution <softgate-hs-load-distribution>` section of this document for more information on how traffic is distributed across SoftGate nodes.
 
 .. tab-set::
   
-  .. tab-item:: SoftGate HS with 1 tenant
+  .. tab-item:: Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz
 
-    .. csv-table:: SoftGate HS 1 Tenant Performance 
-      :file: tables/softgate-hs-perf-1tenant.csv
-      :widths: 40, 40
+    .. csv-table:: SoftGate HS Performance Intel
+      :file: tables/softgate-hs-perf-intel.csv
+      :widths: 40, 40, 40
       :header-rows: 1
       :align: center
 
-  .. tab-item:: SoftGate HS with 100 tenants
+  .. tab-item:: AMD EPYC 7413 24-Core CPU @ 2.6GHz, 48 core
 
-    .. csv-table:: SoftGate HS 100 Tenants Performance
-      :file: tables/softgate-hs-perf-100tenant.csv
-      :widths: 40, 40
-      :header-rows: 1
-      :align: center
-
-  .. tab-item:: SoftGate HS with 1000 tenants
-
-    .. csv-table:: SoftGate HS 1000 Tenants Performance
-      :file: tables/softgate-hs-perf-1000tenant.csv
-      :widths: 40, 40
+    .. csv-table:: SoftGate HS Performance AMD
+      :file: tables/softgate-hs-perf-amd.csv
+      :widths: 40, 40, 40
       :header-rows: 1
       :align: center
 
@@ -121,7 +113,7 @@ Each SoftGate node must be physically connected to Netris-managed switches that 
 
 Netris recommends at least two physical dataplane connections (coral color in the diagram) and at least one management connection (green color in the diagram) per SoftGate node to provide link and device redundancy.
 
-The upstream routers, with which SoftGate nodes form BGP sessions (described in the :ref:`SoftGate logical connectivity <softgate-logical-connectivity>` section), must also be physically connected to the Netris-managed fabric. Netris recommends connecting the upstream routers to the same leaf switches as the SoftGate nodes.
+The upstream routers, with which SoftGate nodes form BGP sessions (described in the :ref:`SoftGate logical connectivity <softgate-logical-connectivity>` section), must also be physically connected to the Netris-managed fabric. Typically, the upstream routers are connected to the same leaf switches as the SoftGate nodes; however, these routers can be connected to any Netris-managed switch in the North-South fabric.
 
 .. image:: /images/softgate-hs-physical-datapath.svg
       :alt: Figure 2. Netris SoftGate physical datapath connectivity
@@ -150,7 +142,7 @@ SoftGate is logically positioned at the edge of the Netris-managed North–South
 
   <br />
 
-.. tip:: SoftGate HS is designed to provide address translation services (DNAT, SNAT, L4LB) at the edge of the North-South fabric. High-speed connectivity into a Netris VPC without address translation—such as private network interconnects or dedicated external routing—can be achieved with the Netris VPC Connect feature.
+.. tip:: SoftGate HS is designed to provide connectivity between the Internet and Netris VPCs (DNAT, SNAT, L4LB) at the edge of the North-South fabric. Additionally, direct connectivity into a Netris VPC—such as private network interconnects or dedicated external routing—can be achieved with the :ref:`VPC Connect <vpc-connect>` feature.
 
 
 * **SoftGate integrates directly with the Netris-managed North–South EVPN fabric by acting as a VTEP.** The Netris SoftGate agent installed on each SoftGate node automatically configures the SoftGate node to establish EVPN BGP peering relationships with the Netris managed fabric without any input required from the user. SoftGate nodes become VTEPs in the North-South EVPN/VXLAN fabric, which enables them to exchange traffic with any Netris VPC.
@@ -167,17 +159,17 @@ To provide reachablity between the SoftGate nodes and the upstream routers throu
 SoftGate node Control Plane
 ----------------------------------------
 
-SoftGate node control plane is implemented with the `FRRouting <https://frrouting.org>`_ software stack, `iproute2 <https://wiki.linuxfoundation.org/networking/iproute2>`_, and is fully managed by the Netris controller.
+SoftGate node control plane is implemented with the `FRRouting <https://frrouting.org>`_ software stack and is fully managed by the Netris controller.
 
 * The `FRRouting <https://frrouting.org>`_ software stack is automatically installed during the provisioning phase on each SoftGate node.
 * The Netris SoftGate agent automatically configures FRR to form BGP/EVPN peer relationships with the Netris-managed North-South fabric, thus becoming a VTEP in the North-South Netris-managed fabric.
 * The Netris SoftGate agent also automatically and based on parameters defined by you in the Netris controller configures FRR to establish BFD-enabled BGP peering relationships with the upstream routers.
-* The Netris SoftGate agent, based on the EVPN and BGP information received from the fabric and the Netris controller automatically configures packet forwarding rules in the Linux networking stack using `iproute2 <https://wiki.linuxfoundation.org/networking/iproute2>`_.
+* The Netris SoftGate agent, based on the EVPN and BGP information received from the fabric and the Netris controller automatically configures packet forwarding rules in the Linux networking stack.
 
 SoftGate node Data Plane
 -----------------------------------------
 
-SoftGate dataplane is implemented using XDP (eXpress Data Path) and `netfilter <https://www.netfilter.org/projects/nftables/index.html>`_.
+SoftGate dataplane is implemented using XDP (eXpress Data Path).
 
 XDP is a a high-performance, programmable framework in the Linux kernel that allows processing network packets at the earliest possible stage, directly from the network driver, before they hit the main network stack, using eBPF programs for tasks like filtering and load balancing  with minimal overhead. It significantly boosts SoftGate throughput and efficiency by handling packets faster than traditional methods, enabling kernel bypass for high-speed data paths.
 
@@ -386,31 +378,18 @@ To further demonstrate this default behavior, consider the above IPAM configurat
     * SoftGates will NOT advertise to the upstream EBGP peers 198.51.100.0/24, even though it is an (a) non-RFC1918, (b) top-level object of (c), because it is assigned to ``vpc-3:VPC-3``, i.e., a (d) non-Default VPC. 
     * SoftGates will NOT advertise to the upstream EBGP peers 192.0.2.0/24, because it's an object of ``type:Allocation``, not of ``type:Subnet``.
 
-Below is the output of the ``show ip bgp neighbor advertised-routes`` command when the above configuration is in the Netris IPAM, and nothing is configured in the ``Prefix List Outbound`` field for this EBGP connection.
+Below is the output of the ``show ip bgp neighbor advertised-routes`` command when the above configuration is in the Netris IPAM, and the ``Prefix List Outbound`` field in the E-BGP object for this EBGP connection is left empty.
 
-.. code-block:: shell-session
+.. image:: /images/softgate-hs-advertised-routes.png
+      :alt: SoftGate HS advertised routes
+      :align: center
+      :class: with-shadow
 
-  ns-softgate-0# show ip bgp vrf Vrf_1 neighbors 10.10.0.2 advertised-routes
-  BGP table version is 115, local router ID is 192.0.2.254, vrf id 7
-  Default local pref 100, local AS 655001
-  Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath, i internal, r RIB-failure, S Stale, R Removed
-  Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
-  Origin codes:  i - IGP, e - EGP, ? - incomplete
-  RPKI validation codes: V valid, I invalid, N Not found
+.. raw:: html
 
-        Network          Next Hop            Metric LocPrf Weight Path
-    *>  203.0.113.0/25   0.0.0.0                  0         32768 i
-    *   203.0.113.0/25   0.0.0.0<                 0         32768 i
-    *   203.0.113.0/25   0.0.0.0<                 0         32768 i
-    *>  203.0.113.128/26 0.0.0.0                  0         32768 i
-    *   203.0.113.128/26 0.0.0.0<                 0         32768 i
-    *   203.0.113.128/26 0.0.0.0<                 0         32768 i
-    *>  203.0.113.192/27 0.0.0.0                  0         32768 i
-    *   203.0.113.192/27 0.0.0.0<                 0         32768 i
-    *   203.0.113.192/27 0.0.0.0<                 0         32768 i
+  <br />
 
-  Total number of prefixes 3
-  ns-softgate-0#
+.. tip:: This information can be obtained by using the Looking Glass feature in the Netris controller UI. In Network >  Topology, right-click a SoftGate node, select Details, select the Looking Glass tab, execute the BGP Summary command, click on the BGP neighbor IP in the output of the BGP Summary command, select Advertised Routes option.
 
 2. Additionally, SNAT SoftGates originate (and advertise to the upstream neighbors, if permitted with an outbound prefix-list) /32 prefixes that correspond to global IPs of the SNAT rules configured in the Netris controller. This enables upstream routers to route packets directly to the correct SNAT SoftGate node. For each SNAT rule configured in the Netris controller, the Netris algorithm will automatically select one of the available SoftGate nodes with role SNAT, and, based on the `Maglev algorithm <https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf>`_, will install the SNAT rule on that SoftGate.
 
@@ -419,6 +398,8 @@ Below is the output of the ``show ip bgp neighbor advertised-routes`` command wh
 .. tip:: Configure your upstream routers to receive /32 prefixes from SoftGates for optimal routing and to prevent traffic from being forwarded internally if it arrives at the “wrong” SoftGate.
 
 .. warning:: The same Global IP address cannot be configured simultaneously for SNAT and any other translation service.
+
+.. _softgate-hs-load-distribution:
 
 High Availability and Load Distribution
 ================================================
@@ -466,7 +447,7 @@ Failover behavior
 
 Netris configures all DNAT and L4LB services on all SoftGate nodes with the role General.
 
-Netris configures any given SNAT rule on one and only one SoftGate node with the role SNAT.
+Netris configures a given SNAT rule on exactly one SoftGate node with the SNAT role. The specific node is chosen based on a deterministic and consistent hashing algorithm.
 
 The above approach allows the Netris SoftGate layer to remain highly available and robust in various hardware failure scenarios.
 
