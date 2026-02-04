@@ -1049,51 +1049,51 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#overview" id="id14">Overview</a></p>
+<li><p><a class="reference internal" href="#overview" id="id13">Overview</a></p>
 <ul>
-<li><p><a class="reference internal" href="#services-provided-by-softgate" id="id15">Services Provided by SoftGate</a></p></li>
-<li><p><a class="reference internal" href="#what-softgate-does-not-do" id="id16">What SoftGate does not do</a></p></li>
-<li><p><a class="reference internal" href="#hardware-requirements" id="id17">Hardware Requirements</a></p></li>
+<li><p><a class="reference internal" href="#services-provided-by-softgate" id="id14">Services Provided by SoftGate</a></p></li>
+<li><p><a class="reference internal" href="#what-softgate-does-not-do" id="id15">What SoftGate does not do</a></p></li>
+<li><p><a class="reference internal" href="#hardware-requirements" id="id16">Hardware Requirements</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#performance" id="id18">Performance</a></p></li>
-<li><p><a class="reference internal" href="#architecture-overview" id="id19">Architecture Overview</a></p>
+<li><p><a class="reference internal" href="#performance" id="id17">Performance</a></p></li>
+<li><p><a class="reference internal" href="#architecture-overview" id="id18">Architecture Overview</a></p>
 <ul>
-<li><p><a class="reference internal" href="#softgate-physical-connectivity" id="id20">SoftGate physical connectivity</a></p></li>
-<li><p><a class="reference internal" href="#softgate-logical-connectivity" id="id21">SoftGate logical connectivity</a></p></li>
-<li><p><a class="reference internal" href="#softgate-node-control-plane" id="id22">SoftGate node Control Plane</a></p></li>
-<li><p><a class="reference internal" href="#softgate-node-data-plane" id="id23">SoftGate node Data Plane</a></p></li>
-<li><p><a class="reference internal" href="#softgate-roles-and-flavors" id="id24">SoftGate Roles and Flavors</a></p></li>
+<li><p><a class="reference internal" href="#softgate-physical-connectivity" id="id19">SoftGate physical connectivity</a></p></li>
+<li><p><a class="reference internal" href="#softgate-logical-connectivity" id="id20">SoftGate logical connectivity</a></p></li>
+<li><p><a class="reference internal" href="#softgate-node-control-plane" id="id21">SoftGate node Control Plane</a></p></li>
+<li><p><a class="reference internal" href="#softgate-node-data-plane" id="id22">SoftGate node Data Plane</a></p></li>
+<li><p><a class="reference internal" href="#softgate-roles-and-flavors" id="id23">SoftGate Roles and Flavors</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#installation-and-initial-deployment" id="id25">Installation and Initial Deployment</a></p>
+<li><p><a class="reference internal" href="#installation-and-initial-deployment" id="id24">Installation and Initial Deployment</a></p>
 <ul>
-<li><p><a class="reference internal" href="#prerequisites" id="id26">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#installation-guide" id="id27">Installation Guide</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id25">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#installation-guide" id="id26">Installation Guide</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#upstream-border-routers-ebgp" id="id28">Upstream/Border Routers (EBGP)</a></p>
+<li><p><a class="reference internal" href="#upstream-border-routers-ebgp" id="id27">Upstream/Border Routers (EBGP)</a></p>
 <ul>
-<li><p><a class="reference internal" href="#configuring-upstream-bgp" id="id29">Configuring upstream BGP</a></p></li>
-<li><p><a class="reference internal" href="#bgp-route-exchange-between-softgates-upstream-routers-and-downstream-switches" id="id30">BGP route exchange between SoftGates, upstream routers, and downstream switches</a></p></li>
+<li><p><a class="reference internal" href="#configuring-upstream-bgp" id="id28">Configuring upstream BGP</a></p></li>
+<li><p><a class="reference internal" href="#bgp-route-exchange-between-softgates-upstream-routers-and-downstream-switches" id="id29">BGP route exchange between SoftGates, upstream routers, and downstream switches</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#high-availability-and-load-distribution" id="id31">High Availability and Load Distribution</a></p>
+<li><p><a class="reference internal" href="#high-availability-and-load-distribution" id="id30">High Availability and Load Distribution</a></p>
 <ul>
-<li><p><a class="reference internal" href="#netris-vpc-originated-traffic-routing" id="id32">Netris VPC originated traffic routing</a></p></li>
-<li><p><a class="reference internal" href="#internet-originated-traffic-routing" id="id33">Internet originated traffic routing</a></p></li>
-<li><p><a class="reference internal" href="#failover-behavior" id="id34">Failover behavior</a></p></li>
+<li><p><a class="reference internal" href="#netris-vpc-originated-traffic-routing" id="id31">Netris VPC originated traffic routing</a></p></li>
+<li><p><a class="reference internal" href="#internet-originated-traffic-routing" id="id32">Internet originated traffic routing</a></p></li>
+<li><p><a class="reference internal" href="#failover-behavior" id="id33">Failover behavior</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#observability-and-operations" id="id35">Observability and Operations</a></p></li>
+<li><p><a class="reference internal" href="#observability-and-operations" id="id34">Observability and Operations</a></p></li>
 </ul>
 </nav>
 <section id="overview">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>In multi-tenant environments, tenants typically require controlled ingress and egress connectivity to their VPCs. For example, the workload access to and from the Internet.</p>
 <p>SoftGate is an optional, multi-tenant (VPC-aware) software component designed for cloud providers and scales horizontally to provide this ingress and egress connectivity. The SoftGate software runs on a dedicated set of operator-provided bare-metal servers and is tightly integrated with the Netris-managed North-South fabric.</p>
 <section id="services-provided-by-softgate">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Services Provided by SoftGate</a><a class="headerlink" href="#services-provided-by-softgate" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Services Provided by SoftGate</a><a class="headerlink" href="#services-provided-by-softgate" title="Link to this heading"></a></h3>
 <p>SoftGate provides the following network services on a per-tenant basis:</p>
 <ul>
 <li><p><strong>Source Network Address Translation (SNAT)</strong></p>
@@ -1111,7 +1111,7 @@
 </ul>
 </section>
 <section id="what-softgate-does-not-do">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">What SoftGate does not do</a><a class="headerlink" href="#what-softgate-does-not-do" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">What SoftGate does not do</a><a class="headerlink" href="#what-softgate-does-not-do" title="Link to this heading"></a></h3>
 <p>SoftGate is intentionally scoped to provide Layer-4 ingress and egress services and does not provide the following capabilities:</p>
 <ul>
 <li><p><strong>Next-generation firewall (NGFW) functionality</strong></p>
@@ -1123,10 +1123,10 @@
 </ul>
 </section>
 <section id="hardware-requirements">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">Hardware Requirements</a><a class="headerlink" href="#hardware-requirements" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Hardware Requirements</a><a class="headerlink" href="#hardware-requirements" title="Link to this heading"></a></h3>
 <p>A minimum of 4 dedicated servers is required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward the stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can be scaled horizontally by deploying more servers as CPU &amp; RAM utilization necessitate.</p>
-<table class="docutils align-center" id="id10">
-<caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id9">
+<caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id9" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 33.3%" />
@@ -1170,14 +1170,14 @@
 </section>
 </section>
 <section id="performance">
-<h2><a class="toc-backref" href="#id18" role="doc-backlink">Performance</a><a class="headerlink" href="#performance" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Performance</a><a class="headerlink" href="#performance" title="Link to this heading"></a></h2>
 <p>The Netris engineering team has performed SoftGate HS performance benchmarking using Intel Xeon Gold 5315Y 32 core CPU &#64; 3.20GHz with 64 byte packet size.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-0">
 SoftGate HS with 1 tenant</label><div class="sd-tab-content docutils">
-<table class="docutils align-center" id="id11">
-<caption><span class="caption-text">SoftGate HS 1 Tenant Performance</span><a class="headerlink" href="#id11" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id10">
+<caption><span class="caption-text">SoftGate HS 1 Tenant Performance</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -1206,8 +1206,8 @@ SoftGate HS with 1 tenant</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-1">
 SoftGate HS with 100 tenants</label><div class="sd-tab-content docutils">
-<table class="docutils align-center" id="id12">
-<caption><span class="caption-text">SoftGate HS 100 Tenants Performance</span><a class="headerlink" href="#id12" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id11">
+<caption><span class="caption-text">SoftGate HS 100 Tenants Performance</span><a class="headerlink" href="#id11" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -1236,8 +1236,8 @@ SoftGate HS with 100 tenants</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-2">
 SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
-<table class="docutils align-center" id="id13">
-<caption><span class="caption-text">SoftGate HS 1000 Tenants Performance</span><a class="headerlink" href="#id13" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id12">
+<caption><span class="caption-text">SoftGate HS 1000 Tenants Performance</span><a class="headerlink" href="#id12" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -1267,10 +1267,10 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 <p>(additional performance data to be added soon)</p>
 </section>
 <section id="architecture-overview">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">Architecture Overview</a><a class="headerlink" href="#architecture-overview" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Architecture Overview</a><a class="headerlink" href="#architecture-overview" title="Link to this heading"></a></h2>
 <p>This section describes how SoftGate fits into a Netris-managed network physically and logically, as well as, how it provides horizontally scalable, Netris-VPC-aware, dynamically programmable IP address translation (NAT) and Layer-4 Load Balancing (L4LB) services to Netris VPCs.</p>
 <section id="softgate-physical-connectivity">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink">SoftGate physical connectivity</a><a class="headerlink" href="#softgate-physical-connectivity" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">SoftGate physical connectivity</a><a class="headerlink" href="#softgate-physical-connectivity" title="Link to this heading"></a></h3>
 <p>Each SoftGate node must be physically connected to Netris-managed switches that are part of the North-South network fabric.</p>
 <a class="with-shadow reference internal image-reference" href="_images/softgate-hs-topology.svg"><img alt="Figure 1. Netris SoftGate topology" class="with-shadow align-center" src="_images/softgate-hs-topology.svg" style="width: 800px;" />
 </a>
@@ -1280,7 +1280,7 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 </a>
 <br /></section>
 <section id="softgate-logical-connectivity">
-<span id="id5"></span><h3><a class="toc-backref" href="#id21" role="doc-backlink">SoftGate logical connectivity</a><a class="headerlink" href="#softgate-logical-connectivity" title="Link to this heading"></a></h3>
+<span id="id5"></span><h3><a class="toc-backref" href="#id20" role="doc-backlink">SoftGate logical connectivity</a><a class="headerlink" href="#softgate-logical-connectivity" title="Link to this heading"></a></h3>
 <p>SoftGate is logically positioned at the edge of the Netris-managed North–South network.</p>
 <a class="with-shadow reference internal image-reference" href="_images/softgate-hs-logical-connectivity.svg"><img alt="Figure 3. SoftGate logical connectivity" class="with-shadow align-center" src="_images/softgate-hs-logical-connectivity.svg" style="width: 800px;" />
 </a>
@@ -1304,18 +1304,18 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 </ul>
 </section>
 <section id="softgate-node-control-plane">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink">SoftGate node Control Plane</a><a class="headerlink" href="#softgate-node-control-plane" title="Link to this heading"></a></h3>
-<p>SoftGate node control plane is implemented with the <a class="reference external" href="https://frrouting.org">FRRouting</a> software stack, <a class="reference external" href="https://wiki.linuxfoundation.org/networking/iproute2">iproute2</a>, and is fully managed by the Netris controller.</p>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">SoftGate node Control Plane</a><a class="headerlink" href="#softgate-node-control-plane" title="Link to this heading"></a></h3>
+<p>SoftGate node control plane is implemented with the <a class="reference external" href="https://frrouting.org">FRRouting</a> software stack and is fully managed by the Netris controller.</p>
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://frrouting.org">FRRouting</a> software stack is automatically installed during the provisioning phase on each SoftGate node.</p></li>
 <li><p>The Netris SoftGate agent automatically configures FRR to form BGP/EVPN peer relationships with the Netris-managed North-South fabric, thus becoming a VTEP in the North-South Netris-managed fabric.</p></li>
 <li><p>The Netris SoftGate agent also automatically and based on parameters defined by you in the Netris controller configures FRR to establish BFD-enabled BGP peering relationships with the upstream routers.</p></li>
-<li><p>The Netris SoftGate agent, based on the EVPN and BGP information received from the fabric and the Netris controller automatically configures packet forwarding rules in the Linux networking stack using <a class="reference external" href="https://wiki.linuxfoundation.org/networking/iproute2">iproute2</a>.</p></li>
+<li><p>The Netris SoftGate agent, based on the EVPN and BGP information received from the fabric and the Netris controller automatically configures packet forwarding rules in the Linux networking stack.</p></li>
 </ul>
 </section>
 <section id="softgate-node-data-plane">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink">SoftGate node Data Plane</a><a class="headerlink" href="#softgate-node-data-plane" title="Link to this heading"></a></h3>
-<p>SoftGate dataplane is implemented using XDP (eXpress Data Path) and <a class="reference external" href="https://www.netfilter.org/projects/nftables/index.html">netfilter</a>.</p>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">SoftGate node Data Plane</a><a class="headerlink" href="#softgate-node-data-plane" title="Link to this heading"></a></h3>
+<p>SoftGate dataplane is implemented using XDP (eXpress Data Path).</p>
 <p>XDP is a a high-performance, programmable framework in the Linux kernel that allows processing network packets at the earliest possible stage, directly from the network driver, before they hit the main network stack, using eBPF programs for tasks like filtering and load balancing  with minimal overhead. It significantly boosts SoftGate throughput and efficiency by handling packets faster than traditional methods, enabling kernel bypass for high-speed data paths.</p>
 <p>The Netris SoftGate agent automatically installs the relevant netfliter rules and attaches the appropriate interfaces on the SoftGate node to the XDP pipeline.</p>
 <div class="admonition warning">
@@ -1329,7 +1329,7 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 <p>In Netris 4.6.0 Softgate role General is XDP accelerated. SoftGate role SNAT XDP acceleration coming soon.</p>
 </section>
 <section id="softgate-roles-and-flavors">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink">SoftGate Roles and Flavors</a><a class="headerlink" href="#softgate-roles-and-flavors" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">SoftGate Roles and Flavors</a><a class="headerlink" href="#softgate-roles-and-flavors" title="Link to this heading"></a></h3>
 <p>A deployment requires minimum 4 SoftGate nodes for high availablity, and additional nodes can be added for horizontal scalability. Each SoftGate is assigned one of two roles, which determine the type of traffic processing it performs:</p>
 <ul>
 <li><p><strong>Role: General</strong></p>
@@ -1348,9 +1348,9 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 </section>
 </section>
 <section id="installation-and-initial-deployment">
-<span id="netris-softgate-hs-installation"></span><h2><a class="toc-backref" href="#id25" role="doc-backlink">Installation and Initial Deployment</a><a class="headerlink" href="#installation-and-initial-deployment" title="Link to this heading"></a></h2>
+<span id="netris-softgate-hs-installation"></span><h2><a class="toc-backref" href="#id24" role="doc-backlink">Installation and Initial Deployment</a><a class="headerlink" href="#installation-and-initial-deployment" title="Link to this heading"></a></h2>
 <section id="prerequisites">
-<h3><a class="toc-backref" href="#id26" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>A server with Ubuntu Linux 24.04 LTS.</p></li>
 <li><p>Internet connectivity or “air-gapped” installation package.</p></li>
@@ -1364,7 +1364,7 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 <img alt="IPAM subnets" class="with-shadow align-center" src="_images/softGate-IPAM-auto-assign-IPs.png" />
 <br /></section>
 <section id="installation-guide">
-<h3><a class="toc-backref" href="#id27" role="doc-backlink">Installation Guide</a><a class="headerlink" href="#installation-guide" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Installation Guide</a><a class="headerlink" href="#installation-guide" title="Link to this heading"></a></h3>
 <p>To provision a Netris SoftGate node, you must execute two main steps:</p>
 <ol class="arabic simple">
 <li><p>Create the SoftGate node object in Network-&gt;Inventory including defining its links.</p></li>
@@ -1425,7 +1425,7 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 </section>
 </section>
 <section id="upstream-border-routers-ebgp">
-<span id="softgate-upstream-border-routers"></span><h2><a class="toc-backref" href="#id28" role="doc-backlink">Upstream/Border Routers (EBGP)</a><a class="headerlink" href="#upstream-border-routers-ebgp" title="Link to this heading"></a></h2>
+<span id="softgate-upstream-border-routers"></span><h2><a class="toc-backref" href="#id27" role="doc-backlink">Upstream/Border Routers (EBGP)</a><a class="headerlink" href="#upstream-border-routers-ebgp" title="Link to this heading"></a></h2>
 <p>SoftGate is designed as a highly available, horizontally scalable, and multi-tenant Netris-VPC-aware edge gateway cluster.</p>
 <p>In the interest of full redundancy and proper routing, each SoftGate node in your SoftGate cluster, must establish an EBGP relationship with each of your upstream routers, such as your Internet border routers, ISP border routers, or your Next Generation Firewalls (NGFW), depending on your overall network design.</p>
 <p>A typical topology consists of:</p>
@@ -1439,11 +1439,11 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 <br /><p>In a topology described above, Netris recommends that you establish a total of 8 EBGP sessions between your SoftGate layer and your upstream router layer (4 SoftGates x 2 routers = 8 sessions).</p>
 <p>You can define EBGP connections to your upstream routers by navigating to Network -&gt; E-BGP.</p>
 <section id="configuring-upstream-bgp">
-<h3><a class="toc-backref" href="#id29" role="doc-backlink">Configuring upstream BGP</a><a class="headerlink" href="#configuring-upstream-bgp" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Configuring upstream BGP</a><a class="headerlink" href="#configuring-upstream-bgp" title="Link to this heading"></a></h3>
 <p>(Detailed instructions to be added soon)</p>
 </section>
 <section id="bgp-route-exchange-between-softgates-upstream-routers-and-downstream-switches">
-<span id="softgate-bgp-route-exchange"></span><h3><a class="toc-backref" href="#id30" role="doc-backlink">BGP route exchange between SoftGates, upstream routers, and downstream switches</a><a class="headerlink" href="#bgp-route-exchange-between-softgates-upstream-routers-and-downstream-switches" title="Link to this heading"></a></h3>
+<span id="softgate-bgp-route-exchange"></span><h3><a class="toc-backref" href="#id29" role="doc-backlink">BGP route exchange between SoftGates, upstream routers, and downstream switches</a><a class="headerlink" href="#bgp-route-exchange-between-softgates-upstream-routers-and-downstream-switches" title="Link to this heading"></a></h3>
 <p>Each SoftGate node will originate and advertise a set of prefixes as described below. This behavior can be altered by applying outbound prefix-lists (<em>Prefix List Outbound</em> field) to each E-BGP object in the Netris controller (Network-&gt;E-BGP).</p>
 <ol class="arabic simple">
 <li><p><strong>By default</strong>, both General and SNAT roles SoftGates advertise all subnets configured in the Netris IPAM that meet all of the following conditions:</p></li>
@@ -1505,12 +1505,12 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 </section>
 </section>
 <section id="high-availability-and-load-distribution">
-<h2><a class="toc-backref" href="#id31" role="doc-backlink">High Availability and Load Distribution</a><a class="headerlink" href="#high-availability-and-load-distribution" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">High Availability and Load Distribution</a><a class="headerlink" href="#high-availability-and-load-distribution" title="Link to this heading"></a></h2>
 <p>SoftGate is designed as a highly available, horizontally scalable, and multi-tenant Netris-VPC-aware edge gateway cluster.</p>
 <p>In the SoftGate cluster, in the interest of scalability and fault tolerance, the nodes operate without state replication between them. The traffic distribution between nodes is achieved through a combination of the <a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf">Maglev algorithm</a>, BGP policies, and overall governance from the Netris controller.</p>
 <p>Below is a high-level description of how packets are processed by the SoftGate layer of the Netris-managed fabric.</p>
 <section id="netris-vpc-originated-traffic-routing">
-<h3><a class="toc-backref" href="#id32" role="doc-backlink">Netris VPC originated traffic routing</a><a class="headerlink" href="#netris-vpc-originated-traffic-routing" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">Netris VPC originated traffic routing</a><a class="headerlink" href="#netris-vpc-originated-traffic-routing" title="Link to this heading"></a></h3>
 <p>Any packet originating from any Netris VPC in the North-South fabric with the destination of the Internet or any other destination outside of the North-South fabric is processed in the following fashion.</p>
 <ol class="arabic simple">
 <li><p>The packet is routed to a General SoftGate using ECMP for load distribution. To achieve this, the General SoftGates inject a default route into the Netris VPC for which either a NAT or an L4LB service is configured.</p></li>
@@ -1537,7 +1537,7 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="internet-originated-traffic-routing">
-<h3><a class="toc-backref" href="#id33" role="doc-backlink">Internet originated traffic routing</a><a class="headerlink" href="#internet-originated-traffic-routing" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">Internet originated traffic routing</a><a class="headerlink" href="#internet-originated-traffic-routing" title="Link to this heading"></a></h3>
 <p>Packets originating on the Internet or outside of the Netris-managed fabric with the destination of any IP address configured in the NAT or L4LB services are processed in the following manner.</p>
 <ol class="arabic simple">
 <li><p>Your upstream router forwards the inbound packet based on the routing information advertised by the SoftGates. As described in the <a class="reference internal" href="#softgate-bgp-route-exchange"><span class="std std-ref">BGP route exchange</span></a> section of this document, all SoftGate nodes (General and SNAT) advertise the top-level subnets to all their upstream peers.</p></li>
@@ -1554,7 +1554,7 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 </ol>
 </section>
 <section id="failover-behavior">
-<h3><a class="toc-backref" href="#id34" role="doc-backlink">Failover behavior</a><a class="headerlink" href="#failover-behavior" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id33" role="doc-backlink">Failover behavior</a><a class="headerlink" href="#failover-behavior" title="Link to this heading"></a></h3>
 <p>Netris configures all DNAT and L4LB services on all SoftGate nodes with the role General.</p>
 <p>Netris configures any given SNAT rule on one and only one SoftGate node with the role SNAT.</p>
 <p>The above approach allows the Netris SoftGate layer to remain highly available and robust in various hardware failure scenarios.</p>
@@ -1569,7 +1569,7 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 </section>
 </section>
 <section id="observability-and-operations">
-<span id="softgate-observability"></span><h2><a class="toc-backref" href="#id35" role="doc-backlink">Observability and Operations</a><a class="headerlink" href="#observability-and-operations" title="Link to this heading"></a></h2>
+<span id="softgate-observability"></span><h2><a class="toc-backref" href="#id34" role="doc-backlink">Observability and Operations</a><a class="headerlink" href="#observability-and-operations" title="Link to this heading"></a></h2>
 <p>(coming soon)</p>
 </section>
 </section>

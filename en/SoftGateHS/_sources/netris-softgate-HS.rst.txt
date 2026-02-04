@@ -167,17 +167,17 @@ To provide reachablity between the SoftGate nodes and the upstream routers throu
 SoftGate node Control Plane
 ----------------------------------------
 
-SoftGate node control plane is implemented with the `FRRouting <https://frrouting.org>`_ software stack, `iproute2 <https://wiki.linuxfoundation.org/networking/iproute2>`_, and is fully managed by the Netris controller.
+SoftGate node control plane is implemented with the `FRRouting <https://frrouting.org>`_ software stack and is fully managed by the Netris controller.
 
 * The `FRRouting <https://frrouting.org>`_ software stack is automatically installed during the provisioning phase on each SoftGate node.
 * The Netris SoftGate agent automatically configures FRR to form BGP/EVPN peer relationships with the Netris-managed North-South fabric, thus becoming a VTEP in the North-South Netris-managed fabric.
 * The Netris SoftGate agent also automatically and based on parameters defined by you in the Netris controller configures FRR to establish BFD-enabled BGP peering relationships with the upstream routers.
-* The Netris SoftGate agent, based on the EVPN and BGP information received from the fabric and the Netris controller automatically configures packet forwarding rules in the Linux networking stack using `iproute2 <https://wiki.linuxfoundation.org/networking/iproute2>`_.
+* The Netris SoftGate agent, based on the EVPN and BGP information received from the fabric and the Netris controller automatically configures packet forwarding rules in the Linux networking stack.
 
 SoftGate node Data Plane
 -----------------------------------------
 
-SoftGate dataplane is implemented using XDP (eXpress Data Path) and `netfilter <https://www.netfilter.org/projects/nftables/index.html>`_.
+SoftGate dataplane is implemented using XDP (eXpress Data Path).
 
 XDP is a a high-performance, programmable framework in the Linux kernel that allows processing network packets at the earliest possible stage, directly from the network driver, before they hit the main network stack, using eBPF programs for tasks like filtering and load balancing  with minimal overhead. It significantly boosts SoftGate throughput and efficiency by handling packets faster than traditional methods, enabling kernel bypass for high-speed data paths.
 
