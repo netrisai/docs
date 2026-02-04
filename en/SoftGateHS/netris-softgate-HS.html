@@ -1556,7 +1556,7 @@ SoftGate HS with 1000 tenants</label><div class="sd-tab-content docutils">
 <section id="failover-behavior">
 <h3><a class="toc-backref" href="#id33" role="doc-backlink">Failover behavior</a><a class="headerlink" href="#failover-behavior" title="Link to this heading"></a></h3>
 <p>Netris configures all DNAT and L4LB services on all SoftGate nodes with the role General.</p>
-<p>Netris configures any given SNAT rule on one and only one SoftGate node with the role SNAT.</p>
+<p>Netris configures a given SNAT rule on exactly one SoftGate node with the SNAT role. The specific node is chosen based on a deterministic and consistent hashing algorithm.</p>
 <p>The above approach allows the Netris SoftGate layer to remain highly available and robust in various hardware failure scenarios.</p>
 <p>In case of a SoftGate node failure</p>
 <ul class="simple">
