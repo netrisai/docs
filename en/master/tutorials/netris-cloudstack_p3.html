@@ -1269,7 +1269,24 @@ curl<span class="w"> </span>-I<span class="w"> </span>https://www.google.com<spa
 Proceed to the <strong>next step</strong> to enable underlay.</p></li>
 </ul>
 </div>
-<p>—</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+With OOB (Underlay Enabled)</label><div class="sd-tab-content docutils">
+<p><strong>Verify connectivity:</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">10</span>.100.0.1<span class="w">  </span><span class="c1"># This should work if underlay is enabled.</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Without OOB (Underlay Disabled)</label><div class="sd-tab-content docutils">
+<ul class="simple">
+<li><p><strong>Skip connectivity checks for now.</strong></p></li>
+<li><p>Proceed to <strong>Enabling Underlay for Hypervisors</strong> in the next step.</p></li>
+</ul>
+</div>
+</div>
 </section>
 <section id="finalizing-the-network-setup">
 <h3>Finalizing the Network Setup<a class="headerlink" href="#finalizing-the-network-setup" title="Link to this heading"></a></h3>

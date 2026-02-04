@@ -276,9 +276,9 @@ Checking Network Connectivity
    - If your infrastructure **does not have an OOB network**, and **Underlay is still disabled**, you **will NOT be able to ping the VXLAN gateway yet**.  
      Proceed to the **next step** to enable underlay.
 
-.. tabs::
-
-   .. group-tab:: With OOB (Underlay Enabled)
+.. tab-set::
+  
+  .. tab-item:: With OOB (Underlay Enabled)
 
       **Verify connectivity:**
       
@@ -286,12 +286,12 @@ Checking Network Connectivity
 
          ping -c 4 10.100.0.1  # This should work if underlay is enabled.
 
-   .. group-tab:: Without OOB (Underlay Disabled)
+  .. tab-item:: Without OOB (Underlay Disabled)
 
       - **Skip connectivity checks for now.**
       - Proceed to **Enabling Underlay for Hypervisors** in the next step.
 
----
+
 
 Finalizing the Network Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
