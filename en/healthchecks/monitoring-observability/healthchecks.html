@@ -1113,8 +1113,8 @@ Missing loopback routes: Host <cite>ns-leaf-0</cite> - 10.2.0.1 is not reachable
 </tr>
 <tr class="row-even"><td><p>Switch Port Health</p></td>
 <td><p>check_port</p></td>
-<td><p>Checks port status, % of RX/TX bandwidth utilization, and whether the laser signal level threshold is breached</p></td>
-<td><p>OK - port is UP, and RX/TX utilization is below Warning threshold, and Laser Signal Levels are below Warning threshold | WARNING - port is UP and (RX/TX utilization is above Warning threshold or Laser Signal Levels are above Warning threshold) | CRITICAL - port is DOWN, or RX/TX utilization is above Critical threshold, or Laser Signal Levels are above Critical threshold</p></td>
+<td><p>Checks port status, % of RX/TX bandwidth utilization, laser signal level threshold breach, transceiver temperature, transceiver presence, Bit Error Rate (BER)</p></td>
+<td><p>OK - port is UP, and RX/TX utilization is below Warning threshold, Laser Signal Levels are below Warning threshold, pluggable is present or the port is fixed, temperature below threshold, BER below threshold | WARNING - port is UP and (RX/TX utilization is above Warning threshold or Laser Signal Levels are above Warning threshold), or temperature above Warning threshold | CRITICAL - port is DOWN, or RX/TX utilization is above Critical threshold, or Laser Signal Levels are above Critical threshold, or pluggable is absent, ore temperature above Critical threshold, or BER above Critical threshold</p></td>
 <td><p>swp57s0 port is UP, 0% RX Utilized of 1 Gbps, 0% TX Utilized of 1 Gbps</p></td>
 <td><p>TX/RX Warning threshold default 70 | TX/RX Critical threshold default 90 | Laser signal levels thresholds are taken from the transceiver</p></td>
 </tr>
