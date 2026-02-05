@@ -1,5 +1,0 @@
-﻿"100 TENANT VPC, 2500 DNAT Rules (~800 Netris rules)",12 MPPS
-"100 TENANT VPC, 4000 DNAT Rules(~1300 Netris rules)",11 MPPS
-"100 TENANT VPC, 5000 DNAT Rules (~1600 Netris rules)",10 MPPS
-"100 TENANT VPC, 10000 DNAT Rules(~3333 Netris rules)",7 MPPS
-"100 TENANT VPC, 50000 DNAT Rules (~16666 Netris rules)",2 MPPS
