@@ -378,31 +378,18 @@ To further demonstrate this default behavior, consider the above IPAM configurat
     * SoftGates will NOT advertise to the upstream EBGP peers 198.51.100.0/24, even though it is an (a) non-RFC1918, (b) top-level object of (c), because it is assigned to ``vpc-3:VPC-3``, i.e., a (d) non-Default VPC. 
     * SoftGates will NOT advertise to the upstream EBGP peers 192.0.2.0/24, because it's an object of ``type:Allocation``, not of ``type:Subnet``.
 
-Below is the output of the ``show ip bgp neighbor advertised-routes`` command when the above configuration is in the Netris IPAM, and nothing is configured in the ``Prefix List Outbound`` field for this EBGP connection.
+Below is the output of the ``show ip bgp neighbor advertised-routes`` command when the above configuration is in the Netris IPAM, and the ``Prefix List Outbound`` field in the E-BGP object for this EBGP connection is left empty.
 
-.. code-block:: shell-session
+.. image:: /images/softgate-hs-advertised-routes.png
+      :alt: SoftGate HS advertised routes
+      :align: center
+      :class: with-shadow
 
-  ns-softgate-0# show ip bgp vrf Vrf_1 neighbors 10.10.0.2 advertised-routes
-  BGP table version is 115, local router ID is 192.0.2.254, vrf id 7
-  Default local pref 100, local AS 655001
-  Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath, i internal, r RIB-failure, S Stale, R Removed
-  Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
-  Origin codes:  i - IGP, e - EGP, ? - incomplete
-  RPKI validation codes: V valid, I invalid, N Not found
+.. raw:: html
 
-        Network          Next Hop            Metric LocPrf Weight Path
-    *>  203.0.113.0/25   0.0.0.0                  0         32768 i
-    *   203.0.113.0/25   0.0.0.0<                 0         32768 i
-    *   203.0.113.0/25   0.0.0.0<                 0         32768 i
-    *>  203.0.113.128/26 0.0.0.0                  0         32768 i
-    *   203.0.113.128/26 0.0.0.0<                 0         32768 i
-    *   203.0.113.128/26 0.0.0.0<                 0         32768 i
-    *>  203.0.113.192/27 0.0.0.0                  0         32768 i
-    *   203.0.113.192/27 0.0.0.0<                 0         32768 i
-    *   203.0.113.192/27 0.0.0.0<                 0         32768 i
+  <br />
 
-  Total number of prefixes 3
-  ns-softgate-0#
+.. tip:: This information can be obtained by using the Looking Glass feature in the Netris controller UI. In Network >  Topology, right-click a SoftGate node, select Details, select the Looking Glass tab, execute the BGP Summary command, click on the BGP neighbor IP in the output of the BGP Summary command, select Advertised Routes option.
 
 2. Additionally, SNAT SoftGates originate (and advertise to the upstream neighbors, if permitted with an outbound prefix-list) /32 prefixes that correspond to global IPs of the SNAT rules configured in the Netris controller. This enables upstream routers to route packets directly to the correct SNAT SoftGate node. For each SNAT rule configured in the Netris controller, the Netris algorithm will automatically select one of the available SoftGate nodes with role SNAT, and, based on the `Maglev algorithm <https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf>`_, will install the SNAT rule on that SoftGate.
 
