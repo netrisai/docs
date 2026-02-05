@@ -121,7 +121,7 @@ Each SoftGate node must be physically connected to Netris-managed switches that 
 
 Netris recommends at least two physical dataplane connections (coral color in the diagram) and at least one management connection (green color in the diagram) per SoftGate node to provide link and device redundancy.
 
-The upstream routers, with which SoftGate nodes form BGP sessions (described in the :ref:`SoftGate logical connectivity <softgate-logical-connectivity>` section), must also be physically connected to the Netris-managed fabric. Netris recommends connecting the upstream routers to the same leaf switches as the SoftGate nodes.
+The upstream routers, with which SoftGate nodes form BGP sessions (described in the :ref:`SoftGate logical connectivity <softgate-logical-connectivity>` section), must also be physically connected to the Netris-managed fabric. Typically, the upstream routers are connected to the same leaf switches as the SoftGate nodes; however, these routers can be connected to any Netris-managed switch in the North-South fabric.
 
 .. image:: /images/softgate-hs-physical-datapath.svg
       :alt: Figure 2. Netris SoftGate physical datapath connectivity
@@ -150,7 +150,7 @@ SoftGate is logically positioned at the edge of the Netris-managed North–South
 
   <br />
 
-.. tip:: SoftGate HS is designed to provide address translation services (DNAT, SNAT, L4LB) at the edge of the North-South fabric. High-speed connectivity into a Netris VPC without address translation—such as private network interconnects or dedicated external routing—can be achieved with the Netris VPC Connect feature.
+.. tip:: SoftGate HS is designed to provide connectivity between the Internet and Netris VPCs (DNAT, SNAT, L4LB) at the edge of the North-South fabric. Additionally, direct connectivity into a Netris VPC—such as private network interconnects or dedicated external routing—can be achieved with the :ref:`VPC Connect <vpc-connect>` feature.
 
 
 * **SoftGate integrates directly with the Netris-managed North–South EVPN fabric by acting as a VTEP.** The Netris SoftGate agent installed on each SoftGate node automatically configures the SoftGate node to establish EVPN BGP peering relationships with the Netris managed fabric without any input required from the user. SoftGate nodes become VTEPs in the North-South EVPN/VXLAN fabric, which enables them to exchange traffic with any Netris VPC.
