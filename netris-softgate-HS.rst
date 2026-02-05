@@ -69,31 +69,23 @@ A minimum of 4 dedicated servers is required for an HA (highly available) active
 Performance
 ==================
 
-The Netris engineering team has performed SoftGate HS performance benchmarking using Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz with 64 byte packet size.
+The Netris engineering team has performed SoftGate HS performance benchmarking using 64 byte packet size on Intel and AMD CPUs. The results represent the performance of a single SoftGate HS node with the role General. The cumulative performance of the SoftGate cluster will depend on the number of deployed nodes and the traffic distribution between them. See the :ref:`High Availability and Load Distribution <softgate-hs-load-distribution>` section of this document for more information on how traffic is distributed across SoftGate nodes.
 
 .. tab-set::
   
-  .. tab-item:: SoftGate HS with 1 tenant
+  .. tab-item:: Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz
 
-    .. csv-table:: SoftGate HS 1 Tenant Performance 
-      :file: tables/softgate-hs-perf-1tenant.csv
-      :widths: 40, 40
+    .. csv-table:: SoftGate HS Performance Intel
+      :file: tables/softgate-hs-perf-intel.csv
+      :widths: 40, 40, 40
       :header-rows: 1
       :align: center
 
-  .. tab-item:: SoftGate HS with 100 tenants
+  .. tab-item:: AMD EPYC 7413 24-Core CPU @ 2.6GHz, 48 core
 
-    .. csv-table:: SoftGate HS 100 Tenants Performance
-      :file: tables/softgate-hs-perf-100tenant.csv
-      :widths: 40, 40
-      :header-rows: 1
-      :align: center
-
-  .. tab-item:: SoftGate HS with 1000 tenants
-
-    .. csv-table:: SoftGate HS 1000 Tenants Performance
-      :file: tables/softgate-hs-perf-1000tenant.csv
-      :widths: 40, 40
+    .. csv-table:: SoftGate HS Performance AMD
+      :file: tables/softgate-hs-perf-amd.csv
+      :widths: 40, 40, 40
       :header-rows: 1
       :align: center
 
@@ -419,6 +411,8 @@ Below is the output of the ``show ip bgp neighbor advertised-routes`` command wh
 .. tip:: Configure your upstream routers to receive /32 prefixes from SoftGates for optimal routing and to prevent traffic from being forwarded internally if it arrives at the “wrong” SoftGate.
 
 .. warning:: The same Global IP address cannot be configured simultaneously for SNAT and any other translation service.
+
+.. _softgate-hs-load-distribution:
 
 High Availability and Load Distribution
 ================================================
