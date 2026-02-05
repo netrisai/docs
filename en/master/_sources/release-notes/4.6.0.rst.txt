@@ -6,7 +6,7 @@
 .. meta::
     :description: Netris Release Notes |version|
 
-Netris |version| (Jan/31/2026)
+Netris |version| (Feb/10/2026)
 ==================================
 
 What's new in Netris |version|?
@@ -21,6 +21,7 @@ Features
 - **eBGP imports non-default routes.** The operator may now apply a BGP community 0:7 to signal Netris to import any non 0.0.0.0/0 eBGP prefixes into the VPC.
 - **Control plane verification of VTEP reachability.** Netris managed VTEPs (switches and Softgates) keep track of the reachability of other Netris VTEPs.
 - **CloudStack supported with Cumulus Linux.** CloudStack now integrates with Nvidia switch fabrics running Cumulus Linux.
+- **VPC peering is now supported in CloudStack**.
 - **Spectrum-X Deployment Guide v1.3 support** Spectrum-X Deployment Guide v1.3 is now supported.
 - **SNMPv2.** Netris can now configure SNMPv2 read-only access on supported switches
 - **Topology View Filtering.** Topology view now supports filtering by device name.
@@ -33,9 +34,9 @@ Enhancements
 
 - **XDP dataplane acceleration for SoftGate HS**.
 - **DHCP Relay** now supports inter-VPC routing on all :ref:`supported-switch-hardware`.
-- **Centralized ACLs on Arista EOS** are now available on :ref:`supported-switch-hardware`.
-- **Controller Management Address** can now be explicitly specified and is correctly reflected in the “one-liner” install command.
-- **Inventory Filtering.** Inventory API now supports filtering by label, sites, types, health, and custom.
+- **ACLs on Arista EOS** are now available on :ref:`supported-switch-hardware`.
+- **Topology validation** added new fields in custom JSON.
+- **Added switch port health checks** Switch port healt checks now include Bit Error Rate (BER) and temperature monitoring on NVUE-supported platforms.
 - **Performance and UI improvements.**
 
   - Add Network > Links page showing all topology links.
@@ -48,8 +49,7 @@ Enhancements
   - Improved collectd optical values export.
   - System ASN range is now editable.
   - Can now show more than 4 tx/rx optical signals in Optical Graph.
-  - Improved SoftGate HS installation experience.
-  - Improved SoftGate HS DNAT and ACL scalability.
+  - In some CloudStack deployments enable and enforce IP forwarding property in Linux kernel.
 
 Bug fixes
 ---------
@@ -58,8 +58,8 @@ Bug fixes
 - Fixed backend crash after creating LB service.
 - Fixed the inability to edit NAT rules when a VPC filter is applied.
 - Fixed Inventory Filtering failing under certain conditions.
+- Fixed Inventory API filtering by label, sites, types, health, and custom.
 - Fixed filtering of ports with unknown states under certain conditions.
-- Fixed NHN ifupdown and netplan support in Spectrum-X v1.2
 - Fixed NVUE check_signal monitor false positives on optical switch ports.
 - Fixed ACL creation time stamp.
 - Fixed RX values in graphs.
@@ -72,13 +72,12 @@ Bug fixes
 - Fixed static routes applying to all switches when ApplyTo filter is used.
 - Fixed ACLs sometimes filtering even if no filter is applied.
 - Fixed ACL creation time stamp.
-- Fixed tcp-establiashed rules in NVUE working, even when disabled.
+- Fixed installing reverse rule in NVUE when tcp-establiashed flag disabled.
 - Fixed controller hanging when malformed create L4LB API request is received.
 - Fixed CPU utilization graph showing incorrect data.
-- Fixed packet fragmentation issue in SoftGate HS.
 - Fixed ACL functionality when used with SNAT.
-- Fixed SNAT to DNAT hairpinning issue.
-- Fixed CloudStack forwarding behavior enforcement.
+- Fixed SoftGate HS DNAT with Port Groups.
+- Fixed SNAT is not working when traffic is destined to a host behind DNAT rule.
 - Fixed NHN impacting North-South traffic when configuring East-West host networking.
 - Fixed Topology>Interface>Details showing incorrect optical graph data.
 
