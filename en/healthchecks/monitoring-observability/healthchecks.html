@@ -654,19 +654,16 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Monitoring &amp; Observability</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="topology-validation.html">Topology &amp; Wiring Validation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="topology-validation.html#switch-to-server">Switch-to-Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topology-validation.html">Topology &amp; Wiring Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-validation.html#switch-to-server">Switch-to-Server</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="netq.html">NVIDIA NetQ Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netq.html">NVIDIA NetQ Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris Healthchecks</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Netris Healthchecks</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -964,7 +961,6 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Monitoring &amp; Observability</a></li>
       <li class="breadcrumb-item active">Netris Healthchecks</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/netrisai/docs/blob/master/monitoring-observability/healthchecks.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -987,20 +983,15 @@
 <li><p><strong>Fabric Health</strong>: Control-plane and protocol-level checks that validate the network fabric as a whole is functioning properly.</p></li>
 <li><p><strong>Switch Port Health</strong>: Port-level checks that validate whether a specific switch port is functioning properly.</p></li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The default threshold values can be adjusted in the Settings -&gt; Monitoring Check Thresholds section of the Netris web interface.</p>
-</div>
-<img alt="Monitoring Check Thresholds" class="with-shadow align-center" src="../_images/monitoring-thresholds.png" />
-<br /><table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Netris Healthchecks</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Healthchecks</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <colgroup>
-<col style="width: 11.1%" />
-<col style="width: 11.1%" />
-<col style="width: 16.7%" />
-<col style="width: 33.3%" />
-<col style="width: 16.7%" />
-<col style="width: 11.1%" />
+<col style="width: 11.4%" />
+<col style="width: 11.4%" />
+<col style="width: 16.5%" />
+<col style="width: 25.3%" />
+<col style="width: 19.0%" />
+<col style="width: 16.5%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Check type</p></th>
@@ -1015,108 +1006,194 @@
 <tr class="row-even"><td><p>Node Health</p></td>
 <td><p>check_disk</p></td>
 <td><p>Storage % used</p></td>
-<td><p>OK - below Warning threshold | WARNING - above Warning threshold | CRITICAL - above Critical threshold</p></td>
+<td><ul class="simple">
+<li><p>OK - below Warning threshold</p></li>
+<li><p>WARNING - above Warning threshold</p></li>
+<li><p>CRITICAL - above Critical threshold</p></li>
+</ul>
+</td>
 <td><p>53% / Used from 5.4G</p></td>
-<td><p>Warning threshold default 70 | Critical threshold default 80</p></td>
+<td><ul class="simple">
+<li><p>Warning threshold default 70</p></li>
+<li><p>Critical threshold default 80</p></li>
+</ul>
+</td>
 </tr>
 <tr class="row-odd"><td><p>Node Health</p></td>
 <td><p>check_fan</p></td>
 <td><p>Fan status</p></td>
-<td><p>OK - OK | CRITICAL - ABSENT, FAILED and etc.</p></td>
-<td><p>Fan Tray 1, Fan 1(OK), Fan Tray 1, Fan 2(OK)</p></td>
+<td><ul class="simple">
+<li><p>OK - OK</p></li>
+<li><p>CRITICAL - ABSENT, FAILED and etc.</p></li>
+</ul>
+</td>
+<td><p>Fan Tray 1, Fan 1(OK), Fan Tray 2, Fan 2(OK)</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>Node Health</p></td>
 <td><p>check_load</p></td>
 <td><p>Load average</p></td>
-<td><p>OK - below Warning threshold | WARNING - above Warning threshold | CRITICAL - above Critical threshold</p></td>
+<td><ul class="simple">
+<li><p>OK - below Warning threshold</p></li>
+<li><p>WARNING - above Warning threshold</p></li>
+<li><p>CRITICAL - above Critical threshold</p></li>
+</ul>
+</td>
 <td><p>Load average 0.39, 0.50, 0.66</p></td>
-<td><p>Warning threshold default 3 | Critical threshold default 4</p></td>
+<td><ul class="simple">
+<li><p>Warning threshold default 3</p></li>
+<li><p>Critical threshold default 4</p></li>
+</ul>
+</td>
 </tr>
 <tr class="row-odd"><td><p>Node Health</p></td>
 <td><p>check_memory</p></td>
 <td><p>RAM % used</p></td>
-<td><p>OK - below Warning threshold | WARNING - above Warning threshold | CRITICAL - above Critical threshold</p></td>
+<td><ul class="simple">
+<li><p>OK - below Warning threshold</p></li>
+<li><p>WARNING - above Warning threshold</p></li>
+<li><p>CRITICAL - above Critical threshold</p></li>
+</ul>
+</td>
 <td><p>89% Used of 1709 MB</p></td>
-<td><p>Warning threshold default 80 | Critical threshold default 90</p></td>
+<td><ul class="simple">
+<li><p>Warning threshold default 80</p></li>
+<li><p>Critical threshold default 90</p></li>
+</ul>
+</td>
 </tr>
 <tr class="row-even"><td><p>Node Health</p></td>
 <td><p>check_psu</p></td>
 <td><p>Power Supply status</p></td>
-<td><p>OK - OK | CRITICAL - BAD, FAILED and etc.</p></td>
+<td><ul class="simple">
+<li><p>OK - OK</p></li>
+<li><p>CRITICAL - BAD, FAILED and etc.</p></li>
+</ul>
+</td>
 <td><p>PSU1(OK), PSU2(OK)</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>Node Health</p></td>
 <td><p>check_ratio</p></td>
 <td><p>Detects unusually frequent configuration changes that may indicate abnormal or unstable behavior</p></td>
-<td><p>OK - below Warning threshold | WARNING - above Warning threshold | CRITICAL - above Critical threshold</p></td>
+<td><ul class="simple">
+<li><p>OK - below Warning threshold</p></li>
+<li><p>WARNING - above Warning threshold</p></li>
+<li><p>CRITICAL - above Critical threshold</p></li>
+</ul>
+</td>
 <td><p>vxpd - 0%</p></td>
 <td><p>Critical threshold default 60</p></td>
 </tr>
 <tr class="row-even"><td><p>Node Health</p></td>
 <td><p>check_temp</p></td>
 <td><p>Temperature sensors status</p></td>
-<td><p>OK - OK | CRITICAL - ABSENT, FAILED and etc.</p></td>
+<td><ul class="simple">
+<li><p>OK - OK</p></li>
+<li><p>CRITICAL - ABSENT, FAILED and etc.</p></li>
+</ul>
+</td>
 <td><p>PSU1 Temp Sensor(OK), PSU2 Temp Sensor(OK)</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>Node Health</p></td>
 <td><p>health_monitoring</p></td>
 <td><p>Checks that Netris self monitoring is active</p></td>
-<td><p>OK - Active | CRITICAL - Inactive</p></td>
+<td><ul class="simple">
+<li><p>OK - Active</p></li>
+<li><p>CRITICAL - Inactive</p></li>
+</ul>
+</td>
 <td><p>Monitoring Active</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>Node Health</p></td>
 <td><p>sys_service</p></td>
 <td><p>Critical services status. Monitored services: rsyslog, collectd, switchd, frr, vxrd,  netris-portinfo-server, netris-swlb</p></td>
-<td><p>OK - all active (vxrd inactive) | CRITICAL - one or more is inactive or vxrd active</p></td>
+<td><ul class="simple">
+<li><p>OK - all active (vxrd inactive)</p></li>
+<li><p>CRITICAL - one or more is inactive or vxrd active</p></li>
+</ul>
+</td>
 <td><p>rsyslog - active, <a class="reference external" href="mailto:collectd&#37;&#52;&#48;mgmt">collectd<span>&#64;</span>mgmt</a> - active, switchd - active, frr - active, vxrd - inactive, netris-portinfo-server - active, netris-swlb.service - active</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>Node Health</p></td>
 <td><p>xc_service</p></td>
 <td><p>Netris agent services healthcheck: vxpd-nvue, ifstats</p></td>
-<td><p>OK - OK | CRITICAL - any service is down.</p></td>
+<td><ul class="simple">
+<li><p>OK - OK</p></li>
+<li><p>CRITICAL - any service is down.</p></li>
+</ul>
+</td>
 <td><p>vxpd-nvue - OK, ifstats - OK</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>Node Health</p></td>
 <td><p>xc_timesync</p></td>
 <td><p>NTP sync status</p></td>
-<td><p>OK - NTP is syncronized | CRITICAL - NTP is not syncronized</p></td>
+<td><ul class="simple">
+<li><p>OK - NTP is syncronized</p></li>
+<li><p>CRITICAL - NTP is not syncronized</p></li>
+</ul>
+</td>
 <td><p>Time is synchronized</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>Fabric Health</p></td>
 <td><p>check_bgp_underlay</p></td>
 <td><p>Checks that switch loopbacks are properly learned from other switches</p></td>
-<td><p>OK - all loopbacks are learned from other switches | CRITICAL - not all all loopbacks are learned from other switches</p></td>
-<td><p>All loopback routes present in routing table
-Missing loopback routes: Host <cite>ns-leaf-0</cite> - 10.2.0.1 is not reachable</p></td>
+<td><ul class="simple">
+<li><p>OK - all loopbacks are learned from other switches</p></li>
+<li><p>CRITICAL - not all all loopbacks are learned from other switches</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>All loopback routes present in routing table</p></li>
+<li><p>Missing loopback routes: Host <cite>ns-leaf-0</cite> - 10.2.0.1 is not reachable</p></li>
+</ul>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>Fabric Health</p></td>
 <td><p>check_bgp</p></td>
 <td><p>Checks BGP session status on the port towards connected neighboring switch</p></td>
-<td><p>OK - State is Established, at least 1 prefix is learned | WARNING - State is Established, 0 prefixes learned | CRITICAL - State is other than Established</p></td>
+<td><ul class="simple">
+<li><p>OK - State is Established, at least 1 prefix is learned</p></li>
+<li><p>WARNING - State is Established, 0 prefixes learned</p></li>
+<li><p>CRITICAL - State is other than Established</p></li>
+</ul>
+</td>
 <td><p>swp57s0 IPv4(State: Established, Prefix: 4, Uptime: 02:31:46)</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>Fabric Health</p></td>
 <td><p>check_topology</p></td>
 <td><p>Checks that LLDP information from the port is consistent with Netris Topology. Switch hostname and port from the Netris Topology must match with LLDP.</p></td>
-<td><p>OK - Wiring is consistent with the Topology | CRITICAL - LLDP information is not consistent with the Topology</p></td>
+<td><ul class="simple">
+<li><p>OK - Wiring is consistent with the Topology</p></li>
+<li><p>CRITICAL - LLDP information is not consistent with the Topology</p></li>
+</ul>
+</td>
 <td><p>OK - Wiring is consistent with the Topology</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>Switch Port Health</p></td>
 <td><p>check_port</p></td>
 <td><p>Checks port status, % of RX/TX bandwidth utilization, laser signal level threshold breach, transceiver temperature, transceiver presence, Bit Error Rate (BER)</p></td>
-<td><p>OK - port is UP, and RX/TX utilization is below Warning threshold, Laser Signal Levels are below Warning threshold, pluggable is present or the port is fixed, temperature below threshold, BER below threshold | WARNING - port is UP and (RX/TX utilization is above Warning threshold or Laser Signal Levels are above Warning threshold), or temperature above Warning threshold | CRITICAL - port is DOWN, or RX/TX utilization is above Critical threshold, or Laser Signal Levels are above Critical threshold, or pluggable is absent, ore temperature above Critical threshold, or BER above Critical threshold</p></td>
+<td><ul class="simple">
+<li><p>OK - port is UP, and RX/TX utilization is below Warning threshold, Laser Signal Levels are below Warning threshold, pluggable is present or the port is fixed, temperature below threshold, BER below threshold</p></li>
+<li><p>WARNING - port is UP and (RX/TX utilization is above Warning threshold or Laser Signal Levels are above Warning threshold), or temperature above Warning threshold</p></li>
+<li><p>CRITICAL - port is DOWN, or RX/TX utilization is above Critical threshold, or Laser Signal Levels are above Critical threshold, or pluggable is absent, ore temperature above Critical threshold, or BER above Critical threshold</p></li>
+</ul>
+</td>
 <td><p>swp57s0 port is UP, 0% RX Utilized of 1 Gbps, 0% TX Utilized of 1 Gbps</p></td>
-<td><p>TX/RX Warning threshold default 70 | TX/RX Critical threshold default 90 | Laser signal levels thresholds are taken from the transceiver</p></td>
+<td><ul class="simple">
+<li><p>TX/RX Warning threshold default 70</p></li>
+<li><p>TX/RX Critical threshold default 90</p></li>
+<li><p>Laser signal levels thresholds are taken from the transceiver</p></li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
