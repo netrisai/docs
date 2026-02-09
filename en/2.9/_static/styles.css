@@ -1,0 +1,191 @@
+pre.literal-block {
+    white-space: pre;
+    margin: 0 !important;
+    padding: 12px 12px !important;
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
+        "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+        "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
+        monospace;
+    font-size: 12px;
+    display: block;
+    overflow: auto;
+    color: #404040;
+}
+
+.wy-nav-side {
+    background: #ffffff;
+}
+
+.wy-menu-vertical header,
+.wy-menu-vertical p.caption {
+    color: #01358d;
+}
+
+.wy-side-nav-search input[type="text"] {
+    width: 100%;
+    border-radius: 50px;
+    padding: 6px 12px;
+    border-color: #f9556d;
+}
+
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
+    background: #ffffff;
+}
+
+.wy-menu-vertical a {
+    color: #666666;
+    position: relative;
+}
+
+.wy-menu-vertical a:hover,
+.wy-menu-vertical li.current,
+.wy-menu-vertical li.current > a {
+    background-color: #ffffff !important;
+}
+
+.wy-menu-vertical li.current > a {
+    color: #000000 !important;
+    border: none !important;
+}
+
+.btn-neutral {
+    color: #fff !important;
+    background-color: #f9556d !important;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    box-shadow: 0 13px 13px 0 rgba(249, 85, 109, 0.2);
+    transition: all 0.2s ease-in;
+    padding: 9px 34px;
+    font-size: 14px;
+}
+
+.btn-neutral:hover,
+.btn-neutral:focus {
+    background-color: #ef4060 !important;
+    border-color: #ef4060 !important;
+    box-shadow: 0 13px 13px 0 rgba(249, 85, 109, 0.4);
+    padding: 9px 34px;
+}
+
+.btn-neutral:visited {
+    color: #fff !important;
+}
+
+.toctree-wrapper a {
+    color: #01358d;
+}
+
+.underscore-transition,
+.rst-other-versions > a {
+    font-family: Montseratt;
+}
+
+.fa-github::before {
+    color: #01358d !important;
+}
+
+.underscore-transition,
+.wy-breadcrumbs li:first-child,
+.wy-breadcrumbs li:last-child,
+.rst-other-versions > a,
+.toctree-wrapper a,
+footer > a {
+    color: #01358d !important;
+    position: relative;
+}
+
+.underscore-transition::before,
+.wy-menu-vertical a::before,
+.wy-breadcrumbs li:first-child::before,
+.wy-breadcrumbs li:last-child::before,
+.rst-other-versions > a::before,
+.toctree-wrapper a::before,
+footer > a::before {
+    box-sizing: inherit;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.underscore-transition:hover::before,
+.wy-menu-vertical a:hover::before,
+.wy-breadcrumbs li:first-child:hover::before,
+.wy-breadcrumbs li:last-child:hover::before,
+.rst-other-versions > a:hover::before,
+.toctree-wrapper a:hover::before,
+footer > a:hover::before {
+    width: 100%;
+    border-top-color: #f9556d;
+    border-right-color: #f9556d;
+    transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+
+.note,
+.note .last {
+    background-color: #ffe3e7 !important;
+}
+
+.note .first {
+    background-color: #f9556d !important;
+}
+
+.highlight {
+    background-color: #f3f3f3 !important;
+    border-color: #b7b7b7 !important;
+}
+
+.rst-current-version {
+    color: #f9556d !important;
+}
+
+.rst-versions,
+.rst-current-version {
+    background-color: #f3f3f3 !important;
+    border-color: #b7b7b7;
+}
+
+.rst-current-version .fa-book,
+.rst-other-versions {
+    color: #b7b7b7 !important;
+}
+
+.rst-other-versions dl a {
+    color: #f9556d !important;
+}
+
+.rst-other-versions hr {
+    border-color: #f9556d !important;
+}
+
+.button {
+    color: #fff !important;
+    background-color: #f9556d !important;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    box-shadow: 0 13px 13px 0 rgba(249, 85, 109, 0.2);
+    transition: all 0.2s ease-in;
+    padding: 9px 34px;
+    font-size: 14px;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.header-wrapper div {
+    display: flex;
+}
+
+.header-wrapper .underscore-transition {
+    cursor: pointer;
+    margin-right: 25px;
+}

@@ -1,0 +1,745 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-152905529-2');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Provided Example Configurations &mdash; Netris Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/styles.css?v=c10d0aec" />
+
+  
+    <link rel="shortcut icon" href="../../_static/netris_favicon.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=016f71bc"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Learn by Creating Services" href="creating-services.html" />
+    <link rel="prev" title="Welcome to Netris Sandbox" href="sandbox-info.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffffff" >
+
+
+  <a href="https://www.netris.ai">
+
+
+
+  
+  <img src="../../_static/logo-600.png" class="logo" alt="Logo"/>
+
+</a>
+
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts.html">Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts.html#introduction-to-netris">Introduction to Netris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts.html#what-is-netris-controller">What is Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts.html#netris-switch-agent">Netris Switch Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts.html#netris-softgate">Netris SoftGate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../controller-installation.html">On-prem Netris Controller installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-installation.html#kvm-virtual-machine">KVM virtual machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-installation.html#installation-steps-for-kvm-hypervisor">Installation steps for KVM hypervisor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-installation.html#netris-controller-installation-steps">Netris Controller Installation steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-installation.html#accessing-the-netris-controller">Accessing the Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-installation.html#security-hardening">Security hardening</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-installation.html#changing-the-default-grpc-authentication-key">Changing the default GRPC authentication key.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-installation.html#replacing-the-ssl-certificate">Replacing the SSL certificate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../controller-k8s-installation.html">Netris Controller Helm Chart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-k8s-installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-k8s-installation.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#common-parameters">Common parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#netris-controller-common-parameters">Netris-Controller common parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#netris-controller-app-parameters">Netris-Controller app parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#netris-controller-grpc-parameters">Netris-Controller grpc parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#netris-controller-telescope-parameters">Netris-Controller telescope parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#netris-controller-k8s-watcher-parameters">Netris-Controller k8s-watcher parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#netris-controller-telescope-notifier-parameters">Netris-Controller telescope-notifier parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#mariadb-parameters">Mariadb parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#mongodb-parameters">Mongodb parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#redis-parameters">Redis parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#smtp-parameters">Smtp parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#haproxy-parameters">HAproxy parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#graphite-parameters">Graphite parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-k8s-installation.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../controller-initial-configuration.html">Controller initial configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-initial-configuration.html#definitions">Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-initial-configuration.html#subnets">Subnets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-initial-configuration.html#example-ip-addresses-used-are-just-examples-please-replace-them-following-your-ip-planning">Example:  (IP addresses used are just examples, please replace them following your IP planning.)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-initial-configuration.html#inventory-profiles">Inventory Profiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-initial-configuration.html#fields-descriptions">Fields descriptions:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-initial-configuration.html#adding-switches-to-topology">Adding Switches to Topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-initial-configuration.html#topology-manager">Topology Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-initial-configuration.html#hairpin-cumulus-only">Hairpin (Cumulus only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-initial-configuration.html#adding-softgate-nodes-to-topology">Adding SoftGate nodes to Topology</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../switch-agent-installation.html">Netris switch agent installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../switch-agent-installation.html#for-cumulus-linux">For Cumulus Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../switch-agent-installation.html#configure-the-oob-management-ip-address">Configure the OOB Management IP address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch-agent-installation.html#configure-cumulus-linux-license">Configure Cumulus Linux license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch-agent-installation.html#install-the-netris-agent">Install the Netris Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../switch-agent-installation.html#for-ubuntu-switchdev">For Ubuntu SwitchDev</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../switch-agent-installation.html#id1">Configure the OOB Management IP address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch-agent-installation.html#id2">Install the Netris Agent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../SoftGate-agent-installation.html">Netris SoftGate agent installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate-agent-installation.html#minimal-hardware-requirements">Minimal hardware requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate-agent-installation.html#bios-configuration">BIOS configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate-agent-installation.html#software-installation">Software installation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html">Basic BGP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html#advanced-bgp">Advanced BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#bgp-objects">BGP objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../network-policies.html#ipv4-prefix">IPv4 Prefix.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../network-policies.html#ipv6-prefix">IPv6 Prefix.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../network-policies.html#community">Community.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#bgp-route-maps">BGP route-maps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html#routes-static-routing">Routes (static routing)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html#nat">NAT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#enabling-nat">Enabling NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#defining-nat-rules">Defining NAT rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#sitemesh">SiteMesh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html#looking-glass">Looking Glass</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html">V-NET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#kubenet">Kubenet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#roh-routing-on-the-host">ROH (Routing on the Host)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#l3-load-balancer-anycast-lb">L3 Load Balancer (Anycast LB)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#l4-load-balancer-l4lb">L4 Load Balancer (L4LB)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#enabling-l4lb-service">Enabling L4LB service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#consuming-l4lb-service">Consuming L4LB service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../services.html#access-control-lists-acl">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#acl-default-policy">ACL Default Policy.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#acl-rules">ACL rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#acl-approval-workflow">ACL approval workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services.html#the-sequence-order-of-acl-rules">The sequence order of ACL rules</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visibility.html">Visibility (Telescope)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../visibility.html#graph-boards">Graph Boards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visibility.html#api-logs">API Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visibility.html#dashboard">Dashboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../accounts.html">Accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#permission-groups">Permission Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#user-roles">User Roles</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Updates</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Sandboxes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Sandboxes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Sandbox1/index.html">Sandbox1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox1/sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox1/configurations.html">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/configurations.html#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/configurations.html#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/configurations.html#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/configurations.html#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox1/creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox1/onprem-k8s.html">Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox1/onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Sandbox2/index.html">Sandbox2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox2/sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox2/configurations.html">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/configurations.html#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/configurations.html#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/configurations.html#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/configurations.html#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox2/creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox2/onprem-k8s.html">Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox2/onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Sandbox3</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="onprem-k8s.html">Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Sandbox4/index.html">Sandbox4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox4/sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox4/configurations.html">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/configurations.html#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/configurations.html#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/configurations.html#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/configurations.html#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox4/creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox4/onprem-k8s.html">Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox4/onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Sandbox5/index.html">Sandbox5</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox5/sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox5/configurations.html">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/configurations.html#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/configurations.html#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/configurations.html#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/configurations.html#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox5/creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox5/onprem-k8s.html">Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox5/onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Sandbox6/index.html">Sandbox6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox6/sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox6/configurations.html">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/configurations.html#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/configurations.html#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/configurations.html#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/configurations.html#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox6/creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox6/onprem-k8s.html">Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox6/onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Sandbox7/index.html">Sandbox7</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox7/sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox7/configurations.html">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/configurations.html#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/configurations.html#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/configurations.html#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/configurations.html#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox7/creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox7/onprem-k8s.html">Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox7/onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Sandbox8/index.html">Sandbox8</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox8/sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox8/configurations.html">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/configurations.html#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/configurations.html#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/configurations.html#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/configurations.html#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox8/creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox8/onprem-k8s.html">Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox8/onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Sandbox9/index.html">Sandbox9</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox9/sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox9/configurations.html">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/configurations.html#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/configurations.html#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/configurations.html#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/configurations.html#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox9/creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox9/onprem-k8s.html">Run an On-Prem Kubernetes Cluster with Netris Automatic NetOps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox9/onprem-k8s.html#netris-calico-cni-integration">Netris Calico CNI Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Sandbox10/index.html">Sandbox10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox10/Sandbox-info.html">Welcome to Netris Sandbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Sandbox-info.html#topology-diagram">Topology diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Sandbox-info.html#netris-gui">Netris GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Sandbox-info.html#linux-servers">Linux servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Sandbox-info.html#kubernetes-cluster">Kubernetes cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Sandbox-info.html#upstream-isp">Upstream ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Sandbox-info.html#networks-used">Networks used</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox10/Configurations.html">Provided Example Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Configurations.html#v-net-ethernet-vlan-vxlan-example">V-Net (Ethernet/Vlan/VXlan) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Configurations.html#e-bgp-exterior-border-gateway-protocol-example">E-BGP (Exterior Border Gateway Protocol) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Configurations.html#nat-network-address-translation-example">NAT (Network Address Translation) Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/Configurations.html#acl-access-control-list-example">ACL (Access Control List) Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox10/creating-services.html">Learn by Creating Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/creating-services.html#v-net-ethernet-vlan-vxlan">V-Net (Ethernet/Vlan/VXlan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/creating-services.html#e-bgp-exterior-border-gateway-protocol">E-BGP (Exterior Border Gateway Protocol)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/creating-services.html#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Sandbox10/creating-services.html#acl-access-control-list">ACL (Access Control List)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Sandbox10/Diagram.html">Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffffff" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Netris docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!--
+<div class="header-wrapper">
+    <div>
+        <a class="underscore-transition" href="https://www.netris.ai/overview/">
+            Product Overview
+        </a>
+        <a class="underscore-transition" href="https://www.netris.ai/start/">
+            Get started
+        </a>
+        <a class="underscore-transition" href="https://www.netris.ai/category/blog/">
+            Blog
+        </a>
+    </div>
+    <a class="button" href="https://netris.ai/demo">
+        Schedule a demo
+    </a>
+</div>
+--><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Sandboxes</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Sandbox3</a></li>
+      <li class="breadcrumb-item active">Provided Example Configurations</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/netrisai/docs/blob/master/sandbox/Sandbox3/configurations.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="sandbox-info.html" class="btn btn-neutral float-left" title="Welcome to Netris Sandbox" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="creating-services.html" class="btn btn-neutral float-right" title="Learn by Creating Services" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="provided-example-configurations">
+<span id="s3-pre-configured"></span><h1>Provided Example Configurations<a class="headerlink" href="#provided-example-configurations" title="Link to this heading"></a></h1>
+<p>Once you log into the Netris GUI, you will find that certain services have already been pre-configured for you to explore and interact with. You can also learn how to create some of these services yourself by following the step-by-step instructions in the <a class="reference internal" href="creating-services.html#s3-learn-by-doing"><span class="std std-ref">“Learn by Creating Services”</span></a> document.</p>
+<section id="v-net-ethernet-vlan-vxlan-example">
+<h2>V-Net (Ethernet/Vlan/VXlan) Example<a class="headerlink" href="#v-net-ethernet-vlan-vxlan-example" title="Link to this heading"></a></h2>
+<p>Once you log into the Netris GUI by visiting <a class="reference external" href="https://sandbox3.netris.ai">https://sandbox3.netris.ai</a> and navigating to <strong>Services &gt; V-Net</strong>, you will find a V-Net service named “<strong>vnet-example</strong>” already configured for you as an example. You can examine the particular service settings by selecting <strong>Edit</strong> from the <strong>Actions</strong> menu indicated by three vertical dots (⋮) on the right side of the “<strong>vnet-example</strong>” service.</p>
+<p>You may also verify that the service is working properly from within the GUI: (<em>*Fields not specified should remain unchanged and retain default values</em>)</p>
+<ol class="arabic simple">
+<li><p>Navigate to <strong>Net &gt; Looking Glass</strong>.</p></li>
+<li><p>Select the <strong>sw01-nyc(10.254.46.1)</strong> switch from the <strong>Select device</strong> drop-down menu.</p></li>
+<li><p>Select the <strong>Ping</strong> radio button from the row of available choices.</p></li>
+<li><p>Type in <code class="docutils literal notranslate"><span class="pre">192.168.45.64</span></code> in the field labeled “<strong>IPv4 address</strong>”.</p></li>
+<li><p>Click <strong>Submit</strong>.</p></li>
+</ol>
+<p>The result should look similar to the output below, indicating that the communication between the <strong>sw01-nyc</strong> switch and <strong>srv04-nyc</strong> server is working properly thanks to the configured V-Net service.</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sw01-nyc# ping -c 5 192.168.45.64</span>
+<span class="go">PING 192.168.45.64 (192.168.45.64) 56(84) bytes of data.</span>
+<span class="go">64 bytes from 192.168.45.64: icmp_seq=1 ttl=64 time=0.543 ms</span>
+<span class="go">64 bytes from 192.168.45.64: icmp_seq=2 ttl=64 time=0.436 ms</span>
+<span class="go">64 bytes from 192.168.45.64: icmp_seq=3 ttl=64 time=0.445 ms</span>
+<span class="go">64 bytes from 192.168.45.64: icmp_seq=4 ttl=64 time=0.354 ms</span>
+<span class="go">64 bytes from 192.168.45.64: icmp_seq=5 ttl=64 time=0.345 ms</span>
+
+<span class="go">--- 192.168.45.64 ping statistics ---</span>
+<span class="go">5 packets transmitted, 5 received, 0% packet loss, time 4074ms</span>
+<span class="go">rtt min/avg/max/mdev = 0.345/0.424/0.543/0.075 ms</span>
+</pre></div>
+</div>
+<p>If you are interested in learning how to create a V-Net service yourself, please refer to the step-by-step instructions in the <a class="reference internal" href="creating-services.html#s3-v-net"><span class="std std-ref">“V-Net (Ethernet/Vlan/VXlan)”</span></a> section in the <a class="reference internal" href="creating-services.html#s3-learn-by-doing"><span class="std std-ref">“Learn by Creating Services”</span></a> document.</p>
+</section>
+<section id="e-bgp-exterior-border-gateway-protocol-example">
+<h2>E-BGP (Exterior Border Gateway Protocol) Example<a class="headerlink" href="#e-bgp-exterior-border-gateway-protocol-example" title="Link to this heading"></a></h2>
+<p>Navigate to <strong>Net &gt; E-BGP</strong>. Here, aside from the system generated IPv4/IPv6 E-BGP peer connections between the two border routers ( <strong>SoftGate1 &amp; SoftGate2</strong> ) and their respective adjacent spine switches ( <strong>sw01-nyc &amp; sw02-nyc</strong> ), you will also find an E-BGP session named “<strong>iris-isp1-example</strong>” configured as example with IRIS ISP1. This ensures communication of the inside network with the Internet.</p>
+<p>You can examine the particular session settings of the E-BGP connection by selecting <strong>Edit</strong> from the <strong>Actions</strong> menu indicated by three vertical dots (⋮) on the right side of the “<strong>iris-isp1-example</strong>” connection. While viewing the settings, you may also expand the <strong>Advanced</strong> section located toward the bottom of the initial screen to able to see the more advanced settings available while configuring an E-BGP session.</p>
+<p>If you are interested in learning how to create a fault tolerant E-BGP session with IRIS ISP2 yourself, please refer to the step-by-step instructions in the <a class="reference internal" href="creating-services.html#s3-e-bgp"><span class="std std-ref">“E-BGP (Exterior Border Gateway Protocol)”</span></a> in the <a class="reference internal" href="creating-services.html#s3-learn-by-doing"><span class="std std-ref">“Learn by Creating Services”</span></a> document.</p>
+</section>
+<section id="nat-network-address-translation-example">
+<h2>NAT (Network Address Translation) Example<a class="headerlink" href="#nat-network-address-translation-example" title="Link to this heading"></a></h2>
+<p>Navigate to <strong>Net &gt; NAT</strong> and you will find a NAT service named “<strong>NAT Example</strong>” configured as an example . The configured services ensures that there can be communication between the the private <strong>192.168.45.0/24</strong> network and the Internet.</p>
+<p>You can examine the particular settings of the NAT service by clicking <strong>Edit</strong> from the <strong>Actions</strong> menu indicated by three vertical dots (⋮) on the right side of the “<strong>NAT Example</strong>” service.</p>
+<p>You may observe the functioning service by pinging the pubblic <strong>1.1.1.1</strong> IP address from the <strong>srv04-nyc</strong> server.</p>
+<ul class="simple">
+<li><p>In a terminal window:</p>
+<ol class="arabic simple">
+<li><p>SSH to srv04-nyc by typing <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">demo&#64;166.88.17.189</span> <span class="pre">-p</span> <span class="pre">30064</span></code>.</p></li>
+<li><p>Enter the password provided in the introductory e-mail.</p></li>
+<li><p>Start a ping session by typing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">1.1.1.1</span></code></p></li>
+</ol>
+</li>
+</ul>
+<p>You will see replies in the form of “<strong>64 bytes from 1.1.1.1: icmp_seq=1 ttl=62 time=1.10 ms</strong>” indicating proper communication with the public <strong>1.1.1.1</strong> IP address.</p>
+<p>If you are interested in learning how to create a NAT services yourself, please refer to the step-by-step instructions in the <a class="reference internal" href="creating-services.html#s3-nat"><span class="std std-ref">“NAT (Network Address Translation)”</span></a> section in the in the <a class="reference internal" href="creating-services.html#s3-learn-by-doing"><span class="std std-ref">“Learn by Creating Services”</span></a> document.</p>
+</section>
+<section id="acl-access-control-list-example">
+<h2>ACL (Access Control List) Example<a class="headerlink" href="#acl-access-control-list-example" title="Link to this heading"></a></h2>
+<p>Navigate to <strong>Services &gt; ACL</strong> and you will find an ACL services named “<strong>V-Net to WAN Example</strong>” set up as an example. This particular ACL ensures that the connectivity between the the private <strong>192.168.45.0/24</strong> network and the Internet is permitted through all protocols and ports, even in a scenario where the the <strong>Default Site Policy</strong> for the “<strong>US/NYC</strong>” site configured in the our Sandbox is changed from <strong>Permit</strong> to <strong>Deny</strong>.</p>
+<p>You can examine the particular settings of this ACL policy by selecting <strong>Edit</strong> from the <strong>Actions</strong> menu indicated by three vertical dots (⋮) on the right side of the “<strong>V-Net to WAN Example</strong>” ACL policy.</p>
+<p>By utilizing ACLs, you can impose granular controls and implement policies that would allow or disallow particular connections. If you are interested in learning how to create a ACL policies yourself, please refer to the step-by-step instructions in the <a class="reference internal" href="creating-services.html#s3-acl"><span class="std std-ref">“ACL (Access Control List)”</span></a> section in the in the <a class="reference internal" href="creating-services.html#s3-learn-by-doing"><span class="std std-ref">“Learn by Creating Services”</span></a> document.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sandbox-info.html" class="btn btn-neutral float-left" title="Welcome to Netris Sandbox" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="creating-services.html" class="btn btn-neutral float-right" title="Learn by Creating Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Netris.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Alternate Versions</span>
+      v: 2.9
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+           <strong> 
+          <dd><a href="/docs/en/2.9/">2.9</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/docs/en/3.0/">3.0</a></dd>
+          
+        
+          
+          <dd><a href="/docs/en/3.4/">3.4</a></dd>
+          
+        
+          
+          <dd><a href="/docs/en/4.5.3/">4.5.3</a></dd>
+          
+        
+          
+          <dd><a href="/docs/en/latest/">latest</a></dd>
+          
+        
+      </dl>
+      
+      
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="/docs/manifests/en/2.9/netris-docs_en_2.9.pdf">pdf</a></dd>
+        
+          <dd><a href="/docs/manifests/en/2.9/netris-docs_en_2.9.epub">epub</a></dd>
+        
+      </dl>
+      
+      
+      <hr/>
+      Free theme by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
