@@ -38,8 +38,8 @@ extensions = [
     'sphinx_rtd_theme',
     'sphinx_copybutton',
 	'sphinx_design',
-    #'sphinx_tabs.tabs',
-	"sphinxcontrib.googleanalytics"
+	# 'sphinx_tabs.tabs',
+	'sphinxcontrib.googleanalytics'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

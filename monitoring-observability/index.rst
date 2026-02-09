@@ -7,3 +7,4 @@ Monitoring & Observability
 
    topology-validation
    netq
+   healthchecks

@@ -277,8 +277,8 @@ Checking Network Connectivity
      Proceed to the **next step** to enable underlay.
 
 .. tab-set::
-
-   .. tab-item:: With OOB (Underlay Enabled)
+  
+  .. tab-item:: With OOB (Underlay Enabled)
 
       **Verify connectivity:**
       
@@ -286,12 +286,12 @@ Checking Network Connectivity
 
          ping -c 4 10.100.0.1  # This should work if underlay is enabled.
 
-   .. tab-item:: Without OOB (Underlay Disabled)
+  .. tab-item:: Without OOB (Underlay Disabled)
 
       - **Skip connectivity checks for now.**
       - Proceed to **Enabling Underlay for Hypervisors** in the next step.
 
----
+
 
 Finalizing the Network Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
