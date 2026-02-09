@@ -37,7 +37,9 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx_rtd_theme',
     'sphinx_copybutton',
+	'sphinx_design',
 	# 'sphinx_tabs.tabs',
+	'sphinxcontrib.googleanalytics'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -116,7 +118,7 @@ html_theme = 'sphinx_rtd_theme'
 # documentation.
 #html_theme_options = {}
 html_theme_options = {
-    'analytics_id': 'UA-152905529-2',  #  Provided by Google in your dashboard
+#    'analytics_id': 'UA-152905529-2',  #  Provided by Google in your dashboard
     'analytics_anonymize_ip': False,
     'logo_only': True,
 #    'display_version': True,
@@ -132,6 +134,9 @@ html_theme_options = {
     'includehidden': True,
     'titles_only': False
 }
+
+googleanalytics_id = "UA-152905529-2"
+googleanalytics_enabled = True
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
