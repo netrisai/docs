@@ -1581,6 +1581,7 @@ AMD EPYC 7413 24-Core CPU &#64; 2.6GHz, 48 core</label><div class="sd-tab-conten
 <h3><a class="toc-backref" href="#id30" role="doc-backlink">Netris VPC originated traffic routing</a><a class="headerlink" href="#netris-vpc-originated-traffic-routing" title="Link to this heading"></a></h3>
 <p>Any packet originating from any Netris VPC in the North-South fabric with the destination of the Internet or any other destination outside of the North-South fabric is processed in the following fashion.</p>
 <ol class="arabic simple">
+<li><p>The packet is routed to its default gateway, hosted as an anycast gateway on a leaf switch.</p></li>
 <li><p>The packet is routed to a General SoftGate using ECMP for load distribution. To achieve this, the General SoftGates inject a default route into the Netris VPC for which either a NAT or an L4LB service is configured.</p></li>
 <li><p>The General SoftGate processes DNAT or L4LB packets directly, but redirects SNAT packets to the appropriate SNAT SoftGate. This redirection is load-balanced based on the global IP of the SNAT rule, utilizing the <a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf">Maglev algorithm</a> to ensure different SoftGates arrive at the same forwarding outcome without sharing state.</p></li>
 <li><p>Once the packet arrives at the correct SNAT SoftGate, the source IP address is replaced, and the packet is sent to the internet</p></li>
@@ -1628,8 +1629,8 @@ AMD EPYC 7413 24-Core CPU &#64; 2.6GHz, 48 core</label><div class="sd-tab-conten
 <p>The above approach allows the Netris SoftGate layer to remain highly available and robust in various hardware failure scenarios.</p>
 <p>In case of a SoftGate node failure</p>
 <ul class="simple">
-<li><p>If the role of the failed SoftGate instance is <strong>General</strong>, an alarm is raised in the controller, but no further action is taken by the Netris algorithm.</p></li>
-<li><p>If the role of the failed SoftGate instance is <strong>SNAT</strong>, all the SNAT rules that were assigned to the failed SoftGate instance are evenly redistributed to all other SoftGates with the role SNAT.</p></li>
+<li><p>If the role of the failed SoftGate instance is <strong>General</strong>, an alarm is raised in the controller, but no further action is taken by the Netris algorithm. Existing TCP sessions remain in tact. All traffic is routed to the remaining General SoftGate nodes automatically.</p></li>
+<li><p>If the role of the failed SoftGate instance is <strong>SNAT</strong>, all the SNAT rules that were assigned to the failed SoftGate instance are evenly redistributed to all other SoftGates with the role SNAT. TCP sessions which traversed the failed node will reset.</p></li>
 </ul>
 <p>Note that SNAT service is the only stateful translation service provided by SoftGates. SNAT connections will experience an interruption, as the SNAT rules are reconfigured on the surviving SoftGate nodes, and will have to be reestablished. However, DNAT and L4LB connections are stateless and will remain unimpacted in a SoftGate node failure scenario.</p>
 <p>When a SNAT SoftGate recovers, Netris will return the earlier redistributed SNAT rules to the recovered node.</p>
