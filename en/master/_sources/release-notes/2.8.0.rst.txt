@@ -1,0 +1,53 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 2.8.0
+.. _release_2.8.0:
+
+.. meta::
+    :description: Netris Release Notes |version|
+
+Netris |version| (May/13/2020)
+==================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- Updated GRPC based agent/controller API with encrypted data exchange. 
+- We have rebuilt ground up our configuration parser library.
+- Cumulus, SwitchDev, SW-router agents refactored from scratch using GoLang, new GRPC API, and new parser library.
+- Northbound BGP, external BGP templates are entirely updated.
+- New Object-oriented E-BGP control policies. We now include objects: Route-maps, communities, as-path, prefix-lists.
+- VLAN aware bridge mode for V-NET(formerly known as a circuit). VLAN aware mode can be used simultaneously with a standard mode on the SwitchDev platform, but NOT on the Cumulus platform.
+- LAG support for the hairpin link. Removal of the hairpin requirement for SwitchDev platform.
+- Support of SwitchDev platform in both leaf and spine switch roles. Using the SVI interface, so no need for a hairpin anymore.
+- Improved frontend with better UX, now represented as a SPA (Single Page Application) 
+- Improvements to the visibility system include automatic monitoring of critical system services and processes for Cumulus, SwitchDev, and NFV platforms.
+- Improved performance for the anycast Load Balancing checks, these are now written in GoLang.
+- API documentation included in the GUI.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- E-BGP peer migration between termination points was causing problems.
+- Anycast Load balancer health checks were causing performance issues when applying multiple health checks on the single switch.
+- Problems with permissions to assign IP address to an ROH instance for LDAP authorized users.
+- Misconfiguration caused by unstable connectivity between agent and controller.
+- Link visualization issues in the topology view.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
