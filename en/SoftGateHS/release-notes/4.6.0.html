@@ -29,7 +29,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netris 4.6.0 (Jan/31/2026) &mdash; Netris Documentation</title>
+  <title>Netris 4.6.0 (Feb/10/2026) &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -225,7 +225,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.3 Upgrade Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
@@ -693,18 +694,16 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/index.html">Monitoring &amp; Observability</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/healthchecks.html">Netris Healthchecks</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -880,7 +879,7 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Release Notes</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 4.6.0 (Jan/31/2026)</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 4.6.0 (Feb/10/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-s-new-in-netris-version">What’s new in Netris 4.6.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#enhancements">Enhancements</a></li>
@@ -1032,7 +1031,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Release Notes</a></li>
-      <li class="breadcrumb-item active">Netris 4.6.0 (Jan/31/2026)</li>
+      <li class="breadcrumb-item active">Netris 4.6.0 (Feb/10/2026)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/netrisai/docs/blob/master/release-notes/4.6.0.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1045,8 +1044,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="netris-version-jan-31-2026">
-<span id="release-4-6-0"></span><h1>Netris 4.6.0 (Jan/31/2026)<a class="headerlink" href="#netris-version-jan-31-2026" title="Link to this heading"></a></h1>
+  <section id="netris-version-feb-10-2026">
+<span id="release-4-6-0"></span><h1>Netris 4.6.0 (Feb/10/2026)<a class="headerlink" href="#netris-version-feb-10-2026" title="Link to this heading"></a></h1>
 <section id="what-s-new-in-netris-version">
 <h2>What’s new in Netris 4.6.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
 </section>
@@ -1057,23 +1056,23 @@
 <li><p><strong>NVLink Multi-Node.</strong> Netris can now create NVLink partitions in NVL72 and NVL144 equipped systems.</p></li>
 <li><p><strong>eBGP imports non-default routes.</strong> The operator may now apply a BGP community 0:7 to signal Netris to import any non 0.0.0.0/0 eBGP prefixes into the VPC.</p></li>
 <li><p><strong>Control plane verification of VTEP reachability.</strong> Netris managed VTEPs (switches and Softgates) keep track of the reachability of other Netris VTEPs.</p></li>
-<li><p><strong>CloudStack supported with Cumulus Linux.</strong> CloudStack now integrates with Spectrum-X fabrics running Cumulus Linux.</p></li>
-<li><p><strong>Spectrum-X Deployment Guide compliance is automatic.</strong> Netris will automatically apply correct configuration to appropriate Ethernet components based on the appropriate version of the Spectrum-X Deployment Guide based on the detected Cumulus Linux version.</p></li>
+<li><p><strong>CloudStack supported with Cumulus Linux.</strong> CloudStack now integrates with Nvidia switch fabrics running Cumulus Linux.</p></li>
+<li><p><strong>VPC peering is now supported in CloudStack</strong>.</p></li>
+<li><p><strong>Spectrum-X Deployment Guide v1.3 support</strong> Spectrum-X Deployment Guide v1.3 is now supported.</p></li>
 <li><p><strong>SNMPv2.</strong> Netris can now configure SNMPv2 read-only access on supported switches</p></li>
-<li><p><strong>Inventory Filtering.</strong> Inventory API now supports filtering.</p></li>
 <li><p><strong>Topology View Filtering.</strong> Topology view now supports filtering by device name.</p></li>
-<li><p><strong>Dell/BC-SONiC VPC peering.</strong> VPC peering can now be established on Dell/BC-SONiC Ethernet fabrics.</p></li>
-<li><p><strong>Dell/BC-SONiC L3VPN.</strong> L3VPN is now supported on Dell/BC-SONiC Ethernet fabrics.</p></li>
+<li><p><strong>Dell/BC-SONiC VPC peering.</strong> VPC peering can now be established on <a class="reference internal" href="../supported-platform-matrix.html#overlay-network-functions"><span class="std std-ref">Dell/BC-SONiC Ethernet</span></a> fabrics.</p></li>
+<li><p><strong>Dell/BC-SONiC L3VPN.</strong> L3VPN is now supported on <a class="reference internal" href="../supported-platform-matrix.html#overlay-network-functions"><span class="std std-ref">Dell/BC-SONiC Ethernet</span></a> fabrics.</p></li>
 </ul>
 </section>
 <section id="enhancements">
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading"></a></h2>
 <ul class="simple">
+<li><p><strong>XDP dataplane acceleration for SoftGate HS</strong>.</p></li>
 <li><p><strong>DHCP Relay</strong> now supports inter-VPC routing on all <a class="reference internal" href="../supported-switch-hardware.html#supported-switch-hardware"><span class="std std-ref">Supported Switch Hardware</span></a>.</p></li>
-<li><p><strong>L3VPN</strong> now includes  <a class="reference internal" href="../supported-platform-matrix.html#overlay-network-functions"><span class="std std-ref">Dell and Broadcom SONiC</span></a>.</p></li>
-<li><p><strong>Centralized ACLs on Arista EOS</strong> are now supported on <a class="reference internal" href="../supported-switch-hardware.html#supported-switch-hardware"><span class="std std-ref">Supported Switch Hardware</span></a>.</p></li>
-<li><p><strong>Controller Management Address</strong> can now be explicitly specified and is correctly reflected in the “one-liner” install command.</p></li>
-<li><p><strong>Controller Management IP</strong> can be explicitly configured in one-liner</p></li>
+<li><p><strong>ACLs on Arista EOS</strong> are now available on <a class="reference internal" href="../supported-switch-hardware.html#supported-switch-hardware"><span class="std std-ref">Supported Switch Hardware</span></a>.</p></li>
+<li><p><strong>Topology validation</strong> added new fields in custom JSON.</p></li>
+<li><p><strong>Added switch port health checks</strong> Switch port healt checks now include Bit Error Rate (BER) and temperature monitoring on NVUE-supported platforms.</p></li>
 <li><p><strong>Performance and UI improvements.</strong></p>
 <ul>
 <li><p>Add Network &gt; Links page showing all topology links.</p></li>
@@ -1086,9 +1085,7 @@
 <li><p>Improved collectd optical values export.</p></li>
 <li><p>System ASN range is now editable.</p></li>
 <li><p>Can now show more than 4 tx/rx optical signals in Optical Graph.</p></li>
-<li><p>Improved SoftGate HS installation experience.</p></li>
-<li><p>Improved SoftGate HS DNAT and ACL scalability.</p></li>
-<li><p>Added XDP based acceleration for SoftGate HS data plane.</p></li>
+<li><p>In some CloudStack deployments enable and enforce IP forwarding property in Linux kernel.</p></li>
 </ul>
 </li>
 </ul>
@@ -1099,8 +1096,8 @@
 <li><p>Fixed backend crash after creating LB service.</p></li>
 <li><p>Fixed the inability to edit NAT rules when a VPC filter is applied.</p></li>
 <li><p>Fixed Inventory Filtering failing under certain conditions.</p></li>
+<li><p>Fixed Inventory API filtering by label, sites, types, health, and custom.</p></li>
 <li><p>Fixed filtering of ports with unknown states under certain conditions.</p></li>
-<li><p>Fixed NHN ifupdown and netplan support in Spectrum-X v1.2</p></li>
 <li><p>Fixed NVUE check_signal monitor false positives on optical switch ports.</p></li>
 <li><p>Fixed ACL creation time stamp.</p></li>
 <li><p>Fixed RX values in graphs.</p></li>
@@ -1113,13 +1110,12 @@
 <li><p>Fixed static routes applying to all switches when ApplyTo filter is used.</p></li>
 <li><p>Fixed ACLs sometimes filtering even if no filter is applied.</p></li>
 <li><p>Fixed ACL creation time stamp.</p></li>
-<li><p>Fixed tcp-establiashed rules in NVUE working, even when disabled.</p></li>
+<li><p>Fixed installing reverse rule in NVUE when tcp-establiashed flag disabled.</p></li>
 <li><p>Fixed controller hanging when malformed create L4LB API request is received.</p></li>
 <li><p>Fixed CPU utilization graph showing incorrect data.</p></li>
-<li><p>Fixed packet fragmentation issue in SoftGate HS.</p></li>
 <li><p>Fixed ACL functionality when used with SNAT.</p></li>
-<li><p>Fixed SNAT to DNAT hairpinning issue.</p></li>
-<li><p>Fixed CloudStack forwarding behavior enforcement.</p></li>
+<li><p>Fixed SoftGate HS DNAT with Port Groups.</p></li>
+<li><p>Fixed SNAT is not working when traffic is destined to a host behind DNAT rule.</p></li>
 <li><p>Fixed NHN impacting North-South traffic when configuring East-West host networking.</p></li>
 <li><p>Fixed Topology&gt;Interface&gt;Details showing incorrect optical graph data.</p></li>
 </ul>
@@ -1128,9 +1124,10 @@
 <li><p>Routing On Host ASN, Routing Profile</p></li>
 <li><p>VM ASN</p></li>
 <li><p>SoftGate (generic flavor)</p></li>
+<li><p>SoftGate PRO</p></li>
 <li><p>Calico ASN</p></li>
 <li><p>Built-in chat.</p></li>
-<li><p>Remove Proxmox, Equinix metal, and PhoenixNap as supported platforms.</p></li>
+<li><p>Proxmox, Equinix metal, and PhoenixNap as supported platforms.</p></li>
 </ul>
 </section>
 <section id="references">

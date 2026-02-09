@@ -17,7 +17,7 @@
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Netris Release Notes |version|" name="description" />
+<meta content="Netris Healthchecks" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -29,7 +29,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{product}} {{version}} ({{date}}) &mdash; Netris Documentation</title>
+  <title>Netris Healthchecks &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -48,7 +48,9 @@
       <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Netris Host Networking" href="../ai-netris-host-networking.html" />
+    <link rel="prev" title="NVIDIA NetQ Integration" href="netq.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -223,7 +225,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.3 Upgrade Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
@@ -690,19 +693,17 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/index.html">Monitoring &amp; Observability</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="topology-validation.html">Topology &amp; Wiring Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-validation.html#switch-to-server">Switch-to-Server</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netq.html">NVIDIA NetQ Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Netris Healthchecks</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -877,121 +878,121 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="4.6.0.html">Netris 4.6.0 (Jan/31/2026)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#what-s-new-in-netris-version">What’s new in Netris 4.6.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#enhancements">Enhancements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.6.0.html">Netris 4.6.0 (Feb/10/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#what-s-new-in-netris-version">What’s new in Netris 4.6.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.5.3.html">Netris 4.5.3 (August/27/2025)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.5.3.html#what-s-new-in-netris-version">What’s new in Netris 4.5.3?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.5.3.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.5.3.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.5.3.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.5.3.html">Netris 4.5.3 (August/27/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#what-s-new-in-netris-version">What’s new in Netris 4.5.3?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.3.0.html">Netris 4.3.0 (July/31/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.3.0.html#what-s-new-in-netris-version">What’s new in Netris 4.3.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.3.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.3.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.3.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.3.0.html">Netris 4.3.0 (July/31/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#what-s-new-in-netris-version">What’s new in Netris 4.3.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.2.0.html">Netris 4.2.0 (May/1/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.2.0.html#what-s-new-in-netris-version">What’s new in Netris 4.2.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.2.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.2.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.2.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.2.0.html">Netris 4.2.0 (May/1/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#what-s-new-in-netris-version">What’s new in Netris 4.2.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.1.1.html">Netris 4.1.1 (Jan/31/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.1.1.html#what-s-new-in-netris-version">What’s new in Netris 4.1.1?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.1.1.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.1.1.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.1.1.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.1.1.html">Netris 4.1.1 (Jan/31/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#what-s-new-in-netris-version">What’s new in Netris 4.1.1?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.0.0.html">Netris 4.0.0 (Jul/25/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.0.0.html#what-s-new-in-netris-version">What’s new in Netris 4.0.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.0.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.0.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.0.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.0.0.html">Netris 4.0.0 (Jul/25/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#what-s-new-in-netris-version">What’s new in Netris 4.0.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.5.0.html">Netris 3.5.0 (Oct/24/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.5.0.html#what-s-new-in-netris-version">What’s new in Netris 3.5.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.5.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.5.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.5.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.5.0.html">Netris 3.5.0 (Oct/24/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#what-s-new-in-netris-version">What’s new in Netris 3.5.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.4.4.html">Netris 3.4.4 (Sep/29/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.4.4.html#what-s-new-in-netris-version">What’s new in Netris 3.4.4?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.4.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.4.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.4.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.4.4.html">Netris 3.4.4 (Sep/29/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#what-s-new-in-netris-version">What’s new in Netris 3.4.4?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.4.3.html">Netris 3.4.3 (Nov/09/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.4.3.html#what-s-new-in-netris-version">What’s new in Netris 3.4.3?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.3.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.3.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.4.3.html">Netris 3.4.3 (Nov/09/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.3.html#what-s-new-in-netris-version">What’s new in Netris 3.4.3?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.3.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.3.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.4.0.html">Netris 3.4.0 (Mar/06/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#what-s-new-in-netris-version">What’s new in Netris 3.4.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#new-platform-integration">New Platform Integration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.4.0.html">Netris 3.4.0 (Mar/06/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#what-s-new-in-netris-version">What’s new in Netris 3.4.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#new-platform-integration">New Platform Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.3.0.html">Netris 3.3.0 (Dec/05/2022)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#what-s-new-in-netris-version">What’s new in Netris 3.3.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#various-improvements-and-bug-fixes">Various improvements and bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.3.0.html">Netris 3.3.0 (Dec/05/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#what-s-new-in-netris-version">What’s new in Netris 3.3.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#various-improvements-and-bug-fixes">Various improvements and bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.2.1.html">Netris 3.2.1 (Oct/05/2022)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.2.1.html#what-s-new-in-netris-version">What’s new in Netris 3.2.1?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.1.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.1.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.2.1.html">Netris 3.2.1 (Oct/05/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.1.html#what-s-new-in-netris-version">What’s new in Netris 3.2.1?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.1.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.1.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.2.0.html">Netris 3.2.0 (Sep/22/2022)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.2.0.html#what-s-new-in-netris-version">What’s new in Netris 3.2.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.2.0.html">Netris 3.2.0 (Sep/22/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#what-s-new-in-netris-version">What’s new in Netris 3.2.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.1.0.html">Netris 3.1.0 (Aug/1/2022)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.1.0.html#what-s-new-in-netris-version">What’s new in Netris 3.1.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.1.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.1.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.1.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.1.0.html">Netris 3.1.0 (Aug/1/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#what-s-new-in-netris-version">What’s new in Netris 3.1.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.0.0.html">Netris 3.0.0 (Oct/6/2021)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.0.0.html#what-s-new-in-netris-version">What’s new in Netris 3.0.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.0.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.0.0.html">Netris 3.0.0 (Oct/6/2021)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.0.0.html#what-s-new-in-netris-version">What’s new in Netris 3.0.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.0.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="2.9.0.html">Netris 2.9.0 (Mar/5/2021)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="2.9.0.html#what-s-new-in-netris-version">What’s new in Netris 2.9.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2.9.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/2.9.0.html">Netris 2.9.0 (Mar/5/2021)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.9.0.html#what-s-new-in-netris-version">What’s new in Netris 2.9.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.9.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="2.8.0.html">Netris 2.8.0 (May/13/2020)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="2.8.0.html#what-s-new-in-netris-version">What’s new in Netris 2.8.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2.8.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2.8.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2.8.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/2.8.0.html">Netris 2.8.0 (May/13/2020)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#what-s-new-in-netris-version">What’s new in Netris 2.8.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -1029,118 +1030,283 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">{{product}} {{version}} ({{date}})</li>
+      <li class="breadcrumb-item active">Netris Healthchecks</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/release-notes/release-notes-template.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/monitoring-observability/healthchecks.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
-  </ul>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="netq.html" class="btn btn-neutral float-left" title="NVIDIA NetQ Integration" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ai-netris-host-networking.html" class="btn btn-neutral float-right" title="Netris Host Networking" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <span class="target" id="release-version"></span><section id="product-version-date">
-<h1>{{product}} {{version}} ({{date}})<a class="headerlink" href="#product-version-date" title="Link to this heading"></a></h1>
-<section id="compatibility">
-<h2>Compatibility<a class="headerlink" href="#compatibility" title="Link to this heading"></a></h2>
+  <section id="netris-healthchecks">
+<h1>Netris Healthchecks<a class="headerlink" href="#netris-healthchecks" title="Link to this heading"></a></h1>
+<p>Netris includes built-in healthchecks to monitor the status of various network services and applications. These healthchecks help ensure that your network infrastructure is functioning optimally by providing real-time insights into service availability and performance.</p>
+<p>There are three main categories of healthchecks in Netris:</p>
 <ul class="simple">
-<li><p>Backward compatibility: Compatible / Behavior change / Migration required</p></li>
-<li><p>Deprecations: None / &lt;short line with timeline&gt;</p></li>
-<li><p>Breaking changes: None / &lt;short line; details below if any&gt;</p></li>
+<li><p><strong>Node Health</strong>: Node-level health checks that validate whether a node is functioning properly.</p></li>
+<li><p><strong>Fabric Health</strong>: Control-plane and protocol-level checks that validate the network fabric as a whole is functioning properly.</p></li>
+<li><p><strong>Switch Port Health</strong>: Port-level checks that validate whether a specific switch port is functioning properly.</p></li>
 </ul>
-</section>
-<section id="highlights">
-<h2>Highlights<a class="headerlink" href="#highlights" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Healthchecks</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 11.1%" />
+<col style="width: 11.1%" />
+<col style="width: 16.0%" />
+<col style="width: 24.7%" />
+<col style="width: 18.5%" />
+<col style="width: 18.5%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Check type</p></th>
+<th class="head"><p>Check name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Trigger Logic</p></th>
+<th class="head"><p>Message example</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Node Health</p></td>
+<td><p>check_disk</p></td>
+<td><p>Storage % used</p></td>
+<td><ul class="simple">
+<li><p>OK - below Warning threshold</p></li>
+<li><p>WARNING - above Warning threshold</p></li>
+<li><p>CRITICAL - above Critical threshold</p></li>
+</ul>
+</td>
+<td><p>53% / Used from 5.4G</p></td>
+<td><ul class="simple">
+<li><p>Warning threshold default 70</p></li>
+<li><p>Critical threshold default 80</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Node Health</p></td>
+<td><p>check_fan</p></td>
+<td><p>Fan status</p></td>
+<td><ul class="simple">
+<li><p>OK - OK</p></li>
+<li><p>CRITICAL - ABSENT, FAILED and etc.</p></li>
+</ul>
+</td>
+<td><p>Fan Tray 1, Fan 1(OK), Fan Tray 2, Fan 2(OK)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Node Health</p></td>
+<td><p>check_load</p></td>
+<td><p>Load average</p></td>
+<td><ul class="simple">
+<li><p>OK - below Warning threshold</p></li>
+<li><p>WARNING - above Warning threshold</p></li>
+<li><p>CRITICAL - above Critical threshold</p></li>
+</ul>
+</td>
+<td><p>Load average 0.39, 0.50, 0.66</p></td>
+<td><ul class="simple">
+<li><p>Warning threshold default 3</p></li>
+<li><p>Critical threshold default 4</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Node Health</p></td>
+<td><p>check_memory</p></td>
+<td><p>RAM % used</p></td>
+<td><ul class="simple">
+<li><p>OK - below Warning threshold</p></li>
+<li><p>WARNING - above Warning threshold</p></li>
+<li><p>CRITICAL - above Critical threshold</p></li>
+</ul>
+</td>
+<td><p>89% Used of 1709 MB</p></td>
+<td><ul class="simple">
+<li><p>Warning threshold default 80</p></li>
+<li><p>Critical threshold default 90</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>Node Health</p></td>
+<td><p>check_psu</p></td>
+<td><p>Power Supply status</p></td>
+<td><ul class="simple">
+<li><p>OK - OK</p></li>
+<li><p>CRITICAL - BAD, FAILED and etc.</p></li>
+</ul>
+</td>
+<td><p>PSU1(OK), PSU2(OK)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Node Health</p></td>
+<td><p>check_ratio</p></td>
+<td><p>Detects unusually frequent configuration changes that may indicate abnormal or unstable behavior</p></td>
+<td><ul class="simple">
+<li><p>OK - below Warning threshold</p></li>
+<li><p>WARNING - above Warning threshold</p></li>
+<li><p>CRITICAL - above Critical threshold</p></li>
+</ul>
+</td>
+<td><p>vxpd - 0%</p></td>
+<td><p>Critical threshold default 60</p></td>
+</tr>
+<tr class="row-even"><td><p>Node Health</p></td>
+<td><p>check_temp</p></td>
+<td><p>Temperature sensors status</p></td>
+<td><ul class="simple">
+<li><p>OK - OK</p></li>
+<li><p>CRITICAL - ABSENT, FAILED and etc.</p></li>
+</ul>
+</td>
+<td><p>PSU1 Temp Sensor(OK), PSU2 Temp Sensor(OK)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Node Health</p></td>
+<td><p>health_monitoring</p></td>
+<td><p>Checks whether the node is monitored by Netris</p></td>
+<td><ul class="simple">
+<li><p>OK - Active</p></li>
+<li><p>CRITICAL - Inactive</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Monitoring Active</p></li>
+<li><p>Monitoring Unavailable</p></li>
+</ul>
+</td>
+<td><p>If this check is CRITICAL, other healthchecks for the same nodes are marked Unknown, as the node monitoring if not functioning properly.</p></td>
+</tr>
+<tr class="row-even"><td><p>Node Health</p></td>
+<td><p>sys_service</p></td>
+<td><p>Monitors service status:</p>
 <ul class="simple">
-<li><p>{{high-impact change 1}} — {{customer value/why it matters}}</p></li>
-<li><p>{{high-impact change 2}} — {{customer value}}</p></li>
+<li><p>rsyslog</p></li>
+<li><p>collectd</p></li>
+<li><p>switchd</p></li>
+<li><p>frr</p></li>
+<li><p>vxrd</p></li>
+<li><p>netris-portinfo-server</p></li>
+<li><p>netris-swlb</p></li>
 </ul>
-</section>
-<section id="features">
-<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+</td>
+<td><ul class="simple">
+<li><p>OK - all active and vxrd inactive</p></li>
+<li><p>CRITICAL - one or more is inactive or vxrd active</p></li>
+</ul>
+</td>
+<td><p>rsyslog - active, <a class="reference external" href="mailto:collectd&#37;&#52;&#48;mgmt">collectd<span>&#64;</span>mgmt</a> - active, switchd - active, frr - active, vxrd - inactive, netris-portinfo-server - active, netris-swlb.service - active</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Node Health</p></td>
+<td><p>xc_service</p></td>
+<td><p>Netris agent healthcheck:</p>
 <ul class="simple">
-<li><p>[Area: {{component}}] {{what changed in one sentence}} — {{why it matters}}
-{{Optional detail: 1–2 lines for context or defaults.}}
-Tickets: {{NOT-1234, NOT-5678}}  Docs: {{link or “N/A”}}</p></li>
+<li><p>vxpd-nvue</p></li>
+<li><p>ifstats</p></li>
 </ul>
-</section>
-<section id="improvements">
-<h2>Improvements<a class="headerlink" href="#improvements" title="Link to this heading"></a></h2>
+</td>
+<td><ul class="simple">
+<li><p>OK - OK</p></li>
+<li><p>CRITICAL - any service is down.</p></li>
+</ul>
+</td>
+<td><p>vxpd-nvue - OK, ifstats - OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Node Health</p></td>
+<td><p>xc_timesync</p></td>
+<td><p>NTP sync status</p></td>
+<td><ul class="simple">
+<li><p>OK - NTP is syncronized</p></li>
+<li><p>CRITICAL - NTP is not syncronized</p></li>
+</ul>
+</td>
+<td><p>Time is synchronized</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Fabric Health</p></td>
+<td><p>check_bgp_underlay</p></td>
+<td><p>Switch loopbacks reachability</p></td>
+<td><ul class="simple">
+<li><p>OK - all loopbacks are learned from other switches</p></li>
+<li><p>CRITICAL - not all all loopbacks are learned from other switches</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>All loopback routes present in routing table</p></li>
+<li><p>Missing loopback routes: Host <cite>ns-leaf-0</cite> - 10.2.0.1 is not reachable</p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Fabric Health</p></td>
+<td><p>check_bgp</p></td>
+<td><p>BGP session status on port towards connected neighbor switch</p></td>
+<td><ul class="simple">
+<li><p>OK - State is Established, at least 1 prefix is learned</p></li>
+<li><p>WARNING - State is Established, 0 prefixes learned</p></li>
+<li><p>CRITICAL - State is other than Established</p></li>
+</ul>
+</td>
+<td><p>swp57s0 IPv4(State: Established, Prefix: 4, Uptime: 02:31:46)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Fabric Health</p></td>
+<td><p>check_topology</p></td>
+<td><p>Compares LLDP information with declared Netris Topology.</p></td>
+<td><ul class="simple">
+<li><p>OK - Wiring is consistent with the Topology</p></li>
+<li><p>CRITICAL - LLDP information is not consistent with the Topology</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Wiring is consistent with the Topology</p></li>
+<li><p>swp33s1 is wired to <strong>swp1s1&#64;spine-0-pod00</strong> instead of <strong>swp1s0&#64;spine-0-pod00</strong></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Switch Port Health</p></td>
+<td><p>check_port</p></td>
+<td><p>Checks</p>
 <ul class="simple">
-<li><p>[Area: {{component}}] {{improvement}} — {{benefit}}
-Tickets: {{ids}}  Docs: {{link or “N/A”}}</p></li>
+<li><p>port status</p></li>
+<li><p>% of RX/TX bandwidth utilization</p></li>
+<li><p>laser signal level threshold breach</p></li>
+<li><p>transceiver temperature</p></li>
+<li><p>transceiver presence</p></li>
+<li><p>Bit Error Rate (BER)</p></li>
 </ul>
-</section>
-<section id="bug-fixes">
-<h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>[Area: {{component}}] {{symptom or scenario}} now {{expected behavior}}
-Tickets: {{ids}}</p></li>
+</td>
+<td><ul class="simple">
+<li><p>OK - port is UP, and RX/TX utilization is below Warning threshold, Laser Signal Levels are below Warning threshold, pluggable is present or the port is fixed, temperature below threshold, BER below threshold</p></li>
+<li><p>WARNING - port is UP and (RX/TX utilization is above Warning threshold or Laser Signal Levels are above Warning threshold), or temperature above Warning threshold</p></li>
+<li><p>CRITICAL - port is DOWN, or RX/TX utilization is above Critical threshold, or Laser Signal Levels are above Critical threshold, or pluggable is absent, ore temperature above Critical threshold, or BER above Critical threshold</p></li>
 </ul>
-</section>
-<section id="security">
-<h2>Security<a class="headerlink" href="#security" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>{{CVE/issue identifier if public}} — {{impact summary}} (fixed)</p></li>
+</td>
+<td><p>swp57s0 port is UP, 0% RX Utilized of 1 Gbps, 0% TX Utilized of 1 Gbps</p></td>
+<td><ul class="simple">
+<li><p>TX/RX Warning threshold default 70</p></li>
+<li><p>TX/RX Critical threshold default 90</p></li>
+<li><p>Laser signal levels thresholds are taken from the transceiver</p></li>
 </ul>
-</section>
-<section id="deprecations">
-<h2>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>{{feature/config}} is deprecated; removal in {{YYYY-MM}}. Use {{replacement}}.</p></li>
-</ul>
-</section>
-<section id="breaking-changes">
-<h2>Breaking changes<a class="headerlink" href="#breaking-changes" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>[Area: {{component}}] {{what broke/changed}} — {{reason}}
-Migration:
-1. {{step}}
-2. {{step}}</p></li>
-</ul>
-</section>
-<section id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>[Area: {{component}}] {{issue description / when it appears}}
-Workaround: {{steps}}  Status: {{investigating/fix in next release}}</p></li>
-</ul>
-</section>
-<section id="upgrade-notes">
-<h2>Upgrade notes<a class="headerlink" href="#upgrade-notes" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>Customer action required: {{Yes/No}}</p></li>
-<li><p>Steps:
-1. {{step}}
-2. {{step}}</p></li>
-</ul>
-</section>
-<section id="component-versions-artifacts">
-<h2>Component versions &amp; artifacts<a class="headerlink" href="#component-versions-artifacts" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>Controller: {{x.y.z}} (build {{hash/ID}})</p></li>
-<li><p>SoftGate: {{x.y.z}}</p></li>
-<li><p>Switch Agent(s): {{list}}</p></li>
-<li><p>Checksums / artifact index: {{link}}</p></li>
-</ul>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="../supported-platform-matrix.html"><span class="doc">Supported Platforms</span></a></p></li>
-<li><p><a class="reference internal" href="../supported-switch-hardware.html"><span class="doc">Supported Switch Hardware</span></a></p></li>
-<li><p>Schedule a <a class="reference external" href="https://www.netris.io/demo/">Demo</a></p></li>
-<li><p>Follow us on <a class="reference external" href="https://www.linkedin.com/company/netrisio/">LinkedIn</a></p></li>
-<li><p>Follow us on <a class="reference external" href="https://x.com/netris_io">X-Twitter</a></p></li>
-<li><p>Join our <a class="reference external" href="https://join.slack.com/t/netris/shared_invite/zt-3ixzkhe6s-Zy_He7mek9jbe_T2wondww">Slack</a></p></li>
-</ul>
-</section>
+</td>
+</tr>
+</tbody>
+</table>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="netq.html" class="btn btn-neutral float-left" title="NVIDIA NetQ Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ai-netris-host-networking.html" class="btn btn-neutral float-right" title="Netris Host Networking" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

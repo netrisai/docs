@@ -225,7 +225,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id6">2.1 Import Necessary Container Images</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#upgrade-netris-controller">2.3 Upgrade Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
@@ -693,18 +694,16 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/index.html">Monitoring &amp; Observability</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/healthchecks.html">Netris Healthchecks</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -880,7 +879,7 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="release-notes/4.6.0.html">Netris 4.6.0 (Jan/31/2026)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.6.0.html">Netris 4.6.0 (Feb/10/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.6.0.html#what-s-new-in-netris-version">What’s new in Netris 4.6.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.6.0.html#features">Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.6.0.html#enhancements">Enhancements</a></li>
@@ -1610,8 +1609,15 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </pre></div>
 </div>
 </section>
+<section id="database-backup">
+<h3>2.3 Database backup<a class="headerlink" href="#database-backup" title="Link to this heading"></a></h3>
+<p>To take database snapshot run the following command on the <strong>first node</strong>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>netris-controller-ha-mariadb-ha-0<span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;mysqldump -h netris-controller-ha-mariadb -u netris -pchangeme netris&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>db-snapshot-<span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d-%H-%M-%S<span class="k">)</span>.sql
+</pre></div>
+</div>
+</section>
 <section id="upgrade-netris-controller">
-<h3>2.3 Upgrade Netris Controller<a class="headerlink" href="#upgrade-netris-controller" title="Link to this heading"></a></h3>
+<h3>2.4 Upgrade Netris Controller<a class="headerlink" href="#upgrade-netris-controller" title="Link to this heading"></a></h3>
 <p>On the <strong>first node</strong> only:</p>
 <ol class="arabic simple">
 <li><p>Upgrade the <strong>HelmChart</strong> manifest:</p></li>

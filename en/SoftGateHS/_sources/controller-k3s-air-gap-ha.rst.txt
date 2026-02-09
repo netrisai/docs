@@ -689,7 +689,17 @@ Copy your Helm charts to the K3s static files directory on **all three nodes**:
   sudo cp files/charts/* /var/lib/rancher/k3s/server/static/charts/
 
 
-2.3 Upgrade Netris Controller
+2.3 Database backup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To take database snapshot run the following command on the **first node**:
+
+.. code-block:: shell
+
+  kubectl -n netris-controller exec -it netris-controller-ha-mariadb-ha-0 -- bash -c 'mysqldump -h netris-controller-ha-mariadb -u netris -pchangeme netris' > db-snapshot-$(date +%Y-%m-%d-%H-%M-%S).sql
+
+
+2.4 Upgrade Netris Controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On the **first node** only:
