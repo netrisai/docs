@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Netris Sandbox &mdash; Netris Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/styles.css?v=a2b65874" />
+
+  
+    <link rel="shortcut icon" href="../../_static/netris_favicon.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=016f71bc"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+<script type="text/javascript">
+   $(document).ready(function () {
+    $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
+  });
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffffff" >
+
+
+  <a href="https://www.netris.ai">
+
+
+
+  
+  <img src="../../_static/logo-600.png" class="logo" alt="Logo"/>
+
+</a>
+
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Generic Netris Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/installing-netris-controller.html">Installing a Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/upgrading-netris.html">Netris Upgrade and Rollback Procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/upgrading-netris.html#upgrade-procedure">Upgrade Procedure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/upgrading-netris.html#rollback-procedure">Rollback Procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html#netris-vpc-for-equinix-metal-tutorials">Netris VPC for Equinix Metal Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/equinix-metal-api-integration-enablement.html">Equinix Metal API integration enablement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/adding-netris-softgate-nodes-in-equinix-metal.html">Provisioning Netris SoftGate nodes in Equinix Metal Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/activating-bgp-on-equinix-metal-project.html">Activating BGP on Equinix Metal Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/enable-services-on-equinix-metal-project.html">Enabling services (NAT, V-Net, Load Balancer, IP pools)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/enable-services-on-equinix-metal-project.html#requesting-new-public-ip-address-block">1) Requesting new Public IP address block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/enable-services-on-equinix-metal-project.html#enable-on-demand-elastic-load-balancer">2) Enable on-demand (elastic) Load Balancer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/enable-services-on-equinix-metal-project.html#enable-v-net">3) Enable V-Net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/enable-services-on-equinix-metal-project.html#enable-nat">4) Enable NAT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/using-vnet-in-equinix-metal-project.html">Using V-Net (isolated virtual network) services in Equinix Metal Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/using-l4-load-balancer.html">Using on-demand (elastic) L4 Load Balancer service</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud Native Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../kubernetes-integration.html">Kubernetes Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes-integration.html#install-netris-operator">Install Netris Operator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes-integration.html#helm-chart-method">Helm Chart Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes-integration.html#regular-manifest-method">Regular Manifest Method</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes-integration.html#using-type-loadbalancer">Using Type ‘LoadBalancer’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes-integration.html#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes-integration.html#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes-integration.html#l4lb-custom-resource">L4LB Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes-integration.html#v-net-custom-resource">V-Net Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes-integration.html#bgp-custom-resource">BGP Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes-integration.html#importing-existing-resources-from-netris-controller-to-kubernetes">Importing existing resources from Netris Controller to Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes-integration.html#reclaim-policy">Reclaim Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes-integration.html#calico-cni-integration">Calico CNI Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes-integration.html#disabling-netris-calico-integration">Disabling Netris-Calico Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../terraform-integration.html">Terraform: Netris provider</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../terraform-integration.html#install-terraform">Install Terraform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../terraform-integration.html#create-a-directory-for-terraform-files">Create a directory for Terraform files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../terraform-integration.html#configure-a-provider">Configure a provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../terraform-integration.html#prepare-an-infrastructure-plan">Prepare an infrastructure plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../terraform-integration.html#create-resources">Create resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../terraform-integration.html#delete-resources">Delete resources</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Netris Fundamentals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction to Netris</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../netris-architecture.html">Netris Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../netris-architecture.html#netris-controller">Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netris-architecture.html#netris-switch-agent">Netris Switch Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netris-architecture.html#netris-softgate">Netris SoftGate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../supported-networks.html">Reference Network Architectures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../supported-networks.html#unmanaged-switch-netris-softgate">Unmanaged Switch &amp; Netris SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../supported-networks.html#unmanaged-switch-softgate-ha">Unmanaged Switch &amp; SoftGate (HA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../supported-networks.html#netris-managed-switch-softgate-ha">Netris Managed Switch &amp; SoftGate (HA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../supported-networks.html#netris-managed-switch-softgate-scalable-data-center-ha">Netris Managed Switch &amp; SoftGate scalable data center (HA)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Controller Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-k3s-installation.html">Netris Controller installation on a generic Linux host</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k3s-installation.html#linux-host-requirements">Linux Host requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k3s-installation.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../controller-k3s-installation.html#installation-with-the-specific-host-name">Installation with the specific host name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../controller-k3s-installation.html#installation-with-the-let-s-encrypt-ssl">Installation with the Let’s Encrypt SSL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../controller-k3s-installation.html#installation-with-the-custom-ssl-issuer">Installation with the Custom SSL Issuer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k3s-installation.html#upgrading">Upgrading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k3s-installation.html#uninstalling">Uninstalling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k3s-installation.html#backup-and-restore">Backup and Restore</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../controller-k3s-installation.html#backup">Backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../controller-k3s-installation.html#restore">Restore</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../controller-k8s-installation.html">Helm Chart Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../switch-agent-installation.html">Switch Agent Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../switch-agent-installation.html#prerequisite-steps">Prerequisite Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../switch-agent-installation.html#nvidia-cumulus-linux-devices">Nvidia Cumulus Linux Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../switch-agent-installation.html#configure-the-oob-management-ip-address">Configure the OOB Management IP address</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../switch-agent-installation.html#configure-nvidia-cumulus-linux-license">Configure Nvidia Cumulus Linux License</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch-agent-installation.html#ubuntu-switchdev-devices">Ubuntu SwitchDev Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../switch-agent-installation.html#id2">Configure the OOB Management IP address</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../switch-agent-installation.html#edgecore-sonic-devices">EdgeCore SONiC Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../switch-agent-installation.html#id3">Configure the OOB Management IP address</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../switch-agent-installation.html#install-the-netris-agent">Install the Netris Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../SoftGate-installation.html">SoftGate Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate-installation.html#minimum-hardware-requirements">Minimum Hardware Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate-installation.html#install-the-netris-agent">Install the Netris Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../SoftGate-PRO-installation.html">SoftGate PRO Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate-PRO-installation.html#minimum-hardware-requirements">Minimum Hardware Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate-PRO-installation.html#bios-configuration">BIOS Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SoftGate-PRO-installation.html#install-the-netris-agent">Install the Netris Agent</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Switch-fabric Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../definitions.html">Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ipam.html">IP Address Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ipam.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ipam.html#add-an-allocation">Add an Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ipam.html#add-a-subnet">Add a Subnet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../topology-management.html">Inventory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../topology-management.html#inventory-profiles">Inventory Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../topology-management.html#adding-switches">Adding Switches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../topology-management.html#adding-softgates">Adding SoftGates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../topology-management.html#viewing-inventory">Viewing Inventory</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../topology-management.html#topology-manager">Topology Manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../topology-management.html#adding-links">Adding Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../topology-management.html#hairpin-links-nvidia-cumulus-only">Hairpin Links (Nvidia Cumulus only)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../switch-ports.html">Switch Ports</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html">Basic BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#adding-bgp-peers">Adding BGP Peers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html#advanced-bgp">Advanced BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#bgp-objects">BGP Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../network-policies.html#ipv4-prefix">IPv4 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../network-policies.html#ipv6-prefix">IPv6 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../network-policies.html#community">Community</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#bgp-route-maps">BGP route-maps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html#static-routing">Static Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html#nat">NAT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#enabling-nat">Enabling NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../network-policies.html#defining-nat-rules">Defining NAT rules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html#sitemesh">SiteMesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network-policies.html#looking-glass">Looking Glass</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../vnet.html">V-Net</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vnet.html#v-net-fields">V-Net Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../l3-load-balancer.html">L3 Load Balancer (Anycast LB)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../l3-load-balancer.html#creating-an-l3-load-balancer">Creating an L3 Load Balancer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../l4-load-balancer.html">L4 Load Balancer (L4LB)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../l4-load-balancer.html#enabling-l4lb-service">Enabling L4LB service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../l4-load-balancer.html#consuming-l4lb-service">Consuming L4LB service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../acls.html">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../acls.html#acl-default-policy">ACL Default Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../acls.html#acl-rules">ACL Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../acls.html#acl-approval-workflow">ACL Approval Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../acls.html#acl-processing-order">ACL Processing Order</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../roh.html">ROH (Routing on the Host)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../roh.html#adding-roh-hosts">Adding ROH Hosts</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visibility.html">Visibility (Telescope)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../visibility.html#graph-boards">Graph Boards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visibility.html#api-logs">API Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visibility.html#dashboard">Dashboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../accounts.html">Accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#permission-groups">Permission Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../accounts.html#user-roles">User Roles</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Updates</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../softgate-performance.html">SoftGate Performance</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffffff" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Netris docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!--
+<div class="header-wrapper">
+    <div>
+        <a class="underscore-transition" href="https://www.netris.ai/overview/">
+            Product Overview
+        </a>
+        <a class="underscore-transition" href="https://www.netris.ai/start/">
+            Get started
+        </a>
+        <a class="underscore-transition" href="https://www.netris.ai/category/blog/">
+            Blog
+        </a>
+    </div>
+    <a class="button" href="https://netris.ai/demo">
+        Schedule a demo
+    </a>
+</div>
+--><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to Netris Sandbox</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/netrisai/docs/blob/master/sandbox/Sandbox15/sandbox-info.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-netris-sandbox">
+<h1>Welcome to Netris Sandbox<a class="headerlink" href="#welcome-to-netris-sandbox" title="Link to this heading"></a></h1>
+<p>Netris Sandbox is a ready-to-use environment for testing Netris automatic NetOps.
+We have pre-created some example services for you, details of which can be found in the <a class="reference internal" href="configurations.html#s15-pre-configured"><span class="std std-ref">“Provided Example Configurations”</span></a> document. Feel free to view, edit, delete, and create new services. Reach out to us if you have any questions at <a class="reference external" href="https://netris.ai/slack">https://netris.ai/slack</a></p>
+<p>The credentials for the sandbox have been provided to you by email in response to your sandbox request.</p>
+<p>This environment includes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../netris-architecture.html#netris-controller-def"><span class="std std-ref">Netris Controller</span></a>: A cloud-hosted Netris controller, loaded with examples.</p></li>
+<li><p><a class="reference internal" href="../../netris-architecture.html#netris-sw-agent"><span class="std std-ref">Switching fabric</span></a>: Two spine switches and four leaf switches, all Netris-operated.</p></li>
+<li><p><a class="reference internal" href="../../netris-architecture.html#netris-sg-agent"><span class="std std-ref">SoftGates</span></a>: Two SoftGate gateway nodes for border routing, L4 Load Balancing, site-to-site VPN, and NAT. Both Netris-operated.</p></li>
+<li><p><strong>Linux servers</strong>: Five Linux servers, with root access where you can run any applications for your tests.</p></li>
+<li><p><strong>Kubernetes cluster</strong>: A 3 node Kubernetes cluster, user integratable with Netris controller, feel free to deploy any applications for your tests.</p></li>
+<li><p><strong>ISP</strong>: Internet upstream with IRIS ISP, providing the sandbox Internet connectivity with real-world routable public IP addresses.</p></li>
+</ul>
+<section id="topology-diagram">
+<span id="s15-topology"></span><h2>Topology diagram<a class="headerlink" href="#topology-diagram" title="Link to this heading"></a></h2>
+<a class="reference external image-reference" href="../../_images/sandbox_topology.png"><img alt="Sandbox Topology" class="align-center" src="../../_images/sandbox_topology.png" />
+</a>
+</section>
+<section id="netris-controller">
+<h2>Netris Controller<a class="headerlink" href="#netris-controller" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://sandbox15.netris.ai">https://sandbox15.netris.ai</a></p>
+</section>
+<section id="linux-servers">
+<h2>Linux servers<a class="headerlink" href="#linux-servers" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>Example pre-configured Netris services:</dt><dd><ul class="simple">
+<li><p><strong>srv01-nyc</strong>, <strong>srv02-nyc</strong>, <strong>srv03-nyc</strong> &amp; <strong>Netris Controller</strong> - are consuming <a class="reference internal" href="../../roh.html#roh-def"><span class="std std-ref">“ROH (Routing on the Host)”</span></a> Netris example service, see <strong>Services → ROH.</strong></p></li>
+<li><p><strong>srv01-nyc</strong>, <strong>srv02-nyc</strong> - are behind <a class="reference internal" href="../../l3-load-balancer.html#l3lb-def"><span class="std std-ref">“Anycast L3 load balancer”</span></a>, see <strong>Services → Load Balancer</strong>.</p></li>
+<li><p><strong>srv04-nyc</strong>, <strong>srv05-nyc</strong> - are consuming <a class="reference internal" href="../../vnet.html#v-net-def"><span class="std std-ref">“V-NET (routed VXLAN)”</span></a> Netris service, see <strong>Services → V-NET</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Accessing Linux servers:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">srv01-nyc: ssh demo@50.117.27.86 -p 30061</span>
+<span class="go">srv02-nyc: ssh demo@50.117.27.86 -p 30062</span>
+<span class="go">srv03-nyc: ssh demo@50.117.27.86 -p 30063</span>
+<span class="go">srv04-nyc: ssh demo@50.117.27.86 -p 30064</span>
+<span class="go">srv05-nyc: ssh demo@50.117.27.86 -p 30065</span>
+</pre></div>
+</div>
+</section>
+<section id="kubernetes-cluster">
+<h2>Kubernetes cluster<a class="headerlink" href="#kubernetes-cluster" title="Link to this heading"></a></h2>
+<p>This sandbox provides an up and running 3 node Kubernetes cluster. You can integrate it with the Netris controller by installing <strong>netris-operator</strong>. Step-by-step instructions are included in the <a class="reference internal" href="onprem-k8s.html#s15-k8s"><span class="std std-ref">“Learn Netris operations with Kubernetes”</span></a> document.</p>
+</section>
+<section id="upstream-isp">
+<h2>Upstream ISP<a class="headerlink" href="#upstream-isp" title="Link to this heading"></a></h2>
+<p>This sandbox provides an upstream ISP service with real-world Internet routing configured through <a class="reference internal" href="../../network-policies.html#bgp-def"><span class="std std-ref">“BGP”</span></a>.
+There are two pre-configured examples under <strong>NET → E-BGP</strong> , one using IPv4 and the other using IPv6, which are advertising the public IP subnets belonging to the sandbox to the upstream ISP IRIS.</p>
+<p>ISP settings:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(pre-configured examples)</span>
+<span class="go">Name:                           iris-isp1-ipv4-example</span>
+<span class="go">BGP Router:                     Softage1</span>
+<span class="go">Switch Port:                    swp16@sw01-nyc</span>
+<span class="go">Neighbor AS:                    65007</span>
+<span class="go">VLAN ID:                        1151</span>
+<span class="go">Local Address:                  45.38.161.210/30</span>
+<span class="go">Remote Address:                 45.38.161.209/30</span>
+<span class="go">Prefix List Inbound:            permit 0.0.0.0/0</span>
+<span class="go">Prefix List Outbound:           permit 45.38.161.192/28 le 32</span>
+
+<span class="go">Name:                           iris-isp1-ipv6-example</span>
+<span class="go">BGP Router:                     Softage1</span>
+<span class="go">Switch Port:                    swp16@sw01-nyc</span>
+<span class="go">Neighbor AS:                    65007</span>
+<span class="go">VLAN ID:                        1151</span>
+<span class="go">Local Address:                  2607:f358:11:ffc0::1f/127</span>
+<span class="go">Remote Address:                 2607:f358:11:ffc0::1e/127</span>
+<span class="go">Prefix List Inbound:            permit ::/0</span>
+<span class="go">Prefix List Outbound:           permit 2607:f358:11:ffcf::/64</span>
+
+<span class="gp gp-VirtualEnv">(configurable by you)</span>
+<span class="go">BGP Router:                     Softage2</span>
+<span class="go">Switch Port:                    swp16@sw02-nyc</span>
+<span class="go">Neighbor AS:                    65007</span>
+<span class="go">VLAN ID:                        1152</span>
+<span class="go">Local Address:                  45.38.161.214/30</span>
+<span class="go">Remote Address:                 45.38.161.213/30</span>
+<span class="go">Prefix List Inbound:            permit 0.0.0.0/0</span>
+<span class="go">Prefix List Outbound:           permit 45.38.161.192/28 le 32</span>
+</pre></div>
+</div>
+</section>
+<section id="networks-used">
+<h2>Networks Used<a class="headerlink" href="#networks-used" title="Link to this heading"></a></h2>
+<p>Allocations and subnets defined under <a class="reference internal" href="../../ipam.html#ipam-def"><span class="std std-ref">“IPAM”</span></a>, see <strong>Net → IPAM</strong>.</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">| MANAGEMENT Allocation:       10.254.45.0/24</span>
+<span class="go">|___ MANAGEMENT Subnet:        10.254.45.0/24</span>
+
+<span class="go">| LOOPBACK Allocation:         10.254.46.0/24</span>
+<span class="go">|___ LOOPBACK Subnet:          10.254.46.0/24</span>
+
+<span class="go">| ROH Allocation:              192.168.44.0/24</span>
+<span class="go">|___ ROH Subnet:               192.168.44.0/24</span>
+
+<span class="go">| EXAMPLE Allocation:          192.168.45.0/24</span>
+<span class="go">|___ EXAMPLE Subnet:           192.168.45.0/24</span>
+
+<span class="go">| CUSTOMER Allocation:         192.168.46.0/24</span>
+<span class="go">|___ CUSTOMER Subnet:          192.168.46.0/24</span>
+
+<span class="go">| K8s Allocation:              192.168.110.0/24</span>
+<span class="go">|___ K8s Subnet:               192.168.110.0/24</span>
+
+<span class="go">| PUBLIC IPv4 Allocation:      45.38.161.192/28</span>
+<span class="go">|___ PUBLIC LOOPBACK Subnet:   45.38.161.192/30</span>
+<span class="go">|___ NAT Subnet:               45.38.161.196/30</span>
+<span class="go">|___ L3 LOAD BALANCER Subnet:  45.38.161.200/30</span>
+<span class="go">|___ L4 LOAD BALANCER Subnet:  45.38.161.204/30</span>
+
+<span class="go">| EXAMPLE IPv6 Allocation:     2607:f358:11:ffcf::/64</span>
+<span class="go">|___ EXAMPLE IPv6 Subnet:      2607:f358:11:ffcf::/64</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Netris.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Alternate Versions</span>
+      v: 3.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/docs/en/2.9/">2.9</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/docs/en/3.0/">3.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/docs/en/3.4/">3.4</a></dd>
+          
+        
+          
+          <dd><a href="/docs/en/4.5.3/">4.5.3</a></dd>
+          
+        
+          
+          <dd><a href="/docs/en/latest/">latest</a></dd>
+          
+        
+      </dl>
+      
+      
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="/docs/manifests/en/3.0/netris-docs_en_3.0.pdf">pdf</a></dd>
+        
+          <dd><a href="/docs/manifests/en/3.0/netris-docs_en_3.0.epub">epub</a></dd>
+        
+      </dl>
+      
+      
+      <hr/>
+      Free theme by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-152905529-2', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
