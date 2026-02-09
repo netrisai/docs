@@ -98,7 +98,7 @@ There are three main categories of healthchecks in Netris:
      - 
        - Monitoring Active
        - Monitoring Unavailable
-     -
+     - If this check is CRITICAL, other healthchecks for the same nodes are marked Unknown, as the node monitoring if not functioning properly.
    * - Node Health
      - sys_service
      - Monitors service status:
