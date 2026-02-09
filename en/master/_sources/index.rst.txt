@@ -70,7 +70,9 @@ You are welcome to join our community Slack channel (see button at the top) to g
    :maxdepth: 2
    :caption: Monitoring & Observability
 
-   monitoring-observability/index
+   monitoring-observability/topology-validation
+   monitoring-observability/netq
+   monitoring-observability/healthchecks
 
 .. toctree::
    :maxdepth: 2
