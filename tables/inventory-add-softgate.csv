@@ -1,9 +1,0 @@
-**Name**,Descriptive name
-**Owner Tenant**,Tenant(typically Admin); who administers this node
-**Description**,Free text description
-**Hardware Type**,Select **SoftGate**
-**Site**,The data center where the current SoftGate node belongs.
-**Profile**,Inventory Profile describing the timezone; DNS; NTP; and Security features
-**IP Address**,IPv4 address for the loopback interface
-**Management IP address**,IPv4 address for the out of band management interface
-**Add Links**,Used for describing physical connections between switches and SoftGates

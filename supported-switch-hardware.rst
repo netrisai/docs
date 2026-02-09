@@ -56,32 +56,11 @@ Netris SoftGate HS (Multi-VPC version)
 
 A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward the stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can be scaled horizontally by deploying more servers as CPU & RAM utilization necessitates.
 
-Server specs:
-
-.. list-table::
+.. csv-table:: SoftGate HS Hardware Requirements
+   :file: tables/softgate-hs-hardware.csv
+   :widths: 30, 30, 30
    :header-rows: 0
-
-   * -
-     - **Minimum**
-     - **Recommended**
-   * - CPU (Modern Intel/AMD X86)
-     - 32 Cores
-     - 64 Cores
-   * - RAM
-     - 128 GB
-     - 256 GB
-   * - NIC prod
-     - 2x 10GbE
-     - 2x 25GbE
-   * - NIC OOB
-     - 1x 1GbE
-     - 1x 1GbE
-   * - Disk
-     - 300 GB
-     - 300 GB
-   * - OS
-     - Ubuntu 24.04
-     - Ubuntu 24.04
+   :align: center
 
 .. _supported-switch-hardware:
 
