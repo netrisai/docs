@@ -21,6 +21,7 @@ Features
 - **Spectrum-X 1.3 Reference Architecture compatible.**
 - **Netris Host Networking plugin (NHN)** now supports ifupdown and netplan.
 - **Controller self-monitoring.** The controller now shows the health status of each node in the controller HA cluster and each service running on the controller.
+- **Controller Management Address** can now be explicitly specified and is correctly reflected in the “one-liner” install command.
 
 Bug fixes
 ---------
@@ -42,7 +43,7 @@ Bug fixes
 - Arista. Fixed VRF leaking not working properly in some cases.
 - AutoLAG. Now only applies to V-Net member ports.
 - SoftGate. Fixed crashing from configuring SNAT /32 with a blackhole.
-- SoftGate. Fixed ACL bug where ACLs wouldn’t install facing public connections.
+- SoftGate. Fixed ACL bug where ACLs wouldn't install facing public connections.
 - VPC peering. Fixed error when configuring VPC peering with the default VPC.
 - Server Cluster. Fixed subnet creation when one already exists.
 - Server Cluster. Fixed erroneous deletions of objects not created by the Server Cluster.
@@ -52,6 +53,7 @@ Bug fixes
 - Fixed agent stuck in loop when creating/editing SNAT rules.
 - Fixed signal level reporting for 8 lane optics.
 - NVUE. Fixed optical graphs under interfaces showing no data.
+- Fixed NHN plugin ifupdown and netplan support in Spectrum-X v1.2
 
 References
 ----------
