@@ -1,0 +1,62 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 3.5.0
+.. _release_3.5.0:
+
+.. meta::
+    :description: Netris Release Notes |version|
+
+Netris |version| (Oct/24/2023)
+==================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+1. ACL Port Groups in NAT section:
+
+    Now, it’s possible to create a DNAT rule with multiple ports using “ACL Port Groups.”
+2. NAT in Masquerade mode follows the default gateway on SoftGate:
+
+    When using NAT in Masquerade mode, the specified private IP subnets will share SoftGate node’s Internet connection, including Internet connection through management interface, or any physical or logical interface of SoftGate. Most commonly used for situations when a public IP subnet for SNAT is not available.
+3. Static IP/GW configuration through PhoenixNAP portal:
+
+    When deploying a server in the PhoenixNAP with a static IP and default gateway and selecting Netris V-Net as a private network, Netris will automatically include the new server into the V-Net. Commonly used when IaC (Infrastructure as Code) is used for deployment or when server IP configuration is desired to be configured statically through PhoenixNAP portal instead of DHCP.
+4. New locations (Metros) of Equinix Metal:
+
+    he following locations (Metros) of Equinix Metal are added in Netris:
+
+        - Montreal
+        - Helsinki
+        - Stockholm
+        - Melbourne
+        - Osaka
+        - Manchester
+5. Improved Netris Controller API Performance:
+
+    Optimized API operations for faster and more efficient interactions, contributing to overall system responsiveness.
+6. Site-Mesh (site-to-site VPN) failover time improvement:
+
+    Timers for the BGP session over “Site Mesh” have been adjusted for faster service recovery in case of a SoftGate failure.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Previously creation of a public (External) ACL required approval even if the user had a “permit all” or write access to a permission group with “​​External ACL.”
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
