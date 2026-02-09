@@ -15,7 +15,7 @@ There are three main categories of healthchecks in Netris:
 
 .. list-table:: Healthchecks
    :header-rows: 1
-   :widths: 9 9 13 20 15 13
+   :widths: 9 9 13 20 15 15
 
    * - Check type
      - Check name
@@ -91,23 +91,36 @@ There are three main categories of healthchecks in Netris:
      -
    * - Node Health
      - health_monitoring
-     - Checks that Netris self monitoring is active
+     - Checks whether the node is monitored by Netris
      -
        - OK - Active
        - CRITICAL - Inactive
-     - Monitoring Active
+     - 
+       - Monitoring Active
+       - Monitoring Unavailable
      -
    * - Node Health
      - sys_service
-     - Critical services status. Monitored services: rsyslog, collectd, switchd, frr, vxrd,  netris-portinfo-server, netris-swlb
+     - Monitors service status:
+     
+       - rsyslog
+       - collectd
+       - switchd
+       - frr
+       - vxrd
+       - netris-portinfo-server
+       - netris-swlb
      -
-       - OK - all active (vxrd inactive)
+       - OK - all active and vxrd inactive
        - CRITICAL - one or more is inactive or vxrd active
      - rsyslog - active, collectd@mgmt - active, switchd - active, frr - active, vxrd - inactive, netris-portinfo-server - active, netris-swlb.service - active
      -
    * - Node Health
      - xc_service
-     - Netris agent services healthcheck: vxpd-nvue, ifstats
+     - Netris agent healthcheck:
+     
+       - vxpd-nvue
+       - ifstats
      -
        - OK - OK
        - CRITICAL - any service is down.
@@ -123,16 +136,17 @@ There are three main categories of healthchecks in Netris:
      -
    * - Fabric Health
      - check_bgp_underlay
-     - Checks that switch loopbacks are properly learned from other switches
+     - Switch loopbacks reachability
      -
        - OK - all loopbacks are learned from other switches
        - CRITICAL - not all all loopbacks are learned from other switches
-     - - All loopback routes present in routing table
+     - 
+       - All loopback routes present in routing table
        - Missing loopback routes: Host `ns-leaf-0` - 10.2.0.1 is not reachable
      -
    * - Fabric Health
      - check_bgp
-     - Checks BGP session status on the port towards connected neighboring switch
+     - BGP session status on port towards connected neighbor switch
      -
        - OK - State is Established, at least 1 prefix is learned
        - WARNING - State is Established, 0 prefixes learned
@@ -141,15 +155,24 @@ There are three main categories of healthchecks in Netris:
      -
    * - Fabric Health
      - check_topology
-     - Checks that LLDP information from the port is consistent with Netris Topology. Switch hostname and port from the Netris Topology must match with LLDP.
+     - Compares LLDP information with declared Netris Topology.
      -
        - OK - Wiring is consistent with the Topology
        - CRITICAL - LLDP information is not consistent with the Topology
-     - OK - Wiring is consistent with the Topology
+     - 
+       - Wiring is consistent with the Topology
+       - swp33s1 is wired to **swp1s1@spine-0-pod00** instead of **swp1s0@spine-0-pod00**
      -
    * - Switch Port Health
      - check_port
-     - Checks port status, % of RX/TX bandwidth utilization, laser signal level threshold breach, transceiver temperature, transceiver presence, Bit Error Rate (BER)
+     - Checks
+
+       - port status
+       - % of RX/TX bandwidth utilization
+       - laser signal level threshold breach
+       - transceiver temperature
+       - transceiver presence
+       - Bit Error Rate (BER)
      -
        - OK - port is UP, and RX/TX utilization is below Warning threshold, Laser Signal Levels are below Warning threshold, pluggable is present or the port is fixed, temperature below threshold, BER below threshold
        - WARNING - port is UP and (RX/TX utilization is above Warning threshold or Laser Signal Levels are above Warning threshold), or temperature above Warning threshold

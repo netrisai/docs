@@ -986,12 +986,12 @@
 <table class="docutils align-default" id="id1">
 <caption><span class="caption-text">Healthchecks</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <colgroup>
-<col style="width: 11.4%" />
-<col style="width: 11.4%" />
-<col style="width: 16.5%" />
-<col style="width: 25.3%" />
-<col style="width: 19.0%" />
-<col style="width: 16.5%" />
+<col style="width: 11.1%" />
+<col style="width: 11.1%" />
+<col style="width: 16.0%" />
+<col style="width: 24.7%" />
+<col style="width: 18.5%" />
+<col style="width: 18.5%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Check type</p></th>
@@ -1098,20 +1098,34 @@
 </tr>
 <tr class="row-odd"><td><p>Node Health</p></td>
 <td><p>health_monitoring</p></td>
-<td><p>Checks that Netris self monitoring is active</p></td>
+<td><p>Checks whether the node is monitored by Netris</p></td>
 <td><ul class="simple">
 <li><p>OK - Active</p></li>
 <li><p>CRITICAL - Inactive</p></li>
 </ul>
 </td>
-<td><p>Monitoring Active</p></td>
+<td><ul class="simple">
+<li><p>Monitoring Active</p></li>
+<li><p>Monitoring Unavailable</p></li>
+</ul>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>Node Health</p></td>
 <td><p>sys_service</p></td>
-<td><p>Critical services status. Monitored services: rsyslog, collectd, switchd, frr, vxrd,  netris-portinfo-server, netris-swlb</p></td>
+<td><p>Monitors service status:</p>
+<ul class="simple">
+<li><p>rsyslog</p></li>
+<li><p>collectd</p></li>
+<li><p>switchd</p></li>
+<li><p>frr</p></li>
+<li><p>vxrd</p></li>
+<li><p>netris-portinfo-server</p></li>
+<li><p>netris-swlb</p></li>
+</ul>
+</td>
 <td><ul class="simple">
-<li><p>OK - all active (vxrd inactive)</p></li>
+<li><p>OK - all active and vxrd inactive</p></li>
 <li><p>CRITICAL - one or more is inactive or vxrd active</p></li>
 </ul>
 </td>
@@ -1120,7 +1134,12 @@
 </tr>
 <tr class="row-odd"><td><p>Node Health</p></td>
 <td><p>xc_service</p></td>
-<td><p>Netris agent services healthcheck: vxpd-nvue, ifstats</p></td>
+<td><p>Netris agent healthcheck:</p>
+<ul class="simple">
+<li><p>vxpd-nvue</p></li>
+<li><p>ifstats</p></li>
+</ul>
+</td>
 <td><ul class="simple">
 <li><p>OK - OK</p></li>
 <li><p>CRITICAL - any service is down.</p></li>
@@ -1142,7 +1161,7 @@
 </tr>
 <tr class="row-odd"><td><p>Fabric Health</p></td>
 <td><p>check_bgp_underlay</p></td>
-<td><p>Checks that switch loopbacks are properly learned from other switches</p></td>
+<td><p>Switch loopbacks reachability</p></td>
 <td><ul class="simple">
 <li><p>OK - all loopbacks are learned from other switches</p></li>
 <li><p>CRITICAL - not all all loopbacks are learned from other switches</p></li>
@@ -1157,7 +1176,7 @@
 </tr>
 <tr class="row-even"><td><p>Fabric Health</p></td>
 <td><p>check_bgp</p></td>
-<td><p>Checks BGP session status on the port towards connected neighboring switch</p></td>
+<td><p>BGP session status on port towards connected neighbor switch</p></td>
 <td><ul class="simple">
 <li><p>OK - State is Established, at least 1 prefix is learned</p></li>
 <li><p>WARNING - State is Established, 0 prefixes learned</p></li>
@@ -1169,18 +1188,31 @@
 </tr>
 <tr class="row-odd"><td><p>Fabric Health</p></td>
 <td><p>check_topology</p></td>
-<td><p>Checks that LLDP information from the port is consistent with Netris Topology. Switch hostname and port from the Netris Topology must match with LLDP.</p></td>
+<td><p>Compares LLDP information with declared Netris Topology.</p></td>
 <td><ul class="simple">
 <li><p>OK - Wiring is consistent with the Topology</p></li>
 <li><p>CRITICAL - LLDP information is not consistent with the Topology</p></li>
 </ul>
 </td>
-<td><p>OK - Wiring is consistent with the Topology</p></td>
+<td><ul class="simple">
+<li><p>Wiring is consistent with the Topology</p></li>
+<li><p>swp33s1 is wired to <strong>swp1s1&#64;spine-0-pod00</strong> instead of <strong>swp1s0&#64;spine-0-pod00</strong></p></li>
+</ul>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>Switch Port Health</p></td>
 <td><p>check_port</p></td>
-<td><p>Checks port status, % of RX/TX bandwidth utilization, laser signal level threshold breach, transceiver temperature, transceiver presence, Bit Error Rate (BER)</p></td>
+<td><p>Checks</p>
+<ul class="simple">
+<li><p>port status</p></li>
+<li><p>% of RX/TX bandwidth utilization</p></li>
+<li><p>laser signal level threshold breach</p></li>
+<li><p>transceiver temperature</p></li>
+<li><p>transceiver presence</p></li>
+<li><p>Bit Error Rate (BER)</p></li>
+</ul>
+</td>
 <td><ul class="simple">
 <li><p>OK - port is UP, and RX/TX utilization is below Warning threshold, Laser Signal Levels are below Warning threshold, pluggable is present or the port is fixed, temperature below threshold, BER below threshold</p></li>
 <li><p>WARNING - port is UP and (RX/TX utilization is above Warning threshold or Laser Signal Levels are above Warning threshold), or temperature above Warning threshold</p></li>
