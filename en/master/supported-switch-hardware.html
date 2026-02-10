@@ -1107,38 +1107,46 @@
 <table class="docutils align-center" id="id2">
 <caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <colgroup>
-<col style="width: 33.3%" />
-<col style="width: 33.3%" />
-<col style="width: 33.3%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Component</p></td>
 <td><p>Required</p></td>
 <td><p>Recommended</p></td>
+<td><p>Comment</p></td>
 </tr>
 <tr class="row-even"><td><p>CPU: x96_64</p></td>
 <td><p>16 Cores</p></td>
 <td><p>32 Cores or more</p></td>
+<td></td>
 </tr>
 <tr class="row-odd"><td><p>RAM: ECC</p></td>
 <td><p>128GB</p></td>
 <td><p>256GB or more</p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td><p>NIC (dataplane)</p></td>
 <td><p>2x10Gbps</p></td>
 <td><p>2x25Gbps or faster</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p>NIC (management)*</p></td>
+<tr class="row-odd"><td><p>NIC (management)</p></td>
 <td><p>1xGbps</p></td>
 <td><p>1x10Gbps or faster</p></td>
+<td><p>The management NIC is a separate, dedicated network card in addition to the built-in IPMI/iLO/BMC integrated interface</p></td>
 </tr>
 <tr class="row-even"><td><p>DISK</p></td>
 <td><p>300GB</p></td>
 <td><p>300GB or larger</p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p>OS*</p></td>
+<tr class="row-odd"><td><p>OS</p></td>
 <td><p>Ubuntu 24.04 LTS</p></td>
 <td><p>Ubuntu 24.04 LTS</p></td>
+<td><p>SoftGate software has been fully tested on Ubuntu 24.04 LTS. Contact the Netris sales team to inquire about support for other operating systems, such as RHEL.</p></td>
 </tr>
 </tbody>
 </table>

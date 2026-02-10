@@ -1,6 +1,6 @@
-=====================================
+==============================================
 Netris Internal CloudSim Deployment Automation
-=====================================
+==============================================
 
 Overview
 ========
@@ -37,7 +37,7 @@ This project requires the following prerequisites for successful deployment and 
 .. _prepare-the-server:
 
 Prepare the Server for the Netris CloudSim Environment
-=====================================================
+======================================================
 
 Before deploying the Netris CloudSim environment, the server must be prepared to function as the hypervisor. Follow these steps to configure the server:
 

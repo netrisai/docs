@@ -17,7 +17,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Controller Generic Linux Host" name="description" />
+<meta content="VPC Connect" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -29,7 +29,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netris Controller installation on a generic Linux host &mdash; Netris Documentation</title>
+  <title>VPC Connect &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -49,9 +49,7 @@
       <script src="_static/version-picker.js?v=51bfea80"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Helm Chart Installation" href="controller-k8s-installation.html" />
-    <link rel="prev" title="Controller Installation" href="installation.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -146,21 +144,21 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="installation.html">Controller Installation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris Controller installation on a generic Linux host</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#linux-host-requirements">Linux Host requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#installation-with-the-specific-host-name">Installation with the specific host name</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#installation-with-the-let-s-encrypt-ssl">Installation with the Let’s Encrypt SSL</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#installation-with-the-custom-ssl-issuer">Installation with the Custom SSL Issuer</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Controller Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-installation.html">Netris Controller installation on a generic Linux host</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#linux-host-requirements">Linux Host requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-specific-host-name">Installation with the specific host name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-let-s-encrypt-ssl">Installation with the Let’s Encrypt SSL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-custom-ssl-issuer">Installation with the Custom SSL Issuer</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#upgrading">Upgrading</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#uninstalling">Uninstalling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#backup-and-restore">Backup and Restore</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#backup">Backup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#restore">Restore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#upgrading">Upgrading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#uninstalling">Uninstalling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#backup-and-restore">Backup and Restore</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#backup">Backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#restore">Restore</a></li>
 </ul>
 </li>
 </ul>
@@ -1031,201 +1029,34 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="installation.html">Controller Installation</a></li>
-      <li class="breadcrumb-item active">Netris Controller installation on a generic Linux host</li>
+      <li class="breadcrumb-item active">VPC Connect</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/controller-k3s-installation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/vpc-connect.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
-  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="installation.html" class="btn btn-neutral float-left" title="Controller Installation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="controller-k8s-installation.html" class="btn btn-neutral float-right" title="Helm Chart Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-  </div>
+  </ul>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="netris-controller-installation-on-a-generic-linux-host">
-<span id="ctl-k3s-def"></span><h1>Netris Controller installation on a generic Linux host<a class="headerlink" href="#netris-controller-installation-on-a-generic-linux-host" title="Link to this heading"></a></h1>
-<section id="linux-host-requirements">
-<h2>Linux Host requirements<a class="headerlink" href="#linux-host-requirements" title="Link to this heading"></a></h2>
+  <section id="vpc-connect">
+<h1>VPC Connect<a class="headerlink" href="#vpc-connect" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p>RAM: 8 GB</p></li>
-<li><p>CPU: 4 Cores</p></li>
-<li><p>Disk: 50GB</p></li>
-<li><p>OS: Linux 64-bit</p></li>
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>K3s is expected to work on most modern Linux systems.</p>
-<p>Some OSs have specific requirements:</p>
-<ul class="simple">
-<li><p>If you are using Raspbian Buster, follow <a class="reference external" href="https://rancher.com/docs/k3s/latest/en/advanced/#enabling-legacy-iptables-on-raspbian-buster">these steps</a> to switch to legacy iptables.</p></li>
-<li><p>If you are using Alpine Linux, follow <a class="reference external" href="https://rancher.com/docs/k3s/latest/en/advanced/#additional-preparation-for-alpine-linux-setup">these steps</a> for additional setup.</p></li>
-<li><p>If you are using (Red Hat/CentOS) Enterprise Linux, follow <a class="reference external" href="https://rancher.com/docs/k3s/latest/en/advanced/#additional-preparation-for-red-hat-centos-enterprise-linux">these steps</a> for additional setup.</p></li>
-</ul>
-</div>
-</section>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p>The following command will install the Netris Controller on your Linux server:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl -sfL https://get.netris.io | sh -</span>
-</pre></div>
-</div>
-<p>Once installed, you will be able to log in to Netris Controller using your host’s IP address.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The installation script does the following:</p>
-<ul class="simple">
-<li><p>Installs <a class="reference external" href="https://k3s.io/">k3s</a></p></li>
-<li><p>Installs the <a class="reference external" href="https://cert-manager.io/docs/installation/helm/">Cert-Manager Helm chart</a></p></li>
-<li><p>Installs the <a class="reference external" href="https://www.netris.io/docs/en/latest/controller-k8s-installation.html">Netris Controller Helm chart</a></p></li>
-</ul>
-</div>
-<section id="installation-with-the-specific-host-name">
-<h3>Installation with the specific host name<a class="headerlink" href="#installation-with-the-specific-host-name" title="Link to this heading"></a></h3>
-<p>In order to set the specific ingress host name to the Netris Controller, use the <code class="docutils literal notranslate"><span class="pre">--ctl-hostname</span></code> installation argument:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl -sfL https://get.netris.io | sh -s -- --ctl-hostname netris.example.com</span>
-</pre></div>
-</div>
-<p>A self-signed SSL certificate will be generated from that host name.</p>
-</section>
-<section id="installation-with-the-let-s-encrypt-ssl">
-<h3>Installation with the Let’s Encrypt SSL<a class="headerlink" href="#installation-with-the-let-s-encrypt-ssl" title="Link to this heading"></a></h3>
-<p>The installation script supports Let’s Encrypt SSL generation out-of-box. To instruct the installation script to do that use <code class="docutils literal notranslate"><span class="pre">--ctl-ssl-issuer</span></code> argument.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<div class="line-block">
-<div class="line">The argument <code class="docutils literal notranslate"><span class="pre">--ctl-ssl-issuer</span></code> is passing <code class="docutils literal notranslate"><span class="pre">cert-manager.io/cluster-issuer</span></code> value to the ingress resource of the Netris Controller. The installation script can create two types of ClusterIssuer resource: <code class="docutils literal notranslate"><span class="pre">selfsigned</span></code> or <code class="docutils literal notranslate"><span class="pre">letsencrypt</span></code>, where <code class="docutils literal notranslate"><span class="pre">selfsigned</span></code> is just <a class="reference external" href="https://cert-manager.io/docs/configuration/selfsigned/">Cert-Manager self-signed</a> SSL and the <code class="docutils literal notranslate"><span class="pre">letsencrypt</span></code> is the ACME issuer with <a class="reference external" href="https://cert-manager.io/docs/configuration/acme/http01/">HTTP01 challenge validation</a>.</div>
-<div class="line">If the <code class="docutils literal notranslate"><span class="pre">--ctl-ssl-issuer</span></code> argument is not set, the installation script will proceed with <code class="docutils literal notranslate"><span class="pre">selfsigned</span></code> ClusterIssuer type.</div>
-</div>
-</div>
-<p>Run the following command to install Netris Controller and use <code class="docutils literal notranslate"><span class="pre">letsencrypt</span></code> ClusterIssuer for SSL generation:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl -sfL https://get.netris.io | sh -s -- --ctl-hostname netris.example.com --ctl-ssl-issuer letsencrypt</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To successfully validate and complete Let’s Encrypt SSL generation, a valid A/CNAME record for the domain/subdomain name should exist prior, and that name must be accessible from the Internet.</p>
-</div>
-</section>
-<section id="installation-with-the-custom-ssl-issuer">
-<h3>Installation with the Custom SSL Issuer<a class="headerlink" href="#installation-with-the-custom-ssl-issuer" title="Link to this heading"></a></h3>
-<p>The HTTP01 challenge validation is the simplest way of issuing the Let’s Encrypt SSL, but it does not work when the host behind the FQDN is not accessible from the public internet.
-The common approach of validating and completing Let’s Encrypt SSL generation for private deployments is <a class="reference external" href="https://cert-manager.io/docs/configuration/acme/dns01/">DNS01 challenge validation</a>.
-If the <code class="docutils literal notranslate"><span class="pre">DNS01</span></code> does not work for you either, Cert-Manager supports a number of certificate issuers, get familiar with all types of issuers <a class="reference external" href="https://cert-manager.io/docs/configuration/">here</a>.</p>
-<p>In order to install Netris Controller with the custom SSL issuer, you need to run installation script with the specified host name:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl -sfL https://get.netris.io | sh -s -- --ctl-hostname netris.example.com</span>
-</pre></div>
-</div>
-<p>Once the installation is complete, create a yaml file with the <code class="docutils literal notranslate"><span class="pre">ClusterIssuer</span></code> resource, suitable for your requirements, and apply it:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl apply -f my-cluster-issuer.yaml</span>
-</pre></div>
-</div>
-<p>Then rerun the installation script with the <code class="docutils literal notranslate"><span class="pre">--ctl-ssl-issuer</span></code> argument:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl -sfL https://get.netris.io | sh -s -- --ctl-ssl-issuer &lt;Your ClusterIssuer resource name&gt;</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="upgrading">
-<h2>Upgrading<a class="headerlink" href="#upgrading" title="Link to this heading"></a></h2>
-<p>To upgrade the Netris Controller to the latest version simply run the script:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl -sfL https://get.netris.io | sh -</span>
-</pre></div>
-</div>
-<p>If a newer version of Netris Controller is available, it will be updated in a few minutes.</p>
-</section>
-<section id="uninstalling">
-<h2>Uninstalling<a class="headerlink" href="#uninstalling" title="Link to this heading"></a></h2>
-<p>To uninstall Netris Controller and K3s from a server node, run:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">/usr/local/bin/k3s-uninstall.sh</span>
-</pre></div>
-</div>
-</section>
-<section id="backup-and-restore">
-<span id="ctl-backup-restore"></span><h2>Backup and Restore<a class="headerlink" href="#backup-and-restore" title="Link to this heading"></a></h2>
-<p>Netris Controller stores all critical data in MariaDB. It’s highly recommended to create a cronjob with <code class="docutils literal notranslate"><span class="pre">mysqldump</span></code>.</p>
-<section id="backup">
-<h3>Backup<a class="headerlink" href="#backup" title="Link to this heading"></a></h3>
-<p>To take database snapshot run the following command:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysqldump -u $MARIADB_USER -p${MARIADB_PASSWORD} $MARIADB_DATABASE&#39; &gt; db-snapshot-$(date +%Y-%m-%d-%H-%M-%S).sql</span>
-</pre></div>
-</div>
-<p>After command execution, you can find <code class="docutils literal notranslate"><span class="pre">db-snapshot-YYYY-MM-DD-HH-MM-SS.sql</span></code> file in the current working directory.</p>
-<section id="backup-the-secret-key">
-<span id="ctl-secret-key-backup"></span><h4>Backup the Secret Key<a class="headerlink" href="#backup-the-secret-key" title="Link to this heading"></a></h4>
-<p>Netris Controller generates a unique secret key at the first installation. If you’re moving or reinstalling your controller, it makes sense to take note of the secret key for restoring purpose in the future. Overwise, you have to reinitiate all devices connected to the controller.</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller get secret netris-controller-grpc-secret -o jsonpath=&#39;{.data.secret-key}{&quot;\n&quot;}&#39;</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="restore">
-<h3>Restore<a class="headerlink" href="#restore" title="Link to this heading"></a></h3>
-<p>In order to restore DB from a database snapshot, follow these steps:</p>
-<ol class="arabic simple">
-<li><p>Drop the current database by running the following command:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysql -u root -p${MARIADB_ROOT_PASSWORD} -e &quot;DROP DATABASE $MARIADB_DATABASE&quot;&#39;</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Create a new database:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysql -u root -p${MARIADB_ROOT_PASSWORD} -e &quot;CREATE DATABASE $MARIADB_DATABASE&quot;&#39;</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Copy snapshot file to the MariaDB container:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller cp db-snapshot.sql netris-controller-mariadb-0:/opt/db-snapshot.sql</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>Run the restore command:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysql -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE &lt; /opt/db-snapshot.sql&#39;</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In this example the snapshot file name is db-snapshot.sql and it’s located in the current working directory</p>
-</div>
-<section id="restore-the-secret-key">
-<h4>Restore the Secret Key<a class="headerlink" href="#restore-the-secret-key" title="Link to this heading"></a></h4>
-<p>If you want to restore the controller secret key too (you might want to do that if you’re reinstalling or moving the controller to the other place), follow these steps:</p>
-<ol class="arabic simple">
-<li><p>Set <code class="docutils literal notranslate"><span class="pre">OLD_SECRET</span></code> environment variable (the secret key taken from <a class="reference internal" href="#ctl-secret-key-backup"><span class="std std-ref">the old controller</span></a>):</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">export OLD_SECRET=&lt;Your old secret key&gt;</span>
-</pre></div>
-</div>
-<p>example: <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">OLD_SECRET=VUdodFFSakJCU2lFVVA4T1c0cnpuUmdiMkQxem85Y2dnS3pkajlNSg==</span></code></p>
-<ol class="arabic simple" start="2">
-<li><p>Update the secret key of the new controller:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller patch secret netris-controller-grpc-secret --type=&#39;json&#39; -p=&#39;[{&quot;op&quot; : &quot;replace&quot; ,&quot;path&quot; : &quot;/data/secret-key&quot; ,&quot;value&quot; : &quot;&#39;$OLD_SECRET&#39;&quot;}]&#39;</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Restart Netris Controller’s all microservices</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller rollout restart deployments</span>
-</pre></div>
-</div>
-</section>
-</section>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Documentation coming soon…</p>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="installation.html" class="btn btn-neutral float-left" title="Controller Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="controller-k8s-installation.html" class="btn btn-neutral float-right" title="Helm Chart Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
@@ -1248,7 +1079,7 @@ If the <code class="docutils literal notranslate"><span class="pre">DNS01</span>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: formatting
+      v: master
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
