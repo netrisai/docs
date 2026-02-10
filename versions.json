@@ -1,0 +1,6 @@
+{
+  "versions": [
+    { "id": "4.5", "title": "4.5", "url": "/docs/en/4.5/" },
+    { "id": "latest", "title": "latest", "url": "/docs/en/latest/" }
+  ]
+}
