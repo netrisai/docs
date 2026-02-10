@@ -1,11 +1,10 @@
-.. _switch-agent-installation:
+.. _switch-agent-installation_v5.9:
 .. meta::
   :description: Network Switch Initial Setup
 
-======================================
+=========================================
 Nvidia Cumulus v5.9+ Switch Initial Setup
-======================================
-
+=========================================
 
 .. note::
 

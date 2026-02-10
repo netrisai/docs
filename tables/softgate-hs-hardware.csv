@@ -1,7 +1,7 @@
-Component,Required,Recommended
-CPU: x96_64,16 Cores,32 Cores or more
-RAM: ECC,128GB,256GB or more
-NIC (dataplane),2x10Gbps,2x25Gbps or faster
-NIC (management)*,1xGbps,1x10Gbps or faster
-DISK,300GB,300GB or larger
-OS*,Ubuntu 24.04 LTS,Ubuntu 24.04 LTS
+Component,Required,Recommended,Comment
+CPU: x96_64,16 Cores,32 Cores or more,
+RAM: ECC,128GB,256GB or more,
+NIC (dataplane),2x10Gbps,2x25Gbps or faster,
+NIC (management),1xGbps,1x10Gbps or faster,"The management NIC is a separate, dedicated network card in addition to the built-in IPMI/iLO/BMC integrated interface"
+DISK,300GB,300GB or larger,
+OS,Ubuntu 24.04 LTS,Ubuntu 24.04 LTS,"SoftGate software has been fully tested on Ubuntu 24.04 LTS. Contact the Netris sales team to inquire about support for other operating systems, such as RHEL."

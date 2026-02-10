@@ -1,4 +1,4 @@
-.. _switch-agent-installation:
+.. _switch-agent-installation_v5:
 .. meta::
   :description: Network Switch Initial Setup
 
