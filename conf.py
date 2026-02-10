@@ -170,6 +170,10 @@ html_favicon = 'images/netris_favicon.png'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_js_files = [
+    'version-picker.js',
+]
+
 html_css_files = [
     'styles.css',
 ]
@@ -370,21 +374,21 @@ html_context['language'] = language
 html_context['languages'] = [ ('en', '/en/' +current_version+ '/') ]
 
 # POPULATE LINKS TO OTHER VERSIONS
-html_context['versions'] = list()
+#html_context['versions'] = list()
 
 # get list of remote branches, excluding HEAD and gh-pages
-remote_refs = repo.remote().refs
-branches = [ref.name.split('/')[-1] for ref in remote_refs if ref.name.split('/')[-1] not in ('HEAD', 'gh-pages')]
+#remote_refs = repo.remote().refs
+#branches = [ref.name.split('/')[-1] for ref in remote_refs if ref.name.split('/')[-1] not in ('HEAD', 'gh-pages')]
 
 # Filter semver branches only
-semver_branches = [b for b in branches if re.match(r'^\d+\.\d+(\.\d+)?$', b)]
+#semver_branches = [b for b in branches if re.match(r'^\d+\.\d+(\.\d+)?$', b)]
 
 # Add all semver branches
-for version in sorted(semver_branches, key=lambda s: list(map(int, s.split('.')))):
-    html_context['versions'].append((version, f'/docs/{language}/{version}/'))
+#for version in sorted(semver_branches, key=lambda s: list(map(int, s.split('.')))):
+#    html_context['versions'].append((version, f'/docs/{language}/{version}/'))
 
 # Always include "latest" (alias for highest semver, handled in updatePages.sh)
-html_context['versions'].append(('latest', f'/docs/{language}/latest/'))
+#html_context['versions'].append(('latest', f'/docs/{language}/latest/'))
 
 # DOWNLOADS
 
@@ -412,3 +416,4 @@ rst_prolog = """
 .. |a-variable| replace:: A variable
 .. 
 """
+
