@@ -72,24 +72,25 @@ Performance
 The Netris engineering team has performed SoftGate HS performance benchmarking using 64 byte packet size on Intel and AMD CPUs. The results represent the performance of a single SoftGate HS node with the role General. The cumulative performance of the SoftGate cluster will depend on the number of deployed nodes and the traffic distribution between them. See the :ref:`High Availability and Load Distribution <softgate-hs-load-distribution>` section of this document for more information on how traffic is distributed across SoftGate nodes.
 
 .. tab-set::
-  
-    .. tab-item:: Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz
+
+   .. tab-item:: Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz
 
       .. csv-table:: SoftGate HS Performance Intel
-        :file: tables/softgate-hs-perf-intel.csv
-        :widths: 40, 40, 40
-        :header-rows: 1
-        :align: center
+         :file: tables/softgate-hs-perf-intel.csv
+         :widths: 40, 40, 40
+         :header-rows: 1
+         :align: center
 
-    .. tab-item:: AMD EPYC 7413 24-Core CPU @ 2.6GHz, 48 core
+   .. tab-item:: AMD EPYC 7413 24-Core CPU @ 2.6GHz, 48 core
 
       .. csv-table:: SoftGate HS Performance AMD
-        :file: tables/softgate-hs-perf-amd.csv
-        :widths: 40, 40, 40
-        :header-rows: 1
-        :align: center
+         :file: tables/softgate-hs-perf-amd.csv
+         :widths: 40, 40, 40
+         :header-rows: 1
+         :align: center
 
-.. note:: additional performance data to be added soon
+.. note::
+   Additional performance data will be added soon.
 
 Architecture Overview
 ========================
