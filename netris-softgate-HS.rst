@@ -61,9 +61,9 @@ A minimum of 4 dedicated servers is required for an HA (highly available) active
      :header-rows: 1
      :align: center
 
-*The management NIC is a separate, dedicated network card in addition to the built-in IPMI/iLO/BMC integrated interface
+\* The management NIC is a separate, dedicated network card in addition to the built-in IPMI/iLO/BMC integrated interface
 
-*SoftGate software has been fully tested on Ubuntu 24.04 LTS. Contact the Netris sales team to inquire about support for other operating systems, such as RHEL.
+\* SoftGate software has been fully tested on Ubuntu 24.04 LTS. Contact the Netris sales team to inquire about support for other operating systems, such as RHEL.
 
 
 Performance
@@ -142,7 +142,7 @@ SoftGate is logically positioned at the edge of the Netris-managed North–South
 
   <br />
 
-.. tip:: SoftGate HS is designed to provide connectivity between the Internet and Netris VPCs (DNAT, SNAT, L4LB) at the edge of the North-South fabric. Additionally, direct connectivity into a Netris VPC—such as private network interconnects or dedicated external routing—can be achieved with the :ref:`VPC Connect <vpc-connect>` feature.
+.. tip:: SoftGate HS is designed to provide connectivity between the Internet and Netris VPCs (DNAT, SNAT, L4LB) at the edge of the North-South fabric. Additionally, direct connectivity into a Netris VPC—such as private network interconnects or dedicated external routing—can be achieved with the :doc:`VPC Connect <vpc-connect>` feature.
 
 
 * **SoftGate integrates directly with the Netris-managed North–South EVPN fabric by acting as a VTEP.** The Netris SoftGate agent installed on each SoftGate node automatically configures the SoftGate node to establish EVPN BGP peering relationships with the Netris managed fabric without any input required from the user. SoftGate nodes become VTEPs in the North-South EVPN/VXLAN fabric, which enables them to exchange traffic with any Netris VPC.
