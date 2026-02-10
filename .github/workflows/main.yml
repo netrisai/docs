@@ -2,7 +2,6 @@ name: docs_pages_workflow
 
 on:
   push:
-  delete:
 
 permissions:
   contents: write
@@ -21,7 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Build only this branch (tooling action)
-        uses: netrisai/docs-tooling@v1.1.0
+        uses: netrisai/docs-tooling@v1.1.1
         with:
           mode: build-only
           repo: ${{ github.repository }}
@@ -64,7 +63,7 @@ jobs:
           path: _build/html
 
       - name: Deploy subtree for this branch (+ latest if applicable)
-        uses: netrisai/docs-tooling@v1.1.0
+        uses: netrisai/docs-tooling@v1.1.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -72,21 +71,3 @@ jobs:
           repo: ${{ github.repository }}
           ref_name: ${{ github.ref_name }}
           sha: ${{ github.sha }}
-
-  cleanup:
-    if: github.event_name == 'delete' && github.event.ref_type == 'branch'
-    runs-on: ubuntu-latest
-    concurrency:
-      group: docs-deploy
-      cancel-in-progress: false
-
-    steps:
-      - name: Cleanup stale branch deployments
-        uses: netrisai/docs-tooling@v1.1.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          mode: cleanup-only
-          repo: ${{ github.repository }}
-          ref_name: ${{ github.event.ref }}   # not used, but input required
-          sha: ${{ github.sha }}              # not used, but input required
