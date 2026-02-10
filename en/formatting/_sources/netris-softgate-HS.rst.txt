@@ -73,23 +73,23 @@ The Netris engineering team has performed SoftGate HS performance benchmarking u
 
 .. tab-set::
   
-  .. tab-item:: Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz
+    .. tab-item:: Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz
 
-    .. csv-table:: SoftGate HS Performance Intel
-      :file: tables/softgate-hs-perf-intel.csv
-      :widths: 40, 40, 40
-      :header-rows: 1
-      :align: center
+      .. csv-table:: SoftGate HS Performance Intel
+        :file: tables/softgate-hs-perf-intel.csv
+        :widths: 40, 40, 40
+        :header-rows: 1
+        :align: center
 
-  .. tab-item:: AMD EPYC 7413 24-Core CPU @ 2.6GHz, 48 core
+    .. tab-item:: AMD EPYC 7413 24-Core CPU @ 2.6GHz, 48 core
 
-    .. csv-table:: SoftGate HS Performance AMD
-      :file: tables/softgate-hs-perf-amd.csv
-      :widths: 40, 40, 40
-      :header-rows: 1
-      :align: center
+      .. csv-table:: SoftGate HS Performance AMD
+        :file: tables/softgate-hs-perf-amd.csv
+        :widths: 40, 40, 40
+        :header-rows: 1
+        :align: center
 
-(additional performance data to be added soon)
+.. note:: additional performance data to be added soon
 
 Architecture Overview
 ========================
