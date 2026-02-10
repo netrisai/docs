@@ -1104,8 +1104,8 @@
 <section id="netris-softgate-hs-multi-vpc-version">
 <h2>Netris SoftGate HS (Multi-VPC version)<a class="headerlink" href="#netris-softgate-hs-multi-vpc-version" title="Link to this heading"></a></h2>
 <p>A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward the stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can be scaled horizontally by deploying more servers as CPU &amp; RAM utilization necessitates.</p>
-<table class="docutils align-center" id="id2">
-<caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id4">
+<caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 33.3%" />
@@ -1128,7 +1128,7 @@
 <td><p>2x10Gbps</p></td>
 <td><p>2x25Gbps or faster</p></td>
 </tr>
-<tr class="row-odd"><td><p>NIC (management)*</p></td>
+<tr class="row-odd"><td><p>NIC (management) <a href="#id5"><span class="problematic" id="id1">[1]_</span></a></p></td>
 <td><p>1xGbps</p></td>
 <td><p>1x10Gbps or faster</p></td>
 </tr>
@@ -1136,7 +1136,7 @@
 <td><p>300GB</p></td>
 <td><p>300GB or larger</p></td>
 </tr>
-<tr class="row-odd"><td><p>OS*</p></td>
+<tr class="row-odd"><td><p>OS <a href="#id6"><span class="problematic" id="id2">[2]_</span></a></p></td>
 <td><p>Ubuntu 24.04 LTS</p></td>
 <td><p>Ubuntu 24.04 LTS</p></td>
 </tr>
@@ -1145,7 +1145,7 @@
 </section>
 </section>
 <section id="supported-switch-hardware">
-<span id="id1"></span><h1>Supported Switch Hardware<a class="headerlink" href="#supported-switch-hardware" title="Link to this heading"></a></h1>
+<span id="id3"></span><h1>Supported Switch Hardware<a class="headerlink" href="#supported-switch-hardware" title="Link to this heading"></a></h1>
 <section id="nvidia">
 <h2>Nvidia<a class="headerlink" href="#nvidia" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
