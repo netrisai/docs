@@ -1,31 +1,38 @@
 {
   "versions": [
     {
-      "version": "2.9",
+      "id": "2.9",
+      "title": "2.9",
       "url": "/docs/en/2.9/"
     },
     {
-      "version": "3.0",
+      "id": "3.0",
+      "title": "3.0",
       "url": "/docs/en/3.0/"
     },
     {
-      "version": "3.4",
+      "id": "3.4",
+      "title": "3.4",
       "url": "/docs/en/3.4/"
     },
     {
-      "version": "4.5",
+      "id": "4.5",
+      "title": "4.5",
       "url": "/docs/en/4.5/"
     },
     {
-      "version": "4.5.3",
+      "id": "4.5.3",
+      "title": "4.5.3",
       "url": "/docs/en/4.5.3/"
     },
     {
-      "version": "4.6",
+      "id": "4.6",
+      "title": "4.6",
       "url": "/docs/en/4.6/"
     },
     {
-      "version": "latest",
+      "id": "latest",
+      "title": "latest",
       "url": "/docs/en/latest/"
     }
   ]
