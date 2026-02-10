@@ -57,14 +57,9 @@ A minimum of 4 dedicated servers is required for an HA (highly available) active
 
 .. csv-table:: SoftGate HS Hardware Requirements
      :file: tables/softgate-hs-hardware.csv
-     :widths: 40, 40, 40
+     :widths: 40, 40, 40, 40
      :header-rows: 1
      :align: center
-
-.. [1] The management NIC is a separate, dedicated network card in addition to the built-in IPMI/iLO/BMC integrated interface
-
-.. [2] SoftGate software has been fully tested on Ubuntu 24.04 LTS. Contact the Netris sales team to inquire about support for other operating systems, such as RHEL.
-
 
 Performance
 ===========
