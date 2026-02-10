@@ -76,7 +76,6 @@ The Netris engineering team has performed SoftGate HS performance benchmarking u
          :header-rows: 1
          :align: center
 
-
    .. tab-item:: AMD EPYC 7413 24-Core CPU @ 2.6GHz, 48 core
 
       .. csv-table:: SoftGate HS Performance AMD
@@ -84,7 +83,6 @@ The Netris engineering team has performed SoftGate HS performance benchmarking u
          :widths: 40, 40, 40
          :header-rows: 1
          :align: center
-
 
 .. note::
    Additional performance data will be added soon.
