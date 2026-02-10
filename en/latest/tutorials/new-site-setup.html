@@ -18,11 +18,21 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-152905529-2');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>New Site setup &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
       <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=8456483b" />
 
   
@@ -34,6 +44,7 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -84,7 +95,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#hypervisor-worker-node-specific-functionality">Hypervisor/Worker node specific functionality</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../supported-platform-matrix.html#softgate-data-plane-variations">SoftGate Data Plane Variations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../supported-platform-matrix.html#netris-and-nos-versions-compatibility-matrix">Netris and NOS versions compatibility matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../supported-switch-hardware.html">Hardware Requirements</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#netris-controller">Netris Controller</a></li>
@@ -214,7 +224,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.3 Upgrade Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
@@ -241,25 +252,47 @@
 <li class="toctree-l2"><a class="reference internal" href="../Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../SoftGate-HS-installation.html">SoftGate HS Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../SoftGate-HS-installation.html#minimum-hardware-requirements">Minimum Hardware Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../SoftGate-HS-installation.html#provision-netris-softgate-software">Provision Netris SoftGate software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netris-softgate-HS.html">SoftGate HS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#services-provided-by-softgate">Services Provided by SoftGate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#what-softgate-does-not-do">What SoftGate does not do</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#hardware-requirements">Hardware Requirements</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../SoftGate-PRO-installation.html">SoftGate PRO Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../SoftGate-PRO-installation.html#minimum-hardware-requirements">Minimum Hardware Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../SoftGate-PRO-installation.html#bios-configuration">BIOS Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../SoftGate-PRO-installation.html#install-the-netris-agent">Install the Netris Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#performance">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#architecture-overview">Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-physical-connectivity">SoftGate physical connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-logical-connectivity">SoftGate logical connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-node-control-plane">SoftGate node Control Plane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-node-data-plane">SoftGate node Data Plane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-roles-and-flavors">SoftGate Roles and Flavors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#installation-and-initial-deployment">Installation and Initial Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#installation-guide">Installation Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#upstream-border-routers-ebgp">Upstream/Border Routers (EBGP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#configuring-upstream-bgp">Configuring upstream BGP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#bgp-route-exchange-between-softgates-upstream-routers-and-downstream-switches">BGP route exchange between SoftGates, upstream routers, and downstream switches</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#high-availability-and-load-distribution">High Availability and Load Distribution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#internet-originated-traffic-routing">Internet originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#failover-behavior">Failover behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#observability-and-operations">Observability and Operations</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../topology-management.html">Inventory</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../topology-management.html#inventory-profiles">Inventory Profiles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-switches">Adding Switches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-softgates">Adding SoftGates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../topology-management.html#viewing-inventory">Viewing Inventory</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../topology-management.html#topology-manager">Topology Manager</a><ul>
@@ -289,6 +322,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../network-policies.html#bgp-route-maps">BGP route-maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../network-policies.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../network-policies.html#static-routing">Static Routing</a></li>
@@ -298,6 +335,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../network-policies.html#looking-glass">Looking Glass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#vpc-peering">VPC Peering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../switch-ports.html">Switch Ports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lag.html">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
@@ -379,6 +417,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#server-cluster-template-examples">Server Cluster Template Examples:</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#ethernet-only-fabric-example">Ethernet-only Fabric Example</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#infiniband-fabric-example">Infiniband Fabric Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#nvlink-nvl72-or-nvl144-fabric-example">NVLink (NVL72 or NVL144) Fabric Example</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#ipv6-example">IPv6 Example</a></li>
 </ul>
 </li>
@@ -417,7 +456,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Netris Integrations</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../netris-ufm-integration.html">NVIDIA UFM Integration Plugin for Netris Controller</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../netris-ufm-integration.html">NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#key-benefits">Key Benefits</a></li>
 </ul>
@@ -475,6 +514,27 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../netris-nvlink-integration.html">NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#key-benefits">Key Benefits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#high-level-workflow">High-Level Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#installing-the-plugin">Installing the plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#loading-gpu-inventory">Loading GPU inventory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#netris-nmx-plugin-configuration-parameters">Netris-NMX Plugin Configuration Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#maintenance-and-deprovisioning">Maintenance and Deprovisioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#additional-resources">Additional Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../kubernetes-integration.html">Kubernetes Integration</a><ul>
@@ -593,21 +653,56 @@
 <li class="toctree-l2"><a class="reference internal" href="../terraform-integration.html#delete-resources">Delete resources</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../evpn-on-host.html">EVPN on Host</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#supported-operating-systems">Supported Operating Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#use-cases">Use Cases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#managed-kubernetes">Managed Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#other-uses">Other Uses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#how-it-works">How It Works</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#bare-metal-gpu-nodes">Bare Metal GPU Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#shared-nodes">Shared Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#underlay-configuration">Underlay Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#packet-flow">Packet Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#management-plane">Management Plane</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#management-v-net">1. Management V-Net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#server-objects">2. Server Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#server-networking-configuration">3. Server Networking Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#netris-controller">4. Netris Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#install-the-evpn-on-host-agent">Install the EVPN-on-Host agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#enable-underlay">Enable Underlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#verification">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#provisioning-tenants">Provisioning Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#id1">Verification</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/index.html">Monitoring &amp; Observability</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/healthchecks.html">Netris Healthchecks</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
@@ -712,9 +807,39 @@
 <li class="toctree-l2"><a class="reference internal" href="ipam-setup.html">IPAM setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-setup.html">Inventory setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topology-setup.html">Topology setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="softgate-software-provisioning.html">SoftGate software provisioning</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="softgate-software-provisioning.html#softgate-pro-100g-software-provisioning">SoftGate PRO (100G) software provisioning</a></li>
-<li class="toctree-l3"><a class="reference internal" href="softgate-software-provisioning.html#softgate-1g-10g-software-provisioning">SoftGate (1G, 10G) software provisioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html">SoftGate HS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#overview">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#services-provided-by-softgate">Services Provided by SoftGate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#what-softgate-does-not-do">What SoftGate does not do</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#hardware-requirements">Hardware Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#performance">Performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#architecture-overview">Architecture Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#softgate-physical-connectivity">SoftGate physical connectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#softgate-logical-connectivity">SoftGate logical connectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#softgate-node-control-plane">SoftGate node Control Plane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#softgate-node-data-plane">SoftGate node Data Plane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#softgate-roles-and-flavors">SoftGate Roles and Flavors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#installation-and-initial-deployment">Installation and Initial Deployment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#installation-guide">Installation Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#upstream-border-routers-ebgp">Upstream/Border Routers (EBGP)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#configuring-upstream-bgp">Configuring upstream BGP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#bgp-route-exchange-between-softgates-upstream-routers-and-downstream-switches">BGP route exchange between SoftGates, upstream routers, and downstream switches</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#high-availability-and-load-distribution">High Availability and Load Distribution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC originated traffic routing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#internet-originated-traffic-routing">Internet originated traffic routing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-softgate-HS.html#failover-behavior">Failover behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#observability-and-operations">Observability and Operations</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="netris-switch-agent-installation.html">Netris Switch Agent Installation</a></li>
@@ -735,24 +860,32 @@
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../softgate-performance.html">SoftGate Performance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sandbox/Sandbox1/onprem-k8s.html">Learn Netris Operations with Kubernetes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../sandbox/Sandbox1/onprem-k8s.html#intro">Intro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sandbox/Sandbox1/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sandbox/Sandbox1/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sandbox/Sandbox1/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../sandbox/Sandbox1/onprem-k8s.html#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../sandbox/Sandbox1/onprem-k8s.html#l4lb-custom-resource">L4LB Custom Resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../sandbox/Sandbox1/onprem-k8s.html#importing-existing-resources-from-netris-controller-to-kubernetes">Importing Existing Resources from Netris Controller to Kubernetes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../sandbox/Sandbox1/onprem-k8s.html#reclaim-policy">Reclaim Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../try-learn/onprem-k8s.html">Learn Netris Operations with Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#l4lb-custom-resource">L4LB Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#importing-existing-resources-from-netris-controller-to-kubernetes">Importing Existing Resources from Netris Controller to Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#reclaim-policy">Reclaim Policy</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../snippets.html">Custom NVUE Configuration Snippets</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.6.0.html">Netris 4.6.0 (Feb/10/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#what-s-new-in-netris-version">What’s new in Netris 4.6.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../release-notes/4.5.3.html">Netris 4.5.3 (August/27/2025)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#what-s-new-in-netris-version">What’s new in Netris 4.5.3?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#features">Features</a></li>
@@ -954,7 +1087,7 @@ Network → Sites → +Add</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: 4.5.3
+      v: 4.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -975,8 +1108,16 @@ Network → Sites → +Add</p>
           <dd><a href="/docs/en/3.4/">3.4</a></dd>
           
         
-           <strong> 
+          
+          <dd><a href="/docs/en/4.5/">4.5</a></dd>
+          
+        
+          
           <dd><a href="/docs/en/4.5.3/">4.5.3</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/docs/en/4.6/">4.6</a></dd>
            </strong> 
         
           
@@ -997,18 +1138,7 @@ Network → Sites → +Add</p>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-    <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-152905529-2', {
-          'anonymize_ip': false,
-      });
-    </script> 
+  </script> 
 
 </body>
 </html>

@@ -8,29 +8,9 @@ Inventory
 
 The Inventory section allows you to add/edit/delete network switches and SoftGates (VPC gateways). Initial setup of a Netris managed network is a three step process:
 
-#. Create Inventory Profiles.
+#. Create :doc:`inventory-profile`.
 #. Adding Switches.
 #. Adding Softgates.
-
-Inventory Profiles
-==================
-
-Inventory profiles allow security hardening of inventory devices. By default all traffic flow destined to switch/SoftGate is allowed. As soon as the inventory profile is attached to a device it denies all traffic destined to the device except Netris-defined and user-defined custom flows. Automatically allowed flows include:
-
-*  SSH from user defined subnets
-*  NTP from user defined ntp services
-*  DNS from user defined DNS servers
-*  Custom user defined rules
-
-.. csv-table:: Inventory Profile Fields
-   :file: tables/inventory-profile-fields.csv
-   :widths: 25, 75
-   :header-rows: 0
-
-**Example:** This example Inventory profile is used to provide NTP and DNS services to the switches (common setup). A custom rule is created to allow UDP connections to the port 161.
-
-.. image:: images/inventory_profile_custom.png
-   :align: center
 
 .. _topology-management-adding-switches:
 
@@ -60,35 +40,9 @@ Every switch needs to be added to the Netris Controller inventory. You can add n
 
 Adding SoftGates
 ================
-Every SoftGate node needs to be added to the Netris Controller inventory. To add a SoftGate node:
+Every SoftGate node needs to be added to the Netris Controller inventory.
 
-#. Navigate to **Network → Topology**
-#. Click **Add**
-#. Fill in the fields as described below
-#. Click the **Add** button
-
-.. csv-table:: Add Inventory Fields - SoftGate
-   :file: tables/inventory-add-softgate.csv
-   :widths: 25, 75
-   :header-rows: 0
-
-Example: Adding a SoftGate Node to Topology.
-
-.. image:: images/add-softgate.png
-   :align: center
-
-Viewing Inventory
-=================
-
-Inventory Listing provides information about network nodes known to Netris.
-
-Heartbeat - Indicates whether the node can communicate with Netris Controller. 
-Health - Indicates the health status of the node.
-
-  .. image:: images/inventory-listing.png
-     :align: center    
-
-.. note:: You can also add new devices in the Topology view.
+The installation process for SoftGate HS is described in the :ref:`SoftGate HS installation <netris-softgate-HS-installation>` section.
 
 ================
 Topology Manager

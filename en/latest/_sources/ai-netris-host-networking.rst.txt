@@ -98,6 +98,10 @@ Spectrum-X v1.3.0
    * - Spectrum-X Congestion Control Algorithm(SPC-X CC)
      - 2.10
 
+.. tip::
+
+   See the `NVIDIA Spectrum-X Validated Solution Stack documentation <https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html>`_ for the latest recommended versions.
+
 Permissions
 ~~~~~~~~~~~
 

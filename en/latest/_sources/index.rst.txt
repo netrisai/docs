@@ -8,7 +8,7 @@ Welcome to Netris Documentation
 
 Learn how to get started with Netris VPC Networking for your network environment.
 
-You are welcome to join our `Slack channel <https://join.slack.com/t/netris/shared_invite/zt-3ixzkhe6s-Zy_He7mek9jbe_T2wondww>`_ to get additional support from our engineers and community.
+You are welcome to join our community Slack channel (see button at the top) to get additional support from our engineers and community.
 
 .. toctree::
    :maxdepth: 2
@@ -32,8 +32,7 @@ You are welcome to join our `Slack channel <https://join.slack.com/t/netris/shar
 
    installation
    switch-agent-installation
-   SoftGate-HS-installation
-   SoftGate-PRO-installation
+   netris-softgate-HS
 
 .. toctree::
    :maxdepth: 2
@@ -61,15 +60,19 @@ You are welcome to join our `Slack channel <https://join.slack.com/t/netris/shar
    :caption: Netris Integrations
 
    netris-ufm-integration
+   netris-nvlink-integration
    kubernetes-integration
    tutorials/netris-cloudstack
    terraform-integration
+   evpn-on-host
 
 .. toctree::
    :maxdepth: 2
    :caption: Monitoring & Observability
 
-   monitoring-observability/index
+   monitoring-observability/topology-validation
+   monitoring-observability/netq
+   monitoring-observability/healthchecks
 
 .. toctree::
    :maxdepth: 2
@@ -85,8 +88,8 @@ You are welcome to join our `Slack channel <https://join.slack.com/t/netris/shar
    :caption: Miscellaneous
 
    accounts
-   softgate-performance
-   sandbox/Sandbox1/onprem-k8s
+   try-learn/onprem-k8s
+   snippets
 
 .. toctree::
    :maxdepth: 2

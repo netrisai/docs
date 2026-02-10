@@ -65,6 +65,8 @@ Optionally V-Net definition can also include:
     :align: center
     :class: with-shadow
 
+.. _vnet_dhcp:
+
 DHCP
 ^^^^^^^^^^^^^^^^^^^^^^^^
 L2VPN routed V-Nets (where an IP gateway is added) may also be configured with a DHCP service fully managed by Netris and hosted on SoftGate.
@@ -125,6 +127,7 @@ To configure DHCP Relay in a V-Net:
 .. note::
   * VPC peering is mandatory on Cumulus Linux fabrics. Without it, relay traffic cannot reach the DHCP server. Configure peering under Network → VPC Peering in the Controller.
   * Non-overlapping IP ranges are required between the client VPCs (Coke and Pepsi) and the DHCP server’s VPC (Shared). The DHCP server must be able to route back to both Coke and Pepsi.
+  * Switch loopback IP is the source IP of relayed packets
 
 .. raw:: html
 
@@ -196,7 +199,7 @@ Suppose you have tenant workloads in VPC Coke and VPC Pepsi. Both need DHCP, but
 
 Now:
  - DHCP clients in the tenant VPC (Coke and Pepsi) broadcast their DHCP requests normally in their respective V-Nets
- - Netris forwards these requests across the peering link to the DHCP server in the shared VPC.
+ - Netris configures the fabric to forward these requests across the peering link to the DHCP server in the shared VPC.
 
 V-Net Fields explained
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -683,7 +686,7 @@ In larger fabrics Netris recommends turning on the optional /26 aggregation in t
     <br />
 
 Verification Tools
-----------------
+------------------
 
 UI Tools
 ^^^^^^^^^^
