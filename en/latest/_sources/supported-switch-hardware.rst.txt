@@ -58,7 +58,7 @@ A minimum of 4 dedicated servers are required for an HA (highly available) activ
 
 .. csv-table:: SoftGate HS Hardware Requirements
    :file: tables/softgate-hs-hardware.csv
-   :widths: 30, 30, 30
+   :widths: 40, 40, 40, 40
    :header-rows: 0
    :align: center
 

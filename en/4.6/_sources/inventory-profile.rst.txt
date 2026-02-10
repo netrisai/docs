@@ -1,4 +1,4 @@
-.. _topology-management:
+.. _inventory-profile:
 .. meta::
     :description: Inventory Profiles
 

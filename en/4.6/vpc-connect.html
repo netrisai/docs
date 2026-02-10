@@ -17,6 +17,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="VPC Connect" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -28,7 +29,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hardware Requirements &mdash; Netris Documentation</title>
+  <title>VPC Connect &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -48,9 +49,7 @@
       <script src="_static/version-picker.js?v=51bfea80"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Netris Architecture" href="netris-architecture.html" />
-    <link rel="prev" title="Netris Supported Functionality &amp; Platforms Matrix" href="supported-platform-matrix.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -79,7 +78,7 @@
 
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">General Information</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to Netris</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html">Netris Supported Functionality &amp; Platforms Matrix</a><ul>
@@ -97,16 +96,16 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html#netris-and-nos-versions-compatibility-matrix">Netris and NOS versions compatibility matrix</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware Requirements</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#netris-controller">Netris Controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#netris-softgate-hs-multi-vpc-version">Netris SoftGate HS (Multi-VPC version)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported-switch-hardware.html">Hardware Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-controller">Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-softgate-hs-multi-vpc-version">Netris SoftGate HS (Multi-VPC version)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#supported-switch-hardware">Supported Switch Hardware</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#nvidia">Nvidia</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dell">Dell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#edgecore">EdgeCore</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#arista">Arista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported-switch-hardware.html#supported-switch-hardware">Supported Switch Hardware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#nvidia">Nvidia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#edgecore">EdgeCore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#arista">Arista</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="netris-architecture.html">Netris Architecture</a><ul>
@@ -1030,623 +1029,34 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Hardware Requirements</li>
+      <li class="breadcrumb-item active">VPC Connect</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/supported-switch-hardware.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/vpc-connect.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
-  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="supported-platform-matrix.html" class="btn btn-neutral float-left" title="Netris Supported Functionality &amp; Platforms Matrix" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="netris-architecture.html" class="btn btn-neutral float-right" title="Netris Architecture" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-  </div>
+  </ul>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="hardware-requirements">
-<h1>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Link to this heading"></a></h1>
-<section id="netris-controller">
-<h2>Netris Controller<a class="headerlink" href="#netris-controller" title="Link to this heading"></a></h2>
-<p>We recommend three (for HA) Ubuntu 24.04 servers with the below specs. HA Netris Controller can run both in air-gapped or Internet accessible environments.</p>
-<table class="docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><strong>Use Case</strong></p></td>
-<td><p><strong>CPU Cores</strong></p></td>
-<td><p><strong>RAM</strong></p></td>
-<td><p><strong>SSD/NVME</strong></p></td>
-<td><p><strong>Network</strong></p></td>
-</tr>
-<tr class="row-even"><td><p>Leaf/Spine 1-30 switches</p></td>
-<td><p>8</p></td>
-<td><p>32 GB</p></td>
-<td><p>300 GB</p></td>
-<td><p>2x 1GbE+ NIC</p></td>
-</tr>
-<tr class="row-odd"><td><p>Leaf/Spine 30-100 switches</p></td>
-<td><p>8</p></td>
-<td><p>32 GB</p></td>
-<td><p>600 GB</p></td>
-<td><p>2x 1GbE+ NIC</p></td>
-</tr>
-<tr class="row-even"><td><p>Leaf/Spine 100-300 switches</p></td>
-<td><p>16</p></td>
-<td><p>64 GB</p></td>
-<td><p>1 TB</p></td>
-<td><p>2x 10GbE+ NIC</p></td>
-</tr>
-<tr class="row-odd"><td><p>Leaf/Spine 300+ switches</p></td>
-<td><p>32</p></td>
-<td><p>128 GB</p></td>
-<td><p>2 TB</p></td>
-<td><p>2x 10GbE+ NIC</p></td>
-</tr>
-<tr class="row-even"><td><p>Spectrum-X 1-8 SUs</p></td>
-<td><p>16</p></td>
-<td><p>64 GB</p></td>
-<td><p>1 TB</p></td>
-<td><p>2x 10GbE+ NIC</p></td>
-</tr>
-<tr class="row-odd"><td><p>Spectrum-X 16-32 SUs</p></td>
-<td><p>32</p></td>
-<td><p>128 GB</p></td>
-<td><p>2 TB</p></td>
-<td><p>2x 10GbE+ NIC</p></td>
-</tr>
-<tr class="row-even"><td><p>Spectrum-X 32+ SUs (10K+ GPUs)</p></td>
-<td><p>64</p></td>
-<td><p>256 GB</p></td>
-<td><p>10 TB</p></td>
-<td><p>2x 10GbE+ NIC</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="netris-softgate-hs-multi-vpc-version">
-<h2>Netris SoftGate HS (Multi-VPC version)<a class="headerlink" href="#netris-softgate-hs-multi-vpc-version" title="Link to this heading"></a></h2>
-<p>A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward the stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can be scaled horizontally by deploying more servers as CPU &amp; RAM utilization necessitates.</p>
-<table class="docutils align-center" id="id2">
-<caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
-<colgroup>
-<col style="width: 25.0%" />
-<col style="width: 25.0%" />
-<col style="width: 25.0%" />
-<col style="width: 25.0%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>Component</p></td>
-<td><p>Required</p></td>
-<td><p>Recommended</p></td>
-<td><p>Comment</p></td>
-</tr>
-<tr class="row-even"><td><p>CPU: x96_64</p></td>
-<td><p>16 Cores</p></td>
-<td><p>32 Cores or more</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>RAM: ECC</p></td>
-<td><p>128GB</p></td>
-<td><p>256GB or more</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>NIC (dataplane)</p></td>
-<td><p>2x10Gbps</p></td>
-<td><p>2x25Gbps or faster</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>NIC (management)</p></td>
-<td><p>1xGbps</p></td>
-<td><p>1x10Gbps or faster</p></td>
-<td><p>The management NIC is a separate, dedicated network card in addition to the built-in IPMI/iLO/BMC integrated interface</p></td>
-</tr>
-<tr class="row-even"><td><p>DISK</p></td>
-<td><p>300GB</p></td>
-<td><p>300GB or larger</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>OS</p></td>
-<td><p>Ubuntu 24.04 LTS</p></td>
-<td><p>Ubuntu 24.04 LTS</p></td>
-<td><p>SoftGate software has been fully tested on Ubuntu 24.04 LTS. Contact the Netris sales team to inquire about support for other operating systems, such as RHEL.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="supported-switch-hardware">
-<span id="id1"></span><h1>Supported Switch Hardware<a class="headerlink" href="#supported-switch-hardware" title="Link to this heading"></a></h1>
-<section id="nvidia">
-<h2>Nvidia<a class="headerlink" href="#nvidia" title="Link to this heading"></a></h2>
-<table class="docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><strong>Manufacturer</strong></p></td>
-<td><p><strong>Model</strong></p></td>
-<td><p><strong>ASIC</strong></p></td>
-<td><p><strong>Ports</strong></p></td>
-<td><p><strong>NOS</strong></p></td>
-<td><p><strong>Caveats</strong></p></td>
-<td><p><strong>Supported</strong></p></td>
-</tr>
-<tr class="row-even"><td><p>Nvidia</p></td>
-<td><p>SN2010</p></td>
-<td><p>Spectrum</p></td>
-<td><p>18 x SFP28 25GbE + 4 x QSFP28 100GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nvidia</p></td>
-<td><p>SN2100</p></td>
-<td><p>Spectrum</p></td>
-<td><p>16 x QSFP28 100GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Nvidia</p></td>
-<td><p>SN2201</p></td>
-<td><p>Spectrum</p></td>
-<td><p>48 x RJ45 + 4 x QSFP28 100GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nvidia</p></td>
-<td><p>SN2410</p></td>
-<td><p>Spectrum</p></td>
-<td><p>48 x SFP28 25GbE + 8 x QSFP28 100GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Nvidia</p></td>
-<td><p>SN2700</p></td>
-<td><p>Spectrum</p></td>
-<td><p>32 x QSFP28 100GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nvidia</p></td>
-<td><p>SN3420</p></td>
-<td><p>Spectrum 2</p></td>
-<td><p>48 x SFP28 25GbE + 12 x QSFP28 100GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Nvidia</p></td>
-<td><p>SN3700C</p></td>
-<td><p>Spectrum 2</p></td>
-<td><p>32 x QSFP28 100GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nvidia</p></td>
-<td><p>SN3700</p></td>
-<td><p>Spectrum 2</p></td>
-<td><p>32 x QSFP56 200GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Nvidia</p></td>
-<td><p>SN4410</p></td>
-<td><p>Spectrum 3</p></td>
-<td><p>24 x QSFP28-DD 100G + 8 x QSFP-DD 400GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nvidia</p></td>
-<td><p>SN4600C</p></td>
-<td><p>Spectrum 3</p></td>
-<td><p>64 x QSFP28 100GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Nvidia</p></td>
-<td><p>SN4600</p></td>
-<td><p>Spectrum 3</p></td>
-<td><p>64 QSFP56 200GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nvidia</p></td>
-<td><p>SN4700</p></td>
-<td><p>Spectrum 3</p></td>
-<td><p>32 x QSFP-DD 400GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Nvidia</p></td>
-<td><p>SN5400</p></td>
-<td><p>Spectrum 4</p></td>
-<td><p>64 x QSFP-DD 400GbE + 2 x SFP28 25GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nvidia</p></td>
-<td><p>SN5600</p></td>
-<td><p>Spectrum 4</p></td>
-<td><p>64 x OSFP 800GbE + 1 x SFP28 25GbE</p></td>
-<td><p>Cumulus Linux</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="dell">
-<h2>Dell<a class="headerlink" href="#dell" title="Link to this heading"></a></h2>
-<table class="docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><strong>Manufacturer</strong></p></td>
-<td><p><strong>Model</strong></p></td>
-<td><p><strong>ASIC</strong></p></td>
-<td><p><strong>Ports</strong></p></td>
-<td><p><strong>NOS</strong></p></td>
-<td><p><strong>Caveats</strong></p></td>
-<td><p><strong>Supported</strong></p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch E Series E3248P-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>48x 10/100/1000MB RJ45 PoE, 4x10G SFP+, 2x100G QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch E Series E3248PXE-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>48x 1/2.5/5/10GbE RJ45 PoE, 4x25G SFP28, 2x100G QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch S Series S3248T-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>48x 10M/100M/1G RJ45, 4x10G SFP+, 2x100G QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch N Series N3248P-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>48x 10M/100M/1G RJ45 PoE, 4x10G SFP+, 2x 100G QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch N Series N3248TE-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>48x 10M/100M/1G RJ45, 4x10G SFP+, 2x 100G QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch N Series N3248X-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>48x 10M/100M/1G/2.5G/5G/10G RJ45, 4x25G SFP28, 2x 100G QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch N Series N3248PXE-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>48x 10M/100M/1G/2.5G/5G/10G RJ45, 4x25G SFP28, 2x 100G QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch S Series S4348F-ON</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>48x SFP+, 6x QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch S Series S4348T-ON</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>48x 10G RJ45, 6x QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch S Series S5212F-ON</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>12x 25G SFP28,3x 100GbE QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch S Series S5224F-ON</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>24x 25G SFP28, 4x 100GbE QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch S Series S5232F-ON</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>32x 100GbE QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch S Series S5248F-ON</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>48x 25G SFP28, 4x 100GbE QSFP28, 2x 200GbE QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch S Series S5296F-ON</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>96x 25G SFP28, 8x 100GbE QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch S Series S5448F-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>48x QSFP-DD 100GbE, 8x QSFP-DD 400GbE</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch Z Series Z9264F-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>64x 100GbE QSFP28</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch Z Series Z9332F-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>32x 400GbE QSFP56-DD</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch Z Series Z9432F-ON</p></td>
-<td><p>Broadcom Trident IV</p></td>
-<td><p>32x QSFP-DD 400GbE</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Dell</p></td>
-<td><p>PowerSwitch Z Series Z9664F-ON</p></td>
-<td><p>Broadcom Tomahawk IV</p></td>
-<td><p>64x QSFP-DD 400GbE</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dell</p></td>
-<td><p>PowerSwitch Z Series Z9864F-ON</p></td>
-<td><p>Tomahawk 5</p></td>
-<td><p>64x OSFP800</p></td>
-<td><p>Dell-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="edgecore">
-<h2>EdgeCore<a class="headerlink" href="#edgecore" title="Link to this heading"></a></h2>
-<table class="docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><strong>Manufacturer</strong></p></td>
-<td><p><strong>Model</strong></p></td>
-<td><p><strong>ASIC</strong></p></td>
-<td><p><strong>Ports</strong></p></td>
-<td><p><strong>NOS</strong></p></td>
-<td><p><strong>Caveats</strong></p></td>
-<td><p><strong>Supported</strong></p></td>
-</tr>
-<tr class="row-even"><td><p>EdgeCore</p></td>
-<td><p>DCS201 (AS5835-54X)</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>48 x 10G SFP+ + 6 x 100G QSFP28</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>EdgeCore</p></td>
-<td><p>DCS202 (AS5835-54T)</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>48 x 10G RJ-45 + 6 x 100G QSFP28</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>EdgeCore</p></td>
-<td><p>DCS203 (AS7326-56X)</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>48 x 25G SFP28 + 8 x 100G QSFP28+ 2 x 10G</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>EdgeCore</p></td>
-<td><p>AS7726-32X</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>32 x 100G QSFP28 + 2 x 10G SFP+</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>EdgeCore</p></td>
-<td><p>DCS510 (AS9716-32D)</p></td>
-<td><p>Broadcom Tomahawk 3</p></td>
-<td><p>32 x 400G QSFP-DD</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>EdgeCore</p></td>
-<td><p>DCS511 (AS9737-32DB)</p></td>
-<td><p>Broadcom Tomahawk 4</p></td>
-<td><p>32 x 400G QSFP56-DD</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>EdgeCore</p></td>
-<td><p>AIS800-64O</p></td>
-<td><p>Broadcom Tomahawk 5</p></td>
-<td><p>64 x OSFP800</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="arista">
-<h2>Arista<a class="headerlink" href="#arista" title="Link to this heading"></a></h2>
-<table class="docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><strong>Manufacturer</strong></p></td>
-<td><p><strong>Model</strong></p></td>
-<td><p><strong>ASIC</strong></p></td>
-<td><p><strong>Ports</strong></p></td>
-<td><p><strong>NOS</strong></p></td>
-<td><p><strong>Caveats</strong></p></td>
-<td><p><strong>Supported</strong></p></td>
-</tr>
-<tr class="row-even"><td><p>Arista</p></td>
-<td><p>7020R</p></td>
-<td><p>Qumran</p></td>
-<td><p>24 x 10G + 2 QSFP100; 32 x 10G + 2 QSFP100; 48 x 100/1000Mb + 6 SFP+; 48 x 100/1000Mb + 6 SFP+</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Arista</p></td>
-<td><p>7050X3</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>32 x QSFP100; 48 x SFP25 + 12 x QSFP100; 48 x SFP25 + 8 x QSFP100; 48 x 10G-T + 8 x QSFP100</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Arista</p></td>
-<td><p>7050X4</p></td>
-<td><p>Trident-4</p></td>
-<td><p>32 QSFP-DD 400G + 2SFP+; 32 OSFP 400G + 2SFP+; 48 SFP-DD 100G + 8 QSFP-DD 400G; 48 DSFP 100G + 8 QSFPDD 400G; 24 QSFP56 200G + 8 QSFPDD 400G + 2SFP+; 48 QSFP28 + 8 QSFP-DD 400G + 2SFP+</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Arista</p></td>
-<td><p>7060X4</p></td>
-<td><p>Trident-4</p></td>
-<td><p>32 x QSFP-DD 800G + 2 x SFP+; 32 x QSFP-DD 800G + 2 x SFP+; 32 x OSFP 800G + 2 x SFP+; 64 x QSFP-DD 400G, 2 x SFP+; 32 x QSFP-DD + 1x SFP+; 56x QSFP100, 8 x QSFP-DD 400G + 1x SFP+</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Arista</p></td>
-<td><p>7060X5</p></td>
-<td><p>Tomahawk 4</p></td>
-<td><p>32 x QSFP-DD 800G + 2x SFP+; 32 x QSFP-DD 800G + 2x SFP+; 32 x OSFP 800G + 2x SFP+; 64 x QSFP-DD 400G + 2x SFP+; : 32 x QSFP-DD + 1 x SFP+; 56x QSFP100, 8 x QSFP-DD 400G, 1x SFP+</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Arista</p></td>
-<td><p>7280R3A</p></td>
-<td><p>Jericho2</p></td>
-<td><p>144 x 100G or 36 x 400G</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Arista</p></td>
-<td><p>7280R3</p></td>
-<td><p>Jericho2</p></td>
-<td><p>24 x 400G; 96 x 100G; 25G + 8 x 100G</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Arista</p></td>
-<td><p>7358X4</p></td>
-<td><p>Trident-4</p></td>
-<td><p>128 x QSFP or 32 x OSFP / QSFP-DD</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Arista</p></td>
-<td><p>7358X4</p></td>
-<td><p>Trident-4</p></td>
-<td><p>128 x QSFP or 32 x OSFP / QSFP-DD</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Arista</p></td>
-<td><p>7368X4</p></td>
-<td><p>Tomahawk 3</p></td>
-<td><p>128 x 100G or 32 x 400G</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>Arista</p></td>
-<td><p>7300R3</p></td>
-<td><p>Trident-4</p></td>
-<td><p>256 wire-speed 40GbE ports</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>Arista</p></td>
-<td><p>7500R3</p></td>
-<td><p>Jericho, Jericho2</p></td>
-<td><p>Up to 288 wire-speed 400G ports</p></td>
-<td><p>EOS</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-</tbody>
-</table>
+  <section id="vpc-connect">
+<h1>VPC Connect<a class="headerlink" href="#vpc-connect" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Documentation coming soon…</p>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="supported-platform-matrix.html" class="btn btn-neutral float-left" title="Netris Supported Functionality &amp; Platforms Matrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="netris-architecture.html" class="btn btn-neutral float-right" title="Netris Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
