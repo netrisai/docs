@@ -80,6 +80,7 @@ Bug fixes
 - Fixed SNAT is not working when traffic is destined to a host behind DNAT rule.
 - Fixed NHN impacting North-South traffic when configuring East-West host networking.
 - Fixed Topology>Interface>Details showing incorrect optical graph data.
+- Fixed VPC peering with L3VPN Vnets on NVUE platforms.
 
 
 **Deprecation Notices**
