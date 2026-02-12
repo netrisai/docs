@@ -104,7 +104,7 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - ✔
-      - ✔
+      - TBD
 
 Monitoring & Telemetry
 ==================================
