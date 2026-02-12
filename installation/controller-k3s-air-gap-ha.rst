@@ -587,10 +587,10 @@ The air-gapped Netris Controller also includes a local repository/registry. This
 
 Enable the Local repository in the Netris Controller Web UI under **Settings** section (as shown in the screenshots below).
 
-.. image:: images/global-setting-local-repo.png
+.. image:: ../images/global-setting-local-repo.png
     :align: center
 
-.. image:: images/global-setting-local-repo-save.png
+.. image:: ../images/global-setting-local-repo-save.png
     :align: center
 
 
@@ -600,7 +600,7 @@ How to consume local repository
 Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).
 
 
-.. image:: images/one-liner-with-local-repo.png
+.. image:: ../images/one-liner-with-local-repo.png
     :align: center
 
 
