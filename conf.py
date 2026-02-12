@@ -37,7 +37,9 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx_rtd_theme',
     'sphinx_copybutton',
+	'sphinx_design',
 	'sphinx_tabs.tabs',
+	'sphinxcontrib.googleanalytics'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -116,7 +118,7 @@ html_theme = 'sphinx_rtd_theme'
 # documentation.
 #html_theme_options = {}
 html_theme_options = {
-    'analytics_id': 'UA-152905529-2',  #  Provided by Google in your dashboard
+#    'analytics_id': 'UA-152905529-2',  #  Provided by Google in your dashboard
     'analytics_anonymize_ip': False,
     'logo_only': True,
 #    'display_version': True,
@@ -133,12 +135,19 @@ html_theme_options = {
     'titles_only': False
 }
 
+googleanalytics_id = "UA-152905529-2"
+googleanalytics_enabled = True
+
+# The name of an image file (relative to this directory) to place at the top
+# of the sidebar.
+html_logo = 'images/logo-600.png'
+
 html_context = {
 	'display_github': True,
 	'github_user': 'netrisai',
 	'github_repo': 'docs',
 	'github_version': 'master/',
-	'logo': 'images/logo-600.png'
+	'logo': os.path.basename(html_logo)
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
@@ -150,10 +159,6 @@ html_title = 'Netris Documentation'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
-
-# The name of an image file (relative to this directory) to place at the top
-# of the sidebar.
-html_logo = 'images/logo-600.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -398,12 +403,12 @@ rinoh_logo = 'images/logo-600.png'
 today_fmt = "%B %d, %Y"
 
 # settings for EPUB
-epub_basename = 'Netrisdocs'
+#epub_basename = 'Netrisdocs'
 
-html_context['downloads'] = list()
-html_context['downloads'].append( ('pdf', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
+#html_context['downloads'] = list()
+#html_context['downloads'].append( ('pdf', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.pdf') )
 
-html_context['downloads'].append( ('epub', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
+#html_context['downloads'].append( ('epub', '/docs/manifests/' +language+ '/' +current_version+ '/netris-docs_' +language+ '_' +current_version+ '.epub') )
 
 # Variables
 
@@ -411,4 +416,3 @@ rst_prolog = """
 .. |a-variable| replace:: A variable
 .. 
 """
-
