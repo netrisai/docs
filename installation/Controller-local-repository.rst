@@ -48,10 +48,10 @@ The script will output the local repository URL and URL to ISOs directory. Copy 
 
 Additionally, it provides the host system path, which you may want to use to host your custom ISOs for your servers, softgates, or switches.
 
-.. image:: images/Global-settings-edit.png
+.. image:: ../images/Global-settings-edit.png
     :align: center
 
-.. image:: images/Global-settings-save.png
+.. image:: ../images/Global-settings-save.png
     :align: center
 
 
@@ -65,7 +65,7 @@ Once the local repository function is enabled in the Netris Controller Settings,
   The local repository includes all the necessary scripts and dependency packages for the Netris NVUE (Cumulus 5.9 and higher) and Netris SoftGate HS (Ubuntu 24.04) agents.
 
 
-.. image:: images/oneliner-from-local-repo.png
+.. image:: ../images/oneliner-from-local-repo.png
     :align: center
 
 

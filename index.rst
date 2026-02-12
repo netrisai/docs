@@ -30,7 +30,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
    :maxdepth: 2
    :caption: Detailed Installation
 
-   installation
+   installation/installation
    switch-agent-installation
    netris-softgate-HS
 
@@ -44,7 +44,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
    lag
    visibility
    maintenance-mode
-   tutorials/upgrading-netris
+   upgrading-netris
 
 .. toctree::
    :maxdepth: 4
@@ -80,7 +80,6 @@ You are welcome to join our community Slack channel (see button at the top) to g
 
    ai-netris-host-networking
    vpc
-   tutorials/index
    tutorials/vpc-gateways-with-managed-fabric.rst
 
 .. toctree::
