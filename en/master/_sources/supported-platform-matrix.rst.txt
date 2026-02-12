@@ -73,11 +73,11 @@ Switch Fabric Management Functions
       - Optimizations for AI workloads. See AI functions section below.
       - ✔
       - TBD
-      - TBD
       - ✔
-   *  - Compute VXLAN/EVPN extension
+      - ✔
+   *  - Compute VXLAN/EVPN extension (EOH)
       - Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.
-      - Coming Soon
+      - ✔
       - ✔
       - TBD
       - TBD
@@ -93,7 +93,18 @@ Switch Fabric Management Functions
       - TBD
       - TBD
       - Coming Soon
-
+   *  - Custom Config Snippets
+      - Custom configuration snippets for unique use cases.
+      - Coming Soon
+      - Coming Soon
+      - Coming Soon
+      - Coming Soon   
+   *  - SNMPv2 polling
+      - Enable SNMPv2 server.
+      - ✔
+      - ✔
+      - ✔
+      - ✔
 
 Monitoring & Telemetry
 ==================================
@@ -109,7 +120,7 @@ Monitoring & Telemetry
       - Arista EOS
       - EdgeCore SONiC
    *  - Monitoring: Switch Ports
-      - Automatic monitoring of Link statuses, link utilization, laser signal levels, errors, packets.
+      - Automatic monitoring of Link statuses, link utilization, laser signal levels, temperature, errors, packets, transceiver presence.
       - ✔
       - ✔
       - ✔
@@ -254,12 +265,6 @@ Cloud Networking Functions & Constructs
       - ✔
       - ✔
       - ✔
-   *  - SiteMesh
-      - Wireguard-based Site-to-Site VPN between multiple regions/sites. (single VPC)
-      - ✔
-      - ✔
-      - ✔
-      - ✔
 
 .. _overlay-network-functions:
 
@@ -343,28 +348,28 @@ AI Specific Functions
       - Enable QoS for RoCE based on best practices
       - ✔
       - TBD
-      - TBD
+      - ✔
       - ✔
    *  - RoCE Adaptive Routing
       - Enable RoCE adaptive routing based on best practices
       - ✔
       - TBD
-      - TBD
+      - ✔
       - ✔
    *  - RoCE Congestion Control
       - Enable automatic congestion control for RoCE workloads
       - ✔
       - N/A
-      - N/A
+      - ✔
       - N/A
    *  - RoCE and QoS fine tuning
       - Allow fine tuning of QoS and other RoCE specific parameters
       - N/A
       - TBD
-      - TBD
+      - ✔
       - Coming Soon
-   *  - DPU/Host zero-touch configuration
-      - Automatically configure IP addresses, routing, RoCE and other DPU/SuperNIC specific configuration on GPU servers
+   *  - SuperNIC auto-configuration for RoCE
+      - Automatically configure IP addresses, routing, RoCE and other SuperNIC specific configuration on GPU servers
       - ✔
       - TBD
       - TBD
@@ -482,60 +487,26 @@ Management Interfaces
       - ✔
 
 
-Hypervisor/Worker node specific functionality
+Host Networking
 =============================================
 
 .. list-table::
-   :header-rows: 0
+   :header-rows: 1
 
    *  - Function
       - Description
-      - Kubernetes
-      - Vmware
-      - Apache Cloud Stack
-      - OpenStack
-      - Harvester
-      - Proxmox
-   *  - L4 Load Balancer
+      - NVIDIA Cumulus
+      - Dell-SONiC
+
+        BCM-SONiC
+      - Arista EOS
+      - EdgeCore-SONiC
+   *  - HBN (Host Based Networking) for BlueFIeld DPUs
       - Layer-4 container or vm/server load balancer with health checks.
-      - ✔ (native & automatic)
-      - ✔ (need to specify backend IPs)
-      - ✔
-      - ✔ (need to specify backend IPs)
-      - ✔ (need to specify backend IPs)
-      - ✔ (need to specify backend IPs)
-   *  - VPC to internal routing peering
-      - Automatically route internal networks into VPC routing table (allow containers communicate with VMs).
-      - ✔
-      - N/A
-      - ✔
-      - TBD
-      - TBD
-      - TBD
-   *  - Automatic VXLAN/VLAN
-      - Automatically provision VXLAN/VLAN on switch fabric and include appropriate switch ports when virtual network is created in the hypervisor.
-      - TBD
       - ✔
       - ✔
-      - TBD
-      - TBD
-      - TBD
-   *  - HBN  Host-based networking.
-      - Terminate VTEPs on the hypervisor host. Scale beyond VLAN limits
-      - Coming Soon
-      - TBD
       - ✔
-      - TBD
-      - TBD
-      - TBD
-   *  - HBN on DPU
-      - Host-based networking. Terminate VTEPs on the hypervisor host DPU. Scale beyond VLAN limits with accelerated performance
-      - 2025
-      - TBD
-      - 2025
-      - 2025
-      - TBD
-      - TBD
+      - ✔
 
 ============================================
 Netris and NOS versions compatibility matrix
