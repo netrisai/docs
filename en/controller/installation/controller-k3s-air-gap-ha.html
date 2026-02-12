@@ -50,8 +50,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Network Switch Initial Setup" href="../switch-agent-installation.html" />
-    <link rel="prev" title="Netris Local Repository Setup" href="Controller-local-repository.html" /> 
+    <link rel="next" title="Helm Chart Installation" href="controller-k8s-installation.html" />
+    <link rel="prev" title="Controller Installation" href="installation.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -148,21 +148,6 @@
 <p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="installation.html">Controller Installation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html">Helm Chart Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Controller-local-repository.html">Netris Local Repository Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
-</ul>
-</li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
@@ -213,6 +198,21 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#maintenance-best-practices">Maintenance Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html">Helm Chart Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Controller-local-repository.html">Netris Local Repository Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
 </ul>
 </li>
 </ul>
@@ -1030,8 +1030,8 @@
               <a href="https://github.com/netrisai/docs/blob/master/installation/controller-k3s-air-gap-ha.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="Controller-local-repository.html" class="btn btn-neutral float-left" title="Netris Local Repository Setup" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../switch-agent-installation.html" class="btn btn-neutral float-right" title="Network Switch Initial Setup" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="Controller Installation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controller-k8s-installation.html" class="btn btn-neutral float-right" title="Helm Chart Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -1837,8 +1837,8 @@ kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>rollou
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Controller-local-repository.html" class="btn btn-neutral float-left" title="Netris Local Repository Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../switch-agent-installation.html" class="btn btn-neutral float-right" title="Network Switch Initial Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="Controller Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controller-k8s-installation.html" class="btn btn-neutral float-right" title="Helm Chart Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
