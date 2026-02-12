@@ -11,7 +11,7 @@ Getting Started with Switch-Fabric Manager & VPC
 .. toctree::
    :maxdepth: 2
 
-   netris-controller-installation
+   ../installation/controller-k3s-air-gap-ha
 
 .. toctree::
    :maxdepth: 2
