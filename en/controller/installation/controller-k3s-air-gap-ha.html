@@ -51,7 +51,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Network Switch Initial Setup" href="../switch-agent-installation.html" />
-    <link rel="prev" title="Installing Netris Controller in Air-Gapped Environments" href="controller-k3s-air-gap.html" /> 
+    <link rel="prev" title="Netris Local Repository Setup" href="Controller-local-repository.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -148,27 +148,6 @@
 <p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="installation.html">Controller Installation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-installation.html">Netris Controller installation on a generic Linux host</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#linux-host-requirements">Linux Host requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-specific-host-name">Installation with the specific host name</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-let-s-encrypt-ssl">Installation with the Let’s Encrypt SSL</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-custom-ssl-issuer">Installation with the Custom SSL Issuer</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#upgrading">Upgrading</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#uninstalling">Uninstalling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#backup-and-restore">Backup and Restore</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#backup">Backup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#restore">Restore</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k8s-quickstart.html">Quickstart Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-quickstart.html#quickstart-process">Quickstart Process</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html">Helm Chart Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#requirements">Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
@@ -182,17 +161,6 @@
 <li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap.html">Installing Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#how-to-install-the-netris-controller">How to Install the Netris Controller</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap.html#steps-to-install">Steps to Install</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#after-installation">After Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#how-to-consume-local-repository">How to consume local repository</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
@@ -1062,7 +1030,7 @@
               <a href="https://github.com/netrisai/docs/blob/master/installation/controller-k3s-air-gap-ha.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="controller-k3s-air-gap.html" class="btn btn-neutral float-left" title="Installing Netris Controller in Air-Gapped Environments" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Controller-local-repository.html" class="btn btn-neutral float-left" title="Netris Local Repository Setup" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../switch-agent-installation.html" class="btn btn-neutral float-right" title="Network Switch Initial Setup" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -1869,7 +1837,7 @@ kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>rollou
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="controller-k3s-air-gap.html" class="btn btn-neutral float-left" title="Installing Netris Controller in Air-Gapped Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Controller-local-repository.html" class="btn btn-neutral float-left" title="Netris Local Repository Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../switch-agent-installation.html" class="btn btn-neutral float-right" title="Network Switch Initial Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
