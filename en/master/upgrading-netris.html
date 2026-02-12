@@ -17,7 +17,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Controller Virtual Machine Installation" name="description" />
+<meta content="Upgrading Netris" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -29,7 +29,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Virtual Machine Installation &mdash; Netris Documentation</title>
+  <title>Upgrade and Rollback &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -49,7 +49,9 @@
       <script src="_static/version-picker.js?v=51bfea80"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="V-Net" href="vnet.html" />
+    <link rel="prev" title="Maintenance Mode" href="maintenance-mode.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -145,100 +147,72 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Controller Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-installation.html">Netris Controller installation on a generic Linux host</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#linux-host-requirements">Linux Host requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-specific-host-name">Installation with the specific host name</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-let-s-encrypt-ssl">Installation with the Let’s Encrypt SSL</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#installation-with-the-custom-ssl-issuer">Installation with the Custom SSL Issuer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation/installation.html">Controller Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#upgrading">Upgrading</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#uninstalling">Uninstalling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-installation.html#backup-and-restore">Backup and Restore</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#backup">Backup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-installation.html#restore">Restore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html">Helm Chart Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="Controller-local-repository.html">Netris Local Repository Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap.html">Installing Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#how-to-install-the-netris-controller">How to Install the Netris Controller</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap.html#steps-to-install">Steps to Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#after-installation">After Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap.html#how-to-consume-local-repository">How to consume local repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/controller-k8s-installation.html">Helm Chart Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/Controller-local-repository.html">Netris Local Repository Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
 </ul>
 </li>
 </ul>
@@ -289,7 +263,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-softgates">Adding SoftGates</a></li>
@@ -354,21 +328,21 @@
 <li class="toctree-l2"><a class="reference internal" href="maintenance-mode.html#maintenance-mode-for-switch-whats-happening-behind-the-scenes">Maintenance Mode for Switch - What’s happening behind the scenes?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/upgrading-netris.html">Upgrade and Rollback</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#backup-current-database">Backup current database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#check-your-current-version">Check your current version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Upgrade and Rollback</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#backup-current-database">Backup current database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stop-netris-agents">Stop Netris Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-your-current-version">Check your current version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrade-the-controller">Upgrade the Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-the-upgraded-version">Check the upgraded version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#id1">Stop Netris Agents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#restore-the-database">Restore The Database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rollback-procedure">Rollback Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Stop Netris Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#restore-the-database">Restore The Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
 </ul>
 </li>
 </ul>
@@ -765,41 +739,62 @@
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#working-with-netris-vpc">Working with Netris VPC</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Netris Generic Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/installing-netris-controller.html">Installing a Netris Controller</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/installing-netris-controller.html#security-matters">Security Matters</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/upgrading-netris.html">Upgrade and Rollback</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#backup-current-database">Backup current database</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#check-your-current-version">Check your current version</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#id1">Stop Netris Agents</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#restore-the-database">Restore The Database</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials/upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/netris-managed-fabric-overview.html">Netris managed fabric Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tutorials/netris-managed-fabric-overview.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tutorials/netris-managed-fabric-overview.html#concept">Concept</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/netris-controller-installation.html">Install a Netris Controller</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-controller-installation.html#requirements-and-installation-steps">Requirements and Installation steps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials/netris-controller-installation.html#security-matters">Security Matters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/new-site-setup.html">New Site setup</a></li>
@@ -1029,189 +1024,201 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Virtual Machine Installation</li>
+      <li class="breadcrumb-item active">Upgrade and Rollback</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/controller-vm-installation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/upgrading-netris.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
-  </ul>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="maintenance-mode.html" class="btn btn-neutral float-left" title="Maintenance Mode" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vnet.html" class="btn btn-neutral float-right" title="V-Net" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="virtual-machine-installation">
-<h1>Virtual Machine Installation<a class="headerlink" href="#virtual-machine-installation" title="Link to this heading"></a></h1>
-<section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
-<p>Minimal system requirements for the VM:</p>
-<ul class="simple">
-<li><p>CPU - 4 Core</p></li>
-<li><p>RAM - 4 Gb</p></li>
-<li><p>Disk - 100Gb</p></li>
-<li><p>Network - 1 virtual NIC</p></li>
-</ul>
-<p>Recommended system requirements for the VM:</p>
-<ul class="simple">
-<li><p>CPU - 8 Core</p></li>
-<li><p>RAM - 16 Gb</p></li>
-<li><p>Disk - 100Gb</p></li>
-<li><p>Network - 1 virtual NIC</p></li>
-</ul>
-</section>
-<section id="kvm-hypervisor-installation">
-<h2>KVM Hypervisor Installation<a class="headerlink" href="#kvm-hypervisor-installation" title="Link to this heading"></a></h2>
-<p>If KVM is not already installed, install Qemu/KVM on the host machine (example provided for Ubuntu Linux 18.04)</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt-get install virt-manager</span>
+  <style> .green {color:#2fa84f} </style>
+<style> .red {color:red} </style><section id="upgrade-and-rollback">
+<h1>Upgrade and Rollback<a class="headerlink" href="#upgrade-and-rollback" title="Link to this heading"></a></h1>
+<section id="netris-upgrade-procedure">
+<h2>Netris upgrade Procedure<a class="headerlink" href="#netris-upgrade-procedure" title="Link to this heading"></a></h2>
+<section id="backup-current-database">
+<h3>Backup current database<a class="headerlink" href="#backup-current-database" title="Link to this heading"></a></h3>
+<p>Always have a backup, just in case anything hypothetically goes wrong. SSH to the host running the Netris Controller and execute below command.</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysqldump -u $MARIADB_USER -p${MARIADB_PASSWORD} $MARIADB_DATABASE&#39; &gt; db-snapshot.sql</span>
 </pre></div>
+</div>
+<p>Ensure that SQL file <code class="docutils literal notranslate"><span class="pre">db-snapshot.sql</span></code> is generated and present in the current directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An SQL dump is enough for this basic upgrade scenario, however detailed backup &amp; restore procedure is described in <span class="xref std std-ref">here</span>.</p>
 </div>
 </section>
-<section id="vm-controller-installation">
-<h2>VM Controller Installation<a class="headerlink" href="#vm-controller-installation" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p>Download the Netris Controller image. (contact Netris support for repository access permissions).</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">cd /var/lib/libvirt/images</span>
-
-<span class="go">sudo wget http://img.netris.io/netris-controller3.qcow2</span>
+<section id="stop-netris-agents">
+<h3>Stop Netris Agents<a class="headerlink" href="#stop-netris-agents" title="Link to this heading"></a></h3>
+<p>Stop Netris agents on switches and SoftGate nodes.</p>
+<p><strong>For Switches:</strong></p>
+<p>SSH to the switch and run the following command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl stop netris-sw</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="2">
-<li><p>Download VM definition file.</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">cd /etc/libvirt/qemu</span>
-
-<span class="go">sudo wget http://img.netris.io/netris-controller3.xml</span>
+<p><strong>For SoftGate nodes:</strong></p>
+<p>SSH to the SoftGate and run the following command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl stop netris-sg</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
-<li><p>Define the KVM virtual machine</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo virsh define netris-controller3.xml</span>
+<p>Make sure that all devices in the <em>Network → Inventory</em> section are “<span class="red">red</span>” with the “<strong>check_agent</strong>” status being “<strong>Agent is unavailable</strong>”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A stopped Netris agent has no impact on production traffic through the device.</p>
+</div>
+</section>
+<section id="check-your-current-version">
+<span id="upgrade-3"></span><h3>Check your current version<a class="headerlink" href="#check-your-current-version" title="Link to this heading"></a></h3>
+<p>Before upgrading the Netris Controller, take a note of the “<em>Netris Version</em>” by navigating to <em>Settings → General</em> in the Controller web interface. The current version number may be used in case of the hypothetical need to perform a rollback procedure.</p>
+<img alt="Netris Version Example" class="align-center" src="_images/netris_version_example.png" />
+</section>
+<section id="upgrade-the-controller">
+<h3>Upgrade the Controller<a class="headerlink" href="#upgrade-the-controller" title="Link to this heading"></a></h3>
+<p>SSH to the Controller host and execute the below command.</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl -sfL https://get.netris.io | sh -</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Netris Controller virtual NIC will bind to the “br-mgmt” interface on the KVM host machine. See below for the network interface configuration example.</p>
+<p>This process can take up to 5 minutes</p>
 </div>
-<p>Example: Network configuration on host (hypervisor) machine.</p>
+<p>Afterwards, make sure that all pods have either “<em>Running</em>” or “<em>Completed</em>” status by executing the following command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller get pods</span>
+</pre></div>
+</div>
+<p>The output is similar to this:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME                                                      READY   STATUS      RESTARTS    AGE</span>
+<span class="go">svclb-netris-controller-haproxy-6tkgj                     4/4     Running     0           38d</span>
+<span class="go">netris-controller-haproxy-bcb944b7c-qcbf8                 1/1     Running     0           13d</span>
+<span class="go">netris-controller-squid-7f6fdc6cf9-7fdx8                  1/1     Running     0           38d</span>
+<span class="go">svclb-netris-controller-squid-58rnp                       1/1     Running     0           38d</span>
+<span class="go">netris-controller-graphite-0                              1/1     Running     0           38d</span>
+<span class="go">netris-controller-mongodb-0                               1/1     Running     0           38d</span>
+<span class="go">netris-controller-redis-master-0                          1/1     Running     0           38d</span>
+<span class="go">netris-controller-smtp-76778cf85f-lw5v5                   1/1     Running     0           10d</span>
+<span class="go">netris-controller-mariadb-0                               1/1     Running     0           10d</span>
+<span class="go">netris-controller-web-session-generator-8b9dbbcd8-8snhd   1/1     Running     0           10d</span>
+<span class="go">netris-controller-telescope-notifier-647975848f-fs5dn     1/1     Running     0           10d</span>
+<span class="go">netris-controller-app-b9b8d8f8d-4ssqb                     1/1     Running     0           10d</span>
+<span class="go">netris-controller-grpc-987669fb9-jjskp                    1/1     Running     0           10d</span>
+<span class="go">netris-controller-telescope-777c98c5d9-mqwl6              1/1     Running     0           10d</span>
+<span class="go">helm-install-netris-controller-lqmq7                      0/1     Completed   0           20h</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If, after 5 minutes, you see pods with a status other than “<em>Running</em>” or “<em>Completed</em>”, please reach out to us via <a class="reference external" href="https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email">Slack</a>.</p>
+</div>
+</section>
+<section id="check-the-upgraded-version">
+<h3>Check the upgraded version<a class="headerlink" href="#check-the-upgraded-version" title="Link to this heading"></a></h3>
+<p>Make sure that the “<em>Netris Version</em>” reflects the version change by navigating to <em>Settings → General</em> in the Controller web interface.</p>
+</section>
+<section id="upgrade-switches-and-softgate-nodes">
+<h3>Upgrade Switches and SoftGate nodes<a class="headerlink" href="#upgrade-switches-and-softgate-nodes" title="Link to this heading"></a></h3>
+<p>Once you have verified that the Netris controller is up-to-date, it is time to update the switch and SoftGate agents.</p>
+<p>Upgrade the switch &amp; SoftGate agents by copying the one-liner from the “<em>Install Agent</em>” option of the device’s 3-dot menu found under the <em>Network → Inventory</em> section and pasting it into appropriate devices by SSHing to the corresponding device.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>replace &lt;Physical NIC&gt;, &lt;host server management IP/prefix length&gt; and &lt;host server default gateway&gt;
-with the correct NIC and IP  for your host machine.</p>
+<p>These one-liners include a unique identifier for binding the physical device with the virtual object in the Controller. Please make sure
+to copy/paste into the right devices.</p>
 </div>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo vim /etc/network/interfaces</span>
+<img alt="Install Agent" class="align-center" src="_images/install_agent.gif" />
+<p>After all the agents have finished the upgrade process, make sure all devices in the <em>Network → Inventory</em> section have a “<span class="green">green</span>” status and the <em>Netris version</em> for each device reflects the version change.</p>
+<p>In the event the “<strong>check_agent</strong>” status is “<strong>Agent is unavailable</strong>” after the agent upgrade has finished, perform agent restart on the affected device(s).</p>
+<p><strong>For Switches:</strong></p>
+<p>SSH to the switch and run the following command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl restart netris-sw</span>
 </pre></div>
 </div>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Physical<span class="w"> </span>NIC<span class="w"> </span>connected<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>management<span class="w"> </span>network
-<span class="go">auto &lt;Physical NIC&gt;</span>
-<span class="go">iface &lt;Physical NIC&gt; inet static</span>
-<span class="go">                        address 0.0.0.0/0</span>
-
-<span class="gp">#</span>bridge<span class="w"> </span>interface
-<span class="go">auto br-mgmt</span>
-<span class="go">iface br-mgmt inet static</span>
-<span class="go">                        address &lt;host server management IP/prefix length&gt;</span>
-<span class="go">                        gateway &lt;host server default gateway&gt;</span>
-<span class="go">                        bridge-ports &lt;Physical NIC&gt;</span>
-
-<span class="go">source /etc/network/interfaces.d/*</span>
-</pre></div>
-</div>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo ifreload -a</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>Set the virtual machine to autostart and start it.</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo virsh autostart netris-controller</span>
-</pre></div>
-</div>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo virsh start netris-controller</span>
+<p><strong>For SoftGate nodes:</strong></p>
+<p>SSH to the SoftGate and run the following command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl restart netris-sg</span>
 </pre></div>
 </div>
 </section>
-<section id="accessing-the-netris-controller">
-<h2>Accessing the Netris Controller<a class="headerlink" href="#accessing-the-netris-controller" title="Link to this heading"></a></h2>
-<p>By default, Netris Controller will obtain an IP address from a <strong>DHCP</strong> server.</p>
-<p>Below steps describe how to configure a <strong>Static IP</strong> address for the Netris Controller.</p>
-<ol class="arabic simple">
-<li><p>Connecting to the VM console.</p></li>
-</ol>
-<p>default credentials. <strong>login</strong>: <code class="docutils literal notranslate"><span class="pre">netris</span></code> <strong>password</strong>: <code class="docutils literal notranslate"><span class="pre">newNet0ps</span></code></p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo virsh console netris-controller</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Do not forget to change the default password (using passwd command).</p>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Setting a static IP address.</p></li>
-</ol>
-<p>Edit network configuration file.</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo vim /etc/network/interfaces</span>
-</pre></div>
-</div>
-<p>Example: IP configuration file.</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>The<span class="w"> </span>loopback<span class="w"> </span>network<span class="w"> </span>interface
-<span class="go">auto lo</span>
-<span class="go">iface lo inet loopback</span>
-
-
-<span class="gp"># </span>The<span class="w"> </span>primary<span class="w"> </span>network<span class="w"> </span>interface
-<span class="go">auto eth0</span>
-<span class="go">iface eth0 inet static</span>
-<span class="go">        address &lt;Netris Controller IP/prefix length&gt;</span>
-<span class="go">        gateway &lt;Netris Controller default gateway&gt;</span>
-<span class="go">        dns-nameserver &lt;a DNS server address&gt;</span>
-
-<span class="go">source /etc/network/interfaces.d/*</span>
-</pre></div>
-</div>
-<p>Reload the network config.</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo ifreload -a</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Make sure Netris Controller has Internet access.</p>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Reboot the controller</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo reboot</span>
-</pre></div>
-</div>
-<p>After reboot, the Netris Controller GUI should be accessible using a browser. Use <code class="docutils literal notranslate"><span class="pre">netris/newNet0ps</span></code> credentials.</p>
-<img alt="Netris Credentials" class="with-shadow align-center" src="_images/credentials.png" />
 </section>
-<section id="replacing-the-ssl-certificate">
-<h2>Replacing the SSL certificate<a class="headerlink" href="#replacing-the-ssl-certificate" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p>Replace the below file with your SSL certificate file.</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">/etc/nginx/ssl/controller.cert.pem;</span>
+<section id="rollback-procedure">
+<h2>Rollback Procedure<a class="headerlink" href="#rollback-procedure" title="Link to this heading"></a></h2>
+<p>A rollback procedure can be executed in the event the upgrade introduces any adverse impact on the production traffic.</p>
+<section id="id1">
+<h3>Stop Netris Agents<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Stop all Netris agents on the devices managed by the controller (switch &amp; SoftGate).</p>
+<p><strong>For Switches:</strong></p>
+<p>SSH to the switch and run the following command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl stop netris-sw</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="2">
-<li><p>Replace the below file with your SSL private key.</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">/etc/nginx/ssl/controller.key.pem;</span>
+<p><strong>For SoftGate nodes:</strong></p>
+<p>SSH to the SoftGate and run the following command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl stop netris-sg</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
-<li><p>Restart Nginx service.</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">systemctl restart nginx.service</span>
+</section>
+<section id="restore-the-database">
+<h3>Restore The Database<a class="headerlink" href="#restore-the-database" title="Link to this heading"></a></h3>
+<p>Restore the database from the previously taken snapshot.</p>
+<p>Drop the current database and create a new one by running the following command after SSHing to the Controller:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysql -u root -p${MARIADB_ROOT_PASSWORD} -e &quot;DROP DATABASE $MARIADB_DATABASE&quot;&#39;</span>
+<span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysql -u root -p${MARIADB_ROOT_PASSWORD} -e &quot;CREATE DATABASE $MARIADB_DATABASE&quot;&#39;</span>
 </pre></div>
 </div>
+<p>While still connected to the Controller, copy the backup file from the controller host system to the MariaDB container and restore the database:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller cp db-snapshot.sql netris-controller-mariadb-0:/opt/db-snapshot.sql</span>
+<span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysql -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE &lt; /opt/db-snapshot.sql&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="downgrade-the-controller-software">
+<h3>Downgrade the Controller Software<a class="headerlink" href="#downgrade-the-controller-software" title="Link to this heading"></a></h3>
+<p>Downgrade Netris Controller application with the following command.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the version number, use the number collected from <a class="reference internal" href="#upgrade-3"><span class="std std-ref">step #3</span></a> during the upgrade procedure.</p>
+</div>
+<p>Example:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl -sfL https://get.netris.io | sh -s -- --ctl-version 3.0.10-031</span>
+</pre></div>
+</div>
+<p>Afterwards, verify that the version of the “<em>Netris Version</em>” reflects the downgraded version by navigating to <em>Settings → General</em> in the Netris Controller.</p>
+</section>
+<section id="downgrade-netris-agent-software">
+<h3>Downgrade Netris Agent Software<a class="headerlink" href="#downgrade-netris-agent-software" title="Link to this heading"></a></h3>
+<p>Once you have verified that the Netris controller has been downgraded to the correct version, it is time to downgrade the switch and SoftGate agents.</p>
+<p>Install the appropriate version of switch &amp; SoftGate agents by copying the one-liner from the “<em>Install Agent</em>” option of the device’s 3-dot menu found under the <em>Network → Inventory</em> section and pasting it into appropriate devices by SSHing to the corresponding device.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One-liners include a unique identifier for binding the physical device with the virtual object in the Controller. Please make sure to copy/paste into the right devices.</p>
+</div>
+<p>After all the switches and SoftGates have been successfully downgraded, make sure all the devices in the <em>Network → Inventory</em> section have a “<span class="green">green</span>” status and the <em>Netris version</em> for each device reflects the version downgrade.</p>
+<p>In case the “<strong>check_agent</strong>” status is “<strong>Agent is unavailable</strong>” after agent downgrade, perform agent restart.</p>
+<p><strong>For Switches:</strong></p>
+<p>SSH to the switch and run the following command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl restart netris-sw</span>
+</pre></div>
+</div>
+<p><strong>For SoftGate nodes:</strong></p>
+<p>SSH to the SoftGate and run the following command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl restart netris-sg</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="maintenance-mode.html" class="btn btn-neutral float-left" title="Maintenance Mode" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vnet.html" class="btn btn-neutral float-right" title="V-Net" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

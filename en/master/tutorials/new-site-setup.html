@@ -50,7 +50,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="VPC setup" href="vpc-setup.html" />
-    <link rel="prev" title="Install a Netris Controller" href="netris-controller-installation.html" /> 
+    <link rel="prev" title="Netris managed fabric Overview" href="netris-managed-fabric-overview.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -146,100 +146,72 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../installation.html">Controller Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../controller-k3s-installation.html">Netris Controller installation on a generic Linux host</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-installation.html#linux-host-requirements">Linux Host requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-installation.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-installation.html#installation-with-the-specific-host-name">Installation with the specific host name</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-installation.html#installation-with-the-let-s-encrypt-ssl">Installation with the Let’s Encrypt SSL</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-installation.html#installation-with-the-custom-ssl-issuer">Installation with the Custom SSL Issuer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Controller Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-installation.html#upgrading">Upgrading</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-installation.html#uninstalling">Uninstalling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-installation.html#backup-and-restore">Backup and Restore</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-installation.html#backup">Backup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-installation.html#restore">Restore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../controller-k8s-installation.html">Helm Chart Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k8s-installation.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../Controller-local-repository.html">Netris Local Repository Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../controller-k3s-air-gap.html">Installing Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap.html#how-to-install-the-netris-controller">How to Install the Netris Controller</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap.html#steps-to-install">Steps to Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap.html#after-installation">After Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap.html#how-to-consume-local-repository">How to consume local repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k8s-installation.html">Helm Chart Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/Controller-local-repository.html">Netris Local Repository Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
 </ul>
 </li>
 </ul>
@@ -355,21 +327,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../maintenance-mode.html#maintenance-mode-for-switch-whats-happening-behind-the-scenes">Maintenance Mode for Switch - What’s happening behind the scenes?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="upgrading-netris.html">Upgrade and Rollback</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#backup-current-database">Backup current database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#check-your-current-version">Check your current version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrading-netris.html">Upgrade and Rollback</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#backup-current-database">Backup current database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#check-your-current-version">Check your current version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#id1">Stop Netris Agents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#restore-the-database">Restore The Database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#id1">Stop Netris Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#restore-the-database">Restore The Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
 </ul>
 </li>
 </ul>
@@ -766,41 +738,62 @@
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#working-with-netris-vpc">Working with Netris VPC</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Netris Generic Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installing-netris-controller.html">Installing a Netris Controller</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installing-netris-controller.html#security-matters">Security Matters</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="upgrading-netris.html">Upgrade and Rollback</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#backup-current-database">Backup current database</a></li>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#check-your-current-version">Check your current version</a></li>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#id1">Stop Netris Agents</a></li>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#restore-the-database">Restore The Database</a></li>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
-<li class="toctree-l4"><a class="reference internal" href="upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1 current"><a class="reference internal" href="vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="netris-managed-fabric-overview.html">Netris managed fabric Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-managed-fabric-overview.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-managed-fabric-overview.html#concept">Concept</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="netris-controller-installation.html">Install a Netris Controller</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="netris-controller-installation.html#requirements-and-installation-steps">Requirements and Installation steps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-controller-installation.html#security-matters">Security Matters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">New Site setup</a></li>
@@ -1036,7 +1029,7 @@
               <a href="https://github.com/netrisai/docs/blob/master/tutorials/new-site-setup.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="netris-controller-installation.html" class="btn btn-neutral float-left" title="Install a Netris Controller" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="netris-managed-fabric-overview.html" class="btn btn-neutral float-left" title="Netris managed fabric Overview" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="vpc-setup.html" class="btn btn-neutral float-right" title="VPC setup" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -1063,7 +1056,7 @@ Network → Sites → +Add</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="netris-controller-installation.html" class="btn btn-neutral float-left" title="Install a Netris Controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="netris-managed-fabric-overview.html" class="btn btn-neutral float-left" title="Netris managed fabric Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="vpc-setup.html" class="btn btn-neutral float-right" title="VPC setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
