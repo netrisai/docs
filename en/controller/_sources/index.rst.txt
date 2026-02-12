@@ -80,7 +80,6 @@ You are welcome to join our community Slack channel (see button at the top) to g
 
    ai-netris-host-networking
    vpc
-   tutorials/index
    tutorials/vpc-gateways-with-managed-fabric.rst
 
 .. toctree::

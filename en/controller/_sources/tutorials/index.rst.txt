@@ -1,8 +1,0 @@
-========================
-Netris Generic Tutorials
-========================
-    
-.. toctree::
-   :maxdepth: 2
-
-   vpc-gateways-with-managed-fabric
