@@ -17,6 +17,7 @@
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Netris-CloudStack Integration" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -28,7 +29,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NVIDIA NetQ Integration &mdash; Netris Documentation</title>
+  <title>High-Level Concept of Integration &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -49,8 +50,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Netris Healthchecks" href="healthchecks.html" />
-    <link rel="prev" title="Topology &amp; Wiring Validation" href="topology-validation.html" /> 
+    <link rel="next" title="Prerequisites" href="netris-cloudstack_p2.html" />
+    <link rel="prev" title="Netris-CloudStack Integration" href="netris-cloudstack.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -476,7 +477,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Netris Integrations</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../netris-ufm-integration.html">NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#key-benefits">Key Benefits</a></li>
@@ -580,85 +581,85 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../cloudstack/netris-cloudstack.html">Netris-CloudStack Integration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html">High-Level Concept of Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#how-it-works">How It Works</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#challenges-addressed">Challenges Addressed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#benefits">Benefits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#use-cases">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="netris-cloudstack.html">Netris-CloudStack Integration</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">High-Level Concept of Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-it-works">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges-addressed">Challenges Addressed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#benefits">Benefits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-cases">Use Cases</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#compute-and-network-architecture">Compute and Network Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#diagram-overview">Diagram Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#network-flow">Network Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compute-and-network-architecture">Compute and Network Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diagram-overview">Diagram Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-flow">Network Flow</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html">Prerequisites</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#step-by-step-configuration-instructions-for-the-netris-controller">Step-by-Step Configuration Instructions for the Netris Controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#ipam-setup">IPAM Setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#create-an-allocation">Create an Allocation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#create-subnets">Create Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-cloudstack_p2.html">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p2.html#step-by-step-configuration-instructions-for-the-netris-controller">Step-by-Step Configuration Instructions for the Netris Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p2.html#ipam-setup">IPAM Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#create-an-allocation">Create an Allocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#create-subnets">Create Subnets</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#inventory-setup">Inventory Setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#adding-servers">Adding Servers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#creating-servers-links">Creating Servers’ Links</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#optimize-bgp-overlay-for-hypervisor">Optimize BGP Overlay for Hypervisor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#adding-subnets-for-cloudstack-cluster">Adding Subnets for CloudStack Cluster</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#enabling-internet-connectivity-for-acs-servers">Enabling Internet Connectivity for ACS Servers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#enabling-access-to-cloudstack-management-gui">Enabling Access to CloudStack Management GUI</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#creating-cloudstack-networks">Creating CloudStack Networks</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html">Server Configuration and Software Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#configuring-network-on-cloudstack-management-server-server-1">Configuring Network on CloudStack Management Server (Server 1)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#understanding-the-network-layout">Understanding the Network Layout</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#netplan-configuration">Netplan Configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#install-netris-cloudstack-agent-on-hypervisor-servers">Install Netris-CloudStack Agent on Hypervisor Servers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#bringing-up-nics-before-installation">Bringing Up NICs Before Installation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#pre-installation-steps-for-deployments-without-oob">Pre-Installation Steps (For Deployments Without OOB)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#key-functions-of-the-netris-cloudstack-agent">Key Functions of the Netris-CloudStack Agent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#installation-steps">Installation Steps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#example-successful-output-of-one-liner-script">Example Successful Output of One-Liner Script</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#verification-steps">Verification Steps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#checking-network-connectivity">Checking Network Connectivity</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#finalizing-the-network-setup">Finalizing the Network Setup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#keeping-the-temporary-oob-vnet-for-emergency-access"><strong>Keeping the Temporary OOB VNet for Emergency Access</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#managing-additional-nics-on-the-server">Managing Additional NICs on the Server</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#install-cloudstack-management-service">Install CloudStack Management Service</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#id1">Installation Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p2.html#inventory-setup">Inventory Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#creating-servers-links">Creating Servers’ Links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#optimize-bgp-overlay-for-hypervisor">Optimize BGP Overlay for Hypervisor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#adding-subnets-for-cloudstack-cluster">Adding Subnets for CloudStack Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#enabling-internet-connectivity-for-acs-servers">Enabling Internet Connectivity for ACS Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#enabling-access-to-cloudstack-management-gui">Enabling Access to CloudStack Management GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#creating-cloudstack-networks">Creating CloudStack Networks</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html">Configuring CloudStack for Netris Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#enabling-the-netris-plugin-in-cloudstack">Enabling the Netris Plugin in CloudStack</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#initializing-cloudstack-setup">Initializing CloudStack Setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#steps-to-initialize-cloudstack">Steps to Initialize CloudStack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-cloudstack_p3.html">Server Configuration and Software Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p3.html#configuring-network-on-cloudstack-management-server-server-1">Configuring Network on CloudStack Management Server (Server 1)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#understanding-the-network-layout">Understanding the Network Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#netplan-configuration">Netplan Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p3.html#install-netris-cloudstack-agent-on-hypervisor-servers">Install Netris-CloudStack Agent on Hypervisor Servers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#bringing-up-nics-before-installation">Bringing Up NICs Before Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#pre-installation-steps-for-deployments-without-oob">Pre-Installation Steps (For Deployments Without OOB)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#key-functions-of-the-netris-cloudstack-agent">Key Functions of the Netris-CloudStack Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#example-successful-output-of-one-liner-script">Example Successful Output of One-Liner Script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#verification-steps">Verification Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#checking-network-connectivity">Checking Network Connectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#finalizing-the-network-setup">Finalizing the Network Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#keeping-the-temporary-oob-vnet-for-emergency-access"><strong>Keeping the Temporary OOB VNet for Emergency Access</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#managing-additional-nics-on-the-server">Managing Additional NICs on the Server</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p3.html#install-cloudstack-management-service">Install CloudStack Management Service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#id1">Installation Steps</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html">Using CloudStack with Netris Isolation Method</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#creating-a-vpc">Creating a VPC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#creating-a-network-tier">Creating a Network Tier</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#port-forwarding">Port Forwarding</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#seamless-integration-between-cloudstack-and-netris">Seamless Integration Between CloudStack and Netris</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#step-by-step-process-for-configuring-port-forwarding-in-cloudstack-with-netris">Step-by-Step Process for Configuring Port Forwarding in CloudStack with Netris</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#key-notes">Key Notes:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-cloudstack_p4.html">Configuring CloudStack for Netris Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p4.html#enabling-the-netris-plugin-in-cloudstack">Enabling the Netris Plugin in CloudStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p4.html#initializing-cloudstack-setup">Initializing CloudStack Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p4.html#steps-to-initialize-cloudstack">Steps to Initialize CloudStack</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#configuring-static-nat-in-cloudstack">Configuring Static NAT in CloudStack</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#how-static-nat-works-with-cloudstack-and-netris">How Static NAT Works with CloudStack and Netris</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#steps-to-configure-static-nat">Steps to Configure Static NAT:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#how-cloudstack-and-netris-work-together">How CloudStack and Netris Work Together</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#final-notes">Final Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="netris-cloudstack_p5.html">Using CloudStack with Netris Isolation Method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p5.html#creating-a-vpc">Creating a VPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p5.html#creating-a-network-tier">Creating a Network Tier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p5.html#port-forwarding">Port Forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#seamless-integration-between-cloudstack-and-netris">Seamless Integration Between CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#step-by-step-process-for-configuring-port-forwarding-in-cloudstack-with-netris">Step-by-Step Process for Configuring Port Forwarding in CloudStack with Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#key-notes">Key Notes:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p5.html#configuring-static-nat-in-cloudstack">Configuring Static NAT in CloudStack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#how-static-nat-works-with-cloudstack-and-netris">How Static NAT Works with CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#steps-to-configure-static-nat">Steps to Configure Static NAT:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#how-cloudstack-and-netris-work-together">How CloudStack and Netris Work Together</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#final-notes">Final Notes</a></li>
 </ul>
 </li>
 </ul>
@@ -713,100 +714,100 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="topology-validation.html">Topology &amp; Wiring Validation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="topology-validation.html#switch-to-server">Switch-to-Server</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">NVIDIA NetQ Integration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#topology-blueprint-activation">Topology Blueprint Activation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="healthchecks.html">Netris Healthchecks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/healthchecks.html">Netris Healthchecks</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cloudstack/netris-cloudstack.html">Netris-CloudStack Integration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html">High-Level Concept of Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#how-it-works">How It Works</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#challenges-addressed">Challenges Addressed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#benefits">Benefits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#use-cases">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="netris-cloudstack.html">Netris-CloudStack Integration</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">High-Level Concept of Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-it-works">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges-addressed">Challenges Addressed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#benefits">Benefits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-cases">Use Cases</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#compute-and-network-architecture">Compute and Network Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#diagram-overview">Diagram Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#network-flow">Network Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compute-and-network-architecture">Compute and Network Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diagram-overview">Diagram Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-flow">Network Flow</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html">Prerequisites</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#step-by-step-configuration-instructions-for-the-netris-controller">Step-by-Step Configuration Instructions for the Netris Controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#ipam-setup">IPAM Setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#create-an-allocation">Create an Allocation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#create-subnets">Create Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-cloudstack_p2.html">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p2.html#step-by-step-configuration-instructions-for-the-netris-controller">Step-by-Step Configuration Instructions for the Netris Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p2.html#ipam-setup">IPAM Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#create-an-allocation">Create an Allocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#create-subnets">Create Subnets</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#inventory-setup">Inventory Setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#adding-servers">Adding Servers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#creating-servers-links">Creating Servers’ Links</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#optimize-bgp-overlay-for-hypervisor">Optimize BGP Overlay for Hypervisor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#adding-subnets-for-cloudstack-cluster">Adding Subnets for CloudStack Cluster</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#enabling-internet-connectivity-for-acs-servers">Enabling Internet Connectivity for ACS Servers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#enabling-access-to-cloudstack-management-gui">Enabling Access to CloudStack Management GUI</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#creating-cloudstack-networks">Creating CloudStack Networks</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html">Server Configuration and Software Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#configuring-network-on-cloudstack-management-server-server-1">Configuring Network on CloudStack Management Server (Server 1)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#understanding-the-network-layout">Understanding the Network Layout</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#netplan-configuration">Netplan Configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#install-netris-cloudstack-agent-on-hypervisor-servers">Install Netris-CloudStack Agent on Hypervisor Servers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#bringing-up-nics-before-installation">Bringing Up NICs Before Installation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#pre-installation-steps-for-deployments-without-oob">Pre-Installation Steps (For Deployments Without OOB)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#key-functions-of-the-netris-cloudstack-agent">Key Functions of the Netris-CloudStack Agent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#installation-steps">Installation Steps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#example-successful-output-of-one-liner-script">Example Successful Output of One-Liner Script</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#verification-steps">Verification Steps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#checking-network-connectivity">Checking Network Connectivity</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#finalizing-the-network-setup">Finalizing the Network Setup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#keeping-the-temporary-oob-vnet-for-emergency-access"><strong>Keeping the Temporary OOB VNet for Emergency Access</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#managing-additional-nics-on-the-server">Managing Additional NICs on the Server</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#install-cloudstack-management-service">Install CloudStack Management Service</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#id1">Installation Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p2.html#inventory-setup">Inventory Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#creating-servers-links">Creating Servers’ Links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#optimize-bgp-overlay-for-hypervisor">Optimize BGP Overlay for Hypervisor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#adding-subnets-for-cloudstack-cluster">Adding Subnets for CloudStack Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#enabling-internet-connectivity-for-acs-servers">Enabling Internet Connectivity for ACS Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#enabling-access-to-cloudstack-management-gui">Enabling Access to CloudStack Management GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p2.html#creating-cloudstack-networks">Creating CloudStack Networks</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html">Configuring CloudStack for Netris Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#enabling-the-netris-plugin-in-cloudstack">Enabling the Netris Plugin in CloudStack</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#initializing-cloudstack-setup">Initializing CloudStack Setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#steps-to-initialize-cloudstack">Steps to Initialize CloudStack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-cloudstack_p3.html">Server Configuration and Software Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p3.html#configuring-network-on-cloudstack-management-server-server-1">Configuring Network on CloudStack Management Server (Server 1)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#understanding-the-network-layout">Understanding the Network Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#netplan-configuration">Netplan Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p3.html#install-netris-cloudstack-agent-on-hypervisor-servers">Install Netris-CloudStack Agent on Hypervisor Servers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#bringing-up-nics-before-installation">Bringing Up NICs Before Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#pre-installation-steps-for-deployments-without-oob">Pre-Installation Steps (For Deployments Without OOB)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#key-functions-of-the-netris-cloudstack-agent">Key Functions of the Netris-CloudStack Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#example-successful-output-of-one-liner-script">Example Successful Output of One-Liner Script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#verification-steps">Verification Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#checking-network-connectivity">Checking Network Connectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#finalizing-the-network-setup">Finalizing the Network Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#keeping-the-temporary-oob-vnet-for-emergency-access"><strong>Keeping the Temporary OOB VNet for Emergency Access</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#managing-additional-nics-on-the-server">Managing Additional NICs on the Server</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p3.html#install-cloudstack-management-service">Install CloudStack Management Service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p3.html#id1">Installation Steps</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html">Using CloudStack with Netris Isolation Method</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#creating-a-vpc">Creating a VPC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#creating-a-network-tier">Creating a Network Tier</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#port-forwarding">Port Forwarding</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#seamless-integration-between-cloudstack-and-netris">Seamless Integration Between CloudStack and Netris</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#step-by-step-process-for-configuring-port-forwarding-in-cloudstack-with-netris">Step-by-Step Process for Configuring Port Forwarding in CloudStack with Netris</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#key-notes">Key Notes:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-cloudstack_p4.html">Configuring CloudStack for Netris Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p4.html#enabling-the-netris-plugin-in-cloudstack">Enabling the Netris Plugin in CloudStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p4.html#initializing-cloudstack-setup">Initializing CloudStack Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p4.html#steps-to-initialize-cloudstack">Steps to Initialize CloudStack</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#configuring-static-nat-in-cloudstack">Configuring Static NAT in CloudStack</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#how-static-nat-works-with-cloudstack-and-netris">How Static NAT Works with CloudStack and Netris</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#steps-to-configure-static-nat">Steps to Configure Static NAT:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#how-cloudstack-and-netris-work-together">How CloudStack and Netris Work Together</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#final-notes">Final Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="netris-cloudstack_p5.html">Using CloudStack with Netris Isolation Method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p5.html#creating-a-vpc">Creating a VPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p5.html#creating-a-network-tier">Creating a Network Tier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p5.html#port-forwarding">Port Forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#seamless-integration-between-cloudstack-and-netris">Seamless Integration Between CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#step-by-step-process-for-configuring-port-forwarding-in-cloudstack-with-netris">Step-by-Step Process for Configuring Port Forwarding in CloudStack with Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#key-notes">Key Notes:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="netris-cloudstack_p5.html#configuring-static-nat-in-cloudstack">Configuring Static NAT in CloudStack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#how-static-nat-works-with-cloudstack-and-netris">How Static NAT Works with CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#steps-to-configure-static-nat">Steps to Configure Static NAT:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#how-cloudstack-and-netris-work-together">How CloudStack and Netris Work Together</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-cloudstack_p5.html#final-notes">Final Notes</a></li>
 </ul>
 </li>
 </ul>
@@ -1039,34 +1040,135 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">NVIDIA NetQ Integration</li>
+          <li class="breadcrumb-item"><a href="netris-cloudstack.html">Netris-CloudStack Integration</a></li>
+      <li class="breadcrumb-item active">High-Level Concept of Integration</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/monitoring-observability/netq.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/cloudstack/netris-cloudstack_p1.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="topology-validation.html" class="btn btn-neutral float-left" title="Topology &amp; Wiring Validation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="healthchecks.html" class="btn btn-neutral float-right" title="Netris Healthchecks" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="netris-cloudstack.html" class="btn btn-neutral float-left" title="Netris-CloudStack Integration" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="netris-cloudstack_p2.html" class="btn btn-neutral float-right" title="Prerequisites" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="nvidia-netq-integration">
-<h1>NVIDIA NetQ Integration<a class="headerlink" href="#nvidia-netq-integration" title="Link to this heading"></a></h1>
-<p>NVIDIA NetQ is a real-time network monitoring, visibility, and analytics solution designed for data centers running NVIDIA Cumulus Linux. It helps network administrators and operators gain deep insights into their network infrastructure, ensuring optimal performance, rapid troubleshooting, and proactive issue resolution.</p>
-<p>Although Netris has built-in automatic monitoring and observability functionalities, integration with NVIDIA NetQ allows our NVIDIA customers to gain additional real-time monitoring, deeper visibility, and smarter analytics. Critical for AI Infrastructure.</p>
-<section id="topology-blueprint-activation">
-<h2>Topology Blueprint Activation<a class="headerlink" href="#topology-blueprint-activation" title="Link to this heading"></a></h2>
-<p>NVIDIA NetQ requires the topology blueprint described in a .dot file format. Netris is aware of the Netris-managed network topology and has built-in functionality for exporting .dot file in NVIDIA NetQ format.</p>
-<p>In the Netris controller, navigate to Network-&gt;Topology, select the appropriate site (datacenter), click Export and select NVIDIA NetQ - the web browser will download a .dot file.</p>
-<img alt="../_images/netq-0.png" class="align-center" src="../_images/netq-0.png" />
-<p>Upload the newly generated .dot file into the NVIDIA NetQ. Navigate to Validation, Create a validation, Run on all switches, Topology, and click Upload Blueprint file.</p>
-<img alt="../_images/netq-1.png" class="align-center" src="../_images/netq-1.png" />
-<img alt="../_images/netq-2.png" class="align-center" src="../_images/netq-2.png" />
-<img alt="../_images/netq-3.png" class="align-center" src="../_images/netq-3.png" />
-<img alt="../_images/netq-4.png" class="align-center" src="../_images/netq-4.png" />
-<p>When you see the Blueprint successfully activated, your NVIDIA NetQ is aligned with the Netris topology and ready for further operation.</p>
+  <section id="high-level-concept-of-integration">
+<h1>High-Level Concept of Integration<a class="headerlink" href="#high-level-concept-of-integration" title="Link to this heading"></a></h1>
+<p>The integration of Netris with Apache CloudStack provides a robust and scalable networking solution, addressing the limitations of traditional switch fabrics and enhancing the network capabilities of CloudStack.</p>
+<section id="how-it-works">
+<h2>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Hypervisors as VTEPs: Hypervisors terminate VXLAN tunnels, acting as Virtual Tunnel Endpoints (VTEPs).</p></li>
+<li><p>BGP EVPN Signaling: Netris uses BGP EVPN to exchange MAC and IP address information, creating a dynamic and scalable control plane for VXLAN.</p></li>
+<li><p>Integration Points:</p>
+<ul>
+<li><p>The CloudStack Controller communicates with the Netris Controller API to exchange network configuration and metadata.</p></li>
+<li><p>VXLAN fabrics are extended between CloudStack and physical switch networks using BGP/EVPN.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="challenges-addressed">
+<h2>Challenges Addressed<a class="headerlink" href="#challenges-addressed" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Overcomes the VLAN limitation of 4096 IDs by leveraging VXLAN, supporting millions of isolated VPCs.</p></li>
+<li><p>Eliminates the “island” effect of CloudStack’s multicast-based VXLAN by integrating with the physical switch fabric.</p></li>
+<li><p>Replaces CloudStack’s virtual router with Netris SoftGate, offering scalable NAT, load balancing, and traffic control.</p></li>
+</ul>
+</section>
+<section id="benefits">
+<h2>Benefits<a class="headerlink" href="#benefits" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Scalability: Support for millions of VPCs with overlapping IPs.</p></li>
+<li><p>AWS-Like Services: Enables Direct Connect functionality and scalable load balancing.</p></li>
+<li><p>Automation: Simplifies network operations with centralized control via the Netris Controller.</p></li>
+<li><p>Cost-Efficiency: Uses multi-vendor hardware and commodity servers, reducing infrastructure costs.</p></li>
+</ul>
+</section>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Large-scale Apache CloudStack Providers needing a scalable alternative to VLANs.</p></li>
+<li><p>Enterprises transforming their traditional data centers into private cloud environments.</p></li>
+<li><p>Hosting providers seeking AWS-like network functionality for their customers.</p></li>
+</ul>
+<img alt="../_images/acs-infra-diagram.png" class="align-center" src="../_images/acs-infra-diagram.png" />
+</section>
+</section>
+<section id="compute-and-network-architecture">
+<h1>Compute and Network Architecture<a class="headerlink" href="#compute-and-network-architecture" title="Link to this heading"></a></h1>
+<p>The current infrastructure for Netris-CloudStack integration is designed to support <strong>scalable and dynamic</strong> networking for cloud workloads.  This section outlines the key infrastructure components and their roles.</p>
+<section id="diagram-overview">
+<h2>Diagram Overview<a class="headerlink" href="#diagram-overview" title="Link to this heading"></a></h2>
+<p>The diagram represents the interconnected infrastructure, consisting of:</p>
+<ol class="arabic simple">
+<li><p><strong>Leaf and Spine Switches</strong>:</p>
+<ul class="simple">
+<li><p>These switches form the <strong>core networking fabric</strong>, ensuring <strong>high-speed, redundant, and fault-tolerant connectivity</strong>.</p></li>
+<li><p><strong>Spine switches</strong> (Spine 1 and Spine 2) aggregate traffic and connect to <strong>leaf switches</strong>.</p></li>
+<li><p><strong>Leaf switches</strong> (Leaf 1 and Leaf 2) connect directly to <strong>compute nodes and softgates</strong>, handling <strong>VXLAN encapsulation</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Softgates</strong>:</p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p>Softgates play a critical role in integrating physical and virtual network environments. They are responsible for:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>NAT Functionality</strong>: Facilitates secure communication between <strong>private and external networks</strong>.</p></li>
+<li><p><strong>Elastic Load Balancer</strong>: Distributes inbound traffic to multiple backend instances.</p></li>
+<li><p><strong>Network Access Control</strong>: Enforces security policies at the edge.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Additionally, Softgates bridge <strong>VXLAN and traditional networking</strong> and support <strong>BGP/EVPN for dynamic routing</strong>.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p><strong>Servers</strong>:</p>
+<ul class="simple">
+<li><p><strong>Server 1</strong>:</p>
+<ul>
+<li><p>Designated as the <strong>CloudStack Management Node</strong>, responsible for orchestrating the environment.</p></li>
+</ul>
+</li>
+<li><p><strong>Server 2, Server 3, and Server 4</strong>:</p>
+<ul>
+<li><p>These <strong>KVM hypervisors</strong> are managed by <strong>CloudStack</strong> and function as <strong>VXLAN Tunnel Endpoints (VTEPs)</strong>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>OOB (Out-of-Band) Switch (If Present)</strong>:</p>
+<ul class="simple">
+<li><p>If available, an <strong>OOB switch</strong> provides an independent <strong>management network</strong> for accessing servers.</p></li>
+<li><p>Allows administrators to:</p>
+<ul>
+<li><p>Perform <strong>software installations and updates</strong>.</p></li>
+<li><p>Troubleshoot and manage servers independently of the main network.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="network-flow">
+<h2>Network Flow<a class="headerlink" href="#network-flow" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Hypervisor traffic</strong> traverses <strong>VXLAN tunnels</strong>, dynamically configured via <strong>BGP/EVPN</strong>.</p></li>
+<li><p><strong>Softgates handle routing</strong> between overlay and underlay networks, ensuring seamless workload communication.</p></li>
+<li><p><strong>CloudStack Controller</strong> communicates with <strong>Netris Controller API</strong> to synchronize network configurations.</p></li>
+<li><p><strong>Leaf and Spine switches</strong> ensure a <strong>highly available and scalable</strong> fabric for compute workloads.</p></li>
+<li><p>If an <strong>OOB switch is available</strong>, it provides <strong>direct administrative access</strong> to all servers.</p></li>
+<li><p><strong>Softgates establish BGP sessions</strong> for external connectivity, ensuring <strong>public and private traffic reachability</strong>.</p></li>
+</ol>
 </section>
 </section>
 
@@ -1074,8 +1176,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="topology-validation.html" class="btn btn-neutral float-left" title="Topology &amp; Wiring Validation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="healthchecks.html" class="btn btn-neutral float-right" title="Netris Healthchecks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="netris-cloudstack.html" class="btn btn-neutral float-left" title="Netris-CloudStack Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="netris-cloudstack_p2.html" class="btn btn-neutral float-right" title="Prerequisites" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

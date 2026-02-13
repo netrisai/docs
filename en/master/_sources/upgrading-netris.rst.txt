@@ -28,10 +28,6 @@ Always have a backup, just in case anything hypothetically goes wrong. SSH to th
 
 Ensure that SQL file ``db-snapshot.sql`` is generated and present in the current directory.
 
-.. note::
-  
-  An SQL dump is enough for this basic upgrade scenario, however detailed backup & restore procedure is described in :ref:`here<ctl-backup-restore>`.
-
 Stop Netris Agents
 ------------------
 
@@ -67,7 +63,7 @@ Check your current version
 
 Before upgrading the Netris Controller, take a note of the "*Netris Version*" by navigating to *Settings → General* in the Controller web interface. The current version number may be used in case of the hypothetical need to perform a rollback procedure.
 
-.. image:: /tutorials/images/netris_version_example.png
+.. image:: images/netris_version_example.png
     :align: center
     :alt: Netris Version Example
 
@@ -136,7 +132,7 @@ Upgrade the switch & SoftGate agents by copying the one-liner from the "*Install
   to copy/paste into the right devices.
 
 
-.. image:: /tutorials/images/install_agent.gif
+.. image:: images/install_agent.gif
     :align: center
     :alt: Install Agent
 
