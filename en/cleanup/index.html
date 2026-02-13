@@ -322,36 +322,40 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="network-policies.html">Netris VPC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#adding-new-vpc">Adding new VPC</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#ip-address-management">IP Address Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#adding-new-vpc">Adding new VPC</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#ip-address-management">IP Address Management</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#allocations-and-subnets">Allocations and Subnets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#ipam-tree-view">IPAM Tree View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-an-allocation">Add an Allocation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-a-subnet">Add a Subnet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#basic-bgp">Basic BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-a-subnet">Add a Subnet</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#adding-bgp-peers">Adding BGP Peers</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#advanced-bgp">Advanced BGP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#bgp">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#basic-bgp">Basic BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#advanced-bgp">Advanced BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-objects">BGP Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#ipv4-prefix">IPv4 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#ipv6-prefix">IPv6 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#community">Community</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-objects">BGP Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-route-maps">BGP route-maps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#static-routing">Static Routing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#nat">NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#static-routing">Static Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#nat">NAT</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#enabling-nat">Enabling NAT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#defining-nat-rules">Defining NAT rules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#looking-glass">Looking Glass</a></li>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#vpc-peering">VPC Peering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#defining-nat-rules">Defining NAT rules</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#looking-glass">Looking Glass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#vpc-peering">VPC Peering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="switch-ports.html">Switch Ports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lag.html">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
@@ -1176,18 +1180,31 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="network-policies.html">Netris VPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#adding-new-vpc">Adding new VPC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#ip-address-management">IP Address Management</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#allocations-and-subnets">Allocations and Subnets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#ipam-tree-view">IPAM Tree View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-an-allocation">Add an Allocation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-a-subnet">Add a Subnet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#adding-bgp-peers">Adding BGP Peers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#bgp">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#basic-bgp">Basic BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#advanced-bgp">Advanced BGP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-objects">BGP Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-route-maps">BGP route-maps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#static-routing">Static Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#nat">NAT</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#enabling-nat">Enabling NAT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-policies.html#defining-nat-rules">Defining NAT rules</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#looking-glass">Looking Glass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#vpc-peering">VPC Peering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="switch-ports.html">Switch Ports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lag.html">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
