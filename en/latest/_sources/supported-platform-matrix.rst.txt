@@ -5,7 +5,7 @@ Netris Supported Functionality & Platforms Matrix
 Switch Fabric Management Functions
 ==================================
 .. list-table::
-   :header-rows: 0
+   :header-rows: 1
 
    *  - Function
       - Description
@@ -75,12 +75,6 @@ Switch Fabric Management Functions
       - TBD
       - ✔
       - ✔
-   *  - Compute VXLAN/EVPN extension (EOH)
-      - Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.
-      - ✔
-      - ✔
-      - TBD
-      - TBD
    *  - ZTP
       - Zero-touch provisioning of the NOS & Netris agent
       - Coming Soon
@@ -106,10 +100,38 @@ Switch Fabric Management Functions
       - ✔
       - TBD
 
+
+Host Networking
+=============================================
+
+.. list-table::
+   :header-rows: 1
+
+   *  - Function
+      - Description
+      - NVIDIA Cumulus
+      - Dell-SONiC
+
+        BCM-SONiC
+      - Arista EOS
+      - EdgeCore-SONiC
+   *  - HBN (Host Based Networking) for BlueFIeld DPUs
+      - Layer-4 container or vm/server load balancer with health checks.
+      - ✔
+      - ✔
+      - ✔
+      - ✔
+   *  - :doc:`Compute VXLAN/EVPN extension (EOH) </evpn-on-host>`
+      - Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.
+      - ✔
+      - ✔
+      - TBD
+      - TBD   
+
 Monitoring & Telemetry
 ==================================
 .. list-table::
-   :header-rows: 0
+   :header-rows: 1
 
    *  - Function
       - Description
@@ -143,7 +165,7 @@ Monitoring & Telemetry
       - ✔
       - ✔
       - ✔
-   *  - Topology Validation
+   *  - :doc:`Topology Validation </monitoring-observability/topology-validation>`
       - Detect wiring errors switch-to-switch & switch-to-SoftGate.
       - ✔
       - ✔
@@ -155,12 +177,14 @@ Monitoring & Telemetry
       - ✔
       - ✔
       - ✔
-   *  - NVIDIA NetQ integration
+   *  - :doc:`NVIDIA NetQ integration </monitoring-observability/netq>`
       - Activate NVIDIA NetQ Blueprint through Netris topology
       - ✔
       - N/A
       - N/A
       - N/A
+
+See :doc:`monitoring-observability/healthchecks` for more details on monitoring and telemetry features.
 
 External Routing Functions
 ==========================
@@ -229,7 +253,7 @@ Cloud Networking Functions & Constructs
       - ✔
       - ✔
       - ✔
-   *  - Server Cluster (Profiling)
+   *  - :doc:`Server Cluster (Profiling) </server-cluster>`
       - Create network constructs template, then apply it on groups of servers.
       - ✔
       - ✔
@@ -299,19 +323,19 @@ Overlay Network Functions
       - ✔
       - TBD
       - ✔
-   *  - EVPN-MH / VXLAN-ESI
+   *  - :doc:`EVPN-MH / VXLAN-ESI <lag>`
       - EVPN MultiHoming based on VXLAN and ESI for automatic Active-Active server network multihoming
       - ✔
       - ✔
       - ✔
       - TBD
-   *  - LACP
+   *  - :doc:`LACP <lag>`
       - Link Aggregation or Active-Standby server multihoming.
       - ✔
       - ✔
       - ✔
       - TBD
-   *  - MC-LAG
+   *  - :doc:`MC-LAG <lag>`
       - Traditional MC-LAG-based server multihoming
       - ✔
       - TBD
@@ -367,7 +391,7 @@ AI Specific Functions
       - N/A
       - TBD
       - ✔
-      - Coming Soon
+      - N/A
    *  - SuperNIC auto-configuration for RoCE
       - Automatically configure IP addresses, routing, RoCE and other SuperNIC specific configuration on GPU servers
       - ✔
@@ -428,7 +452,7 @@ Security
       - ✔
       - ✔
       - ✔
-   *  - Managed Device Profiling
+   *  - :doc:`Managed Device Profiling <inventory-profile>`
       - Managed switch & SoftGate protection from unwanted access, push administrative and system settings (NTP, DNS, timezone, etc.)
       - ✔
       - ✔
@@ -451,7 +475,7 @@ Netris Controller Administration
    *  - Function
       - Description
       - Globally
-   *  - Role Based Access Control
+   *  - :doc:`Role Based Access Control <accounts>`
       - Who can view and edit which aspects of the system.
       - ✔
    *  - Tenant RBAC
@@ -463,7 +487,7 @@ Netris Controller Administration
    *  - HA Controller
       - 3-node, HA Netris Controller cluster
       - ✔
-   *  - Air Gapped setup
+   *  - :doc:`Air Gapped setup <installation/controller-k3s-air-gap-ha>`
       - Run Netris controller in Air Gapped environment and host switch & SoftGate software for local install.
       - ✔
 
@@ -484,28 +508,6 @@ Management Interfaces
       - ✔
    *  - IaC: Terraform
       - Manage your infrastructure as a code using Terraform.
-      - ✔
-
-
-Host Networking
-=============================================
-
-.. list-table::
-   :header-rows: 1
-
-   *  - Function
-      - Description
-      - NVIDIA Cumulus
-      - Dell-SONiC
-
-        BCM-SONiC
-      - Arista EOS
-      - EdgeCore-SONiC
-   *  - HBN (Host Based Networking) for BlueFIeld DPUs
-      - Layer-4 container or vm/server load balancer with health checks.
-      - ✔
-      - ✔
-      - ✔
       - ✔
 
 ============================================
@@ -585,3 +587,5 @@ Netris and NOS versions compatibility matrix
      - Ubuntu 20.04
      - N/A
      - ✔
+
+See :doc:`release-notes/index` for more details on Netris releases.
