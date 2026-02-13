@@ -15,9 +15,15 @@ V-Net
 Introduction
 ----------------
 
-A **V-Net (Virtual Network)** is a Netris construct for grouping switch ports into a defined network segment—much like a traditional VLAN or a public cloud subnet.
+A **V-Net (Virtual Network)** is a Netris construct for grouping switch ports into a defined network segment—much like a traditional VLAN or a public cloud subnet. It is a virtual networking service that provides Layer-2 (unrouted) or Layer-3 (routed) virtual network segments in a Netris VPC. V-Net is assigned to one VPC and one or multiple sites. Your endpoints (servers, VMs) are connected to V-Nets.
 
-To build a V-Net you only need to supply **a list of switch ports**, **a name**, **parent** :doc:`VPC </vpc>`, **and site(s)**. Optionally IP subnet, gateway, and DHCP settings.
+To build a V-Net you need to supply
+
+* a list of switch ports
+* a name
+* parent :ref:`VPC <vpc_def>`
+* :doc:`site(s) <site>`
+* Optionally IP subnet, gateway, and DHCP settings.
 
 Netris, having already configured the EVPN underlay, then automatically pushes the entire under-the-hood V-Net configuration to every Ethernet switch and DPU in the fabric:
 

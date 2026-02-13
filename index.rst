@@ -14,17 +14,18 @@ You are welcome to join our community Slack channel (see button at the top) to g
    :maxdepth: 2
    :caption: General Information
 
-   definitions
    introduction
    supported-platform-matrix
    supported-switch-hardware
    netris-architecture
+   definitions
 
 .. toctree::
    :maxdepth: 2
    :caption: Try & Learn Netris
 
-   try-learn/index
+   try-learn/nvidia-spectrum-x-scenario
+   try-learn/onprem-k8s
 
 .. toctree::
    :maxdepth: 2
@@ -33,11 +34,13 @@ You are welcome to join our community Slack channel (see button at the top) to g
    installation/installation
    switch-agent-installation
    netris-softgate-HS
+   ai-netris-host-networking
 
 .. toctree::
    :maxdepth: 2
    :caption: Fabric Management
 
+   site
    topology-management
    network-policies
    switch-ports
@@ -62,7 +65,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
    netris-ufm-integration
    netris-nvlink-integration
    kubernetes-integration
-   tutorials/netris-cloudstack
+   cloudstack/netris-cloudstack
    terraform-integration
    evpn-on-host
 
@@ -75,12 +78,12 @@ You are welcome to join our community Slack channel (see button at the top) to g
    monitoring-observability/healthchecks
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 0
    :caption: Tutorials
 
+   vpc-gateways-with-managed-fabric.rst
+   cloudstack/netris-cloudstack
    ai-netris-host-networking
-   vpc
-   tutorials/vpc-gateways-with-managed-fabric.rst
 
 .. toctree::
    :maxdepth: 4
