@@ -75,12 +75,6 @@ Switch Fabric Management Functions
       - TBD
       - ✔
       - ✔
-   *  - Compute VXLAN/EVPN extension (EOH)
-      - Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.
-      - ✔
-      - ✔
-      - TBD
-      - TBD
    *  - ZTP
       - Zero-touch provisioning of the NOS & Netris agent
       - Coming Soon
@@ -105,6 +99,34 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - TBD
+
+
+Host Networking
+=============================================
+
+.. list-table::
+   :header-rows: 1
+
+   *  - Function
+      - Description
+      - NVIDIA Cumulus
+      - Dell-SONiC
+
+        BCM-SONiC
+      - Arista EOS
+      - EdgeCore-SONiC
+   *  - HBN (Host Based Networking) for BlueFIeld DPUs
+      - Layer-4 container or vm/server load balancer with health checks.
+      - ✔
+      - ✔
+      - ✔
+      - ✔
+   *  - Compute VXLAN/EVPN extension (EOH)
+      - Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.
+      - ✔
+      - ✔
+      - TBD
+      - TBD   
 
 Monitoring & Telemetry
 ==================================
@@ -161,6 +183,12 @@ Monitoring & Telemetry
       - N/A
       - N/A
       - N/A
+   *  - Health Checks
+      - Built-in health checks for common network services and connectivity.
+      - ✔
+      - ✔
+      - ✔
+      - ✔
 
 External Routing Functions
 ==========================
@@ -367,7 +395,7 @@ AI Specific Functions
       - N/A
       - TBD
       - ✔
-      - Coming Soon
+      - N/A
    *  - SuperNIC auto-configuration for RoCE
       - Automatically configure IP addresses, routing, RoCE and other SuperNIC specific configuration on GPU servers
       - ✔
@@ -484,28 +512,6 @@ Management Interfaces
       - ✔
    *  - IaC: Terraform
       - Manage your infrastructure as a code using Terraform.
-      - ✔
-
-
-Host Networking
-=============================================
-
-.. list-table::
-   :header-rows: 1
-
-   *  - Function
-      - Description
-      - NVIDIA Cumulus
-      - Dell-SONiC
-
-        BCM-SONiC
-      - Arista EOS
-      - EdgeCore-SONiC
-   *  - HBN (Host Based Networking) for BlueFIeld DPUs
-      - Layer-4 container or vm/server load balancer with health checks.
-      - ✔
-      - ✔
-      - ✔
       - ✔
 
 ============================================
