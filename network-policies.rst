@@ -1,13 +1,24 @@
 .. meta::
     :description: Netris Network Policies & Protocol Configuration
 
-###
-VPC
-###
+.. _vpc_def:
+
+======================
+Netris VPC
+======================
+
+The Netris VPC offers you the ability to operate your resources within a logically segregated virtual network. You can create, edit, and remove VPCs as needed. The VPC acts as a VRF in traditional networking, providing the flexibility to employ overlapping IP ranges across various VPCs while maintaining secure management and operation of resources.
 
 Netris Controller is preconfigured with a default system VPC-1. Use the default VPC, and create additional VPCs as needed in the future.
 
-The VPC acts as a VRF in traditional networking, providing the ability to use overlapping IP ranges across various VPCs while maintaining safe management and operation of services.
+The following diagram shows a VPC concept in the Netris Controller. 
+
+.. image:: images/vpc_diagram.png
+   :align: center
+   :alt: VPC diagram
+
+VPC is the highest entity in the hierarchy and it spreads over all Sites. 
+Take a look at the VPC features and services.
 
 VPC can be created in the Network → VPC section.
 
@@ -17,15 +28,14 @@ Adding new VPC
 1. Navigate to Network → VPC in the web UI.
 2. Click Add button.
 
-.. image:: images/vpc_empty.png
+.. image:: images/vpc_add.png
     :align: center
 
 .. _ipam_def_vpc:
 
-
-#####################
+======================
 IP Address Management
-#####################
+======================
 
 Netris IPAM allows users to document their IP addresses and track pool usage. It is designed to have a tree-like view to provide opportunity to perform any kind of subnetting.
 
@@ -37,9 +47,13 @@ Each VPC has its own IPAM table.
 Allocations and Subnets
 -----------------------
 
-There are 2 main types of IP prefixes - **allocation** and **subnet**.
+There are 2 types of IPAM objects:
 
-Allocations are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network. Subnets are prefixes which are going to be used in services. Subnets are always children of allocations. Allocations do not have parent subnets.
+* **Allocations** are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network.
+* **Subnets** are prefixes which are going to be used in services. Subnets are always children of allocations. Allocations do not have parent subnets.
+
+IPAM Tree View
+--------------------------
 
 
 .. image:: images/ipam_tree_new.png
@@ -50,9 +64,6 @@ Allocations are IP ranges allocated to an organization via RIR/LIR or private IP
 .. raw:: html
 
    <br>
-
-IPAM Tree View
---------------------------
 
 Add an Allocation
 -----------------
@@ -77,17 +88,21 @@ Add an Allocation
    * - Tenant
      - Owner of the allocation.
 
-.. image:: images/allocation_empty.png
+.. image:: images/ipam_allocation.png
    :align: center
    :class: with-shadow
    :alt: Add a New IP Allocation
 
-Add Allocation Window
+.. raw:: html
 
---------------------------
+   <br>
 
 Add a Subnet
 ------------
+
+**Create subnets for devices**
+
+You will require two subnets for your devices: one for loopback IP addresses and another for the management network. Note that device subnets must reside in the System VPC.
 
 #. Navigate to Network → IPAM
 #. Click the **Add** button
@@ -95,6 +110,36 @@ Add a Subnet
 #. Fill in the rest of the fields based on the requirements listed below
 #. Click the **Add** button
 
+.. image:: images/ipam_mgmt_subnet.png
+  :align: center
+
+.. image:: images/ipam_loopback_subnet.png
+  :align: center
+
+**Create subnets for V-Nets**
+
+Create at least one subnet with the Common purpose to use it for a new V-Net. IP addresses from this subnet will be assigned to your servers.
+
+.. image:: images/ipam_common_subnet.png
+  :align: center
+
+
+**Create subnets for Load-balancing service**
+
+If you plan to use load-balancing services, you should first define subnet(s) from which IP addresses will be assigned for Virtual IP (frontend).
+
+.. image:: images/ipam_l4lb_subnet.png
+  :align: center
+
+
+.. _ipam_nat_subnet:
+
+**Create subnets for NAT service**
+
+If you plan to perform network address translation (NAT), you must first create subnets for this purpose.
+
+.. image:: images/ipam_nat_subnet.png
+  :align: center
 
 .. list-table:: Subnet fields
    :widths: 25 50
@@ -118,24 +163,19 @@ Add a Subnet
         - *nat* - hosts of this subnet or subnet itself can be used to define NAT services.
         - *inactive* - can't be used in any services, useful for reserving/documenting prefixes for future use.
 
-.. image:: images/subnet_empty.png
-  :align: center
-  :alt: Add a New Subnet
-  :class: with-shadow
-
-Add Subnet Window
-
-
 .. _bgp_def:
 
-#########
+======================
+BGP
+======================
+
 Basic BGP
-#########
+---------
 
 BGP neighbors can be declared in the Network → E-BGP section. Netris software will automatically generate and program the network configuration to meet the requirements.
 
-Adding BGP Peers
-----------------
+**Adding BGP Peers**
+
 #. Navigate to Network → E-BGP in the web UI.
 #. Click the Add button.
 #. Fill in the fields as described in the table below.
@@ -149,12 +189,16 @@ Adding BGP Peers
 
 Example: Declare a basic BGP neighbor.
 
-.. image:: images/bgp_empty.png
+.. image:: images/create_bgp.png
     :align: center
 
-############
+If everything is correct, State, port and BGP will get green status.
+
+.. image:: images/bgp_status.png
+    :align: center
+
 Advanced BGP
-############
+------------
 
 BGP neighbor declaration can optionally include advanced BGP attributes and BGP route-maps for fine-tuning of BGP policies.
 
@@ -166,7 +210,6 @@ Click Advanced to expand the BGP neighbor add/edit window.
     :widths: 25, 75, 25
     :header-rows: 0
 
---------------------------
 
 BGP Objects
 -----------
@@ -220,7 +263,7 @@ Example: Creating community.
 .. image:: images/community.png
     :align: center
 
---------------------------
+
 
 BGP route-maps
 --------------
@@ -248,7 +291,6 @@ Example: route-map
     :align: center
     :class: with-shadow
 
---------------------------
 
 eBGP Importing Non-Default Routes into a VPC
 -----------------------------------------------
@@ -328,20 +370,20 @@ Alternatively, the external BGP speaker can set the 0:7 community on outbound up
 
 This is useful when the upstream router is under the customer's control and managing policy from that side is preferred.
 
-##############
+======================
 Static Routing
-##############
+======================
 Located under Network → Routes is a method for describing static routing policies that Netris will dynamically inject on switches and/or SoftGate where appropriate. We recommend using the Routes only if BGP is not supported by the remote end.
 
 
-| Typical use cases for static routing:
+Typical use cases for static routing:
 
 * To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported.
 * Temporary interconnection with the old network for a migration.
 * Routing a subnet behind a VM hypervisor machine for an internal VM network.
 * Specifically routing traffic destined to a particular prefix through an out-of-band management network.
 
-| Add new static route fields description:
+Add new static route fields description:
 
 * **Prefix** - Route destination to match.
 * **Next-Hop** - Traffic destined to the Prefix will be routed towards the Next-Hop. Note that static routes will be injected only on units that have the Next-Hop as a connected network.
@@ -367,35 +409,34 @@ Screenshot shows that the back route is actually applied on Softgate1 and Softga
 .. image:: images/static_route3.png
     :align: center
 
---------------------------
 
 .. _nat_def:
 
-###
+======================
 NAT
-###
+======================
 
-Netris SoftGate nodes are required forNAT (Network Address Translation) functionality to work.
-
-**Note: works only in the system default VPC (limitation is planned to be lifted in Netris v. 4.1.0).**
+If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT, DNAT and Masquerade features.
 
 Enabling NAT
 ------------
-To enable NAT for a given site, you first need to create a subnet with NAT purpose in the IPAM section. The NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need.
+To enable NAT for a given site, you first need to :ref:`create a subnet with NAT purpose <ipam_nat_subnet>` in the IPAM section. The NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need.
 Adding an IP Subnet under Network → IPAM.
-
-
-1. Allocate a public IP subnet for NAT under Net→IPAM.
-
-Example: Adding an IP allocation under Net→Subnets.
-
-.. image:: images/nat_subnet_empty.png
-    :align: center
-
 
 Defining NAT rules
 ------------------
 NAT rules are defined under Network → NAT.
+
+Example: SNAT all hosts on 10.0.1.0/24subnet to the Internet using 192.0.2.128as a global IP.
+
+.. image:: images/snat_add.png
+    :align: center
+
+Example: Port forwarding. DNAT the traffic destined to 192.0.2.130:8080 to be forwarded to the host 10.0.1.100 on port tcp/80.
+
+.. image:: images/dnat_add.png
+    :align: center
+
 
 .. list-table:: NAT Rule Fields
   :widths: 25 75
@@ -434,21 +475,9 @@ NAT rules are defined under Network → NAT.
     - Free optional comment.
 
 
-Example: SNAT all hosts on 10.0.1.0/24subnet to the Internet using 192.0.2.128as a global IP.
-
-.. image:: images/create_snat_empty.png
-    :align: center
-
-Example: Port forwarding. DNAT the traffic destined to 192.0.2.130:8080 to be forwarded to the host 10.0.1.100 on port tcp/80.
-
-.. image:: images/create_dnat_empty.png
-    :align: center
-
---------------------------
-
-#############
+======================
 Looking Glass
-#############
+======================
 
 The Looking Glass Is a GUI-based tool for looking up routing information from a switch or SoftGate perspective. You can access the Looking Glass either from Topology, individually for every device (right click on device → details → Looking Glass), or by navigating to Network → Looking Glass then selecting the device from the top-left dropdown menu.
 
@@ -494,9 +523,9 @@ Example: EVPN routing information listing for a specified route distinguisher.
 .. image:: images/lg_rd.png
     :align: center
 
-############
+======================
 VPC Peering
-############
+======================
 
 VPC peering allows routing between two VPCs. It is typically used to connect a tenant VPC to a "shared" VPC where the shared services (like storage access, DNS, etc.) are located.
 

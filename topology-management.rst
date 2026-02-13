@@ -12,6 +12,9 @@ The Inventory section allows you to add/edit/delete network switches and SoftGat
 #. Adding Switches.
 #. Adding Softgates.
 
+.. note::
+  You can also add new devices in the Topology view.
+
 .. _topology-management-adding-switches:
 
 Adding Switches
@@ -31,7 +34,7 @@ Every switch needs to be added to the Netris Controller inventory. You can add n
 
 **Example:**  Add a new Switch.
 
-  .. image:: images/add-new-hardware.png
+  .. image:: images/inventory_switch.png
      :align: center
 
 .. note:: Repeat this process to define all your switches.
@@ -44,11 +47,13 @@ Every SoftGate node needs to be added to the Netris Controller inventory.
 
 The installation process for SoftGate HS is described in the :ref:`SoftGate HS installation <netris-softgate-HS-installation>` section.
 
+.. _topology-manager:
+
 ================
 Topology Manager
 ================
 
-The topology manager is for describing and monitoring the desired network topology. Netris Switch Agents software will automatically configure the underlying network devices according to this topology and will watch against potential failures.
+The topology manager is used for describing and monitoring the desired network topology. Netris Switch Agents software will automatically configure the underlying network devices according to this topology and will watch against potential failures. Wire your switches in accordance with the topology view.
 
 Adding Links
 ============
@@ -61,11 +66,14 @@ To define the links in the network:
 
 See the example below:  
 
-.. image:: images/create_link.png
-   :align: center
-    
-.. image:: images/topology_2.png
-   :align: center
+.. image:: images/topology.png
+    :align: center
+
+.. image:: images/topology_create_link.png
+    :align: center
+
+.. image:: images/topology_completed.png
+    :align: center
     
 Once the links have been defined, the network is automatically configured as long as physical connectivity is in place and Netris Agents can communicate with Netris Controller.
 
