@@ -84,6 +84,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to Netris</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Netris Supported Functionality &amp; Platforms Matrix</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#switch-fabric-management-functions">Switch Fabric Management Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#host-networking">Host Networking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#monitoring-telemetry">Monitoring &amp; Telemetry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#external-routing-functions">External Routing Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cloud-networking-functions-constructs">Cloud Networking Functions &amp; Constructs</a></li>
@@ -93,7 +94,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#security">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#netris-controller-administration">Netris Controller Administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#management-interfaces">Management Interfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#host-networking">Host Networking</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#netris-and-nos-versions-compatibility-matrix">Netris and NOS versions compatibility matrix</a></li>
@@ -1121,39 +1121,64 @@
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-even"><td><p>Compute VXLAN/EVPN extension (EOH)</p></td>
-<td><p>Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>TBD</p></td>
-<td><p>TBD</p></td>
-</tr>
-<tr class="row-odd"><td><p>ZTP</p></td>
+<tr class="row-even"><td><p>ZTP</p></td>
 <td><p>Zero-touch provisioning of the NOS &amp; Netris agent</p></td>
 <td><p>Coming Soon</p></td>
 <td><p>TBD</p></td>
 <td><p>TBD</p></td>
 <td><p>Coming Soon</p></td>
 </tr>
-<tr class="row-even"><td><p>Upgrade/Downgrade</p></td>
+<tr class="row-odd"><td><p>Upgrade/Downgrade</p></td>
 <td><p>Upgrade &amp; Downgrade of Netris agent through the controller</p></td>
 <td><p>Coming Soon</p></td>
 <td><p>TBD</p></td>
 <td><p>TBD</p></td>
 <td><p>Coming Soon</p></td>
 </tr>
-<tr class="row-odd"><td><p>Custom Config Snippets</p></td>
+<tr class="row-even"><td><p>Custom Config Snippets</p></td>
 <td><p>Custom configuration snippets for unique use cases.</p></td>
 <td><p>Coming Soon</p></td>
 <td><p>Coming Soon</p></td>
 <td><p>Coming Soon</p></td>
 <td><p>Coming Soon</p></td>
 </tr>
-<tr class="row-even"><td><p>SNMPv2 polling</p></td>
+<tr class="row-odd"><td><p>SNMPv2 polling</p></td>
 <td><p>Enable SNMPv2 server.</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
+<td><p>TBD</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="host-networking">
+<h2>Host Networking<a class="headerlink" href="#host-networking" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>NVIDIA Cumulus</p></th>
+<th class="head"><p>Dell-SONiC</p>
+<p>BCM-SONiC</p>
+</th>
+<th class="head"><p>Arista EOS</p></th>
+<th class="head"><p>EdgeCore-SONiC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HBN (Host Based Networking) for BlueFIeld DPUs</p></td>
+<td><p>Layer-4 container or vm/server load balancer with health checks.</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>Compute VXLAN/EVPN extension (EOH)</p></td>
+<td><p>Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>TBD</p></td>
 <td><p>TBD</p></td>
 </tr>
 </tbody>
@@ -1220,6 +1245,13 @@
 <td><p>N/A</p></td>
 <td><p>N/A</p></td>
 <td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Health Checks</p></td>
+<td><p>Built-in health checks for common network services and connectivity.</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
 </tr>
 </tbody>
 </table>
@@ -1451,7 +1483,7 @@
 <td><p>N/A</p></td>
 <td><p>TBD</p></td>
 <td><p>✔</p></td>
-<td><p>Coming Soon</p></td>
+<td><p>N/A</p></td>
 </tr>
 <tr class="row-even"><td><p>SuperNIC auto-configuration for RoCE</p></td>
 <td><p>Automatically configure IP addresses, routing, RoCE and other SuperNIC specific configuration on GPU servers</p></td>
@@ -1586,31 +1618,6 @@
 </tr>
 <tr class="row-even"><td><p>IaC: Terraform</p></td>
 <td><p>Manage your infrastructure as a code using Terraform.</p></td>
-<td><p>✔</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="host-networking">
-<h2>Host Networking<a class="headerlink" href="#host-networking" title="Link to this heading"></a></h2>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Function</p></th>
-<th class="head"><p>Description</p></th>
-<th class="head"><p>NVIDIA Cumulus</p></th>
-<th class="head"><p>Dell-SONiC</p>
-<p>BCM-SONiC</p>
-</th>
-<th class="head"><p>Arista EOS</p></th>
-<th class="head"><p>EdgeCore-SONiC</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>HBN (Host Based Networking) for BlueFIeld DPUs</p></td>
-<td><p>Layer-4 container or vm/server load balancer with health checks.</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
 <td><p>✔</p></td>
 </tr>
 </tbody>
