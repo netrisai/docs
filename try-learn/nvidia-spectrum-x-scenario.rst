@@ -34,7 +34,10 @@ Check ``Inventory``, ``IPAM``, and ``Topology`` sections under ``Network`` menu 
 
 Go back to the SSH session and cd to ``/home/ubuntu/netris-cloudsim``
 
-Execute pulumi up or pulumi destroy to start/stop a simulation of what’s described in the Netris Controller.
+Execute ``pulumi up`` or ``pulumi destroy`` to start/stop a simulation of what's described in the Netris Controller.
+
+.. warning::
+   Do not run ``pulumi stack rm main`` after ``pulumi destroy`` unless instructed by Netris support. This may cause issues with your simulation environment. Use only ``pulumi destroy`` to safely stop a simulation.
 
 Monitoring Dashboard
 ====================
