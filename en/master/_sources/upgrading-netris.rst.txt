@@ -112,7 +112,7 @@ The output is similar to this:
 
 .. warning::
   
-  If, after 5 minutes, you see pods with a status other than "*Running*" or "*Completed*", please reach out to us via `Slack <https://netris.slack.com/join/shared_invite/zt-1993b09c6-dWvgWusaeysToNHn7lIGTA#/shared-invite/email>`__.
+  If, after 5 minutes, you see pods with a status other than "*Running*" or "*Completed*", please reach out to us via `Slack <https://netris.slack.com/>`__.
 
 Check the upgraded version
 --------------------------
