@@ -8,6 +8,6 @@ hello@netris.io
 
 https://netris.io
 
-Slack Support Channel: https://www.netris.io/slack/
+Slack Support Channel: https://netris.slack.com/
 
 Current docs are available at: https://netris.io/docs
