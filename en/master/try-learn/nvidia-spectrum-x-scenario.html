@@ -1077,7 +1077,11 @@
 <h2>Start a simulation<a class="headerlink" href="#start-a-simulation" title="Link to this heading"></a></h2>
 <p>Check <code class="docutils literal notranslate"><span class="pre">Inventory</span></code>, <code class="docutils literal notranslate"><span class="pre">IPAM</span></code>, and <code class="docutils literal notranslate"><span class="pre">Topology</span></code> sections under <code class="docutils literal notranslate"><span class="pre">Network</span></code> menu in the Netris controller web console. (In the topology section, you may need to select the right site to see a diagram)</p>
 <p>Go back to the SSH session and cd to <code class="docutils literal notranslate"><span class="pre">/home/ubuntu/netris-cloudsim</span></code></p>
-<p>Execute pulumi up or pulumi destroy to start/stop a simulation of what’s described in the Netris Controller.</p>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">up</span></code> or <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">destroy</span></code> to start/stop a simulation of what’s described in the Netris Controller.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not run <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">stack</span> <span class="pre">rm</span> <span class="pre">main</span></code> after <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">destroy</span></code> unless instructed by Netris support. This may cause issues with your simulation environment. Use only <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">destroy</span></code> to safely stop a simulation.</p>
+</div>
 </section>
 <section id="monitoring-dashboard">
 <h2>Monitoring Dashboard<a class="headerlink" href="#monitoring-dashboard" title="Link to this heading"></a></h2>
