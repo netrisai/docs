@@ -19,17 +19,17 @@ We recommend three (for HA) Ubuntu 24.04 servers with the below specs. HA Netris
      - 8
      - 32 GB
      - 300 GB
-     - 4x 1GbE+ NIC
+     - 4x 25GbE+ NIC
    * - Leaf/Spine 30-100 switches
      - 8
      - 32 GB
      - 600 GB
-     - 4x 1GbE+ NIC
+     - 4x 25GbE+ NIC
    * - Leaf/Spine 100-300 switches
      - 16
      - 64 GB
      - 1 TB
-     - 4x 10GbE+ NIC
+     - 4x 25GbE+ NIC
    * - Leaf/Spine 300+ switches
      - 32
      - 128 GB
@@ -39,12 +39,12 @@ We recommend three (for HA) Ubuntu 24.04 servers with the below specs. HA Netris
      - 16
      - 64 GB
      - 1 TB
-     - 4x 10GbE+ NIC
+     - 4x 25GbE+ NIC
    * - Spectrum-X 16-32 SUs
      - 32
      - 128 GB
      - 2 TB
-     - 4x 10GbE+ NIC
+     - 4x 25GbE+ NIC
    * - Spectrum-X 32+ SUs (10K+ GPUs)
      - 64
      - 256 GB
