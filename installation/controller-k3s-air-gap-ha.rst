@@ -217,8 +217,44 @@ On **all three nodes**, import container images:
 
   sudo ctr images import images.tar
 
+4. Configure North-South kube-vip for KubeAPI High Availability
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-4. Configure kube-vip for KubeAPI High Availability
+1. On the **first node only**, open manifests/kube-vip-ns.yaml:
+
+.. code-block:: shell
+
+  vim manifests/kube-vip-ns.yaml
+
+2. Find ``vip_interface`` and replace it with your north-south NIC name (e.g., bond1).
+
+3. Apply the file
+
+.. code-block:: shell
+
+  kubectl apply -f manifests/kube-vip-ns.yaml
+
+3. On the **first node only**, open manifests/kube-vip-ns-cloud-controller.yaml
+
+.. code-block:: shell
+
+  vim manifests/kube-vip-ns-cloud-controller.yaml
+
+4. Find ``cidr-global`` and replace it with your North-South VIP address.
+
+5. Apply the file
+
+.. code-block:: shell
+
+  kubectl apply -f manifests/kube-vip-ns-cloud-controller.yaml
+
+6. Apply the North-South Traefik service manifest
+
+.. code-block:: shell
+
+  kubectl apply -f manifests/traefik-ns-svc.yaml
+
+5. Configure HA kube-vip for KubeAPI High Availability
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. On the **first node only**, open kube-vip.yaml:
@@ -255,7 +291,7 @@ On **all three nodes**, import container images:
   ping 192.168.0.40
 
 
-5. Add Helm Chart Packages to K3s
+6. Add Helm Chart Packages to K3s
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -269,7 +305,7 @@ Copy your Helm charts to the K3s static files directory on **all three nodes**:
 You can now perform kubectl or helm commands from any node or a remote machine (after adjusting kubeconfig to point to the VIP).
 
 
-6. Verify and Scale Core K3s Components
+7. Verify and Scale Core K3s Components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Check the pods in the cluster:
@@ -297,7 +333,7 @@ Confirm they have scaled:
   kubectl get pods -A
 
 
-7. Deploy Kube-VIP Cloud Controller
+8. Deploy Kube-VIP Cloud Controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We need a second VIP for the Netris Controller load balancer.
@@ -326,7 +362,7 @@ We need a second VIP for the Netris Controller load balancer.
 
 
 
-8. Install Traefik Proxy
+9. Install Traefik Proxy
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Apply the Traefik manifest:
@@ -353,12 +389,12 @@ We need a second VIP for the Netris Controller load balancer.
 It should show EXTERNAL-IP as 192.168.0.50.
 
 
-9. Deploy the Netris Controller
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10. Deploy the Netris Controller
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-9.1 Install the MariaDB Operator
-""""""""""""""""""""""""""""""""
+10.1 Install the MariaDB Operator
+""""""""""""""""""""""""""""""""""
 
 1. CRDs:
 
@@ -407,7 +443,7 @@ Expected output:
 Wait until all pods are ready and in a running or completed state.
 
 
-9.2 Install Netris Controller
+10.2 Install Netris Controller
 """"""""""""""""""""""""""""""
 
 1. **HelmChart** manifest:
@@ -497,7 +533,7 @@ Expected output:
 
 
 
-10. (Optional) Enable SSL with cert-manager
+11. (Optional) Enable SSL with cert-manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you intend to secure the Controller via an FQDN and Let’s Encrypt (or another ACME issuer) please also install cert-manager:
@@ -526,7 +562,7 @@ If you intend to secure the Controller via an FQDN and Let’s Encrypt (or anoth
 
 
 
-11. Set Up the Local Netris Repository
+12. Set Up the Local Netris Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices do not have direct access to the internet. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository
@@ -555,7 +591,7 @@ The Netris Local Repository is essential for environments where switches, softga
 
 
 
-12. Validate Your Deployment
+13. Validate Your Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Access the Netris Controller** via https://192.168.0.50 (or your assigned FQDN).
