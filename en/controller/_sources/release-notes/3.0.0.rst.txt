@@ -1,0 +1,52 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 3.0.0
+.. _release_3.0.0:
+
+.. meta::
+    :description: Netris Release Notes |version|
+
+Netris |version| (Oct/6/2021)
+==================================
+
+What's new in Netris |version|?
+-------------------------------
+
+We are thrilled to announce the 3.0 version of Netris, the Automatic NetOps. Netris automatically generates assured configurations for open-networking switches running Linux and FRR, as well as leverages the power of DPDK, Wireguard, and other open-source software to enable production-grade routing, server load balancing, NAT, and site-to-site VPN services running on a commodity Linux server. Netris safely and automatically operates your on-prem physical network with a cloud-like user experience.
+
+**Kubernetes Integration**
+
+Kubernetes relies on networking services that public cloud environments provide seamlessly behind the scenes. Netris 3.0 does the same for on-prem network environments.
+
+Now Netris seamlessly integrates with Kubernetes and by listening to Kube API events, Netris dynamically generates network configurations for open-networking switches and for hardware offloaded linux-based gateways to deliver end to end network services in concert with your Kubernetes cluster. (`Check out our solution brief <https://www.netris.ai/kubernetes-solution-brief/?__hstc=81789449.9f93fa53f90e96795adffdeca70f369a.1764700610911.1764700610911.1764700610911.1&__hssc=81789449.22.1764700610911&__hsfp=2559645072>`_)
+
+In addition to an intuitive GUI and RestAPI, Netris 3.0 controller allows you to use Kubernetes CRDs to manage your self-operating network just like you manage your public cloud deployment.
+
+**Free Softgate Option**
+
+While Netris typically operates with SmartNIC powered Linux gateways (100Gbps) and open-networking switches(1-400Gbps / port), in Netris 3.0 we are releasing a free version of our SoftGate that delivers 100% of the network functionality purely in software to be used for small scale applications such as automatic cloud-like network for your home/office Kubernetes cluster, or for your lab. This free and lightweight version is only limited to your CPU resources, but it is as robust and stable as the premium version so it can be even used in small production networks that require few Gbps of traffic forwarding. (`check out our data sheet <https://www.netris.ai/data-sheet/?__hstc=81789449.9f93fa53f90e96795adffdeca70f369a.1764700610911.1764700610911.1764700610911.1&__hssc=81789449.22.1764700610911&__hsfp=2559645072>`_).
+
+**Calico Integration**
+
+Many customers are currently deploying Calico from Tigera for a feature-rich CNI within their Kubernetes infrastructure.  Calico requires BGP route advertisements for reachability between nodes in a cluster.  The default design uses a BGP full-mesh for k8s nodes, but this requires additional resources to manage the BGP routing tables.  For large clusters and high performance network designs, Tigera now recommends that nodes should directly peer with their local network routers and offload the neighbor relationship and route advertising to fabric switches.  Switching the network design from the default mode to support this recommendation is complicated and requires a lot of static device configuration.
+
+With Netris, making this change is as simple as applying a single line annotation via kubectl.  This change causes Netris to automatically set up the necessary routing configurations on all of the fabric switches before switching the Calico operating mode.  This easy transformation of the network design is free from user error and is completed in a few minutes.
+
+In addition, Netris continuously monitors Kubernetes events and the Calico control plane.  This ensures that the creation or modification of a node or cluster causes automatic updates on the physical network.
+
+**Try Netris 3.0 Now**
+
+Netris 3.0 offers major additional functionality needed for fully automatic data center operations.  These enhancements continue to simplify the lives of network operators and reduce the risk of misconfigurations and outages.  Netris 3.0 is available for free evaluations as well as production use. `Get started with Netris 3.0 for free <https://www.netris.ai/try/?__hstc=81789449.9f93fa53f90e96795adffdeca70f369a.1764700610911.1764700610911.1764700610911.1&__hssc=81789449.22.1764700610911&__hsfp=2559645072>`_.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file

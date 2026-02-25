@@ -1,0 +1,1938 @@
+<div class="netris-header">
+  <span>
+    <a href="https://www.netris.io" target="_blank">
+      <img width="95px" src="../_static/logo.png" class="netris-logo" alt="Logo" />
+    </a>
+    <span class="github-btn github-btn-large">
+      <a class="gh-btn" href="https://netris.slack.com/" rel="noopener noreferrer" target="_blank"
+        style="margin-left: 15px;">
+        <img style="height: 1em;" src="../_static/slack.svg" alt="slack_icon">
+        Join Slack
+      </a>
+    </span>
+  </span>
+</div>
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Installing HA Netris Controller in Air-Gapped Environments" name="description" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-152905529-2');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing HA Netris Controller in Air-Gapped Environments &mdash; Netris Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=8456483b" />
+
+  
+    <link rel="shortcut icon" href="../_static/netris_favicon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=016f71bc"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/version-picker.js?v=51bfea80"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Helm Chart Installation" href="controller-k8s-installation.html" />
+    <link rel="prev" title="Controller Installation" href="installation.html" /> 
+<script type="text/javascript">
+   $(document).ready(function () {
+    $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
+  });
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ffffff" >
+
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction to Netris</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supported-platform-matrix.html">Netris Supported Functionality &amp; Platforms Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#switch-fabric-management-functions">Switch Fabric Management Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#host-networking">Host Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#monitoring-telemetry">Monitoring &amp; Telemetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#external-routing-functions">External Routing Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#cloud-networking-functions-constructs">Cloud Networking Functions &amp; Constructs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#overlay-network-functions">Overlay Network Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#ai-specific-functions">AI Specific Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#compute-platform-integrations">Compute Platform Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#netris-controller-administration">Netris Controller Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-platform-matrix.html#management-interfaces">Management Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../supported-platform-matrix.html#netris-and-nos-versions-compatibility-matrix">Netris and NOS versions compatibility matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supported-switch-hardware.html">Hardware Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#netris-controller">Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#netris-softgate-hs-multi-vpc-version">Netris SoftGate HS (Multi-VPC version)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../supported-switch-hardware.html#supported-switch-hardware">Supported Switch Hardware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#nvidia">Nvidia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#edgecore">EdgeCore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#arista">Arista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../netris-architecture.html">Netris Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../netris-architecture.html#netris-controller">Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-architecture.html#netris-switch-agent">Netris Switch Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-architecture.html#netris-softgate">Netris SoftGate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../definitions.html">Definitions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Try &amp; Learn Netris</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html">Lab Scenario: GPU-as-a-Service network with NVIDIA Spectrum-X architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#initialize-the-netris-controller">Initialize the Netris controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#start-a-simulation">Start a simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#monitoring-dashboard">Monitoring Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#topology">Topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#ssh-to-switches">SSH to Switches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#ssh-to-gpu-servers">SSH to GPU servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#nhn-netris-host-networking-plugin">NHN (Netris host networking plugin)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#server-cluster-template">Server Cluster Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#server-cluster">Server Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#checking-the-connectivity">Checking the connectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/nvidia-spectrum-x-scenario.html#cleanup-the-controller">Cleanup the Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../try-learn/onprem-k8s.html">Learn Netris Operations with Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#l4lb-custom-resource">L4LB Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#importing-existing-resources-from-netris-controller-to-kubernetes">Importing Existing Resources from Netris Controller to Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#reclaim-policy">Reclaim Policy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="installation.html">Controller Installation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#obtain-the-installation-file">Obtain the Installation File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#steps-to-install">Steps to Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#preparing-each-node">1. Preparing Each Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#import-necessary-container-images">3. Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-north-south-kube-vip-for-kubeapi-high-availability">4. Configure North-South kube-vip for KubeAPI High Availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-ha-kube-vip-for-kubeapi-high-availability">5. Configure HA kube-vip for KubeAPI High Availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-helm-chart-packages-to-k3s">6. Add Helm Chart Packages to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verify-and-scale-core-k3s-components">7. Verify and Scale Core K3s Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deploy-kube-vip-cloud-controller">8. Deploy Kube-VIP Cloud Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-traefik-proxy">9. Install Traefik Proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-up-the-local-netris-repository">12. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#validate-your-deployment">13. Validate Your Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#after-installation">After Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-consume-local-repository">How to consume local repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1. Preparing Each Node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.1 Transfer the File to the Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.2 Extract the Tarball</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.3 Navigate to the Installation Directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">2.1 Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#maintenance-procedures">Maintenance Procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#maintenance-best-practices">Maintenance Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html">Helm Chart Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Controller-local-repository.html">Netris Local Repository Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../switch-agent-installation.html">Network Switch Initial Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Nvidia-Cumulus-v5.9%2B-Switch-initial-setup.html">Nvidia Cumulus v5.9+ Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Nvidia-Cumulus-v5-Switch-initial-setup.html">Nvidia Cumulus v5 Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../EdgeCore-SONiC-Switch-initial-setup.html">EdgeCore SONiC Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Dell-SONiC-Switch-initial-setup.html">Dell SONiC Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../netris-softgate-HS.html">SoftGate HS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#services-provided-by-softgate">Services Provided by SoftGate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#what-softgate-does-not-do">What SoftGate does not do</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#hardware-requirements">Hardware Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#performance">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#architecture-overview">Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-physical-connectivity">SoftGate physical connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-logical-connectivity">SoftGate logical connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-node-control-plane">SoftGate node Control Plane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-node-data-plane">SoftGate node Data Plane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#softgate-roles-and-flavors">SoftGate Roles and Flavors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#installation-and-initial-deployment">Installation and Initial Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#installation-guide">Installation Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#upstream-border-routers-ebgp">Upstream/Border Routers (EBGP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#configuring-upstream-bgp">Configuring upstream BGP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#bgp-route-exchange-between-softgates-upstream-routers-and-downstream-switches">BGP route exchange between SoftGates, upstream routers, and downstream switches</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#high-availability-and-load-distribution">High Availability and Load Distribution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#internet-originated-traffic-routing">Internet originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-softgate-HS.html#failover-behavior">Failover behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-softgate-HS.html#observability-and-operations">Observability and Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ai-netris-host-networking.html">Netris Host Networking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#how-it-works">How It Works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#before-you-begin">Before You Begin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#recommended-nvidia-component-versions">Recommended NVIDIA Component Versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v1-2-0">Spectrum-X v1.2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v1-3-0">Spectrum-X v1.3.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#permissions">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#installation-overview">Installation Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#review-the-configuration-file">1. Review the Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#configure-bluefield3-nics">2. Configure BlueField3 NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#verify-bluefield3-nics-parameters">3. Verify BlueField3 NICs Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#start-the-nhn-daemon">4. Start the NHN daemon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#operating-the-nhn-plugin">Operating the NHN plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#starting-nhn">Starting NHN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#monitoring-nhn">Monitoring NHN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#stopping-nhn">Stopping NHN</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#using-the-bf3-config">Using the bf3-config</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#command-line-options">Command-Line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#using-the-verifier">Using the Verifier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#id1">Command-Line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#id2">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#network-configuration-formats">Network Configuration Formats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#network-manager-auto-detection">Network Manager Auto-Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#netplan-systemd-networkd">Netplan (systemd-networkd)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#ifupdown-ubuntu-interfaces">Ifupdown (Ubuntu interfaces)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../site.html">Netris Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology-management.html">Inventory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-switches">Adding Switches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-softgates">Adding SoftGates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../topology-management.html#topology-manager">Topology Manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-links">Adding Links</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network-policies.html">Netris VPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#adding-new-vpc">Adding new VPC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#ip-address-management">IP Address Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#ipam-tree-view">IPAM Tree View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#add-an-allocation">Add an Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#add-a-subnet">Add a Subnet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#bgp">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#basic-bgp">Basic BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#advanced-bgp">Advanced BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#bgp-objects">BGP Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../network-policies.html#ipv4-prefix">IPv4 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../network-policies.html#ipv6-prefix">IPv6 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../network-policies.html#community">Community</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#bgp-route-maps">BGP route-maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../network-policies.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#static-routing">Static Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#nat">NAT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#enabling-nat">Enabling NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#defining-nat-rules">Defining NAT rules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#looking-glass">Looking Glass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#vpc-peering">VPC Peering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../switch-ports.html">Switch Ports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lag.html">Link Aggregation (LAG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lag.html#custom-lag">Custom LAG</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visibility.html">Graph Boards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visibility.html#id1">Graph Boards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visibility.html#api-logs">API Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visibility.html#dashboard">Dashboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance-mode.html">Maintenance Mode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance-mode.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance-mode.html#maintenance-mode-for-softgate-whats-happening-behind-the-scenes">Maintenance Mode for Softgate - What’s happening behind the scenes?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance-mode.html#maintenance-mode-for-switch-whats-happening-behind-the-scenes">Maintenance Mode for Switch - What’s happening behind the scenes?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrading-netris.html">Upgrade and Rollback</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#backup-current-database">Backup current database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#check-your-current-version">Check your current version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#id1">Stop Netris Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#restore-the-database">Restore The Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vnet.html">V-Net</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vnet.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#dhcp">DHCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#dhcp-relay">DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../vnet.html#example">Example:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#v-net-fields-explained">V-Net Fields explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#advanced-v-net-fields-explained">Advanced V-Net Fields explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#multisite-v-nets">Multisite V-Nets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../vnet.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vnet.html#mc-lag">MC-LAG</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#labels">Labels</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../vnet.html#how-labels-work">How labels work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vnet.html#rules-and-limits">Rules and limits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vnet.html#when-to-use-labels">When to use labels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vnet.html#l3vpn">L3VPN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#creating-an-l3vpn-v-net">Creating an L3VPN V-Net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#id1">Rules and limits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vnet.html#verification-tools">Verification Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#ui-tools">UI Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../server-cluster.html">Server Cluster</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../server-cluster.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server-cluster.html#server-cluster-template">Server Cluster Template</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#server-cluster-template-examples">Server Cluster Template Examples:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#ethernet-only-fabric-example">Ethernet-only Fabric Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#infiniband-fabric-example">Infiniband Fabric Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#nvlink-nvl72-or-nvl144-fabric-example">NVLink (NVL72 or NVL144) Fabric Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#ipv6-example">IPv6 Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#template-fields-explained">Template Fields Explained:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#adding-a-server-cluster-template">Adding a Server Cluster Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#advanced-uses">Advanced Uses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#non-overlapping-subnets">Non-overlapping subnets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#specify-gateway">Specify gateway</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../server-cluster.html#creating-server-cluster">Creating Server Cluster</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#shared-endpoints">Shared Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#server-cluster-fields-explained">Server Cluster Fields Explained:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../l4-load-balancer.html">L4 Load Balancer (L4LB)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../l4-load-balancer.html#enabling-l4lb-service">Enabling L4LB service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../l4-load-balancer.html#consuming-l4lb-service">Consuming L4LB service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acls.html">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-default-policy">ACL Default Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-rules">ACL Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-approval-workflow">ACL Approval Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-processing-order">ACL Processing Order</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Netris Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../netris-ufm-integration.html">NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#key-benefits">Key Benefits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#ufm-configuration-requirements">UFM Configuration Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#option-1-deploy-within-an-existing-netris-controller-kubernetes-cluster">Option 1: Deploy within an existing Netris Controller Kubernetes cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#option-2-deploy-as-a-standalone-docker-container">Option 2: Deploy as a standalone Docker container</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#configuration-parameters">Configuration Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#netris-controller-configuration">Netris Controller Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#nvidia-ufm-configuration">NVIDIA UFM Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#agent-configuration">Agent Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#usage-guide">Usage Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#create-server-clusters">4. Create Server Clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#verification">3. Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#functional-workflow">Functional Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#infiniband-security-recommended">InfiniBand Security (Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#what-is-mkey-protection">What is MKey Protection?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#impact-on-netris-integration">Impact on Netris Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#configuration-steps">Configuration Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../netris-ufm-integration.html#set-the-mkey-value">1. Set the MKey Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-ufm-integration.html#enable-mkey-protection-level">2. Enable MKey Protection Level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-ufm-integration.html#enable-vskey-vendor-specific-key">3. Enable VSKey (Vendor Specific Key)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-ufm-integration.html#restart-ufm-service">4. Restart UFM Service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-ufm-integration.html#id1">5. Verification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#monitoring-and-troubleshooting">Monitoring and Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#viewing-logs">Viewing Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../netris-ufm-integration.html#connection-issues-to-netris-controller-or-ufm">Connection Issues to Netris Controller or UFM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-ufm-integration.html#pkey-assignment-issues">PKey Assignment Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-ufm-integration.html#sharp-reservation-issues">SHARP Reservation Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netris-ufm-integration.html#synchronization-delays">Synchronization Delays</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#version-compatibility">Version Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#getting-started-guide">Getting Started Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#quick-setup-example">Quick Setup Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../netris-nvlink-integration.html">NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#key-benefits">Key Benefits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#high-level-workflow">High-Level Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#installing-the-plugin">Installing the plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#loading-gpu-inventory">Loading GPU inventory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#netris-nmx-plugin-configuration-parameters">Netris-NMX Plugin Configuration Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#maintenance-and-deprovisioning">Maintenance and Deprovisioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kubernetes-integration.html">Kubernetes Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes-integration.html#install-netris-operator">Install Netris Operator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes-integration.html#helm-chart-method">Helm Chart Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes-integration.html#regular-manifest-method">Regular Manifest Method</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes-integration.html#using-type-loadbalancer">Using Type ‘LoadBalancer’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes-integration.html#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes-integration.html#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes-integration.html#l4lb-custom-resource">L4LB Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes-integration.html#v-net-custom-resource">V-Net Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes-integration.html#bgp-custom-resource">BGP Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes-integration.html#importing-existing-resources-from-netris-controller-to-kubernetes">Importing existing resources from Netris Controller to Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes-integration.html#reclaim-policy">Reclaim Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kubernetes-integration.html#calico-cni-integration">Calico CNI Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes-integration.html#disabling-netris-calico-integration">Disabling Netris-Calico Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cloudstack/netris-cloudstack.html">Netris-CloudStack Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html">High-Level Concept of Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#how-it-works">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#challenges-addressed">Challenges Addressed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#benefits">Benefits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#compute-and-network-architecture">Compute and Network Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#diagram-overview">Diagram Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#network-flow">Network Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#step-by-step-configuration-instructions-for-the-netris-controller">Step-by-Step Configuration Instructions for the Netris Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#ipam-setup">IPAM Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#create-an-allocation">Create an Allocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#create-subnets">Create Subnets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#inventory-setup">Inventory Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#creating-servers-links">Creating Servers’ Links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#optimize-bgp-overlay-for-hypervisor">Optimize BGP Overlay for Hypervisor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#adding-subnets-for-cloudstack-cluster">Adding Subnets for CloudStack Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#enabling-internet-connectivity-for-acs-servers">Enabling Internet Connectivity for ACS Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#enabling-access-to-cloudstack-management-gui">Enabling Access to CloudStack Management GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#creating-cloudstack-networks">Creating CloudStack Networks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html">Server Configuration and Software Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#configuring-network-on-cloudstack-management-server-server-1">Configuring Network on CloudStack Management Server (Server 1)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#understanding-the-network-layout">Understanding the Network Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#netplan-configuration">Netplan Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#install-netris-cloudstack-agent-on-hypervisor-servers">Install Netris-CloudStack Agent on Hypervisor Servers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#bringing-up-nics-before-installation">Bringing Up NICs Before Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#pre-installation-steps-for-deployments-without-oob">Pre-Installation Steps (For Deployments Without OOB)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#key-functions-of-the-netris-cloudstack-agent">Key Functions of the Netris-CloudStack Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#example-successful-output-of-one-liner-script">Example Successful Output of One-Liner Script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#verification-steps">Verification Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#checking-network-connectivity">Checking Network Connectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#finalizing-the-network-setup">Finalizing the Network Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#keeping-the-temporary-oob-vnet-for-emergency-access"><strong>Keeping the Temporary OOB VNet for Emergency Access</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#managing-additional-nics-on-the-server">Managing Additional NICs on the Server</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#install-cloudstack-management-service">Install CloudStack Management Service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#id1">Installation Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html">Configuring CloudStack for Netris Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#enabling-the-netris-plugin-in-cloudstack">Enabling the Netris Plugin in CloudStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#initializing-cloudstack-setup">Initializing CloudStack Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#steps-to-initialize-cloudstack">Steps to Initialize CloudStack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html">Using CloudStack with Netris Isolation Method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#creating-a-vpc">Creating a VPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#creating-a-network-tier">Creating a Network Tier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#port-forwarding">Port Forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#seamless-integration-between-cloudstack-and-netris">Seamless Integration Between CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#step-by-step-process-for-configuring-port-forwarding-in-cloudstack-with-netris">Step-by-Step Process for Configuring Port Forwarding in CloudStack with Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#key-notes">Key Notes:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#configuring-static-nat-in-cloudstack">Configuring Static NAT in CloudStack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#how-static-nat-works-with-cloudstack-and-netris">How Static NAT Works with CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#steps-to-configure-static-nat">Steps to Configure Static NAT:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#how-cloudstack-and-netris-work-together">How CloudStack and Netris Work Together</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#final-notes">Final Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../terraform-integration.html">Terraform: Netris provider</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../terraform-integration.html#install-terraform">Install Terraform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terraform-integration.html#create-a-directory-for-terraform-files">Create a directory for Terraform files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terraform-integration.html#configure-a-provider">Configure a provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terraform-integration.html#prepare-an-infrastructure-plan">Prepare an infrastructure plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terraform-integration.html#create-resources">Create resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terraform-integration.html#delete-resources">Delete resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../evpn-on-host.html">EVPN on Host</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#supported-operating-systems">Supported Operating Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#use-cases">Use Cases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#managed-kubernetes">Managed Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#other-uses">Other Uses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#how-it-works">How It Works</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#bare-metal-gpu-nodes">Bare Metal GPU Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#shared-nodes">Shared Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#underlay-configuration">Underlay Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#packet-flow">Packet Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#management-plane">Management Plane</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#management-v-net">1. Management V-Net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#server-objects">2. Server Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#server-networking-configuration">3. Server Networking Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#netris-controller">4. Netris Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#install-the-evpn-on-host-agent">Install the EVPN-on-Host agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#enable-underlay">Enable Underlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#verification">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../evpn-on-host.html#provisioning-tenants">Provisioning Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#id1">Verification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/netq.html">NVIDIA NetQ Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring-observability/healthchecks.html">Netris Healthchecks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloudstack/netris-cloudstack.html">Netris-CloudStack Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html">High-Level Concept of Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#how-it-works">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#challenges-addressed">Challenges Addressed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#benefits">Benefits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#compute-and-network-architecture">Compute and Network Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#diagram-overview">Diagram Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p1.html#network-flow">Network Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#step-by-step-configuration-instructions-for-the-netris-controller">Step-by-Step Configuration Instructions for the Netris Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#ipam-setup">IPAM Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#create-an-allocation">Create an Allocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#create-subnets">Create Subnets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#inventory-setup">Inventory Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#creating-servers-links">Creating Servers’ Links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#optimize-bgp-overlay-for-hypervisor">Optimize BGP Overlay for Hypervisor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#adding-subnets-for-cloudstack-cluster">Adding Subnets for CloudStack Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#enabling-internet-connectivity-for-acs-servers">Enabling Internet Connectivity for ACS Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#enabling-access-to-cloudstack-management-gui">Enabling Access to CloudStack Management GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p2.html#creating-cloudstack-networks">Creating CloudStack Networks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html">Server Configuration and Software Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#configuring-network-on-cloudstack-management-server-server-1">Configuring Network on CloudStack Management Server (Server 1)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#understanding-the-network-layout">Understanding the Network Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#netplan-configuration">Netplan Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#install-netris-cloudstack-agent-on-hypervisor-servers">Install Netris-CloudStack Agent on Hypervisor Servers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#bringing-up-nics-before-installation">Bringing Up NICs Before Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#pre-installation-steps-for-deployments-without-oob">Pre-Installation Steps (For Deployments Without OOB)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#key-functions-of-the-netris-cloudstack-agent">Key Functions of the Netris-CloudStack Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#example-successful-output-of-one-liner-script">Example Successful Output of One-Liner Script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#verification-steps">Verification Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#checking-network-connectivity">Checking Network Connectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#finalizing-the-network-setup">Finalizing the Network Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#keeping-the-temporary-oob-vnet-for-emergency-access"><strong>Keeping the Temporary OOB VNet for Emergency Access</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#managing-additional-nics-on-the-server">Managing Additional NICs on the Server</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#install-cloudstack-management-service">Install CloudStack Management Service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p3.html#id1">Installation Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html">Configuring CloudStack for Netris Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#enabling-the-netris-plugin-in-cloudstack">Enabling the Netris Plugin in CloudStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#initializing-cloudstack-setup">Initializing CloudStack Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p4.html#steps-to-initialize-cloudstack">Steps to Initialize CloudStack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html">Using CloudStack with Netris Isolation Method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#creating-a-vpc">Creating a VPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#creating-a-network-tier">Creating a Network Tier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#port-forwarding">Port Forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#seamless-integration-between-cloudstack-and-netris">Seamless Integration Between CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#step-by-step-process-for-configuring-port-forwarding-in-cloudstack-with-netris">Step-by-Step Process for Configuring Port Forwarding in CloudStack with Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#key-notes">Key Notes:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#configuring-static-nat-in-cloudstack">Configuring Static NAT in CloudStack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#how-static-nat-works-with-cloudstack-and-netris">How Static NAT Works with CloudStack and Netris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#steps-to-configure-static-nat">Steps to Configure Static NAT:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#how-cloudstack-and-netris-work-together">How CloudStack and Netris Work Together</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cloudstack/netris-cloudstack_p5.html#final-notes">Final Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ai-netris-host-networking.html">Netris Host Networking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#how-it-works">How It Works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#before-you-begin">Before You Begin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#recommended-nvidia-component-versions">Recommended NVIDIA Component Versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v1-2-0">Spectrum-X v1.2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v1-3-0">Spectrum-X v1.3.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#permissions">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#installation-overview">Installation Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#review-the-configuration-file">1. Review the Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#configure-bluefield3-nics">2. Configure BlueField3 NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#verify-bluefield3-nics-parameters">3. Verify BlueField3 NICs Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#start-the-nhn-daemon">4. Start the NHN daemon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#operating-the-nhn-plugin">Operating the NHN plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#starting-nhn">Starting NHN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#monitoring-nhn">Monitoring NHN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#stopping-nhn">Stopping NHN</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#using-the-bf3-config">Using the bf3-config</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#command-line-options">Command-Line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#using-the-verifier">Using the Verifier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#id1">Command-Line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#id2">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#network-configuration-formats">Network Configuration Formats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#network-manager-auto-detection">Network Manager Auto-Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#netplan-systemd-networkd">Netplan (systemd-networkd)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#ifupdown-ubuntu-interfaces">Ifupdown (Ubuntu interfaces)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts.html">Accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#permission-groups">Permission Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#user-roles">User Roles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../try-learn/onprem-k8s.html">Learn Netris Operations with Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#intro">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#install-netris-operator">Install Netris Operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#deploy-an-application-with-an-on-demand-netris-load-balancer">Deploy an Application with an On-Demand Netris Load Balancer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../try-learn/onprem-k8s.html#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#l4lb-custom-resource">L4LB Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#importing-existing-resources-from-netris-controller-to-kubernetes">Importing Existing Resources from Netris Controller to Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../try-learn/onprem-k8s.html#reclaim-policy">Reclaim Policy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../snippets.html">Custom NVUE Configuration Snippets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.6.0.html">Netris 4.6.0 (Feb/10/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#what-s-new-in-netris-version">What’s new in Netris 4.6.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.5.3.html">Netris 4.5.3 (August/27/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#what-s-new-in-netris-version">What’s new in Netris 4.5.3?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.3.0.html">Netris 4.3.0 (July/31/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#what-s-new-in-netris-version">What’s new in Netris 4.3.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.2.0.html">Netris 4.2.0 (May/1/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#what-s-new-in-netris-version">What’s new in Netris 4.2.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.1.1.html">Netris 4.1.1 (Jan/31/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#what-s-new-in-netris-version">What’s new in Netris 4.1.1?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.0.0.html">Netris 4.0.0 (Jul/25/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#what-s-new-in-netris-version">What’s new in Netris 4.0.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.5.0.html">Netris 3.5.0 (Oct/24/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#what-s-new-in-netris-version">What’s new in Netris 3.5.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.4.4.html">Netris 3.4.4 (Sep/29/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#what-s-new-in-netris-version">What’s new in Netris 3.4.4?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.4.3.html">Netris 3.4.3 (Nov/09/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.3.html#what-s-new-in-netris-version">What’s new in Netris 3.4.3?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.3.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.3.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.4.0.html">Netris 3.4.0 (Mar/06/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#what-s-new-in-netris-version">What’s new in Netris 3.4.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#new-platform-integration">New Platform Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.3.0.html">Netris 3.3.0 (Dec/05/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#what-s-new-in-netris-version">What’s new in Netris 3.3.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#various-improvements-and-bug-fixes">Various improvements and bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.2.1.html">Netris 3.2.1 (Oct/05/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.1.html#what-s-new-in-netris-version">What’s new in Netris 3.2.1?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.1.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.1.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.2.0.html">Netris 3.2.0 (Sep/22/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#what-s-new-in-netris-version">What’s new in Netris 3.2.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.1.0.html">Netris 3.1.0 (Aug/1/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#what-s-new-in-netris-version">What’s new in Netris 3.1.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.0.0.html">Netris 3.0.0 (Oct/6/2021)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.0.0.html#what-s-new-in-netris-version">What’s new in Netris 3.0.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.0.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/2.9.0.html">Netris 2.9.0 (Mar/5/2021)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.9.0.html#what-s-new-in-netris-version">What’s new in Netris 2.9.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.9.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/2.8.0.html">Netris 2.8.0 (May/13/2020)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#what-s-new-in-netris-version">What’s new in Netris 2.8.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ffffff" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Netris docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!--
+<div class="header-wrapper">
+    <div>
+        <a class="underscore-transition" href="https://www.netris.io/overview/">
+            Product Overview
+        </a>
+        <a class="underscore-transition" href="https://www.netris.io/start/">
+            Get started
+        </a>
+        <a class="underscore-transition" href="https://www.netris.io/category/blog/">
+            Blog
+        </a>
+    </div>
+    <a class="button" href="https://netris.io/demo">
+        Schedule a demo
+    </a>
+</div>
+--><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="installation.html">Controller Installation</a></li>
+      <li class="breadcrumb-item active">Installing HA Netris Controller in Air-Gapped Environments</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/netrisai/docs/blob/master/installation/controller-k3s-air-gap-ha.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Controller Installation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controller-k8s-installation.html" class="btn btn-neutral float-right" title="Helm Chart Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-ha-netris-controller-in-air-gapped-environments">
+<h1>Installing HA Netris Controller in Air-Gapped Environments<a class="headerlink" href="#installing-ha-netris-controller-in-air-gapped-environments" title="Link to this heading"></a></h1>
+<section id="why-air-gapped-installation">
+<h2>Why Air-Gapped Installation?<a class="headerlink" href="#why-air-gapped-installation" title="Link to this heading"></a></h2>
+<p>In many production or regulated environments, network connectivity is tightly restricted for security or compliance reasons. An <strong>air-gapped</strong> environment prevents unauthorized external access and ensures no reliance on external artifact repositories. All required components—binaries, container images, and Helm charts—are transferred manually (e.g., via USB, secure copy) and installed entirely offline. This approach:</p>
+<ul class="simple">
+<li><p><strong>Enhances Security</strong> by limiting the potential attack surface.</p></li>
+<li><p><strong>Ensures Consistency</strong> of the software stack across multiple deployments.</p></li>
+<li><p><strong>Complies</strong> with strict regulatory standards where internet access may be disallowed.</p></li>
+</ul>
+</section>
+<section id="why-a-high-availability-ha-cluster">
+<h2>Why a High Availability (HA) Cluster?<a class="headerlink" href="#why-a-high-availability-ha-cluster" title="Link to this heading"></a></h2>
+<p>Running <strong>Netris Controller</strong> on a <strong>high availability (HA)</strong> cluster provides resilience against hardware or software failures. By deploying multiple control-plane nodes, each with redundant services, the cluster can tolerate node downtime without losing critical functionality. Benefits include:</p>
+<ul class="simple">
+<li><p><strong>Redundancy</strong>: No single point of failure in the control plane or the critical components of Netris Controller.</p></li>
+<li><p><strong>Scalability</strong>: Workloads can be spread across multiple nodes, easing resource constraints.</p></li>
+<li><p><strong>Reliability</strong>: Uninterrupted operation even during maintenance or unexpected issues on one of the nodes.</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Three Servers</strong> in the same private network, each meeting the minimum <a class="reference external" href="https://www.netris.io/docs/en/latest/supported-switch-hardware.html">hardware requirements</a> for K3s and Netris Controller.</p></li>
+<li><p><strong>Two Virtual IP Addresses (VIPs)</strong> available on that network:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>KubeAPI VIP</strong> (e.g., 192.168.0.40/32)</p></li>
+<li><p><strong>Netris Controller VIP</strong> (e.g., 192.168.0.50/32)</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt><strong>Example IP Assignments</strong></dt><dd><ul class="simple">
+<li><p>Node addresses:</p>
+<ul>
+<li><p>192.168.0.1/24 – node1</p></li>
+<li><p>192.168.0.2/24 – node2</p></li>
+<li><p>192.168.0.3/24 – node3</p></li>
+</ul>
+</li>
+<li><p>KubeAPI VIP: 192.168.0.40/32</p></li>
+<li><p>Netris Controller VIP: 192.168.0.50/32</p></li>
+</ul>
+</dd>
+</dl>
+<ol class="arabic simple" start="3">
+<li><p><strong>Default Gateway</strong> configured on each server. If no default route exists, add a dummy route or black-hole route to satisfy K3s requirements.</p></li>
+<li><p><strong>Air-Gapped Artifacts</strong>. You have the complete set of binaries, container images, Helm charts, CRDs, and manifests in the <code class="docutils literal notranslate"><span class="pre">netris-controller-ha/</span></code> folder.</p></li>
+<li><p><strong>Firewall Rules:</strong> The following ports <strong>must be open between all three nodes</strong> to ensure proper K3s cluster functionality:</p></li>
+</ol>
+<blockquote>
+<div><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Protocol</p></th>
+<th class="head"><p>Port</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TCP</p></td>
+<td><p>2379-2380</p></td>
+<td><p>Required only for HA with embedded etcd</p></td>
+</tr>
+<tr class="row-odd"><td><p>TCP</p></td>
+<td><p>6443</p></td>
+<td><p>K3s supervisor and Kubernetes API Server</p></td>
+</tr>
+<tr class="row-even"><td><p>UDP</p></td>
+<td><p>8472</p></td>
+<td><p>Required only for Flannel VXLAN</p></td>
+</tr>
+<tr class="row-odd"><td><p>TCP</p></td>
+<td><p>10250</p></td>
+<td><p>Kubelet metrics</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>CPU AVX Instruction Support Required:</strong> MongoDB requires CPUs with AVX instruction set support. This is commonly missing in virtualized environments (KVM/Proxmox/VMware VMs). Check AVX support before installation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>avx
+</pre></div>
+</div>
+<p>If no output is returned, enable AVX support before proceeding.</p>
+</div>
+</section>
+<section id="obtain-the-installation-file">
+<h2>Obtain the Installation File<a class="headerlink" href="#obtain-the-installation-file" title="Link to this heading"></a></h2>
+<p>Contact <a class="reference external" href="https://www.netris.io/demo/">Netris</a> to acquire the air-gapped installation package, named <strong>netris-controller-ha-v4.x.x.tar.gz</strong>. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.</p>
+</section>
+<section id="steps-to-install">
+<h2>Steps to Install<a class="headerlink" href="#steps-to-install" title="Link to this heading"></a></h2>
+<section id="preparing-each-node">
+<h3>1. Preparing Each Node<a class="headerlink" href="#preparing-each-node" title="Link to this heading"></a></h3>
+<section id="transfer-the-file-to-the-servers">
+<h4>1.1 Transfer the File to the Servers<a class="headerlink" href="#transfer-the-file-to-the-servers" title="Link to this heading"></a></h4>
+<p>Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your <strong>three</strong> targets Ubuntu 24.04 (or supported Linux) nodes.</p>
+</section>
+<section id="extract-the-tarball">
+<h4>1.2 Extract the Tarball<a class="headerlink" href="#extract-the-tarball" title="Link to this heading"></a></h4>
+<p>Once the file is on the servers, extract its contents:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>-xzvf<span class="w"> </span>netris-controller-ha-v4.x.x.tar.gz
+</pre></div>
+</div>
+<p>This will create a folder containing all necessary scripts, binaries, images, Helm charts, CRDs, and manifests.</p>
+</section>
+<section id="navigate-to-the-installation-directory">
+<h4>1.3 Navigate to the Installation Directory<a class="headerlink" href="#navigate-to-the-installation-directory" title="Link to this heading"></a></h4>
+<p>On <strong>all three nodes</strong> change the directory to the extracted folder. For example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>netris-controller-ha-v4.x.x
+</pre></div>
+</div>
+<p>All subsequent steps in this guide assume you’re working from within this netris-controller-ha-v4.x.x/ directory.</p>
+</section>
+</section>
+<section id="install-k3s-on-all-nodes">
+<h3>2. Install K3s on All Nodes<a class="headerlink" href="#install-k3s-on-all-nodes" title="Link to this heading"></a></h3>
+<section id="load-k3s-binaries-and-images">
+<h4>2.1 Load K3s Binaries and Images<a class="headerlink" href="#load-k3s-binaries-and-images" title="Link to this heading"></a></h4>
+<p>On <strong>all three nodes</strong>, run the following commands to prepare a local K3s installation:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/rancher/k3s/agent/images/
+
+<span class="c1"># Copy air-gapped images</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>files/k3s/k3s-airgap-images-amd64.tar.zst<span class="w"> </span>/var/lib/rancher/k3s/agent/images/k3s-airgap-images-amd64.tar.zst
+
+<span class="c1"># Copy K3s, Helm, and k9s executables</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>files/k3s/k3s<span class="w"> </span>/usr/local/bin/k3s<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/k3s
+sudo<span class="w"> </span>cp<span class="w"> </span>files/k3s/helm<span class="w"> </span>/usr/local/bin/helm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/helm
+sudo<span class="w"> </span>cp<span class="w"> </span>files/k3s/k9s<span class="w"> </span>/usr/local/bin/k9s<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/k9s
+
+<span class="c1"># Make the installation script executable</span>
+sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>install-k3s.sh
+</pre></div>
+</div>
+</section>
+<section id="initialize-the-first-node">
+<h4>2.2 Initialize the First Node<a class="headerlink" href="#initialize-the-first-node" title="Link to this heading"></a></h4>
+<p>On the <strong>first node</strong>:</p>
+<ol class="arabic simple">
+<li><p>Replace 192.168.0.40 with your Kubernetes API VIP.</p></li>
+<li><p>Specify a secure token for K3S_TOKEN=SECRET:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">K3S_TOKEN</span><span class="o">=</span>SECRET<span class="w"> </span><span class="se">\</span>
+<span class="nv">INSTALL_K3S_VERSION</span><span class="o">=</span>v1.31.5+k3s1<span class="w"> </span><span class="se">\</span>
+<span class="nv">INSTALL_K3S_SKIP_DOWNLOAD</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">K3S_KUBECONFIG_MODE</span><span class="o">=</span><span class="s2">&quot;644&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">INSTALL_K3S_EXEC</span><span class="o">=</span><span class="s1">&#39;server --cluster-init --tls-san 192.168.0.40 --disable=traefik --disable=servicelb&#39;</span><span class="w"> </span><span class="se">\</span>
+./install-k3s.sh
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Wait approximately a minute, then check the system pods:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>get<span class="w"> </span>pods
+</pre></div>
+</div>
+<p>All pods should be in a Running or Completed state.</p>
+</section>
+<section id="join-the-second-and-third-nodes">
+<h4>2.3 Join the Second and Third Nodes<a class="headerlink" href="#join-the-second-and-third-nodes" title="Link to this heading"></a></h4>
+<p>On the <strong>second</strong> and <strong>third nodes</strong>, update the IPs to match your environment:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">K3S_TOKEN</span><span class="o">=</span>SECRET<span class="w"> </span><span class="se">\</span>
+<span class="nv">INSTALL_K3S_VERSION</span><span class="o">=</span>v1.31.5+k3s1<span class="w"> </span><span class="se">\</span>
+<span class="nv">INSTALL_K3S_SKIP_DOWNLOAD</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">K3S_KUBECONFIG_MODE</span><span class="o">=</span><span class="s2">&quot;644&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">INSTALL_K3S_EXEC</span><span class="o">=</span><span class="s1">&#39;server --server https://192.168.0.1:6443 --tls-san 192.168.0.40 --disable=traefik --disable=servicelb&#39;</span><span class="w"> </span><span class="se">\</span>
+./install-k3s.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Replace 192.168.0.1:6443 with the first node’s IP and port.</p></li>
+<li><p>Keep 192.168.0.40 as your KubeAPI VIP.</p></li>
+</ul>
+<p>Confirm on the first node that all three nodes have joined:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>node
+</pre></div>
+</div>
+</section>
+</section>
+<section id="import-necessary-container-images">
+<h3>3. Import Necessary Container Images<a class="headerlink" href="#import-necessary-container-images" title="Link to this heading"></a></h3>
+<p>On <strong>all three nodes</strong>, import container images:</p>
+<ol class="arabic simple">
+<li><p>Decompress the images archive:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gunzip<span class="w"> </span>-f<span class="w"> </span>images.tar.gz
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Import them:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>images.tar
+</pre></div>
+</div>
+</section>
+<section id="configure-north-south-kube-vip-for-kubeapi-high-availability">
+<h3>4. Configure North-South kube-vip for KubeAPI High Availability<a class="headerlink" href="#configure-north-south-kube-vip-for-kubeapi-high-availability" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>On the <strong>first node only</strong>, open manifests/kube-vip-ns.yaml:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>manifests/kube-vip-ns.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Find <code class="docutils literal notranslate"><span class="pre">vip_interface</span></code> and replace it with your north-south NIC name (e.g., bond1).</p></li>
+<li><p>Apply the file</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/kube-vip-ns.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>On the <strong>first node only</strong>, open manifests/kube-vip-ns-cloud-controller.yaml</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>manifests/kube-vip-ns-cloud-controller.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Find <code class="docutils literal notranslate"><span class="pre">cidr-global</span></code> and replace it with your North-South VIP address.</p></li>
+<li><p>Apply the file</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/kube-vip-ns-cloud-controller.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Apply the North-South Traefik service manifest</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/traefik-ns-svc.yaml
+</pre></div>
+</div>
+</section>
+<section id="configure-ha-kube-vip-for-kubeapi-high-availability">
+<h3>5. Configure HA kube-vip for KubeAPI High Availability<a class="headerlink" href="#configure-ha-kube-vip-for-kubeapi-high-availability" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>On the <strong>first node only</strong>, open kube-vip.yaml:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>kube-vip.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Scroll to the bottom, you will see the <code class="docutils literal notranslate"><span class="pre">address</span></code> and <code class="docutils literal notranslate"><span class="pre">vip_interface</span></code> variables. Edit them:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>: replace <code class="docutils literal notranslate"><span class="pre">192.168.0.40</span></code> with your KubeAPI VIP.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vip_interface</span></code>: specify your network interface where 192.168.0.1 is located. (e.g., <code class="docutils literal notranslate"><span class="pre">bond0</span></code>).</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Apply the file:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>kube-vip.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Ensure three kube-vip pods are running:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/name<span class="o">=</span>kube-vip-ds
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Check VIP reachability (ping from all nodes):</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ping<span class="w"> </span><span class="m">192</span>.168.0.40
+</pre></div>
+</div>
+</section>
+<section id="add-helm-chart-packages-to-k3s">
+<h3>6. Add Helm Chart Packages to K3s<a class="headerlink" href="#add-helm-chart-packages-to-k3s" title="Link to this heading"></a></h3>
+<p>Copy your Helm charts to the K3s static files directory on <strong>all three nodes</strong>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span>files/charts/*<span class="w"> </span>/var/lib/rancher/k3s/server/static/charts/
+</pre></div>
+</div>
+<p>You can now perform kubectl or helm commands from any node or a remote machine (after adjusting kubeconfig to point to the VIP).</p>
+</section>
+<section id="verify-and-scale-core-k3s-components">
+<h3>7. Verify and Scale Core K3s Components<a class="headerlink" href="#verify-and-scale-core-k3s-components" title="Link to this heading"></a></h3>
+<p>Check the pods in the cluster:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+</pre></div>
+</div>
+<p>Scale key default components to three replicas for redundancy:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>scale<span class="w"> </span>deploy/local-path-provisioner<span class="w"> </span>--replicas<span class="o">=</span><span class="m">3</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>scale<span class="w"> </span>deploy/coredns<span class="w"> </span>--replicas<span class="o">=</span><span class="m">3</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>scale<span class="w"> </span>deploy/metrics-server<span class="w"> </span>--replicas<span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Confirm they have scaled:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+</pre></div>
+</div>
+</section>
+<section id="deploy-kube-vip-cloud-controller">
+<h3>8. Deploy Kube-VIP Cloud Controller<a class="headerlink" href="#deploy-kube-vip-cloud-controller" title="Link to this heading"></a></h3>
+<p>We need a second VIP for the Netris Controller load balancer.</p>
+<ol class="arabic simple">
+<li><p>On the <strong>first node only</strong>, open manifests/kube-vip-cloud-controller.yaml:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>manifests/kube-vip-cloud-controller.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Locate the ConfigMap and change cidr-global from 192.168.0.50/32 to your planned controller VIP.</p></li>
+<li><p>Apply:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/kube-vip-cloud-controller.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Verify three pods are running:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">component</span><span class="o">=</span>kube-vip-cloud-provider
+</pre></div>
+</div>
+</section>
+<section id="install-traefik-proxy">
+<h3>9. Install Traefik Proxy<a class="headerlink" href="#install-traefik-proxy" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Apply the Traefik manifest:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/traefik.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Check pods:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>traefik-kube-system
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Verify Traefik has the external IP:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>traefik
+</pre></div>
+</div>
+<p>It should show EXTERNAL-IP as 192.168.0.50.</p>
+</section>
+<section id="deploy-the-netris-controller">
+<h3>10. Deploy the Netris Controller<a class="headerlink" href="#deploy-the-netris-controller" title="Link to this heading"></a></h3>
+<section id="install-the-mariadb-operator">
+<h4>10.1 Install the MariaDB Operator<a class="headerlink" href="#install-the-mariadb-operator" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>CRDs:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/mariadb-operator-crds.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Namespace:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/ns.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Operator:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/mariadb-operator-hc.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Check status:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>netris-controller
+</pre></div>
+</div>
+<p>Expected output:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>NAME<span class="w">                                                              </span>READY<span class="w">   </span>STATUS<span class="w">      </span>RESTARTS<span class="w">   </span>AGE
+helm-install-netris-controller-ha-mariadb-operator-sgcn9<span class="w">          </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>90s
+netris-controller-ha-mariadb-operator-6d49f86bd6-dlf6j<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>88s
+netris-controller-ha-mariadb-operator-6d49f86bd6-gqz45<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>88s
+netris-controller-ha-mariadb-operator-6d49f86bd6-lqjhx<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>89s
+netris-controller-ha-mariadb-operator-cert-controller-79c42dcqh<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>87s
+netris-controller-ha-mariadb-operator-cert-controller-79c44v4tv<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>89s
+netris-controller-ha-mariadb-operator-cert-controller-79c4q9l2g<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>87s
+netris-controller-ha-mariadb-operator-webhook-9b6dcd979-2jtr6<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>88s
+netris-controller-ha-mariadb-operator-webhook-9b6dcd979-56pxp<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>89s
+netris-controller-ha-mariadb-operator-webhook-9b6dcd979-cz5cs<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>88s
+</pre></div>
+</div>
+<p>Wait until all pods are ready and in a running or completed state.</p>
+</section>
+<section id="install-netris-controller">
+<h4>10.2 Install Netris Controller<a class="headerlink" href="#install-netris-controller" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>HelmChart</strong> manifest:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/hc.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Wait 5–10 minutes for all pods to initialize.</p></li>
+<li><p>Check:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>netris-controller
+</pre></div>
+</div>
+<p>Look for multiple pods in Running and Completed states (e.g., mariadb, mongodb, redis, web-service, “initdb” jobs, etc.).</p>
+<p>Expected output:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>NAME<span class="w">                                                              </span>READY<span class="w">   </span>STATUS<span class="w">      </span>RESTARTS<span class="w">   </span>AGE
+helm-install-netris-controller-ha-mariadb-operator-sgcn9<span class="w">          </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>4m45s
+helm-install-netris-controller-ha-r7brz<span class="w">                           </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>116s
+netris-controller-ha-equinix-metal-agent-74fc8647b5-6wcck<span class="w">         </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>110s
+netris-controller-ha-graphite-0<span class="w">                                   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>112s
+netris-controller-ha-graphite-1<span class="w">                                   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>99s
+netris-controller-ha-graphite-2<span class="w">                                   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>85s
+netris-controller-ha-grpc-5f88c9649b-b6csb<span class="w">                        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>106s
+netris-controller-ha-grpc-5f88c9649b-jrvbl<span class="w">                        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>108s
+netris-controller-ha-grpc-5f88c9649b-pdzdw<span class="w">                        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>106s
+netris-controller-ha-mariadb-0<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>82s
+netris-controller-ha-mariadb-1<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>82s
+netris-controller-ha-mariadb-2<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>82s
+netris-controller-ha-mariadb-ha-0<span class="w">                                 </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>111s
+netris-controller-ha-mariadb-ha-1<span class="w">                                 </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>109s
+netris-controller-ha-mariadb-ha-2<span class="w">                                 </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>109s
+netris-controller-ha-mariadb-operator-6d49f86bd6-dlf6j<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>4m43s
+netris-controller-ha-mariadb-operator-6d49f86bd6-gqz45<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>4m43s
+netris-controller-ha-mariadb-operator-6d49f86bd6-lqjhx<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>4m44s
+netris-controller-ha-mariadb-operator-cert-controller-79c42dcqh<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>4m42s
+netris-controller-ha-mariadb-operator-cert-controller-79c44v4tv<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>4m44s
+netris-controller-ha-mariadb-operator-cert-controller-79c4q9l2g<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>4m42s
+netris-controller-ha-mariadb-operator-webhook-9b6dcd979-2jtr6<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>4m43s
+netris-controller-ha-mariadb-operator-webhook-9b6dcd979-56pxp<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>4m44s
+netris-controller-ha-mariadb-operator-webhook-9b6dcd979-cz5cs<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>4m43s
+netris-controller-ha-mongodb-0<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>112s
+netris-controller-ha-mongodb-1<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>96s
+netris-controller-ha-mongodb-2<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>81s
+netris-controller-ha-phoenixnap-bmc-agent-64c75f8598-hjvzj<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>113s
+netris-controller-ha-redis-node-0<span class="w">                                 </span><span class="m">2</span>/2<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>112s
+netris-controller-ha-redis-node-1<span class="w">                                 </span><span class="m">2</span>/2<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>86s
+netris-controller-ha-redis-node-2<span class="w">                                 </span><span class="m">2</span>/2<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>57s
+netris-controller-ha-smtp-5f789dbb58-xr4cx<span class="w">                        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>111s
+netris-controller-ha-telescope-7696d94694-qrszj<span class="w">                   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>112s
+netris-controller-ha-telescope-notifier-7b59777b8-wp89p<span class="w">           </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>107s
+netris-controller-ha-web-service-backend-67999c5699-bdcp8<span class="w">         </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>111s
+netris-controller-ha-web-service-backend-67999c5699-gbwr4<span class="w">         </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>107s
+netris-controller-ha-web-service-backend-67999c5699-h5hgb<span class="w">         </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>107s
+netris-controller-ha-web-service-frontend-74d978fd67-9ptvj<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>108s
+netris-controller-ha-web-service-frontend-74d978fd67-dtbpn<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>105s
+netris-controller-ha-web-service-frontend-74d978fd67-jnbqr<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>105s
+netris-controller-ha-web-session-generator-fc4c64597-dlssj<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>108s
+netris-controller-ha-web-session-generator-fc4c64597-g2ghs<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>113s
+netris-controller-ha-web-session-generator-fc4c64597-rbf2s<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">          </span>109s
+netris-controller-initdb-00-xcaas-ssbtq<span class="w">                           </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>78s
+netris-controller-initdb-01-tenants-crjzg<span class="w">                         </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>73s
+netris-controller-initdb-01-users-79phr<span class="w">                           </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>68s
+netris-controller-initdb-02-permissions-sxhj4<span class="w">                     </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-02-port-5m9kg<span class="w">                            </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-02-vpc-j65lp<span class="w">                             </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-03-global-settings-2d5lk<span class="w">                 </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-04-currency-srpwl<span class="w">                        </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-04-whitelist-mmtsj<span class="w">                       </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-05-auth-schemes-fqrxf<span class="w">                    </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-05-supported-platforms-wfht4<span class="w">             </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-06-mon-thresholds-z4pw8<span class="w">                  </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-06-nos-list-cdhwj<span class="w">                        </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-06-roh-profiles-ctgms<span class="w">                    </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-07-inventory-profiles-9hkgp<span class="w">              </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-07-vpn-scores-sgv6n<span class="w">                      </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+netris-controller-initdb-09-dhcp-option-set-jq7wl<span class="w">                 </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">          </span>58s
+</pre></div>
+</div>
+</section>
+</section>
+<section id="optional-enable-ssl-with-cert-manager">
+<h3>11. (Optional) Enable SSL with cert-manager<a class="headerlink" href="#optional-enable-ssl-with-cert-manager" title="Link to this heading"></a></h3>
+<p>If you intend to secure the Controller via an FQDN and Let’s Encrypt (or another ACME issuer) please also install cert-manager:</p>
+<ol class="arabic simple">
+<li><p>Install cert-manager:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/cert-manager.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Verify pods:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>cert-manager
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Apply cert-manager resources (ClusterIssuers, etc.):</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/cert-manager-resources.yaml
+</pre></div>
+</div>
+</section>
+<section id="set-up-the-local-netris-repository">
+<h3>12. Set Up the Local Netris Repository<a class="headerlink" href="#set-up-the-local-netris-repository" title="Link to this heading"></a></h3>
+<p>The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices do not have direct access to the internet. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository</p>
+<ol class="arabic simple">
+<li><p>Deploy local repo manifests:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/local-repo.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Confirm the pods are running:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>netris-local-repo
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>On <strong>all three nodes</strong>, copy the repository files into the Persistent Volume:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PVC_PATH</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pv<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>staticsite-<span class="k">$(</span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>netris-local-repo<span class="w"> </span>--field-selector<span class="w"> </span>spec.nodeName<span class="o">=</span><span class="k">$(</span>hostname<span class="k">)</span><span class="w"> </span>--no-headers<span class="w"> </span>-o<span class="w"> </span>custom-columns<span class="o">=</span><span class="s2">&quot;:metadata.name&quot;</span><span class="k">)</span><span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.spec.volumeName}&quot;</span><span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.spec.local.path}&quot;</span><span class="k">)</span>
+
+sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>files/repo<span class="w"> </span><span class="si">${</span><span class="nv">PVC_PATH</span><span class="si">}</span>
+</pre></div>
+</div>
+</section>
+<section id="validate-your-deployment">
+<h3>13. Validate Your Deployment<a class="headerlink" href="#validate-your-deployment" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Access the Netris Controller</strong> via <a class="reference external" href="https://192.168.0.50">https://192.168.0.50</a> (or your assigned FQDN).</p></li>
+<li><p><strong>Confirm all services</strong> (web service, GRPC, Redis, DBs) are Running:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>get<span class="w"> </span>pods
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Check cluster health</strong>:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</pre></div>
+</div>
+<p>All nodes should be Ready; all pods should be Running or Completed.</p>
+<p><strong>Congratulations!</strong> You have successfully deployed a <strong>highly available, air-gapped</strong> Netris Controller on a three-node K3s cluster.</p>
+</section>
+</section>
+<section id="after-installation">
+<h2>After Installation<a class="headerlink" href="#after-installation" title="Link to this heading"></a></h2>
+<p>The air-gapped Netris Controller also includes a local repository/registry. This repository provides all the necessary packages and images for installing various types of Netris agents.</p>
+<p>Enable the Local repository in the Netris Controller Web UI under <strong>Settings</strong> section (as shown in the screenshots below).</p>
+<img alt="../_images/global-setting-local-repo.png" class="align-center" src="../_images/global-setting-local-repo.png" />
+<img alt="../_images/global-setting-local-repo-save.png" class="align-center" src="../_images/global-setting-local-repo-save.png" />
+</section>
+<section id="how-to-consume-local-repository">
+<h2>How to consume local repository<a class="headerlink" href="#how-to-consume-local-repository" title="Link to this heading"></a></h2>
+<p>Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).</p>
+<img alt="../_images/one-liner-with-local-repo.png" class="align-center" src="../_images/one-liner-with-local-repo.png" />
+<p>—</p>
+<p>For any issues or additional assistance, please contact Netris Support.</p>
+</section>
+</section>
+<section id="upgrading-ha-netris-controller-in-air-gapped-environments">
+<span id="k3s-ha-upgrade"></span><h1>Upgrading HA Netris Controller in Air-Gapped Environments<a class="headerlink" href="#upgrading-ha-netris-controller-in-air-gapped-environments" title="Link to this heading"></a></h1>
+<section id="obtain-the-upgrade-file">
+<h2>Obtain the Upgrade File<a class="headerlink" href="#obtain-the-upgrade-file" title="Link to this heading"></a></h2>
+<p>Contact <a class="reference external" href="https://www.netris.io/demo/">Netris</a> to acquire the air-gapped upgrade package, named <strong>netris-controller-ha-v4.x.x.tar.gz</strong>. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.</p>
+</section>
+<section id="id2">
+<h2>1. Preparing Each Node<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>1.1 Transfer the File to the Servers<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your <strong>three</strong> nodes.</p>
+</section>
+<section id="id4">
+<h3>1.2 Extract the Tarball<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Once the file is on the servers, extract its contents:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>-xzvf<span class="w"> </span>netris-controller-ha-v4.x.x.tar.gz
+</pre></div>
+</div>
+<p>This will create a folder containing all necessary scripts, binaries, images, Helm charts, CRDs, and manifests.</p>
+</section>
+<section id="id5">
+<h3>1.3 Navigate to the Installation Directory<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>On <strong>all three nodes</strong> change the directory to the extracted folder. For example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>netris-controller-ha-v4.x.x
+</pre></div>
+</div>
+<p>All subsequent steps in this guide assume you’re working from within this netris-controller-ha-v4.x.x/ directory.</p>
+</section>
+</section>
+<section id="steps-to-upgrade-controller">
+<h2>2. Steps to Upgrade Controller<a class="headerlink" href="#steps-to-upgrade-controller" title="Link to this heading"></a></h2>
+<p><em>If you’re only upgrading the Local Netris Repository, you can skip this section and go directly to</em> <a class="reference internal" href="#local-repo-k3s-ha-upgrade"><span class="std std-ref">Section 3</span></a></p>
+<section id="id6">
+<h3>2.1 Import Necessary Container Images<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>On <strong>all three nodes</strong>, import container images:</p>
+<ol class="arabic simple">
+<li><p>Decompress the images archive:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gunzip<span class="w"> </span>-f<span class="w"> </span>images.tar.gz
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Import them:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ctr<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>images.tar
+</pre></div>
+</div>
+</section>
+<section id="add-helm-chart-packages-upgrades-to-k3s">
+<h3>2.2 Add Helm Chart Packages Upgrades to K3s<a class="headerlink" href="#add-helm-chart-packages-upgrades-to-k3s" title="Link to this heading"></a></h3>
+<p>Copy your Helm charts to the K3s static files directory on <strong>all three nodes</strong>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span>files/charts/*<span class="w"> </span>/var/lib/rancher/k3s/server/static/charts/
+</pre></div>
+</div>
+</section>
+<section id="database-backup">
+<h3>2.3 Database backup<a class="headerlink" href="#database-backup" title="Link to this heading"></a></h3>
+<p>To take database snapshot run the following command on the <strong>first node</strong>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>netris-controller-ha-mariadb-ha-0<span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;mysqldump -h netris-controller-ha-mariadb -u netris -pchangeme netris&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>db-snapshot-<span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d-%H-%M-%S<span class="k">)</span>.sql
+</pre></div>
+</div>
+</section>
+<section id="upgrade-netris-controller">
+<h3>2.4 Upgrade Netris Controller<a class="headerlink" href="#upgrade-netris-controller" title="Link to this heading"></a></h3>
+<p>On the <strong>first node</strong> only:</p>
+<ol class="arabic simple">
+<li><p>Upgrade the <strong>HelmChart</strong> manifest:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/hc.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Wait 2-4 minutes for all pods to upgraded.</p></li>
+<li><p>Check:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>netris-controller
+</pre></div>
+</div>
+<p>Look for multiple pods in Running and Completed states.</p>
+</section>
+</section>
+<section id="steps-to-upgrade-the-local-netris-repository">
+<span id="local-repo-k3s-ha-upgrade"></span><h2>3. Steps to Upgrade the Local Netris Repository<a class="headerlink" href="#steps-to-upgrade-the-local-netris-repository" title="Link to this heading"></a></h2>
+<p>On <strong>all three nodes</strong>, copy the repository files into the Persistent Volume:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PVC_PATH</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pv<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>staticsite-<span class="k">$(</span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>netris-local-repo<span class="w"> </span>--field-selector<span class="w"> </span>spec.nodeName<span class="o">=</span><span class="k">$(</span>hostname<span class="k">)</span><span class="w"> </span>--no-headers<span class="w"> </span>-o<span class="w"> </span>custom-columns<span class="o">=</span><span class="s2">&quot;:metadata.name&quot;</span><span class="k">)</span><span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.spec.volumeName}&quot;</span><span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.spec.local.path}&quot;</span><span class="k">)</span>
+
+sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>files/repo<span class="w"> </span><span class="si">${</span><span class="nv">PVC_PATH</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><strong>Congratulations!</strong> You have successfully upgraded your <strong>highly available, air-gapped</strong> Netris Controller.</p>
+</section>
+</section>
+<section id="maintenance-procedures">
+<h1>Maintenance Procedures<a class="headerlink" href="#maintenance-procedures" title="Link to this heading"></a></h1>
+<p>Proper maintenance procedures are critical for ensuring the continued stability and availability of your Netris Controller HA deployment. Improper shutdown or maintenance sequences can lead to database cluster inconsistencies, particularly with MariaDB, potentially resulting in service disruptions or data corruption.</p>
+<section id="node-maintenance-best-practices">
+<h2>Node Maintenance Best Practices<a class="headerlink" href="#node-maintenance-best-practices" title="Link to this heading"></a></h2>
+<section id="individual-node-maintenance-recommended-approach">
+<h3>Individual Node Maintenance (Recommended Approach)<a class="headerlink" href="#individual-node-maintenance-recommended-approach" title="Link to this heading"></a></h3>
+<p>The safest approach is to perform maintenance on one node at a time, keeping the cluster operational throughout the process:</p>
+<ol class="arabic">
+<li><p><strong>Identify the primary MariaDB node before starting maintenance</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>maxscale<span class="w"> </span>netris-controller-ha-mariadb
+</pre></div>
+</div>
+<p>Note the PRIMARY column output (e.g., <code class="docutils literal notranslate"><span class="pre">netris-controller-ha-mariadb-ha-0</span></code>)</p>
+</li>
+<li><p><strong>Find which physical node is hosting the primary MariaDB</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>netris-controller-ha-mariadb-ha-0<span class="w"> </span>-o<span class="w"> </span>wide
+</pre></div>
+</div>
+<p>Note the NODE column (e.g., <code class="docutils literal notranslate"><span class="pre">ctl-ha-node1</span></code>)</p>
+</li>
+<li><p><strong>Plan your maintenance order</strong>:</p>
+<ul class="simple">
+<li><p>Start with nodes NOT hosting the primary MariaDB</p></li>
+<li><p>Leave the node hosting the primary MariaDB for last</p></li>
+</ul>
+</li>
+<li><p><strong>For each non-primary node</strong>:</p>
+<ol class="loweralpha">
+<li><p><strong>Cordon the node</strong> to prevent new pods from being scheduled:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>cordon<span class="w"> </span>&lt;node-name&gt;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Drain the node</strong> safely to relocate all running pods:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>drain<span class="w"> </span>&lt;node-name&gt;<span class="w"> </span>--ignore-daemonsets<span class="w"> </span>--delete-emptydir-data
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify pods have been relocated</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>wide<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;node-name&gt;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Perform maintenance</strong> on the node (updates, reboots, etc.)</p></li>
+<li><p><strong>Bring the node back online</strong></p></li>
+<li><p><strong>Verify node is ready</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</pre></div>
+</div>
+</li>
+<li><p><strong>Uncordon the node</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>uncordon<span class="w"> </span>&lt;node-name&gt;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify cluster health before proceeding to the next node</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>netris-controller
+kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>maxscale<span class="w"> </span>netris-controller-ha-mariadb
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p><strong>For the node hosting the primary MariaDB</strong>:</p>
+<ol class="loweralpha">
+<li><p><strong>Double-check it’s still hosting the primary</strong> (as failover might have occurred):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>maxscale<span class="w"> </span>netris-controller-ha-mariadb
+kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>&lt;primary-pod-name&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+</pre></div>
+</div>
+</li>
+<li><p>Follow the same cordon, drain, maintenance, and uncordon steps as above</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">
+<h3>Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)<a class="headerlink" href="#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance" title="Link to this heading"></a></h3>
+<p>If you need to shut down multiple nodes simultaneously:</p>
+<ol class="arabic">
+<li><p><strong>Identify the primary MariaDB node</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>maxscale<span class="w"> </span>netris-controller-ha-mariadb
+</pre></div>
+</div>
+<p>Note the PRIMARY column output (e.g., <code class="docutils literal notranslate"><span class="pre">netris-controller-ha-mariadb-ha-0</span></code>)</p>
+</li>
+<li><p><strong>Find which physical nodes are hosting each MariaDB instance</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/name<span class="o">=</span>mariadb<span class="w"> </span>-o<span class="w"> </span>wide
+</pre></div>
+</div>
+</li>
+<li><p><strong>Safe node shutdown sequence</strong>:</p>
+<ol class="loweralpha">
+<li><p><strong>Shutdown secondary/replica nodes first</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For each non-primary node</span>
+kubectl<span class="w"> </span>cordon<span class="w"> </span>&lt;non-primary-node&gt;
+kubectl<span class="w"> </span>drain<span class="w"> </span>&lt;non-primary-node&gt;<span class="w"> </span>--ignore-daemonsets<span class="w"> </span>--delete-emptydir-data
+<span class="c1"># Wait at least 1 minute before shutting down or proceeding to next node</span>
+sudo<span class="w"> </span>shutdown<span class="w"> </span>-h<span class="w"> </span>now<span class="w">  </span><span class="c1"># Only on the drained node</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Shutdown the primary node last</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>cordon<span class="w"> </span>&lt;primary-node&gt;
+kubectl<span class="w"> </span>drain<span class="w"> </span>&lt;primary-node&gt;<span class="w"> </span>--ignore-daemonsets<span class="w"> </span>--delete-emptydir-data
+sudo<span class="w"> </span>shutdown<span class="w"> </span>-h<span class="w"> </span>now<span class="w">  </span><span class="c1"># Only on the primary node</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p><strong>Safe node startup sequence</strong>:</p>
+<ol class="loweralpha">
+<li><p><strong>Start the node that was hosting the primary MariaDB first</strong></p></li>
+<li><p><strong>Wait until it’s fully online</strong> (check with <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">get</span> <span class="pre">nodes</span></code>)</p></li>
+<li><p><strong>Start the remaining nodes</strong> one by one with at least 2 minutes between each</p></li>
+<li><p><strong>Uncordon each node after it’s online</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>uncordon<span class="w"> </span>&lt;node-name&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p><strong>Verify cluster health</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>get<span class="w"> </span>pods
+kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>maxscale<span class="w"> </span>netris-controller-ha-mariadb
+</pre></div>
+</div>
+</li>
+<li><p><strong>Rebalance pods across all nodes</strong>:</p>
+<p>After all nodes are back online and uncordoned, restart all deployments to ensure even pod distribution:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will restart all deployments in netris-controller namespace</span>
+kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment
+</pre></div>
+</div>
+<p>Wait for all pods to restart and reach Running state:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>pods
+</pre></div>
+</div>
+<p>Verify that pods are now distributed evenly across all nodes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="verifying-mariadb-cluster-health">
+<h2>Verifying MariaDB Cluster Health<a class="headerlink" href="#verifying-mariadb-cluster-health" title="Link to this heading"></a></h2>
+<p>After maintenance, verify the MariaDB cluster is healthy:</p>
+<ol class="arabic">
+<li><p><strong>Check MaxScale status</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>maxscale<span class="w"> </span>netris-controller-ha-mariadb
+</pre></div>
+</div>
+<p>The STATUS should show <code class="docutils literal notranslate"><span class="pre">Running</span></code> and a PRIMARY should be identified</p>
+</li>
+<li><p><strong>Verify all MariaDB pods are running</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/name<span class="o">=</span>mariadb
+</pre></div>
+</div>
+</li>
+<li><p><strong>If issues are detected</strong>, check the operator logs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>logs<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/name<span class="o">=</span>mariadb-operator
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="maintenance-best-practices">
+<h2>Maintenance Best Practices<a class="headerlink" href="#maintenance-best-practices" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Always perform one-node-at-a-time maintenance</strong> when possible</p></li>
+<li><p><strong>Never simply power off nodes</strong> without properly cordoning and draining</p></li>
+<li><p><strong>Always shut down secondary/replica database nodes before the primary</strong></p></li>
+<li><p><strong>Always start the primary node first</strong> when bringing the system back online</p></li>
+<li><p><strong>Verify cluster health after each node</strong> completes maintenance</p></li>
+<li><p><strong>Rebalance your workloads</strong> by restarting deployments after all maintenance is complete</p></li>
+<li><p><strong>Schedule maintenance during low-usage periods</strong></p></li>
+<li><p><strong>Create a backup before maintenance</strong></p></li>
+<li><p><strong>Document all maintenance activities</strong> in a maintenance log</p></li>
+</ol>
+<p><strong>For serious database issues</strong>, contact Netris support with:</p>
+<ul class="simple">
+<li><p>Output of <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">-nnetris-controller</span> <span class="pre">get</span> <span class="pre">maxscale</span> <span class="pre">netris-controller-ha-mariadb</span> <span class="pre">-o</span> <span class="pre">yaml</span></code></p></li>
+<li><p>Logs from MariaDB pods and operator</p></li>
+</ul>
+<p>By following these maintenance procedures, you can significantly reduce the risk of database inconsistencies and service disruptions during and after maintenance operations.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Controller Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controller-k8s-installation.html" class="btn btn-neutral float-right" title="Helm Chart Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Netris.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Alternate Versions</span>
+      v: controller
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      
+      
+      <hr/>
+      Free theme by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
