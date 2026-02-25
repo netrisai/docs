@@ -1,0 +1,57 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.6.1
+.. _release_4.6.1:
+
+.. meta::
+    :description: Netris Release Notes |version|
+
+Netris |version| (Feb/27/2026)
+==================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+This is a maitenance release focused on bug fixes and performance improvements. No new features were added in this release.
+
+Enhancements
+------------
+.. Customer-facing enhancements to existing functionality and features. If internal-only, keep wording generic.
+
+- **Add server NICs to V-Net**. Server NICs can now be added as V-Net endpoints. Netris will automatically calculate the appropriate switch ports to be added to the V-Net based on the topology information.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Fixed L4LB reset button.
+- Fixed unabled to set gateway for management subnet.
+- Fixed ZTP template generation for Arista and Cumulus switches.
+- Resovled all known CVEs (Critical and High severity).
+
+**Deprecation Notices**
+
+- Routing On Host ASN, Routing Profile
+- VM ASN
+- SoftGate (generic flavor)
+- SoftGate PRO
+- Calico ASN
+- Built-in chat.
+- Proxmox, Equinix metal, and PhoenixNap as supported platforms.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
