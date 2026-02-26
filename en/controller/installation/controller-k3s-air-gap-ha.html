@@ -159,13 +159,13 @@
 <li class="toctree-l4"><a class="reference internal" href="#preparing-each-node">1. Preparing Each Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#import-necessary-container-images">3. Import Necessary Container Images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#configure-north-south-kube-vip-for-kubeapi-high-availability">4. Configure North-South kube-vip for KubeAPI High Availability</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#configure-ha-kube-vip-for-kubeapi-high-availability">5. Configure HA kube-vip for KubeAPI High Availability</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#add-helm-chart-packages-to-k3s">6. Add Helm Chart Packages to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#verify-and-scale-core-k3s-components">7. Verify and Scale Core K3s Components</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#deploy-kube-vip-cloud-controller">8. Deploy Kube-VIP Cloud Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#install-traefik-proxy">9. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-traefik-proxy">8. Install Traefik Proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional-configure-north-south-kube-vip-for-kubeapi-high-availability">10. (Optional) Configure North-South kube-vip for KubeAPI High Availability</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#set-up-the-local-netris-repository">12. Set Up the Local Netris Repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#validate-your-deployment">13. Validate Your Deployment</a></li>
@@ -1252,43 +1252,8 @@ sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </sp
 </pre></div>
 </div>
 </section>
-<section id="configure-north-south-kube-vip-for-kubeapi-high-availability">
-<h3>4. Configure North-South kube-vip for KubeAPI High Availability<a class="headerlink" href="#configure-north-south-kube-vip-for-kubeapi-high-availability" title="Link to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p>On the <strong>first node only</strong>, open manifests/kube-vip-ns.yaml:</p></li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>manifests/kube-vip-ns.yaml
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Find <code class="docutils literal notranslate"><span class="pre">vip_interface</span></code> and replace it with your north-south NIC name (e.g., bond1).</p></li>
-<li><p>Apply the file</p></li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/kube-vip-ns.yaml
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>On the <strong>first node only</strong>, open manifests/kube-vip-ns-cloud-controller.yaml</p></li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>manifests/kube-vip-ns-cloud-controller.yaml
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>Find <code class="docutils literal notranslate"><span class="pre">cidr-global</span></code> and replace it with your North-South VIP address.</p></li>
-<li><p>Apply the file</p></li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/kube-vip-ns-cloud-controller.yaml
-</pre></div>
-</div>
-<ol class="arabic simple" start="6">
-<li><p>Apply the North-South Traefik service manifest</p></li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/traefik-ns-svc.yaml
-</pre></div>
-</div>
-</section>
-<section id="configure-ha-kube-vip-for-kubeapi-high-availability">
-<h3>5. Configure HA kube-vip for KubeAPI High Availability<a class="headerlink" href="#configure-ha-kube-vip-for-kubeapi-high-availability" title="Link to this heading"></a></h3>
+<section id="configure-kube-vip-for-kubeapi-high-availability">
+<h3>4. Configure kube-vip for KubeAPI High Availability<a class="headerlink" href="#configure-kube-vip-for-kubeapi-high-availability" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>On the <strong>first node only</strong>, open kube-vip.yaml:</p></li>
 </ol>
@@ -1324,7 +1289,7 @@ sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </sp
 </div>
 </section>
 <section id="add-helm-chart-packages-to-k3s">
-<h3>6. Add Helm Chart Packages to K3s<a class="headerlink" href="#add-helm-chart-packages-to-k3s" title="Link to this heading"></a></h3>
+<h3>5. Add Helm Chart Packages to K3s<a class="headerlink" href="#add-helm-chart-packages-to-k3s" title="Link to this heading"></a></h3>
 <p>Copy your Helm charts to the K3s static files directory on <strong>all three nodes</strong>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span>files/charts/*<span class="w"> </span>/var/lib/rancher/k3s/server/static/charts/
 </pre></div>
@@ -1332,7 +1297,7 @@ sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </sp
 <p>You can now perform kubectl or helm commands from any node or a remote machine (after adjusting kubeconfig to point to the VIP).</p>
 </section>
 <section id="verify-and-scale-core-k3s-components">
-<h3>7. Verify and Scale Core K3s Components<a class="headerlink" href="#verify-and-scale-core-k3s-components" title="Link to this heading"></a></h3>
+<h3>6. Verify and Scale Core K3s Components<a class="headerlink" href="#verify-and-scale-core-k3s-components" title="Link to this heading"></a></h3>
 <p>Check the pods in the cluster:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
 </pre></div>
@@ -1349,7 +1314,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 </div>
 </section>
 <section id="deploy-kube-vip-cloud-controller">
-<h3>8. Deploy Kube-VIP Cloud Controller<a class="headerlink" href="#deploy-kube-vip-cloud-controller" title="Link to this heading"></a></h3>
+<h3>7. Deploy Kube-VIP Cloud Controller<a class="headerlink" href="#deploy-kube-vip-cloud-controller" title="Link to this heading"></a></h3>
 <p>We need a second VIP for the Netris Controller load balancer.</p>
 <ol class="arabic simple">
 <li><p>On the <strong>first node only</strong>, open manifests/kube-vip-cloud-controller.yaml:</p></li>
@@ -1372,7 +1337,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 </div>
 </section>
 <section id="install-traefik-proxy">
-<h3>9. Install Traefik Proxy<a class="headerlink" href="#install-traefik-proxy" title="Link to this heading"></a></h3>
+<h3>8. Install Traefik Proxy<a class="headerlink" href="#install-traefik-proxy" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Apply the Traefik manifest:</p></li>
 </ol>
@@ -1394,9 +1359,9 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 <p>It should show EXTERNAL-IP as 192.168.0.50.</p>
 </section>
 <section id="deploy-the-netris-controller">
-<h3>10. Deploy the Netris Controller<a class="headerlink" href="#deploy-the-netris-controller" title="Link to this heading"></a></h3>
+<h3>9. Deploy the Netris Controller<a class="headerlink" href="#deploy-the-netris-controller" title="Link to this heading"></a></h3>
 <section id="install-the-mariadb-operator">
-<h4>10.1 Install the MariaDB Operator<a class="headerlink" href="#install-the-mariadb-operator" title="Link to this heading"></a></h4>
+<h4>9.1 Install the MariaDB Operator<a class="headerlink" href="#install-the-mariadb-operator" title="Link to this heading"></a></h4>
 <ol class="arabic simple">
 <li><p>CRDs:</p></li>
 </ol>
@@ -1438,7 +1403,7 @@ netris-controller-ha-mariadb-operator-webhook-9b6dcd979-cz5cs<span class="w">   
 <p>Wait until all pods are ready and in a running or completed state.</p>
 </section>
 <section id="install-netris-controller">
-<h4>10.2 Install Netris Controller<a class="headerlink" href="#install-netris-controller" title="Link to this heading"></a></h4>
+<h4>9.2 Install Netris Controller<a class="headerlink" href="#install-netris-controller" title="Link to this heading"></a></h4>
 <ol class="arabic simple">
 <li><p><strong>HelmChart</strong> manifest:</p></li>
 </ol>
@@ -1518,6 +1483,41 @@ netris-controller-initdb-09-dhcp-option-set-jq7wl<span class="w">               
 </pre></div>
 </div>
 </section>
+</section>
+<section id="optional-configure-north-south-kube-vip-for-kubeapi-high-availability">
+<h3>10. (Optional) Configure North-South kube-vip for KubeAPI High Availability<a class="headerlink" href="#optional-configure-north-south-kube-vip-for-kubeapi-high-availability" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>On the <strong>first node only</strong>, open manifests/kube-vip-ns.yaml:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>manifests/kube-vip-ns.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Find <code class="docutils literal notranslate"><span class="pre">vip_interface</span></code> and replace it with your north-south NIC name (e.g., bond1).</p></li>
+<li><p>Apply the file</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/kube-vip-ns.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>On the <strong>first node only</strong>, open manifests/kube-vip-ns-cloud-controller.yaml</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>manifests/kube-vip-ns-cloud-controller.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Find <code class="docutils literal notranslate"><span class="pre">cidr-global</span></code> and replace it with your North-South VIP address.</p></li>
+<li><p>Apply the file</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/kube-vip-ns-cloud-controller.yaml
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Apply the North-South Traefik service manifest</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/traefik-ns-svc.yaml
+</pre></div>
+</div>
 </section>
 <section id="optional-enable-ssl-with-cert-manager">
 <h3>11. (Optional) Enable SSL with cert-manager<a class="headerlink" href="#optional-enable-ssl-with-cert-manager" title="Link to this heading"></a></h3>
