@@ -217,44 +217,7 @@ On **all three nodes**, import container images:
 
   sudo ctr images import images.tar
 
-4. Configure North-South kube-vip for KubeAPI High Availability
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1. On the **first node only**, open manifests/kube-vip-ns.yaml:
-
-.. code-block:: shell
-
-  vim manifests/kube-vip-ns.yaml
-
-2. Find ``vip_interface`` and replace it with your north-south NIC name (e.g., bond1).
-
-3. Apply the file
-
-.. code-block:: shell
-
-  kubectl apply -f manifests/kube-vip-ns.yaml
-
-3. On the **first node only**, open manifests/kube-vip-ns-cloud-controller.yaml
-
-.. code-block:: shell
-
-  vim manifests/kube-vip-ns-cloud-controller.yaml
-
-4. Find ``cidr-global`` and replace it with your North-South VIP address.
-
-5. Apply the file
-
-.. code-block:: shell
-
-  kubectl apply -f manifests/kube-vip-ns-cloud-controller.yaml
-
-6. Apply the North-South Traefik service manifest
-
-.. code-block:: shell
-
-  kubectl apply -f manifests/traefik-ns-svc.yaml
-
-5. Configure HA kube-vip for KubeAPI High Availability
+4. Configure kube-vip for KubeAPI High Availability
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. On the **first node only**, open kube-vip.yaml:
@@ -291,7 +254,7 @@ On **all three nodes**, import container images:
   ping 192.168.0.40
 
 
-6. Add Helm Chart Packages to K3s
+5. Add Helm Chart Packages to K3s
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -305,7 +268,7 @@ Copy your Helm charts to the K3s static files directory on **all three nodes**:
 You can now perform kubectl or helm commands from any node or a remote machine (after adjusting kubeconfig to point to the VIP).
 
 
-7. Verify and Scale Core K3s Components
+6. Verify and Scale Core K3s Components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Check the pods in the cluster:
@@ -333,7 +296,7 @@ Confirm they have scaled:
   kubectl get pods -A
 
 
-8. Deploy Kube-VIP Cloud Controller
+7. Deploy Kube-VIP Cloud Controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We need a second VIP for the Netris Controller load balancer.
@@ -362,7 +325,7 @@ We need a second VIP for the Netris Controller load balancer.
 
 
 
-9. Install Traefik Proxy
+8. Install Traefik Proxy
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Apply the Traefik manifest:
@@ -388,12 +351,11 @@ We need a second VIP for the Netris Controller load balancer.
 
 It should show EXTERNAL-IP as 192.168.0.50.
 
-
-10. Deploy the Netris Controller
+9. Deploy the Netris Controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-10.1 Install the MariaDB Operator
+9.1 Install the MariaDB Operator
 """"""""""""""""""""""""""""""""""
 
 1. CRDs:
@@ -443,7 +405,7 @@ Expected output:
 Wait until all pods are ready and in a running or completed state.
 
 
-10.2 Install Netris Controller
+9.2 Install Netris Controller
 """"""""""""""""""""""""""""""
 
 1. **HelmChart** manifest:
@@ -530,8 +492,42 @@ Expected output:
   netris-controller-initdb-07-vpn-scores-sgv6n                      0/1     Completed   0          63s
   netris-controller-initdb-09-dhcp-option-set-jq7wl                 0/1     Completed   0          58s
 
+10. (Optional) Configure North-South kube-vip for KubeAPI High Availability
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1. On the **first node only**, open manifests/kube-vip-ns.yaml:
 
+.. code-block:: shell
+
+  vim manifests/kube-vip-ns.yaml
+
+2. Find ``vip_interface`` and replace it with your north-south NIC name (e.g., bond1).
+
+3. Apply the file
+
+.. code-block:: shell
+
+  kubectl apply -f manifests/kube-vip-ns.yaml
+
+3. On the **first node only**, open manifests/kube-vip-ns-cloud-controller.yaml
+
+.. code-block:: shell
+
+  vim manifests/kube-vip-ns-cloud-controller.yaml
+
+4. Find ``cidr-global`` and replace it with your North-South VIP address.
+
+5. Apply the file
+
+.. code-block:: shell
+
+  kubectl apply -f manifests/kube-vip-ns-cloud-controller.yaml
+
+6. Apply the North-South Traefik service manifest
+
+.. code-block:: shell
+
+  kubectl apply -f manifests/traefik-ns-svc.yaml
 
 11. (Optional) Enable SSL with cert-manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
