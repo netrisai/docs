@@ -1638,6 +1638,14 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 <section id="upgrade-netris-controller">
 <h3>2.4 Upgrade Netris Controller<a class="headerlink" href="#upgrade-netris-controller" title="Link to this heading"></a></h3>
 <p>On the <strong>first node</strong> only:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Upgrading to v4.6.1?</strong> Do not follow the manual steps below. Instead, use the automated upgrade script included in the package, which handles MariaDB cluster re-creation, database backup/restore, and MongoDB data migration automatically:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./update-v4.6.1.sh
+</pre></div>
+</div>
+<p>The script will verify versions, prompt for confirmation, and guide you through the full upgrade. Once it completes successfully, proceed to step 3 to verify the result.</p>
+</div>
 <ol class="arabic simple">
 <li><p>Upgrade the <strong>HelmChart</strong> manifest:</p></li>
 </ol>
