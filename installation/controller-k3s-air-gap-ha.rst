@@ -114,7 +114,7 @@ On **all three nodes** change the directory to the extracted folder. For example
 
   cd netris-controller-ha-v4.x.x
 
-All subsequent steps in this guide assume you’re working from within this netris-controller-ha-v4.x.x/ directory.
+All subsequent steps in this guide assume you're working from within this netris-controller-ha-v4.x.x/ directory.
 
 
 2. Install K3s on All Nodes
@@ -186,7 +186,7 @@ On the **second** and **third nodes**, update the IPs to match your environment:
   ./install-k3s.sh
 
 
-- Replace 192.168.0.1:6443 with the first node’s IP and port.
+- Replace 192.168.0.1:6443 with the first node's IP and port.
 - Keep 192.168.0.40 as your KubeAPI VIP.
 
 
@@ -425,7 +425,7 @@ Wait until all pods are ready and in a running or completed state.
 
   kubectl get pods -n netris-controller
 
-Look for multiple pods in Running and Completed states (e.g., mariadb, mongodb, redis, web-service, “initdb” jobs, etc.).
+Look for multiple pods in Running and Completed states (e.g., mariadb, mongodb, redis, web-service, "initdb" jobs, etc.).
 
 
 Expected output:
@@ -500,7 +500,7 @@ Expected output:
 10. (Optional) Enable SSL with cert-manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you intend to secure the Controller via an FQDN and Let’s Encrypt (or another ACME issuer) please also install cert-manager:
+If you intend to secure the Controller via an FQDN and Let's Encrypt (or another ACME issuer) please also install cert-manager:
 
 1. Install cert-manager:
 
@@ -651,14 +651,14 @@ On **all three nodes** change the directory to the extracted folder. For example
 
   cd netris-controller-ha-v4.x.x
 
-All subsequent steps in this guide assume you’re working from within this netris-controller-ha-v4.x.x/ directory.
+All subsequent steps in this guide assume you're working from within this netris-controller-ha-v4.x.x/ directory.
 
 
 
 2. Steps to Upgrade Controller
 -------------------------------
 
-*If you’re only upgrading the Local Netris Repository, you can skip this section and go directly to* :ref:`Section 3<local-repo-k3s-ha-upgrade>`
+*If you're only upgrading the Local Netris Repository, you can skip this section and go directly to* :ref:`Section 3<local-repo-k3s-ha-upgrade>`
 
 2.1 Import Necessary Container Images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -704,6 +704,14 @@ To take database snapshot run the following command on the **first node**:
 
 On the **first node** only:
 
+.. warning::
+   **Upgrading to v4.6.1?** Do not follow the manual steps below. Instead, use the automated upgrade script included in the package, which handles MariaDB cluster re-creation, database backup/restore, and MongoDB data migration automatically:
+
+   .. code-block:: shell
+
+      ./update-v4.6.1.sh
+
+   The script will verify versions, prompt for confirmation, and guide you through the full upgrade. Once it completes successfully, proceed to step 3 to verify the result.
 
 1. Upgrade the **HelmChart** manifest:
 
