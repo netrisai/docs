@@ -10,9 +10,56 @@ target="_blank"
         <img style="height: 1em;" src="../_static/slack.svg" alt="slack_icon">
         Join Slack
       </a>
+      <span id="netris-version-badge" style="display: inline-block;margin: 8px; font-size: 1.4em; font-weight: bold; color: #555; white-space: nowrap;"></span>
     </span>
   </span>
 </div>
+
+<script>
+(function () {
+  function currentVersion() {
+    var parts = location.pathname.split("/").filter(Boolean);
+    if (parts[0] === "docs" && parts[1] === "en" && parts[2]) return parts[2];
+    return null;
+  }
+
+  function setVersionBadge(text) {
+    var badge = document.getElementById("netris-version-badge");
+    if (badge) badge.textContent = "You are browsing Netris User Documentation version " + text;
+  }
+
+  function run() {
+    var curr = currentVersion();
+    if (!curr) return;
+
+    if (curr !== "latest" && curr !== "stable") {
+      setVersionBadge(curr);
+      return;
+    }
+
+    fetch("/docs/versions.json", { cache: "no-store" })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (manifest) {
+        if (!manifest) { setVersionBadge(curr); return; }
+        var versions = Array.isArray(manifest.versions) ? manifest.versions : [];
+        var aliasEntry = versions.find(function (v) { return v.id === curr; });
+        if (aliasEntry && aliasEntry.title && aliasEntry.title !== curr) {
+          setVersionBadge(aliasEntry.title);
+          return;
+        }
+        var firstReal = versions.reverse().find(function (v) { return v.id !== "latest" && v.id !== "stable"; });
+        setVersionBadge(firstReal ? (firstReal.title || firstReal.id) : curr);
+      })
+      .catch(function () { setVersionBadge(curr); });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+})();
+</script>
 
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
