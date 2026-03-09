@@ -46,7 +46,7 @@
           setVersionBadge(aliasEntry.title);
           return;
         }
-        var firstReal = versions.find(function (v) { return v.id !== "latest" && v.id !== "stable"; });
+        var firstReal = versions.reverse().find(function (v) { return v.id !== "latest" && v.id !== "stable"; });
         setVersionBadge(firstReal ? (firstReal.title || firstReal.id) : curr);
       })
       .catch(function () { setVersionBadge(curr); });
