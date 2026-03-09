@@ -34,8 +34,10 @@ The JSON snippet below should be included in every server's custom field. Common
  {
   "topology-validation": {
     "hostname": "hgx-pod00-su0-h00",
+    "hostname-alias": ["abc", "system-default"],
+    "ignore-check-if-hostname": ["xyz", "ignore-me-hostname"],
     "eth1": "enp10s0",
-    "eth2": "enp7s0",
+    "eth2": [“enp456”, “enp567”, “enp212”],
     "eth3": "enp47s0",
     "eth4": "enp1s0",
     "eth5": "enp17s0",
@@ -50,6 +52,9 @@ The JSON snippet below should be included in every server's custom field. Common
 
 ``topology-validation`` tells Netris to enable server-to-switch wiring validation for the given server
 ``"hostname": "hgx-pod00-su0-h00"`` tells Netris that the expected hostname of the server should be ``"hgx-pod00-su0-h00"`` -- so Netris will LLDP lookup for the hostname and compare to this value.
+``"hostname-alias": (array of strings)`` If the server's current hostname matches any value in this list, treat it as equivalent to the main hostname for validation purposes.
+``"ignore-check-if-hostname": (array of strings)`` If the server's current hostname matches any value in this list, skip topology validation entirely for that server.
+If both keys are present: ``"ignore-check-if-hostname"`` take precedence over ``"hostname-alias"``.
 ``"eth1": "enp10s0",`` lines tell Netris what should be the expected (normal) interface name (enp10s0 in this example) for the logical "eth1" in the Netris Topology. Typically, most users standardize groups of servers for interface order and names; that way, the mapping is the same for all servers in a given group (vendor/type). Typically this data is inserted through Terraform for convenience, or through the web console, one-by-one.
 
 

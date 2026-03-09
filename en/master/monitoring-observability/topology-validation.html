@@ -1086,8 +1086,10 @@
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go"> &quot;topology-validation&quot;: {</span>
 <span class="go">   &quot;hostname&quot;: &quot;hgx-pod00-su0-h00&quot;,</span>
+<span class="go">   &quot;hostname-alias&quot;: [&quot;abc&quot;, &quot;system-default&quot;],</span>
+<span class="go">   &quot;ignore-check-if-hostname&quot;: [&quot;xyz&quot;, &quot;ignore-me-hostname&quot;],</span>
 <span class="go">   &quot;eth1&quot;: &quot;enp10s0&quot;,</span>
-<span class="go">   &quot;eth2&quot;: &quot;enp7s0&quot;,</span>
+<span class="go">   &quot;eth2&quot;: [“enp456”, “enp567”, “enp212”],</span>
 <span class="go">   &quot;eth3&quot;: &quot;enp47s0&quot;,</span>
 <span class="go">   &quot;eth4&quot;: &quot;enp1s0&quot;,</span>
 <span class="go">   &quot;eth5&quot;: &quot;enp17s0&quot;,</span>
@@ -1103,6 +1105,9 @@
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">topology-validation</span></code> tells Netris to enable server-to-switch wiring validation for the given server
 <code class="docutils literal notranslate"><span class="pre">&quot;hostname&quot;:</span> <span class="pre">&quot;hgx-pod00-su0-h00&quot;</span></code> tells Netris that the expected hostname of the server should be <code class="docutils literal notranslate"><span class="pre">&quot;hgx-pod00-su0-h00&quot;</span></code> – so Netris will LLDP lookup for the hostname and compare to this value.
+<code class="docutils literal notranslate"><span class="pre">&quot;hostname-alias&quot;:</span> <span class="pre">(array</span> <span class="pre">of</span> <span class="pre">strings)</span></code> If the server’s current hostname matches any value in this list, treat it as equivalent to the main hostname for validation purposes.
+<code class="docutils literal notranslate"><span class="pre">&quot;ignore-check-if-hostname&quot;:</span> <span class="pre">(array</span> <span class="pre">of</span> <span class="pre">strings)</span></code> If the server’s current hostname matches any value in this list, skip topology validation entirely for that server.
+If both keys are present: <code class="docutils literal notranslate"><span class="pre">&quot;ignore-check-if-hostname&quot;</span></code> take precedence over <code class="docutils literal notranslate"><span class="pre">&quot;hostname-alias&quot;</span></code>.
 <code class="docutils literal notranslate"><span class="pre">&quot;eth1&quot;:</span> <span class="pre">&quot;enp10s0&quot;,</span></code> lines tell Netris what should be the expected (normal) interface name (enp10s0 in this example) for the logical “eth1” in the Netris Topology. Typically, most users standardize groups of servers for interface order and names; that way, the mapping is the same for all servers in a given group (vendor/type). Typically this data is inserted through Terraform for convenience, or through the web console, one-by-one.</p>
 <p>The below screenshot demonstrates a case, from two leaf switches perspective, when two cables between two leaf switches and server NICs are miswired.</p>
 <img alt="../_images/switch-to-server-cables-swapped.png" class="align-center" src="../_images/switch-to-server-cables-swapped.png" />
