@@ -9,7 +9,7 @@
         <img style="height: 1em;" src="../_static/slack.svg" alt="slack_icon">
         Join Slack
       </a>
-      <span id="netris-version-badge" style="display: inline-block;margin: 8px; font-size: 1.2em; color: #555; white-space: nowrap;"></span>
+      <span id="netris-version-badge" style="display: inline-block;margin: 8px; font-size: 1.4em; font-weight: bold; color: #555; white-space: nowrap;"></span>
     </span>
   </span>
 </div>
@@ -24,7 +24,7 @@
 
   function setVersionBadge(text) {
     var badge = document.getElementById("netris-version-badge");
-    if (badge) badge.textContent = "You are browsing Netris User Documentation version v" + text;
+    if (badge) badge.textContent = "You are browsing Netris User Documentation version " + text;
   }
 
   function run() {
