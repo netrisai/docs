@@ -3,11 +3,8 @@
 .. |version| replace:: 3.4.4
 .. _release_3.4.4:
 
-.. meta::
-    :description: Netris Release Notes |version|
-
-Netris |version| (Sep/29/2023)
-==================================
+Netris |version| Release Notes (Sep/29/2023)
+=============================================
 
 What's new in Netris |version|?
 -------------------------------

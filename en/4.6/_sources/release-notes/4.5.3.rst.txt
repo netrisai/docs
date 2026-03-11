@@ -3,11 +3,8 @@
 .. |version| replace:: 4.5.3
 .. _release_4.5.3:
 
-.. meta::
-    :description: Netris Release Notes |version|
-
-Netris |version| (August/27/2025)
-==================================
+Netris |version| Release Notes (August/27/2025)
+===============================================
 
 What's new in Netris |version|?
 -------------------------------

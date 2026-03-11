@@ -3,11 +3,8 @@
 .. |version| replace:: 3.1.0
 .. _release_3.1.0:
 
-.. meta::
-    :description: Netris Release Notes |version|
-
-Netris |version| (Aug/1/2022)
-==================================
+Netris |version| Release Notes (Aug/1/2022)
+=============================================
 
 Kubernetes was born in the public cloud, and made its way everywhere. S3 storage was born in the public cloud and made its way everywhere. The 3rd thing that is missing beyond the public cloud is the self-service VPC Networking of the public cloud.
 

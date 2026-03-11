@@ -3,11 +3,8 @@
 .. |version| replace:: 4.6.0
 .. _release_4.6.0:
 
-.. meta::
-    :description: Netris Release Notes |version|
-
-Netris |version| (Feb/10/2026)
-==================================
+Netris |version| Release Notes (Feb/10/2026)
+============================================
 
 What's new in Netris |version|?
 -------------------------------

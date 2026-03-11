@@ -3,11 +3,8 @@
 .. |version| replace:: 2.8.0
 .. _release_2.8.0:
 
-.. meta::
-    :description: Netris Release Notes |version|
-
-Netris |version| (May/13/2020)
-==================================
+Netris |version| Release Notes (May/13/2020)
+=============================================
 
 What's new in Netris |version|?
 -------------------------------
