@@ -1,0 +1,41 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.2.0
+.. _release_4.2.0:
+
+.. meta::
+    :description: Netris Release Notes |version|
+
+Netris |version| (May/1/2024)
+==================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- Switches with Dell SONiC operating system are now supported. Full list of supported functionality is available here.
+- Vmware vSphere plugin for automatically provisioning VXLANs, VLANs on the switch fabric in order to accommodate transport of Vmware vSphere defined virtual networks across the physical switch fabric.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Previously problematic BGP peering over a V-Net in Equinix Metal and PhoenixNAP environments has been fixed.
+- Various improvements to Controller performance.
+- Minor improvements to Role-Based Access Control.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
