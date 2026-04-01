@@ -1142,9 +1142,10 @@
 <ul class="simple">
 <li><p>Discovers InfiniBand port GUIDs from UFM</p></li>
 <li><p>Creates and manages appropriate PKeys in UFM</p></li>
-<li><p>Sets up SHARP reservations for high-performance operations</p></li>
+<li><p>Optionally sets up SHARP reservations for high-performance operations</p></li>
 </ul>
-</section>
+<img alt="_images/ufm-basic-function.svg" class="with-shadow align-center" src="_images/ufm-basic-function.svg" />
+<p style="text-align: center;"><em>Figure: Netris-UFM Integration Workflow</em></p></section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <p>Before installing the Netris-UFM plugin, ensure:</p>
@@ -1204,6 +1205,7 @@
 <span class="w">  </span><span class="nt">UFM_VERIFY_SSL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
 <span class="w">  </span><span class="nt">UFM_ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ufm-lab&quot;</span>
 <span class="w">  </span><span class="nt">UFM_PKEY_RANGE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100-7ffe&quot;</span>
+<span class="w">  </span><span class="nt">UFM_ENABLE_SHARP</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
 </pre></div>
 </div>
 </li>
@@ -1230,6 +1232,7 @@
 <span class="nv">UFM_VERIFY_SSL</span><span class="o">=</span><span class="s2">&quot;false&quot;</span>
 <span class="nv">UFM_ID</span><span class="o">=</span><span class="s2">&quot;ufm-lab&quot;</span>
 <span class="nv">UFM_PKEY_RANGE</span><span class="o">=</span><span class="s2">&quot;100-7ffe&quot;</span>
+<span class="nv">UFM_ENABLE_SHARP</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
 <span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="s2">&quot;info&quot;</span>
 </pre></div>
 </div>
@@ -1324,6 +1327,10 @@
 <tr class="row-odd"><td><p>UFM_PKEY_RANGE</p></td>
 <td><p>Range of PKey IDs that can be allocated to clusters, in hexadecimal format</p></td>
 <td><p>100-7ffe</p></td>
+</tr>
+<tr class="row-even"><td><p>UFM_ENABLE_SHARP</p></td>
+<td><p>Whether to enable SHARP reservation management for clusters</p></td>
+<td><p>true or false</p></td>
 </tr>
 </tbody>
 </table>
