@@ -30,8 +30,16 @@ When you define a :doc:`server-cluster </server-cluster>` in Netris, the plugin 
 
 - Discovers InfiniBand port GUIDs from UFM
 - Creates and manages appropriate PKeys in UFM
-- Sets up SHARP reservations for high-performance operations
+- Optionally sets up SHARP reservations for high-performance operations
 
+.. image:: images/ufm-basic-function.svg
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Netris-UFM Integration Workflow</em></p>
+   
 Prerequisites
 ==============
 
@@ -41,8 +49,6 @@ Before installing the Netris-UFM plugin, ensure:
 2. A properly configured NVIDIA UFM installation with limited membership enabled (see below)
 3. Network connectivity between both systems
 4. Appropriate access credentials for both platforms
-
-
 
 UFM Configuration Requirements
 ================================
@@ -106,6 +112,7 @@ This option is recommended if you already have a Netris Controller running in a 
         UFM_VERIFY_SSL: "false"
         UFM_ID: "ufm-lab"
         UFM_PKEY_RANGE: "100-7ffe"
+        UFM_ENABLE_SHARP: "true"
 
 3. Apply the configuration to your Kubernetes cluster:
 
@@ -133,6 +140,7 @@ This option is ideal for environments without Kubernetes or when you want to dep
       UFM_VERIFY_SSL="false"
       UFM_ID="ufm-lab"
       UFM_PKEY_RANGE="100-7ffe"
+      UFM_ENABLE_SHARP="true"
       LOG_LEVEL="info"
 
 2. Run the Docker container:
@@ -202,6 +210,9 @@ NVIDIA UFM Configuration
    * - UFM_PKEY_RANGE
      - Range of PKey IDs that can be allocated to clusters, in hexadecimal format
      - 100-7ffe
+   * - UFM_ENABLE_SHARP
+     - Whether to enable SHARP reservation management for clusters
+     - true or false
 
 Agent Configuration
 -------------------
