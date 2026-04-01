@@ -113,3 +113,29 @@ ACL Processing Order
 #. User-defined Permit Rules
 #. Deny the rest
 
+
+Could you please share any available documentation describing your firewall/ACL rule evaluation model?
+Specifically, we are interested in understanding precedence and priority rules, including how overlapping or mixed rules are handled across protocols, IP ranges, source/destination criteria, and allow/deny actions. (edited) 
+
+
+The algorithm of sorting the rules within single ACL <NAME> is following:
+
+Sort the rules by <srcIP4/6> from longest prefixes to shortest.
+For rules with same <srcIP4/6> sort by <dstIP4/6> from longest prefixes to shortest.
+For rules with same <srcIP4/6> and <dstIP4/6> sort by <srcPORT> sort by protocol by following order - icmp,udp,tcp,ANYTHING_ELSE,ip.
+
+For rules with same <srcIP4/6> and <dstIP4/6> and same protocol sort by <srcPORT> from smallest number of ports in range to biggest.
+For rules with same <srcIP4/6> and <dstIP4/6> and same protocol and same <srcPORT> sort by <dstPORT> from smallest number of ports in range to biggest.
+
+If site policy is deny add “deny ip any any” rule in the end.
+If site policy is permit add “permit ip any any” rule in the end.
+
+We need few additional clarifications from your side:
+
+Is there any explicit priority/order field that can be provided for ACL rules through the API? We did not notice such a field in the UI, so currently we assume rule ordering is derived entirely from the matching/sorting logic you described rather than being explicitly user-controlled.
+Are IPv4 and IPv6 rules evaluated under the same precedence model? How mixed IPv4/IPv6 rules are handled?
+What exactly is included under ANYTHING_ELSE versus ip?
+
+No, only rule sorting algorithm.
+Usually IPv4 and IPv6 are handled by separated ACLs written on devices. In Netris you can’t mix IPv4 and IPv6 in the same ACL. So in fact there is usually a dual stack and they don’t cross.
+ANYTHING_ELSE can be TCP flags, for example. You can’t set them in the rules, but with “Established” checkbox TCP flags will be set automatically in the reverse rule. Just FYI “ip” in the Netris controller means selection of the particular IP protocol number. For all protocols select “all”.
