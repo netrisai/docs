@@ -18,7 +18,7 @@ A Netris system is composed of 3 elements:
 Netris Controller
 =================
 
-Netris Controller is the main operations control center for engineers using GUI/RestAPI/Kubernetes, systems, and network devices. The Netris Controller stores the data representing the user-defined network services and policies, health, statistics, analytics received from the network devices, and information from integration modules with external systems (Kubernetes, Terraform, etc.). Netris Controller can run as a VM or container, on/off-prem, or in Netris cloud.
+Netris Controller is the main operations control center for engineers using GUI/RestAPI/Kubernetes, systems, and network devices. The Netris Controller stores the data representing the user-defined network services and policies, health, statistics, analytics received from the network devices, and information from integration modules with external systems (Kubernetes, Terraform, etc.). Netris Controller can run on or off premises on bare-metal, as a VM, or as a container.
 
 Diagram: High level Netris architecture
 
