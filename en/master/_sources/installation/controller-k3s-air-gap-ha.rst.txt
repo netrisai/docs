@@ -958,6 +958,141 @@ Maintenance Best Practices
 8. **Create a backup before maintenance**
 9. **Document all maintenance activities** in a maintenance log
 
+MariaDB automatic backups: locate, verify, and restore
+======================================================
+
+The Netris Controller automatically creates MariaDB backups every 12 hours.
+
+These backups are stored locally on each controller node.
+
+.. warning::
+
+   Because backups are stored on local disks, copy them to an external and secure
+   location such as object storage, NFS, or a backup server for disaster recovery.
+
+Locate the backup directory on each controller node
+---------------------------------------------------
+
+Each controller node stores a MariaDB backup locally.
+
+Run the following command locally on each controller node. It detects and exports
+the backup directory path for the current node only:
+
+.. code-block:: bash
+
+   export BACKUP_PATH=$(kubectl get pv -o jsonpath='{range .items[*]}{.metadata.name}{"|"}{.spec.nodeAffinity.required.nodeSelectorTerms[0].matchExpressions[0].values[0]}{"|"}{.spec.local.path}{"\n"}{end}' \
+   | grep netris-controller-ha-mariadb-backup \
+   | grep "|$(hostname | tr '[:upper:]' '[:lower:]')|" \
+   | cut -d'|' -f3)
+
+Example:
+
+.. code-block:: bash
+
+   ubuntu@ctl-ha-node1:~$ sudo ls -al $BACKUP_PATH
+   total 296
+   drwxrwsrwx 2 root  999   4096 Feb  3 07:40 .
+   drwx------ 9 root root   4096 Feb  3 07:40 ..
+   -rw-r--r-- 1 lxd   999     39 Feb  3 07:40 0-backup-target.txt
+   -rw-r--r-- 1 lxd   999 289736 Feb  3 07:40 backup.2026-02-03T07:40:03Z.sql
+
+Copy the backup file to your home directory
+-------------------------------------------
+
+Choose the required backup file and copy it to your home directory:
+
+.. code-block:: bash
+
+   sudo cp $BACKUP_PATH/backup.2026-02-03T07:40:03Z.sql ~/backup.sql
+
+Verify the backup file integrity
+--------------------------------
+
+Before restoring a backup, verify that the dump completed successfully.
+
+The last line of the dump file must contain:
+
+.. code-block:: text
+
+   -- Dump completed on <date>
+
+Check the last line by running:
+
+.. code-block:: bash
+
+   tail ~/backup.sql
+
+Example output:
+
+.. code-block:: bash
+
+   -- Dump completed on 2026-02-03  7:40:03
+
+.. caution::
+
+   If this line is missing, do not restore from this backup.
+
+Verify MariaDB cluster readiness before restore
+-----------------------------------------------
+
+Before restoring, confirm that the MariaDB cluster is in the ``READY`` state:
+
+.. code-block:: bash
+
+   kubectl -n netris-controller get maxscale netris-controller-ha-mariadb
+
+Expected output:
+
+.. code-block:: bash
+
+   NAME                           READY   STATUS    PRIMARY                             AGE
+   netris-controller-ha-mariadb   True    Running   netris-controller-ha-mariadb-ha-0   66m
+
+Proceed only if ``READY`` is ``True``.
+
+Copy the backup file into a MariaDB pod
+---------------------------------------
+
+Copy the backup file into one of the MariaDB pods:
+
+.. code-block:: bash
+
+   kubectl -n netris-controller cp ~/backup.sql \
+     netris-controller-ha-mariadb-ha-0:/tmp/backup.sql
+
+No output is expected.
+
+Restore the backup
+------------------
+
+Run the restore command inside the MariaDB pod:
+
+.. code-block:: bash
+
+   kubectl -n netris-controller exec -it netris-controller-ha-mariadb-ha-0 -- \
+     bash -c 'mysql -h netris-controller-ha-mariadb -u netris -pchangeme netris < /tmp/backup.sql'
+
+No output is expected if the restore completes successfully.
+
+Take a manual backup
+--------------------
+
+To create a MariaDB backup manually at any time, run:
+
+.. code-block:: bash
+
+   kubectl -n netris-controller exec -it netris-controller-ha-mariadb-ha-0 -- \
+     bash -c 'mysqldump -h netris-controller-ha-mariadb -u netris -pchangeme netris' \
+     > db-snapshot-$(date +%Y-%m-%d-%H-%M-%S).sql
+
+Summary
+-------
+
+* MariaDB backups are created automatically every 12 hours.
+* Backups are stored locally on each controller node.
+* Copy backups to external storage for disaster recovery.
+* Verify backup integrity before restoring.
+* Restore only when the MariaDB cluster is in the ``READY`` state.
 
 **For serious database issues**, contact Netris support with:
 
