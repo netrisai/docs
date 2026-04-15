@@ -68,6 +68,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
    cloudstack/netris-cloudstack
    terraform-integration
    evpn-on-host
+   bluefield-3-dpus
 
 .. toctree::
    :maxdepth: 2
