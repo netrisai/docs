@@ -71,8 +71,9 @@ Before installing the Netris-NMX plugin, ensure:
 1. A functioning Netris Controller environment
 2. A properly configured NVIDIA NMX-C installation
 3. Network connectivity between the Netris Controller or a dedicated server running the Netris-NMX plugin and the NVIDIA NMX-Controller.
-4. Appropriate access credentials for both platforms
-
+4. A GPU UID inventory file (CSV) mapping each server hostname to its GPU UIDs, ready to be loaded via `netris-nvl-loader`
+5. Admin credentials for the Netris Controller
+6. mTLS client certificate, private key, and root CA for authenticating to the NMX-Controller(s)
 
 Installation
 ================
