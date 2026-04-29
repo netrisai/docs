@@ -1,0 +1,49 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.9.0
+.. _release_4.9.0:
+
+Netris |version| Release Notes (Apr/30/2026)
+============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **Added Sectrum-X Reference Architecture version selector in Inventory Profiles**. (NET-288)
+- **Added IPv6 support to Netris Host Networking (NHN) plugin**. (NET-280)
+- **Added support for ZTP of NVIDIA switches with Cumulus Linux**.
+- **Subnets of purpose type "Management" can now be used in Vnets and VPCs**. (NET-168, NET-165)
+- **Added support for Spectrum-X Reference Architecture version 2.1**. (NET-148)
+
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Fixed NVUE agent issue where custom TLV records were not being purged from configuration when server objects contained customData json with networks defined and no remote port matching. (NET-317)
+- Improved routing efficiency in VPC peering scenarios with EVPN-MH enabled. (NET-220, NET-278)
+- Improved /api/v2/ports/{type}/free API performance. (NET-248)
+- Improved /api/v2/ebgp/hardwares APP performance. (NET-247)
+- Improved /api/v2/hw/ports API performance. (NET-246)
+- Improved /api/v2/vnet/ports API performance. (NET-245)
+- Admin down ports no longer generate alerts. (NET-238)
+- Fixed maintenace mode not being applied to SoftGate nodes. (NET-237)
+- Fixed syslog configuration changes not being applied to Cloudstack nodes (NET-236)
+- Fixed default Deny All policy not being applied. (NET-229)
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
