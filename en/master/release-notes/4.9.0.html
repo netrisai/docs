@@ -327,8 +327,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#system-requirements">System Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#dependencies">Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#recommended-nvidia-component-versions">Recommended NVIDIA Component Versions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v1-2-0">Spectrum-X v1.2.0</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v1-3-0">Spectrum-X v1.3.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v2-1-2">Spectrum-X v2.1.2</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#permissions">Permissions</a></li>
@@ -338,8 +337,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#configuration">Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#review-the-configuration-file">1. Review the Configuration File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#configure-bluefield3-nics">2. Configure BlueField3 NICs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#verify-bluefield3-nics-parameters">3. Verify BlueField3 NICs Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#configure-bluefield3-connectx7-connectx8-nics">2. Configure BlueField3/ConnectX7/ConnectX8 NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#verify-bluefield3-connectx7-connectx8-nics-parameters">3. Verify BlueField3/ConnectX7/ConnectX8 NICs Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#start-the-nhn-daemon">4. Start the NHN daemon</a></li>
 </ul>
 </li>
@@ -878,8 +877,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#system-requirements">System Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#dependencies">Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#recommended-nvidia-component-versions">Recommended NVIDIA Component Versions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v1-2-0">Spectrum-X v1.2.0</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v1-3-0">Spectrum-X v1.3.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ai-netris-host-networking.html#spectrum-x-v2-1-2">Spectrum-X v2.1.2</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#permissions">Permissions</a></li>
@@ -889,8 +887,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ai-netris-host-networking.html#configuration">Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#review-the-configuration-file">1. Review the Configuration File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#configure-bluefield3-nics">2. Configure BlueField3 NICs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#verify-bluefield3-nics-parameters">3. Verify BlueField3 NICs Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#configure-bluefield3-connectx7-connectx8-nics">2. Configure BlueField3/ConnectX7/ConnectX8 NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#verify-bluefield3-connectx7-connectx8-nics-parameters">3. Verify BlueField3/ConnectX7/ConnectX8 NICs Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ai-netris-host-networking.html#start-the-nhn-daemon">4. Start the NHN daemon</a></li>
 </ul>
 </li>
@@ -1151,7 +1149,7 @@
 <ul class="simple">
 <li><p><strong>Added Reference Architecture type selector in Inventory Profiles</strong>.</p></li>
 <li><p><strong>Added support for multi-plane Spectrum-X architecture to Netris Host Networking (NHN) plugin</strong>.</p></li>
-<li><p><strong>Added support for Spectrum-X Reference Architecture version 2.1</strong>.</p></li>
+<li><p><strong>Added support for Spectrum-X Reference Architecture version 2.1.2</strong>.</p></li>
 <li><p><strong>Added support for ZTP of NVIDIA switches with Cumulus Linux</strong>.</p></li>
 <li><p><strong>Subnets of purpose type “Management” can now be used in Vnets and VPCs</strong>.</p></li>
 </ul>
@@ -1169,6 +1167,11 @@
 <li><p>Fixed maintenance mode not being applied to SoftGate nodes when route-map was configured in E-BGP.</p></li>
 <li><p>Fixed syslog configuration changes not being applied to Cloudstack nodes.</p></li>
 <li><p>Fixed default Deny All policy not being applied.</p></li>
+</ul>
+<p><strong>Deprecation Notices</strong></p>
+<ul class="simple">
+<li><p>Removed support for Spectrum-X Reference Architecture version 1.2</p></li>
+<li><p>Removed support for Spectrum-X Reference Architecture version 1.3</p></li>
 </ul>
 </section>
 <section id="references">
