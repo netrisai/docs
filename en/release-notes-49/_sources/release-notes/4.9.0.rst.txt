@@ -13,11 +13,11 @@ Features
 --------
 .. New capabilities visible to customers. One line each; optional 1–2 lines of context.
 
-- **Added Reference Architecture type selector in Inventory Profiles**. (NET-288)
-- **Added support for multi-plane Spectrum-X architecture to Netris Host Networking (NHN) plugin**. (NET-280)
-- **Added support for Spectrum-X Reference Architecture version 2.1**. (NET-148)
+- **Added Reference Architecture type selector in Inventory Profiles**.
+- **Added support for multi-plane Spectrum-X architecture to Netris Host Networking (NHN) plugin**.
+- **Added support for Spectrum-X Reference Architecture version 2.1**.
 - **Added support for ZTP of NVIDIA switches with Cumulus Linux**.
-- **Subnets of purpose type "Management" can now be used in Vnets and VPCs**. (NET-168, NET-165)
+- **Subnets of purpose type "Management" can now be used in Vnets and VPCs**.
 
 
 
@@ -25,16 +25,16 @@ Bug fixes and improvements
 ----------------------------
 .. Customer-facing defect fixes. If internal-only, keep wording generic.
 
-- Fixed NVUE agent issue where custom TLV records were not being purged from configuration when server objects contained customData json with networks defined and no remote port matching. (NET-317)
-- Improved routing efficiency in VPC peering scenarios with EVPN-MH enabled. (NET-220, NET-278)
-- Improved /api/v2/ports/{type}/free API performance. (NET-248)
-- Improved /api/v2/ebgp/hardwares APP performance. (NET-247)
-- Improved /api/v2/hw/ports API performance. (NET-246)
-- Improved /api/v2/vnet/ports API performance. (NET-245)
-- Admin down ports no longer generate alerts. (NET-238)
-- Fixed maintenance mode not being applied to SoftGate nodes when route-map was configured in E-BGP. (NET-237)
-- Fixed syslog configuration changes not being applied to Cloudstack nodes (NET-236)
-- Fixed default Deny All policy not being applied. (NET-229)
+- Fixed NVUE agent issue where custom TLV records were not being purged from configuration when server objects contained customData json with networks defined and no remote port matching.
+- Improved routing efficiency in VPC peering scenarios with EVPN-MH enabled.
+- Improved /api/v2/ports/{type}/free API performance.
+- Improved /api/v2/ebgp/hardwares APP performance.
+- Improved /api/v2/hw/ports API performance.
+- Improved /api/v2/vnet/ports API performance.
+- Admin down ports no longer generate alerts.
+- Fixed maintenance mode not being applied to SoftGate nodes when route-map was configured in E-BGP.
+- Fixed syslog configuration changes not being applied to Cloudstack nodes.
+- Fixed default Deny All policy not being applied.
 
 References
 ----------
