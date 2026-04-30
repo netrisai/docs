@@ -13,11 +13,12 @@ Features
 --------
 .. New capabilities visible to customers. One line each; optional 1–2 lines of context.
 
-- **Added Sectrum-X Reference Architecture version selector in Inventory Profiles**. (NET-288)
-- **Added IPv6 support to Netris Host Networking (NHN) plugin**. (NET-280)
+- **Added Reference Architecture type selector in Inventory Profiles**. (NET-288)
+- **Added support for multi-plane Spectrum-X architecture to Netris Host Networking (NHN) plugin**. (NET-280)
+- **Added support for Spectrum-X Reference Architecture version 2.1**. (NET-148)
 - **Added support for ZTP of NVIDIA switches with Cumulus Linux**.
 - **Subnets of purpose type "Management" can now be used in Vnets and VPCs**. (NET-168, NET-165)
-- **Added support for Spectrum-X Reference Architecture version 2.1**. (NET-148)
+
 
 
 Bug fixes
@@ -31,7 +32,7 @@ Bug fixes
 - Improved /api/v2/hw/ports API performance. (NET-246)
 - Improved /api/v2/vnet/ports API performance. (NET-245)
 - Admin down ports no longer generate alerts. (NET-238)
-- Fixed maintenace mode not being applied to SoftGate nodes. (NET-237)
+- Fixed maintenance mode not being applied to SoftGate nodes when route-map was configured in E-BGP. (NET-237)
 - Fixed syslog configuration changes not being applied to Cloudstack nodes (NET-236)
 - Fixed default Deny All policy not being applied. (NET-229)
 
