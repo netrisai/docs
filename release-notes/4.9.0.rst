@@ -15,7 +15,7 @@ Features
 
 - **Added Reference Architecture type selector in Inventory Profiles**.
 - **Added support for multi-plane Spectrum-X architecture to Netris Host Networking (NHN) plugin**.
-- **Added support for Spectrum-X Reference Architecture version 2.1**.
+- **Added support for Spectrum-X Reference Architecture version 2.1.2**.
 - **Added support for ZTP of NVIDIA switches with Cumulus Linux**.
 - **Subnets of purpose type "Management" can now be used in Vnets and VPCs**.
 
@@ -35,6 +35,11 @@ Bug fixes and improvements
 - Fixed maintenance mode not being applied to SoftGate nodes when route-map was configured in E-BGP.
 - Fixed syslog configuration changes not being applied to Cloudstack nodes.
 - Fixed default Deny All policy not being applied.
+
+**Deprecation Notices**
+
+- Removed support for Spectrum-X Reference Architecture version 1.2
+- Removed support for Spectrum-X Reference Architecture version 1.3
 
 References
 ----------
