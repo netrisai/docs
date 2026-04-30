@@ -21,8 +21,8 @@ Features
 
 
 
-Bug fixes
----------
+Bug fixes and improvements
+----------------------------
 .. Customer-facing defect fixes. If internal-only, keep wording generic.
 
 - Fixed NVUE agent issue where custom TLV records were not being purged from configuration when server objects contained customData json with networks defined and no remote port matching. (NET-317)
