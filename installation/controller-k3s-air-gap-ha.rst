@@ -355,6 +355,8 @@ It should show EXTERNAL-IP as 192.168.0.50.
 9. Deploy North-South controller VIP
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. tip:: The north-south VIP is optional and can be configured at a later stage. The north-south VIP is typically used to provide access to the Netris API and for :doc:`ZTP functionality </installation/ztp>`.
+
 1. Set vip_interface in manifests/kube-vip-ns.yaml (north-south NIC name)
 
 2. Apply
