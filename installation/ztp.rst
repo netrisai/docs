@@ -162,8 +162,6 @@ The MAC address of each switch must be populated in the corresponding switch obj
 1. **Switch chassis label** — a sticker on the front or rear of the switch, typically near the serial number.
 2. **Original packaging** — the shipping box label includes the MAC address alongside the part number and serial number.
 
-.. TODO:: Insert photo of switch label / box label showing MAC address
-
 9. Configure Static Routes on the Controller Nodes
 ---------------------------------------------------
 
