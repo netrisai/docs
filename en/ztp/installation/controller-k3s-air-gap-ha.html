@@ -1473,6 +1473,10 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 </section>
 <section id="deploy-north-south-controller-vip">
 <span id="north-south-vip"></span><h3>9. Deploy North-South controller VIP<a class="headerlink" href="#deploy-north-south-controller-vip" title="Link to this heading"></a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The north-south VIP is optional and can be configured at a later stage. The north-south VIP is typically used to provide access to the Netris API and for <a class="reference internal" href="ztp.html"><span class="doc">ZTP functionality</span></a>.</p>
+</div>
 <ol class="arabic simple">
 <li><p>Set vip_interface in manifests/kube-vip-ns.yaml (north-south NIC name)</p></li>
 <li><p>Apply</p></li>
