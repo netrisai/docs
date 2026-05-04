@@ -94,7 +94,6 @@ Execute ``pulumi up`` or ``pulumi destroy`` to start/stop a simulation of what's
             alias ns-softgate-3='ssh -o StrictHostKeyChecking=no root@10.3.3.4'
             alias ns-spine-0='ssh -o StrictHostKeyChecking=no cumulus@10.3.2.1'
             alias ns-spine-1='ssh -o StrictHostKeyChecking=no cumulus@10.3.2.2'
-            alias server01='ssh -o StrictHostKeyChecking=no root@192.168.16.34'
             alias spine-0-pod00='ssh -o StrictHostKeyChecking=no cumulus@10.253.32.2'
             alias spine-1-pod00='ssh -o StrictHostKeyChecking=no cumulus@10.253.32.3'
 
