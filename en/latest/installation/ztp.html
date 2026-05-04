@@ -64,6 +64,7 @@
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Netris Zero Touch Provisioning (ZTP)" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -75,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netris Local Repository Setup &mdash; Netris Documentation</title>
+  <title>Zero Touch Provisioning &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -210,10 +211,11 @@
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
@@ -267,11 +269,24 @@
 <li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris Local Repository Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-consume-local-repository">How to consume local repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Zero Touch Provisioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-netris-local-repository">2. Configure Netris Local Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-nos-images-to-the-local-repo">3. Upload NOS images to the local repo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller-management-address-ip-in-controller-settings">4. Controller Management Address IP in Controller Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ipam-subnets-in-the-management-vpc">5. IPAM Subnets in the Management VPC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#v-net-with-dhcp-relay">6. V-Net with DHCP Relay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inventory-profile-configuration">7. Inventory Profile Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#switch-mac-address-in-inventory">8. Switch MAC Address in Inventory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-static-routes-on-the-controller-nodes">9. Configure Static Routes on the Controller Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deploy-the-netris-ztp-dhcp-server">10. Deploy the Netris ZTP DHCP Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verify-ztp-readiness">11. Verify ZTP Readiness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#how-ztp-works-process-summary">How ZTP works (Process Summary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -377,6 +392,20 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../topology-management.html#topology-manager">Topology Manager</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-links">Adding Links</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventory-profile.html">Inventory Profiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#fabric-settings">Fabric Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#custom-rules">Custom Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#ztp-settings">ZTP Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ipam.html">IP Address Management (IPAM)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ipam.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ipam.html#add-an-allocation">Add an Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ipam.html#add-a-subnet">Add a Subnet</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../network-policies.html">Netris VPC</a><ul>
@@ -1126,9 +1155,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="installation.html">Controller Installation</a></li>
-      <li class="breadcrumb-item active">Netris Local Repository Setup</li>
+      <li class="breadcrumb-item active">Zero Touch Provisioning</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/installation/Controller-local-repository.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/installation/ztp.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
         <a href="controller-k8s-installation.html" class="btn btn-neutral float-left" title="Helm Chart Installation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
@@ -1139,74 +1168,206 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="netris-local-repository-setup">
-<h1>Netris Local Repository Setup<a class="headerlink" href="#netris-local-repository-setup" title="Link to this heading"></a></h1>
-<section id="when-why-to-use-the-local-repository">
-<h2>When &amp; Why to Use the Local Repository?<a class="headerlink" href="#when-why-to-use-the-local-repository" title="Link to this heading"></a></h2>
-<p>The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices do not have direct access to the internet. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository. This setup is particularly useful in air-gapped or restricted network environments, where relying on external repositories is not an option.
-In addition to serving as an APT repository, the local repository can also host custom ISO files. This feature allows you to store and manage ISOs for specific use cases, such as deploying operating systems or firmware to your servers, softgates, or switches. While ISO hosting is an optional feature, it provides flexibility and control over the resources you use in your infrastructure, especially when working in isolated networks.
-By utilizing the Netris Local Repository, you ensure that your infrastructure can always access necessary files and packages, even when internet connectivity is limited or unavailable.</p>
+  <section id="zero-touch-provisioning">
+<h1>Zero Touch Provisioning<a class="headerlink" href="#zero-touch-provisioning" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Netris Zero Touch Provisioning (ZTP) automates the initial configuration and onboarding of Netris-managed switches. Netris ZTP automatically installs the appropriate Network Operating System (NOS) based on the switch make and model, configures management networking, and registers the device with the Netris Controller.</p>
+<p>The following diagram demonstrates the ZTP process.</p>
+<img alt="../_images/ZTP-process-diagram.svg" class="with-shadow align-center" src="../_images/ZTP-process-diagram.svg" />
+<br /><p>When a new switch is powered on and connected to the management network, it sends a DHCP discover request on its eth0 (management) interface. The Netris ZTP DHCP server responds with the correct IP address and a link to download the appropriate NOS based on the switch’s MAC address found in the discover request. The switch then downloads its NOS image from the Netris Controller local repository, installs it, and registers itself with the controller — all without operator intervention.</p>
+<p>Netris ZTP significantly reduces deployment time and eliminates manual configuration errors, especially in environments with many switches to provision.</p>
 </section>
-<section id="how-to-enable-the-local-repository-on-the-netris-controller">
-<h2>How to Enable the Local Repository on the Netris Controller?<a class="headerlink" href="#how-to-enable-the-local-repository-on-the-netris-controller" title="Link to this heading"></a></h2>
-<p>To install the Netris Local Repository on the controller host, run the following command:
-<em>Note: The controller must be set up using the ``–ctl-hostname`` argument; otherwise, the Netris Local Repository setup script will exit with an error.</em></p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl -sS https://get.netris.io/local-repo.sh | sh -</span>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>To enable ZTP, the following requirements must be satisfied. Complete each item in the order listed.</p>
+<section id="ha-controller-with-north-south-vip">
+<h3>1. HA Controller with North-South VIP<a class="headerlink" href="#ha-controller-with-north-south-vip" title="Link to this heading"></a></h3>
+<p>The Netris Controller must be deployed with a North-South Virtual IP (N/S VIP) configured. The N/S VIP is the address through which switches and other infrastructure devices reach the controller services.</p>
+<p>See: <a class="reference internal" href="controller-k3s-air-gap-ha.html#north-south-vip"><span class="std std-ref">Deploy North-South controller VIP</span></a></p>
+</section>
+<section id="configure-netris-local-repository">
+<h3>2. Configure Netris Local Repository<a class="headerlink" href="#configure-netris-local-repository" title="Link to this heading"></a></h3>
+<p>See: <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Installing the Local Repository</span></a></p>
+</section>
+<section id="upload-nos-images-to-the-local-repo">
+<h3>3. Upload NOS images to the local repo<a class="headerlink" href="#upload-nos-images-to-the-local-repo" title="Link to this heading"></a></h3>
+<p>Identify the directory name where the local repo is located on the controller nodes (<code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code>) as described in the <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Local Repo installation instructions</span></a>.</p>
+<p>Upload required NOS images to this new subdirectory on each controller node in the HA cluster (substitue <code class="docutils literal notranslate"><span class="pre">&lt;controller_IP&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code> with the appropriate values):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>cumulus-linux-5.16.1-mlx-amd64.bin<span class="w"> </span>&lt;controller_IP&gt;:/<span class="nv">$PVC_PATH</span>/repo/ztp_images/
 </pre></div>
 </div>
-<p>The script may take a while, depending on the controller’s connectivity and available resources.</p>
-<p>The output of the script will look similar to this:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">ubuntu@netris:~$ </span>curl<span class="w"> </span>-sS<span class="w"> </span>https://get.netris.io/local-repo.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh<span class="w"> </span>-
-<span class="go">Checking if the controller is installed</span>
-<span class="go">Checking controller&#39;s FQDN</span>
-<span class="go">Creating local repo service under URL: http://netris.example.com/repo/</span>
-<span class="go">Waiting for netris-local-repo pod to be ready...</span>
-<span class="go">No pods found. Waiting for pod creation...</span>
-<span class="go">Current pod status: Pending. Waiting...</span>
-<span class="go">Current pod status: Pending. Waiting...</span>
-<span class="go">Current pod status: Pending. Waiting...</span>
-<span class="go">Current pod status: Pending. Waiting...</span>
-<span class="go">Current pod status: Pending. Waiting...</span>
-<span class="go">Pod is running.</span>
-
-<span class="go">Netris local repository pod is now running.</span>
-
-<span class="go">Path to upload custom ISOs: /var/lib/rancher/k3s/storage/pvc-ea0dd3ef-ded1-49d3-bbd8-b797c91d76b5_netris-controller_netris-local-repo-pvc/repo/isos</span>
-<span class="go">Local repository URL: http://netris.example.com/repo/</span>
-<span class="go">URL to ISOs directory: http://netris.example.com/repo/isos/</span>
+</section>
+<section id="controller-management-address-ip-in-controller-settings">
+<h3>4. Controller Management Address IP in Controller Settings<a class="headerlink" href="#controller-management-address-ip-in-controller-settings" title="Link to this heading"></a></h3>
+<p>In the Netris Controller web UI, navigate to <strong>Settings &gt; General</strong> and set the <strong>Controller Management Address</strong> to the North-South VIP address configured in step 1. This ensures that switches downloading NOS images and packages during ZTP reach the local repository through the controller’s VIP.</p>
+<p>By default, the Netris agent installer is downloaded from the Netris public repository. You can optionally enable the <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Local Repository feature</span></a> for the Netris agent installer to be sourced directly from the Netris controller.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you use FQDN instead of the IP address in the Local Repository URL, ensure the DNS servers configured in the application inventory profiles can resolve the controller’s FQDN to the controller’s N/S VIP.</p>
+</div>
+<img alt="../_images/ZTP-ControllerManagementAddress.png" class="with-shadow align-center" src="../_images/ZTP-ControllerManagementAddress.png" />
+<br /><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>ZTP Network Scope:</strong> In this version of Netris ZTP, the DHCP server can service either the seed switches (connected to the CMN) or non-seed switches (connected via the management V-Net), but not both simultaneously.</p>
+<p><strong>Recommended Workflow</strong></p>
+<p>To provision all switches in a deployment, follow this two-phase approach:</p>
+<ol class="arabic simple">
+<li><p><strong>Phase 1 — Seed switches (CMN):</strong> Set the Controller Management Address to the controller’s CMN IP address. Power on and provision all seed switches first.</p></li>
+<li><p><strong>Phase 2 — Remaining switches (Management V-Net):</strong> Once all seed switches are provisioned, update the Controller Management Address to the controller’s N/S VIP address instead. Then power on and provision the remaining switches (OOB switches, leaf switches, etc.) whose management ports connect to the seed switches or other OOB switches.</p></li>
+</ol>
+</div>
+</section>
+<section id="ipam-subnets-in-the-management-vpc">
+<h3>5. IPAM Subnets in the Management VPC<a class="headerlink" href="#ipam-subnets-in-the-management-vpc" title="Link to this heading"></a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Netris automatically configures ZTP for any subnet in IPAM with Purpose set to “management”.</p>
+</div>
+<img alt="../_images/ZTP-IPAM.png" class="with-shadow align-center" src="../_images/ZTP-IPAM.png" />
+<br /><p>A typical Netris deployment includes at least two “management” subnets: one for all Netris-managed switches and one for the initial set of “seed” switches.</p>
+<p>The above screenshot demonstrates this configuration.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">10.254.96.0/24</span></code> is the subnet for the “seed” switches (attached to the System VPC)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10.254.98.0/24</span></code> is the subnet for all other Netris-managed switches (attached to the Management VPC)</p></li>
+</ul>
+<p>If your Netris deployment includes a dedicated subnet for the controller’s North-South VIP, this subnet should also be created in the IPAM.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The Controller Management Network is a physically separate, statically configured, non-Netris-managed management network. It connects Netris Controller nodes (for HA communication) and seed switches (in hierarchical deployments) or OOB switches (in direct-to-CMN deployments).</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Seed switches — the initial set of 2 to 6 Netris-managed switches provisioned before any other switches in hierarchical deployments — have their management ports connected directly to CMN.</p>
+</div>
+</section>
+<section id="v-net-with-dhcp-relay">
+<h3>6. V-Net with DHCP Relay<a class="headerlink" href="#v-net-with-dhcp-relay" title="Link to this heading"></a></h3>
+<p>If the Netris-managed switches are in a different VNet from the controller’s North-South VIP, then configure a DHCP relay in the switch management VNet, pointing to the Netris controller’s North-South VIP address. This ensures that DHCP requests from switches on the management V-Net are forwarded to the ZTP DHCP server running on the Netris controller.</p>
+<img alt="../_images/ZTP-Vnet-Relay.png" class="with-shadow align-center" src="../_images/ZTP-Vnet-Relay.png" />
+<br /></section>
+<section id="inventory-profile-configuration">
+<h3>7. Inventory Profile Configuration<a class="headerlink" href="#inventory-profile-configuration" title="Link to this heading"></a></h3>
+<p>Each inventory profile used for ZTP must specify the following:</p>
+<ul class="simple">
+<li><p><strong>NOS Image</strong> — the network operating system image file that ZTP will install on the switch.</p></li>
+<li><p><strong>NOS Admin Password</strong> — the administrative password Netris will configure on the switch after provisioning is complete.</p></li>
+</ul>
+<img alt="../_images/ZTP-Inventory-Profile.png" class="with-shadow align-center" src="../_images/ZTP-Inventory-Profile.png" />
+<br /></section>
+<section id="switch-mac-address-in-inventory">
+<h3>8. Switch MAC Address in Inventory<a class="headerlink" href="#switch-mac-address-in-inventory" title="Link to this heading"></a></h3>
+<p>The MAC address of each switch must be populated in the corresponding switch object within the Netris inventory. The MAC address must be that of the <strong>eth0</strong> interface of the switch. This is the address the switch uses during its initial DHCP discover, and it is how the ZTP server identifies which NOS to assign.</p>
+<img alt="../_images/ZTP-MAC-address.png" class="with-shadow align-center" src="../_images/ZTP-MAC-address.png" />
+<br /><p><strong>Where to Find the MAC Address:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Switch chassis label</strong> — a sticker on the front or rear of the switch, typically near the serial number.</p></li>
+<li><p><strong>Original packaging</strong> — the shipping box label includes the MAC address alongside the part number and serial number.</p></li>
+</ol>
+</section>
+<section id="configure-static-routes-on-the-controller-nodes">
+<h3>9. Configure Static Routes on the Controller Nodes<a class="headerlink" href="#configure-static-routes-on-the-controller-nodes" title="Link to this heading"></a></h3>
+<p>The controller nodes need static routes so they can communicate with the management V-Net subnet through the N/S interface. Without these routes, the controller cannot reach the switches on the management network.</p>
+<p>On each controller node, edit the Netplan configuration file at <code class="docutils literal notranslate"><span class="pre">/etc/netplan/50-cloud-init.yaml</span></code> to add the required routes.</p>
+<p><strong>Example Netplan Configuration</strong></p>
+<p>In this example, the controller has two interfaces:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ens3</span></code> — the primary interface with the default gateway.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ens8</span></code> — the N/S VIP interface, used to reach the management networks.</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">network</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ens3</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;10.254.96.130/24&quot;</span>
+<span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.8.8.8</span>
+<span class="w">        </span><span class="nt">search</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris.local</span>
+<span class="w">      </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default&quot;</span>
+<span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.254.96.1&quot;</span>
+<span class="w">    </span><span class="nt">ens8</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.8.0.100/24</span>
+<span class="w">      </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.254.97.0/24</span>
+<span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.8.0.1</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.254.98.0/24</span>
+<span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.8.0.1</span>
 </pre></div>
 </div>
-<p>The script will output the local repository URL and URL to ISOs directory. Copy and paste this URL of the Local repository into the Netris Controller Web UI under <strong>Settings</strong> section (as shown in the screenshots below).</p>
-<p>Additionally, it provides the host system path, which you may want to use to host your custom ISOs for your servers, softgates, or switches.</p>
-<img alt="../_images/Global-settings-edit.png" class="align-center" src="../_images/Global-settings-edit.png" />
-<img alt="../_images/Global-settings-save.png" class="align-center" src="../_images/Global-settings-save.png" />
-</section>
-<section id="how-to-consume-local-repository">
-<h2>How to consume local repository<a class="headerlink" href="#how-to-consume-local-repository" title="Link to this heading"></a></h2>
-<p>Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).</p>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">10.254.98.0/24</span></code> is the management subnet where the switches’ management ports reside. <code class="docutils literal notranslate"><span class="pre">10.254.97.0/24</span></code> is a prefix from which the switches’ loopback IPs are allocated. The routes point to the appropriate next-hop gateways reachable through the <code class="docutils literal notranslate"><span class="pre">ens8</span></code> interface.</p>
+<p>After editing, apply the configuration:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The local repository includes all the necessary scripts and dependency packages for the Netris NVUE (Cumulus 5.9 and higher) and Netris SoftGate HS (Ubuntu 24.04) agents.</p>
+<p>Repeat this step on all controller nodes in the HA cluster. Each node must have the same routes so that whichever node is active can reach the management networks.</p>
 </div>
-<img alt="../_images/oneliner-from-local-repo.png" class="align-center" src="../_images/oneliner-from-local-repo.png" />
 </section>
-<section id="upgrade-local-repo-cache">
-<h2>Upgrade Local-Repo Cache<a class="headerlink" href="#upgrade-local-repo-cache" title="Link to this heading"></a></h2>
-<p>To update the local repository, restart the <cite>local-repo</cite> deployment in the controller. Then, verify the deployment status to ensure the rollout succeeds:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -nnetris-controller rollout restart deploy/netris-local-repo-nginx</span>
-<span class="go">kubectl -nnetris-controller rollout status deploy/netris-local-repo-nginx</span>
+<section id="deploy-the-netris-ztp-dhcp-server">
+<h3>10. Deploy the Netris ZTP DHCP Server<a class="headerlink" href="#deploy-the-netris-ztp-dhcp-server" title="Link to this heading"></a></h3>
+<p>The Netris ZTP DHCP server is deployed as a Kubernetes workload on the controller cluster, following the same pattern used for other controller services (e.g., the local repository). The manifest is located at:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>manifests/netris-controller/ztp-dhcp-server.yaml
+</pre></div>
+</div>
+<p>Deploy the ZTP DHCP server by applying the manifest from the first controller node without modifying it:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/ztp-dhcp-server.yaml
 </pre></div>
 </div>
 <p>Expected output:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">ubuntu@netris:~$ </span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deploy/netris-local-repo-nginx
-<span class="go">deployment.apps/netris-local-repo-nginx restarted</span>
-
-<span class="gp">ubuntu@netris:~$ </span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deploy/netris-local-repo-nginx
-<span class="go">Waiting for deployment &quot;netris-local-repo-nginx&quot; rollout to finish: 1 old replicas are pending termination...</span>
-<span class="go">Waiting for deployment &quot;netris-local-repo-nginx&quot; rollout to finish: 1 old replicas are pending termination...</span>
-<span class="go">deployment &quot;netris-local-repo-nginx&quot; successfully rolled out</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>deployment.apps/netris-ztp-dhcp-server<span class="w"> </span>created
 </pre></div>
 </div>
+<p>Verify the DHCP server pod is running:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>netris-ztp-dhcp-server
+</pre></div>
+</div>
+</section>
+<section id="verify-ztp-readiness">
+<h3>11. Verify ZTP Readiness<a class="headerlink" href="#verify-ztp-readiness" title="Link to this heading"></a></h3>
+<p>After deploying the DHCP server, confirm the following:</p>
+<ol class="arabic simple">
+<li><p>The ZTP DHCP server pod is in a Running state, which can be seen in the Dashboard.</p></li>
+</ol>
+<img alt="../_images/ZTP-health.png" class="with-shadow align-center" src="../_images/ZTP-health.png" />
+<br /><ol class="arabic simple" start="2">
+<li><p>The controller nodes can reach the management subnets (verify with ping from a controller node).</p></li>
+<li><p>Switch MAC addresses are populated in the Netris inventory.</p></li>
+<li><p>The inventory profile has the NOS image and the admin password configured.</p></li>
+</ol>
+<p>Once everything is confirmed, power on the switches. They will automatically perform a DHCP request, receive their configuration from the ZTP server, download and install the NOS image, and register with the Netris Controller.</p>
+</section>
+</section>
+<section id="how-ztp-works-process-summary">
+<h2>How ZTP works (Process Summary)<a class="headerlink" href="#how-ztp-works-process-summary" title="Link to this heading"></a></h2>
+<p>For reference, here is the sequence of events that occurs when a switch is provisioned via ZTP:</p>
+<ol class="arabic simple">
+<li><p>The switch powers on with no configuration and sends a DHCP discover on its eth0 (management) interface.</p></li>
+<li><p>The ZTP DHCP server matches the DHCP request to a switch object in Netris using the source MAC address.</p></li>
+<li><p>The server assigns the correct management IP address and provides boot parameters, including the URL of the NOS image on the local repository.</p></li>
+<li><p>The switch downloads and installs the NOS image.</p></li>
+<li><p>After installation, the switch reboots into the new NOS, initiates the ZTP process, which configures the admin credentials from the inventory profile, downloads the Netris switch agent, and establishes a connection to the Netris Controller.</p></li>
+<li><p>The switch appears as provisioned in the Netris inventory and begins receiving its intended network configuration.</p></li>
+</ol>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p>If a switch does not provision as expected, check the following:</p>
+<p><strong>DHCP server logs:</strong> Check the ZTP DHCP server pod logs for DHCP discover/offer/request/ack messages.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>logs<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>netris-ztp-dhcp-server
+</pre></div>
+</div>
+<p><strong>MAC address mismatch:</strong> Verify that the MAC address in the Netris inventory matches the eth0 MAC address printed on the switch.</p>
+<p><strong>Network reachability:</strong> From a controller node, ping the management subnet gateway to confirm the static routes are in place.</p>
+<p><strong>DHCP relay:</strong> Confirm the V-Net DHCP relay is pointing to the correct N/S VIP address.</p>
+<p><strong>Controller Management Address:</strong> Ensure the Controller Management Address in controller settings is set to the N/S VIP (or CMN VIP if appropriate).</p>
+<p><strong>NOS image the admin password:</strong> Verify the NOS image name in the Inventory Profile matches the NOS images uploaded to the local repo.</p>
+<p>For additional assistance, please contact Netris Support.</p>
 </section>
 </section>
 

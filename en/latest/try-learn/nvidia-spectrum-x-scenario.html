@@ -210,10 +210,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
@@ -267,11 +268,24 @@
 <li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/Controller-local-repository.html">Netris Local Repository Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/ztp.html">Zero Touch Provisioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/ztp.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/ztp.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#configure-netris-local-repository">2. Configure Netris Local Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#upload-nos-images-to-the-local-repo">3. Upload NOS images to the local repo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#controller-management-address-ip-in-controller-settings">4. Controller Management Address IP in Controller Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#ipam-subnets-in-the-management-vpc">5. IPAM Subnets in the Management VPC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#v-net-with-dhcp-relay">6. V-Net with DHCP Relay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#inventory-profile-configuration">7. Inventory Profile Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#switch-mac-address-in-inventory">8. Switch MAC Address in Inventory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#configure-static-routes-on-the-controller-nodes">9. Configure Static Routes on the Controller Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#deploy-the-netris-ztp-dhcp-server">10. Deploy the Netris ZTP DHCP Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#verify-ztp-readiness">11. Verify ZTP Readiness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/ztp.html#how-ztp-works-process-summary">How ZTP works (Process Summary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/ztp.html#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -377,6 +391,20 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../topology-management.html#topology-manager">Topology Manager</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-links">Adding Links</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventory-profile.html">Inventory Profiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#fabric-settings">Fabric Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#custom-rules">Custom Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#ztp-settings">ZTP Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ipam.html">IP Address Management (IPAM)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ipam.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ipam.html#add-an-allocation">Add an Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ipam.html#add-a-subnet">Add a Subnet</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../network-policies.html">Netris VPC</a><ul>
@@ -1168,6 +1196,66 @@
 <p class="admonition-title">Warning</p>
 <p>Do not run <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">stack</span> <span class="pre">rm</span> <span class="pre">main</span></code> after <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">destroy</span></code> unless instructed by Netris support. This may cause issues with your simulation environment. Use only <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">destroy</span></code> to safely stop a simulation.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For your convenience, when you run <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">up</span></code>, the system will dynamicall install a set of CLI aliases based on the simulation topology to make it easier to access the simulation servers and switches. You can get the list of aliases by running <code class="docutils literal notranslate"><span class="pre">alias</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">ssh</span></code> on the Netris controller server. When you execute <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">destroy</span></code>, these aliases will be removed.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Expand to see the list of aliases</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ubuntu@sim-ctl:~/netris-cloudsim$<span class="w"> </span><span class="nb">alias</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ssh
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h00<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.2&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h01<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.3&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h02<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.4&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h03<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.5&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h04<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.6&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h05<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.7&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h06<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.8&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h07<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.9&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h08<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.10&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h09<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.11&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h10<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.12&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h11<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.13&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h12<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.14&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h13<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.15&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h14<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.16&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h15<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.17&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h16<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.18&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h17<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.19&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h18<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.20&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h19<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.21&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h20<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.22&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h21<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.23&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h22<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.24&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h23<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.25&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h24<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.26&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h25<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.27&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h26<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.28&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h27<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.29&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h28<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.30&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h29<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.31&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h30<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.32&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>hgx-pod00-su0-h31<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.33&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>isp-server<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.122.15&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>leaf-pod00-su0-r0<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.253.0.1&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>leaf-pod00-su0-r1<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.253.0.2&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>leaf-pod00-su0-r2<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.253.0.3&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>leaf-pod00-su0-r3<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.253.0.4&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>mgmt-server<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@192.168.16.1&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>ns-leaf-0<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.3.0.1&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>ns-leaf-1<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.3.0.2&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>ns-oob-leaf-0<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.3.1.1&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>ns-softgate-0<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@10.3.3.1&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>ns-softgate-1<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@10.3.3.2&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>ns-softgate-2<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@10.3.3.3&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>ns-softgate-3<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no root@10.3.3.4&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>ns-spine-0<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.3.2.1&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>ns-spine-1<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.3.2.2&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>spine-0-pod00<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.253.32.2&#39;</span>
+<span class="nb">alias</span><span class="w"> </span>spine-1-pod00<span class="o">=</span><span class="s1">&#39;ssh -o StrictHostKeyChecking=no cumulus@10.253.32.3&#39;</span>
+</pre></div>
+</div>
+</div>
+</details></div>
 </section>
 <section id="monitoring-dashboard">
 <h2>Monitoring Dashboard<a class="headerlink" href="#monitoring-dashboard" title="Link to this heading"></a></h2>

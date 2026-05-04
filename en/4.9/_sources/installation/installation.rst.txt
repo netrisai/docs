@@ -18,4 +18,4 @@ Netris Controller can be installed as a VM or deployed as a Kubernetes applicati
 
    controller-k3s-air-gap-ha
    controller-k8s-installation
-   Controller-local-repository
+   ztp

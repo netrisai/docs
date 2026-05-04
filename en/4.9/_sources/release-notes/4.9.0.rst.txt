@@ -16,7 +16,7 @@ Features
 - **Added Reference Architecture type selector in Inventory Profiles**.
 - **Added support for multi-plane Spectrum-X architecture to Netris Host Networking (NHN) plugin**.
 - **Added support for Spectrum-X Reference Architecture version 2.1.2**.
-- **Added support for ZTP of NVIDIA switches with Cumulus Linux**.
+- **Added support for ZTP of switches**.
 - **Subnets of purpose type "Management" can now be used in Vnets and VPCs**.
 
 

@@ -211,10 +211,11 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
@@ -268,11 +269,24 @@
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/Controller-local-repository.html">Netris Local Repository Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#configure-netris-local-repository">2. Configure Netris Local Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#upload-nos-images-to-the-local-repo">3. Upload NOS images to the local repo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#controller-management-address-ip-in-controller-settings">4. Controller Management Address IP in Controller Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ipam-subnets-in-the-management-vpc">5. IPAM Subnets in the Management VPC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#v-net-with-dhcp-relay">6. V-Net with DHCP Relay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#inventory-profile-configuration">7. Inventory Profile Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#switch-mac-address-in-inventory">8. Switch MAC Address in Inventory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#configure-static-routes-on-the-controller-nodes">9. Configure Static Routes on the Controller Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#deploy-the-netris-ztp-dhcp-server">10. Deploy the Netris ZTP DHCP Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#verify-ztp-readiness">11. Verify ZTP Readiness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#how-ztp-works-process-summary">How ZTP works (Process Summary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -378,6 +392,20 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html#topology-manager">Topology Manager</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-links">Adding Links</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#ztp-settings">ZTP Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ipam.html">IP Address Management (IPAM)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#add-an-allocation">Add an Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#add-a-subnet">Add a Subnet</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="network-policies.html">Netris VPC</a><ul>
