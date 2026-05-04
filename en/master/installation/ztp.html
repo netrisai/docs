@@ -64,6 +64,7 @@
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Netris Zero Touch Provisioning (ZTP)" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -75,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netris 3.4.3 Release Notes (Nov/09/2023) &mdash; Netris Documentation</title>
+  <title>Zero Touch Provisioning &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -96,8 +97,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Netris 3.4.0 Release Notes (Mar/06/2023)" href="3.4.0.html" />
-    <link rel="prev" title="Netris 3.4.4 Release Notes (Sep/29/2023)" href="3.4.4.html" /> 
+    <link rel="next" title="Network Switch Initial Setup" href="../switch-agent-installation.html" />
+    <link rel="prev" title="Helm Chart Installation" href="controller-k8s-installation.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -194,98 +195,98 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Controller Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="installation.html">Controller Installation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#mariadb-automatic-backups-locate-verify-and-restore">MariaDB automatic backups: locate, verify, and restore</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#locate-the-backup-directory-on-each-controller-node">Locate the backup directory on each controller node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#copy-the-backup-file-to-your-home-directory">Copy the backup file to your home directory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#verify-the-backup-file-integrity">Verify the backup file integrity</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#verify-mariadb-cluster-readiness-before-restore">Verify MariaDB cluster readiness before restore</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#copy-the-backup-file-into-a-mariadb-pod">Copy the backup file into a MariaDB pod</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#restore-the-backup">Restore the backup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#take-a-manual-backup">Take a manual backup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#mariadb-automatic-backups-locate-verify-and-restore">MariaDB automatic backups: locate, verify, and restore</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#locate-the-backup-directory-on-each-controller-node">Locate the backup directory on each controller node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#copy-the-backup-file-to-your-home-directory">Copy the backup file to your home directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-the-backup-file-integrity">Verify the backup file integrity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-mariadb-cluster-readiness-before-restore">Verify MariaDB cluster readiness before restore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#copy-the-backup-file-into-a-mariadb-pod">Copy the backup file into a MariaDB pod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#restore-the-backup">Restore the backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#take-a-manual-backup">Take a manual backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k3s-air-gap-ha.html#summary">Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/controller-k8s-installation.html">Helm Chart Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html">Helm Chart Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../installation/ztp.html">Zero Touch Provisioning</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../installation/ztp.html#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/ztp.html#prerequisites">Prerequisites</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#configure-netris-local-repository">2. Configure Netris Local Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#upload-nos-images-to-the-local-repo">3. Upload NOS images to the local repo</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#controller-management-address-ip-in-controller-settings">4. Controller Management Address IP in Controller Settings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#ipam-subnets-in-the-management-vpc">5. IPAM Subnets in the Management VPC</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#v-net-with-dhcp-relay">6. V-Net with DHCP Relay</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#inventory-profile-configuration">7. Inventory Profile Configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#switch-mac-address-in-inventory">8. Switch MAC Address in Inventory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#configure-static-routes-on-the-controller-nodes">9. Configure Static Routes on the Controller Nodes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#deploy-the-netris-ztp-dhcp-server">10. Deploy the Netris ZTP DHCP Server</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../installation/ztp.html#verify-ztp-readiness">11. Verify ZTP Readiness</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Zero Touch Provisioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-netris-local-repository">2. Configure Netris Local Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-nos-images-to-the-local-repo">3. Upload NOS images to the local repo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller-management-address-ip-in-controller-settings">4. Controller Management Address IP in Controller Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ipam-subnets-in-the-management-vpc">5. IPAM Subnets in the Management VPC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#v-net-with-dhcp-relay">6. V-Net with DHCP Relay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inventory-profile-configuration">7. Inventory Profile Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#switch-mac-address-in-inventory">8. Switch MAC Address in Inventory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-static-routes-on-the-controller-nodes">9. Configure Static Routes on the Controller Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deploy-the-netris-ztp-dhcp-server">10. Deploy the Netris ZTP DHCP Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verify-ztp-readiness">11. Verify ZTP Readiness</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/ztp.html#how-ztp-works-process-summary">How ZTP works (Process Summary)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../installation/ztp.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-ztp-works-process-summary">How ZTP works (Process Summary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -970,152 +971,152 @@
 <li class="toctree-l1"><a class="reference internal" href="../snippets.html">Custom NVUE Configuration Snippets</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release Notes</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="4.9.0.html">Netris 4.9.0 Release Notes (Apr/30/2026)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.9.0.html#what-s-new-in-netris-version">What’s new in Netris 4.9.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.9.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.9.0.html#bug-fixes-and-improvements">Bug fixes and improvements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.9.0.html#references">References</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.9.0.html">Netris 4.9.0 Release Notes (Apr/30/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.9.0.html#what-s-new-in-netris-version">What’s new in Netris 4.9.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.9.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.9.0.html#bug-fixes-and-improvements">Bug fixes and improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.9.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.8.0.html">Netris 4.8.0 Release Notes (Apr/15/2026)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.8.0.html#what-s-new-in-netris-version">What’s new in Netris 4.8.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.8.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.8.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.8.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.8.0.html">Netris 4.8.0 Release Notes (Apr/15/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.8.0.html#what-s-new-in-netris-version">What’s new in Netris 4.8.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.8.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.8.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.8.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.7.0.html">Netris 4.7.0 Release Notes (Mar/11/2026)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.7.0.html#what-s-new-in-netris-version">What’s new in Netris 4.7.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.7.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.7.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.7.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.7.0.html">Netris 4.7.0 Release Notes (Mar/11/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.7.0.html#what-s-new-in-netris-version">What’s new in Netris 4.7.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.7.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.7.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.7.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.6.1.html">Netris 4.6.1 Release Notes (Feb/27/2026)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.6.1.html#what-s-new-in-netris-version">What’s new in Netris 4.6.1?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.1.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.1.html#enhancements">Enhancements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.1.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.1.html#security-fixes">Security fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.1.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.6.1.html">Netris 4.6.1 Release Notes (Feb/27/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.1.html#what-s-new-in-netris-version">What’s new in Netris 4.6.1?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.1.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.1.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.1.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.1.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.1.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.6.0.html">Netris 4.6.0 Release Notes (Feb/10/2026)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#what-s-new-in-netris-version">What’s new in Netris 4.6.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#enhancements">Enhancements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.6.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.6.0.html">Netris 4.6.0 Release Notes (Feb/10/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#what-s-new-in-netris-version">What’s new in Netris 4.6.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.6.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.5.3.html">Netris 4.5.3 Release Notes (August/27/2025)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.5.3.html#what-s-new-in-netris-version">What’s new in Netris 4.5.3?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.5.3.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.5.3.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.5.3.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.5.3.html">Netris 4.5.3 Release Notes (August/27/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#what-s-new-in-netris-version">What’s new in Netris 4.5.3?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.3.0.html">Netris 4.3.0 Release Notes (July/31/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.3.0.html#what-s-new-in-netris-version">What’s new in Netris 4.3.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.3.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.3.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.3.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.3.0.html">Netris 4.3.0 Release Notes (July/31/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#what-s-new-in-netris-version">What’s new in Netris 4.3.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.2.0.html">Netris 4.2.0 Release Notes (May/1/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.2.0.html#what-s-new-in-netris-version">What’s new in Netris 4.2.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.2.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.2.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.2.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.2.0.html">Netris 4.2.0 Release Notes (May/1/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#what-s-new-in-netris-version">What’s new in Netris 4.2.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.2.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.1.1.html">Netris 4.1.1 Release Notes (Jan/31/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.1.1.html#what-s-new-in-netris-version">What’s new in Netris 4.1.1?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.1.1.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.1.1.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.1.1.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.1.1.html">Netris 4.1.1 Release Notes (Jan/31/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#what-s-new-in-netris-version">What’s new in Netris 4.1.1?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.1.1.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="4.0.0.html">Netris 4.0.0 Release Notes (Jul/25/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="4.0.0.html#what-s-new-in-netris-version">What’s new in Netris 4.0.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.0.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.0.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4.0.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.0.0.html">Netris 4.0.0 Release Notes (Jul/25/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#what-s-new-in-netris-version">What’s new in Netris 4.0.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.0.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.5.0.html">Netris 3.5.0 Release Notes (Oct/24/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.5.0.html#what-s-new-in-netris-version">What’s new in Netris 3.5.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.5.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.5.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.5.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.5.0.html">Netris 3.5.0 Release Notes (Oct/24/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#what-s-new-in-netris-version">What’s new in Netris 3.5.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.5.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.4.4.html">Netris 3.4.4 Release Notes (Sep/29/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.4.4.html#what-s-new-in-netris-version">What’s new in Netris 3.4.4?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.4.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.4.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.4.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.4.4.html">Netris 3.4.4 Release Notes (Sep/29/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#what-s-new-in-netris-version">What’s new in Netris 3.4.4?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.4.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 3.4.3 Release Notes (Nov/09/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#what-s-new-in-netris-version">What’s new in Netris 3.4.3?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.4.3.html">Netris 3.4.3 Release Notes (Nov/09/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.3.html#what-s-new-in-netris-version">What’s new in Netris 3.4.3?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.3.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.3.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.4.0.html">Netris 3.4.0 Release Notes (Mar/06/2023)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#what-s-new-in-netris-version">What’s new in Netris 3.4.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#new-platform-integration">New Platform Integration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.4.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.4.0.html">Netris 3.4.0 Release Notes (Mar/06/2023)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#what-s-new-in-netris-version">What’s new in Netris 3.4.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#new-platform-integration">New Platform Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.4.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.3.0.html">Netris 3.3.0 Release Notes (Dec/05/2022)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#what-s-new-in-netris-version">What’s new in Netris 3.3.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#various-improvements-and-bug-fixes">Various improvements and bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.3.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.3.0.html">Netris 3.3.0 Release Notes (Dec/05/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#what-s-new-in-netris-version">What’s new in Netris 3.3.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#various-improvements-and-bug-fixes">Various improvements and bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.3.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.2.1.html">Netris 3.2.1 Release Notes (Oct/05/2022)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.2.1.html#what-s-new-in-netris-version">What’s new in Netris 3.2.1?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.1.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.1.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.2.1.html">Netris 3.2.1 Release Notes (Oct/05/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.1.html#what-s-new-in-netris-version">What’s new in Netris 3.2.1?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.1.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.1.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.2.0.html">Netris 3.2.0 Release Notes (Sep/22/2022)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.2.0.html#what-s-new-in-netris-version">What’s new in Netris 3.2.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.2.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.2.0.html">Netris 3.2.0 Release Notes (Sep/22/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#what-s-new-in-netris-version">What’s new in Netris 3.2.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.2.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.1.0.html">Netris 3.1.0 Release Notes (Aug/1/2022)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.1.0.html#what-s-new-in-netris-version">What’s new in Netris 3.1.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.1.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.1.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.1.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.1.0.html">Netris 3.1.0 Release Notes (Aug/1/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#what-s-new-in-netris-version">What’s new in Netris 3.1.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.1.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="3.0.0.html">Netris 3.0.0 Release Notes (Oct/6/2021)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="3.0.0.html#what-s-new-in-netris-version">What’s new in Netris 3.0.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3.0.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/3.0.0.html">Netris 3.0.0 Release Notes (Oct/6/2021)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.0.0.html#what-s-new-in-netris-version">What’s new in Netris 3.0.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/3.0.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="2.9.0.html">Netris 2.9.0 Release Notes (Mar/5/2021)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="2.9.0.html#what-s-new-in-netris-version">What’s new in Netris 2.9.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2.9.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/2.9.0.html">Netris 2.9.0 Release Notes (Mar/5/2021)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.9.0.html#what-s-new-in-netris-version">What’s new in Netris 2.9.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.9.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="2.8.0.html">Netris 2.8.0 Release Notes (May/13/2020)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="2.8.0.html#what-s-new-in-netris-version">What’s new in Netris 2.8.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2.8.0.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2.8.0.html#bug-fixes">Bug fixes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2.8.0.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/2.8.0.html">Netris 2.8.0 Release Notes (May/13/2020)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#what-s-new-in-netris-version">What’s new in Netris 2.8.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/2.8.0.html#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -1153,41 +1154,220 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Release Notes</a></li>
-      <li class="breadcrumb-item active">Netris 3.4.3 Release Notes (Nov/09/2023)</li>
+          <li class="breadcrumb-item"><a href="installation.html">Controller Installation</a></li>
+      <li class="breadcrumb-item active">Zero Touch Provisioning</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/release-notes/3.4.3.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/installation/ztp.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="3.4.4.html" class="btn btn-neutral float-left" title="Netris 3.4.4 Release Notes (Sep/29/2023)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="3.4.0.html" class="btn btn-neutral float-right" title="Netris 3.4.0 Release Notes (Mar/06/2023)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controller-k8s-installation.html" class="btn btn-neutral float-left" title="Helm Chart Installation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../switch-agent-installation.html" class="btn btn-neutral float-right" title="Network Switch Initial Setup" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="netris-version-release-notes-nov-09-2023">
-<span id="release-3-4-3"></span><h1>Netris 3.4.3 Release Notes (Nov/09/2023)<a class="headerlink" href="#netris-version-release-notes-nov-09-2023" title="Link to this heading"></a></h1>
-<section id="what-s-new-in-netris-version">
-<h2>What’s new in Netris 3.4.3?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
+  <section id="zero-touch-provisioning">
+<h1>Zero Touch Provisioning<a class="headerlink" href="#zero-touch-provisioning" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Netris Zero Touch Provisioning (ZTP) automates the initial configuration and onboarding of Netris-managed switches. Netris ZTP automatically installs the appropriate Network Operating System (NOS) based on the switch make and model, configures management networking, and registers the device with the Netris Controller.</p>
+<p>The following diagram demonstrates the ZTP process.</p>
+<img alt="../_images/ZTP-process-diagram.svg" class="with-shadow align-center" src="../_images/ZTP-process-diagram.svg" />
+<br /><p>When a new switch is powered on and connected to the management network, it sends a DHCP discover request on its eth0 (management) interface. The Netris ZTP DHCP server responds with the correct IP address and a link to download the appropriate NOS based on the switch’s MAC address found in the discover request. The switch then downloads its NOS image from the Netris Controller local repository, installs it, and registers itself with the controller — all without operator intervention.</p>
+<p>Netris ZTP significantly reduces deployment time and eliminates manual configuration errors, especially in environments with many switches to provision.</p>
 </section>
-<section id="bug-fixes">
-<h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>This update addresses the issue in the Netris controller where DHCP lease records were not being updated for servers that had been redeployed or renamed.</p></li>
-</ul>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>To enable ZTP, the following requirements must be satisfied. Complete each item in the order listed.</p>
+<section id="ha-controller-with-north-south-vip">
+<h3>1. HA Controller with North-South VIP<a class="headerlink" href="#ha-controller-with-north-south-vip" title="Link to this heading"></a></h3>
+<p>The Netris Controller must be deployed with a North-South Virtual IP (N/S VIP) configured. The N/S VIP is the address through which switches and other infrastructure devices reach the controller services.</p>
+<p>See: <a class="reference internal" href="controller-k3s-air-gap-ha.html#north-south-vip"><span class="std std-ref">Deploy North-South controller VIP</span></a></p>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<section id="configure-netris-local-repository">
+<h3>2. Configure Netris Local Repository<a class="headerlink" href="#configure-netris-local-repository" title="Link to this heading"></a></h3>
+<p>See: <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Installing the Local Repository</span></a></p>
+</section>
+<section id="upload-nos-images-to-the-local-repo">
+<h3>3. Upload NOS images to the local repo<a class="headerlink" href="#upload-nos-images-to-the-local-repo" title="Link to this heading"></a></h3>
+<p>Identify the directory name where the local repo is located on the controller nodes (<code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code>) as described in the <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Local Repo installation instructions</span></a>.</p>
+<p>Upload required NOS images to this new subdirectory on each controller node in the HA cluster (substitue <code class="docutils literal notranslate"><span class="pre">&lt;controller_IP&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code> with the appropriate values):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>cumulus-linux-5.16.1-mlx-amd64.bin<span class="w"> </span>&lt;controller_IP&gt;:/<span class="nv">$PVC_PATH</span>/repo/ztp_images/
+</pre></div>
+</div>
+</section>
+<section id="controller-management-address-ip-in-controller-settings">
+<h3>4. Controller Management Address IP in Controller Settings<a class="headerlink" href="#controller-management-address-ip-in-controller-settings" title="Link to this heading"></a></h3>
+<p>In the Netris Controller web UI, navigate to <strong>Settings &gt; General</strong> and set the <strong>Controller Management Address</strong> to the North-South VIP address configured in step 1. This ensures that switches downloading NOS images and packages during ZTP reach the local repository through the controller’s VIP.</p>
+<p>By default, the Netris agent installer is downloaded from the Netris public repository. You can optionally enable the <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Local Repository feature</span></a> for the Netris agent installer to be sourced directly from the Netris controller.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you use FQDN instead of the IP address in the Local Repository URL, ensure the DNS servers configured in the application inventory profiles can resolve the controller’s FQDN to the controller’s N/S VIP.</p>
+</div>
+<img alt="../_images/ZTP-ControllerManagementAddress.png" class="with-shadow align-center" src="../_images/ZTP-ControllerManagementAddress.png" />
+<br /><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>ZTP Network Scope:</strong> In this version of Netris ZTP, the DHCP server can service either the seed switches (connected to the CMN) or non-seed switches (connected via the management V-Net), but not both simultaneously.</p>
+<p><strong>Recommended Workflow</strong></p>
+<p>To provision all switches in a deployment, follow this two-phase approach:</p>
+<ol class="arabic simple">
+<li><p><strong>Phase 1 — Seed switches (CMN):</strong> Set the Controller Management Address to the controller’s CMN IP address. Power on and provision all seed switches first.</p></li>
+<li><p><strong>Phase 2 — Remaining switches (Management V-Net):</strong> Once all seed switches are provisioned, update the Controller Management Address to the controller’s N/S VIP address instead. Then power on and provision the remaining switches (OOB switches, leaf switches, etc.) whose management ports connect to the seed switches or other OOB switches.</p></li>
+</ol>
+</div>
+</section>
+<section id="ipam-subnets-in-the-management-vpc">
+<h3>5. IPAM Subnets in the Management VPC<a class="headerlink" href="#ipam-subnets-in-the-management-vpc" title="Link to this heading"></a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Netris automatically configures ZTP for any subnet in IPAM with Purpose set to “management”.</p>
+</div>
+<img alt="../_images/ZTP-IPAM.png" class="with-shadow align-center" src="../_images/ZTP-IPAM.png" />
+<br /><p>A typical Netris deployment includes at least two “management” subnets: one for all Netris-managed switches and one for the initial set of “seed” switches.</p>
+<p>The above screenshot demonstrates this configuration.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../supported-platform-matrix.html"><span class="doc">Supported Platforms</span></a></p></li>
-<li><p><a class="reference internal" href="../supported-switch-hardware.html"><span class="doc">Supported Switch Hardware</span></a></p></li>
-<li><p>Schedule a <a class="reference external" href="https://www.netris.io/demo/">Demo</a></p></li>
-<li><p>Follow us on <a class="reference external" href="https://www.linkedin.com/company/netrisio/">LinkedIn</a></p></li>
-<li><p>Follow us on <a class="reference external" href="https://x.com/netris_io">X-Twitter</a></p></li>
-<li><p>Join our <a class="reference external" href="https://netris.slack.com/">Slack</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10.254.96.0/24</span></code> is the subnet for the “seed” switches (attached to the System VPC)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10.254.98.0/24</span></code> is the subnet for all other Netris-managed switches (attached to the Management VPC)</p></li>
 </ul>
+<p>If your Netris deployment includes a dedicated subnet for the controller’s North-South VIP, this subnet should also be created in the IPAM.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The Controller Management Network is a physically separate, statically configured, non-Netris-managed management network. It connects Netris Controller nodes (for HA communication) and seed switches (in hierarchical deployments) or OOB switches (in direct-to-CMN deployments).</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Seed switches — the initial set of 2 to 6 Netris-managed switches provisioned before any other switches in hierarchical deployments — have their management ports connected directly to CMN.</p>
+</div>
+</section>
+<section id="v-net-with-dhcp-relay">
+<h3>6. V-Net with DHCP Relay<a class="headerlink" href="#v-net-with-dhcp-relay" title="Link to this heading"></a></h3>
+<p>If the Netris-managed switches are in a different VNet from the controller’s North-South VIP, then configure a DHCP relay in the switch management VNet, pointing to the Netris controller’s North-South VIP address. This ensures that DHCP requests from switches on the management V-Net are forwarded to the ZTP DHCP server running on the Netris controller.</p>
+<img alt="../_images/ZTP-Vnet-Relay.png" class="with-shadow align-center" src="../_images/ZTP-Vnet-Relay.png" />
+<br /></section>
+<section id="inventory-profile-configuration">
+<h3>7. Inventory Profile Configuration<a class="headerlink" href="#inventory-profile-configuration" title="Link to this heading"></a></h3>
+<p>Each inventory profile used for ZTP must specify the following:</p>
+<ul class="simple">
+<li><p><strong>NOS Image</strong> — the network operating system image file that ZTP will install on the switch.</p></li>
+<li><p><strong>NOS Admin Password</strong> — the administrative password Netris will configure on the switch after provisioning is complete.</p></li>
+</ul>
+<img alt="../_images/ZTP-Inventory-Profile.png" class="with-shadow align-center" src="../_images/ZTP-Inventory-Profile.png" />
+<br /></section>
+<section id="switch-mac-address-in-inventory">
+<h3>8. Switch MAC Address in Inventory<a class="headerlink" href="#switch-mac-address-in-inventory" title="Link to this heading"></a></h3>
+<p>The MAC address of each switch must be populated in the corresponding switch object within the Netris inventory. The MAC address must be that of the <strong>eth0</strong> interface of the switch. This is the address the switch uses during its initial DHCP discover, and it is how the ZTP server identifies which NOS to assign.</p>
+<img alt="../_images/ZTP-MAC-address.png" class="with-shadow align-center" src="../_images/ZTP-MAC-address.png" />
+<br /><p><strong>Where to Find the MAC Address:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Switch chassis label</strong> — a sticker on the front or rear of the switch, typically near the serial number.</p></li>
+<li><p><strong>Original packaging</strong> — the shipping box label includes the MAC address alongside the part number and serial number.</p></li>
+</ol>
+</section>
+<section id="configure-static-routes-on-the-controller-nodes">
+<h3>9. Configure Static Routes on the Controller Nodes<a class="headerlink" href="#configure-static-routes-on-the-controller-nodes" title="Link to this heading"></a></h3>
+<p>The controller nodes need static routes so they can communicate with the management V-Net subnet through the N/S interface. Without these routes, the controller cannot reach the switches on the management network.</p>
+<p>On each controller node, edit the Netplan configuration file at <code class="docutils literal notranslate"><span class="pre">/etc/netplan/50-cloud-init.yaml</span></code> to add the required routes.</p>
+<p><strong>Example Netplan Configuration</strong></p>
+<p>In this example, the controller has two interfaces:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ens3</span></code> — the primary interface with the default gateway.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ens8</span></code> — the N/S VIP interface, used to reach the management networks.</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">network</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ens3</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;10.254.96.130/24&quot;</span>
+<span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.8.8.8</span>
+<span class="w">        </span><span class="nt">search</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris.local</span>
+<span class="w">      </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default&quot;</span>
+<span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.254.96.1&quot;</span>
+<span class="w">    </span><span class="nt">ens8</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.8.0.100/24</span>
+<span class="w">      </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.254.97.0/24</span>
+<span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.8.0.1</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.254.98.0/24</span>
+<span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.8.0.1</span>
+</pre></div>
+</div>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">10.254.98.0/24</span></code> is the management subnet where the switches’ management ports reside. <code class="docutils literal notranslate"><span class="pre">10.254.97.0/24</span></code> is a prefix from which the switches’ loopback IPs are allocated. The routes point to the appropriate next-hop gateways reachable through the <code class="docutils literal notranslate"><span class="pre">ens8</span></code> interface.</p>
+<p>After editing, apply the configuration:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Repeat this step on all controller nodes in the HA cluster. Each node must have the same routes so that whichever node is active can reach the management networks.</p>
+</div>
+</section>
+<section id="deploy-the-netris-ztp-dhcp-server">
+<h3>10. Deploy the Netris ZTP DHCP Server<a class="headerlink" href="#deploy-the-netris-ztp-dhcp-server" title="Link to this heading"></a></h3>
+<p>The Netris ZTP DHCP server is deployed as a Kubernetes workload on the controller cluster, following the same pattern used for other controller services (e.g., the local repository). The manifest is located at:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>manifests/netris-controller/ztp-dhcp-server.yaml
+</pre></div>
+</div>
+<p>Deploy the ZTP DHCP server by applying the manifest from the first controller node without modifying it:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/ztp-dhcp-server.yaml
+</pre></div>
+</div>
+<p>Expected output:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>deployment.apps/netris-ztp-dhcp-server<span class="w"> </span>created
+</pre></div>
+</div>
+<p>Verify the DHCP server pod is running:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>netris-ztp-dhcp-server
+</pre></div>
+</div>
+</section>
+<section id="verify-ztp-readiness">
+<h3>11. Verify ZTP Readiness<a class="headerlink" href="#verify-ztp-readiness" title="Link to this heading"></a></h3>
+<p>After deploying the DHCP server, confirm the following:</p>
+<ol class="arabic simple">
+<li><p>The ZTP DHCP server pod is in a Running state, which can be seen in the Dashboard.</p></li>
+</ol>
+<img alt="../_images/ZTP-health.png" class="with-shadow align-center" src="../_images/ZTP-health.png" />
+<br /><ol class="arabic simple" start="2">
+<li><p>The controller nodes can reach the management subnets (verify with ping from a controller node).</p></li>
+<li><p>Switch MAC addresses are populated in the Netris inventory.</p></li>
+<li><p>The inventory profile has the NOS image and the admin password configured.</p></li>
+</ol>
+<p>Once everything is confirmed, power on the switches. They will automatically perform a DHCP request, receive their configuration from the ZTP server, download and install the NOS image, and register with the Netris Controller.</p>
+</section>
+</section>
+<section id="how-ztp-works-process-summary">
+<h2>How ZTP works (Process Summary)<a class="headerlink" href="#how-ztp-works-process-summary" title="Link to this heading"></a></h2>
+<p>For reference, here is the sequence of events that occurs when a switch is provisioned via ZTP:</p>
+<ol class="arabic simple">
+<li><p>The switch powers on with no configuration and sends a DHCP discover on its eth0 (management) interface.</p></li>
+<li><p>The ZTP DHCP server matches the DHCP request to a switch object in Netris using the source MAC address.</p></li>
+<li><p>The server assigns the correct management IP address and provides boot parameters, including the URL of the NOS image on the local repository.</p></li>
+<li><p>The switch downloads and installs the NOS image.</p></li>
+<li><p>After installation, the switch reboots into the new NOS, initiates the ZTP process, which configures the admin credentials from the inventory profile, downloads the Netris switch agent, and establishes a connection to the Netris Controller.</p></li>
+<li><p>The switch appears as provisioned in the Netris inventory and begins receiving its intended network configuration.</p></li>
+</ol>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p>If a switch does not provision as expected, check the following:</p>
+<p><strong>DHCP server logs:</strong> Check the ZTP DHCP server pod logs for DHCP discover/offer/request/ack messages.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>logs<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>netris-ztp-dhcp-server
+</pre></div>
+</div>
+<p><strong>MAC address mismatch:</strong> Verify that the MAC address in the Netris inventory matches the eth0 MAC address printed on the switch.</p>
+<p><strong>Network reachability:</strong> From a controller node, ping the management subnet gateway to confirm the static routes are in place.</p>
+<p><strong>DHCP relay:</strong> Confirm the V-Net DHCP relay is pointing to the correct N/S VIP address.</p>
+<p><strong>Controller Management Address:</strong> Ensure the Controller Management Address in controller settings is set to the N/S VIP (or CMN VIP if appropriate).</p>
+<p><strong>NOS image the admin password:</strong> Verify the NOS image name in the Inventory Profile matches the NOS images uploaded to the local repo.</p>
+<p>For additional assistance, please contact Netris Support.</p>
 </section>
 </section>
 
@@ -1195,8 +1375,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="3.4.4.html" class="btn btn-neutral float-left" title="Netris 3.4.4 Release Notes (Sep/29/2023)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="3.4.0.html" class="btn btn-neutral float-right" title="Netris 3.4.0 Release Notes (Mar/06/2023)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controller-k8s-installation.html" class="btn btn-neutral float-left" title="Helm Chart Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../switch-agent-installation.html" class="btn btn-neutral float-right" title="Network Switch Initial Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -1220,7 +1400,7 @@
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: ztp
+      v: master
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

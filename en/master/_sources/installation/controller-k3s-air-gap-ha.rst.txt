@@ -324,8 +324,6 @@ We need a second VIP for the Netris Controller load balancer.
 
   kubectl -n kube-system get pods -l component=kube-vip-cloud-provider
 
-
-
 8. Install Traefik Proxy
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -352,13 +350,42 @@ We need a second VIP for the Netris Controller load balancer.
 
 It should show EXTERNAL-IP as 192.168.0.50.
 
+.. _north-south-vip:
 
-9. Deploy the Netris Controller
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+9. Deploy North-South controller VIP
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. tip:: The north-south VIP is optional and can be configured at a later stage. The north-south VIP is typically used to provide access to the Netris API and for :doc:`ZTP functionality </installation/ztp>`.
+
+1. Set vip_interface in manifests/kube-vip-ns.yaml (north-south NIC name)
+
+2. Apply
+
+.. code-block:: shell
+
+  kubectl apply -f manifests/kube-vip-ns.yaml
+
+3. Set cidr-global in manifests/kube-vip-ns-cloud-controller.yaml (north-south VIP address)
+
+4. Apply it
+
+.. code-block:: shell
+  
+  kubectl apply -f manifests/kube-vip-ns-cloud-controller.yaml
+
+5. Apply north-south traefik service manifest
+
+.. code-block:: shell
+  
+  kubectl apply -f manifests/traefik-ns-svc.yaml
 
 
-9.1 Install the MariaDB Operator
-""""""""""""""""""""""""""""""""
+10. Deploy the Netris Controller
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+10.1 Install the MariaDB Operator
+""""""""""""""""""""""""""""""""""
 
 1. CRDs:
 
@@ -407,7 +434,7 @@ Expected output:
 Wait until all pods are ready and in a running or completed state.
 
 
-9.2 Install Netris Controller
+10.2 Install Netris Controller
 """"""""""""""""""""""""""""""
 
 1. **HelmChart** manifest:
@@ -497,7 +524,7 @@ Expected output:
 
 
 
-10. (Optional) Enable SSL with cert-manager
+11. (Optional) Enable SSL with cert-manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you intend to secure the Controller via an FQDN and Let's Encrypt (or another ACME issuer) please also install cert-manager:
@@ -523,10 +550,9 @@ If you intend to secure the Controller via an FQDN and Let's Encrypt (or another
 
   kubectl apply -f manifests/netris-controller/cert-manager-resources.yaml
 
+.. _install-local-repo:
 
-
-
-11. Set Up the Local Netris Repository
+13. Set Up the Local Netris Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices do not have direct access to the internet. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository
@@ -555,7 +581,7 @@ The Netris Local Repository is essential for environments where switches, softga
 
 
 
-12. Validate Your Deployment
+13. Validate Your Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Access the Netris Controller** via https://192.168.0.50 (or your assigned FQDN).
