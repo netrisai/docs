@@ -42,7 +42,7 @@ Execute ``pulumi up`` or ``pulumi destroy`` to start/stop a simulation of what's
 .. tip::
     For your convenience, when you run ``pulumi up``, the system will dynamicall install a set of CLI aliases based on the simulation topology to make it easier to access the simulation servers and switches. You can get the list of aliases by running ``alias | grep ssh`` on the Netris controller server. When you execute ``pulumi destroy``, these aliases will be removed.
 
-    .. dropdown:: Show code
+    .. dropdown:: Expand to see the list of aliases
 
         .. code-block:: shell
 
