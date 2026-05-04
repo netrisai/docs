@@ -39,6 +39,65 @@ Execute ``pulumi up`` or ``pulumi destroy`` to start/stop a simulation of what's
 .. warning::
    Do not run ``pulumi stack rm main`` after ``pulumi destroy`` unless instructed by Netris support. This may cause issues with your simulation environment. Use only ``pulumi destroy`` to safely stop a simulation.
 
+.. tip::
+    For your convenience, when you run ``pulumi up``, the system will dynamicall install a set of CLI aliases based on the simulation topology to make it easier to access the simulation servers and switches. You can get the list of aliases by running ``alias | grep ssh`` on the Netris controller server. When you execute ``pulumi destroy``, these aliases will be removed.
+
+    .. dropdown:: Show code
+
+        .. code-block:: shell
+
+            ubuntu@sim-ctl:~/netris-cloudsim$ alias | grep ssh
+            alias hgx-pod00-su0-h00='ssh -o StrictHostKeyChecking=no root@192.168.16.2'
+            alias hgx-pod00-su0-h01='ssh -o StrictHostKeyChecking=no root@192.168.16.3'
+            alias hgx-pod00-su0-h02='ssh -o StrictHostKeyChecking=no root@192.168.16.4'
+            alias hgx-pod00-su0-h03='ssh -o StrictHostKeyChecking=no root@192.168.16.5'
+            alias hgx-pod00-su0-h04='ssh -o StrictHostKeyChecking=no root@192.168.16.6'
+            alias hgx-pod00-su0-h05='ssh -o StrictHostKeyChecking=no root@192.168.16.7'
+            alias hgx-pod00-su0-h06='ssh -o StrictHostKeyChecking=no root@192.168.16.8'
+            alias hgx-pod00-su0-h07='ssh -o StrictHostKeyChecking=no root@192.168.16.9'
+            alias hgx-pod00-su0-h08='ssh -o StrictHostKeyChecking=no root@192.168.16.10'
+            alias hgx-pod00-su0-h09='ssh -o StrictHostKeyChecking=no root@192.168.16.11'
+            alias hgx-pod00-su0-h10='ssh -o StrictHostKeyChecking=no root@192.168.16.12'
+            alias hgx-pod00-su0-h11='ssh -o StrictHostKeyChecking=no root@192.168.16.13'
+            alias hgx-pod00-su0-h12='ssh -o StrictHostKeyChecking=no root@192.168.16.14'
+            alias hgx-pod00-su0-h13='ssh -o StrictHostKeyChecking=no root@192.168.16.15'
+            alias hgx-pod00-su0-h14='ssh -o StrictHostKeyChecking=no root@192.168.16.16'
+            alias hgx-pod00-su0-h15='ssh -o StrictHostKeyChecking=no root@192.168.16.17'
+            alias hgx-pod00-su0-h16='ssh -o StrictHostKeyChecking=no root@192.168.16.18'
+            alias hgx-pod00-su0-h17='ssh -o StrictHostKeyChecking=no root@192.168.16.19'
+            alias hgx-pod00-su0-h18='ssh -o StrictHostKeyChecking=no root@192.168.16.20'
+            alias hgx-pod00-su0-h19='ssh -o StrictHostKeyChecking=no root@192.168.16.21'
+            alias hgx-pod00-su0-h20='ssh -o StrictHostKeyChecking=no root@192.168.16.22'
+            alias hgx-pod00-su0-h21='ssh -o StrictHostKeyChecking=no root@192.168.16.23'
+            alias hgx-pod00-su0-h22='ssh -o StrictHostKeyChecking=no root@192.168.16.24'
+            alias hgx-pod00-su0-h23='ssh -o StrictHostKeyChecking=no root@192.168.16.25'
+            alias hgx-pod00-su0-h24='ssh -o StrictHostKeyChecking=no root@192.168.16.26'
+            alias hgx-pod00-su0-h25='ssh -o StrictHostKeyChecking=no root@192.168.16.27'
+            alias hgx-pod00-su0-h26='ssh -o StrictHostKeyChecking=no root@192.168.16.28'
+            alias hgx-pod00-su0-h27='ssh -o StrictHostKeyChecking=no root@192.168.16.29'
+            alias hgx-pod00-su0-h28='ssh -o StrictHostKeyChecking=no root@192.168.16.30'
+            alias hgx-pod00-su0-h29='ssh -o StrictHostKeyChecking=no root@192.168.16.31'
+            alias hgx-pod00-su0-h30='ssh -o StrictHostKeyChecking=no root@192.168.16.32'
+            alias hgx-pod00-su0-h31='ssh -o StrictHostKeyChecking=no root@192.168.16.33'
+            alias isp-server='ssh -o StrictHostKeyChecking=no root@192.168.122.15'
+            alias leaf-pod00-su0-r0='ssh -o StrictHostKeyChecking=no cumulus@10.253.0.1'
+            alias leaf-pod00-su0-r1='ssh -o StrictHostKeyChecking=no cumulus@10.253.0.2'
+            alias leaf-pod00-su0-r2='ssh -o StrictHostKeyChecking=no cumulus@10.253.0.3'
+            alias leaf-pod00-su0-r3='ssh -o StrictHostKeyChecking=no cumulus@10.253.0.4'
+            alias mgmt-server='ssh -o StrictHostKeyChecking=no root@192.168.16.1'
+            alias ns-leaf-0='ssh -o StrictHostKeyChecking=no cumulus@10.3.0.1'
+            alias ns-leaf-1='ssh -o StrictHostKeyChecking=no cumulus@10.3.0.2'
+            alias ns-oob-leaf-0='ssh -o StrictHostKeyChecking=no cumulus@10.3.1.1'
+            alias ns-softgate-0='ssh -o StrictHostKeyChecking=no root@10.3.3.1'
+            alias ns-softgate-1='ssh -o StrictHostKeyChecking=no root@10.3.3.2'
+            alias ns-softgate-2='ssh -o StrictHostKeyChecking=no root@10.3.3.3'
+            alias ns-softgate-3='ssh -o StrictHostKeyChecking=no root@10.3.3.4'
+            alias ns-spine-0='ssh -o StrictHostKeyChecking=no cumulus@10.3.2.1'
+            alias ns-spine-1='ssh -o StrictHostKeyChecking=no cumulus@10.3.2.2'
+            alias server01='ssh -o StrictHostKeyChecking=no root@192.168.16.34'
+            alias spine-0-pod00='ssh -o StrictHostKeyChecking=no cumulus@10.253.32.2'
+            alias spine-1-pod00='ssh -o StrictHostKeyChecking=no cumulus@10.253.32.3'
+
 Monitoring Dashboard
 ====================
 
