@@ -7,7 +7,7 @@ Netris Host Networking
 Overview
 --------
 
-The Netris Host Networking Plugin is an optional component that automates the host-side networking required for GPU servers running on NVIDIA Spectrum-X east-west fabrics. It configures and maintains the BlueField-3 SuperNICs as required by the NVIDIA Spectrum-X Deployment Guide. Because the BlueField-3 Spectrum-X settings are normally non-persistent and must be reapplied on every boot event, Netris developed the NHN Plugin to handle the firmware checks, DMS behavior, RoCE and Adaptive Routing parameters, congestion control tuning, and other Spectrum-X requirements to remove the operational burden of managing the BlueField-3 configuration manually or through custom scripts.
+The Netris Host Networking Plugin is an optional component that automates the host-side networking required for GPU servers running on NVIDIA Spectrum-X east-west fabrics. It configures and maintains the BlueField3/ConnectX7/ConnectX8 SuperNICs as required by the NVIDIA Spectrum-X Deployment Guide. Because the BlueField3/ConnectX7/ConnectX8 Spectrum-X settings are normally non-persistent and must be reapplied on every boot event, Netris developed the NHN Plugin to handle the firmware checks, DMS behavior, RoCE and Adaptive Routing parameters, congestion control tuning, and other Spectrum-X requirements to remove the operational burden of managing the BlueField3/ConnectX7/ConnectX8 configuration manually or through custom scripts.
 
 In addition to managing the SuperNIC, the plugin generates and maintains the Linux host's network configuration using either netplan or ifupdown based on automatically detecting which network manager is active. This ensures that the host and the SuperNIC remain consistently configured with the correct Spectrum-X settings across reboots and link events.
 
@@ -16,14 +16,14 @@ How It Works
 
 The Netris Host Networking Plugin receives the server's networking metadata from the directly connected Netris-managed NVIDIA Spectrum-X switches. These switches, in turn, communicate with the Netris Controller to receive these metadata, repackage it into custom LLDP TLVs, and deliver it to the intended GPU servers over the local link.
 
-On the GPU server, the NHN plugin extracts the metadata from the LLDP messages, generates the appropriate configuration, and applies it to both the BlueField-3 SuperNIC and the host's network stack. If NHN detects any issues—such as missing parameters, firmware mismatches, or other validation failures—it returns error information to the Netris Controller using the same LLDP mechanism via the directly connected switches.
+On the GPU server, the NHN plugin extracts the metadata from the LLDP messages, generates the appropriate configuration, and applies it to both the BlueField3/ConnectX7/ConnectX8 SuperNIC and the host's network stack. If NHN detects any issues—such as missing parameters, firmware mismatches, or other validation failures—it returns error information to the Netris Controller using the same LLDP mechanism via the directly connected switches.
 
 Because NHN operates entirely through LLDP, it does not require any direct connectivity to the Netris Controller. This improves scalability and the overall security posture of the deployment.
 
-To configure and validate the BlueField-3 SuperNIC's configuration, the NHN daemon automatically runs:
+To configure and validate the BlueField3/ConnectX7/ConnectX8 SuperNIC's configuration, the NHN daemon automatically runs:
 
-- **bf3-config** — Configures the BlueField-3 SuperNICs with the Spectrum-X settings required for east-west fabric operation, as described in the NVIDIA Spectrum-X Deployment Guide.
-- **verifier** — Validates the BlueField-3 configuration and sends discovered issues to the Netris Controller using LLDP.
+- **bf3-config** — Configures the BlueField3/ConnectX7/ConnectX8 SuperNICs with the Spectrum-X settings required for east-west fabric operation, as described in the NVIDIA Spectrum-X Deployment Guide.
+- **verifier** — Validates the BlueField3/ConnectX7/ConnectX8 configuration and sends discovered issues to the Netris Controller using LLDP.
 
 Together, these functions keep both the host and the SuperNIC aligned with the Spectrum-X fabric's intended state without requiring custom scripts or manual reconfiguration.
 
@@ -34,7 +34,7 @@ System Requirements
 ~~~~~~~~~~~~~~~~~~~
 
 - Ubuntu Linux
-- NVIDIA BlueField3 SuperNIC.
+- NVIDIA BlueField3/ConnectX7/ConnectX8 SuperNIC.
 - Netris-managed NVIDIA Cumulus Linux switches.
 - LLDP is enabled on the server.
 
@@ -45,62 +45,44 @@ Dependencies
 - lldpd: LLDP daemon (required)
 - systemd (for netplan mode) or ifupdown (for interfaces mode)
 
-NVIDIA BlueField3
-
+NVIDIA BlueField3/ConnectX7/ConnectX8
 - doca-host - DOCA host software stack
+- doca-all  - DOCA ALL profile
 - doca-ofed - NVIDIA OFED drivers for DOCA
 - mft - Mellanox Firmware Tools
-- doca-nvn-cc - NVN Congestion Control daemon
+- libnccl2, libnccl-dev - NCCL and Spectrum-X NCCL Plugin
 - netplan.io - Network configuration management
 
 .. note::
 
-   The above NVIDIA packages must be obtained from `Nvidia directly <https://developer.nvidia.com/doca-downloads?deployment_platform=Host-Server&deployment_package=DOCA-Host&target_os=Linux&Architecture=x86_64&Profile=doca-all&Distribution=Ubuntu&version=22.04&installer_type=deb_online>`_ and are not distributed by Netris.
+   The above NVIDIA packages must be obtained from `Nvidia directly <https://developer.nvidia.com/doca-downloads?deployment_platform=Host-Server&deployment_package=DOCA-Host&target_os=Linux&Architecture=x86_64&Profile=doca-all&Distribution=Ubuntu&version=24.04&installer_type=deb_local>`_ and are not distributed by Netris.
 
 Recommended NVIDIA Component Versions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Spectrum-X v1.2.0
+Spectrum-X v2.1.2
 ^^^^^^^^^^^^^^^^^
++---------------------------------+--------------+------------+--------------+--------------+--------------+--------------+
+| Component                       | GPU Platform |            |              |              |              |              |
++---------------------------------+--------------+------------+--------------+--------------+--------------+--------------+
+|                                 | H100         | H200       | B200         | GB200        | B300         | GB300        |
++=================================+==============+============+==============+==============+==============+==============+
+| Cumulus Linux OS                | 5.16.1       | 5.16.1     | 5.16.1       | 5.16.1       | 5.16.1       | 5.16.1       |
++---------------------------------+--------------+------------+--------------+--------------+--------------+--------------+
+| ConnectX7 SuperNic Firmware     | 28.48.1000   | 28.48.1000 | 28.48.1120   | 28.48.1120   | -            | -            |
++---------------------------------+--------------+------------+--------------+--------------+--------------+--------------+
+| ConnectX8 SuperNic Firmware     | -            | -          | -            | -            | 40.48.1120   | 40.48.1120   |
++---------------------------------+--------------+------------+--------------+--------------+--------------+--------------+
+| BlueField3 SuperNic Firmware    | 32.48.1000   | 32.48.1000 | 32.48.1000   | -            | -            | -            |
++---------------------------------+--------------+------------+--------------+--------------+--------------+--------------+
+| BlueField Firmware Bundle (BFB) | 3.3.0        | 3.3.0      | 3.3.0        | -            | -            | -            |
++---------------------------------+--------------+------------+--------------+--------------+--------------+--------------+
+| NCCL                            | 2.29.2       | 2.29.2     | 2.29.2       | 2.29.2       | 2.29.2       | 2.29.2       |
++---------------------------------+--------------+------------+--------------+--------------+--------------+--------------+
+| DOCA Host                       | 3.3.0        | 3.3.0      | 3.3.0-088814 | 3.3.0-088814 | 3.3.0-088814 | 3.3.0-088814 |
+|                                 |              |            |              |              |              |              |
++---------------------------------+--------------+------------+--------------+--------------+--------------+--------------+
 
-.. list-table::
-   :header-rows: 1
 
-   * - Components
-     - Version
-   * - Cumulus Linux OS
-     - 5.11.0.0026
-   * - BlueField FW Bundle (BFB)
-     - 2.9.0-90
-   * - BlueField-3 Firmware
-     - 32.43.1014
-   * - DOCA Host
-     - 2.9.0-0.4.7
-   * - Spectrum-X Congestion Control Algorithm(SPC-X CC)
-     - 2.9.0072-1
-
-Spectrum-X v1.3.0
-^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :header-rows: 1
-
-   * - Components
-     - Version
-   * - Cumulus Linux OS
-     - 5.12.1.100
-   * - BlueField FW Bundle (BFB)
-     - 2.10.0-147_25.01
-   * - BlueField-3 Firmware
-     - 32.44.1036
-   * - DOCA Host
-     - 2.10.0-0.5.3
-   * - Spectrum-X Congestion Control Algorithm(SPC-X CC)
-     - 2.10
-
-.. tip::
-
-   See the `NVIDIA Spectrum-X Validated Solution Stack documentation <https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html>`_ for the latest recommended versions.
 
 Permissions
 ~~~~~~~~~~~
@@ -112,7 +94,7 @@ Installation Overview
 
 1. Install the netris-hnp Netris Host Networking package.
 2. Review the configuration file `/opt/netris/etc/netris.conf`.
-3. Download and install the NVIDIA dependencies for the BlueField-3 SuperNICs.
+3. Download and install the NVIDIA dependencies for the BlueField-3/ConnectX7/ConnectX8 SuperNICs.
 4. Run the SuperNIC configurator `/opt/netris/bin/bf3-config`.
 5. Verify the SuperNIC configuration with `/opt/netris/bin/verifier`.
 6. Start the NHN daemon.
@@ -152,6 +134,15 @@ The configuration file uses INI format with sections for different components.
 
    [general]
 
+   # Regex pattern to match east-west fabric switch names
+   # Default matches patterns like: su0-r0, su1-r1, su2-r3, etc.
+   ew-switch-name-template = su[0-9]-+r[0-3]+
+
+   # Plane type: number of independent network planes in the Spectrum-X compute fabric
+   # Supported values: SINGLE , DUAL , QUAD
+   # Default value: SINGLE
+   plane-type=single
+
    # Path to ifupdown configuration file
    ifupdown_cfg_path = /etc/network/interfaces.d/dpu_config
 
@@ -166,10 +157,6 @@ The configuration file uses INI format with sections for different components.
 
    # Path to bf3-config binary
    bf3config_bin_path= /opt/netris/bin/bf3-config
-
-   # Regex pattern to match east-west fabric switch names
-   # Default matches patterns like: su0-r0, su1-r1, su2-r3, etc.
-   ew-switch-name-template = su[0-9]-+r[0-3]+
 
    # How often to run verification (in seconds)
    verifier_run_interval = 300
@@ -200,12 +187,12 @@ Examples:
    # Match any switch with 'fabric' in the name
    ew-switch-name-template = .*fabric.*
 
-2. Configure BlueField3 NICs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2. Configure BlueField3/ConnectX7/ConnectX8 NICs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Download and install the required BlueField3 packages. See the NVIDIA Spectrum-X Deployment Guide version appropriate for your product.
+Download and install the required BlueField3/ConnectX7/ConnectX8 packages. See the NVIDIA Spectrum-X Deployment Guide version appropriate for your product.
 
-Once NVIDIA packages are installed, execute the command to configure the BlueField3 NICs
+Once NVIDIA packages are installed, execute the command to configure the BlueField3/ConnectX7/ConnectX8 NICs
 
 ::
 
@@ -218,10 +205,10 @@ The bf3-config will inform you if a reboot is required. A reboot is required whe
 
 After rebooting, run the `bf3-config` again to complete the configuration.
 
-3. Verify BlueField3 NICs Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3. Verify BlueField3/ConnectX7/ConnectX8 NICs Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To ensure that the BlueField3 parameters are correctly configured and there are no errors, run the following command
+To ensure that the NIC's parameters are correctly configured and there are no errors, run the following command
 
 ::
 
