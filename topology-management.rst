@@ -22,7 +22,7 @@ Adding Switches
 
 Every switch needs to be added to the Netris Controller inventory. You can add new devices with the following process:
 
-#. Navigate to **Network → Inventory**
+#. Navigate to **Network -> Inventory**
 #. Click the **Add** button
 #. Fill in the fields as described below
 #. Click the **Add** button
@@ -46,6 +46,57 @@ Adding SoftGates
 Every SoftGate node needs to be added to the Netris Controller inventory.
 
 The installation process for SoftGate HS is described in the :ref:`SoftGate HS installation <netris-softgate-HS-installation>` section.
+
+.. _topology-management-adding-servers:
+
+Adding Servers
+==============
+
+Every server needs to be added to the Netris Controller inventory. You can add new devices with the following process:
+
+#. Navigate to **Network -> Inventory**
+#. Click the **Add** button
+#. Fill in the fields as described below
+#. Click the **Add** button
+
+ .. csv-table:: Add Inventory Fields - Server
+    :file: tables/inventory-add-server.csv
+    :widths: 25, 75
+    :header-rows: 0
+
+**Example:**  Add a new Server.
+
+  .. image:: images/inventory_server.png
+     :align: center
+
+.. note:: Repeat this process to define all your servers.
+
+.. _topology-management-adding-dpus:
+
+Adding DPUs
+===========
+
+Starting with Netris 4.7, you can operate NVIDIA BlueField-3 DPUs. Unlike switches, servers, and SoftGates, DPUs are not standalone inventory objects, but rather a part of the server object. You can find more details about DPU support in Netris in the :doc:`NVIDIA BlueField-3 DPUs <bluefield-3-dpus>` section.
+
+To add a DPU to a Netris server object, add or edit the server object in which the DPU is installed and fill in the DPU fields as described below:
+
+#. Navigate to **Network -> Inventory**
+#. Find the server object in which the DPU is installed and click **Edit**. If the server object does not exist, create it with the process described in :ref:`Adding Servers <topology-management-adding-servers>` section.
+#. Set the **DPUs** field to the number of DPUs installed in the server and configured in Zero-Trust mode.
+#. Fill in the fields as described below
+#. Click the **Save** button
+
+ .. csv-table:: Add Inventory Fields - DPU
+    :file: tables/inventory-add-dpu.csv
+    :widths: 25, 75
+    :header-rows: 0
+
+**Example:**  Add a new DPU.
+
+  .. image:: images/inventory_dpu.png
+     :align: center
+
+.. note:: Repeat this process to define all your DPUs.
 
 .. _topology-manager:
 

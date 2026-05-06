@@ -7,7 +7,9 @@ Definitions
 
 When configuring and operating a Netris system, the following nomenclature is important to understand:
 
-* **User** - A user account for accessing Netris Controller through GUI, RestAPI, and Kubernetes. The default username is ``netris``, with password ``newNet0ps``. 
+* **User** - A user account for accessing Netris Controller through GUI, RestAPI, and Kubernetes. The default username is ``netris``, with password ``newNet0ps``.
+
+.. warning:: Change the default credentials immediately after initial installation. Using default credentials in production environments is a security risk.
 
 * **Netris VPC** - logically segregated virtual network.The VPC acts as a VRF in traditional networking, providing the flexibility to employ overlapping IP ranges across various VPCs while maintaining secure management and operation of resources.
 
