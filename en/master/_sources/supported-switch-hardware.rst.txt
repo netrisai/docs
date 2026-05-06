@@ -178,7 +178,13 @@ Nvidia
      - Cumulus Linux
      -
      - ✔
-
+   * - Nvidia
+     - SN6600
+     - Spectrum 6
+     - 64 x OSFP 800GbE + 2 x QSFP28 100GbE
+     - Cumulus Linux
+     -
+     - ✔
 
 Dell
 ======
