@@ -388,6 +388,8 @@
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-softgates">Adding SoftGates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-dpus">Adding DPUs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html#topology-manager">Topology Manager</a><ul>
@@ -632,6 +634,7 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#high-level-workflow">High-Level Workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#version-compatibility">Version Compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#installing-the-plugin">Installing the plugin</a></li>
@@ -795,6 +798,18 @@
 <li class="toctree-l3"><a class="reference internal" href="evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">BlueField-3 DPU Support in Netris</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#what-is-a-dpu">What Is a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#configuring-a-server-with-a-dpu">Configuring a Server with a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#monitoring">Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1170,8 +1185,14 @@
   <section id="definitions">
 <h1>Definitions<a class="headerlink" href="#definitions" title="Link to this heading"></a></h1>
 <p>When configuring and operating a Netris system, the following nomenclature is important to understand:</p>
-<ul>
+<ul class="simple">
 <li><p><strong>User</strong> - A user account for accessing Netris Controller through GUI, RestAPI, and Kubernetes. The default username is <code class="docutils literal notranslate"><span class="pre">netris</span></code>, with password <code class="docutils literal notranslate"><span class="pre">newNet0ps</span></code>.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Change the default credentials immediately after initial installation. Using default credentials in production environments is a security risk.</p>
+</div>
+<ul>
 <li><p><strong>Netris VPC</strong> - logically segregated virtual network.The VPC acts as a VRF in traditional networking, providing the flexibility to employ overlapping IP ranges across various VPCs while maintaining secure management and operation of resources.</p></li>
 <li><p><strong>V-Net (Virtual Network)</strong> is a Netris construct for grouping switch ports into a defined network segment—much like a traditional VLAN or a public cloud subnet. It is a virtual networking service that provides Layer-2 (unrouted) or Layer-3 (routed) virtual network segments in a Netris VPC. V-Net is assigned to one VPC and one or multiple sites. Your endpoints (servers, VMs) are connected to V-Nets.</p>
 <blockquote>

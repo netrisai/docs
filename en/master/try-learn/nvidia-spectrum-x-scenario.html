@@ -387,6 +387,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../topology-management.html">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-switches">Adding Switches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-softgates">Adding SoftGates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../topology-management.html#adding-dpus">Adding DPUs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../topology-management.html#topology-manager">Topology Manager</a><ul>
@@ -631,6 +633,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#high-level-workflow">High-Level Workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#version-compatibility">Version Compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-nvlink-integration.html#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../netris-nvlink-integration.html#installing-the-plugin">Installing the plugin</a></li>
@@ -794,6 +797,18 @@
 <li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bluefield-3-dpus.html">BlueField-3 DPU Support in Netris</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#what-is-a-dpu">What Is a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#configuring-a-server-with-a-dpu">Configuring a Server with a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#monitoring">Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1474,7 +1489,7 @@ Server Cluster allows the creation of VPC, IPAM, and V-Net objects by listing se
 <p>At this point this Netris Try &amp; Learn scenario has been concluded. You may want to clean up the lab to let your colleagues run through the scenario or if you are working on another one. There is no need to clean up if you are about to return the environment to the Netris team – we are going to recycle and reinstall the environment anyway.</p>
 <ol class="arabic">
 <li><p>Delete Server Clusters from the <code class="docutils literal notranslate"><span class="pre">Services-&gt;Server</span> <span class="pre">Cluster</span></code> menu.</p></li>
-<li><p>Delete Server Cluster Profile from the <code class="docutils literal notranslate"><span class="pre">Services-&gt;Server</span> <span class="pre">Cluster</span> <span class="pre">Profile</span></code> menu.</p></li>
+<li><p>Delete Server Cluster Templates from the <code class="docutils literal notranslate"><span class="pre">Services-&gt;Server</span> <span class="pre">Cluster</span> <span class="pre">Template</span></code> menu.</p></li>
 <li><p>SSH to the Netris controller server, <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/home/ubuntu/netris-cloudsim</span></code>, and execute <code class="docutils literal notranslate"><span class="pre">pulumi</span> <span class="pre">destroy</span></code> to destroy the infrastructure simulation.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>

@@ -388,6 +388,8 @@
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-softgates">Adding SoftGates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-dpus">Adding DPUs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html#topology-manager">Topology Manager</a><ul>
@@ -632,6 +634,7 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#high-level-workflow">High-Level Workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#version-compatibility">Version Compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#installing-the-plugin">Installing the plugin</a></li>
@@ -795,6 +798,18 @@
 <li class="toctree-l3"><a class="reference internal" href="evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">BlueField-3 DPU Support in Netris</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#what-is-a-dpu">What Is a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#configuring-a-server-with-a-dpu">Configuring a Server with a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#monitoring">Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1169,11 +1184,19 @@
              
   <section id="netris-architecture">
 <span id="id1"></span><h1>Netris Architecture<a class="headerlink" href="#netris-architecture" title="Link to this heading"></a></h1>
-<p>A Netris system is composed of 3 elements:</p>
+<p>A Netris system is composed of the following core elements:</p>
 <ul class="simple">
 <li><p>Netris Controller</p></li>
 <li><p>Netris Switch Agent</p></li>
-<li><p>Netris SoftGate</p></li>
+<li><p>Netris SoftGate (VPC Gateway)</p></li>
+</ul>
+<p>In AI networking environments, Netris also integrates with additional components:</p>
+<ul class="simple">
+<li><p>NVIDIA BlueField DPUs — managed as network devices participating in the EVPN/VXLAN fabric for hardware-enforced tenant isolation (see <a class="reference internal" href="bluefield-3-dpus.html"><span class="doc">BlueField-3 DPUs</span></a>)</p></li>
+<li><p>NVIDIA UFM — for automated InfiniBand partition (PKey) management (see <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">UFM Integration</span></a>)</p></li>
+<li><p>NVIDIA NMX-C — for automated NVLink partition management on NVL72/NVL144 fabrics (see <a class="reference internal" href="netris-nvlink-integration.html"><span class="doc">NMX-C Integration</span></a>)</p></li>
+<li><p>Netris Host Networking (NHN) Plugin — runs on GPU servers to configure IP addresses, routing, and RoCE parameters without requiring management network access</p></li>
+<li><p>EVPN-on-Host — extends the EVPN control plane into standard Linux hosts for VM and container tenant isolation (see <a class="reference internal" href="evpn-on-host.html"><span class="doc">EVPN-on-Host</span></a>)</p></li>
 </ul>
 <section id="netris-controller">
 <span id="netris-controller-def"></span><h2>Netris Controller<a class="headerlink" href="#netris-controller" title="Link to this heading"></a></h2>

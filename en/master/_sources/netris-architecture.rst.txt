@@ -7,11 +7,19 @@
 Netris Architecture
 ###################
 
-A Netris system is composed of 3 elements:
+A Netris system is composed of the following core elements:
 
 * Netris Controller
 * Netris Switch Agent
-* Netris SoftGate
+* Netris SoftGate (VPC Gateway)
+
+In AI networking environments, Netris also integrates with additional components:
+
+* NVIDIA BlueField DPUs — managed as network devices participating in the EVPN/VXLAN fabric for hardware-enforced tenant isolation (see :doc:`BlueField-3 DPUs <bluefield-3-dpus>`)
+* NVIDIA UFM — for automated InfiniBand partition (PKey) management (see :doc:`UFM Integration <netris-ufm-integration>`)
+* NVIDIA NMX-C — for automated NVLink partition management on NVL72/NVL144 fabrics (see :doc:`NMX-C Integration <netris-nvlink-integration>`)
+* Netris Host Networking (NHN) Plugin — runs on GPU servers to configure IP addresses, routing, and RoCE parameters without requiring management network access
+* EVPN-on-Host — extends the EVPN control plane into standard Linux hosts for VM and container tenant isolation (see :doc:`EVPN-on-Host <evpn-on-host>`)
 
 .. _netris_controller_def:
 

@@ -64,7 +64,6 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Netris Network Policies &amp; Protocol Configuration" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -76,7 +75,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netris VPC &mdash; Netris Documentation</title>
+  <title>BlueField-3 DPU Support in Netris &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -97,8 +96,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Switch Ports" href="switch-ports.html" />
-    <link rel="prev" title="Inventory" href="topology-management.html" /> 
+    <link rel="next" title="Topology &amp; Wiring Validation" href="monitoring-observability/topology-validation.html" />
+    <link rel="prev" title="EVPN on Host" href="evpn-on-host.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -211,10 +210,11 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">9. Deploy the Netris Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">10. (Optional) Enable SSL with cert-manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
@@ -268,11 +268,24 @@
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/Controller-local-repository.html">Netris Local Repository Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#when-why-to-use-the-local-repository">When &amp; Why to Use the Local Repository?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#how-to-enable-the-local-repository-on-the-netris-controller">How to Enable the Local Repository on the Netris Controller?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#how-to-consume-local-repository">How to consume local repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/Controller-local-repository.html#upgrade-local-repo-cache">Upgrade Local-Repo Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#configure-netris-local-repository">2. Configure Netris Local Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#upload-nos-images-to-the-local-repo">3. Upload NOS images to the local repo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#controller-management-address-ip-in-controller-settings">4. Controller Management Address IP in Controller Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ipam-subnets-in-the-management-vpc">5. IPAM Subnets in the Management VPC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#v-net-with-dhcp-relay">6. V-Net with DHCP Relay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#inventory-profile-configuration">7. Inventory Profile Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#switch-mac-address-in-inventory">8. Switch MAC Address in Inventory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#configure-static-routes-on-the-controller-nodes">9. Configure Static Routes on the Controller Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#deploy-the-netris-ztp-dhcp-server">10. Deploy the Netris ZTP DHCP Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#verify-ztp-readiness">11. Verify ZTP Readiness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#how-ztp-works-process-summary">How ZTP works (Process Summary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -328,8 +341,7 @@
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#system-requirements">System Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#dependencies">Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#recommended-nvidia-component-versions">Recommended NVIDIA Component Versions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="ai-netris-host-networking.html#spectrum-x-v1-2-0">Spectrum-X v1.2.0</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ai-netris-host-networking.html#spectrum-x-v1-3-0">Spectrum-X v1.3.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ai-netris-host-networking.html#spectrum-x-v2-1-2">Spectrum-X v2.1.2</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#permissions">Permissions</a></li>
@@ -339,8 +351,8 @@
 <li class="toctree-l2"><a class="reference internal" href="ai-netris-host-networking.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ai-netris-host-networking.html#configuration">Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#review-the-configuration-file">1. Review the Configuration File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#configure-bluefield3-nics">2. Configure BlueField3 NICs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#verify-bluefield3-nics-parameters">3. Verify BlueField3 NICs Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#configure-bluefield3-connectx7-connectx8-nics">2. Configure BlueField3/ConnectX7/ConnectX8 NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#verify-bluefield3-connectx7-connectx8-nics-parameters">3. Verify BlueField3/ConnectX7/ConnectX8 NICs Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#start-the-nhn-daemon">4. Start the NHN daemon</a></li>
 </ul>
 </li>
@@ -370,7 +382,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="site.html">Netris Site</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
@@ -383,41 +395,55 @@
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-links">Adding Links</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Netris VPC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#adding-new-vpc">Adding new VPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#ztp-settings">ZTP Settings</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#ip-address-management">IP Address Management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#allocations-and-subnets">Allocations and Subnets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ipam-tree-view">IPAM Tree View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#add-an-allocation">Add an Allocation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#add-a-subnet">Add a Subnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ipam.html">IP Address Management (IPAM)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#add-an-allocation">Add an Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#add-a-subnet">Add a Subnet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#bgp">BGP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#basic-bgp">Basic BGP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#advanced-bgp">Advanced BGP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bgp-objects">BGP Objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ipv4-prefix">IPv4 Prefix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ipv6-prefix">IPv6 Prefix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#community">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html">Netris VPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#adding-new-vpc">Adding new VPC</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#bgp-route-maps">BGP route-maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#ip-address-management">IP Address Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#ipam-tree-view">IPAM Tree View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-an-allocation">Add an Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-a-subnet">Add a Subnet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#bgp">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#basic-bgp">Basic BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#advanced-bgp">Advanced BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-objects">BGP Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#ipv4-prefix">IPv4 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#ipv6-prefix">IPv6 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#community">Community</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-route-maps">BGP route-maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="network-policies.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#static-routing">Static Routing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#nat">NAT</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#enabling-nat">Enabling NAT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#defining-nat-rules">Defining NAT rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#static-routing">Static Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#nat">NAT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#enabling-nat">Enabling NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-policies.html#defining-nat-rules">Defining NAT rules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#looking-glass">Looking Glass</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#vpc-peering">VPC Peering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#looking-glass">Looking Glass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-policies.html#vpc-peering">VPC Peering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="switch-ports.html">Switch Ports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lag.html">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
@@ -537,7 +563,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Netris Integrations</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="netris-ufm-integration.html">NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#key-benefits">Key Benefits</a></li>
@@ -773,16 +799,16 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">BlueField-3 DPU Support in Netris</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#what-is-a-dpu">What Is a DPU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#use-cases">Use Cases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#configuring-a-server-with-a-dpu">Configuring a Server with a DPU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#monitoring">Monitoring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BlueField-3 DPU Support in Netris</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-a-dpu">What Is a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-a-server-with-a-dpu">Configuring a Server with a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vf-interface-naming">VF Interface Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#monitoring">Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -894,8 +920,7 @@
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#system-requirements">System Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#dependencies">Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#recommended-nvidia-component-versions">Recommended NVIDIA Component Versions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="ai-netris-host-networking.html#spectrum-x-v1-2-0">Spectrum-X v1.2.0</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ai-netris-host-networking.html#spectrum-x-v1-3-0">Spectrum-X v1.3.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ai-netris-host-networking.html#spectrum-x-v2-1-2">Spectrum-X v2.1.2</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#permissions">Permissions</a></li>
@@ -905,8 +930,8 @@
 <li class="toctree-l2"><a class="reference internal" href="ai-netris-host-networking.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ai-netris-host-networking.html#configuration">Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#review-the-configuration-file">1. Review the Configuration File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#configure-bluefield3-nics">2. Configure BlueField3 NICs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#verify-bluefield3-nics-parameters">3. Verify BlueField3 NICs Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#configure-bluefield3-connectx7-connectx8-nics">2. Configure BlueField3/ConnectX7/ConnectX8 NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#verify-bluefield3-connectx7-connectx8-nics-parameters">3. Verify BlueField3/ConnectX7/ConnectX8 NICs Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ai-netris-host-networking.html#start-the-nhn-daemon">4. Start the NHN daemon</a></li>
 </ul>
 </li>
@@ -962,6 +987,13 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.9.0.html">Netris 4.9.0 Release Notes (Apr/30/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#what-s-new-in-netris-version">What’s new in Netris 4.9.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#bug-fixes-and-improvements">Bug fixes and improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.8.0.html">Netris 4.8.0 Release Notes (Apr/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.8.0.html#what-s-new-in-netris-version">What’s new in Netris 4.8.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.8.0.html#features">Features</a></li>
@@ -1136,606 +1168,157 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Netris VPC</li>
+      <li class="breadcrumb-item active">BlueField-3 DPU Support in Netris</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/network-policies.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/bluefield-3-dpus.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="topology-management.html" class="btn btn-neutral float-left" title="Inventory" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="switch-ports.html" class="btn btn-neutral float-right" title="Switch Ports" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="evpn-on-host.html" class="btn btn-neutral float-left" title="EVPN on Host" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="monitoring-observability/topology-validation.html" class="btn btn-neutral float-right" title="Topology &amp; Wiring Validation" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="netris-vpc">
-<span id="vpc-def"></span><h1>Netris VPC<a class="headerlink" href="#netris-vpc" title="Link to this heading"></a></h1>
-<p>The Netris VPC offers you the ability to operate your resources within a logically segregated virtual network. You can create, edit, and remove VPCs as needed. The VPC acts as a VRF in traditional networking, providing the flexibility to employ overlapping IP ranges across various VPCs while maintaining secure management and operation of resources.</p>
-<p>Netris Controller is preconfigured with a default system VPC-1. Use the default VPC, and create additional VPCs as needed in the future.</p>
-<p>The following diagram shows a VPC concept in the Netris Controller.</p>
-<img alt="VPC diagram" class="align-center" src="_images/vpc_diagram.png" />
-<p>VPC is the highest entity in the hierarchy and it spreads over all Sites.
-Take a look at the VPC features and services.</p>
-<p>VPC can be created in the Network → VPC section.</p>
-<section id="adding-new-vpc">
-<h2>Adding new VPC<a class="headerlink" href="#adding-new-vpc" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p>Navigate to Network → VPC in the web UI.</p></li>
-<li><p>Click Add button.</p></li>
-</ol>
-<img alt="_images/vpc_add.png" class="align-center" src="_images/vpc_add.png" />
+  <section id="bluefield-3-dpu-support-in-netris">
+<span id="bluefield-3-dpus"></span><h1>BlueField-3 DPU Support in Netris<a class="headerlink" href="#bluefield-3-dpu-support-in-netris" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Netris supports NVIDIA BlueField-3 Data Processing Units (DPUs) as managed network devices
+within a server’s inventory. Once registered, a DPU participates in the North-South Ethernet
+fabric alongside physical switches — establishing BGP EVPN adjacencies, functioning as a
+VXLAN Tunnel Endpoint (VTEP), and exposing Virtual Functions (VFs) to the host OS as
+assignable network endpoints.</p>
+<p>This allows you to attach a server’s workloads to a VNet through a DPU VF using the same
+workflow you would use for a physical switch port.</p>
 </section>
+<section id="what-is-a-dpu">
+<h2>What Is a DPU<a class="headerlink" href="#what-is-a-dpu" title="Link to this heading"></a></h2>
+<p>A Data Processing Unit is a system-on-a-chip device installed inside a server as a PCIe card.
+Unlike a standard NIC, a DPU contains its own CPU, memory, and OS, and can run networking
+services independently of the host.</p>
+<p>In DPU mode, a BlueField-3 behaves as an embedded managed switch inside the server. Its two
+external ports (p0 and p1) uplink to the data center Ethernet fabric. Internally, it exposes
+a configurable number of Virtual Functions to the host OS. Each VF appears to the host as an
+independent network interface and can be assigned to a tenant workload.</p>
+<img alt="BlueField-3 DPU connectivity diagram" class="align-center" src="_images/DPU_diagram.svg" />
+<p>From the fabric’s perspective, a VF is functionally equivalent to a physical switch port. When
+switches and DPUs participate in the same EVPN control plane, physical switch ports and DPU VFs
+can be members of the same VNet — enabling bare-metal and virtualized workloads to share
+hardware-enforced tenant isolation across both device types.</p>
+<p>Netris manages this unified fabric — programming EVPN and VXLAN consistently across switches
+and DPUs — and exposes both switch ports and DPU VFs through the same VNet attachment workflow.</p>
 </section>
-<section id="ip-address-management">
-<span id="ipam-def-vpc"></span><h1>IP Address Management<a class="headerlink" href="#ip-address-management" title="Link to this heading"></a></h1>
-<p>Netris IPAM allows users to document their IP addresses and track pool usage. It is designed to have a tree-like view to provide opportunity to perform any kind of subnetting.</p>
-<p>Purpose: Users define specific roles (purpose) for each subnet/address and only after that are allowed to use those subnets in services like V-Net, NAT, etc…</p>
-<p>Each VPC has its own IPAM table.</p>
-<section id="allocations-and-subnets">
-<h2>Allocations and Subnets<a class="headerlink" href="#allocations-and-subnets" title="Link to this heading"></a></h2>
-<p>There are 2 types of IPAM objects:</p>
-<ul class="simple">
-<li><p><strong>Allocations</strong> are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network.</p></li>
-<li><p><strong>Subnets</strong> are prefixes which are going to be used in services. Subnets are always children of allocations. Allocations do not have parent subnets.</p></li>
-</ul>
+<section id="prerequisites-and-assumptions">
+<h2>Prerequisites and Assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Link to this heading"></a></h2>
+<p>Before registering a DPU in Netris, the following conditions must be met.</p>
+<p><strong>DPU mode.</strong> BlueField-3 ships in DPU mode by default. Netris assumes the DPU is already in
+DPU mode. Mode switching and OS installation are typically handled by NVIDIA DPF.</p>
+<p><strong>Management reachability.</strong> The DPU must be reachable on the management network before Netris
+can communicate with it. Its 1 GbE MGMT port must be physically cabled and accessible.
+Management connectivity must be established either through an external out-of-band network or
+through a VNet that includes the DPU management port.</p>
+<p><strong>PXE limitation.</strong> BlueField-3 in DPU mode does not support PXE passthrough to the host
+server. If the host server needs to be bootstrapped via PXE, the DPU must be reachable over
+its MGMT port to configure host connectivity first.</p>
+<p><strong>Agent installation.</strong> Registering a DPU in Netris inventory does not automatically install
+the Netris agent onto the DPU. Agent installation is handled through DPF.</p>
 </section>
-<section id="ipam-tree-view">
-<h2>IPAM Tree View<a class="headerlink" href="#ipam-tree-view" title="Link to this heading"></a></h2>
-<img alt="IPAM Tree View" class="with-shadow align-center" src="_images/ipam_tree_new.png" />
-<br></section>
-<section id="add-an-allocation">
-<h2>Add an Allocation<a class="headerlink" href="#add-an-allocation" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p>Navigate to Network → IPAM</p></li>
-<li><p>Click the <strong>Add</strong> button</p></li>
-<li><p>Select <strong>Allocation</strong> from the bottom select box</p></li>
-<li><p>Fill in the rest of the fields based on the requirements listed below</p></li>
-<li><p>Click the <strong>Add</strong> button</p></li>
-</ol>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Allocation Fields</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
-<colgroup>
-<col style="width: 33.3%" />
-<col style="width: 66.7%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>Prefix</p></td>
-<td><p>Unique prefix for allocation, must not overlap with other allocations.</p></td>
-</tr>
-<tr class="row-even"><td><p>Name</p></td>
-<td><p>Unique name for current allocation.</p></td>
-</tr>
-<tr class="row-odd"><td><p>VPC</p></td>
-<td><p>Select a VPC to which the allocation belongs.</p></td>
-</tr>
-<tr class="row-even"><td><p>Tenant</p></td>
-<td><p>Owner of the allocation.</p></td>
-</tr>
-</tbody>
-</table>
-<img alt="Add a New IP Allocation" class="with-shadow align-center" src="_images/ipam_allocation.png" />
-<br></section>
-<section id="add-a-subnet">
-<h2>Add a Subnet<a class="headerlink" href="#add-a-subnet" title="Link to this heading"></a></h2>
-<p><strong>Create subnets for devices</strong></p>
-<p>You will require two subnets for your devices: one for loopback IP addresses and another for the management network. Note that device subnets must reside in the System VPC.</p>
-<ol class="arabic simple">
-<li><p>Navigate to Network → IPAM</p></li>
-<li><p>Click the <strong>Add</strong> button</p></li>
-<li><p>Select <strong>Subnet</strong> from the bottom select box</p></li>
-<li><p>Fill in the rest of the fields based on the requirements listed below</p></li>
-<li><p>Click the <strong>Add</strong> button</p></li>
-</ol>
-<img alt="_images/ipam_mgmt_subnet.png" class="align-center" src="_images/ipam_mgmt_subnet.png" />
-<img alt="_images/ipam_loopback_subnet.png" class="align-center" src="_images/ipam_loopback_subnet.png" />
-<p><strong>Create subnets for V-Nets</strong></p>
-<p>Create at least one subnet with the Common purpose to use it for a new V-Net. IP addresses from this subnet will be assigned to your servers.</p>
-<img alt="_images/ipam_common_subnet.png" class="align-center" src="_images/ipam_common_subnet.png" />
-<p><strong>Create subnets for Load-balancing service</strong></p>
-<p>If you plan to use load-balancing services, you should first define subnet(s) from which IP addresses will be assigned for Virtual IP (frontend).</p>
-<img alt="_images/ipam_l4lb_subnet.png" class="align-center" src="_images/ipam_l4lb_subnet.png" />
-<p id="ipam-nat-subnet"><strong>Create subnets for NAT service</strong></p>
-<p>If you plan to perform network address translation (NAT), you must first create subnets for this purpose.</p>
-<img alt="_images/ipam_nat_subnet.png" class="align-center" src="_images/ipam_nat_subnet.png" />
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Subnet fields</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
-<colgroup>
-<col style="width: 33.3%" />
-<col style="width: 66.7%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><strong>Prefix</strong></p></td>
-<td><p>Unique prefix for subnet, ust be included in one of allocations.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Name</strong></p></td>
-<td><p>Unique name for current subnet.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>VPC</strong></p></td>
-<td><p>Select a VPC to which the subnet belongs.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Tenant</strong></p></td>
-<td><p>Owner of the subnet.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Purpose</strong></p></td>
-<td><p>This field describes for what kind of services the current subnet can be used. It can have the following values:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><em>common</em> - ordinary subnet, can be used in v-nets and ROH.</p></li>
-<li><p><em>loopback</em> - hosts of this subnet can be used only as loopback IP addresses for Netris hardware (switches and/or softgates).</p></li>
-<li><p><em>management</em> - subnet which specifies the out-of-band management IP addresses for Netris hardware (switches and softgates).</p></li>
-<li><p><em>load-balancer</em> - hosts of this subnet are used in L4LB services only. Useful for deploying on-prem kubernetes with cloud-like experience.</p></li>
-<li><p><em>nat</em> - hosts of this subnet or subnet itself can be used to define NAT services.</p></li>
-<li><p><em>inactive</em> - can’t be used in any services, useful for reserving/documenting prefixes for future use.</p></li>
-</ul>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p><strong>Single-tenant server, North-South connectivity via DPU.</strong>
+The most common deployment. One DPU per server. The DPU’s two uplink ports connect to leaf
+switches. For a single-tenant server, it may be more appropriate to expose a Physical Function
+(PF) interface directly to the host OS rather than a VF, reducing overhead and simplifying
+the data path. All North-South traffic passes through the DPU rather than a direct switch
+port. The DPU handles BGP and VXLAN on behalf of the host.</p>
+<p><strong>Concurrent multi-tenancy on a shared server.</strong>
+Multiple tenants share a single physical server. Each tenant’s workload binds to one or more
+VFs. The DPU enforces isolation between tenants in hardware, offloading this function from
+the host CPU. Netris assigns each VF to the appropriate tenant VNet. This enables
+hardware-accelerated multi-tenancy without software overhead on the North-South datapath.</p>
+<p><strong>Mixed endpoints in a single VNet.</strong>
+A VNet can include both physical switch ports (for bare-metal servers connected directly to
+the fabric) and DPU VFs (for workloads running on DPU-equipped servers). Netris coordinates
+EVPN and VXLAN configuration across both device types so that all endpoints share the same
+tenant network with consistent hardware-enforced isolation.</p>
 </section>
+<section id="configuring-a-server-with-a-dpu">
+<h2>Configuring a Server with a DPU<a class="headerlink" href="#configuring-a-server-with-a-dpu" title="Link to this heading"></a></h2>
+<p>For step-by-step instructions on adding a DPU to a server object in Netris inventory,
+see <a class="reference internal" href="topology-management.html#topology-management-adding-dpus"><span class="std std-ref">Adding DPUs</span></a>.</p>
 </section>
-<section id="bgp">
-<span id="bgp-def"></span><h1>BGP<a class="headerlink" href="#bgp" title="Link to this heading"></a></h1>
-<section id="basic-bgp">
-<h2>Basic BGP<a class="headerlink" href="#basic-bgp" title="Link to this heading"></a></h2>
-<p>BGP neighbors can be declared in the Network → E-BGP section. Netris software will automatically generate and program the network configuration to meet the requirements.</p>
-<p><strong>Adding BGP Peers</strong></p>
-<ol class="arabic simple">
-<li><p>Navigate to Network → E-BGP in the web UI.</p></li>
-<li><p>Click the Add button.</p></li>
-<li><p>Fill in the fields as described in the table below.</p></li>
-<li><p>Click the Add button.</p></li>
-</ol>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">BGP Peer Fields</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
-<colgroup>
-<col style="width: 20.0%" />
-<col style="width: 60.0%" />
-<col style="width: 20.0%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><strong>Name</strong></p></td>
-<td><p>User assigned name of BGP session.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Description</strong></p></td>
-<td><p>Free description.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>VPC</strong></p></td>
-<td><p>Select the VPC to which the BGP session should belong.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Site</strong></p></td>
-<td><p>Select the site (data center) where this BGP session should be terminated on.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Softgate</strong></p></td>
-<td><p>Only if SoftGate nodes are in use. Define on which node BGP session should be terminated on.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Neighbor</strong> Autonomous System number of the remote side. (Local AS is defined at Network → Sites section).</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Terminate on switch</strong></p></td>
-<td><p>Typically used for setups without SoftGate</p></td>
-<td><p>specifically for connecting with upstream routers. It instructs the system to terminate the BGP session directly on the switch.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Switch port</strong></p></td>
-<td><p>Switch Port for the physical cable to the BGP neighbor (any port on the fabric). Optionally can be bound to a V-Net service. Typically used for peering with IXPs or systems like GGC (Google Global Cache).</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>VLAN ID</strong></p></td>
-<td><p>Optionally tag with a VLAN ID (usually untagged).</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>IP Version</strong></p></td>
-<td><p>IPv4 or IPv6.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Local IP</strong></p></td>
-<td><p>BGP peering IP address on Netris controlled side.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Remote IP</strong></p></td>
-<td><p>BGP peering IP address on the remote end.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>State</strong></p></td>
-<td><p>Administrative state (Enabled/Disabled).</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Advanced</strong></p></td>
-<td><p>Advanced policy settings are described in the next section.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Tags</strong></p></td>
-<td><p>Tags associated with the BGP session.</p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Example: Declare a basic BGP neighbor.</p>
-<img alt="_images/create_bgp.png" class="align-center" src="_images/create_bgp.png" />
-<p>If everything is correct, State, port and BGP will get green status.</p>
-<img alt="_images/bgp_status.png" class="align-center" src="_images/bgp_status.png" />
-</section>
-<section id="advanced-bgp">
-<h2>Advanced BGP<a class="headerlink" href="#advanced-bgp" title="Link to this heading"></a></h2>
-<p>BGP neighbor declaration can optionally include advanced BGP attributes and BGP route-maps for fine-tuning of BGP policies.</p>
-<p>Click Advanced to expand the BGP neighbor add/edit window.</p>
-<table class="docutils align-default" id="id4">
-<caption><span class="caption-text">BGP Peer Fields - Advanced</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
-<colgroup>
-<col style="width: 20.0%" />
-<col style="width: 60.0%" />
-<col style="width: 20.0%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><strong>Connect via V-Net</strong></p></td>
-<td><p>Select a V-Net if the BGP session is to be established with an endpoint from that V-Net.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>BFD</strong></p></td>
-<td><p>Enable/Disable BFD.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>BGP Timers</strong></p></td>
-<td><p>Keepalive Interval</p></td>
-<td><p>Hold Time and Connect Retry timers for the BGP session. Netris default values are 3 10 10.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Neighbor address</strong></p></td>
-<td><p>IP address of the neighbor when peering with the loopback IP address instead of the interface IP address (aka Multihop).</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Update source</strong></p></td>
-<td><p>When Multihop BGP peering is used it allows the operator to choose one of the loopback IP addresses of the SoftGate node as a BGP speaker source IP address.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>BGP password</strong></p></td>
-<td><p>Password for the BGP session</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Allowas-in</strong></p></td>
-<td><p>Define the number of allowed occurrences of the self AS number in the received BGP NLRI to consider it valid (normally 0).</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Default Originate</strong></p></td>
-<td><p>Originate default route to the current neighbor.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Prefix Inbound Max</strong></p></td>
-<td><p>Drop the BGP session if the number of received prefixes exceeds this max limit. For switch termination maximum allowed is 1000 prefixes and SoftGate termination can handle up to one million prefixes.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Inbound Route-Map</strong></p></td>
-<td><p>Apply BGP policies described in a route-map for inbound BGP updates.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Outbound Route-Map</strong></p></td>
-<td><p>Apply BGP policies described in a route-map for outbound BGP updates.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Local Preference</strong></p></td>
-<td><p>Set local preference for all inbound routes for the current neighbor.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Weight</strong></p></td>
-<td><p>Set weight for all inbound routes for the current neighbor.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Prepend Inbound (times)</strong></p></td>
-<td><p>How many times to prepend self AS number for inbound routes.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Prepend Outbound (times)</strong></p></td>
-<td><p>How many times to prepend self AS number for outbound routes.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Prefix List Inbound</strong></p></td>
-<td><p>List of IP addresses prefixes to permit or deny inbound.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Prefix List Outbound</strong></p></td>
-<td><p>List of IP addresses prefixes to permit or deny outbound.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>Send BGP Community</strong></p></td>
-<td><p>List of BGP communities to send to the current neighbor.</p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="bgp-objects">
-<h2>BGP Objects<a class="headerlink" href="#bgp-objects" title="Link to this heading"></a></h2>
-<div class="line-block">
-<div class="line">Under Network → E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.</div>
-<div class="line">Supported objects include:</div>
+<section id="vf-interface-naming">
+<h2>VF Interface Naming<a class="headerlink" href="#vf-interface-naming" title="Link to this heading"></a></h2>
+<p>After save, Netris generates VF interface objects for each DPU based on the port count and
+VF count configured.</p>
+<p>For a DPU with two physical ports and N VFs total, VFs are split evenly between the two
+physical functions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pf0vf0</span><span class="o">-</span><span class="n">dpu1</span> <span class="n">through</span> <span class="n">pf0vf</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">dpu1</span>
+<span class="n">pf1vf0</span><span class="o">-</span><span class="n">dpu1</span> <span class="n">through</span> <span class="n">pf1vf</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">dpu1</span>
+</pre></div>
 </div>
-<ul class="simple">
-<li><p>IPv4 Prefix</p></li>
-<li><p>IPv6 Prefix</p></li>
-<li><p>AS-PATH</p></li>
-<li><p>Community</p></li>
-<li><p>Extended Community</p></li>
-<li><p>Large Community</p></li>
-</ul>
-<section id="ipv4-prefix">
-<h3>IPv4 Prefix<a class="headerlink" href="#ipv4-prefix" title="Link to this heading"></a></h3>
-<div class="line-block">
-<div class="line">The rules are defined one per line.</div>
-<div class="line">Each line in IPv4 prefix list field consists of three parts:</div>
+<p>For a DPU with one physical port and N VFs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pf0vf0</span><span class="o">-</span><span class="n">dpu1</span> <span class="n">through</span> <span class="n">pf0vf</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">dpu1</span>
+</pre></div>
 </div>
-<ul class="simple">
-<li><p>Action - Possible values are: permit or deny (mandatory).</p></li>
-<li><p>IP Prefix - Any valid IPv4 prefix (mandatory).</p></li>
-<li><p>Length - Possible values are: le &lt;len&gt;, ge &lt;len&gt; or ge &lt;len&gt; le &lt;len&gt;.</p></li>
-</ul>
-<p>Example: Creating an IPv4 Prefix list.</p>
-<img alt="_images/ipv4_prefix.png" class="align-center" src="_images/ipv4_prefix.png" />
+<img alt="DPU interface list in Netris inventory" class="align-center" src="_images/dpu_interfaces.png" />
+<p>The suffix <code class="docutils literal notranslate"><span class="pre">-dpu1</span></code> corresponds to the DPU’s index within the server object. A second DPU in
+the same server would produce <code class="docutils literal notranslate"><span class="pre">-dpu2</span></code>, and so on.</p>
+<p>Physical uplink ports appear in the interface list as the ethX names they were mapped to.
+Auto-generated descriptions are injected if the description field is empty (for example,
+“DPU 1 port 1”, “DPU 1 MGMT”, “DPU 1 pf0vf0”). These descriptions are editable.</p>
 </section>
-<section id="ipv6-prefix">
-<h3>IPv6 Prefix<a class="headerlink" href="#ipv6-prefix" title="Link to this heading"></a></h3>
-<div class="line-block">
-<div class="line">Rules defined one per line.</div>
-<div class="line">Each line in IPv6 prefix list field consists of three parts:</div>
-</div>
-<ul class="simple">
-<li><p>Action - Possible values are: permit or deny (mandatory).</p></li>
-<li><p>IP Prefix - Any valid IPv6 prefix (mandatory).</p></li>
-<li><p>Keyword - Possible values are: le &lt;len&gt;, ge &lt;len&gt; or ge &lt;len&gt; le &lt;len&gt;.</p></li>
-</ul>
-<p>Example: Creating an IPv6 Prefix list.</p>
-<img alt="_images/ipv6_prefix.png" class="align-center" src="_images/ipv6_prefix.png" />
+<section id="connecting-dpu-vfs-to-a-vnet">
+<h2>Connecting DPU VFs to a VNet<a class="headerlink" href="#connecting-dpu-vfs-to-a-vnet" title="Link to this heading"></a></h2>
+<p>Once the DPU is saved and the agent is installed and reporting, its VF interfaces are available
+as endpoints in the VNet attach workflow — in the same selector as physical switch ports.</p>
+<p>To attach a VF to a VNet, open the target VNet, add a port, and select the VF by name (for
+example, <code class="docutils literal notranslate"><span class="pre">pf0vf3-dpu1&#64;servername</span></code>). The selector supports the same checkbox and label-picker
+interaction used for switch ports.</p>
+<p>To bulk-assign multiple VFs to a VNet, use labels. Assign a label to the VFs you want to
+group, then select by label in the VNet port selector.</p>
+<p>To add both a physical switch port and a DPU VF to the same VNet, add each as a separate port
+entry. Netris programs EVPN and VXLAN consistently across both device types, so both endpoints
+participate in the same tenant network with hardware-enforced isolation.</p>
+<p>For full VNet configuration instructions, see <a class="reference internal" href="vnet.html#v-net-def"><span class="std std-ref">V-Net</span></a>.</p>
 </section>
-<section id="community">
-<h3>Community<a class="headerlink" href="#community" title="Link to this heading"></a></h3>
-<div class="line-block">
-<div class="line">Community field has two parts:</div>
-</div>
-<ul class="simple">
-<li><p><strong>Action</strong> - Possible values: permit or deny (mandatory).</p></li>
-<li><p><strong>Community string</strong> - Allowed format: <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">permit/deny&gt;</span> <span class="pre">LINE</span></code>. LINE is AA:NN Community number in AA:NN format (where AA and NN are (0-65535)) or <code class="docutils literal notranslate"><span class="pre">local-AS</span></code>, <code class="docutils literal notranslate"><span class="pre">no-advertise</span></code>, <code class="docutils literal notranslate"><span class="pre">no-export</span></code>, <code class="docutils literal notranslate"><span class="pre">internet</span></code> or <code class="docutils literal notranslate"><span class="pre">additive</span></code>.</p></li>
-</ul>
-<p>Example: Creating community.</p>
-<img alt="_images/community.png" class="align-center" src="_images/community.png" />
+<section id="monitoring">
+<h2>Monitoring<a class="headerlink" href="#monitoring" title="Link to this heading"></a></h2>
+<p>DPU health and heartbeat are surfaced in the Inventory view as child status indicators under
+the parent server.</p>
+<p><strong>Heartbeat</strong> — reflects connectivity between the Netris controller and the DPU agent.
+Displayed per DPU. The count shown (for example, OK (2)) represents the number of DPUs in
+that server with that heartbeat status.</p>
+<p><strong>Health checks</strong> — aggregated across all DPUs in the server. The total count across OK, Warn,
+and Crit equals the combined number of health checks for all DPUs in the server.</p>
+<p>DPU names appear in the <code class="docutils literal notranslate"><span class="pre">dpuX&#64;hostname</span></code> format in the Dashboard Agent Heartbeats view (for
+example, <code class="docutils literal notranslate"><span class="pre">dpu1&#64;hgx-pod00-su0-h01</span></code>). DPU health monitors are included in the Managed HW
+Health dashboard view.</p>
+<p>Expanding the server row in Inventory shows a per-DPU section with loopback IP, MGMT IP,
+heartbeat state, aggregated health check counts, and a three-dot menu with options for
+Network Interfaces and Install Agent.</p>
 </section>
+<section id="known-limitations">
+<h2>Known Limitations<a class="headerlink" href="#known-limitations" title="Link to this heading"></a></h2>
+<p>BlueField-3 in DPU mode does not support PXE passthrough to the host. The DPU MGMT port must
+be physically cabled and reachable during server deployment.</p>
+<p>Port mappings and VF count cannot be modified after the server object is saved. To change
+them, delete and recreate the server object.</p>
+<p>Reducing the DPU count on an existing server removes all configuration and VF interfaces
+associated with the removed DPU blocks. This action cannot be undone.</p>
+<p>Netris does not manage DPU OS installation, firmware updates, or mode switching. These are
+handled through NVIDIA DPF before the DPU is registered in Netris.</p>
 </section>
-<section id="bgp-route-maps">
-<h2>BGP route-maps<a class="headerlink" href="#bgp-route-maps" title="Link to this heading"></a></h2>
-<div class="line-block">
-<div class="line">Under the Network → E-BGP Route-maps section, you can define route-map policies, which can be associated with the BGP neighbors inbound or outbound.</div>
-</div>
-<div class="line-block">
-<div class="line">Description of route-map fields:</div>
-</div>
-<ul class="simple">
-<li><p><strong>Sequence Number</strong> - Automatically assigned a sequence number. Drag and move sequences to organize the order.</p></li>
-<li><p><strong>Description</strong> - Free description.</p></li>
-<li><p><strong>Policy</strong> - Permit or deny the routes which match below all match clauses within the current sequence.</p></li>
-<li><p><strong>Match</strong> - Rules for route matching.</p>
-<ul>
-<li><p><strong>Type</strong> - Type of the object to match: AS-Path, Community, Extended Community, Large Community, IPv4 prefix-list, IPv4 next-hop, Route Source, IPv6 prefix-list. IPv6 next-hop, local-preference, MED, Origin, Route Tag.</p></li>
-<li><p><strong>Object</strong> - Select an object from the list.</p></li>
-</ul>
-</li>
-<li><p><strong>Action</strong> - Action when all match clauses are met.</p>
-<ul>
-<li><p><strong>Action type</strong> - Define whether to manipulate a particular BGP attribute or go to another sequence.</p></li>
-<li><p><strong>Attribute</strong> - The attribute to be manipulated.</p></li>
-<li><p><strong>Value</strong> - New attribute value.</p></li>
-</ul>
-</li>
-</ul>
-<p>Example: route-map</p>
-<img alt="_images/route-map.png" class="with-shadow align-center" src="_images/route-map.png" />
-</section>
-<section id="ebgp-importing-non-default-routes-into-a-vpc">
-<h2>eBGP Importing Non-Default Routes into a VPC<a class="headerlink" href="#ebgp-importing-non-default-routes-into-a-vpc" title="Link to this heading"></a></h2>
-<p>In multi-uplink deployments SoftGate Hyperscale (SG-HS) nodes can be eBGP peered with different upstream networks.</p>
-<p>By default, Netris SoftGates only redistribute the default route into tenant VPCs, regardless of what other prefixes they receive from upstream peers. This ensures a consistent routing table across all SoftGates, but can lead to suboptimal routing, where traffic from the VPC is always routed to the SoftGate receiving the default, even if another SoftGate has a better path via specific prefixes.</p>
-<p>Starting with version 4.5.4, Netris introduces a mechanism to selectively import non-default routes into VPCs by tagging them with a special <strong>BGP community: 0:7</strong>. Routes marked with this community will be redistributed into tenant VPCs alongside the default.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Importing additional prefixes into VPCs increases the size of the routing table on SoftGates and switches. Ensure that your hardware can handle the increased load, especially if you plan to import many prefixes.</p>
-</div>
-<section id="how-to-import-non-default-prefixes">
-<h3>How to Import Non-Default Prefixes<a class="headerlink" href="#how-to-import-non-default-prefixes" title="Link to this heading"></a></h3>
-<p>You have two options for tagging the desired prefixes with the required 0:7 community.</p>
-<p><strong>Option 1</strong>: Tag Inbound in Netris (on SoftGate HS)</p>
-<p>If you manage the eBGP peer configuration using the Netris Controller, you can mark specific routes for redistribution into tenant VPCs by tagging them with the special BGP community 0:7.</p>
-<ol class="arabic simple">
-<li><p>Create a Prefix List under Network → E-BGP Objects</p></li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Do not include 0.0.0.0/0 — it is automatically imported</p>
-</div>
-<img alt="prefix list" class="with-shadow align-center" src="_images/prefix-list-imported-prefixes.png" />
-<br/><ol class="arabic simple" start="2">
-<li><p>Create a Route Map under Network → E-BGP Route-Maps</p></li>
-</ol>
-<p>Add a new route-map that</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Matches the prefix list created in Step 1</p></li>
-<li><p>Sets the BGP community to <code class="docutils literal notranslate"><span class="pre">0:7</span></code></p></li>
-</ul>
-</div></blockquote>
-<img alt="route-map" class="with-shadow align-center" src="_images/ebgp-route-map-set-07.png" />
-<br/><ol class="arabic simple" start="3">
-<li><p>Attach the Route Map to the eBGP Peer under Network → E-BGP</p></li>
-</ol>
-<p>Edit the relevant eBGP neighbor and under Advanced Settings, set the inbound route-map to the one created in Step 2</p>
-<img alt="inbound route-map" class="with-shadow align-center" src="_images/ebgp-advanced-inbound-route-map.png" />
-<br/><p>Once applied, any matching prefixes received from this eBGP peer will be tagged with community 0:7, making them eligible for redistribution into tenant VPCs by the SoftGate.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You can verify imported routes in the Network → Looking Glass section of the Controller UI.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>When configuring an inbound route-map on an eBGP peer, an outbound route-map must also be set. If no outbound route-map is needed, create a dummy one that permits all routes without modification and attach it to the outbound direction.</p>
-</div>
-<p><strong>Option 2</strong>: Tag Outbound from External BGP Peer</p>
-<p>Alternatively, the external BGP speaker can set the 0:7 community on outbound updates before advertising routes to the SoftGate. This option does not require any configuration in Netris, as long as the incoming route already carries the community.</p>
-<p>This is useful when the upstream router is under the customer’s control and managing policy from that side is preferred.</p>
-</section>
-</section>
-</section>
-<section id="static-routing">
-<h1>Static Routing<a class="headerlink" href="#static-routing" title="Link to this heading"></a></h1>
-<p>Located under Network → Routes is a method for describing static routing policies that Netris will dynamically inject on switches and/or SoftGate where appropriate. We recommend using the Routes only if BGP is not supported by the remote end.</p>
-<p>Typical use cases for static routing:</p>
-<ul class="simple">
-<li><p>To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported.</p></li>
-<li><p>Temporary interconnection with the old network for a migration.</p></li>
-<li><p>Routing a subnet behind a VM hypervisor machine for an internal VM network.</p></li>
-<li><p>Specifically routing traffic destined to a particular prefix through an out-of-band management network.</p></li>
-</ul>
-<p>Add new static route fields description:</p>
-<ul class="simple">
-<li><p><strong>Prefix</strong> - Route destination to match.</p></li>
-<li><p><strong>Next-Hop</strong> - Traffic destined to the Prefix will be routed towards the Next-Hop. Note that static routes will be injected only on units that have the Next-Hop as a connected network.</p></li>
-<li><p><strong>Description</strong> - Free description.</p></li>
-<li><p><strong>VPC</strong> - Select a VPC to which the static route belongs.</p></li>
-<li><p><strong>Site</strong> - Site where Route belongs.</p></li>
-<li><p><strong>State</strong> - Administrative (enable/disable) state of the Route.</p></li>
-<li><p><strong>Apply to</strong> -  Limit the scope to particular units. It’s typically used for Null routes.</p></li>
-</ul>
-<p>Example: Default route pointing to a Next-Hop that belongs to one of V-Nets.</p>
-<img alt="_images/static_route_empty.png" class="align-center" src="_images/static_route_empty.png" />
-<p>Example: Adding a back route to 10.254.0.0/16 through an out-of-band management network.</p>
-<img alt="_images/static_route2_empty.png" class="align-center" src="_images/static_route2_empty.png" />
-<p>Screenshot shows that the back route is actually applied on Softgate1 and Softgate2 .</p>
-<img alt="_images/static_route3.png" class="align-center" src="_images/static_route3.png" />
-</section>
-<section id="nat">
-<span id="nat-def"></span><h1>NAT<a class="headerlink" href="#nat" title="Link to this heading"></a></h1>
-<p>If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT, DNAT and Masquerade features.</p>
-<section id="enabling-nat">
-<h2>Enabling NAT<a class="headerlink" href="#enabling-nat" title="Link to this heading"></a></h2>
-<p>To enable NAT for a given site, you first need to <a class="reference internal" href="#ipam-nat-subnet"><span class="std std-ref">create a subnet with NAT purpose</span></a> in the IPAM section. The NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need.
-Adding an IP Subnet under Network → IPAM.</p>
-</section>
-<section id="defining-nat-rules">
-<h2>Defining NAT rules<a class="headerlink" href="#defining-nat-rules" title="Link to this heading"></a></h2>
-<p>NAT rules are defined under Network → NAT.</p>
-<p>Example: SNAT all hosts on 10.0.1.0/24subnet to the Internet using 192.0.2.128as a global IP.</p>
-<img alt="_images/snat_add.png" class="align-center" src="_images/snat_add.png" />
-<p>Example: Port forwarding. DNAT the traffic destined to 192.0.2.130:8080 to be forwarded to the host 10.0.1.100 on port tcp/80.</p>
-<img alt="_images/dnat_add.png" class="align-center" src="_images/dnat_add.png" />
-<table class="docutils align-default" id="id5">
-<caption><span class="caption-text">NAT Rule Fields</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
-<colgroup>
-<col style="width: 25.0%" />
-<col style="width: 75.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Unique name.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>State</strong></p></td>
-<td><p>State of rule (enabled or disabled).</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Site</strong></p></td>
-<td><p>Site to apply the rule.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Action</strong></p></td>
-<td><p><em>SNAT</em> - Replace the source IP address with specified NAT IP along with port overloading.
-<em>DNAT</em> - Replace the destination IP address and/or destination port with specified NAT IP.
-<em>ACCEPT</em> - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule.
-<em>MASQUERADE</em> - Replace the source IP address with the IP address of the exit interface.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Protocol</strong></p></td>
-<td><p><em>All</em> - Match any IP protocol.
-<em>TCP</em> - Match TCP traffic and ports.
-<em>UDP</em> - Match UDP traffic and ports.
-<em>ICMP</em> - Match ICMP traffic.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Source</strong></p></td>
-<td><p><em>Address</em> - Source IP address to match.
-<em>Port</em> - Source ports range to match with this value (TCP/UDP).</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Destination</strong></p></td>
-<td><p><em>Address</em> - Destination IP address to match. In the case of DNAT it should be one of the predefined NAT IP addresses.
-<em>Port</em> - For DNAT only, to match a single destination port.
-<em>Ports</em> - For SNAT/ACCEPT only. Destination ports range  to match with this value (TCP/UDP).</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>DNAT to IP</strong></p></td>
-<td><p>The global IP address for SNAT to be visible on the Public Internet. The internal IP address for DNAT to replace the original destination address with.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>DNAT to Port</strong></p></td>
-<td><p>The Port to which destination Port of the packet should be NAT’d.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Status</strong></p></td>
-<td><p>Administrative state (enable/disable).</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Comment</strong></p></td>
-<td><p>Free optional comment.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="looking-glass">
-<h1>Looking Glass<a class="headerlink" href="#looking-glass" title="Link to this heading"></a></h1>
-<p>The Looking Glass Is a GUI-based tool for looking up routing information from a switch or SoftGate perspective. You can access the Looking Glass either from Topology, individually for every device (right click on device → details → Looking Glass), or by navigating to Network → Looking Glass then selecting the device from the top-left dropdown menu.</p>
-<p>Looking Glass controls described for IPv4/IPv6 protocol families.</p>
-<ul class="simple">
-<li><p><strong>VPC</strong> - select a VPC.</p></li>
-<li><p><strong>BGP Summary</strong> - Shows the summary of BGP adjacencies with neighbors, interface names, prefixes received. You can click on the neighbor name then query for the list of advertised/received prefixes.</p></li>
-<li><p><strong>BGP Route</strong> - Lookup the BGP table (RIB) for the given address.</p></li>
-<li><p><strong>Route</strong> - Lookup switch routing table for the given address.</p></li>
-<li><p><strong>Traceroute</strong> - Conduct a traceroute from the selected device towards the given destination, optionally allowing to determine the source IP address.</p></li>
-<li><p><strong>Ping</strong> - Execute a ping on the selected device towards the given destination, optionally allowing to select the source IP address.</p></li>
-</ul>
-<p>Example: listing BGP neighbors of a switch and number of received prefixes for the Underlay VPC.</p>
-<img alt="_images/lg_summary.png" class="align-center" src="_images/lg_summary.png" />
-<p>Example: BGP Route - looking up V-Net subnet from switch11 perspective. Switch11 is load balancing between four available paths.</p>
-<img alt="_images/lg_bgp_route.png" class="align-center" src="_images/lg_bgp_route.png" />
-<p>Example: Ping.</p>
-<img alt="_images/lg_ping.png" class="align-center" src="_images/lg_ping.png" />
-<div class="line-block">
-<div class="line">Looking Glass controls described for the EVPN family.</div>
-</div>
-<ul class="simple">
-<li><p><strong>VPC</strong> - select a VPC.</p></li>
-<li><p><strong>BGP Summary</strong> - Show brief summary of BGP adjacencies with neighbors, interface names, and EVPN prefixes received.</p></li>
-<li><p><strong>VNI</strong> - List VNIs learned.</p></li>
-<li><p><strong>BGP EVPN</strong> - List detailed EVPN routing information optionally for the given route distinguisher.</p></li>
-<li><p><strong>MAC table</strong> - List MAC address table for the given VNI.</p></li>
-</ul>
-<p>Example: Listing MAC addresses on VNI 50.</p>
-<img alt="_images/lg_mac.png" class="align-center" src="_images/lg_mac.png" />
-<p>Example: EVPN routing information listing for a specified route distinguisher.</p>
-<img alt="_images/lg_rd.png" class="align-center" src="_images/lg_rd.png" />
-</section>
-<section id="vpc-peering">
-<h1>VPC Peering<a class="headerlink" href="#vpc-peering" title="Link to this heading"></a></h1>
-<p>VPC peering allows routing between two VPCs. It is typically used to connect a tenant VPC to a “shared” VPC where the shared services (like storage access, DNS, etc.) are located.</p>
-<p>Consider the following scenario.</p>
-<p>Customer VPC A and Customer VPC B accessing common services in a “Shared” VPC via VPC peering.</p>
-<p>Customer A and Customer B cannot access each other’s VPCs</p>
-<p>Customer A VPC will have routes of the “Shared” VPC, it will NOT have routes of Customer B VPC.
-Customer B VPC will have routes of the “Shared” VPC, it will NOT have routes of Customer A VPC.</p>
-<p>The “Shared” VPC will have routes of both A and B
-Because A does not have routes of B and vice versa they cannot reach each.</p>
-<p>Network Administrators are free to define prefix lists of VPC peering, if VPC A is configured to accept routes of VPC B from the “Shared” VPC, then Customer A can reach Customer B,but if peering is created without defining prefix list (letting netris auto-populate).</p>
-<p>Additional details are coming soon…</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="topology-management.html" class="btn btn-neutral float-left" title="Inventory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="switch-ports.html" class="btn btn-neutral float-right" title="Switch Ports" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="evpn-on-host.html" class="btn btn-neutral float-left" title="EVPN on Host" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="monitoring-observability/topology-validation.html" class="btn btn-neutral float-right" title="Topology &amp; Wiring Validation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -1759,7 +1342,7 @@ Because A does not have routes of B and vice versa they cannot reach each.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: general-updates
+      v: master
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

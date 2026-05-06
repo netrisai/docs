@@ -115,7 +115,7 @@ Host Networking
         BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-   *  - HBN (Host Based Networking) for BlueFIeld DPUs
+   *  - HBN (Host Based Networking) for BlueField DPUs
       - Layer-4 container or vm/server load balancer with health checks.
       - ✔
       - ✔
