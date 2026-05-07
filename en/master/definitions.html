@@ -160,6 +160,9 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-controller">Netris Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-switch-agent">Netris Switch Agent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-softgate">Netris SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#management-network-architecture">Management Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#security-design-principles">Security Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#shared-responsibility">Shared Responsibility</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Definitions</a></li>
@@ -1210,11 +1213,16 @@
 <li><p><strong>Subnet</strong> - IPv4/IPv6 address resources linked to <em>Sites</em> and <em>Tenants</em></p></li>
 <li><p><strong>Switch Port</strong> - Physical ports of all switches attached to the system, or server endpoints in a Bare Metal Cloud environment.</p></li>
 <li><p><strong>Inventory</strong> - Inventory of all network units that are operated using Netris Agent.</p></li>
-<li><p><strong>External connections</strong> - You can connect your VPC to ISP providers or other segments of your network using Netris E-BGP service, or statically by defining a V-Net and using Net-&gt;Routes (for natively integrated Bare Metal Cloud Providers please refer to the provider-specific tutorial, as external connections usually establish automatically</p></li>
+<li><p><strong>External connections</strong> - You can connect your VPC to ISP providers or other segments of your network using Netris E-BGP service, or statically by defining a V-Net and using Net-&gt;Routes. For natively integrated Bare Metal Cloud Providers, please refer to the provider-specific tutorial, as external connections usually establish automatically.</p></li>
 <li><p><strong>E-BGP</strong> - Defines all External BGP peers (iBGP and eBGP).</p></li>
 <li><p><strong>NAT services</strong> - SNAT allows your endpoints to communicate with the Internet. DNAT allows your endpoints to be accessible from the Internet.</p></li>
 <li><p><strong>Load-balancing service</strong> - Use L4LB service to share the load between your endpoints.</p></li>
 <li><p><strong>Access lists</strong> - ACLs provide a layer of security that acts as a firewall for controlling traffic in and out of one or more subnets.</p></li>
+<li><p><strong>SU (Scalable Unit)</strong> - In the context of NVIDIA Spectrum-X deployments, a Scalable Unit is a group of GPU servers. Netris uses SUs as the standard unit of scale for rail-optimized topology calculations.</p></li>
+<li><p><strong>Server Cluster</strong> - A group of servers that share the same network configuration, defined by a Server Cluster Template. When a Server Cluster is created, Netris automatically provisions the required VPCs, V-Nets, IPAM subnets, and (when configured) InfiniBand PKeys and NVLink partitions for all servers in the cluster. See <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a>.</p></li>
+<li><p><strong>Server Cluster Template</strong> - A JSON template that defines the network configuration to be applied to servers in a Server Cluster. Templates specify V-Net types, IP addressing schemes, and integration parameters for Ethernet, InfiniBand, and NVLink fabrics.</p></li>
+<li><p><strong>SoftGate (VPC Gateway)</strong> - An optional, multi-tenant software component that provides ingress and egress connectivity services (NAT, L4LB) for VPCs. Runs on dedicated bare-metal x86 servers. See <a class="reference internal" href="netris-softgate-HS.html"><span class="doc">SoftGate HS</span></a>.</p></li>
+<li><p><strong>Inventory Profile</strong> - A configuration baseline applied to managed switches, SoftGate nodes, and DPUs. Includes management access allow-lists, fabric optimization settings, and GPU cluster-specific parameters such as QoS for RoCE. See <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profiles</span></a>.</p></li>
 </ul>
 </section>
 

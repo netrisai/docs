@@ -160,6 +160,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#netris-controller">Netris Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#netris-switch-agent">Netris Switch Agent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#netris-softgate">Netris SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#management-network-architecture">Management Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security-design-principles">Security Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shared-responsibility">Shared Responsibility</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
@@ -1204,20 +1207,60 @@
 <p>Diagram: High level Netris architecture</p>
 <img alt="_images/netris_controller_diagram.png" class="align-center" src="_images/netris_controller_diagram.png" />
 <ul class="simple">
-<li><p><strong>Controller HA</strong> We highly recommend running more than one copy of the controller for database replication. Find here <span class="xref std std-doc">backup and restore</span> procedure.</p></li>
+<li><p><strong>Controller HA</strong> We highly recommend running more than one copy of the controller for database replication. Learn more at <a class="reference internal" href="installation/installation.html"><span class="doc">Controller Installation</span></a>.</p></li>
 <li><p><strong>Multiple sites</strong> Netris is designed to operate multiple sites with just a single controller with HA</p></li>
-<li><p><strong>What if the controller is unreachable.</strong> Netris operated switches/routers can tolerate the unreachability of the Netris Controller. Changes and stats collection will be unavailable during the controller unavailability window; however, switches/routers core operations will not be affected.</p></li>
+<li><p><strong>What if the controller is unreachable.</strong> The Netris Controller functions as an automation control plane – it provisions and updates infrastructure configuration, but once that configuration is applied, network devices enforce policies and forwarding behavior independently. If the controller becomes temporarily unavailable, switches continue forwarding traffic, tenant isolation remains enforced by the hardware, and previously applied configuration remains active. Only new configuration changes and telemetry collection are suspended until the controller is restored.</p></li>
 </ul>
 </section>
 <section id="netris-switch-agent">
 <span id="netris-sw-agent"></span><h2>Netris Switch Agent<a class="headerlink" href="#netris-switch-agent" title="Link to this heading"></a></h2>
-<p>Netris Switch Agent is software running in the user space of the network operating system (NOS) of the switch and is responsible for automatically generating the particular switch configuration according to service requirements and policies defined in the Netris Controller. Netris Switch Agent uses an encrypted GRPC protocol for secure communication with the Netris Controller accessible through a local management network or over the Internet.</p>
+<p>Netris Switch Agent is software running in the user space of the network operating system (NOS) of the switch and is responsible for automatically generating the particular switch configuration according to service requirements and policies defined in the Netris Controller. Netris Switch Agent uses an encrypted gRPC channel for secure communication with the Netris Controller, accessible through a management network or over the Internet.</p>
+<p>Infrastructure devices managed by Netris establish <strong>outbound</strong> connections to the controller. The controller does not initiate connections to switches or other managed devices. Devices connect to the controller to retrieve configuration updates and publish operational status (port state, system events, telemetry). This communication model minimizes the network exposure of infrastructure devices and reduces the attack surface associated with device management.</p>
 </section>
 <section id="netris-softgate">
 <span id="netris-sg-agent"></span><h2>Netris SoftGate<a class="headerlink" href="#netris-softgate" title="Link to this heading"></a></h2>
-<p>In multi-tenant environments, tenants typically require controlled ingress and egress connectivity to their VPCs. For example, the workload access to and from the Internet.
-SoftGate is an optional, multi-tenant (VPC-aware) software component designed for cloud providers and scales horizontally to provide this ingress and egress connectivity services (NAT and L4LB). The SoftGate software runs on a dedicated set of operator-provided bare-metal servers and is tightly integrated with the Netris-managed North-South fabric</p>
+<p>SoftGate (also known as VPC Gateway) is an optional, multi-tenant (VPC-aware) software component designed for cloud providers. It provides ingress and egress connectivity services (NAT and L4LB) and scales horizontally. The SoftGate software runs on a dedicated set of operator-provided bare-metal x86 servers and is tightly integrated with the Netris-managed North-South fabric.</p>
 <p>You can learn more about SoftGate architecture and deployment scenarios in the <a class="reference internal" href="netris-softgate-HS.html"><span class="doc">Netris SoftGate HS</span></a> document.</p>
+</section>
+<section id="management-network-architecture">
+<span id="id2"></span><h2>Management Network Architecture<a class="headerlink" href="#management-network-architecture" title="Link to this heading"></a></h2>
+<p>Netris deployments typically use dedicated management networks that separate automation infrastructure from tenant data-plane traffic. A typical deployment includes two management networks:</p>
+<ul class="simple">
+<li><p><strong>Controller Management Network (CMN):</strong> Supports controller cluster communication, bootstrap operations, and infrastructure onboarding. Because the CMN exists outside of the Netris-managed infrastructure, organizations can secure it using their preferred enterprise security controls (network segmentation, bastion hosts, VPN access, etc.). The CMN is typically not managed by Netris itself to prevent circular dependencies.</p></li>
+<li><p><strong>Out-of-Band Management Network (OOB):</strong> Provides operational management connectivity for infrastructure devices (switches, SoftGate nodes, DPUs) independent of tenant traffic flows.</p></li>
+</ul>
+<p>This separation ensures that automation infrastructure does not become a dependency for production data traffic. Production traffic forwarding continues even if management networks become unavailable.</p>
+</section>
+<section id="security-design-principles">
+<span id="security-design"></span><h2>Security Design Principles<a class="headerlink" href="#security-design-principles" title="Link to this heading"></a></h2>
+<p>Netris is built on the following security design principles:</p>
+<ul class="simple">
+<li><p><strong>Control Plane Independence:</strong> Once configuration is applied, network devices enforce policies independently of the controller. Loss of the controller does not disrupt tenant traffic or compromise isolation.</p></li>
+<li><p><strong>Hardware-Enforced Isolation:</strong> Tenant isolation is implemented through the underlying infrastructure hardware – VRF, VXLAN, and ACLs in Ethernet fabrics; InfiniBand partition keys (PKeys); and NVLink GPU fabric partitions. Netris automates the provisioning of these mechanisms but does not rely on software overlays for tenant separation.</p></li>
+<li><p><strong>Customer-Controlled Security Boundary:</strong> Because the Netris Controller is deployed within the customer’s environment, organizations retain full control over the security perimeter. Netris does not offer hosted control planes.</p></li>
+<li><p><strong>Audit Logging:</strong> All requests processed by the Netris API are logged. Because the web GUI operates through the same API, UI activity is also captured in the audit logs. Logs can be retrieved programmatically through the controller API or inspected in the GUI. See <a class="reference internal" href="visibility.html"><span class="doc">Graph Boards</span></a> for details.</p></li>
+</ul>
+</section>
+<section id="shared-responsibility">
+<span id="id3"></span><h2>Shared Responsibility<a class="headerlink" href="#shared-responsibility" title="Link to this heading"></a></h2>
+<p>Security of the overall infrastructure environment is a shared responsibility between the Netris platform and the organization operating the deployment.</p>
+<p><strong>Netris provides:</strong></p>
+<ul class="simple">
+<li><p>Role-based access control (<a class="reference internal" href="accounts.html"><span class="doc">Accounts</span></a>)</p></li>
+<li><p>Infrastructure configuration enforcement</p></li>
+<li><p>Audit logging (<a class="reference internal" href="visibility.html"><span class="doc">Graph Boards</span></a>)</p></li>
+<li><p>Tenant isolation orchestration across Ethernet, InfiniBand, and NVLink fabrics</p></li>
+<li><p>Device management hardening via <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profiles</span></a></p></li>
+</ul>
+<p><strong>Organizations deploying Netris are responsible for:</strong></p>
+<ul class="simple">
+<li><p>Securing access to the controller environment (network segmentation, VPN, bastion hosts)</p></li>
+<li><p>Protecting management networks (CMN and OOB)</p></li>
+<li><p>Maintaining infrastructure operating systems and firmware</p></li>
+<li><p>Integrating the platform with enterprise identity providers (LDAP, Active Directory)</p></li>
+<li><p>Changing default credentials after initial deployment</p></li>
+<li><p>Backup and disaster recovery procedures</p></li>
+</ul>
 </section>
 </section>
 

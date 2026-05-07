@@ -116,7 +116,7 @@ Host Networking
       - Arista EOS
       - EdgeCore-SONiC
    *  - HBN (Host Based Networking) for BlueField DPUs
-      - Layer-4 container or vm/server load balancer with health checks.
+      - Extend the EVPN/VXLAN fabric into BlueField DPUs for hardware-enforced tenant isolation at the server level.
       - ✔
       - ✔
       - ✔
@@ -513,6 +513,8 @@ Management Interfaces
 ============================================
 Netris and NOS versions compatibility matrix
 ============================================
+
+.. note:: SoftGate PRO has been discontinued. New deployments should use SoftGate HS. The SoftGate PRO column is retained for reference by existing deployments on older Netris versions.
 
 .. list-table::
    :header-rows: 0

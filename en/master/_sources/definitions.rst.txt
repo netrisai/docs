@@ -34,7 +34,7 @@ When configuring and operating a Netris system, the following nomenclature is im
 
 * **Inventory** - Inventory of all network units that are operated using Netris Agent.
 
-* **External connections** - You can connect your VPC to ISP providers or other segments of your network using Netris E-BGP service, or statically by defining a V-Net and using Net->Routes (for natively integrated Bare Metal Cloud Providers please refer to the provider-specific tutorial, as external connections usually establish automatically
+* **External connections** - You can connect your VPC to ISP providers or other segments of your network using Netris E-BGP service, or statically by defining a V-Net and using Net->Routes. For natively integrated Bare Metal Cloud Providers, please refer to the provider-specific tutorial, as external connections usually establish automatically.
 
 * **E-BGP** - Defines all External BGP peers (iBGP and eBGP).
 
@@ -43,3 +43,13 @@ When configuring and operating a Netris system, the following nomenclature is im
 * **Load-balancing service** - Use L4LB service to share the load between your endpoints.
 
 * **Access lists** - ACLs provide a layer of security that acts as a firewall for controlling traffic in and out of one or more subnets.
+
+* **SU (Scalable Unit)** - In the context of NVIDIA Spectrum-X deployments, a Scalable Unit is a group of GPU servers. Netris uses SUs as the standard unit of scale for rail-optimized topology calculations.
+
+* **Server Cluster** - A group of servers that share the same network configuration, defined by a Server Cluster Template. When a Server Cluster is created, Netris automatically provisions the required VPCs, V-Nets, IPAM subnets, and (when configured) InfiniBand PKeys and NVLink partitions for all servers in the cluster. See :doc:`server-cluster`.
+
+* **Server Cluster Template** - A JSON template that defines the network configuration to be applied to servers in a Server Cluster. Templates specify V-Net types, IP addressing schemes, and integration parameters for Ethernet, InfiniBand, and NVLink fabrics.
+
+* **SoftGate (VPC Gateway)** - An optional, multi-tenant software component that provides ingress and egress connectivity services (NAT, L4LB) for VPCs. Runs on dedicated bare-metal x86 servers. See :doc:`netris-softgate-HS`.
+
+* **Inventory Profile** - A configuration baseline applied to managed switches, SoftGate nodes, and DPUs. Includes management access allow-lists, fabric optimization settings, and GPU cluster-specific parameters such as QoS for RoCE. See :doc:`inventory-profile`.
