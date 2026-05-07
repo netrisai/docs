@@ -70,115 +70,42 @@ Supported Switch Hardware
 
 Nvidia
 ======
+
+All NVIDIA Spectrum-based switches running Cumulus Linux are supported.
+
 .. list-table::
    :header-rows: 0
 
    * - **Manufacturer**
-     - **Model**
+     - **Series**
      - **ASIC**
-     - **Ports**
      - **NOS**
-     - **Caveats**
      - **Supported**
    * - Nvidia
-     - SN2010
+     - SN2000 Series
      - Spectrum
-     - 18 x SFP28 25GbE + 4 x QSFP28 100GbE
      - Cumulus Linux
-     -
      - ✔
    * - Nvidia
-     - SN2100
-     - Spectrum
-     - 16 x QSFP28 100GbE
-     - Cumulus Linux
-     -
-     - ✔
-   * - Nvidia
-     - SN2201
-     - Spectrum
-     - 48 x RJ45 + 4 x QSFP28 100GbE
-     - Cumulus Linux
-     -
-     - ✔
-   * - Nvidia
-     - SN2410
-     - Spectrum
-     - 48 x SFP28 25GbE + 8 x QSFP28 100GbE
-     - Cumulus Linux
-     -
-     - ✔
-   * - Nvidia
-     - SN2700
-     - Spectrum
-     - 32 x QSFP28 100GbE
-     - Cumulus Linux
-     -
-     - ✔
-   * - Nvidia
-     - SN3420
+     - SN3000 Series
      - Spectrum 2
-     - 48 x SFP28 25GbE + 12 x QSFP28 100GbE
      - Cumulus Linux
-     -
      - ✔
    * - Nvidia
-     - SN3700C
-     - Spectrum 2
-     - 32 x QSFP28 100GbE
-     - Cumulus Linux
-     -
-     - ✔
-   * - Nvidia
-     - SN3700
-     - Spectrum 2
-     - 32 x QSFP56 200GbE
-     - Cumulus Linux
-     -
-     - ✔
-   * - Nvidia
-     - SN4410
+     - SN4000 Series
      - Spectrum 3
-     - 24 x QSFP28-DD 100G + 8 x QSFP-DD 400GbE
      - Cumulus Linux
-     -
      - ✔
    * - Nvidia
-     - SN4600C
-     - Spectrum 3
-     - 64 x QSFP28 100GbE
-     - Cumulus Linux
-     -
-     - ✔
-   * - Nvidia
-     - SN4600
-     - Spectrum 3
-     - 64 QSFP56 200GbE
-     - Cumulus Linux
-     -
-     - ✔
-   * - Nvidia
-     - SN4700
-     - Spectrum 3
-     - 32 x QSFP-DD 400GbE
-     - Cumulus Linux
-     -
-     - ✔
-   * - Nvidia
-     - SN5400
+     - SN5000 Series
      - Spectrum 4
-     - 64 x QSFP-DD 400GbE + 2 x SFP28 25GbE
      - Cumulus Linux
-     -
      - ✔
    * - Nvidia
-     - SN5600
-     - Spectrum 4
-     - 64 x OSFP 800GbE + 1 x SFP28 25GbE
+     - SN6000 Series
+     - Spectrum 6
      - Cumulus Linux
-     -
      - ✔
-
 
 Dell
 ======
