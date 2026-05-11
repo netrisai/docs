@@ -524,6 +524,11 @@ Netris and NOS versions compatibility matrix
      - **SoftGate PRO OS**
      - **SoftGate HS OS**
      - **Availability**
+   * - 4.9.0
+     - Nvidia Cumulus 5.16, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - N/A
+     - Ubuntu 24.04
+     - ✔
    * - 4.8.0
      - Nvidia Cumulus 5.16, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
      - N/A
