@@ -159,6 +159,9 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-controller">Netris Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-switch-agent">Netris Switch Agent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-softgate">Netris SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#management-network-architecture">Management Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#security-design-principles">Security Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#shared-responsibility">Shared Responsibility</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
@@ -387,6 +390,8 @@
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-softgates">Adding SoftGates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-dpus">Adding DPUs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html#topology-manager">Topology Manager</a><ul>
@@ -631,6 +636,7 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#high-level-workflow">High-Level Workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#version-compatibility">Version Compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#installing-the-plugin">Installing the plugin</a></li>
@@ -794,6 +800,18 @@
 <li class="toctree-l3"><a class="reference internal" href="evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">BlueField-3 DPU Support in Netris</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#what-is-a-dpu">What Is a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#configuring-a-server-with-a-dpu">Configuring a Server with a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#monitoring">Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1299,8 +1317,8 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>HBN (Host Based Networking) for BlueFIeld DPUs</p></td>
-<td><p>Layer-4 container or vm/server load balancer with health checks.</p></td>
+<tr class="row-even"><td><p>HBN (Host Based Networking) for BlueField DPUs</p></td>
+<td><p>Extend the EVPN/VXLAN fabric into BlueField DPUs for hardware-enforced tenant isolation at the server level.</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
@@ -1754,6 +1772,10 @@
 </section>
 <section id="netris-and-nos-versions-compatibility-matrix">
 <h1>Netris and NOS versions compatibility matrix<a class="headerlink" href="#netris-and-nos-versions-compatibility-matrix" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SoftGate PRO has been discontinued. New deployments should use SoftGate HS. The SoftGate PRO column is retained for reference by existing deployments on older Netris versions.</p>
+</div>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><strong>Netris Version</strong></p></td>
@@ -1762,91 +1784,97 @@
 <td><p><strong>SoftGate HS OS</strong></p></td>
 <td><p><strong>Availability</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>4.8.0</p></td>
+<tr class="row-even"><td><p>4.9.0</p></td>
 <td><p>Nvidia Cumulus 5.16, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F</p></td>
 <td><p>N/A</p></td>
 <td><p>Ubuntu 24.04</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-odd"><td><p>4.7.0</p></td>
+<tr class="row-odd"><td><p>4.8.0</p></td>
+<td><p>Nvidia Cumulus 5.16, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F</p></td>
+<td><p>N/A</p></td>
+<td><p>Ubuntu 24.04</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>4.7.0</p></td>
 <td><p>Nvidia Cumulus 5.13, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F</p></td>
 <td><p>N/A</p></td>
 <td><p>Ubuntu 24.04</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-even"><td><p>4.6.0</p></td>
+<tr class="row-odd"><td><p>4.6.0</p></td>
 <td><p>Nvidia Cumulus 5.13, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F</p></td>
 <td><p>N/A</p></td>
 <td><p>Ubuntu 24.04</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-odd"><td><p>4.5.3</p></td>
+<tr class="row-even"><td><p>4.5.3</p></td>
 <td><p>Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>Ubuntu 24.04</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-even"><td><p>4.5.2</p></td>
+<tr class="row-odd"><td><p>4.5.2</p></td>
 <td><p>Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>Ubuntu 24.04</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-odd"><td><p>4.5.1</p></td>
+<tr class="row-even"><td><p>4.5.1</p></td>
 <td><p>Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>Ubuntu 24.04</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-even"><td><p>4.5.0</p></td>
+<tr class="row-odd"><td><p>4.5.0</p></td>
 <td><p>Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>Ubuntu 24.04</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-odd"><td><p>4.4.1</p></td>
+<tr class="row-even"><td><p>4.4.1</p></td>
 <td><p>Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>Ubuntu 24.04</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-even"><td><p>4.4.0</p></td>
+<tr class="row-odd"><td><p>4.4.0</p></td>
 <td><p>Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>Ubuntu 24.04</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-odd"><td><p>4.3.0</p></td>
+<tr class="row-even"><td><p>4.3.0</p></td>
 <td><p>Nvidia Cumulus 5.9, Dell SONiC 4.1, EdgeCore SONiC 12.3</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>N/A</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-even"><td><p>4.2.0</p></td>
+<tr class="row-odd"><td><p>4.2.0</p></td>
 <td><p>Nvidia Cumulus 5.7, Dell SONiC 4.1, EdgeCore SONiC 12.3</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>N/A</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-odd"><td><p>4.1.1</p></td>
+<tr class="row-even"><td><p>4.1.1</p></td>
 <td><p>Nvidia Cumulus 5.7, EdgeCore SONiC 12.3</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>N/A</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-even"><td><p>4.0.0</p></td>
+<tr class="row-odd"><td><p>4.0.0</p></td>
 <td><p>Nvidia Cumulus 5.7, EdgeCore SONiC 12.3</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>N/A</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-odd"><td><p>3.5.0</p></td>
+<tr class="row-even"><td><p>3.5.0</p></td>
 <td><p>Nvidia Cumulus 5.7, EdgeCore SONiC 12.3</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>N/A</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-even"><td><p>3.4.1</p></td>
+<tr class="row-odd"><td><p>3.4.1</p></td>
 <td><p>Nvidia Cumulus 5.7, EdgeCore SONiC 12.3</p></td>
 <td><p>Ubuntu 20.04</p></td>
 <td><p>N/A</p></td>

@@ -160,6 +160,9 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-controller">Netris Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-switch-agent">Netris Switch Agent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-softgate">Netris SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#management-network-architecture">Management Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#security-design-principles">Security Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#shared-responsibility">Shared Responsibility</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
@@ -388,6 +391,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#adding-switches">Adding Switches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-softgates">Adding SoftGates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-servers">Adding Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-dpus">Adding DPUs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#topology-manager">Topology Manager</a><ul>
@@ -632,6 +637,7 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#high-level-workflow">High-Level Workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#version-compatibility">Version Compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#installing-the-plugin">Installing the plugin</a></li>
@@ -795,6 +801,18 @@
 <li class="toctree-l3"><a class="reference internal" href="evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">BlueField-3 DPU Support in Netris</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#what-is-a-dpu">What Is a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#configuring-a-server-with-a-dpu">Configuring a Server with a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#monitoring">Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1183,7 +1201,7 @@
 <span id="topology-management-adding-switches"></span><h2>Adding Switches<a class="headerlink" href="#adding-switches" title="Link to this heading"></a></h2>
 <p>Every switch needs to be added to the Netris Controller inventory. You can add new devices with the following process:</p>
 <ol class="arabic simple">
-<li><p>Navigate to <strong>Network → Inventory</strong></p></li>
+<li><p>Navigate to <strong>Network -&gt; Inventory</strong></p></li>
 <li><p>Click the <strong>Add</strong> button</p></li>
 <li><p>Fill in the fields as described below</p></li>
 <li><p>Click the <strong>Add</strong> button</p></li>
@@ -1215,7 +1233,7 @@
 <td><p>Site where the devices reside</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>AS Number</strong></p></td>
-<td><p>Private AS number of the device; applicable to switches only; recommended to be assigned automatically</p></td>
+<td><p>Private AS number of the device; recommended to be assigned automatically</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Profile</strong></p></td>
 <td><p>Inventory profile for the current device. Profiles are used for the security hardening of the devices</p></td>
@@ -1251,6 +1269,135 @@
 <span id="topology-management-adding-softgates"></span><h2>Adding SoftGates<a class="headerlink" href="#adding-softgates" title="Link to this heading"></a></h2>
 <p>Every SoftGate node needs to be added to the Netris Controller inventory.</p>
 <p>The installation process for SoftGate HS is described in the <a class="reference internal" href="netris-softgate-HS.html#netris-softgate-hs-installation"><span class="std std-ref">SoftGate HS installation</span></a> section.</p>
+</section>
+<section id="adding-servers">
+<span id="topology-management-adding-servers"></span><h2>Adding Servers<a class="headerlink" href="#adding-servers" title="Link to this heading"></a></h2>
+<p>Every server needs to be added to the Netris Controller inventory. You can add new devices with the following process:</p>
+<ol class="arabic simple">
+<li><p>Navigate to <strong>Network -&gt; Inventory</strong></p></li>
+<li><p>Click the <strong>Add</strong> button</p></li>
+<li><p>Fill in the fields as described below</p></li>
+<li><p>Click the <strong>Add</strong> button</p></li>
+</ol>
+<blockquote>
+<div><table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Add Inventory Fields - Server</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p>Name of the device</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Tenant</strong></p></td>
+<td><p>Owner tenant of the device (usually Admin)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Description</strong></p></td>
+<td><p>Description of the device</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Type</strong></p></td>
+<td><p>Select Server</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Site</strong></p></td>
+<td><p>Site where the devices reside</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>AS Number</strong></p></td>
+<td><p>Private AS number of the device; recommended to be assigned automatically; applicable to servers with EVPN-VTEP role</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Main IP address</strong></p></td>
+<td><p>Main loopback IP address for the device. A subnet with purpose set to <em>loopback</em> needs to be defined in IPAM for the current site; applicable to servers with EVPN-VTEP role</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Management IP address</strong></p></td>
+<td><p>Management IP address for the device. A subnet with purpose set to <em>Management</em> needs to be defined in IPAM for the current siteapplicable to servers with EVPN-VTEP role</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Role</strong></p></td>
+<td><p>Tells Netris whether the server is an agentless generic node (most use cases), or a CloudStack hypervisor, or an EVPN-VTEP (EVPN-on-Host) node.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total Physical Ports</strong></p></td>
+<td><p>Total number of physical ports on the server including production interfaces, management interfaces (e.g., iDrac/IPMI), DPU ports including BMC and front panel ports. A typical DGX node has 8 east-west ports, 2 north-south ports, 2 or 3 management ports including BMCs of the server and the DPU. Netris recommends setting this value to at least 16 ports.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>DPUs</strong></p></td>
+<td><p>Quantity of DPUs on the server operating in Zero-Trust mode. Most deployments have 1 DPU per server.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Custom</strong></p></td>
+<td><p>Custom attributes in JSON format. Typical use cases include supplying east-west host-side IP addressing and routing information, topology validation. This field is also used by the NVIDIA UFM and NMX-C plugins to store addtional information such as GUIDs and GPU IDs for the server node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Labels</strong></p></td>
+<td><p>Custome metadata that can be used for built-in functions or user-created API automations.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Add Link</strong></p></td>
+<td><p>Used for describing physical connections between switches, servers, and SoftGates</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>Example:</strong>  Add a new Server.</p>
+<blockquote>
+<div><img alt="_images/inventory_server.png" class="align-center" src="_images/inventory_server.png" />
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Repeat this process to define all your servers.</p>
+</div>
+</section>
+<section id="adding-dpus">
+<span id="topology-management-adding-dpus"></span><h2>Adding DPUs<a class="headerlink" href="#adding-dpus" title="Link to this heading"></a></h2>
+<p>Starting with Netris 4.7, you can operate NVIDIA BlueField-3 DPUs. Unlike switches, servers, and SoftGates, DPUs are not standalone inventory objects, but rather a part of the server object. You can find more details about DPU support in Netris in the <a class="reference internal" href="bluefield-3-dpus.html"><span class="doc">NVIDIA BlueField-3 DPUs</span></a> section.</p>
+<p>To add a DPU to a Netris server object, add or edit the server object in which the DPU is installed and fill in the DPU fields as described below:</p>
+<ol class="arabic simple">
+<li><p>Navigate to <strong>Network -&gt; Inventory</strong></p></li>
+<li><p>Find the server object in which the DPU is installed and click <strong>Edit</strong>. If the server object does not exist, create it with the process described in <a class="reference internal" href="#topology-management-adding-servers"><span class="std std-ref">Adding Servers</span></a> section.</p></li>
+<li><p>Set the <strong>DPUs</strong> field to the number of DPUs installed in the server and configured in Zero-Trust mode.</p></li>
+<li><p>Fill in the fields as described below</p></li>
+<li><p>Click the <strong>Save</strong> button</p></li>
+</ol>
+<blockquote>
+<div><table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Add Inventory Fields - DPU</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Port 1</strong></p></td>
+<td><p>Mapping of the first port of the DPU to a modeled server port.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Port 2</strong></p></td>
+<td><p>Mapping of the second port of the DPU to a modeled server port.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>MGMT</strong></p></td>
+<td><p>Mapping of the BMC port of the DPU to a modeled server port.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>VFs</strong></p></td>
+<td><p>Number of Virtual Functions (VFs) to be created on the DPU. VFs become endpoints in Netris and can be added to Vnets similarly to physical switch ports.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Management IP</strong></p></td>
+<td><p>Management IP address for the device. A subnet with purpose set to <em>Management</em> needs to be defined in IPAM for the current site</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Loopback IP</strong></p></td>
+<td><p>Main loopback IP address for the device. A subnet with purpose set to <em>loopback</em> needs to be defined in IPAM for the current site</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ASN</strong></p></td>
+<td><p>Private AS number of the device; recommended to be assigned automatically</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Serial Number</strong></p></td>
+<td><p>Serial number of the device; This is the DPU’s unique identifier and is used for the device registration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Inventory Profile</strong></p></td>
+<td><p>Inventory profile for the current device. Profiles are used for the security hardening of the devices</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>Example:</strong>  Add a new DPU.</p>
+<blockquote>
+<div><img alt="_images/inventory_dpu.png" class="align-center" src="_images/inventory_dpu.png" />
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Repeat this process to define all your DPUs.</p>
+</div>
 </section>
 </section>
 <section id="topology-manager">

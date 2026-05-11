@@ -160,6 +160,9 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-controller">Netris Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-switch-agent">Netris Switch Agent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-softgate">Netris SoftGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#management-network-architecture">Management Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#security-design-principles">Security Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#shared-responsibility">Shared Responsibility</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
@@ -388,6 +391,8 @@
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-softgates">Adding SoftGates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-dpus">Adding DPUs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html#topology-manager">Topology Manager</a><ul>
@@ -632,6 +637,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#high-level-workflow">High-Level Workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#version-compatibility">Version Compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installing-the-plugin">Installing the plugin</a></li>
@@ -795,6 +801,18 @@
 <li class="toctree-l3"><a class="reference internal" href="evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">BlueField-3 DPU Support in Netris</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#what-is-a-dpu">What Is a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#configuring-a-server-with-a-dpu">Configuring a Server with a DPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#monitoring">Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1200,8 +1218,8 @@
 <li><p>Creates and manages appropriate NVL partitions in NMX-C</p></li>
 <li><p>Assigns appropriate GPU UIDs to appropriate NVL partitions</p></li>
 </ul>
-<p>The Netris-NMX plug agent runs continuously and validates that the operator’s intent is correctly applied every 20 seconds by default. If the NVLink partition doesn’t match the intent declared in the Netris Controller, the Netris-NMX agent will enforce the intent in the NMX-Controller.</p>
-<p>The NMX-Controller remains the source of truth for the state of the GPU assignments to NVLink partitions. The Netris Controller is the source of truth for the operator’s intent, and the Netris agent will continuously enforce the operator’s intent as expressed through the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> object in the Netris Controller.</p>
+<p>The Netris-NMX plugin runs continuously and validates that the operator’s intent is correctly applied every 20 seconds by default. If the NVLink partition doesn’t match the intent declared in the Netris Controller, the Netris-NMX plugin will enforce the intent in the NMX-Controller.</p>
+<p>The NMX-Controller remains the source of truth for the state of the GPU assignments to NVLink partitions. The Netris Controller is the source of truth for the operator’s intent, and the Netris-NMX plugin will continuously enforce the operator’s intent as expressed through the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> object in the Netris Controller.</p>
 <p>When more than one NMX-Controller is defined in the configuration, Netris will automatically discover which NMX-Controller creates the NVLink partition and will only create the partitions in the appropriate NMX-Controllers.</p>
 <section id="high-level-workflow">
 <h3>High-Level Workflow<a class="headerlink" href="#high-level-workflow" title="Link to this heading"></a></h3>
@@ -1223,15 +1241,40 @@
 </div>
 </section>
 </section>
+<section id="version-compatibility">
+<h2>Version Compatibility<a class="headerlink" href="#version-compatibility" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Minimum Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Netris Controller</p></td>
+<td><p>4.6.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>Netris-NMX Plugin</p></td>
+<td><p>Bundled with Netris Controller</p></td>
+</tr>
+<tr class="row-even"><td><p>NVIDIA NMX-C</p></td>
+<td><p>Consult your NVIDIA representative for supported versions</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Netris-NMX plugin communicates with NMX-C using its gRPC API with TLS client certificate authentication. Ensure your NMX-C version supports gRPC API access.</p>
+</div>
+</section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <p>Before installing the Netris-NMX plugin, ensure:</p>
 <ol class="arabic simple">
 <li><p>A functioning Netris Controller environment</p></li>
 <li><p>A properly configured NVIDIA NMX-C installation</p></li>
-<li><p>Network connectivity between the Netris Controller or a dedicated server running the Netris-NMX plugin and the NVIDIA NMX-Controller.</p></li>
-<li><p>A GPU UID inventory file (CSV) mapping each server hostname to its GPU UIDs, ready to be loaded via <cite>netris-nvl-loader</cite></p></li>
+<li><p>Network connectivity between the Netris Controller or a dedicated server running the Netris-NMX plugin and the NVIDIA NMX-Controller</p></li>
 <li><p>Admin credentials for the Netris Controller</p></li>
+<li><p>A GPU UID inventory file (CSV) mapping each server hostname to its GPU UIDs, ready to be loaded via <cite>netris-nvl-loader</cite></p></li>
 <li><p>mTLS client certificate, private key, and root CA for authenticating to the NMX-Controller(s)</p></li>
 </ol>
 </section>
@@ -1240,7 +1283,7 @@
 <section id="installing-the-plugin">
 <h3>Installing the plugin<a class="headerlink" href="#installing-the-plugin" title="Link to this heading"></a></h3>
 <p>The Netris-NMX plugin can be installed on the same server as the Netris Controller or on a dedicated server, depending on customer requirements and network topology.</p>
-<p>If a dedicated server option is chosen, ensure that the server running the Netris-NMX plug can reach all the NVIDIA NMX-Controllers in the environment. This dedicated server must also be able to reach the Netris Controller. All communication between the Netris Controller, NVIDIA NMX-C, and the Netris-NMX plug is initiated from the server running the Netris-NMX plugin.</p>
+<p>If a dedicated server option is chosen, ensure that the server running the Netris-NMX plugin can reach all the NVIDIA NMX-Controllers in the environment. This dedicated server must also be able to reach the Netris Controller. All communication between the Netris Controller, NVIDIA NMX-C, and the Netris-NMX plugin is initiated from the server running the Netris-NMX plugin.</p>
 <ol class="arabic simple">
 <li><p>Download the Kubernetes deployment YAML file:</p></li>
 </ol>
@@ -1293,7 +1336,7 @@ hgx-pod00-su0-h03,713366763878128965
 </pre></div>
 </div>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">netris-nvl-loader</span></code> script to import the GPU UID inventory into the Netris Controller</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./netris-nv-loader<span class="w"> </span>--csv-file<span class="w"> </span>gpu-mapping.csv<span class="w"> </span>--netris-url<span class="w"> </span><span class="s2">&quot;https://conroller.acme.com&quot;</span><span class="w"> </span>--username<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;passw0rd&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./netris-nvl-loader<span class="w"> </span>--csv-file<span class="w"> </span>gpu-mapping.csv<span class="w"> </span>--netris-url<span class="w"> </span><span class="s2">&quot;https://controller.acme.com&quot;</span><span class="w"> </span>--username<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;passw0rd&quot;</span>
 </pre></div>
 </div>
 <p>Where</p>
@@ -1338,7 +1381,7 @@ INFO<span class="w"> </span><span class="o">[</span><span class="m">0004</span><
 <p>The following configuration options are available in the Netris-NMX plugin YAML configuration file:</p>
 <ul class="simple">
 <li><p><strong>nmx-config</strong> - top-level mapping for the plugin configuration</p></li>
-<li><p><strong>verify-ssl</strong> - key to signal the plug whether to use TLS authentication when accessing the NMX-Controller</p></li>
+<li><p><strong>verify-ssl</strong> - key to signal the plugin whether to use TLS authentication when accessing the NMX-Controller</p></li>
 <li><p><strong>cert-file</strong> - absolute path to the client certificate</p></li>
 <li><p><strong>key-file</strong>  - absolute path to the private key of the client certificate</p></li>
 <li><p><strong>root-ca</strong>   - absolute path to the root CA certificate file.</p></li>

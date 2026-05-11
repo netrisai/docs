@@ -146,7 +146,7 @@ If you plan to perform network address translation (NAT), you must first create 
    :header-rows: 0
 
    * - **Prefix**
-     - Unique prefix for subnet, ust be included in one of allocations.
+     - Unique prefix for subnet, must be included in one of allocations.
    * - **Name**
      - Unique name for current subnet.
    * - **VPC**
@@ -156,7 +156,7 @@ If you plan to perform network address translation (NAT), you must first create 
    * - **Purpose**
      - This field describes for what kind of services the current subnet can be used. It can have the following values:
 
-        - *common* - ordinary subnet, can be used in v-nets and ROH.
+        - *common* - ordinary subnet, can be used in V-Nets.
         - *loopback* - hosts of this subnet can be used only as loopback IP addresses for Netris hardware (switches and/or softgates).
         - *management* - subnet which specifies the out-of-band management IP addresses for Netris hardware (switches and softgates).
         - *load-balancer* - hosts of this subnet are used in L4LB services only. Useful for deploying on-prem kubernetes with cloud-like experience.

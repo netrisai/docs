@@ -391,13 +391,6 @@ Arista
      -
      - ✔
    * - Arista
-     - 7358X4
-     - Trident-4
-     - 128 x QSFP or 32 x OSFP / QSFP-DD
-     - EOS
-     -
-     - ✔
-   * - Arista
      - 7368X4
      - Tomahawk 3
      - 128 x 100G or 32 x 400G
