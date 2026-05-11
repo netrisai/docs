@@ -516,7 +516,6 @@ Expected output:
   netris-controller-initdb-05-supported-platforms-wfht4             0/1     Completed   0          63s
   netris-controller-initdb-06-mon-thresholds-z4pw8                  0/1     Completed   0          63s
   netris-controller-initdb-06-nos-list-cdhwj                        0/1     Completed   0          63s
-  netris-controller-initdb-06-roh-profiles-ctgms                    0/1     Completed   0          63s
   netris-controller-initdb-07-inventory-profiles-9hkgp              0/1     Completed   0          63s
   netris-controller-initdb-07-vpn-scores-sgv6n                      0/1     Completed   0          63s
   netris-controller-initdb-09-dhcp-option-set-jq7wl                 0/1     Completed   0          58s
