@@ -520,87 +520,138 @@ Netris and NOS versions compatibility matrix
    :header-rows: 0
 
    * - **Netris Version**
-     - **Switch & OS**
+     - **Cumulus Linux**
+     - **Dell BCM-SONiC**
+     - **EdgeCore SONiC**
+     - **Arista EOS**
      - **SoftGate PRO OS**
      - **SoftGate HS OS**
      - **Availability**
    * - 4.9.0
-     - Nvidia Cumulus 5.16, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - 5.11 - 5.14, 5.16
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.8.0
-     - Nvidia Cumulus 5.16, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - 5.11 - 5.14, 5.16
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.7.0
-     - Nvidia Cumulus 5.13, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - 5.11 - 5.13
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.6.0
-     - Nvidia Cumulus 5.13, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - 5.11 - 5.13
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.5.3
-     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - 5.11 - 5.13
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.5.2
-     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - 5.11 - 5.13
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.5.1
-     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - 5.11 - 5.13
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.5.0
-     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - 5.11 - 5.13
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.4.1
-     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331, Arista EOS 4.34.1F
+     - 5.11 - 5.13
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.4.0
-     - Nvidia Cumulus 5.11, Dell SONiC 4.5, EdgeCore SONiC 202211-331
+     - 5.11 - 5.13
+     - 4.5
+     - 202211-331
+     - 4.34.1F
      - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.3.0
-     - Nvidia Cumulus 5.9, Dell SONiC 4.1, EdgeCore SONiC 12.3
+     - 5.9
+     - 4.1
+     - 12.3
+     - N/A
      - Ubuntu 20.04
      - N/A
      - ✔
    * - 4.2.0
-     - Nvidia Cumulus 5.7, Dell SONiC 4.1, EdgeCore SONiC 12.3
+     - 5.9
+     - 4.1
+     - 12.3
+     - N/A
      - Ubuntu 20.04
      - N/A
      - ✔
    * - 4.1.1
-     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
+     - 5.7
+     - N/A
+     - 12.3
+     - N/A
      - Ubuntu 20.04
      - N/A
      - ✔
    * - 4.0.0
-     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
+     - 5.7
+     - N/A
+     - 12.3
+     - N/A
      - Ubuntu 20.04
      - N/A
      - ✔
    * - 3.5.0
-     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
+     - 5.7
+     - N/A
+     - 12.3
+     - N/A
      - Ubuntu 20.04
      - N/A
      - ✔
    * - 3.4.1
-     - Nvidia Cumulus 5.7, EdgeCore SONiC 12.3
+     - 5.7
+     - N/A
+     - 12.3
+     - N/A
      - Ubuntu 20.04
      - N/A
      - ✔
