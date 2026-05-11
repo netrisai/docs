@@ -1,0 +1,9 @@
+**Port 1**,Mapping of the first port of the DPU to a modeled server port.
+**Port 2**,Mapping of the second port of the DPU to a modeled server port.
+**MGMT**,Mapping of the BMC port of the DPU to a modeled server port.
+**VFs**,Number of Virtual Functions (VFs) to be created on the DPU. VFs become endpoints in Netris and can be added to Vnets similarly to physical switch ports.
+**Management IP**,Management IP address for the device. A subnet with purpose set to *Management* needs to be defined in IPAM for the current site 
+**Loopback IP**,Main loopback IP address for the device. A subnet with purpose set to *loopback* needs to be defined in IPAM for the current site
+**ASN**,Private AS number of the device; recommended to be assigned automatically
+**Serial Number**,Serial number of the device; This is the DPU's unique identifier and is used for the device registration.
+**Inventory Profile**,Inventory profile for the current device. Profiles are used for the security hardening of the devices

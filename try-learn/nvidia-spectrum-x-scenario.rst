@@ -362,7 +362,7 @@ Cleanup the Controller
 At this point this Netris Try & Learn scenario has been concluded. You may want to clean up the lab to let your colleagues run through the scenario or if you are working on another one. There is no need to clean up if you are about to return the environment to the Netris team -- we are going to recycle and reinstall the environment anyway.
 
 1. Delete Server Clusters from the ``Services->Server Cluster`` menu.
-2. Delete Server Cluster Profile from the ``Services->Server Cluster Profile`` menu.
+2. Delete Server Cluster Templates from the ``Services->Server Cluster Template`` menu.
 3. SSH to the Netris controller server, ``cd /home/ubuntu/netris-cloudsim``, and execute ``pulumi destroy`` to destroy the infrastructure simulation.
 
    .. warning::
