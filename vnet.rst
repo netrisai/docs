@@ -62,6 +62,7 @@ Every V-Net must include:
 Optionally V-Net definition can also include:
   - :ref:`Labels <tags>` for dynamic switch port inclusion into the V-Net,
   - List of collaborators (Guest tenants) who can add or remove switch ports to and from the V-Net, but not edit any other properties of the V-Net,
+  - IP Address Family (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack) to specify the type of gateway IP configured on the V-Net,
   - IPv4 or IPv6 Gateway (for L2VPN V-Nets) to make the V-Net routable inside the VPC, i.e., add an SVI to the VLAN,
   - DHCP scope and option set (for L2VPN V-Nets),
   - Anycast MAC address (for L2VPN V-Nets), which Netris can assign for you.
@@ -266,6 +267,9 @@ Advanced V-Net Fields explained
    * - **Guest Tenants** (Collaborators)
      - Admin units that may add/remove switch ports but cannot change core settings.
      - Optional; owner always retains full control.
+   * - **IP Address Family** (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack)
+     - Determines the type of gateway IP configured on the V-Net.
+     - Default = IPv4/IPv6 Dual-Stack.
    * - **Anycast MAC address**
      - Overrides the auto-generated anycast MAC.
      - Leave blank to use the default.
@@ -508,7 +512,7 @@ When defining a server object in ``Network -> Inventory`` or ``Network -> Topolo
 
     <br />
 
-To automatically add switch ports to a V-Net based on a label, in the V-net definition dialog:
+To automatically add switch ports to a V-Net based on a label, in the V-Net definition dialog:
   - Click the ``Add Network Interface Label`` button.
   - Enter the “value” portion of the label. E.g., *storage* is the value of *iface.eth3=storage* label.
   - Specify whether you want the switch port to be 802.1q tagged or untagged.
