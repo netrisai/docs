@@ -26,8 +26,6 @@ Enhancements
 Bug fixes
 ---------
 
-- Fixed an issue where the Cumulus NVUE agent would get stuck in a loop when creating a route-map without a match rule. (NET-172)
-
 - Fixed suboptimal routing with VPC peering and EVPN Multihoming on Cumulus Linux, including corrections to LINKLOCAL-V6 prefix list handling in remote leaking scenarios and proper remote IPv6 address advertisement via LLDP TLV. (NET-220)
 
 - Fixed suboptimal routing with VPC peering and EVPN Multihoming on Dell SONiC platforms. (NET-299)
@@ -39,8 +37,6 @@ Bug fixes
 - Fixed a UI display issue in the Network Links section where IPv4 and IPv6 addresses were rendered without proper separation. (NET-320)
 
 - Fixed an issue where L4LB did not work when 1:1 DNAT rules (or other NAT rules) were configured for the same backend servers. (NET-378)
-
-- Fixed an issue where DNAT did not work when the same backend IPs were configured under a load balancer with the same ports as the DNAT ports. (NET-380)
 
 Security fixes
 --------------

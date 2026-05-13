@@ -1216,14 +1216,12 @@
 <section id="bug-fixes">
 <h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Fixed an issue where the Cumulus NVUE agent would get stuck in a loop when creating a route-map without a match rule. (NET-172)</p></li>
 <li><p>Fixed suboptimal routing with VPC peering and EVPN Multihoming on Cumulus Linux, including corrections to LINKLOCAL-V6 prefix list handling in remote leaking scenarios and proper remote IPv6 address advertisement via LLDP TLV. (NET-220)</p></li>
 <li><p>Fixed suboptimal routing with VPC peering and EVPN Multihoming on Dell SONiC platforms. (NET-299)</p></li>
 <li><p>Fixed an issue where the CloudStack agent did not delete the VRF interface after the last VM from that VRF VNet was migrated or deleted. (NET-258)</p></li>
 <li><p>Fixed a regression where IPv6 VPC peering was not working as expected on Cumulus Linux 5.16. (NET-315)</p></li>
 <li><p>Fixed a UI display issue in the Network Links section where IPv4 and IPv6 addresses were rendered without proper separation. (NET-320)</p></li>
 <li><p>Fixed an issue where L4LB did not work when 1:1 DNAT rules (or other NAT rules) were configured for the same backend servers. (NET-378)</p></li>
-<li><p>Fixed an issue where DNAT did not work when the same backend IPs were configured under a load balancer with the same ports as the DNAT ports. (NET-380)</p></li>
 </ul>
 </section>
 <section id="security-fixes">
