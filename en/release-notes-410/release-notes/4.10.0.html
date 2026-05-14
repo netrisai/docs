@@ -1202,26 +1202,27 @@
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Inventory Switch Role</strong>. Switch objects in the inventory now include a role property (leaf, spine, super-spine, or generic), enabling operators to explicitly classify switches by their position in the fabric hierarchy. The role is auto-populated based on the switch location during migration. (NET-345)</p></li>
-<li><p><strong>Inventory Profile: Fabric Type Property</strong>. Inventory profiles now support a fabric type property that defines the traffic directionality and fabric tier the profile is designed for — including east-west (including multi-plane configurations), north-south (border/edge), out-of-band management, and general-purpose roles. (NET-348)</p></li>
-<li><p><strong>Inventory Profile: Reference Architecture</strong>. Inventory profiles now support a reference architecture property that defines the recommended deployment pattern for the profile. (NET-337)</p></li>
+<li><p><strong>Inventory Switch Role</strong>. Adds a new Switch Role property (generic, leaf, spine, super-spine) to inventory switch objects, enabling operators to explicitly define each switch’s role in the fabric topology. Existing switches are automatically assigned a role based on their location naming convention during the upgrade process. (NET-345, NET-346, NET-347)</p></li>
+<li><p><strong>Inventory Profile: Fabric Type</strong>. Adds a new Fabric Type property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. Supported types include east-west, north-south, out-of-band, and general-purpose. (NET-348, NET-349, NET-350)</p></li>
+<li><p><strong>Inventory Profile: Reference Architecture</strong>. Adds a new Reference Architecture selector to Inventory Profiles, allowing administrators to associate a profile with a recommended deployment pattern. (NET-337, NET-341)</p></li>
 </ul>
 </section>
 <section id="enhancements">
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>UFM reconciliation controls via Global Settings</strong>. Dry-run mode, debug mode, and the reconcile interval can now be controlled through the controller’s global settings. (NET-267)</p></li>
+<li><p><strong>Server Cluster Scalability</strong>. Improved the server cluster add/edit API to support creating clusters with a large number of servers (2000+) in a single operation. (NET-354)</p></li>
+<li><p><strong>Swagger API Documentation</strong>. Updated the Swagger API definitions with all missing API endpoints. (NET-373)</p></li>
 </ul>
 </section>
 <section id="bug-fixes">
 <h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Fixed suboptimal routing with VPC peering and EVPN Multihoming on Cumulus Linux, including corrections to LINKLOCAL-V6 prefix list handling in remote leaking scenarios and proper remote IPv6 address advertisement via LLDP TLV. (NET-220)</p></li>
-<li><p>Fixed suboptimal routing with VPC peering and EVPN Multihoming on Dell SONiC platforms. (NET-299)</p></li>
-<li><p>Fixed an issue where the CloudStack agent did not delete the VRF interface after the last VM from that VRF VNet was migrated or deleted. (NET-258)</p></li>
-<li><p>Fixed a regression where IPv6 VPC peering was not working as expected on Cumulus Linux 5.16. (NET-315)</p></li>
-<li><p>Fixed a UI display issue in the Network Links section where IPv4 and IPv6 addresses were rendered without proper separation. (NET-320)</p></li>
-<li><p>Fixed an issue where L4LB did not work when 1:1 DNAT rules (or other NAT rules) were configured for the same backend servers. (NET-378)</p></li>
+<li><p>Fixed L4LB not working when 1:1 DNAT rules are configured for the same backend IPs. (NET-378)</p></li>
+<li><p>Fixed switch model not displaying correctly in the controller inventory for Cumulus Linux switches. (NET-334)</p></li>
+<li><p>Fixed IPv4 and IPv6 addresses displaying concatenated without proper separation in the UI Network Links view. (NET-320)</p></li>
+<li><p>Fixed IPv6 VPC peering not working as expected in multi-cluster topologies, a regression introduced in 4.9.0. (NET-315)</p></li>
+<li><p>Fixed CloudStack agent not cleaning up VRF interfaces after the last VM in a VRF VNet is migrated or deleted. (NET-258)</p></li>
+<li><p>Fixed suboptimal routing with VPC peering and EVPN Multihoming on Cumulus by implementing proper local leaking logic. (NET-220)</p></li>
 </ul>
 </section>
 <section id="security-fixes">
