@@ -14,6 +14,11 @@ In addition to managing the SuperNIC, the plugin generates and maintains the Lin
 How It Works
 ------------
 
+.. warning::
+
+   Starting with Netris 4.9 release, the Netris Host Networking Plugin supports only Spectrum-X Reference Architecture version 2.1.2. Support for earlier Spectrum-X Reference Architectures has been deprecated. See :doc:`Netris 4.9 Release Notes <release-notes/4.9.0>` for details.
+   You may find earlier version of this document in the Netris 4.8 documentation: `Netris Host Networking Plugin <https://www.netris.io/docs/en/4.8/ai-netris-host-networking.html>`_.
+
 The Netris Host Networking Plugin receives the server's networking metadata from the directly connected Netris-managed NVIDIA Spectrum-X switches. These switches, in turn, communicate with the Netris Controller to receive these metadata, repackage it into custom LLDP TLVs, and deliver it to the intended GPU servers over the local link.
 
 On the GPU server, the NHN plugin extracts the metadata from the LLDP messages, generates the appropriate configuration, and applies it to both the BlueField3/ConnectX7/ConnectX8 SuperNIC and the host's network stack. If NHN detects any issues—such as missing parameters, firmware mismatches, or other validation failures—it returns error information to the Netris Controller using the same LLDP mechanism via the directly connected switches.
