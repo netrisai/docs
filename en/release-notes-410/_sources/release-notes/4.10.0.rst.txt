@@ -8,6 +8,10 @@ Netris |version| Release Notes (May/19/2026)
  
 What's new in Netris |version|?
 -------------------------------
+
+.. warning::
+ 
+   Monitoring data loss will occur when upgrading to Netris |version|. Time-series data store changes from Graphite to VictoriaMetrics. The database is reinitialized during the upgrade, resulting in the loss of historical monitoring data. Future Netris releases will include a migration tool to preserve monitoring data during upgrades.
  
 Features
 --------
@@ -16,11 +20,12 @@ Features
 - **Inventory Profile: Fabric Type**. Adds a new Fabric Type property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. Supported types include east-west, north-south, out-of-band, and general-purpose. (NET-348, NET-349, NET-350)
 - **Inventory Profile: Reference Architecture**. Adds a new Reference Architecture selector to Inventory Profiles, allowing administrators to associate a profile with a recommended deployment pattern. (NET-337, NET-341)
 - **Hardware Multi-Plane Support**. Adds support for multi-plane hardware configurations. (NET-403)
-- **IP Address Family can be set at Vnet level**. Allows administrators to specify the IP address family (IPv4, IPv6, or dual-stack) at the Vnet level. (NET-395)
+- **IP Address Family can be selected at Vnet level**. Allows administrators to specify the IP address family (IPv4, IPv6, or dual-stack) at the Vnet level. (NET-395)
 
 Enhancements
 ------------
  
+- **Graphite to VictoriaMetrics Migration**. Replaces Graphite with VictoriaMetrics as the time-series database for monitoring data, improving performance and scalability. (NET-359)
 - **Server Cluster Scalability**. Improved the server cluster add/edit API to support creating clusters with a large number of servers (2000+) in a single operation. (NET-354)
 - **Swagger API Documentation**. Updated the Swagger API definitions with all missing API endpoints. (NET-373)
  
