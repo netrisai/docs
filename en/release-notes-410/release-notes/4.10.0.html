@@ -75,7 +75,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netris 4.10.0 Release Notes (May/15/2026) &mdash; Netris Documentation</title>
+  <title>Netris 4.10.0 Release Notes (May/19/2026) &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -990,7 +990,7 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Release Notes</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 4.10.0 Release Notes (May/15/2026)</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 4.10.0 Release Notes (May/19/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-s-new-in-netris-version">What’s new in Netris 4.10.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#enhancements">Enhancements</a></li>
@@ -1181,7 +1181,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Release Notes</a></li>
-      <li class="breadcrumb-item active">Netris 4.10.0 Release Notes (May/15/2026)</li>
+      <li class="breadcrumb-item active">Netris 4.10.0 Release Notes (May/19/2026)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/netrisai/docs/blob/master/release-notes/4.10.0.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1194,8 +1194,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="netris-version-release-notes-may-15-2026">
-<span id="release-4-10-0"></span><h1>Netris 4.10.0 Release Notes (May/15/2026)<a class="headerlink" href="#netris-version-release-notes-may-15-2026" title="Link to this heading"></a></h1>
+  <section id="netris-version-release-notes-may-19-2026">
+<span id="release-4-10-0"></span><h1>Netris 4.10.0 Release Notes (May/19/2026)<a class="headerlink" href="#netris-version-release-notes-may-19-2026" title="Link to this heading"></a></h1>
 <section id="what-s-new-in-netris-version">
 <h2>What’s new in Netris 4.10.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
 </section>
@@ -1205,6 +1205,8 @@
 <li><p><strong>Inventory Switch Role</strong>. Adds a new Switch Role property (generic, leaf, spine, super-spine) to inventory switch objects, enabling operators to explicitly define each switch’s role in the fabric topology. Existing switches are automatically assigned a role based on their location naming convention during the upgrade process. (NET-345, NET-346, NET-347)</p></li>
 <li><p><strong>Inventory Profile: Fabric Type</strong>. Adds a new Fabric Type property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. Supported types include east-west, north-south, out-of-band, and general-purpose. (NET-348, NET-349, NET-350)</p></li>
 <li><p><strong>Inventory Profile: Reference Architecture</strong>. Adds a new Reference Architecture selector to Inventory Profiles, allowing administrators to associate a profile with a recommended deployment pattern. (NET-337, NET-341)</p></li>
+<li><p><strong>Hardware Multi-Plane Support</strong>. Adds support for multi-plane hardware configurations. (NET-403)</p></li>
+<li><p><strong>IP Address Family can be set at Vnet level</strong>. Allows administrators to specify the IP address family (IPv4, IPv6, or dual-stack) at the Vnet level. (NET-395)</p></li>
 </ul>
 </section>
 <section id="enhancements">
