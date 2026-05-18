@@ -1206,31 +1206,31 @@
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Inventory Switch Role</strong>. Operators can now explicitly define each switch’s role (generic, leaf, spine, super-spine), which influences how the BGP underlay and EVPN address family are configured in the fabric. Existing switches are automatically assigned a role based on their location naming convention during the upgrade process. Inferring the switch role from the switch name is deprecated starting with Netris 4.10.0. See <a class="reference internal" href="../topology-management.html#topology-management-adding-switches"><span class="std std-ref">Adding Switches</span></a> for more details.(NET-345, NET-346, NET-347)</p></li>
-<li><p><strong>Inventory Profile: Fabric Type</strong>. Adds a new Fabric Type (east-west, north-south, out-of-band, and general-purpose) property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. See <a class="reference internal" href="../inventory-profile.html#fabric-settings"><span class="std std-ref">Fabric Settings</span></a> for more details.(NET-348, NET-349, NET-350)</p></li>
-<li><p><strong>Inventory Profile: Reference Architecture</strong>. Adds a new Reference Architecture selector to Inventory Profiles, allowing administrators to associate a profile with a recommended deployment pattern. See <a class="reference internal" href="../inventory-profile.html#gpu-cluster-settings"><span class="std std-ref">GPU Cluster Specific Settings</span></a> for more details.(NET-337, NET-341)</p></li>
-<li><p><strong>Hardware Multi-Plane Support</strong>. Adds support for multi-plane hardware configurations. See <a class="reference internal" href="../inventory-profile.html#gpu-cluster-settings"><span class="std std-ref">GPU Cluster Specific Settings</span></a> for more details.(NET-403)</p></li>
-<li><p><strong>IP Address Family can be selected at Vnet level</strong>. Allows administrators to specify the IP address family (IPv4, IPv6, or dual-stack) at the Vnet level. (NET-395)</p></li>
+<li><p><strong>Inventory Switch Role</strong>. Operators can now explicitly define each switch’s role (generic, leaf, spine, super-spine), which influences how the BGP underlay and EVPN address family are configured in the fabric. Existing switches are automatically assigned a role based on their location naming convention during the upgrade process. Inferring the switch role from the switch name is deprecated starting with Netris 4.10.0. See <a class="reference internal" href="../topology-management.html#topology-management-adding-switches"><span class="std std-ref">Adding Switches</span></a> for more details.</p></li>
+<li><p><strong>Inventory Profile: Fabric Type</strong>. Adds a new Fabric Type (east-west, north-south, out-of-band, and general-purpose) property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. See <a class="reference internal" href="../inventory-profile.html#fabric-settings"><span class="std std-ref">Fabric Settings</span></a> for more details.</p></li>
+<li><p><strong>Inventory Profile: Reference Architecture</strong>. Adds a new Reference Architecture selector to Inventory Profiles, allowing administrators to associate a profile with a recommended deployment pattern. See <a class="reference internal" href="../inventory-profile.html#gpu-cluster-settings"><span class="std std-ref">GPU Cluster Specific Settings</span></a> for more details.</p></li>
+<li><p><strong>Hardware Multi-Plane Support</strong>. Adds support for multi-plane hardware configurations. See <a class="reference internal" href="../inventory-profile.html#gpu-cluster-settings"><span class="std std-ref">GPU Cluster Specific Settings</span></a> for more details.</p></li>
+<li><p><strong>IP Address Family can be selected at Vnet level</strong>. Allows administrators to specify the IP address family (IPv4, IPv6, or dual-stack) at the Vnet level.</p></li>
 </ul>
 </section>
 <section id="enhancements">
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Graphite to VictoriaMetrics Migration</strong>. Replaces Graphite with VictoriaMetrics as the time-series database for monitoring data, improving performance and scalability. (NET-359)</p></li>
-<li><p><strong>Server Cluster Scalability</strong>. Improved the server cluster add/edit API to support creating clusters with a large number of servers (2000+) in a single operation. (NET-354)</p></li>
-<li><p><strong>Swagger API Documentation</strong>. Updated the Swagger API definitions with all missing API endpoints. (NET-373)</p></li>
+<li><p><strong>Graphite to VictoriaMetrics Migration</strong>. Replaces Graphite with VictoriaMetrics as the time-series database for monitoring data, improving performance and scalability.</p></li>
+<li><p><strong>Server Cluster Scalability</strong>. Improved the server cluster add/edit API to support creating clusters with a large number of servers (2000+) in a single operation.</p></li>
+<li><p><strong>Swagger API Documentation</strong>. Updated the Swagger API definitions with all missing API endpoints.</p></li>
 <li><p><strong>UFM Integration Enhancements</strong>. Added support for UFM syncronization debuggin, dry-run mode, and change of reconciliation interval.</p></li>
 </ul>
 </section>
 <section id="bug-fixes">
 <h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Fixed L4LB not working when 1:1 DNAT rules are configured for the same backend IPs. (NET-378)</p></li>
-<li><p>Fixed switch model not displaying correctly in the controller inventory for Cumulus Linux switches. (NET-334)</p></li>
-<li><p>Fixed IPv4 and IPv6 addresses displaying concatenated without proper separation in the UI Network Links view. (NET-320)</p></li>
-<li><p>Fixed IPv6 VPC peering not working as expected in multi-cluster topologies, a regression introduced in 4.9.0. (NET-315)</p></li>
-<li><p>Fixed CloudStack agent not cleaning up VRF interfaces after the last VM in a VRF VNet is migrated or deleted. (NET-258)</p></li>
-<li><p>Fixed suboptimal routing with VPC peering and EVPN Multihoming on Cumulus by implementing proper local leaking logic. (NET-220)</p></li>
+<li><p>Fixed L4LB not working when 1:1 DNAT rules are configured for the same backend IPs.</p></li>
+<li><p>Fixed switch model not displaying correctly in the controller inventory for Cumulus Linux switches.</p></li>
+<li><p>Fixed IPv4 and IPv6 addresses displaying concatenated without proper separation in the UI Network Links view.</p></li>
+<li><p>Fixed IPv6 VPC peering not working as expected in multi-cluster topologies, a regression introduced in 4.9.0.</p></li>
+<li><p>Fixed CloudStack agent not cleaning up VRF interfaces after the last VM in a VRF VNet is migrated or deleted.</p></li>
+<li><p>Fixed suboptimal routing with VPC peering and EVPN Multihoming on Cumulus by implementing proper local leaking logic.</p></li>
 </ul>
 </section>
 <section id="security-fixes">
