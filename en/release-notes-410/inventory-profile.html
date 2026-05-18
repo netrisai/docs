@@ -297,10 +297,10 @@
 <li class="toctree-l1"><a class="reference internal" href="switch-agent-installation.html">Network Switch Initial Setup</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5.9%2B-Switch-initial-setup.html">Nvidia Cumulus v5.9+ Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5-Switch-initial-setup.html">Nvidia Cumulus v5 Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="EdgeCore-SONiC-Switch-initial-setup.html">EdgeCore SONiC Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Dell-SONiC-Switch-initial-setup.html">Dell SONiC Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="netris-softgate-HS.html">SoftGate HS</a><ul>
@@ -1207,8 +1207,8 @@
 <li><p>BGP, ICMP, DHCP</p></li>
 <li><p>Custom user defined rules</p></li>
 </ul>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Inventory Profile Fields</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Inventory Profile Fields</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 75.0%" />
@@ -1239,10 +1239,10 @@
 </table>
 <img alt="_images/Inventory-Profile-Top.png" class="with-shadow align-center" src="_images/Inventory-Profile-Top.png" />
 <br /><section id="snmpv2-credentials">
-<h2>SNMPv2 credentials<a class="headerlink" href="#snmpv2-credentials" title="Link to this heading"></a></h2>
+<span id="snmp-settings"></span><h2>SNMPv2 credentials<a class="headerlink" href="#snmpv2-credentials" title="Link to this heading"></a></h2>
 <p>Netris administers can define SNMPv2 credentials to monitor switches and SoftGates in the inventory. To add SNMPv2 credentials, expand the SNMPv2 section of the Inventory Profile form, set the checkbox to enabled, and fill in the fields as described below:</p>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-text">SNMPv2 Fields</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">SNMPv2 Fields</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p>Read-Only Community</p></td>
 <td><p>✅ required</p></td>
@@ -1265,9 +1265,10 @@
 <img alt="_images/SNMPv2-settings.png" class="with-shadow align-center" src="_images/SNMPv2-settings.png" />
 <br /></section>
 <section id="fabric-settings">
-<h2>Fabric Settings<a class="headerlink" href="#fabric-settings" title="Link to this heading"></a></h2>
+<span id="id1"></span><h2>Fabric Settings<a class="headerlink" href="#fabric-settings" title="Link to this heading"></a></h2>
 <p>Netris can automatically optimize fabric configurations based on administrator’s design and prefernces. The following controls are available in the Fabric Settings section of the Inventory Profile form:</p>
 <ul class="simple">
+<li><p><strong>Fabric Type</strong> (default = General Purpose)  This setting allows to specify the expected traffic pattern and design of the fabric. The selected fabric type will influence how BGP overlay is configured and optimized when “Optimize BGP Overlay for leaf-spine topology” is enabled and Switch Role is set for every switch subject to this Inventory Profile.</p></li>
 <li><p><strong>Optimize BGP Overlay for leaf-spine topology</strong> (default = checked)  When checked, overlay BGP updates will be optimized for large scale. Each leaf switch (based on name) will form its overlay BGP sessions only with two spine switches (with the lowest IDs). Otherwise, Overlay BGP sessions will be configured on p2p links alongside underlay.</p></li>
 <li><p><strong>Optimize BGP Overlay for Hypervisor Integrated Fabric</strong> (default = unchecked). Required for BGP/EVPN VXLAN integration with compute hypervisor networking. This optimization makes sure that a large number of hypervisor virtual networking EVPN prefixes do not overflow switch TCAM.</p></li>
 <li><p><strong>BGP Numbered Underlay</strong> (default = unchecked)  When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP unnumbered method is used and p2p ipv6 link-local addresses are used for BGP sessions.</p></li>
@@ -1276,18 +1277,19 @@
 </ul>
 </section>
 <section id="gpu-cluster-specific-settings">
-<h2>GPU Cluster Specific Settings<a class="headerlink" href="#gpu-cluster-specific-settings" title="Link to this heading"></a></h2>
+<span id="gpu-cluster-settings"></span><h2>GPU Cluster Specific Settings<a class="headerlink" href="#gpu-cluster-specific-settings" title="Link to this heading"></a></h2>
 <p>Additional optimizations are available for East-West GPU interconnect fabrics.</p>
 <ul class="simple">
 <li><p><strong>QoS &amp; RoCE</strong> (default = unchecked) Optimize for RDMA over Converged Ethernet</p></li>
 <li><p><strong>RoCE Adaptive Routing (AR)</strong> (default = unchecked) Enable Adaptive Routing for RoCE</p></li>
 <li><p><strong>Congestion Control</strong> (default = unchecked) Enable Zero Touch RoCE Congestion Control</p></li>
 <li><p><strong>ASIC monitoring</strong> (default = unchecked) Enable ASIC monitoring: histograms and telemetry snapshots.</p></li>
-<li><p><strong>Aggregate L3VPN /31 prefixes into /26</strong> (default = unchecked) Minimize prefix updates over BGP Overlay for L3VPN p2p links in rail-optimized topology and IP addressing schemes.</p></li>
+<li><p><strong>HWMP</strong> (default = unchecked) Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology.</p></li>
+<li><p><strong>Reference Architecture</strong> (default = None)  This setting tells Netris which reference architecture is being deployed on the subject fabric.</p></li>
 </ul>
 </section>
 <section id="custom-rules">
-<h2>Custom Rules<a class="headerlink" href="#custom-rules" title="Link to this heading"></a></h2>
+<span id="id2"></span><h2>Custom Rules<a class="headerlink" href="#custom-rules" title="Link to this heading"></a></h2>
 <p>Custom rules allow the administrator to define specific allow/deny flows to/from inventory devices.</p>
 <p>If an inventory profile is attached to a switch or a softgate, then Netris configures an implicit inbounddeny ACL. Several rules are automatically added to this ACL to allow the necessary system services connections like NTP, DNS, SSH from Allowed Hosts, BGP, ICMP, DHCP, SNMP. Everything else is denied by the implicit deny rule.
 If additional inbound services (e.g., Netflow/Sflow) need to be allowed, you can use Custom Rules to permit those connections.</p>
@@ -1295,7 +1297,7 @@ If additional inbound services (e.g., Netflow/Sflow) need to be allowed, you can
 <img alt="_images/CustomRules.png" class="with-shadow align-center" src="_images/CustomRules.png" />
 <br /></section>
 <section id="ztp-settings">
-<h2>ZTP Settings<a class="headerlink" href="#ztp-settings" title="Link to this heading"></a></h2>
+<span id="id3"></span><h2>ZTP Settings<a class="headerlink" href="#ztp-settings" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>NOS Image file</strong> When Zero Touch Provisioning (ZTP) is in use, this Network Operating System image will be used to bootstrap the switches subject to this Inventory Profile.</p></li>
 <li><p><strong>NOS Admin Password</strong> Once the ZTP process completes, Netris will configure this password for the builtin admin user.</p></li>

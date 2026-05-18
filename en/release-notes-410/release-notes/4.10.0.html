@@ -296,10 +296,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../switch-agent-installation.html">Network Switch Initial Setup</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Nvidia-Cumulus-v5.9%2B-Switch-initial-setup.html">Nvidia Cumulus v5.9+ Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Nvidia-Cumulus-v5-Switch-initial-setup.html">Nvidia Cumulus v5 Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../EdgeCore-SONiC-Switch-initial-setup.html">EdgeCore SONiC Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Dell-SONiC-Switch-initial-setup.html">Dell SONiC Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../netris-softgate-HS.html">SoftGate HS</a><ul>
@@ -1206,10 +1206,10 @@
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Inventory Switch Role</strong>. Operators can now explicitly define each switch’s role (generic, leaf, spine, super-spine), which influences how the BGP underlay and EVPN address family are configured in the fabric. Existing switches are automatically assigned a role based on their location naming convention during the upgrade process. Inferring the switch role from the switch name is deprecated starting with Netris 4.10.0. (NET-345, NET-346, NET-347)</p></li>
-<li><p><strong>Inventory Profile: Fabric Type</strong>. Adds a new Fabric Type (east-west, north-south, out-of-band, and general-purpose) property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. (NET-348, NET-349, NET-350)</p></li>
-<li><p><strong>Inventory Profile: Reference Architecture</strong>. Adds a new Reference Architecture selector to Inventory Profiles, allowing administrators to associate a profile with a recommended deployment pattern. (NET-337, NET-341)</p></li>
-<li><p><strong>Hardware Multi-Plane Support</strong>. Adds support for multi-plane hardware configurations. (NET-403)</p></li>
+<li><p><strong>Inventory Switch Role</strong>. Operators can now explicitly define each switch’s role (generic, leaf, spine, super-spine), which influences how the BGP underlay and EVPN address family are configured in the fabric. Existing switches are automatically assigned a role based on their location naming convention during the upgrade process. Inferring the switch role from the switch name is deprecated starting with Netris 4.10.0. See <a class="reference internal" href="../topology-management.html#topology-management-adding-switches"><span class="std std-ref">Adding Switches</span></a> for more details.(NET-345, NET-346, NET-347)</p></li>
+<li><p><strong>Inventory Profile: Fabric Type</strong>. Adds a new Fabric Type (east-west, north-south, out-of-band, and general-purpose) property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. See <a class="reference internal" href="../inventory-profile.html#fabric-settings"><span class="std std-ref">Fabric Settings</span></a> for more details.(NET-348, NET-349, NET-350)</p></li>
+<li><p><strong>Inventory Profile: Reference Architecture</strong>. Adds a new Reference Architecture selector to Inventory Profiles, allowing administrators to associate a profile with a recommended deployment pattern. See <a class="reference internal" href="../inventory-profile.html#gpu-cluster-settings"><span class="std std-ref">GPU Cluster Specific Settings</span></a> for more details.(NET-337, NET-341)</p></li>
+<li><p><strong>Hardware Multi-Plane Support</strong>. Adds support for multi-plane hardware configurations. See <a class="reference internal" href="../inventory-profile.html#gpu-cluster-settings"><span class="std std-ref">GPU Cluster Specific Settings</span></a> for more details.(NET-403)</p></li>
 <li><p><strong>IP Address Family can be selected at Vnet level</strong>. Allows administrators to specify the IP address family (IPv4, IPv6, or dual-stack) at the Vnet level. (NET-395)</p></li>
 </ul>
 </section>
