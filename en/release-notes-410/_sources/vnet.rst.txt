@@ -62,6 +62,7 @@ Every V-Net must include:
 Optionally V-Net definition can also include:
   - :ref:`Labels <tags>` for dynamic switch port inclusion into the V-Net,
   - List of collaborators (Guest tenants) who can add or remove switch ports to and from the V-Net, but not edit any other properties of the V-Net,
+  - IP Address Family (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack) to specify the type of gateway IP configured on the V-Net,
   - IPv4 or IPv6 Gateway (for L2VPN V-Nets) to make the V-Net routable inside the VPC, i.e., add an SVI to the VLAN,
   - DHCP scope and option set (for L2VPN V-Nets),
   - Anycast MAC address (for L2VPN V-Nets), which Netris can assign for you.

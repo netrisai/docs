@@ -1298,6 +1298,7 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <dt>Optionally V-Net definition can also include:</dt><dd><ul class="simple">
 <li><p><a class="reference internal" href="#tags"><span class="std std-ref">Labels</span></a> for dynamic switch port inclusion into the V-Net,</p></li>
 <li><p>List of collaborators (Guest tenants) who can add or remove switch ports to and from the V-Net, but not edit any other properties of the V-Net,</p></li>
+<li><p>IP Address Family (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack) to specify the type of gateway IP configured on the V-Net,</p></li>
 <li><p>IPv4 or IPv6 Gateway (for L2VPN V-Nets) to make the V-Net routable inside the VPC, i.e., add an SVI to the VLAN,</p></li>
 <li><p>DHCP scope and option set (for L2VPN V-Nets),</p></li>
 <li><p>Anycast MAC address (for L2VPN V-Nets), which Netris can assign for you.</p></li>
