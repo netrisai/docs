@@ -28,7 +28,7 @@ Enhancements
 - **Graphite to VictoriaMetrics Migration**. Replaces Graphite with VictoriaMetrics as the time-series database for monitoring data, improving performance and scalability.
 - **Server Cluster Scalability**. Improved the server cluster add/edit API to support creating clusters with a large number of servers (2000+) in a single operation.
 - **Swagger API Documentation**. Updated the Swagger API definitions with all missing API endpoints.
-- **UFM Integration Enhancements**. Added support for UFM syncronization debuggin, dry-run mode, and change of reconciliation interval.
+- **UFM Integration Enhancements**. Added support for UFM synchronization debugging, dry-run mode, and change of reconciliation interval.
 
 Bug fixes
 ---------
