@@ -443,6 +443,8 @@ Test protection by querying a fabric device:
 Monitoring and Troubleshooting
 ===============================
 
+.. _ufm_integration_view_logs:
+
 Viewing Logs
 --------------
 
@@ -547,10 +549,21 @@ Synchronization Delays
 
 **Solutions**:
 
-1. Adjust the RECONCILE_INTERVAL to a shorter time period for faster synchronization
-2. Check for high CPU or memory usage on the plugin host
-3. Verify network latency between the plugin and both systems
-4. Restart the plugin service if synchronization issues persist:
+1. Turn on debug logging in Settings>General to monitor synchronization operations in detail. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
+2. Adjust the Reconcile Interval Settings>General to a shorter time period for faster synchronization. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
+3. Use Dry Run mode Settings>General  to test changes without applying them, which can help identify issues before they affect the environment. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
+
+   .. image:: images/general-ufm-debug-dry-run-reconcile.png
+      :align: center
+      :class: with-shadow
+
+   .. raw:: html
+
+      </br>
+
+4. Check for high CPU or memory usage on the plugin host
+5. Verify network latency between the plugin and both systems
+6. Restart the plugin service if synchronization issues persist:
 
    .. code-block:: bash
 
