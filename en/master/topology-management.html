@@ -297,10 +297,10 @@
 <li class="toctree-l1"><a class="reference internal" href="switch-agent-installation.html">Network Switch Initial Setup</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5.9%2B-Switch-initial-setup.html">Nvidia Cumulus v5.9+ Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5-Switch-initial-setup.html">Nvidia Cumulus v5 Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="EdgeCore-SONiC-Switch-initial-setup.html">EdgeCore SONiC Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Dell-SONiC-Switch-initial-setup.html">Dell SONiC Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="netris-softgate-HS.html">SoftGate HS</a><ul>
@@ -991,6 +991,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.10.0.html">Netris 4.10.0 Release Notes (May/19/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#what-s-new-in-netris-version">What’s new in Netris 4.10.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.9.0.html">Netris 4.9.0 Release Notes (Apr/30/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#what-s-new-in-netris-version">What’s new in Netris 4.9.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#features">Features</a></li>
@@ -1244,13 +1253,16 @@
 <tr class="row-even"><td><p><strong>Management IP address</strong></p></td>
 <td><p>Management IP address for the device. A subnet with purpose set to <em>Management</em> needs to be defined in IPAM for the current site</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>MAC address</strong></p></td>
+<tr class="row-odd"><td><p><strong>Switch role</strong></p></td>
+<td><p>The switch’s role in the fabric hierarchy; must be set for the “Optimize BGP Overlay for leaf-spine topology” feature to work properly</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>MAC address</strong></p></td>
 <td><p>MAC address of the device; applicable to switches only (reserved for future use)</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>Preliminary port count</strong></p></td>
+<tr class="row-odd"><td><p><strong>Preliminary port count</strong></p></td>
 <td><p>Used for definition of topology. When the device registers with the controller the actual ports will synchronize with inventory</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>Add Link</strong></p></td>
+<tr class="row-even"><td><p><strong>Add Link</strong></p></td>
 <td><p>Used for describing physical connections between switches and SoftGates</p></td>
 </tr>
 </tbody>
@@ -1258,7 +1270,7 @@
 </div></blockquote>
 <p><strong>Example:</strong>  Add a new Switch.</p>
 <blockquote>
-<div><img alt="_images/inventory_switch.png" class="align-center" src="_images/inventory_switch.png" />
+<div><img alt="_images/inventory_switch.svg" class="align-center" src="_images/inventory_switch.svg" />
 </div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

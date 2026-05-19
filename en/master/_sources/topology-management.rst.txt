@@ -34,7 +34,7 @@ Every switch needs to be added to the Netris Controller inventory. You can add n
 
 **Example:**  Add a new Switch.
 
-  .. image:: images/inventory_switch.png
+  .. image:: images/inventory_switch.svg
      :align: center
 
 .. note:: Repeat this process to define all your switches.
