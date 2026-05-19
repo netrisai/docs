@@ -246,10 +246,18 @@ The first step is to create servers in the Netris Controller inventory that matc
 
 1. In Netris Controller, navigate to **Network** → **Topology** → **+Add**.
 2. Create servers with **identical names** as they appear in UFM (this is crucial for proper GUID mapping)
-3. Once created, the Netris-UFM agent will automatically sync the InfiniBand GUIDs from UFM into Netris
+3. Once created, the Netris-UFM agent will automatically sync the InfiniBand host and HCA GUIDs from UFM into Netris
 
 .. important::
-   Server names must match exactly between UFM and Netris Controller for the integration to work properly.
+   Server names must match exactly between UFM and Netris Controller for the initial sync to complete properly. Once the initial sync is done and the `hosting_system_guid` field is populated in Netris inventory, the plugin will continue to maintain the mapping even if server names change in Netris or UFM. You can verify the GUID mapping in Netris Controller UI under **Network** → **Inventory** by examining the Custom field of the server object. It should show both the HCA GUIDs and the hosting system GUID.
+
+   .. image:: images/ufm-hosting-system-guid.png
+      :align: center
+      :class: with-shadow
+
+   .. raw:: html
+
+      <p style="text-align: center;"><em>Figure: Server Custom field showing GUIDs</em></p>
 
 2. Create a Server Cluster Template
 ------------------------------------
@@ -274,7 +282,7 @@ Once the server cluster is created:
 
    - Identify the InfiniBand GUIDs associated with the servers in the cluster
    - Provision appropriate PKeys in UFM
-   - Create necessary SHARP reservations if applicable
+   - Create necessary SHARP reservations if applicable (if UFM_ENABLE_SHARP is set to true)
 
 2. Verify the configuration:
 
@@ -315,7 +323,7 @@ Functional Workflow
 
 3. **SHARP Integration**:
 
-   - For high-performance network operations, SHARP reservations are created
+   - For high-performance network operations, SHARP reservations are created if UFM_ENABLE_SHARP is set to true
    - These correspond to the server clusters defined in Netris
 
 4. **Continuous Reconciliation**:
@@ -459,6 +467,16 @@ For Docker container:
 .. code-block:: bash
 
    docker logs -f netris-ufm
+
+Alternatively, you can view logs through the Netris Controller UI under Telescope > API Logs and filter by `ufm`. Please, note that the API logs in the UI are shown with a delay and require a manual screen refresh. To see UFM integration logs in real-time, we recommend using the command-line methods above.
+
+.. image:: images/ufm-api-logs.png
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Viewing UFM integration logs in Netris Controller UI</em></p>
 
 Common Issues and Solutions
 -----------------------------

@@ -11,11 +11,11 @@ Optionally Edit ``terraform.tfvars`` file to set cluster scale parameters.
 
 Below, we describe the role of a few parameters that directly define the scale. The description of the rest of the parameters is available in the ``terraform.tfvars`` file itself. For the purpose of this try & learn scenario, there is no need to change the other parameters.
 
-The **east-west** switch fabric is responsible for high performance data transmission between GPU servers. Its rail-optimized design allows non-blocking, maximum-rate data transmission between any GPUs on the network. You only need to define the number of GPU servers in the ``terraform.tfvars`` file. When you execute the initialization module, it will automatically calculate the proper number of links and will generate the rail-optimized blueprint in the Netris controller according to the NVIDIA Spectrum-X guidelines.
+The **East-West** switch fabric is responsible for high performance data transmission between GPU servers. Its rail-optimized design allows non-blocking, maximum-rate data transmission between any GPUs on the network. You only need to define the number of GPU servers in the ``terraform.tfvars`` file. When you execute the initialization module, it will automatically calculate the proper number of links and will generate the rail-optimized blueprint in the Netris controller according to the NVIDIA Spectrum-X guidelines.
 
 * Define ``gpu-server-count`` using increments of 32 (1 SU = 32 servers, 2 SUs = 64 servers, etc.)
 
-The **north-south** switch fabric is responsible for everything else - for connectivity from the outside, to manage the GPU nodes and operate workloads. OOB management switches are responsible for out-of-band management of the network switches and GPU servers. In production, OOB management is also used for PXE booting the GPU servers. In this simulation scenario, GPU servers will be booted by means of the Netris infrastructure simulation platform for your convenience in testing and learning.
+The **North-South** switch fabric is responsible for everything else - for connectivity from the outside, to manage the GPU nodes and operate workloads. OOB management switches are responsible for Out-of-Band management of the network switches and GPU servers. In production, OOB management is also used for PXE booting the GPU servers. In this simulation scenario, GPU servers will be booted by means of the Netris infrastructure simulation platform for your convenience in testing and learning.
 
 * Define ``leaf-count`` - the rule of thumb is at least 1/4 of the number of SUs—so 1 leaf switch can handle up to 4 SUs
 * Define ``oob-leaf-count`` - Should be equal to the number of SUs.
@@ -111,7 +111,7 @@ Click on the ``Managed HW Health`` donut to see monitoring check statuses for ea
 Topology
 ========
 
-The group of spine and leaf switches at the top part is the east-west network (backend network). The group of spine and leaf switches at the bottom is the north-south network (Tenant Access Network). GPU servers are located in the middle between two switch fabrics. If you zoom in, you can see that eth ports 1-8 of each GPU server are connected to the east-west fabric through rail-optimized design - that's where high-performance computing traffic runs. Interfaces 9-10 are connected to the leaf switches of the north-south fabric. Later, you will see that interfaces 9 & 10 will be bonded on the GPU server side - that's where production traffic, storage traffic, dataset management, and workload management traffic runs. Finally, interface 11 is connected to the OOB (out of band) management switch. OOB interfaces are used for PXE booting the GPU nodes. (In the current simulation, there is no PXE booting—the VMs that simulate GPU servers simply start from an image.)
+The group of spine and leaf switches at the top part is the East-West network (backend network). The group of spine and leaf switches at the bottom is the North-South network (Tenant Access Network). GPU servers are located in the middle between two switch fabrics. If you zoom in, you can see that eth ports 1-8 of each GPU server are connected to the East-West fabric through rail-optimized design - that's where high-performance computing traffic runs. Interfaces 9-10 are connected to the leaf switches of the North-South fabric. Later, you will see that interfaces 9 & 10 will be bonded on the GPU server side - that's where production traffic, storage traffic, dataset management, and workload management traffic runs. Finally, interface 11 is connected to the OOB (out of band) management switch. OOB interfaces are used for PXE booting the GPU nodes. (In the current simulation, there is no PXE booting—the VMs that simulate GPU servers simply start from an image.)
 
 ``Network->Topology`` The main purpose of the topology section is to define the topology. In this scenario, the topology has been defined by means of the initialization module. However, manual changes can still be done through the web console. 
 
@@ -146,7 +146,7 @@ Example:
 SSH to GPU servers
 ==================
 
-GPU servers are connected to the east-west and north-south fabrics. At this point of the lab scenario, we haven't created any VPC/V-Net/VLAN services to instruct the fabric to provide connectivity to any interfaces of any GPU nodes. However, for the purpose of learning and experimenting, the simulation platform has an additional management network that allows you to connect to GPU servers anytime. 
+GPU servers are connected to the East-West and North-South fabrics. At this point of the lab scenario, we haven't created any VPC/V-Net/VLAN services to instruct the fabric to provide connectivity to any interfaces of any GPU nodes. However, for the purpose of learning and experimenting, the simulation platform has an additional management network that allows you to connect to GPU servers anytime. 
 
 SSH from the Netris controller server to a few GPU servers using 'root' username and IP addresses starting 192.168.16.2. ( 192.168.16.2 is host 0 in SU0, 192.168.16.3 is host 1 in SU0, etc.) 
 
@@ -186,7 +186,7 @@ Example:
   root@hgx-pod00-su0-h00:~# 
 
 
-On the GPU host, you'll find `./cluster-ping.sh`, which is a bash script that helps you execute parallel pings across every east-west and north-south interface towards any GPU node. The script knows the IP addressing scheme used in this scenario, and it only needs the SU number and host number.
+On the GPU host, you'll find `./cluster-ping.sh`, which is a bash script that helps you execute parallel pings across every East-West and North-South interface towards any GPU node. The script knows the IP addressing scheme used in this scenario, and it only needs the SU number and host number.
 
 In the below example, the host pings itself. So, local interface IPs are responding, while the default gateways are not. If you ping another host, you'll get timeouts on all interfaces. 
 
@@ -301,7 +301,7 @@ Server Cluster
 
 Now, navigate to ``Services->Server Cluster`` and click +Add. Give the new cluster some name, set Admin to Admin (this is related to Netris internal permissions of who can edit/delete this cluster), set the site to your site (Datacenter-1 is the default name), set VPC to 'create new', select the Template (you'll see the Template created in the last step), and click +Add server and include first 10 servers (from 0 to 9). Click Add.
 
-While the Server Cluster is being provisioned, check out what primitive objects have been created in the Netris controller driven by the Server Cluster and Server Cluster Template constructs. Navigate to ``Network->VPC``, and you'll see a newly created VPC. Navigate to ``Network->IPAM``, then open the VPC filter and make it filter the IPAM by your new VPC, you'll see some subnets created and assigned to that new VPC. Navigate to ``Services->V-Net``, and you'll see three V-Nets created, one for the east-west fabric (L3VPN VXLAN), one for north-south (L2VPN VXLAN - this one will have EVPN-MH bonding enabled, you'll see in next steps), and one for OOB.
+While the Server Cluster is being provisioned, check out what primitive objects have been created in the Netris controller driven by the Server Cluster and Server Cluster Template constructs. Navigate to ``Network->VPC``, and you'll see a newly created VPC. Navigate to ``Network->IPAM``, then open the VPC filter and make it filter the IPAM by your new VPC, you'll see some subnets created and assigned to that new VPC. Navigate to ``Services->V-Net``, and you'll see three V-Nets created, one for the East-West fabric (L3VPN VXLAN), one for North-South (L2VPN VXLAN - this one will have EVPN-MH bonding enabled, you'll see in next steps), and one for OOB.
 
 Go ahead and create another Server Cluster, including the next 10 servers—or any other servers. The system won’t let you 'double-book' any server in more than one cluster, to avoid conflicts.
 

@@ -35,7 +35,7 @@ Netris, having already configured the EVPN underlay, then automatically pushes t
 
 Netris V-Net supports **two transport modes**:
 
-* **L2VPN** (Layer 2 Virtual Private Network) is similar to a traditional VLAN with modern and scalable implementation. It is typically used for front-end (north-south) or management/out-of-band networks. Add a gateway, and it behaves like a VLAN with an SVI / IRB.
+* **L2VPN** (Layer 2 Virtual Private Network) is similar to a traditional VLAN with modern and scalable implementation. It is typically used for front-end (North-South) or management/Out-of-Band networks. Add a gateway, and it behaves like a VLAN with an SVI / IRB.
 
   L2VPN is implemented with VXLAN (Virtual Extensible LAN) transport and is a technology that enables the creation of Layer 2 switched overlays on top of a Layer 3 routed infrastructure. Often used in data centers to provide flexibility and scalability, VXLAN encapsulates Ethernet frames within UDP packets, enabling Layer 2 segments to span across a routed network.
   EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distribute MAC address information and manage traffic to enable efficient and scalable Layer 2 connectivity.
@@ -541,7 +541,7 @@ When to use labels
 """"""""""""""""""
 Labels can be used on their own or together with :doc:`Server Cluster </server-cluster>`.
 
-Imagine a multi-tenant cloud operator manages hundreds of GPU servers, each with 11 network interfaces (a very typical situation): 8 interfaces for east-west traffic, 2 interfaces for north-south, and the last one for management.
+Imagine a multi-tenant cloud operator manages hundreds of GPU servers, each with 11 network interfaces (a very typical situation): 8 interfaces for East-West traffic, 2 interfaces for North-South, and the last one for management.
 
 The operator wants to be able to dynamically assign servers to different tenants, which means NICs *eth1* through *eth10* must be placed into the correct tenant’s VPC.
 
