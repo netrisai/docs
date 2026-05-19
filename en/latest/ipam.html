@@ -297,10 +297,10 @@
 <li class="toctree-l1"><a class="reference internal" href="switch-agent-installation.html">Network Switch Initial Setup</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5.9%2B-Switch-initial-setup.html">Nvidia Cumulus v5.9+ Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5-Switch-initial-setup.html">Nvidia Cumulus v5 Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="EdgeCore-SONiC-Switch-initial-setup.html">EdgeCore SONiC Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Dell-SONiC-Switch-initial-setup.html">Dell SONiC Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="netris-softgate-HS.html">SoftGate HS</a><ul>
@@ -991,6 +991,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.10.0.html">Netris 4.10.0 Release Notes (May/19/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#what-s-new-in-netris-version">What’s new in Netris 4.10.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.9.0.html">Netris 4.9.0 Release Notes (Apr/30/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#what-s-new-in-netris-version">What’s new in Netris 4.9.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#features">Features</a></li>
@@ -1189,7 +1198,7 @@
 <span id="ipam-def"></span><h1>IP Address Management (IPAM)<a class="headerlink" href="#ip-address-management-ipam" title="Link to this heading"></a></h1>
 <p>Netris IPAM allows users to document their IP addresses and track pool usage. It is designed to have a tree-like view to provide opportunity to perform any kind of subnetting.</p>
 <p>Purpose:
-Users define specific roles(purpose) for each subnet/address and only after that are allowed to use those subnets in services like V-net, NAT, etc…</p>
+Users define specific roles(purpose) for each subnet/address and only after that are allowed to use those subnets in services like V-Net, NAT, etc…</p>
 <section id="allocations-and-subnets">
 <h2>Allocations and Subnets<a class="headerlink" href="#allocations-and-subnets" title="Link to this heading"></a></h2>
 <p>There are 2 main types of IP prefixes - allocation and subnet. Allocations are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network. Subnets are prefixes which are going to be used in services. Subnets are always childs of allocation. Allocations do not have parent subnets.</p>
@@ -1303,7 +1312,7 @@ Users define specific roles(purpose) for each subnet/address and only after that
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: 4.9
+      v: 4.10
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

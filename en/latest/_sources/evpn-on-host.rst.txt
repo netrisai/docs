@@ -137,7 +137,7 @@ Conversely, when gpu-node-10 sends a packet to Pod1, the process happens in reve
 Management Plane
 ---------------------------
 
-A management V-net is used to enable a variety of management flows, including
+A management V-Net is used to enable a variety of management flows, including
 
 - The initial server provisioning (e.g., PXE boot), 
 - Various ongoing administration tasks (e.g., SSH access and monitoring), 
@@ -163,7 +163,7 @@ Once the Netris EVPN-on-Host agent is installed and able to communicate with the
 
 When you enable the underlay mode on one or both of the switch-to-server links in the Netris controller, an EVPN BGP session per enabled link is established as a result. An ESTABLISHED EVPN BGP session triggers the Netris agent to automatically transfer the management IP (192.168.1.10/24) and the associated default route from the server's NIC to the VXLAN bridge. This action keeps the server reachable via the same management IP. Without this action, the IP directly configured on a NIC would become inaccessible due to the switch-to-server links switching to the EVPN/VXLAN mode. 
 
-.. image:: images/evpn-on-host/EVPN-on-Host-Management-V-net.svg
+.. image:: images/evpn-on-host/EVPN-on-Host-Management-V-Net.svg
   :align: center
   :class: with-shadow
 
@@ -327,7 +327,7 @@ There should be a new default route present via the management bridge.
 Provisioning Tenants
 ==========================
 
-To provision a tenant's Vnet on an EVPN-on-Host enabled server, add the switch ports connected to the EVPN-on-Host server to the tenant's V-Net as tagged ports using any of the supported methods:
+To provision a tenant's V-Net on an EVPN-on-Host enabled server, add the switch ports connected to the EVPN-on-Host server to the tenant's V-Net as tagged ports using any of the supported methods:
 
 1. Add this node as a Shared Endpoint to that tenant's :doc:`Server Cluster </server-cluster>`.
 

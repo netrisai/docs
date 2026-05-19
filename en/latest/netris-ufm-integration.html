@@ -297,10 +297,10 @@
 <li class="toctree-l1"><a class="reference internal" href="switch-agent-installation.html">Network Switch Initial Setup</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5.9%2B-Switch-initial-setup.html">Nvidia Cumulus v5.9+ Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5-Switch-initial-setup.html">Nvidia Cumulus v5 Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="EdgeCore-SONiC-Switch-initial-setup.html">EdgeCore SONiC Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Dell-SONiC-Switch-initial-setup.html">Dell SONiC Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="netris-softgate-HS.html">SoftGate HS</a><ul>
@@ -991,6 +991,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.10.0.html">Netris 4.10.0 Release Notes (May/19/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#what-s-new-in-netris-version">What’s new in Netris 4.10.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.9.0.html">Netris 4.9.0 Release Notes (Apr/30/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#what-s-new-in-netris-version">What’s new in Netris 4.9.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#features">Features</a></li>
@@ -1633,7 +1642,7 @@ sudo<span class="w"> </span>smpquery<span class="w"> </span>--m_key<span class="
 <section id="monitoring-and-troubleshooting">
 <h2>Monitoring and Troubleshooting<a class="headerlink" href="#monitoring-and-troubleshooting" title="Link to this heading"></a></h2>
 <section id="viewing-logs">
-<h3>Viewing Logs<a class="headerlink" href="#viewing-logs" title="Link to this heading"></a></h3>
+<span id="ufm-integration-view-logs"></span><h3>Viewing Logs<a class="headerlink" href="#viewing-logs" title="Link to this heading"></a></h3>
 <p>For Kubernetes deployment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/netris-controller-nvidia-ufm-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller
 </pre></div>
@@ -1734,7 +1743,11 @@ docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </s
 </ul>
 <p><strong>Solutions</strong>:</p>
 <ol class="arabic">
-<li><p>Adjust the RECONCILE_INTERVAL to a shorter time period for faster synchronization</p></li>
+<li><p>Turn on debug logging in Settings&gt;General to monitor synchronization operations in detail. Tail the logs once turned on. See <a class="reference internal" href="#ufm-integration-view-logs"><span class="std std-ref">Viewing Logs</span></a> for instructions on viewing logs.</p></li>
+<li><p>Adjust the Reconcile Interval Settings&gt;General to a shorter time period for faster synchronization. Tail the logs once turned on. See <a class="reference internal" href="#ufm-integration-view-logs"><span class="std std-ref">Viewing Logs</span></a> for instructions on viewing logs.</p></li>
+<li><p>Use Dry Run mode Settings&gt;General  to test changes without applying them, which can help identify issues before they affect the environment. Tail the logs once turned on. See <a class="reference internal" href="#ufm-integration-view-logs"><span class="std std-ref">Viewing Logs</span></a> for instructions on viewing logs.</p>
+<img alt="_images/general-ufm-debug-dry-run-reconcile.png" class="with-shadow align-center" src="_images/general-ufm-debug-dry-run-reconcile.png" />
+</br></li>
 <li><p>Check for high CPU or memory usage on the plugin host</p></li>
 <li><p>Verify network latency between the plugin and both systems</p></li>
 <li><p>Restart the plugin service if synchronization issues persist:</p>
@@ -1836,7 +1849,7 @@ docker<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: 4.9
+      v: 4.10
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

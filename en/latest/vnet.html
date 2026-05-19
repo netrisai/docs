@@ -297,10 +297,10 @@
 <li class="toctree-l1"><a class="reference internal" href="switch-agent-installation.html">Network Switch Initial Setup</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5.9%2B-Switch-initial-setup.html">Nvidia Cumulus v5.9+ Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5-Switch-initial-setup.html">Nvidia Cumulus v5 Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="EdgeCore-SONiC-Switch-initial-setup.html">EdgeCore SONiC Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Dell-SONiC-Switch-initial-setup.html">Dell SONiC Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="netris-softgate-HS.html">SoftGate HS</a><ul>
@@ -991,6 +991,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.10.0.html">Netris 4.10.0 Release Notes (May/19/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#what-s-new-in-netris-version">What’s new in Netris 4.10.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.10.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.9.0.html">Netris 4.9.0 Release Notes (Apr/30/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#what-s-new-in-netris-version">What’s new in Netris 4.9.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.9.0.html#features">Features</a></li>
@@ -1289,6 +1298,7 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <dt>Optionally V-Net definition can also include:</dt><dd><ul class="simple">
 <li><p><a class="reference internal" href="#tags"><span class="std std-ref">Labels</span></a> for dynamic switch port inclusion into the V-Net,</p></li>
 <li><p>List of collaborators (Guest tenants) who can add or remove switch ports to and from the V-Net, but not edit any other properties of the V-Net,</p></li>
+<li><p>IP Address Family (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack) to specify the type of gateway IP configured on the V-Net,</p></li>
 <li><p>IPv4 or IPv6 Gateway (for L2VPN V-Nets) to make the V-Net routable inside the VPC, i.e., add an SVI to the VLAN,</p></li>
 <li><p>DHCP scope and option set (for L2VPN V-Nets),</p></li>
 <li><p>Anycast MAC address (for L2VPN V-Nets), which Netris can assign for you.</p></li>
@@ -1437,15 +1447,19 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <td><p>Admin units that may add/remove switch ports but cannot change core settings.</p></td>
 <td><p>Optional; owner always retains full control.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>Anycast MAC address</strong></p></td>
+<tr class="row-odd"><td><p><strong>IP Address Family</strong> (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack)</p></td>
+<td><p>Determines the type of gateway IP configured on the V-Net.</p></td>
+<td><p>Default = IPv4/IPv6 Dual-Stack.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Anycast MAC address</strong></p></td>
 <td><p>Overrides the auto-generated anycast MAC.</p></td>
 <td><p>Leave blank to use the default.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>VXLAN ID</strong></p></td>
+<tr class="row-odd"><td><p><strong>VXLAN ID</strong></p></td>
 <td><p>VXLAN Network Identifier (1 – 16777216).</p></td>
 <td><p>Auto-assigned unless you enter a value.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>IPv4 Gateway / IPv6 Gateway</strong></p></td>
+<tr class="row-even"><td><p><strong>IPv4 Gateway / IPv6 Gateway</strong></p></td>
 <td><p>Anycast gateway IPs for Layer-3-enabled L2VPN.</p></td>
 <td><p>Hidden when L3VPN is on. Leave blank for pure Layer-2 V-Net. Must be configured under <code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">IPAM</span></code> as a subnet with purpose set to <code class="docutils literal notranslate"><span class="pre">common</span></code>, assigned to the Owner, and available in the site where V-Net is intended to span.</p></td>
 </tr>
@@ -1606,7 +1620,7 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 </div>
 <img alt="Server interface labels" class="with-shadow align-center" src="_images/server-interface-labels.png" />
 <br /><dl class="simple">
-<dt>To automatically add switch ports to a V-Net based on a label, in the V-net definition dialog:</dt><dd><ul class="simple">
+<dt>To automatically add switch ports to a V-Net based on a label, in the V-Net definition dialog:</dt><dd><ul class="simple">
 <li><p>Click the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Network</span> <span class="pre">Interface</span> <span class="pre">Label</span></code> button.</p></li>
 <li><p>Enter the “value” portion of the label. E.g., <em>storage</em> is the value of <em>iface.eth3=storage</em> label.</p></li>
 <li><p>Specify whether you want the switch port to be 802.1q tagged or untagged.</p></li>
@@ -1803,7 +1817,7 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: 4.9
+      v: 4.10
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

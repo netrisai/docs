@@ -10,7 +10,7 @@ IP Address Management (IPAM)
 Netris IPAM allows users to document their IP addresses and track pool usage. It is designed to have a tree-like view to provide opportunity to perform any kind of subnetting.  
 
 Purpose:
-Users define specific roles(purpose) for each subnet/address and only after that are allowed to use those subnets in services like V-net, NAT, etc… 
+Users define specific roles(purpose) for each subnet/address and only after that are allowed to use those subnets in services like V-Net, NAT, etc… 
 
 
 Allocations and Subnets
