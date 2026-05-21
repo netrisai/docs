@@ -51,7 +51,7 @@ DPU mode. Mode switching and OS installation are typically handled by NVIDIA DPF
 
 **Management reachability.** The DPU must be reachable on the management network before Netris
 can communicate with it. Its 1 GbE MGMT port must be physically cabled and accessible.
-Management connectivity must be established either through an external out-of-band network or
+Management connectivity must be established either through an external Out-of-Band network or
 through a VNet that includes the DPU management port.
 
 **Agent installation.** Registering a DPU in Netris inventory does not automatically install

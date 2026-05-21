@@ -1308,7 +1308,7 @@ Take a look at the VPC features and services.</p>
 <div><ul class="simple">
 <li><p><em>common</em> - ordinary subnet, can be used in V-Nets.</p></li>
 <li><p><em>loopback</em> - hosts of this subnet can be used only as loopback IP addresses for Netris hardware (switches and/or softgates).</p></li>
-<li><p><em>management</em> - subnet which specifies the out-of-band management IP addresses for Netris hardware (switches and softgates).</p></li>
+<li><p><em>management</em> - subnet which specifies the Out-of-Band management IP addresses for Netris hardware (switches and softgates).</p></li>
 <li><p><em>load-balancer</em> - hosts of this subnet are used in L4LB services only. Useful for deploying on-prem kubernetes with cloud-like experience.</p></li>
 <li><p><em>nat</em> - hosts of this subnet or subnet itself can be used to define NAT services.</p></li>
 <li><p><em>inactive</em> - can’t be used in any services, useful for reserving/documenting prefixes for future use.</p></li>
@@ -1639,7 +1639,7 @@ Take a look at the VPC features and services.</p>
 <li><p>To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported.</p></li>
 <li><p>Temporary interconnection with the old network for a migration.</p></li>
 <li><p>Routing a subnet behind a VM hypervisor machine for an internal VM network.</p></li>
-<li><p>Specifically routing traffic destined to a particular prefix through an out-of-band management network.</p></li>
+<li><p>Specifically routing traffic destined to a particular prefix through an Out-of-Band management network.</p></li>
 </ul>
 <p>Add new static route fields description:</p>
 <ul class="simple">
@@ -1653,7 +1653,7 @@ Take a look at the VPC features and services.</p>
 </ul>
 <p>Example: Default route pointing to a Next-Hop that belongs to one of V-Nets.</p>
 <img alt="_images/static_route_empty.png" class="align-center" src="_images/static_route_empty.png" />
-<p>Example: Adding a back route to 10.254.0.0/16 through an out-of-band management network.</p>
+<p>Example: Adding a back route to 10.254.0.0/16 through an Out-of-Band management network.</p>
 <img alt="_images/static_route2_empty.png" class="align-center" src="_images/static_route2_empty.png" />
 <p>Screenshot shows that the back route is actually applied on Softgate1 and Softgate2 .</p>
 <img alt="_images/static_route3.png" class="align-center" src="_images/static_route3.png" />

@@ -1271,7 +1271,7 @@
 </ul>
 <p>Netris V-Net supports <strong>two transport modes</strong>:</p>
 <ul>
-<li><p><strong>L2VPN</strong> (Layer 2 Virtual Private Network) is similar to a traditional VLAN with modern and scalable implementation. It is typically used for front-end (north-south) or management/out-of-band networks. Add a gateway, and it behaves like a VLAN with an SVI / IRB.</p>
+<li><p><strong>L2VPN</strong> (Layer 2 Virtual Private Network) is similar to a traditional VLAN with modern and scalable implementation. It is typically used for front-end (North-South) or management/Out-of-Band networks. Add a gateway, and it behaves like a VLAN with an SVI / IRB.</p>
 <p>L2VPN is implemented with VXLAN (Virtual Extensible LAN) transport and is a technology that enables the creation of Layer 2 switched overlays on top of a Layer 3 routed infrastructure. Often used in data centers to provide flexibility and scalability, VXLAN encapsulates Ethernet frames within UDP packets, enabling Layer 2 segments to span across a routed network.
 EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distribute MAC address information and manage traffic to enable efficient and scalable Layer 2 connectivity.</p>
 </li>
@@ -1643,7 +1643,7 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <section id="when-to-use-labels">
 <h4><a class="toc-backref" href="#id24" role="doc-backlink">When to use labels</a><a class="headerlink" href="#when-to-use-labels" title="Link to this heading"></a></h4>
 <p>Labels can be used on their own or together with <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a>.</p>
-<p>Imagine a multi-tenant cloud operator manages hundreds of GPU servers, each with 11 network interfaces (a very typical situation): 8 interfaces for east-west traffic, 2 interfaces for north-south, and the last one for management.</p>
+<p>Imagine a multi-tenant cloud operator manages hundreds of GPU servers, each with 11 network interfaces (a very typical situation): 8 interfaces for East-West traffic, 2 interfaces for North-South, and the last one for management.</p>
 <p>The operator wants to be able to dynamically assign servers to different tenants, which means NICs <em>eth1</em> through <em>eth10</em> must be placed into the correct tenant’s VPC.</p>
 <p>At the same time, the operator wants to keep the server’s IPMI / ILO / iDrac interface eth11 in the management VPC regardless of which tenant the server is reassigned to.</p>
 <p>To achieve this outcome, the cloud operator can</p>

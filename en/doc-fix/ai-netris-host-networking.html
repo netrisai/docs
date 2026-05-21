@@ -1198,7 +1198,7 @@
 <h1>Netris Host Networking<a class="headerlink" href="#netris-host-networking" title="Link to this heading"></a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>The Netris Host Networking Plugin is an optional component that automates the host-side networking required for GPU servers running on NVIDIA Spectrum-X east-west fabrics. It configures and maintains the BlueField3/ConnectX7/ConnectX8 SuperNICs as required by the NVIDIA Spectrum-X Deployment Guide. Because the BlueField3/ConnectX7/ConnectX8 Spectrum-X settings are normally non-persistent and must be reapplied on every boot event, Netris developed the NHN Plugin to handle the firmware checks, DMS behavior, RoCE and Adaptive Routing parameters, congestion control tuning, and other Spectrum-X requirements to remove the operational burden of managing the BlueField3/ConnectX7/ConnectX8 configuration manually or through custom scripts.</p>
+<p>The Netris Host Networking Plugin is an optional component that automates the host-side networking required for GPU servers running on NVIDIA Spectrum-X East-West fabrics. It configures and maintains the BlueField3/ConnectX7/ConnectX8 SuperNICs as required by the NVIDIA Spectrum-X Deployment Guide. Because the BlueField3/ConnectX7/ConnectX8 Spectrum-X settings are normally non-persistent and must be reapplied on every boot event, Netris developed the NHN Plugin to handle the firmware checks, DMS behavior, RoCE and Adaptive Routing parameters, congestion control tuning, and other Spectrum-X requirements to remove the operational burden of managing the BlueField3/ConnectX7/ConnectX8 configuration manually or through custom scripts.</p>
 <p>In addition to managing the SuperNIC, the plugin generates and maintains the Linux host’s network configuration using either netplan or ifupdown based on automatically detecting which network manager is active. This ensures that the host and the SuperNIC remain consistently configured with the correct Spectrum-X settings across reboots and link events.</p>
 </section>
 <section id="how-it-works">
@@ -1213,7 +1213,7 @@ You may find earlier version of this document in the Netris 4.8 documentation: <
 <p>Because NHN operates entirely through LLDP, it does not require any direct connectivity to the Netris Controller. This improves scalability and the overall security posture of the deployment.</p>
 <p>To configure and validate the BlueField3/ConnectX7/ConnectX8 SuperNIC’s configuration, the NHN daemon automatically runs:</p>
 <ul class="simple">
-<li><p><strong>bf3-config</strong> — Configures the BlueField3/ConnectX7/ConnectX8 SuperNICs with the Spectrum-X settings required for east-west fabric operation, as described in the NVIDIA Spectrum-X Deployment Guide.</p></li>
+<li><p><strong>bf3-config</strong> — Configures the BlueField3/ConnectX7/ConnectX8 SuperNICs with the Spectrum-X settings required for East-West fabric operation, as described in the NVIDIA Spectrum-X Deployment Guide.</p></li>
 <li><p><strong>verifier</strong> — Validates the BlueField3/ConnectX7/ConnectX8 configuration and sends discovered issues to the Netris Controller using LLDP.</p></li>
 </ul>
 <p>Together, these functions keep both the host and the SuperNIC aligned with the Spectrum-X fabric’s intended state without requiring custom scripts or manual reconfiguration.</p>
@@ -1371,7 +1371,7 @@ You may find earlier version of this document in the Netris 4.8 documentation: <
 <p>The configuration file uses INI format with sections for different components.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">general</span><span class="p">]</span>
 
-<span class="c1"># Regex pattern to match east-west fabric switch names</span>
+<span class="c1"># Regex pattern to match East-West fabric switch names</span>
 <span class="c1"># Default matches patterns like: su0-r0, su1-r1, su2-r3, etc.</span>
 <span class="n">ew</span><span class="o">-</span><span class="n">switch</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">template</span> <span class="o">=</span> <span class="n">su</span><span class="p">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span><span class="o">-+</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span>
 
@@ -1410,7 +1410,7 @@ You may find earlier version of this document in the Netris 4.8 documentation: <
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The <cite>ew-switch-name-template</cite> parameter is critical for identifying which network interfaces are connected to the east-west fabric. It’s a regex pattern used to identify which network interfaces are connected to the east-west fabric.</p>
+<p>The <cite>ew-switch-name-template</cite> parameter is critical for identifying which network interfaces are connected to the East-West fabric. It’s a regex pattern used to identify which network interfaces are connected to the East-West fabric.</p>
 </div>
 <p>Examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Match switches named su0-r0, su1-r1, etc.</span>

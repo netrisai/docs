@@ -17,7 +17,7 @@ Features
 --------
  
 - **Inventory Switch Role**. Operators can now explicitly define each switch's role (generic, leaf, spine, super-spine), which influences how the BGP underlay and EVPN address family are configured in the fabric. Existing switches are automatically assigned a role based on their location naming convention during the upgrade process. Inferring the switch role from the switch name is deprecated starting with Netris |version|. See :ref:`topology-management-adding-switches` for more details.
-- **Inventory Profile: Fabric Type**. Adds a new Fabric Type (east-west, north-south, out-of-band, and general-purpose) property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. See :ref:`fabric_settings` for more details.
+- **Inventory Profile: Fabric Type**. Adds a new Fabric Type (East-West, North-South, Out-of-Band, and General-Purpose) property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. See :ref:`fabric_settings` for more details.
 - **Inventory Profile: Reference Architecture**. Adds a new Reference Architecture selector to Inventory Profiles, allowing administrators to associate a profile with a recommended deployment pattern. See :ref:`gpu_cluster_settings` for more details.
 - **Hardware Multi-Plane Support**. Adds support for multi-plane hardware configurations. See :ref:`gpu_cluster_settings` for more details.
 - **IP Address Family can be selected at Vnet level**. Allows administrators to specify the IP address family (IPv4, IPv6, or dual-stack) at the Vnet level.
