@@ -36,6 +36,10 @@ The Netris Controller must be deployed with a North-South Virtual IP (N/S VIP) c
 
 See: :ref:`Deploy North-South controller VIP <North-South-vip>`
 
+.. tip::
+
+   The N/S VIP is only required when deploying hierarchical (a.k.a. hybrid) Out-of-Band Management network topology. In direct-to-CMN deployments, the controller's CMN VIP can be used instead, and the N/S VIP is not required. Please, contact Netris Support to learn more about Hybrid and Direct-to-CMN deployments.
+
 2. Configure Netris Local Repository
 -------------------------------------
 
@@ -50,7 +54,15 @@ Upload required NOS images to this new subdirectory on each controller node in t
 
 .. code-block:: shell
 
-   scp cumulus-linux-5.16.1-mlx-amd64.bin <controller_IP>:/$PVC_PATH/repo/ztp_images/
+   scp cumulus-linux-5.16.1-mlx-amd64.bin <username>@<controller_IP>:/$PVC_PATH/repo/ztp_images/
+
+.. tip::
+
+   The above example command may need to be modified to include the appropriate username and/or port number for your environment.
+
+   Furmthermore, the NOS image must be uploaded to the same path on all controller nodes in the HA cluster. This ensures that whichever node is active can serve the NOS image to switches during ZTP.
+
+   This method will be improved in future releases to allow uploading through the Netris Controller UI or API, eliminating the need for manual file transfer to each controller node.
 
 4. Controller Management Address IP in Controller Settings
 ----------------------------------------------------------

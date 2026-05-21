@@ -69,7 +69,17 @@ Fabric Settings
 
 Netris can automatically optimize fabric configurations based on administrator's design and preferences. The following controls are available in the Fabric Settings section of the Inventory Profile form:
 
-- **Fabric Type** (default = General Purpose)  The selected fabric type acts as a filter to determine which switches are subject to the "Optimize BGP Overlay for leaf-spine topology" feature as described below. 
+- **Fabric Type** (default = General Purpose)  The selected fabric type acts as a filter to determine which switches are subject to the "Optimize BGP Overlay for leaf-spine topology" feature as described below. Supported values include:
+  
+  * Generic
+  * East-West
+  * East-West-Plane1
+  * East-West-Plane2
+  * East-West-Plane3
+  * East-West-Plane4
+  * North-South
+  * OOB
+
 - **Optimize BGP Overlay for leaf-spine topology** (default = checked)  When checked, overlay BGP updates will be optimized for large scale. Each leaf switch (based on its role) and Fabric Type will form its overlay BGP sessions only with two spine switches (with the lowest IDs). When unchecked, the Overlay BGP sessions will be configured on all point-to-point links without exceptions.
 - **Optimize BGP Overlay for Hypervisor Integrated Fabric** (default = unchecked). Required for BGP/EVPN VXLAN integration with compute hypervisor networking. This optimization makes sure that a large number of hypervisor virtual networking EVPN prefixes do not overflow switch TCAM.
 - **BGP Numbered Underlay** (default = unchecked)  When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP unnumbered method is used and p2p ipv6 link-local addresses are used for BGP sessions.

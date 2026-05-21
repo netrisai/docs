@@ -1212,6 +1212,10 @@
 <h3>1. HA Controller with North-South VIP<a class="headerlink" href="#ha-controller-with-north-south-vip" title="Link to this heading"></a></h3>
 <p>The Netris Controller must be deployed with a North-South Virtual IP (N/S VIP) configured. The N/S VIP is the address through which switches and other infrastructure devices reach the controller services.</p>
 <p>See: <a class="reference internal" href="controller-k3s-air-gap-ha.html#north-south-vip"><span class="std std-ref">Deploy North-South controller VIP</span></a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The N/S VIP is only required when deploying hierarchical (a.k.a. hybrid) Out-of-Band Management network topology. In direct-to-CMN deployments, the controller’s CMN VIP can be used instead, and the N/S VIP is not required. Please, contact Netris Support to learn more about Hybrid and Direct-to-CMN deployments.</p>
+</div>
 </section>
 <section id="configure-netris-local-repository">
 <h3>2. Configure Netris Local Repository<a class="headerlink" href="#configure-netris-local-repository" title="Link to this heading"></a></h3>
@@ -1221,8 +1225,14 @@
 <h3>3. Upload NOS images to the local repo<a class="headerlink" href="#upload-nos-images-to-the-local-repo" title="Link to this heading"></a></h3>
 <p>Identify the directory name where the local repo is located on the controller nodes (<code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code>) as described in the <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Local Repo installation instructions</span></a>.</p>
 <p>Upload required NOS images to this new subdirectory on each controller node in the HA cluster (substitue <code class="docutils literal notranslate"><span class="pre">&lt;controller_IP&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code> with the appropriate values):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>cumulus-linux-5.16.1-mlx-amd64.bin<span class="w"> </span>&lt;controller_IP&gt;:/<span class="nv">$PVC_PATH</span>/repo/ztp_images/
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>cumulus-linux-5.16.1-mlx-amd64.bin<span class="w"> </span>&lt;username&gt;@&lt;controller_IP&gt;:/<span class="nv">$PVC_PATH</span>/repo/ztp_images/
 </pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The above example command may need to be modified to include the appropriate username and/or port number for your environment.</p>
+<p>Furmthermore, the NOS image must be uploaded to the same path on all controller nodes in the HA cluster. This ensures that whichever node is active can serve the NOS image to switches during ZTP.</p>
+<p>This method will be improved in future releases to allow uploading through the Netris Controller UI or API, eliminating the need for manual file transfer to each controller node.</p>
 </div>
 </section>
 <section id="controller-management-address-ip-in-controller-settings">
