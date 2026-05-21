@@ -158,7 +158,7 @@ If you plan to perform network address translation (NAT), you must first create 
 
         - *common* - ordinary subnet, can be used in V-Nets.
         - *loopback* - hosts of this subnet can be used only as loopback IP addresses for Netris hardware (switches and/or softgates).
-        - *management* - subnet which specifies the out-of-band management IP addresses for Netris hardware (switches and softgates).
+        - *management* - subnet which specifies the Out-of-Band management IP addresses for Netris hardware (switches and softgates).
         - *load-balancer* - hosts of this subnet are used in L4LB services only. Useful for deploying on-prem kubernetes with cloud-like experience.
         - *nat* - hosts of this subnet or subnet itself can be used to define NAT services.
         - *inactive* - can't be used in any services, useful for reserving/documenting prefixes for future use.
@@ -381,7 +381,7 @@ Typical use cases for static routing:
 * To connect the switch fabric to an ISP or upstream router in a situation where BGP and dual-homing are not supported.
 * Temporary interconnection with the old network for a migration.
 * Routing a subnet behind a VM hypervisor machine for an internal VM network.
-* Specifically routing traffic destined to a particular prefix through an out-of-band management network.
+* Specifically routing traffic destined to a particular prefix through an Out-of-Band management network.
 
 Add new static route fields description:
 
@@ -399,7 +399,7 @@ Example: Default route pointing to a Next-Hop that belongs to one of V-Nets.
 .. image:: images/static_route_empty.png
     :align: center
 
-Example: Adding a back route to 10.254.0.0/16 through an out-of-band management network.
+Example: Adding a back route to 10.254.0.0/16 through an Out-of-Band management network.
 
 .. image:: images/static_route2_empty.png
     :align: center

@@ -79,6 +79,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
       <link rel="stylesheet" type="text/css" href="_static/styles.css?v=8456483b" />
 
@@ -196,7 +197,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation/installation.html">Controller Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
@@ -811,7 +812,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#vf-interface-naming">VF Interface Naming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#monitoring">Monitoring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1229,11 +1229,8 @@ and DPUs — and exposes both switch ports and DPU VFs through the same VNet att
 DPU mode. Mode switching and OS installation are typically handled by NVIDIA DPF.</p>
 <p><strong>Management reachability.</strong> The DPU must be reachable on the management network before Netris
 can communicate with it. Its 1 GbE MGMT port must be physically cabled and accessible.
-Management connectivity must be established either through an external out-of-band network or
+Management connectivity must be established either through an external Out-of-Band network or
 through a VNet that includes the DPU management port.</p>
-<p><strong>PXE limitation.</strong> BlueField-3 in DPU mode does not support PXE passthrough to the host
-server. If the host server needs to be bootstrapped via PXE, the DPU must be reachable over
-its MGMT port to configure host connectivity first.</p>
 <p><strong>Agent installation.</strong> Registering a DPU in Netris inventory does not automatically install
 the Netris agent onto the DPU. Agent installation is handled through DPF.</p>
 </section>
@@ -1265,10 +1262,10 @@ see <a class="reference internal" href="topology-management.html#topology-manage
 <h2>VF Interface Naming<a class="headerlink" href="#vf-interface-naming" title="Link to this heading"></a></h2>
 <p>After save, Netris generates VF interface objects for each DPU based on the port count and
 VF count configured.</p>
-<p>For a DPU with two physical ports and N VFs total, VFs are split evenly between the two
+<p>For a DPU with two physical ports and X number of Virtual Functions total, VFs are split evenly between the two
 physical functions:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pf0vf0</span><span class="o">-</span><span class="n">dpu1</span> <span class="n">through</span> <span class="n">pf0vf</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">dpu1</span>
-<span class="n">pf1vf0</span><span class="o">-</span><span class="n">dpu1</span> <span class="n">through</span> <span class="n">pf1vf</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">dpu1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pf0vf0</span><span class="o">-</span><span class="n">dpu1</span> <span class="n">through</span> <span class="n">pf0vf</span><span class="p">(</span><span class="n">X</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">dpu1</span>
+<span class="n">pf1vf0</span><span class="o">-</span><span class="n">dpu1</span> <span class="n">through</span> <span class="n">pf1vf</span><span class="p">(</span><span class="n">X</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">dpu1</span>
 </pre></div>
 </div>
 <p>For a DPU with one physical port and N VFs:</p>
@@ -1298,30 +1295,24 @@ participate in the same tenant network with hardware-enforced isolation.</p>
 </section>
 <section id="monitoring">
 <h2>Monitoring<a class="headerlink" href="#monitoring" title="Link to this heading"></a></h2>
-<p>DPU health and heartbeat are surfaced in the Inventory view as child status indicators under
-the parent server.</p>
-<p><strong>Heartbeat</strong> — reflects connectivity between the Netris controller and the DPU agent.
-Displayed per DPU. The count shown (for example, OK (2)) represents the number of DPUs in
-that server with that heartbeat status.</p>
-<p><strong>Health checks</strong> — aggregated across all DPUs in the server. The total count across OK, Warn,
-and Crit equals the combined number of health checks for all DPUs in the server.</p>
-<p>DPU names appear in the <code class="docutils literal notranslate"><span class="pre">dpuX&#64;hostname</span></code> format in the Dashboard Agent Heartbeats view (for
-example, <code class="docutils literal notranslate"><span class="pre">dpu1&#64;hgx-pod00-su0-h01</span></code>). DPU health monitors are included in the Managed HW
-Health dashboard view.</p>
-<p>Expanding the server row in Inventory shows a per-DPU section with loopback IP, MGMT IP,
-heartbeat state, aggregated health check counts, and a three-dot menu with options for
-Network Interfaces and Install Agent.</p>
-</section>
-<section id="known-limitations">
-<h2>Known Limitations<a class="headerlink" href="#known-limitations" title="Link to this heading"></a></h2>
-<p>BlueField-3 in DPU mode does not support PXE passthrough to the host. The DPU MGMT port must
-be physically cabled and reachable during server deployment.</p>
-<p>Port mappings and VF count cannot be modified after the server object is saved. To change
-them, delete and recreate the server object.</p>
-<p>Reducing the DPU count on an existing server removes all configuration and VF interfaces
-associated with the removed DPU blocks. This action cannot be undone.</p>
-<p>Netris does not manage DPU OS installation, firmware updates, or mode switching. These are
-handled through NVIDIA DPF before the DPU is registered in Netris.</p>
+<p>DPU health and heartbeat are surfaced in the Inventory view as child status indicators under the parent server.</p>
+<p><strong>Heartbeat</strong> — reflects connectivity between the Netris controller and the DPU agent. Displayed per DPU. The count shown (for example, OK (2)) represents the number of DPUs in that server with that heartbeat status.</p>
+<p><strong>Health checks</strong> — aggregated across all DPUs in the server. The total count across OK, Warn, and Crit equals the combined number of health checks for all DPUs in the server.</p>
+<p>DPU names appear in the <code class="docutils literal notranslate"><span class="pre">dpuX&#64;hostname</span></code> format in the Dashboard Agent Heartbeats view (for example, <code class="docutils literal notranslate"><span class="pre">dpu1&#64;hgx-pod00-su0-h01</span></code>). DPU health monitors are included in the Managed HW Health dashboard view.</p>
+<p>Expanding the server row in Inventory shows a per-DPU section with loopback IP, MGMT IP, heartbeat state, aggregated health check counts, and a three-dot menu with options for Network Interfaces and Install Agent.</p>
+<img alt="DPU health status in Inventory view" class="with-shadow align-center" src="_images/dpu-health.png" />
+<p style="text-align: center;"><em>Figure: DPU health status in Inventory view</em></p><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Port mappings and VF count cannot be modified after the server object is saved. To change them, delete and recreate the server object.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Reducing the DPU count on an existing server removes all configuration and VF interfaces associated with the removed DPU blocks. This action cannot be undone.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Netris does not manage DPU OS installation, firmware updates, or mode switching. These are handled through NVIDIA DPF.</p>
+</div>
 </section>
 </section>
 

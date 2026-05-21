@@ -80,6 +80,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
       <link rel="stylesheet" type="text/css" href="_static/styles.css?v=8456483b" />
 
@@ -197,7 +198,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation/installation.html">Controller Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
@@ -812,7 +813,6 @@
 <li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#monitoring">Monitoring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1453,12 +1453,13 @@
 <ol class="arabic simple">
 <li><p>In Netris Controller, navigate to <strong>Network</strong> → <strong>Topology</strong> → <strong>+Add</strong>.</p></li>
 <li><p>Create servers with <strong>identical names</strong> as they appear in UFM (this is crucial for proper GUID mapping)</p></li>
-<li><p>Once created, the Netris-UFM agent will automatically sync the InfiniBand GUIDs from UFM into Netris</p></li>
+<li><p>Once created, the Netris-UFM agent will automatically sync the InfiniBand host and HCA GUIDs from UFM into Netris</p></li>
 </ol>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Server names must match exactly between UFM and Netris Controller for the integration to work properly.</p>
-</div>
+<p>Server names must match exactly between UFM and Netris Controller for the initial sync to complete properly. Once the initial sync is done and the <cite>hosting_system_guid</cite> field is populated in Netris inventory, the plugin will continue to maintain the mapping even if server names change in Netris or UFM. You can verify the GUID mapping in Netris Controller UI under <strong>Network</strong> → <strong>Inventory</strong> by examining the Custom field of the server object. It should show both the HCA GUIDs and the hosting system GUID.</p>
+<img alt="_images/ufm-hosting-system-guid.png" class="with-shadow align-center" src="_images/ufm-hosting-system-guid.png" />
+<p style="text-align: center;"><em>Figure: Server Custom field showing GUIDs</em></p></div>
 </section>
 <section id="create-a-server-cluster-template">
 <h3>2. Create a Server Cluster Template<a class="headerlink" href="#create-a-server-cluster-template" title="Link to this heading"></a></h3>
@@ -1481,7 +1482,7 @@
 <ul class="simple">
 <li><p>Identify the InfiniBand GUIDs associated with the servers in the cluster</p></li>
 <li><p>Provision appropriate PKeys in UFM</p></li>
-<li><p>Create necessary SHARP reservations if applicable</p></li>
+<li><p>Create necessary SHARP reservations if applicable (if UFM_ENABLE_SHARP is set to true)</p></li>
 </ul>
 </li>
 <li><p>Verify the configuration:</p>
@@ -1528,7 +1529,7 @@ docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </s
 </li>
 <li><p><strong>SHARP Integration</strong>:</p>
 <ul class="simple">
-<li><p>For high-performance network operations, SHARP reservations are created</p></li>
+<li><p>For high-performance network operations, SHARP reservations are created if UFM_ENABLE_SHARP is set to true</p></li>
 <li><p>These correspond to the server clusters defined in Netris</p></li>
 </ul>
 </li>
@@ -1651,7 +1652,9 @@ sudo<span class="w"> </span>smpquery<span class="w"> </span>--m_key<span class="
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>netris-ufm
 </pre></div>
 </div>
-</section>
+<p>Alternatively, you can view logs through the Netris Controller UI under Telescope &gt; API Logs and filter by <cite>ufm</cite>. Please, note that the API logs in the UI are shown with a delay and require a manual screen refresh. To see UFM integration logs in real-time, we recommend using the command-line methods above.</p>
+<img alt="_images/ufm-api-logs.png" class="with-shadow align-center" src="_images/ufm-api-logs.png" />
+<p style="text-align: center;"><em>Figure: Viewing UFM integration logs in Netris Controller UI</em></p></section>
 <section id="common-issues-and-solutions">
 <h3>Common Issues and Solutions<a class="headerlink" href="#common-issues-and-solutions" title="Link to this heading"></a></h3>
 <section id="connection-issues-to-netris-controller-or-ufm">
