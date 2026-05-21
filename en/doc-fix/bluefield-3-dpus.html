@@ -1300,7 +1300,8 @@ participate in the same tenant network with hardware-enforced isolation.</p>
 <p><strong>Health checks</strong> — aggregated across all DPUs in the server. The total count across OK, Warn, and Crit equals the combined number of health checks for all DPUs in the server.</p>
 <p>DPU names appear in the <code class="docutils literal notranslate"><span class="pre">dpuX&#64;hostname</span></code> format in the Dashboard Agent Heartbeats view (for example, <code class="docutils literal notranslate"><span class="pre">dpu1&#64;hgx-pod00-su0-h01</span></code>). DPU health monitors are included in the Managed HW Health dashboard view.</p>
 <p>Expanding the server row in Inventory shows a per-DPU section with loopback IP, MGMT IP, heartbeat state, aggregated health check counts, and a three-dot menu with options for Network Interfaces and Install Agent.</p>
-<div class="admonition warning">
+<img alt="DPU health status in Inventory view" class="with-shadow align-center" src="_images/dpu-health.png" />
+<p style="text-align: center;"><em>Figure: DPU health status in Inventory view</em></p><div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Port mappings and VF count cannot be modified after the server object is saved. To change them, delete and recreate the server object.</p>
 </div>

@@ -149,6 +149,16 @@ DPU names appear in the ``dpuX@hostname`` format in the Dashboard Agent Heartbea
 
 Expanding the server row in Inventory shows a per-DPU section with loopback IP, MGMT IP, heartbeat state, aggregated health check counts, and a three-dot menu with options for Network Interfaces and Install Agent.
 
+.. image:: images/dpu-health.png
+   :alt: DPU health status in Inventory view
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: DPU health status in Inventory view</em></p>
+
+
 
 .. warning::
    Port mappings and VF count cannot be modified after the server object is saved. To change them, delete and recreate the server object.
