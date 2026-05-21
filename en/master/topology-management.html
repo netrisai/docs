@@ -80,6 +80,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
       <link rel="stylesheet" type="text/css" href="_static/styles.css?v=8456483b" />
 
@@ -197,7 +198,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation/installation.html">Controller Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
@@ -812,7 +813,6 @@
 <li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#monitoring">Monitoring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1327,13 +1327,13 @@
 <td><p>Tells Netris whether the server is an agentless generic node (most use cases), or a CloudStack hypervisor, or an EVPN-VTEP (EVPN-on-Host) node.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Total Physical Ports</strong></p></td>
-<td><p>Total number of physical ports on the server including production interfaces, management interfaces (e.g., iDrac/IPMI), DPU ports including BMC and front panel ports. A typical DGX node has 8 east-west ports, 2 north-south ports, 2 or 3 management ports including BMCs of the server and the DPU. Netris recommends setting this value to at least 16 ports.</p></td>
+<td><p>Total number of physical ports on the server including production interfaces, management interfaces (e.g., iDrac/IPMI), DPU ports including BMC and front panel ports. A typical DGX node has 8 East-West ports, 2 North-South ports, 2 or 3 management ports including BMCs of the server and the DPU. Netris recommends setting this value to at least 16 ports.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>DPUs</strong></p></td>
 <td><p>Quantity of DPUs on the server operating in Zero-Trust mode. Most deployments have 1 DPU per server.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Custom</strong></p></td>
-<td><p>Custom attributes in JSON format. Typical use cases include supplying east-west host-side IP addressing and routing information, topology validation. This field is also used by the NVIDIA UFM and NMX-C plugins to store addtional information such as GUIDs and GPU IDs for the server node.</p></td>
+<td><p>Custom attributes in JSON format. Typical use cases include supplying East-West host-side IP addressing and routing information, topology validation. This field is also used by the NVIDIA UFM and NMX-C plugins to store addtional information such as GUIDs and GPU IDs for the server node.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Labels</strong></p></td>
 <td><p>Custome metadata that can be used for built-in functions or user-created API automations.</p></td>

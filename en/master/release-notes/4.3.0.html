@@ -79,6 +79,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_collapse.css?v=226d88b4" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
       <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=8456483b" />
 
@@ -196,7 +197,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Detailed Installation</span></p>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Controller Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
@@ -811,7 +812,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#vf-interface-naming">VF Interface Naming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#connecting-dpu-vfs-to-a-vnet">Connecting DPU VFs to a VNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#monitoring">Monitoring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../bluefield-3-dpus.html#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1205,7 +1205,7 @@
 <li><p><strong>Nvidia Spectrum-X</strong>. Multi-tenant network automation, switch-fabric management, and cloud networking abstraction for Nvidia Spectrum-X AI/GPU cluster networks.</p></li>
 <li><p><strong>Init workflow</strong> (terraform module) for rail-optimized AI/GPU cluster network topologies.</p></li>
 <li><p><strong>Netris2air</strong>. Nvidia Air network simulation plugin that reads the inventory, IPAM, and topology data from Netris controller and creates a simulation (digital twin) of your network in Nvidia Air. Used to simulate fully functional networks before applying on the physical hardware.</p></li>
-<li><p><strong>Parallel Fabrics</strong>. This functionality allows for managing multiple physically separate switch fabrics logically defined in one Netris controller. A common example would be the East-West fabric for the RDMA compute network, the North-South fabric (or TAN—Tenant Access Network), and the out-of-band management (OOB) network.</p></li>
+<li><p><strong>Parallel Fabrics</strong>. This functionality allows for managing multiple physically separate switch fabrics logically defined in one Netris controller. A common example would be the East-West fabric for the RDMA compute network, the North-South fabric (or TAN—Tenant Access Network), and the Out-of-Band management (OOB) network.</p></li>
 <li><p><strong>Topology validation</strong>: Validate the actual wiring in comparison to wiring data defined in Netris Topology manager, detect and alarm wiring errors.</p></li>
 <li><p><strong>Server Cluster (profiling)</strong>. Create VPC, V-Net(VXLAN+Subnet), and other network services by providing a list of servers that should participate in the cluster. Create VRFs, VPCs, VXLANs by server endpoints, not switch ports.</p></li>
 <li><p><strong>AI/GPU network optimization</strong> services such as QoS for RoCE, RoCE Adaptive Routing, and RoCE Congestion Control.</p></li>

@@ -51,12 +51,8 @@ DPU mode. Mode switching and OS installation are typically handled by NVIDIA DPF
 
 **Management reachability.** The DPU must be reachable on the management network before Netris
 can communicate with it. Its 1 GbE MGMT port must be physically cabled and accessible.
-Management connectivity must be established either through an external out-of-band network or
+Management connectivity must be established either through an external Out-of-Band network or
 through a VNet that includes the DPU management port.
-
-**PXE limitation.** BlueField-3 in DPU mode does not support PXE passthrough to the host
-server. If the host server needs to be bootstrapped via PXE, the DPU must be reachable over
-its MGMT port to configure host connectivity first.
 
 **Agent installation.** Registering a DPU in Netris inventory does not automatically install
 the Netris agent onto the DPU. Agent installation is handled through DPF.
@@ -98,11 +94,11 @@ VF Interface Naming
 After save, Netris generates VF interface objects for each DPU based on the port count and
 VF count configured.
 
-For a DPU with two physical ports and N VFs total, VFs are split evenly between the two
+For a DPU with two physical ports and X number of Virtual Functions total, VFs are split evenly between the two
 physical functions::
 
-   pf0vf0-dpu1 through pf0vf(N/2-1)-dpu1
-   pf1vf0-dpu1 through pf1vf(N/2-1)-dpu1
+   pf0vf0-dpu1 through pf0vf(X/2-1)-dpu1
+   pf1vf0-dpu1 through pf1vf(X/2-1)-dpu1
 
 For a DPU with one physical port and N VFs::
 
@@ -143,36 +139,32 @@ For full VNet configuration instructions, see :ref:`v-net_def`.
 Monitoring
 ----------
 
-DPU health and heartbeat are surfaced in the Inventory view as child status indicators under
-the parent server.
+DPU health and heartbeat are surfaced in the Inventory view as child status indicators under the parent server.
 
-**Heartbeat** — reflects connectivity between the Netris controller and the DPU agent.
-Displayed per DPU. The count shown (for example, OK (2)) represents the number of DPUs in
-that server with that heartbeat status.
+**Heartbeat** — reflects connectivity between the Netris controller and the DPU agent. Displayed per DPU. The count shown (for example, OK (2)) represents the number of DPUs in that server with that heartbeat status.
 
-**Health checks** — aggregated across all DPUs in the server. The total count across OK, Warn,
-and Crit equals the combined number of health checks for all DPUs in the server.
+**Health checks** — aggregated across all DPUs in the server. The total count across OK, Warn, and Crit equals the combined number of health checks for all DPUs in the server.
 
-DPU names appear in the ``dpuX@hostname`` format in the Dashboard Agent Heartbeats view (for
-example, ``dpu1@hgx-pod00-su0-h01``). DPU health monitors are included in the Managed HW
-Health dashboard view.
+DPU names appear in the ``dpuX@hostname`` format in the Dashboard Agent Heartbeats view (for example, ``dpu1@hgx-pod00-su0-h01``). DPU health monitors are included in the Managed HW Health dashboard view.
 
-Expanding the server row in Inventory shows a per-DPU section with loopback IP, MGMT IP,
-heartbeat state, aggregated health check counts, and a three-dot menu with options for
-Network Interfaces and Install Agent.
+Expanding the server row in Inventory shows a per-DPU section with loopback IP, MGMT IP, heartbeat state, aggregated health check counts, and a three-dot menu with options for Network Interfaces and Install Agent.
+
+.. image:: images/dpu-health.png
+   :alt: DPU health status in Inventory view
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: DPU health status in Inventory view</em></p>
 
 
-Known Limitations
------------------
 
-BlueField-3 in DPU mode does not support PXE passthrough to the host. The DPU MGMT port must
-be physically cabled and reachable during server deployment.
+.. warning::
+   Port mappings and VF count cannot be modified after the server object is saved. To change them, delete and recreate the server object.
 
-Port mappings and VF count cannot be modified after the server object is saved. To change
-them, delete and recreate the server object.
+.. warning::
+   Reducing the DPU count on an existing server removes all configuration and VF interfaces associated with the removed DPU blocks. This action cannot be undone.
 
-Reducing the DPU count on an existing server removes all configuration and VF interfaces
-associated with the removed DPU blocks. This action cannot be undone.
-
-Netris does not manage DPU OS installation, firmware updates, or mode switching. These are
-handled through NVIDIA DPF before the DPU is registered in Netris.
+.. warning::
+   Netris does not manage DPU OS installation, firmware updates, or mode switching. These are handled through NVIDIA DPF.
