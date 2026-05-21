@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Build only this branch (tooling action)
-        uses: netrisai/docs-tooling@v1.1.1
+        uses: netrisai/docs-tooling@v1.1.2
         with:
           mode: build-only
           repo: ${{ github.repository }}
@@ -63,7 +63,7 @@ jobs:
           path: _build/html
 
       - name: Deploy subtree for this branch (+ latest if applicable)
-        uses: netrisai/docs-tooling@v1.1.1
+        uses: netrisai/docs-tooling@v1.1.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

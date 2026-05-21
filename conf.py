@@ -39,7 +39,8 @@ extensions = [
     'sphinx_copybutton',
 	'sphinx_design',
 	# 'sphinx_tabs.tabs',
-	'sphinxcontrib.googleanalytics'
+	'sphinxcontrib.googleanalytics',
+	'sphinx_collapse'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

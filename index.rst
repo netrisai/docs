@@ -29,7 +29,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
 
 .. toctree::
    :maxdepth: 2
-   :caption: Detailed Installation
+   :caption: Installation
 
    installation/installation
    switch-agent-installation
