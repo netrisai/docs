@@ -350,14 +350,14 @@ We need a second VIP for the Netris Controller load balancer.
 
 It should show EXTERNAL-IP as 192.168.0.50.
 
-.. _north-south-vip:
+.. _North-South-vip:
 
 9. Deploy North-South controller VIP
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. tip:: The north-south VIP is optional and can be configured at a later stage. The north-south VIP is typically used to provide access to the Netris API and for :doc:`ZTP functionality </installation/ztp>`.
+.. tip:: The North-South VIP is optional and can be configured at a later stage. The North-South VIP is typically used to provide access to the Netris API and for :doc:`ZTP functionality </installation/ztp>`.
 
-1. Set vip_interface in manifests/kube-vip-ns.yaml (north-south NIC name)
+1. Set vip_interface in manifests/kube-vip-ns.yaml (North-South NIC name)
 
 2. Apply
 
@@ -365,7 +365,7 @@ It should show EXTERNAL-IP as 192.168.0.50.
 
   kubectl apply -f manifests/kube-vip-ns.yaml
 
-3. Set cidr-global in manifests/kube-vip-ns-cloud-controller.yaml (north-south VIP address)
+3. Set cidr-global in manifests/kube-vip-ns-cloud-controller.yaml (North-South VIP address)
 
 4. Apply it
 
@@ -373,7 +373,7 @@ It should show EXTERNAL-IP as 192.168.0.50.
   
   kubectl apply -f manifests/kube-vip-ns-cloud-controller.yaml
 
-5. Apply north-south traefik service manifest
+5. Apply North-South traefik service manifest
 
 .. code-block:: shell
   

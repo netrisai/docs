@@ -34,7 +34,7 @@ To enable ZTP, the following requirements must be satisfied. Complete each item 
 
 The Netris Controller must be deployed with a North-South Virtual IP (N/S VIP) configured. The N/S VIP is the address through which switches and other infrastructure devices reach the controller services.
 
-See: :ref:`Deploy North-South controller VIP <north-south-vip>`
+See: :ref:`Deploy North-South controller VIP <North-South-vip>`
 
 2. Configure Netris Local Repository
 -------------------------------------

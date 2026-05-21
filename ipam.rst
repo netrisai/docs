@@ -83,7 +83,7 @@ Add a Subnet
 
         - *common* - ordinary subnet, can be used in v-nets.
         - *loopback* - hosts of this subnet can be used only as loopback IP addresses for Netris hardware (switches and/or softgates).
-        - *management* - subnet which specifies the out-of-band management IP addresses for Netris hardware (switches and softgates).
+        - *management* - subnet which specifies the Out-of-Band management IP addresses for Netris hardware (switches and softgates).
         - *load-balancer* - hosts of this subnet are used in L4LB services only. Useful for deploying on-prem kubernetes with cloud-like experience.
         - *nat* - hosts of this subnet or subnet itself can be used to define NAT services.
         - *inactive* - can't be used in any services, useful for reserving/documenting prefixes for future use.

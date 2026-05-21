@@ -69,8 +69,8 @@ Fabric Settings
 
 Netris can automatically optimize fabric configurations based on administrator's design and preferences. The following controls are available in the Fabric Settings section of the Inventory Profile form:
 
-- **Fabric Type** (default = General Purpose)  This setting allows to specify the expected traffic pattern and design of the fabric. The selected fabric type will influence how BGP overlay is configured and optimized when "Optimize BGP Overlay for leaf-spine topology" is enabled and Switch Role is set for every switch subject to this Inventory Profile.
-- **Optimize BGP Overlay for leaf-spine topology** (default = checked)  When checked, overlay BGP updates will be optimized for large scale. Each leaf switch (based on role) will form its overlay BGP sessions only with two spine switches (with the lowest IDs). Otherwise, Overlay BGP sessions will be configured on p2p links alongside underlay.
+- **Fabric Type** (default = General Purpose)  The selected fabric type acts as a filter to determine which switches are subject to the "Optimize BGP Overlay for leaf-spine topology" feature as described below. 
+- **Optimize BGP Overlay for leaf-spine topology** (default = checked)  When checked, overlay BGP updates will be optimized for large scale. Each leaf switch (based on its role) and Fabric Type will form its overlay BGP sessions only with two spine switches (with the lowest IDs). When unchecked, the Overlay BGP sessions will be configured on all point-to-point links without exceptions.
 - **Optimize BGP Overlay for Hypervisor Integrated Fabric** (default = unchecked). Required for BGP/EVPN VXLAN integration with compute hypervisor networking. This optimization makes sure that a large number of hypervisor virtual networking EVPN prefixes do not overflow switch TCAM.
 - **BGP Numbered Underlay** (default = unchecked)  When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP unnumbered method is used and p2p ipv6 link-local addresses are used for BGP sessions.
 - **Automatic Link Aggregation** (default = unchecked). When checked, Enable MC-LAG shall become unchecked automatically through the UI.
@@ -87,8 +87,56 @@ Additional optimizations are available for East-West GPU interconnect fabrics.
 - **RoCE Adaptive Routing (AR)** (default = unchecked) Enable Adaptive Routing for RoCE
 - **Congestion Control** (default = unchecked) Enable Zero Touch RoCE Congestion Control
 - **ASIC monitoring** (default = unchecked) Enable ASIC monitoring: histograms and telemetry snapshots.
-- **HWMP** (default = unchecked) Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology.
-- **Reference Architecture** (default = None)  This setting tells Netris which reference architecture is being deployed on the subject fabric.
+- **HWMP** (default = unchecked) Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture.
+- **Reference Architecture** (default = None)  This setting tells Netris which reference architecture is being deployed on the subject fabric, so Netris can apply the appropriate prefix summarization in the L3VPN overlay. 
+
+  .. collapse:: Reference Architectures
+
+    .. list-table::
+        :header-rows: 1
+
+        * - Reference Architecture
+          - IPv4 
+
+            Summarization mask
+          - IPv6 
+            
+            Summarization mask
+        * - H100/H200/B200 SPX 2-TIER
+
+            H100/H200/B200 SPX 3-TIER
+          - /26
+          - /56
+        * - GB200 SPX 2-TIER
+            
+            GB200 SPX 3-TIER
+          - /25
+          - /46
+        * - B300 SPX 2-TIER SINGLE-PLANE
+
+            B300 SPX 3-TIER SINGLE-PLANE
+
+            B300 SPX 2-TIER DUAL-PLANE
+
+            B300 SPX 3-TIER DUAL-PLANE
+
+            B300 SPX 2-TIER QUAD-PLANE
+
+            B300 SPX 3-TIER QUAD-PLANE
+
+            GB300 SPX 2-TIER SINGLE-PLANE
+
+            GB300 SPX 3-TIER SINGLE-PLANE
+
+            GB300 SPX 2-TIER DUAL-PLANE
+
+            GB300 SPX 3-TIER DUAL-PLANE
+
+            GB300 SPX 2-TIER QUAD-PLANE
+            
+            GB300 SPX 3-TIER QUAD-PLANE
+          - /24
+          - /56
 
 .. _custom_rules:
 

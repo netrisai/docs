@@ -7,7 +7,7 @@ Netris Host Networking
 Overview
 --------
 
-The Netris Host Networking Plugin is an optional component that automates the host-side networking required for GPU servers running on NVIDIA Spectrum-X east-west fabrics. It configures and maintains the BlueField3/ConnectX7/ConnectX8 SuperNICs as required by the NVIDIA Spectrum-X Deployment Guide. Because the BlueField3/ConnectX7/ConnectX8 Spectrum-X settings are normally non-persistent and must be reapplied on every boot event, Netris developed the NHN Plugin to handle the firmware checks, DMS behavior, RoCE and Adaptive Routing parameters, congestion control tuning, and other Spectrum-X requirements to remove the operational burden of managing the BlueField3/ConnectX7/ConnectX8 configuration manually or through custom scripts.
+The Netris Host Networking Plugin is an optional component that automates the host-side networking required for GPU servers running on NVIDIA Spectrum-X East-West fabrics. It configures and maintains the BlueField3/ConnectX7/ConnectX8 SuperNICs as required by the NVIDIA Spectrum-X Deployment Guide. Because the BlueField3/ConnectX7/ConnectX8 Spectrum-X settings are normally non-persistent and must be reapplied on every boot event, Netris developed the NHN Plugin to handle the firmware checks, DMS behavior, RoCE and Adaptive Routing parameters, congestion control tuning, and other Spectrum-X requirements to remove the operational burden of managing the BlueField3/ConnectX7/ConnectX8 configuration manually or through custom scripts.
 
 In addition to managing the SuperNIC, the plugin generates and maintains the Linux host's network configuration using either netplan or ifupdown based on automatically detecting which network manager is active. This ensures that the host and the SuperNIC remain consistently configured with the correct Spectrum-X settings across reboots and link events.
 
@@ -27,7 +27,7 @@ Because NHN operates entirely through LLDP, it does not require any direct conne
 
 To configure and validate the BlueField3/ConnectX7/ConnectX8 SuperNIC's configuration, the NHN daemon automatically runs:
 
-- **bf3-config** — Configures the BlueField3/ConnectX7/ConnectX8 SuperNICs with the Spectrum-X settings required for east-west fabric operation, as described in the NVIDIA Spectrum-X Deployment Guide.
+- **bf3-config** — Configures the BlueField3/ConnectX7/ConnectX8 SuperNICs with the Spectrum-X settings required for East-West fabric operation, as described in the NVIDIA Spectrum-X Deployment Guide.
 - **verifier** — Validates the BlueField3/ConnectX7/ConnectX8 configuration and sends discovered issues to the Netris Controller using LLDP.
 
 Together, these functions keep both the host and the SuperNIC aligned with the Spectrum-X fabric's intended state without requiring custom scripts or manual reconfiguration.
@@ -139,7 +139,7 @@ The configuration file uses INI format with sections for different components.
 
    [general]
 
-   # Regex pattern to match east-west fabric switch names
+   # Regex pattern to match East-West fabric switch names
    # Default matches patterns like: su0-r0, su1-r1, su2-r3, etc.
    ew-switch-name-template = su[0-9]-+r[0-3]+
 
@@ -177,7 +177,7 @@ The configuration file uses INI format with sections for different components.
 
 .. tip::
 
-   The `ew-switch-name-template` parameter is critical for identifying which network interfaces are connected to the east-west fabric. It's a regex pattern used to identify which network interfaces are connected to the east-west fabric.
+   The `ew-switch-name-template` parameter is critical for identifying which network interfaces are connected to the East-West fabric. It's a regex pattern used to identify which network interfaces are connected to the East-West fabric.
 
 Examples:
 
