@@ -85,15 +85,12 @@ You are welcome to join our community Slack channel (see button at the top) to g
    :caption: Tutorials
 
    vpc-gateways-with-managed-fabric.rst
-   cloudstack/netris-cloudstack
-   ai-netris-host-networking
 
 .. toctree::
    :maxdepth: 4
    :caption: Miscellaneous
 
    accounts
-   try-learn/onprem-k8s
    snippets
 
 .. toctree::
