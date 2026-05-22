@@ -50,7 +50,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # The encoding of source files.
-#source_encoding = 'utf-8-sig'
+source_encoding = 'utf-8'
 
 # The master toctree document.
 master_doc = 'index'
@@ -80,7 +80,13 @@ release = 'Netris v3.0'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = [
+    ".venv",
+    ".venv/**",
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+]
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
