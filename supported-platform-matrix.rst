@@ -21,8 +21,20 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - ✔
-   *  - Parallel Fabrics
-      - Manage multiple isolated switch fabrics. (example: East-West and North-South)
+   *  - North-South (frontend) Fabric
+      - Manage switches in the North-South fabric.
+      - ✔
+      - ✔
+      - ✔
+      - ✔
+   *  - East-West (backend/scale out) Fabric*
+      - Manage switches in East-West Ethernet-based fabrics including multi-plane deployments.
+      - ✔
+      - ✔
+      - ✔
+      - ✔
+   *  - Out-of-Band (management) Fabric
+      - Manage switches in the Out-of-Band fabric.
       - ✔
       - ✔
       - ✔
@@ -39,7 +51,7 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - ✔
-   *  - IPAM
+   *  - :doc:`IPAM (IP Address Management) </ipam>`
       - Manage IP subnets. Assign RBAC, multi-tenancy, and service-based rules and roles to IP address resources.
       - ✔
       - ✔
@@ -75,12 +87,12 @@ Switch Fabric Management Functions
       - TBD
       - ✔
       - ✔
-   *  - ZTP
+   *  - :doc:`/installation/ztp`
       - Zero-touch provisioning of the NOS & Netris agent
+      - ✔
+      - Coming Soon
       - Coming Soon
       - TBD
-      - TBD
-      - Coming Soon
    *  - Upgrade/Downgrade
       - Upgrade & Downgrade of Netris agent through the controller
       - Coming Soon
@@ -93,13 +105,14 @@ Switch Fabric Management Functions
       - Coming Soon
       - Coming Soon
       - Coming Soon   
-   *  - SNMPv2 polling
+   *  - :ref:`SNMPv2 polling <snmp_settings>`
       - Enable SNMPv2 server.
       - ✔
       - ✔
       - ✔
       - TBD
 
+\* Netris also integrates with NVIDIA UFM and NVIDIA NMX-C to automate partition management across NVIDIA Quantum InfiniBand and NVL72 fabrics.
 
 Host Networking
 =============================================
@@ -115,7 +128,7 @@ Host Networking
         BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-   *  - HBN (Host Based Networking) for BlueField DPUs
+   *  - :doc:`HBN (Host Based Networking) for BlueField DPUs </bluefield-3-dpus>`
       - Extend the EVPN/VXLAN fabric into BlueField DPUs for hardware-enforced tenant isolation at the server level.
       - ✔
       - ✔
@@ -141,25 +154,25 @@ Monitoring & Telemetry
         BCM-SONiC
       - Arista EOS
       - EdgeCore SONiC
-   *  - Monitoring: Switch Ports
+   *  - :doc:`Monitoring: Switch Ports</monitoring-observability/healthchecks>`
       - Automatic monitoring of Link statuses, link utilization, laser signal levels, temperature, errors, packets, transceiver presence.
       - ✔
       - ✔
       - ✔
       - ✔
-   *  - Monitoring: Resources
+   *  - :doc:`Monitoring: Resources</monitoring-observability/healthchecks>`
       - Automatic monitoring of CPU, RAM, Disk, and ASIC resources.
       - ✔
       - ✔
       - ✔
       - ✔
-   *  - Monitoring: Sensors
+   *  - :doc:`Monitoring: Sensors</monitoring-observability/healthchecks>`
       - Automatic monitoring of temperature, fans, power supply statuses.
       - ✔
       - ✔
       - ✔
       - ✔
-   *  - Monitoring: System Processes
+   *  - :doc:`Monitoring: System Processes</monitoring-observability/healthchecks>`
       - Automatic monitoring of critical system processes.
       - ✔
       - ✔
@@ -171,7 +184,7 @@ Monitoring & Telemetry
       - ✔
       - ✔
       - ✔
-   *  - Server Wiring Validation
+   *  - :doc:`Server Wiring Validation</monitoring-observability/topology-validation>`
       - Detect wiring errors switch-to-server.
       - ✔
       - ✔
@@ -247,7 +260,7 @@ Cloud Networking Functions & Constructs
       - ✔
       - ✔
       - ✔
-   *  - V-Net (Subnet)
+   *  - :doc:`V-Net (Subnet)<vnet>`
       - L3VPN VXLAN or L2VPN VXLAN with an anycast default Gateway, and built-in DHCP.
       - ✔
       - ✔
@@ -271,7 +284,7 @@ Cloud Networking Functions & Constructs
       - ✔
       - ✔
       - ✔
-   *  - L4 Load Balancer
+   *  - :doc:`L4 Load Balancer</l4-load-balancer>`
       - Provide on-demand elastic load balancer service to hosts in multiple V-Nets and multiple VPCs
       - ✔
       - ✔
@@ -305,19 +318,19 @@ Overlay Network Functions
         BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-   *  - L2VPN VXLAN VLAN Aware
+   *  - :doc:`L2VPN VXLAN VLAN Aware<vnet>`
       - L2VPN VXLAN with VLAN tagged or untagged termination on switch port.
       - ✔
       - ✔
       - ✔
       - ✔
-   *  - L2VPN VXLAN VLAN Unaware
+   *  - :doc:`L2VPN VXLAN VLAN Unaware<vnet>`
       - L2VPN VXLAN with VLAN tagged or untagged termination on switch port supporting different VLAN IDs on different end points.
       - N/A
       - N/A
       - ✔
       - N/A
-   *  - L3VPN VXLAN
+   *  - :doc:`L3VPN VXLAN<vnet>`
       - L3VPN VXLAN, Commonly used in high performance computing, such as AI clusters.
       - ✔
       - ✔
@@ -419,7 +432,7 @@ Compute Platform Integrations
       - ✔
       - ✔
       - ✔
-   *  - Apache Cloud Stack
+   *  - :doc:`Apache Cloud Stack<cloudstack/netris-cloudstack>`
       - Netris VXLAN isolation & VR replacement
       - ✔
       - ✔
@@ -446,7 +459,7 @@ Security
         BCM-SONiC
       - Arista EOS
       - EdgeCore-SONiC
-   *  - Network ACLs
+   *  - :doc:`Network ACLs</acls>`
       - Centralized Network Access Control Lists.
       - ✔
       - ✔
