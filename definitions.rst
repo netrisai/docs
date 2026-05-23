@@ -7,9 +7,7 @@ Definitions
 
 When configuring and operating a Netris system, the following nomenclature is important to understand:
 
-* **User** - A user account for accessing Netris Controller through GUI, RestAPI, and Kubernetes. The default username is ``netris``, with password ``newNet0ps``.
-
-.. warning:: Change the default credentials immediately after initial installation. Using default credentials in production environments is a security risk.
+* **User** - An account for accessing the Netris Controller through the web console, REST API, or Kubernetes integration. Users authenticate against the controller and are assigned permissions through User Roles and Permission Groups. Default administrator credentials are documented in :doc:`Controller Installation </installation/installation>` and must be changed immediately after deployment.
 
 * **Netris VPC** - logically segregated virtual network.The VPC acts as a VRF in traditional networking, providing the flexibility to employ overlapping IP ranges across various VPCs while maintaining secure management and operation of resources.
 
@@ -40,7 +38,7 @@ When configuring and operating a Netris system, the following nomenclature is im
 
 * **NAT services** - SNAT allows your endpoints to communicate with the Internet. DNAT allows your endpoints to be accessible from the Internet.
 
-* **Load-balancing service** - Use L4LB service to share the load between your endpoints.
+* **Load-balancing service** - A Netris service that distributes traffic across a pool of endpoints using L4 load balancing.
 
 * **Access lists** - ACLs provide a layer of security that acts as a firewall for controlling traffic in and out of one or more subnets.
 
@@ -50,6 +48,6 @@ When configuring and operating a Netris system, the following nomenclature is im
 
 * **Server Cluster Template** - A JSON template that defines the network configuration to be applied to servers in a Server Cluster. Templates specify V-Net types, IP addressing schemes, and integration parameters for Ethernet, InfiniBand, and NVLink fabrics.
 
-* **SoftGate (VPC Gateway)** - An optional, multi-tenant software component that provides ingress and egress connectivity services (NAT, L4LB) for VPCs. Runs on dedicated bare-metal x86 servers. See :doc:`netris-softgate-HS`.
+* **SoftGate (VPC Gateway)** - An optional, multi-tenant software component that provides ingress and egress connectivity services (elastic IPs, NAT, tenant-specific connectivity, L4 load balancing) for VPCs. Runs on dedicated bare-metal x86 servers. See :doc:`netris-softgate-HS`.
 
 * **Inventory Profile** - A configuration baseline applied to managed switches, SoftGate nodes, and DPUs. Includes management access allow-lists, fabric optimization settings, and GPU cluster-specific parameters such as QoS for RoCE. See :doc:`inventory-profile`.
