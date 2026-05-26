@@ -18,7 +18,7 @@ Every Netris deployment — whether you are running a traditional Ethernet data 
 
 * **Netris Switch Agent** — software running on every Netris-managed switch. Translates controller intent into vendor-specific switch configuration and reports telemetry back to the controller over an outbound, encrypted gRPC channel.
 
-* **Netris SoftGate** (VPC Gateway) — optional but adopted by 95% of Netris customers. A multi-tenant, horizontally scalable, XDP accelerated software edge that provides ingress and egress services for VPCs — NAT, elastic IPs, L4 load balancing — and runs on operator-provided bare-metal x86 servers at the edge of the North-South fabric.
+* **Netris SoftGate** (VPC Gateway) — optional but adopted by 95% of Netris customers. A multi-tenant, horizontally scalable, XDP accelerated software edge that provides ingress and egress services for VPCs — elastic IPs, NAT, tenant-specific connectivity, and L4 load balancing — and runs on operator-provided bare-metal x86 servers at the edge of the North-South fabric.
 
 These three components are present in every Netris deployment. If you are running a traditional data center without a GPU cluster, this is the whole picture.
 
@@ -44,9 +44,7 @@ None of these AI components stand alone. Each plugs into the core Controller / S
 Netris Controller
 =================
 
-Netris Controller is the main operations control center for engineers using GUI/RestAPI/Kubernetes, systems, and network devices. The Netris Controller stores the data representing the user-defined network services and policies, health, statistics, analytics received from the network devices, and information from integration modules with external systems (Kubernetes, Terraform, etc.). Typically, the Netris Controller run on customer premises on dedicated bare-metal hosts (minimum 3 nodes). Running the Netris Controller as a VM or as a container is also possible. Contact Netris support for more details.
-
-Diagram: High level Netris architecture
+The Netris Controller is the central operations point of a Netris deployment. Engineers interact with it through the web console, REST API, or Kubernetes integration; network devices and external systems (Kubernetes, Terraform, etc.) connect through the same API and through gRPC. The Controller stores user-defined network services and policies, inventory, health and telemetry from the network, and integration state. The Netris Controller runs on customer premises on dedicated bare-metal hosts (minimum 3 nodes).
 
 .. image:: images/netris_controller_diagram.png
     :align: center
@@ -54,7 +52,7 @@ Diagram: High level Netris architecture
 
 .. raw:: html
 
-   <p style="text-align: center;"><em>Figure: Netris Controller Architecture</em></p>
+   <p style="text-align: center;"><em>Figure: High-level Netris architecture</em></p>
 
   
 * **Dedicated Controller Management Network (CMN).** The Netris Controller runs on a dedicated Controller Management Network (CMN). The CMN is a physically separate, non-Netris-managed network and is not one of the four AI data center fabric roles introduced on the :doc:`Introduction <introduction>` page (North-South, East-West, NVL72, OOB). Running the controller on the CMN prevents a circular dependency between the controller and the fabrics that the controller manages. See :ref:`management_network_architecture` below for details.
@@ -68,7 +66,7 @@ Diagram: High level Netris architecture
 Netris Switch Agent
 ===================
 
-Netris Switch Agent is software running in the user space of the network operating system (NOS) of the switch and is responsible for automatically generating the particular switch configuration according to service requirements and policies defined in the Netris Controller. Netris Switch Agent uses an encrypted gRPC channel for secure communication with the Netris Controller.
+Netris Switch Agent is software running in the user space of the network operating system (NOS) of the switch and is responsible for automatically generating the appropriate switch configuration according to service requirements and policies defined in the Netris Controller. Netris Switch Agent uses an encrypted gRPC channel for secure communication with the Netris Controller.
 
 Infrastructure devices managed by Netris establish **outbound** connections to the controller. The controller does not initiate connections to switches or other managed devices. Devices connect to the controller to retrieve configuration updates and publish operational status (port state, system events, telemetry). This communication model minimizes the network exposure of infrastructure devices and reduces the attack surface associated with device management.
 
@@ -86,13 +84,21 @@ You can learn more about SoftGate architecture and deployment scenarios in the :
 Management Network Architecture
 ================================
 
-Netris deployments typically use dedicated management networks that separate automation infrastructure from tenant data-plane traffic. A typical deployment includes two management networks:
+Netris deployments use dedicated management networks that separate automation infrastructure from tenant data-plane traffic.
+
+**Management networks.** A typical deployment includes two management networks:
 
 * **Controller Management Network (CMN):** A physically separate, statically configured, non-Netris-managed management network (typically two switches). CMN provides connectivity between Netris Controller nodes and seed switches, when present (see the definition below). Supports controller cluster communication, bootstrap operations, and infrastructure onboarding. Because the CMN exists outside of the Netris-managed infrastructure, organizations can secure it using their preferred enterprise security controls (network segmentation, bastion hosts, VPN access, etc.). The CMN is typically not managed by Netris itself to prevent circular dependencies.
 
-* **Seed switches.** In larger deployments the initial set of 2 to 6 Netris-managed switches is provisioned before any other switches in hierarchical deployments. Seed switches connect directly to CMN and form the root of the OOB management hierarchy.
+* **Seed switches.** A set of 2 to 6 Netris-managed switches provisioned before any other Netris-managed switches. Seed switches connect directly to CMN and form the root of the OOB management hierarchy in larger deployments. Whether seed switches are used depends on the deployment topology described below.
 
-* **Out-of-Band Management Network (OOB):** A management aggregation network composed of OOB switches. The OOB network hosts management connectivity for Netris-managed network fabrics. In many deployments, the OOB network also hosts management connectivity for Server Management Interfaces (SMI), Data Processing Units (DPUs), Infrastructure Control Platforms (ICP), InfiniBand (IB) switches, NVLink switches, and Data Center Infrastructure Management (DCIM) systems. The OOB network may be implemented as part of the North–South fabric or as a standalone network fabric and can be Netris-managed or operator-managed (not Netris-managed) depending on the operator’s objectives.
+* **Out-of-Band Management Network (OOB):** A management aggregation network composed of OOB switches. The OOB network hosts management connectivity for Netris-managed network fabrics. In many deployments, the OOB network also hosts management connectivity for Server Management Interfaces (SMI), Data Processing Units (DPUs), Infrastructure Control Platforms (ICP), InfiniBand (IB) switches, NVLink switches, and Data Center Infrastructure Management (DCIM) systems. The OOB network may be implemented as part of the North–South fabric or as a standalone network fabric and can be Netris-managed or operator-managed (not Netris-managed) depending on the operator's objectives.
+
+**Deployment topologies.** Building on the management networks above, Netris supports two physical topologies for connecting Netris-managed switches to the controller:
+
+* **Direct-to-CMN (flat).** All Netris-managed switches connect their management interfaces directly to the CMN. No seed switches are required. Suitable for smaller deployments where the CMN has enough front-panel ports for every Netris-managed switch — typically up to about 90 Netris-managed switches.
+
+* **Hybrid OOB (hierarchical).** A small set of seed switches connects directly to the CMN and forms the root of an OOB management hierarchy. The remaining Netris-managed switches connect their management interfaces to the OOB network rather than to the CMN. Used in larger deployments where the number of Netris-managed switches exceeds the CMN's port capacity.
 
 .. image:: images/Hybrid-Management-Network-RA.svg
     :alt: Hybrid management network architecture with separate CMN
@@ -101,10 +107,12 @@ Netris deployments typically use dedicated management networks that separate aut
 
 .. raw:: html
 
-   <p style="text-align: center;"><em>Figure: Hybrid management network architecture with separate CMN</em></p>
+   <p style="text-align: center;"><em>Figure: Hybrid OOB (hierarchical) management network architecture with separate CMN</em></p>
 
 
-This separation ensures that automation infrastructure does not become a dependency for production data traffic. Production traffic forwarding continues even if management networks become unavailable.
+The choice of topology affects only the physical management plane. The Netris Controller, the four fabric roles, and the security model are identical in both cases.
+
+This separation ensures that automation infrastructure does not become a dependency for tenant data traffic. Tenant data traffic forwarding continues even if management networks become unavailable.
 
 .. _security_design:
 
@@ -115,7 +123,7 @@ Netris is built on the following security design principles:
 
 * **Control Plane Independence:** Once configuration is applied, network devices enforce policies independently of the controller. Loss of the controller does not disrupt tenant traffic or compromise isolation.
 
-* **Hardware-Enforced Isolation:** Tenant isolation is implemented through the underlying infrastructure hardware -- VRF, VXLAN, and ACLs in Ethernet fabrics; InfiniBand partition keys (PKeys); and NVLink GPU fabric partitions. Netris automates the provisioning of these mechanisms and does not rely on software overlays for tenant separation.
+* **Hard isolation (enforced on networking hardware):** Tenant isolation is implemented through the underlying infrastructure hardware -- VRF, VXLAN, and ACLs in Ethernet fabrics; InfiniBand partition keys (PKeys); and NVLink GPU fabric partitions. Netris automates the provisioning of these mechanisms and does not rely on software overlays for tenant separation.
 
 * **Customer-Controlled Security Boundary:** Because the Netris Controller is deployed within the customer's environment, organizations retain full control over the security perimeter. Netris does not offer hosted control planes.
 

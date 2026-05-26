@@ -137,7 +137,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#what-to-read-next">What to read next</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#access-and-roles">Access and roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#fabric-roles">Fabric roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#network-constructs">Network constructs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#ai-specific">AI-specific</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#infrastructure-and-operations">Infrastructure and operations</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="netris-architecture.html">Netris Architecture</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#core-components-always-present">Core components (always present)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#ai-components-additive-when-a-gpu-cluster-is-present">AI components (additive, when a GPU cluster is present)</a></li>
@@ -1101,10 +1109,10 @@
 <p>The two diagrams below show how these fabrics fit together in two common Netris deployments. The only structural difference between them is the technology used for the East-West backend fabric.</p>
 <p><strong>Reference architecture — Ethernet backend (e.g., NVIDIA Spectrum-X)</strong></p>
 <img alt="_images/Netris-RA-Spectrum-X.png" class="align-center" src="_images/Netris-RA-Spectrum-X.png" />
-<p>The East-West fabric is Ethernet (e.g., NVIDIA Spectrum-X). Netris manages both the North-South frontend fabric and the East-West Ethernet backend fabric. Netris SoftGate provides ingress and egress services (NAT, L4 load balancing) at the edge of the North-South fabric. The Netris Controller sits outside the data path and reaches every managed device through closed-loop telemetry and configuration channels over the OOB management network. Netris integrates with NMX to orchestrate NVLink partitions for tenant isolation when an NVL72 fabric is present</p>
+<p>The East-West fabric is Ethernet (e.g., NVIDIA Spectrum-X). Netris manages both the North-South frontend fabric and the East-West Ethernet backend fabric. A Netris Switch Agent runs on every Netris-managed switch, applying controller intent locally and reporting telemetry back to the controller. Netris SoftGate provides ingress and egress services (NAT, L4 load balancing) at the edge of the North-South fabric. The Netris Controller sits outside the data path and reaches every managed device through closed-loop telemetry and configuration channels over the OOB management network. Netris integrates with NMX to orchestrate NVLink partitions for tenant isolation when an NVL72 fabric is present.</p>
 <p><strong>Reference architecture — InfiniBand backend (NVIDIA Quantum)</strong></p>
 <img alt="_images/Netris-RA-Hybrid-Ethernet-InfiniBand.png" class="align-center" src="_images/Netris-RA-Hybrid-Ethernet-InfiniBand.png" />
-<p>The East-West fabric is InfiniBand, running NVIDIA Quantum. Netris manages the North-South Ethernet frontend fabric directly and integrates with NVIDIA UFM (Unified Fabric Manager) to orchestrate tenant isolation (PKeys) on the InfiniBand fabric. The rest of the architecture — SoftGate, Controller, OOB, and integration with NMX for NVL72 management — is identical to the Ethernet-backend deployment.</p>
+<p>The East-West fabric is InfiniBand, running NVIDIA Quantum. Netris manages the North-South Ethernet frontend fabric directly and integrates with NVIDIA UFM (Unified Fabric Manager) to orchestrate tenant isolation (PKeys) on the InfiniBand fabric. The rest of the architecture — Netris Switch Agents on the Netris-managed Ethernet switches, SoftGate, Controller, OOB, and integration with NMX for NVL72 management — is identical to the Ethernet-backend deployment.</p>
 </section>
 <section id="what-to-read-next">
 <h2>What to read next<a class="headerlink" href="#what-to-read-next" title="Link to this heading"></a></h2>
