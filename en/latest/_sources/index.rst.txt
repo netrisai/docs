@@ -3,22 +3,22 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. include:: /_includes/links.rst
+
 Welcome to Netris Documentation
 ==================================================
 
-Learn how to get started with Netris VPC Networking for your network environment.
+Learn how to :doc:`get started with Netris VPC Networking</vpc-gateways-with-managed-fabric>` for your network environment.
 
-You are welcome to join our community Slack channel (see button at the top) to get additional support from our engineers and community.
+You are welcome to join our community Slack_ channel to get additional support from our engineers and community.
 
 .. toctree::
    :maxdepth: 2
-   :caption: General Information
+   :caption: Get Started
 
    introduction
-   supported-platform-matrix
-   supported-switch-hardware
-   netris-architecture
    definitions
+   netris-architecture
 
 .. toctree::
    :maxdepth: 2
@@ -26,6 +26,13 @@ You are welcome to join our community Slack channel (see button at the top) to g
 
    try-learn/nvidia-spectrum-x-scenario
    try-learn/onprem-k8s
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Reference
+
+   supported-platform-matrix
+   supported-switch-hardware
 
 .. toctree::
    :maxdepth: 2

@@ -98,8 +98,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lab Scenario: GPU-as-a-Service network with NVIDIA Spectrum-X architecture" href="try-learn/nvidia-spectrum-x-scenario.html" />
-    <link rel="prev" title="Netris Architecture" href="netris-architecture.html" /> 
+    <link rel="next" title="Netris Architecture" href="netris-architecture.html" />
+    <link rel="prev" title="Introduction to Netris" href="introduction.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -127,46 +127,37 @@
 
 
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">General Information</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to Netris</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html">Netris Supported Functionality &amp; Platforms Matrix</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#switch-fabric-management-functions">Switch Fabric Management Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#host-networking">Host Networking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#monitoring-telemetry">Monitoring &amp; Telemetry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#external-routing-functions">External Routing Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#cloud-networking-functions-constructs">Cloud Networking Functions &amp; Constructs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#overlay-network-functions">Overlay Network Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#ai-specific-functions">AI Specific Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#compute-platform-integrations">Compute Platform Integrations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#security">Security</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#netris-controller-administration">Netris Controller Administration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#management-interfaces">Management Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to Netris</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-is-netris">What is Netris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-netris-does">What Netris does</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#who-netris-is-for">Who Netris is for</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#how-an-ai-network-differs-from-a-traditional-network">How an AI network differs from a traditional network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-to-read-next">What to read next</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html#netris-and-nos-versions-compatibility-matrix">Netris and NOS versions compatibility matrix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supported-switch-hardware.html">Hardware Requirements</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-controller">Netris Controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-softgate-hs-multi-vpc-version">Netris SoftGate HS (Multi-VPC version)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="supported-switch-hardware.html#supported-switch-hardware">Supported Switch Hardware</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#nvidia">Nvidia</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#dell">Dell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#edgecore">EdgeCore</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#arista">Arista</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#access-and-roles">Access and roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fabric-roles">Fabric roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network-constructs">Network constructs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ai-specific">AI-specific</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure-and-operations">Infrastructure and operations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="netris-architecture.html">Netris Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#core-components-always-present">Core components (always present)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#ai-components-additive-when-a-gpu-cluster-is-present">AI components (additive, when a GPU cluster is present)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-controller">Netris Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-switch-agent">Netris Switch Agent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#netris-softgate">Netris SoftGate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#management-network-architecture">Management Network Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#security-design-principles">Security Design Principles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#shared-responsibility">Shared Responsibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-architecture.html#what-to-read-next">What to read next</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Definitions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Try &amp; Learn Netris</span></p>
 <ul>
@@ -195,6 +186,36 @@
 <li class="toctree-l3"><a class="reference internal" href="try-learn/onprem-k8s.html#reclaim-policy">Reclaim Policy</a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html">Netris Supported Functionality &amp; Platforms Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#switch-fabric-management-functions">Switch Fabric Management Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#host-networking">Host Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#monitoring-telemetry">Monitoring &amp; Telemetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#external-routing-functions">External Routing Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#cloud-networking-functions-constructs">Cloud Networking Functions &amp; Constructs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#overlay-network-functions">Overlay Network Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#ai-specific-functions">AI Specific Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#compute-platform-integrations">Compute Platform Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#netris-controller-administration">Netris Controller Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#management-interfaces">Management Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html#netris-and-nos-versions-compatibility-matrix">Netris and NOS versions compatibility matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported-switch-hardware.html">Hardware Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-controller">Netris Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-softgate-hs-multi-vpc-version">Netris SoftGate HS (Multi-VPC version)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="supported-switch-hardware.html#supported-switch-hardware">Supported Switch Hardware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#nvidia">Nvidia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#edgecore">EdgeCore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#arista">Arista</a></li>
 </ul>
 </li>
 </ul>
@@ -1049,8 +1070,8 @@
               <a href="https://github.com/netrisai/docs/blob/master/definitions.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="netris-architecture.html" class="btn btn-neutral float-left" title="Netris Architecture" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="try-learn/nvidia-spectrum-x-scenario.html" class="btn btn-neutral float-right" title="Lab Scenario: GPU-as-a-Service network with NVIDIA Spectrum-X architecture" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction to Netris" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="netris-architecture.html" class="btn btn-neutral float-right" title="Netris Architecture" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -1059,51 +1080,82 @@
              
   <section id="definitions">
 <h1>Definitions<a class="headerlink" href="#definitions" title="Link to this heading"></a></h1>
-<p>When configuring and operating a Netris system, the following nomenclature is important to understand:</p>
+<p>The following nomenclature appears throughout this documentation. Entries are grouped by topic for quick lookup. For the high-level picture, see the <a class="reference internal" href="introduction.html"><span class="doc">Introduction</span></a> and <a class="reference internal" href="netris-architecture.html"><span class="doc">Netris Architecture</span></a> pages.</p>
+<section id="access-and-roles">
+<h2>Access and roles<a class="headerlink" href="#access-and-roles" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>User</strong> - A user account for accessing Netris Controller through GUI, RestAPI, and Kubernetes. The default username is <code class="docutils literal notranslate"><span class="pre">netris</span></code>, with password <code class="docutils literal notranslate"><span class="pre">newNet0ps</span></code>.</p></li>
+<li><p><strong>User</strong> - An account for accessing the Netris Controller through the web console, REST API, or Terraform. Users authenticate against the controller and are assigned permissions through User Roles and Permission Groups. Default administrator credentials are documented in <a class="reference internal" href="installation/installation.html"><span class="doc">Controller Installation</span></a> and must be changed immediately after deployment.</p></li>
+<li><p><strong>User Role</strong> - A named group of permissions and tenants used to implement role-based access control (RBAC). Apply a role to a user to grant scoped access to network resources.</p></li>
+<li><p><strong>Permission Group</strong> - A set of per-section permissions that can be attached individually to a User or to a User Role.</p></li>
+<li><p><strong>Tenant</strong> - A logical owner of network resources (IP addresses, switch ports, services). The Admin tenant owns all resources by default. Additional tenants are used to delegate management of network resources to other groups — for example, granting a DevOps team self-service access to provision VPCs, V-Nets, and services through the Netris Controller GUI, Kubernetes CRDs, or Terraform.</p></li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Change the default credentials immediately after initial installation. Using default credentials in production environments is a security risk.</p>
-</div>
+</section>
+<section id="fabric-roles">
+<h2>Fabric roles<a class="headerlink" href="#fabric-roles" title="Link to this heading"></a></h2>
+<p>Brief glossary entries for the four AI data center fabric roles. The <a class="reference internal" href="introduction.html"><span class="doc">Introduction</span></a> covers each fabric in depth with reference architecture diagrams.</p>
+<ul class="simple">
+<li><p><strong>North-South (frontend) fabric</strong> - The Ethernet fabric that connects the data center to the outside world (ISPs, peering, WAN, public Internet) and carries tenant API traffic, storage traffic, and the data path for ingress and egress services such as NAT and L4 load balancing. Also called the <em>frontend network</em>.</p></li>
+<li><p><strong>East-West (backend, scale-out) fabric</strong> - A dedicated, high-bandwidth, lossless network that connects GPU servers to each other for collective communications. Implemented over Ethernet (e.g., NVIDIA Spectrum-X) or over InfiniBand using NVIDIA Quantum. Also called the <em>backend network</em> or <em>scale-out network</em>.</p></li>
+<li><p><strong>NVL72 (rack-scale) fabric</strong> - An NVLink-based, in-rack fabric that connects up to 72 GPUs in a single liquid-cooled rack into one NVLink domain. Ships with NVIDIA GB200 NVL72 and GB300 NVL72 rack-scale systems. Managed by NVIDIA NMX, with Netris integration for tenant NVLink partitions.</p></li>
+<li><p><strong>Out-of-band (OOB) management fabric</strong> - A separate management network used to reach the management interfaces of every device in the deployment. Carries no tenant traffic. Can be deployed as part of the North-South fabric or as a standalone fabric.</p></li>
+</ul>
+</section>
+<section id="network-constructs">
+<h2>Network constructs<a class="headerlink" href="#network-constructs" title="Link to this heading"></a></h2>
 <ul>
-<li><p><strong>Netris VPC</strong> - logically segregated virtual network.The VPC acts as a VRF in traditional networking, providing the flexibility to employ overlapping IP ranges across various VPCs while maintaining secure management and operation of resources.</p></li>
-<li><p><strong>V-Net (Virtual Network)</strong> is a Netris construct for grouping switch ports into a defined network segment—much like a traditional VLAN or a public cloud subnet. It is a virtual networking service that provides Layer-2 (unrouted) or Layer-3 (routed) virtual network segments in a Netris VPC. V-Net is assigned to one VPC and one or multiple sites. Your endpoints (servers, VMs) are connected to V-Nets.</p>
+<li><p><strong>Netris VPC</strong> - A logically segregated virtual network. A Netris VPC acts as a VRF in traditional networking, allowing overlapping IP ranges across different VPCs while keeping resources securely managed and isolated.</p></li>
+<li><p><strong>V-Net (Virtual Network)</strong> - A Netris construct for grouping switch ports into a defined network segment — much like a traditional VLAN or a public cloud subnet. A virtual networking service that provides Layer 2 (unrouted) or Layer 3 (routed) virtual network segments inside a Netris VPC. A V-Net is assigned to one VPC and one or more sites. Endpoints (servers, VMs) are connected to V-Nets.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>L2VPN (Layer 2 Virtual Private Network)</strong> is a V-Net type and is similar to a traditional VLAN with modern and scalable implementation.</p></li>
-<li><p><strong>L3VPN</strong> is a V–Net type and is typically used for back-end (east–west) connectivity in GPU clusters on Ethernet-based AI fabrics such as NVIDIA Spectrum-X. Built as one mini-subnet per switch port, a VXLAN L3VPN is conceptually similar to MPLS L3VPN in provider networks.</p></li>
+<li><p><strong>L2VPN (Layer 2 Virtual Private Network)</strong> - A V-Net type similar to a traditional VLAN, implemented with modern, scalable techniques.</p></li>
+<li><p><strong>L3VPN (Layer 3 Virtual Private Network)</strong> - A V-Net type typically used for back-end (East-West) connectivity in GPU clusters on Ethernet-based AI fabrics (e.g., NVIDIA Spectrum-X). Built as one mini-subnet per switch port, a VXLAN L3VPN is conceptually similar to MPLS L3VPN in provider networks.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><strong>Tenant</strong> - IP addresses and Switch Ports are network resources assigned to different Tenants to have under their management. Admin is the default tenant, and by default, it owns all the resources. You can use different Tenants for sharing and delegation of control over the network resources. Network teams typically use Tenants to grant access to other groups to request and manage network services using the Netris Controller as a self-service portal or programmatically (with Kubernetes CRDs or Terraform) via a DevOps/NetOps pipeline.</p></li>
-<li><p><strong>Permission Group</strong> - List of permissions on a per section basis can be attached individually to a User or a User Role.</p></li>
-<li><p><strong>User Role</strong> - Group of user permissions and tenants for role-based access control (RBAC).</p></li>
-<li><p><strong>Site</strong> - Each separate deployment (a region or a data center) should be defined as a Site. All network components and resources should be associated with their respective Site and VPC. Site entry defines global attributes such as; AS numbers, default ACL policy, and other site-level parameters.</p></li>
-<li><p><strong>IPAM</strong> - You can create IP Allocations and Subnet assignments for a VPC. These may overlap between different VPCs. A Subnet can be assigned to multiple sites if you aim to extend your V-Net to multiple locations.</p></li>
-<li><p><strong>Subnet</strong> - IPv4/IPv6 address resources linked to <em>Sites</em> and <em>Tenants</em></p></li>
-<li><p><strong>Switch Port</strong> - Physical ports of all switches attached to the system, or server endpoints in a Bare Metal Cloud environment.</p></li>
-<li><p><strong>Inventory</strong> - Inventory of all network units that are operated using Netris Agent.</p></li>
-<li><p><strong>External connections</strong> - You can connect your VPC to ISP providers or other segments of your network using Netris E-BGP service, or statically by defining a V-Net and using Net-&gt;Routes. For natively integrated Bare Metal Cloud Providers, please refer to the provider-specific tutorial, as external connections usually establish automatically.</p></li>
-<li><p><strong>E-BGP</strong> - Defines all External BGP peers (iBGP and eBGP).</p></li>
-<li><p><strong>NAT services</strong> - SNAT allows your endpoints to communicate with the Internet. DNAT allows your endpoints to be accessible from the Internet.</p></li>
-<li><p><strong>Load-balancing service</strong> - Use L4LB service to share the load between your endpoints.</p></li>
-<li><p><strong>Access lists</strong> - ACLs provide a layer of security that acts as a firewall for controlling traffic in and out of one or more subnets.</p></li>
+<li><p><strong>Site</strong> - A discrete deployment — a region, data center, or other location. All network components and resources are associated with their respective Site and VPC. A Site entry defines global attributes such as AS numbers, default ACL policy, and other site-level parameters.</p></li>
+<li><p><strong>IPAM</strong> - IP Address Management. Create IP allocations and subnet assignments per VPC. Allocations may overlap between different VPCs. A subnet can be assigned to multiple sites to extend a V-Net across multiple locations.</p></li>
+<li><p><strong>Subnet</strong> - An IPv4 or IPv6 address resource linked to one or more Sites and Tenants.</p></li>
+<li><p><strong>Switch Port</strong> - A physical port on a Netris-managed switch, or a server endpoint in a Bare Metal Cloud environment.</p></li>
+</ul>
+</section>
+<section id="services">
+<h2>Services<a class="headerlink" href="#services" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>NAT services</strong> - SNAT lets your endpoints communicate with the Internet. DNAT lets your endpoints be reached from the Internet.</p></li>
+<li><p><strong>Load-balancing service</strong> - A Netris service that distributes traffic across a pool of endpoints using L4 load balancing.</p></li>
+<li><p><strong>Access lists (ACLs)</strong> - A layer of security that acts as a firewall, controlling traffic in and out of one or more subnets.</p></li>
+<li><p><strong>External connections</strong> - Connect a VPC to ISP providers or to other segments of your network. Use the Netris E-BGP service for dynamic peering, or define a V-Net with static routes. For natively integrated Bare Metal Cloud Providers, external connections typically establish automatically — refer to the provider-specific tutorial.</p></li>
+<li><p><strong>E-BGP</strong> - The Netris service that defines all External BGP peers (iBGP and eBGP).</p></li>
+<li><p><strong>SoftGate (VPC Gateway)</strong> - An optional, multi-tenant software component that provides ingress and egress connectivity services (elastic IPs, NAT, tenant-specific connectivity, L4 load balancing) for VPCs. Runs on dedicated bare-metal x86 servers. See <a class="reference internal" href="netris-softgate-HS.html"><span class="doc">SoftGate HS</span></a>.</p></li>
+</ul>
+</section>
+<section id="ai-specific">
+<h2>AI-specific<a class="headerlink" href="#ai-specific" title="Link to this heading"></a></h2>
+<ul class="simple">
 <li><p><strong>SU (Scalable Unit)</strong> - In the context of NVIDIA Spectrum-X deployments, a Scalable Unit is a group of GPU servers. Netris uses SUs as the standard unit of scale for rail-optimized topology calculations.</p></li>
 <li><p><strong>Server Cluster</strong> - A group of servers that share the same network configuration, defined by a Server Cluster Template. When a Server Cluster is created, Netris automatically provisions the required VPCs, V-Nets, IPAM subnets, and (when configured) InfiniBand PKeys and NVLink partitions for all servers in the cluster. See <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a>.</p></li>
 <li><p><strong>Server Cluster Template</strong> - A JSON template that defines the network configuration to be applied to servers in a Server Cluster. Templates specify V-Net types, IP addressing schemes, and integration parameters for Ethernet, InfiniBand, and NVLink fabrics.</p></li>
-<li><p><strong>SoftGate (VPC Gateway)</strong> - An optional, multi-tenant software component that provides ingress and egress connectivity services (NAT, L4LB) for VPCs. Runs on dedicated bare-metal x86 servers. See <a class="reference internal" href="netris-softgate-HS.html"><span class="doc">SoftGate HS</span></a>.</p></li>
+</ul>
+</section>
+<section id="infrastructure-and-operations">
+<h2>Infrastructure and operations<a class="headerlink" href="#infrastructure-and-operations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Controller Management Network (CMN)</strong> - A physically separate, non-Netris-managed network that connects Netris Controller nodes and seed switches. Not one of the four fabric roles; exists to prevent circular dependencies between the controller and the fabrics that the controller manages. See the <a class="reference internal" href="netris-architecture.html#management-network-architecture"><span class="std std-ref">Management Network Architecture</span></a> section of Netris Architecture for the full design.</p></li>
+<li><p><strong>Seed switches</strong> - A set of 2 to 6 Netris-managed switches provisioned before any other Netris-managed switches in a deployment. Seed switches connect their management interfaces directly to the CMN and form the root of the OOB management hierarchy in Hybrid OOB (hierarchical) deployments. Not used in Direct-to-CMN deployments. See <a class="reference internal" href="netris-architecture.html#management-network-architecture"><span class="std std-ref">Management Network Architecture</span></a>.</p></li>
+<li><p><strong>Direct-to-CMN deployment topology</strong> - A management plane topology in which all Netris-managed switches connect their management interfaces directly to the CMN. No seed switches are required. Suitable for smaller deployments — typically up to about 90 Netris-managed switches. See <a class="reference internal" href="netris-architecture.html#management-network-architecture"><span class="std std-ref">Management Network Architecture</span></a>.</p></li>
+<li><p><strong>Hybrid OOB (hierarchical) deployment topology</strong> - A management plane topology in which a small set of seed switches connects directly to the CMN and forms the root of an OOB management hierarchy. The remaining Netris-managed switches connect their management interfaces to the OOB network. Used for larger deployments. See <a class="reference internal" href="netris-architecture.html#management-network-architecture"><span class="std std-ref">Management Network Architecture</span></a>.</p></li>
+<li><p><strong>Inventory</strong> - The collection of all Netris-managed network units in the system — switches, SoftGate nodes, and DPUs — each running a Netris agent and registered with the Netris Controller.</p></li>
 <li><p><strong>Inventory Profile</strong> - A configuration baseline applied to managed switches, SoftGate nodes, and DPUs. Includes management access allow-lists, fabric optimization settings, and GPU cluster-specific parameters such as QoS for RoCE. See <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profiles</span></a>.</p></li>
 </ul>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="netris-architecture.html" class="btn btn-neutral float-left" title="Netris Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="try-learn/nvidia-spectrum-x-scenario.html" class="btn btn-neutral float-right" title="Lab Scenario: GPU-as-a-Service network with NVIDIA Spectrum-X architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction to Netris" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="netris-architecture.html" class="btn btn-neutral float-right" title="Netris Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
