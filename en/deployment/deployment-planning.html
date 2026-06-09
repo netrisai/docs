@@ -159,17 +159,28 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Planning Your Deployment</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#fabric-scope">Fabric scope</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#scale">Scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment-type">Deployment type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#switch-hardware">Switch hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#servers-and-compute">Servers and compute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scale-and-management-network-topology">Scale and management network topology</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#multi-tenancy-model">Multi-tenancy model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network-services">Network services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v-nets">V-Nets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#server-clusters">Server Clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shared-services-access">Shared services access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#external-connectivity">External connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#link-aggregation">Link aggregation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#edge-services">Edge services</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#management-network">Management network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-control">Access control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-infrastructure">Control infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integrations">Integrations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ip-addressing">IP addressing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#vpc-and-tenancy-design">VPC and tenancy design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#identity-and-access">Identity and access</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#controller-infrastructure">Controller infrastructure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#integrations">Integrations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#organizational-requirements">Organizational requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zero-touch-provisioning-preparation">Zero-touch provisioning preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operational-considerations">Operational considerations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-to-read-next">What to read next</a></li>
 </ul>
 </li>
@@ -1095,160 +1106,280 @@
              
   <section id="planning-your-deployment">
 <span id="deployment-planning"></span><h1>Planning Your Deployment<a class="headerlink" href="#planning-your-deployment" title="Link to this heading"></a></h1>
-<p>A Netris deployment requires a set of design decisions that must be resolved before installation begins. This page lists those decisions as questions, organized by topic. Your answers determine which Netris components apply to your environment, how the management network is structured, what controller infrastructure you need, and what must be in place before Day 1.</p>
-<p>The Netris customer success team works through deployment design with you — you do not need to resolve every question independently. What you need before that conversation is a clear picture of your environment and your operational requirements.</p>
-<section id="fabric-scope">
-<h2>Fabric scope<a class="headerlink" href="#fabric-scope" title="Link to this heading"></a></h2>
-<p>The fabrics present in your environment determine which Netris components apply.</p>
+<p>A Netris deployment requires a set of design decisions that must be resolved before installation begins. This page lists those decisions as questions, organized by topic. Your answers determine which Netris components apply to your environment, how the management network is structured, what infrastructure you need in place, and which features are available from Day 1.</p>
+<p>For the best outcome, involve the Netris customer success team before ordering hardware. Brownfield migrations — deploying Netris into an existing, live network — are fully supported, but greenfield deployments benefit most from early design review. In NVIDIA-based deployments, NVIDIA Implementation Services (NVIS) typically provides the network design. Netris works closely with NVIS to ingest those designs and model the complete topology in simulation (NVIDIA DSX Air or Netris CloudSim) before any physical work begins. This is known as the Day 0 phase of the deployment.</p>
+<p>You do not need to resolve every question below independently — the Netris customer success team works through this with you. What you need before that conversation is a clear picture of your environment and your operational requirements.</p>
+<p><strong>Assumptions that apply to every Netris deployment:</strong></p>
 <ul class="simple">
-<li><p>Which fabric types are present?</p>
+<li><p>The North-South (frontend) Ethernet fabric is always present.</p></li>
+<li><p>Netris assumes multi-tenant deployments. Every Netris deployment includes at minimum a management tenant, a service tenant, and a shared services tenant alongside any user tenants. Netris equally supports single-tenant deployments — the tenancy model does not change the platform or its configuration.</p></li>
+<li><p>Each GPU server has one dedicated East-West NIC per GPU, regardless of whether the East-West fabric is Ethernet or InfiniBand.</p></li>
+</ul>
+<section id="deployment-type">
+<h2>Deployment type<a class="headerlink" href="#deployment-type" title="Link to this heading"></a></h2>
+<p>The answers to these two questions branch the rest of the planning process.</p>
+<ul class="simple">
+<li><p>Is this an AI (GPU) deployment, or a traditional CPU-only data center?</p>
 <ul>
-<li><p>North-South (frontend) Ethernet fabric</p></li>
-<li><p>East-West (backend) Ethernet fabric — e.g., NVIDIA Spectrum-X</p></li>
-<li><p>East-West InfiniBand fabric — NVIDIA Quantum</p></li>
-<li><p>NVL72 or NVL144 rack-scale NVLink fabric — NVIDIA GB200/GB300 NVL72 or GB300 NVL144 systems</p></li>
-<li><p>NVIDIA BlueField DPUs in servers</p></li>
+<li><p><strong>AI (GPU):</strong> An East-West backend fabric is present. Continue through all sections below.</p></li>
+<li><p><strong>CPU-only:</strong> Only the North-South fabric applies. Skip East-West, NVL, GPU server, and Server Cluster sections.</p></li>
 </ul>
 </li>
-<li><p>Which NOS (network operating system) do your switches run? — NVIDIA Cumulus Linux, SONiC (Dell, EdgeCore, or BCM-SONiC), or Arista EOS. See the <a class="reference internal" href="supported-platform-matrix.html"><span class="doc">Supported Platforms Matrix</span></a> before ordering or committing to hardware.</p></li>
-<li><p>If InfiniBand is present: is NVIDIA UFM already deployed, or will it be deployed as part of this project?</p></li>
-<li><p>If NVL72 or NVL144 is present: is NVIDIA NMX already deployed, or will it be deployed as part of this project?</p></li>
+<li><p>If AI: is this an NVIDIA-based deployment, or a non-NVIDIA deployment?</p>
+<ul>
+<li><p><strong>NVIDIA-based:</strong> Specify which NVIDIA Reference Architecture version is being deployed (for example: RA 2.1, RA 2.2). The RA version determines the East-West technology (Spectrum-X Ethernet or Quantum InfiniBand), whether an NVL72 rack-scale fabric is present, the number of fabric tiers, Scalable Unit sizing, switch model requirements, and cabling standard. If InfiniBand is present, NVIDIA UFM is assumed (see <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">UFM Integration</span></a>). If NVL72 is present, NVIDIA NMX is assumed (see <a class="reference internal" href="netris-nvlink-integration.html"><span class="doc">NVLink Integration</span></a>).</p></li>
+<li><p><strong>Non-NVIDIA AI:</strong> The East-West fabric is Ethernet-based. How many fabric tiers — leaf only, leaf/spine, or leaf/spine/super-spine?</p></li>
+</ul>
+</li>
 </ul>
 </section>
-<section id="scale">
-<h2>Scale<a class="headerlink" href="#scale" title="Link to this heading"></a></h2>
-<p>Deployment scale determines the management network topology.</p>
+<section id="switch-hardware">
+<h2>Switch hardware<a class="headerlink" href="#switch-hardware" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>How many Netris-managed Ethernet switches in total, across all fabrics (spines, leaves, OOB switches, SoftGate nodes)?</p>
+<li><p>Which switch vendor(s) are you using? The vendor determines the network operating system. See the <a class="reference internal" href="supported-platform-matrix.html"><span class="doc">Supported Platforms Matrix</span></a> and <a class="reference internal" href="supported-switch-hardware.html"><span class="doc">Supported Switch Hardware</span></a> before ordering or committing to hardware. NOS image filenames per switch model are collected separately as part of ZTP preparation.</p></li>
+<li><p>Per fabric (East-West, North-South, OOB): specify the switch model and count for each role — leaf, spine, super-spine where applicable.</p></li>
+<li><p><strong>OOB management fabric:</strong> Is the OOB fabric a logically isolated segment of the North-South fabric, or a physically separate fabric?</p>
 <ul>
-<li><p>Up to approximately 90 switches: the Direct-to-CMN (flat) topology is viable — managed switch management interfaces connect directly to the CMN.</p></li>
-<li><p>More than 90 switches: the Hybrid OOB (hierarchical) topology is required — seed switches connect to the CMN, and the remaining switches connect through the OOB hierarchy.</p></li>
+<li><p>If separate: will the OOB fabric be managed by Netris, or operated outside Netris by the operator?</p></li>
 </ul>
 </li>
-<li><p>How many GPU servers?</p></li>
-<li><p>How many Sites — separate data centers or geographic regions managed from the same Netris Controller?</p></li>
+</ul>
+</section>
+<section id="servers-and-compute">
+<h2>Servers and compute<a class="headerlink" href="#servers-and-compute" title="Link to this heading"></a></h2>
+<p>Server records are required to fully model the network in Netris. <a class="reference internal" href="monitoring-observability/topology-validation.html"><span class="doc">Topology validation</span></a>, wiring verification, and <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> automation are not available until servers are modeled in the <a class="reference internal" href="topology-management.html"><span class="doc">inventory</span></a>. Deployment can proceed without servers initially, but plan to supply a complete server list — hostname, NIC inventory, management IP — before those features can be used.</p>
+<ul class="simple">
+<li><p><strong>NVIDIA RA deployments:</strong> How many Scalable Units (SUs)? The RA version determines the SU size (number of GPU servers per SU). Netris uses the SU count to calculate the rail-optimized East-West topology automatically.</p></li>
+<li><p><strong>Non-NVIDIA or custom deployments:</strong> How many GPU servers? How many GPUs per server?</p></li>
+<li><p>How many NICs per server are connected to the North-South fabric? Typically two NICs bonded into an LACP bond (see <a class="reference internal" href="lag.html"><span class="doc">Link Aggregation</span></a>). In DPU-based deployments, the DPU uplink port replaces the host NICs on the North-South fabric.</p></li>
+<li><p>Is server management traffic carried over a dedicated management NIC (separate from the IPMI/BMC interface), or inband as part of the North-South LACP bond?</p></li>
+<li><p>Are NVIDIA BlueField DPUs present in servers connected to the North-South fabric? DPUs enable concurrent multi-tenancy (multiple tenants sharing a single server) by extending the EVPN/VXLAN fabric into the server in hardware. See <a class="reference internal" href="bluefield-3-dpus.html"><span class="doc">BlueField-3 DPUs</span></a>.</p></li>
+</ul>
+</section>
+<section id="scale-and-management-network-topology">
+<h2>Scale and management network topology<a class="headerlink" href="#scale-and-management-network-topology" title="Link to this heading"></a></h2>
+<ul>
+<li><p>How many Netris-managed Ethernet switches in total across all fabrics?</p>
+<ul class="simple">
+<li><p>Up to approximately 90 switches: the Direct-to-CMN (flat) topology is viable — switch management interfaces connect directly to the CMN.</p></li>
+<li><p>More than 90 switches: the Hybrid OOB (hierarchical) topology is required — seed switches connect to the CMN and form the root of the OOB hierarchy.</p></li>
+</ul>
+<p>See <a class="reference internal" href="netris-architecture.html#management-network-architecture"><span class="std std-ref">Management Network Architecture</span></a> for the full design and topology diagrams.</p>
+</li>
+<li><p>How many Sites — separate data centers or geographic regions to be managed from the same Netris Controller?</p></li>
+<li><p>Does the CMN already exist, or does it need to be built as part of this project?</p></li>
+<li><p>How will the CMN be accessed remotely? The CMN must remain reachable independently of the Netris-managed fabric — typically through a VPN gateway or bastion host connected directly to the CMN switches.</p></li>
 </ul>
 </section>
 <section id="multi-tenancy-model">
 <h2>Multi-tenancy model<a class="headerlink" href="#multi-tenancy-model" title="Link to this heading"></a></h2>
-<p>Your tenancy model determines isolation requirements and which host-level Netris components apply.</p>
+<p>The questions below determine the isolation model and scale. See <a class="reference internal" href="accounts.html"><span class="doc">Accounts</span></a> for how tenants and permission groups are modeled in Netris.</p>
 <ul class="simple">
-<li><p>Single-tenant or multi-tenant deployment?</p></li>
-<li><p>If multi-tenant: what is the unit of tenancy?</p>
+<li><p>What is the unit of tenancy?</p>
 <ul>
-<li><p><strong>Exclusive tenancy</strong> — each tenant is allocated whole bare-metal servers. All GPUs on an assigned server belong to one tenant at a time.</p></li>
-<li><p><strong>Concurrent tenancy</strong> — multiple tenants share a single physical server simultaneously. Isolation must extend from the network fabric into the host.</p></li>
+<li><p><strong>Exclusive tenancy</strong> — the whole server is allocated to just one tenant at a time.</p></li>
+<li><p><strong>Concurrent tenancy</strong> — any given server can host more than one tenant simultaneously. Isolation must extend from the network fabric into the server itself.</p></li>
 </ul>
 </li>
-<li><p>If concurrent tenancy: do your servers have NVIDIA BlueField DPUs configured in Zero-Trust mode? DPU-based host segmentation (HBN) enforces isolation in hardware outside the host OS.</p></li>
-<li><p>If concurrent tenancy without DPUs: will VMs or containers be the workload model? Software-based host segmentation (EVPN-on-Host) can be used in this case.</p></li>
-<li><p>How many tenants initially, and what is the expected growth rate?</p></li>
+<li><p>If concurrent tenancy: what is the host segmentation mechanism?</p>
+<ul>
+<li><p><strong>DPU-based (HBN, Zero-Trust mode)</strong> — isolation is enforced in hardware by BlueField DPUs outside the host OS. See <a class="reference internal" href="bluefield-3-dpus.html"><span class="doc">BlueField-3 DPUs</span></a>.</p></li>
+<li><p><strong>EVPN-on-Host</strong> — isolation is enforced in software by the Linux host networking stack. Suitable for control-plane nodes (Kubernetes control nodes, orchestration services, shared platform components). EVPN-on-Host is not recommended for high-traffic-volume workloads because traffic is software-switched. See <a class="reference internal" href="evpn-on-host.html"><span class="doc">EVPN-on-Host</span></a>.</p></li>
 </ul>
+</li>
+<li><p>Are any control-plane hosts (for example, dedicated Kubernetes control nodes, one per tenant) expected to host concurrent multi-tenancy? If so, plan for EVPN-on-Host on those nodes.</p></li>
+<li><p>How many tenants initially? Anticipated maximum?</p></li>
+<li><p>What is the anticipated maximum VPC count? See <a class="reference internal" href="network-policies.html#vpc-def"><span class="std std-ref">Netris VPC</span></a> for how VPCs map to tenant isolation boundaries.</p></li>
+<li><p>What is the tenant IP addressing model?</p>
+<ul>
+<li><p><strong>Uniform schema</strong> — every tenant uses the same IP address schema (for example, every tenant’s workload network is 10.0.0.0/24). VPCs provide the isolation that makes overlapping ranges safe. This is the most common model for GPU cloud operators who provision standard environments per tenant.</p></li>
+<li><p><strong>Unique non-overlapping ranges</strong> — each tenant receives a distinct IP allocation with no overlap. Required when tenants need direct Layer-3 reachability to each other or to shared services without NAT.</p></li>
+<li><p><strong>Combination</strong> — some tenants share a standard schema; others have unique allocations. Netris supports all three cases within the same deployment.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="network-services">
+<h2>Network services<a class="headerlink" href="#network-services" title="Link to this heading"></a></h2>
+<section id="v-nets">
+<h3>V-Nets<a class="headerlink" href="#v-nets" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="vnet.html"><span class="doc">V-Nets</span></a> are the core segmentation construct. Identify which types you need.</p>
+<ul class="simple">
+<li><p><strong>L2VPN V-Nets</strong> — Layer-2 switched segments, similar to a traditional VLAN with anycast gateway. Typically used for North-South and management networks.</p></li>
+<li><p><strong>L3VPN V-Nets</strong> — Layer-3 routed, one /31 subnet per switch port. Used for East-West GPU cluster connectivity on Ethernet-based AI fabrics (Spectrum-X).</p></li>
+<li><p><strong>VLAN-aware V-Nets</strong> — Q-in-Q mode carrying multiple VLAN tags within a single VXLAN. Used when endpoints require VLAN trunking.</p></li>
+<li><p><strong>Multi-site V-Nets</strong> — a single V-Net spanning multiple Sites with shared or distinct subnets per site.</p></li>
+<li><p><strong>DHCP:</strong> Do tenants need DHCP address assignment for workloads connected to L2VPN V-Nets? Netris can host DHCP on SoftGate or relay to an external DHCP server.</p></li>
+</ul>
+</section>
+<section id="server-clusters">
+<h3>Server Clusters<a class="headerlink" href="#server-clusters" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="server-cluster.html"><span class="doc">Server Clusters</span></a> define tenant network boundaries by referencing a list of compute nodes rather than individual switch ports. Netris automatically provisions the required VPCs, V-Nets, IPAM subnets, InfiniBand PKeys (if InfiniBand is present), and NVLink partitions (if an NVL72 fabric is present) for all servers in the cluster.</p>
+<ul class="simple">
+<li><p>Will tenant network provisioning be driven by Server Clusters?</p></li>
+<li><p>What Server Cluster Template will be used? Templates are JSON objects that define V-Net types, IP addressing schemes, and AI fabric integration parameters.</p></li>
+</ul>
+</section>
+<section id="shared-services-access">
+<h3>Shared services access<a class="headerlink" href="#shared-services-access" title="Link to this heading"></a></h3>
+<p>Tenants typically need access to shared infrastructure — storage systems, platform services, BCM — without direct connectivity between tenant VPCs.</p>
+<ul class="simple">
+<li><p><strong>VPC Peering</strong> — controlled Layer-3 connectivity between two VPCs with prefix-list filtering. Recommended for shared storage access patterns. See <a class="reference internal" href="network-policies.html"><span class="doc">Netris VPC</span></a>.</p></li>
+<li><p><strong>VLAN subinterface access</strong> — storage platform exposes logical interfaces directly into each tenant VPC. Simpler routing but constrained by the storage platform’s interface limit.</p></li>
+</ul>
+<p>Which model applies, or both?</p>
+</section>
+<section id="external-connectivity">
+<h3>External connectivity<a class="headerlink" href="#external-connectivity" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>How will the Netris-managed fabric connect to upstream ISPs, WAN routers, or external firewalls? eBGP peering (see <a class="reference internal" href="network-policies.html#bgp-def"><span class="std std-ref">BGP</span></a> in <a class="reference internal" href="network-policies.html"><span class="doc">Netris VPC</span></a>) or static routes, or both?</p></li>
+<li><p><strong>On/off ramp model:</strong> Is all inbound and outbound tenant traffic routed through SoftGate edge services (NAT and L4 load balancing), or is direct high-speed Layer-3 access also required — for example, a routed BGP connection from a switch port directly to an upstream router or firewall? Direct high-speed access uses the <a class="reference internal" href="vpc-connect.html"><span class="doc">VPC Connect</span></a> feature. If VPC Connect is needed, identify which switch ports and which upstream devices.</p></li>
+</ul>
+</section>
+<section id="link-aggregation">
+<h3>Link aggregation<a class="headerlink" href="#link-aggregation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>What link aggregation model applies to servers connected to the North-South fabric? See <a class="reference internal" href="lag.html"><span class="doc">Link Aggregation</span></a>.</p>
+<ul>
+<li><p><strong>Automatic LAG with EVPN Multi-Homing</strong> — Netris detects LACP on the server side and automatically forms an all-active LAG. Requires Cumulus Linux 5.3 or higher and Spectrum A1 ASIC with a two-switch EVPN-MH domain.</p></li>
+<li><p><strong>MC-LAG</strong> — vendor-specific multi-chassis LAG with peer-link configuration.</p></li>
+<li><p><strong>Custom LAG</strong> — manual LAG configuration for hardware or topology combinations not covered by the automatic modes.</p></li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 <section id="edge-services">
 <h2>Edge services<a class="headerlink" href="#edge-services" title="Link to this heading"></a></h2>
-<p>Netris SoftGate is optional, but required if any of the following apply:</p>
+<p><a class="reference internal" href="netris-softgate-HS.html"><span class="doc">Netris SoftGate</span></a> is optional, but required for any of the following:</p>
 <ul class="simple">
-<li><p>Tenant workloads need to initiate outbound connections to the Internet or to external networks (SNAT).</p></li>
-<li><p>Tenant workloads need to be reached from external networks (DNAT).</p></li>
-<li><p>A stable public endpoint is needed to distribute traffic across tenant backend workloads (L4 load balancing).</p></li>
-<li><p>Dynamically assignable public IP addresses per tenant (elastic IPs) are required.</p></li>
+<li><p>SNAT — tenant workloads initiating outbound connections to the Internet or external networks.</p></li>
+<li><p>DNAT — inbound access to tenant workloads from external networks.</p></li>
+<li><p>L4 load balancing — a stable public endpoint distributing TCP or UDP traffic across backend workloads. See <a class="reference internal" href="l4-load-balancer.html"><span class="doc">L4 Load Balancer</span></a>.</p></li>
+<li><p>Elastic IPs — dynamically assignable public IP addresses per tenant.</p></li>
+<li><p>DHCP server hosted on SoftGate.</p></li>
 </ul>
 <p>If SoftGate is needed:</p>
 <ul class="simple">
-<li><p>How many SoftGate nodes? SoftGate scales horizontally; two nodes is the minimum for redundancy.</p></li>
+<li><p>A minimum of four SoftGate nodes is required for high availability: two dedicated to SNAT (stateful, horizontally scalable), two dedicated to DNAT and L4 load balancing (stateless). Additional nodes can be added to either role independently.</p></li>
 <li><p>What physical servers will run SoftGate? SoftGate runs on dedicated bare-metal x86 servers at the edge of the North-South fabric.</p></li>
+<li><p>What is the upstream BGP ASN for SoftGate peering?</p></li>
+<li><p>What /30 peering subnet is allocated per SoftGate node for the uplink BGP session?</p></li>
+<li><p>What VLAN ID is assigned per SoftGate node for the uplink peering interface?</p></li>
+<li><p>Are health checks required on L4LB backends? If so: TCP connect, HTTP GET, or none?</p></li>
 </ul>
 </section>
-<section id="management-network">
-<h2>Management network<a class="headerlink" href="#management-network" title="Link to this heading"></a></h2>
-<p>The management network architecture is a foundational design decision. See <a class="reference internal" href="netris-architecture.html#management-network-architecture"><span class="std std-ref">Management Network Architecture</span></a> for the full design and the two supported topologies.</p>
+<section id="access-control">
+<h2>Access control<a class="headerlink" href="#access-control" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Does an OOB management network already exist in this environment? If so:</p>
+<li><p>What is the default ACL policy per Site? See <a class="reference internal" href="site.html"><span class="doc">Netris Site</span></a> and <a class="reference internal" href="acls.html"><span class="doc">Access Control Lists (ACL)</span></a>.</p>
 <ul>
-<li><p>Is it managed by another automation platform, or operator-managed?</p></li>
-<li><p>Will Netris take over management of the OOB, or will it remain outside Netris?</p></li>
+<li><p><strong>Permit</strong> — all traffic between subnets is allowed unless explicitly denied. Suitable for open, trusted environments.</p></li>
+<li><p><strong>Deny</strong> — all traffic between subnets is blocked unless explicitly permitted (zero-trust model). Required for regulated or high-security deployments.</p></li>
 </ul>
 </li>
-<li><p>Will the OOB be implemented as a standalone fabric, or as a logically isolated segment of the North-South fabric?</p></li>
-<li><p>How will the CMN be accessed remotely? The CMN must remain reachable independently of the Netris-managed fabric — typically through a VPN gateway or bastion host connected directly to the CMN switches.</p></li>
-<li><p>Does the CMN already exist, or does it need to be built as part of this project?</p></li>
-<li><p>Who is responsible for the CMN physically? (The CMN switches are not Netris-managed and are configured manually.)</p></li>
+<li><p>Will cross-tenant ACL approval workflows be needed — for example, where a tenant requests access to another tenant’s resources and the owner must approve? See <a class="reference internal" href="acls.html"><span class="doc">Access Control Lists (ACL)</span></a>.</p></li>
 </ul>
 </section>
-<section id="ip-addressing">
-<h2>IP addressing<a class="headerlink" href="#ip-addressing" title="Link to this heading"></a></h2>
+<section id="control-infrastructure">
+<h2>Control infrastructure<a class="headerlink" href="#control-infrastructure" title="Link to this heading"></a></h2>
+<p>Control-plane systems need management-plane reachability to the servers and devices they manage. Their placement relative to the Netris-managed fabric determines which VPCs and V-Nets must be provisioned.</p>
 <ul class="simple">
-<li><p>What ASN will be used for the BGP underlay? A public ASN if you have one, or a private ASN in the range 64512–65534.</p></li>
-<li><p>What IP address ranges are allocated for:</p>
+<li><p>Which control infrastructure systems will be present?</p>
 <ul>
-<li><p>Switch and SoftGate management interfaces</p></li>
-<li><p>BGP underlay loopback addresses</p></li>
-<li><p>Tenant VPC address space (per-tenant or pooled)</p></li>
-<li><p>Public IP pool — for elastic IPs, NAT frontends, and load balancer VIPs</p></li>
+<li><p>NVIDIA Base Command Manager (BCM) for node lifecycle management</p></li>
+<li><p>Other node provisioning, imaging, or PXE boot systems</p></li>
+<li><p>Kubernetes orchestrators or platform control planes</p></li>
+<li><p>Remote access or bastion hosts</p></li>
+<li><p>Firmware repositories</p></li>
 </ul>
 </li>
-<li><p>Are there overlapping address ranges between tenants that require separate VPCs?</p></li>
-<li><p>Does an existing IP address management system — for example, Infoblox or similar — need to coexist or integrate with Netris IPAM?</p></li>
-</ul>
-</section>
-<section id="vpc-and-tenancy-design">
-<h2>VPC and tenancy design<a class="headerlink" href="#vpc-and-tenancy-design" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>How will VPCs map to tenants or environments? Common patterns: one VPC per tenant, one VPC per environment (production/staging), a shared services VPC alongside per-tenant VPCs.</p></li>
-<li><p>Does the management plane need to be segmented by function? For example: separate VPCs for network device management, server management interfaces, and orchestration tooling.</p></li>
-<li><p>Do tenants need access to shared services such as storage systems?</p>
-<ul>
-<li><p>If so: VPC peering (recommended for most storage access patterns) or VLAN subinterface access on the storage platform?</p></li>
-</ul>
-</li>
-<li><p>How will external connectivity be implemented — eBGP to upstream ISP or WAN routers, static routes, or both?</p></li>
-<li><p>What is the default ACL policy? Permit all inter-tenant traffic unless explicitly denied (permissive default), or deny all unless explicitly permitted (zero-trust default)?</p></li>
-</ul>
-</section>
-<section id="identity-and-access">
-<h2>Identity and access<a class="headerlink" href="#identity-and-access" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>Will Netris use local user accounts, or integrate with an enterprise identity provider (LDAPv3, LDAPS, or Microsoft Active Directory)?</p></li>
-<li><p>What RBAC roles are required?</p>
-<ul>
-<li><p>Platform administrators with full access</p></li>
-<li><p>Operations teams with scoped write access</p></li>
-<li><p>Read-only observers or auditors</p></li>
-<li><p>Tenant self-service — tenants provisioning their own VPCs and services through the Netris API or Kubernetes CRDs</p></li>
-</ul>
-</li>
-<li><p>Who holds administrative access to the Netris Controller?</p></li>
-<li><p>Are there audit or compliance requirements that affect log retention or access policy?</p></li>
-</ul>
-</section>
-<section id="controller-infrastructure">
-<h2>Controller infrastructure<a class="headerlink" href="#controller-infrastructure" title="Link to this heading"></a></h2>
-<p>The Netris Controller runs on a minimum of three dedicated bare-metal nodes in a high-availability cluster.</p>
-<ul class="simple">
-<li><p>Are three dedicated bare-metal servers available for the controller cluster?</p></li>
-<li><p>What are the NIC specifications on those servers? The controller nodes require specific NIC configuration for HA communication and OOB connectivity. See <a class="reference internal" href="installation/installation.html"><span class="doc">Controller Installation</span></a> for hardware requirements.</p></li>
-<li><p>Is an air-gapped (offline) installation required? Netris supports fully air-gapped deployments — offline install packages can be provided.</p></li>
-<li><p>k3s (the default, bundled deployment) or an existing Kubernetes cluster?</p></li>
+<li><p>For each: will it reside within the Netris-managed fabric (requiring a management VPC and V-Net), or outside the fabric (reaching managed nodes through external connectivity)?</p></li>
+<li><p>Which monitoring, telemetry, and observability systems will be present (for example: Prometheus, Grafana, DCIM systems, NVIDIA NetQ)?</p></li>
+<li><p>For each: inside the Netris-managed fabric, or outside? If NetQ is used for network validation, see <a class="reference internal" href="monitoring-observability/netq.html"><span class="doc">NVIDIA NetQ Integration</span></a>.</p></li>
 </ul>
 </section>
 <section id="integrations">
 <h2>Integrations<a class="headerlink" href="#integrations" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Kubernetes</strong> — is a Kubernetes integration required? If so, which distribution? The Netris Kubernetes operator provisions VPCs, V-Nets, and load balancers from Kubernetes manifests.</p></li>
-<li><p><strong>Terraform</strong> — will infrastructure-as-code workflows drive Netris configuration via the Netris Terraform provider?</p></li>
-<li><p><strong>NVIDIA Base Command Manager (BCM)</strong> — does BCM need management-plane reachability to Netris-managed servers? If so, plan for a dedicated management VPC with VPC peering to tenant environments. See <a class="reference internal" href="bluefield-3-dpus.html"><span class="doc">BlueField-3 DPUs</span></a> for DPU-specific integration.</p></li>
-<li><p><strong>Existing DCIM or monitoring systems</strong> — which systems need to coexist on the OOB network, and does any integration with the Netris API need to be planned at this stage?</p></li>
+<li><p><strong>Kubernetes</strong> — is a Kubernetes operator integration required? The <a class="reference internal" href="kubernetes-integration.html"><span class="doc">Netris Kubernetes operator</span></a> provisions VPCs, V-Nets, and load balancers from Kubernetes manifests (CRDs) and supports Calico CNI integration.</p></li>
+<li><p><strong>Terraform</strong> — will infrastructure-as-code workflows drive Netris configuration via the <a class="reference internal" href="terraform-integration.html"><span class="doc">Netris Terraform provider</span></a>?</p></li>
+<li><p><strong>CloudStack</strong> — is CloudStack integration required? See <a class="reference internal" href="cloudstack/netris-cloudstack.html"><span class="doc">Netris-CloudStack Integration</span></a>.</p></li>
+<li><p><strong>SNMP</strong> — does your monitoring stack require SNMPv2 polling of managed switches? Netris Inventory Profiles can configure SNMPv2 community strings and access controls per device.</p></li>
 </ul>
 </section>
-<section id="organizational-requirements">
-<h2>Organizational requirements<a class="headerlink" href="#organizational-requirements" title="Link to this heading"></a></h2>
-<p>The following are the operator’s responsibility in the Netris shared responsibility model. Confirm your organization has addressed these before deployment.</p>
+<section id="ip-addressing">
+<h2>IP addressing<a class="headerlink" href="#ip-addressing" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Remote access to the CMN</strong> — a dedicated access path (VPN gateway, bastion host) to the CMN that does not depend on the Netris-managed fabric.</p></li>
-<li><p><strong>Backup and disaster recovery</strong> — the Netris Controller supports configuration export. Confirm backup policies and recovery workflows are planned.</p></li>
-<li><p><strong>Default credentials</strong> — administrative credentials must be changed immediately after the controller is deployed.</p></li>
-<li><p><strong>Infrastructure OS and firmware</strong> — a process for maintaining operating systems and firmware on controller nodes and managed devices.</p></li>
+<li><p>What ASN will be used for the BGP underlay? A public ASN if you have one, or a private ASN in the range 64512–65534. See <a class="reference internal" href="site.html"><span class="doc">Netris Site</span></a>.</p></li>
+<li><p>What VLAN ID range is available for dynamic assignment by Netris? The default range is 2–4094. If any IDs in that range are reserved by existing infrastructure, specify the contiguous range Netris can use.</p></li>
+<li><p>What IP address ranges are allocated for each of the following?</p>
+<ul>
+<li><p><strong>East-West switch fabric loopbacks</strong> — underlay BGP loopback subnet</p></li>
+<li><p><strong>East-West switch fabric management interfaces</strong> — subnet and default gateway (E-W management is typically served by the Netris-managed N-S fabric)</p></li>
+<li><p><strong>North-South switch fabric loopbacks</strong> — underlay BGP loopback subnet</p></li>
+<li><p><strong>North-South switch fabric management interfaces</strong> — subnet and gateway (N-S management is typically served by the non-Netris-managed OOB network)</p></li>
+<li><p><strong>GPU server East-West point-to-point links</strong> (Spectrum-X deployments) — a /16 or similarly sized pool from which Netris automatically assigns /31 subnets between GPU servers and leaf switches</p></li>
+<li><p><strong>GPU server North-South frontend access</strong> — subnet and default gateway for tenant VPC access</p></li>
+<li><p><strong>Server BMC/IPMI management interfaces</strong> — subnet and gateway</p></li>
+<li><p><strong>Tenant VPC address space</strong> — per-tenant allocation or a shared pool from which VPCs are carved. See <a class="reference internal" href="network-policies.html#ipam-def-vpc"><span class="std std-ref">IP Address Management</span></a> in <a class="reference internal" href="network-policies.html"><span class="doc">Netris VPC</span></a>.</p></li>
+<li><p><strong>Public IP pool</strong> — for elastic IPs, SNAT frontends, DNAT targets, and load balancer VIPs</p></li>
+</ul>
+</li>
+<li><p>Are there overlapping address ranges between tenants that require separate VPCs?</p></li>
+<li><p>Does an existing IP address management system — for example, Infoblox — need to coexist or integrate with Netris IPAM?</p></li>
+</ul>
+</section>
+<section id="identity-and-access">
+<h2>Identity and access<a class="headerlink" href="#identity-and-access" title="Link to this heading"></a></h2>
+<p>See <a class="reference internal" href="accounts.html"><span class="doc">Accounts</span></a> for the full RBAC model.</p>
+<ul class="simple">
+<li><p>Will Netris use local user accounts, or integrate with an enterprise identity provider (LDAPv3, LDAPS, or Microsoft Active Directory)?</p></li>
+<li><p>What RBAC roles are required?</p>
+<ul>
+<li><p>Platform administrators — full access to all resources</p></li>
+<li><p>Operations teams — scoped write access by tenant or section</p></li>
+<li><p>Read-only observers or auditors</p></li>
+<li><p>Tenant self-service — tenants provisioning their own VPCs and services through the Netris GUI, REST API, Kubernetes CRDs, or Terraform</p></li>
+</ul>
+</li>
+<li><p>Who holds administrative access to the Netris Controller?</p></li>
+<li><p>Are there audit or compliance requirements that affect log retention or access policy? All API and GUI activity is captured in audit logs accessible via the controller API or GUI. See <a class="reference internal" href="visibility.html"><span class="doc">Graph Boards</span></a>.</p></li>
+</ul>
+</section>
+<section id="controller-infrastructure">
+<h2>Controller infrastructure<a class="headerlink" href="#controller-infrastructure" title="Link to this heading"></a></h2>
+<p>The Netris Controller runs on a minimum of three dedicated bare-metal nodes in a high-availability cluster. See <a class="reference internal" href="supported-switch-hardware.html"><span class="doc">Supported Switch Hardware</span></a> for controller hardware requirements at different scale levels.</p>
+<ul class="simple">
+<li><p>Are three dedicated bare-metal servers available for the controller cluster?</p></li>
+<li><p>What are the NIC specifications on those servers? The controller nodes require specific NIC configuration for HA communication and OOB connectivity. See <a class="reference internal" href="installation/installation.html"><span class="doc">Controller Installation</span></a> for hardware requirements.</p></li>
+<li><p>Reserve five IP addresses from the OOB management subnet before installation begins: one per controller node (three), one for the Kubernetes API VIP, and one for the Netris Controller VIP.</p></li>
+<li><p>What FQDN will resolve to the Netris Controller VIP? DNS must be configured before the controller is deployed.</p></li>
+<li><p>Is an air-gapped (offline) installation required? Netris supports fully air-gapped deployments — offline install packages can be provided.</p></li>
+<li><p>k3s (the default, bundled deployment) or an existing Kubernetes cluster?</p></li>
+</ul>
+</section>
+<section id="zero-touch-provisioning-preparation">
+<h2>Zero-touch provisioning preparation<a class="headerlink" href="#zero-touch-provisioning-preparation" title="Link to this heading"></a></h2>
+<p>If you plan to use Zero-Touch Provisioning (ZTP) to onboard switches, prepare the following before deployment begins. See <a class="reference internal" href="installation/ztp.html"><span class="doc">ZTP</span></a>.</p>
+<ul class="simple">
+<li><p>Switch hostname schema and the complete hostname list</p></li>
+<li><p>MAC addresses of all switch management interfaces</p></li>
+<li><p>Management IP assignment per switch</p></li>
+<li><p>Loopback IP assignment per switch</p></li>
+<li><p>NOS image filename(s) for each switch model in the deployment — collected per switch via the <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profile</span></a> ZTP settings</p></li>
+</ul>
+</section>
+<section id="operational-considerations">
+<h2>Operational considerations<a class="headerlink" href="#operational-considerations" title="Link to this heading"></a></h2>
+<p>Plan for the following before Day 1.</p>
+<ul class="simple">
+<li><p><strong>Inventory Profiles</strong> — define configuration baselines for managed switches, SoftGate nodes, and DPUs: management access allow-lists, BGP underlay mode (numbered or unnumbered), LAG mode, GPU cluster QoS and RoCE parameters, and ZTP settings. One profile can cover an entire fabric role (East-West, North-South, OOB). See <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profiles</span></a>.</p></li>
+<li><p><strong>Topology validation</strong> — Netris continuously validates physical wiring against the topology declared in the controller using LLDP. Server wiring validation requires servers to be modeled and NIC-to-port mappings to be defined. See <a class="reference internal" href="monitoring-observability/topology-validation.html"><span class="doc">Topology &amp; Wiring Validation</span></a>.</p></li>
+<li><p><strong>Maintenance Mode</strong> — plan for how switches and SoftGate nodes will be taken offline for maintenance without disrupting tenant traffic. See <a class="reference internal" href="maintenance-mode.html"><span class="doc">Maintenance Mode</span></a>.</p></li>
+<li><p><strong>Custom switch configuration</strong> — if your switches run NVIDIA Cumulus Linux and require configuration beyond what Netris manages, <a class="reference internal" href="snippets.html"><span class="doc">custom NVUE snippets</span></a> can be deployed per device.</p></li>
+<li><p><strong>Backup and disaster recovery</strong> — the Netris Controller supports full configuration export. Confirm backup policies and recovery workflows with your operations team.</p></li>
+<li><p><strong>Default credentials</strong> — administrator credentials must be changed immediately after the controller is deployed.</p></li>
 </ul>
 </section>
 <section id="what-to-read-next">
