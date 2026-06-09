@@ -19,6 +19,7 @@ You are welcome to join our community Slack_ channel to get additional support f
    introduction
    definitions
    netris-architecture
+   deployment-planning
 
 .. toctree::
    :maxdepth: 2

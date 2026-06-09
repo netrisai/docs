@@ -158,6 +158,6 @@ Security of the overall infrastructure environment is a shared responsibility be
 What to read next
 ==================
 
-With the architecture in mind, the natural next step is to see Netris in action. Open the :doc:`Try & Learn: GPU-as-a-Service network with NVIDIA Spectrum-X architecture <try-learn/nvidia-spectrum-x-scenario>` lab. The scenario runs in a Netris simulation environment — no real switches or GPU servers required — and walks through a complete deployment that exercises the four fabric roles, the vocabulary, and the components introduced above.
+With the architecture in mind, the next step is :doc:`Planning Your Deployment <deployment-planning>`. That page lists the questions you need to answer — about fabric scope, scale, management network topology, multi-tenancy model, IP addressing, and controller infrastructure — before installation begins.
 
-If you have already acquired Netris and are ready to deploy on real hardware, go to :doc:`Controller Installation <installation/installation>`. If you want to confirm hardware support first, see the :doc:`Supported Platforms Matrix <supported-platform-matrix>` and :doc:`Supported Switch Hardware <supported-switch-hardware>`.
+If you want to see Netris in action before committing to a deployment, the :doc:`Try & Learn: GPU-as-a-Service network with NVIDIA Spectrum-X architecture <try-learn/nvidia-spectrum-x-scenario>` lab runs in a Netris simulation environment with no real hardware required.
