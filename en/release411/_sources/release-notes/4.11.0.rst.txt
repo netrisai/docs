@@ -14,7 +14,7 @@ Features
 .. New capabilities visible to customers. One line each; optional 1–2 lines of context.
 
 - **Per-Port FEC Configuration**. Allows operators to configure Forward Error Correction (FEC) mode per physical port via the Netris Controller UI and API. Supported on Cumulus, SONiC, and Arista platforms.
-- **IPv6 Tenant Cluster Support**. Adds end-to-end IPv6 support for tenant Kubernetes clusters, enabling IPv6-only deployments to run cleanly on Netris-managed fabrics.
+- **Host Networking Plugin**. Adds native IPv6 support for tenant Kubernetes clusters, enabling IPv6-only deployments.
 
 Enhancements
 ------------
