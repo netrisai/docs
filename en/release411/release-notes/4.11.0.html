@@ -1096,16 +1096,16 @@
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Per-Port FEC Configuration</strong>. Allows operators to configure Forward Error Correction (FEC) mode per physical port via the Netris Controller UI and API. Supported on Cumulus, SONiC, and Arista platforms.</p></li>
-<li><p><strong>Host Networking Plugin</strong>. Adds native IPv6 support for tenant Kubernetes clusters, enabling IPv6-only deployments.</p></li>
 </ul>
 </section>
 <section id="enhancements">
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading"></a></h2>
 <ul class="simple">
+<li><p><strong>Host Networking Plugin</strong>. Adds native IPv6 support for tenant Kubernetes clusters, enabling IPv6-only deployments.</p></li>
 <li><p><strong>Topology Rendering Performance</strong>. Optimized rendering of the topology view so large fabrics load and update significantly faster in the UI.</p></li>
-<li><p><strong>Graphite → VictoriaMetrics Data Migration on Upgrade</strong>. The controller upgrade flow now automatically backs up the existing Graphite dataset, transforms it for VictoriaMetrics, imports it, and validates integrity, preserving historical metrics continuity.</p></li>
 <li><p><strong>Network Links Section Performance</strong>. The Network Links section in the controller dashboard now loads much faster, with improved status-filter logic.</p></li>
-<li><p><strong>Network Interfaces Loading Performance</strong>. Reduced load time of the Network Interfaces view on production-scale fabrics.</p></li>
+<li><p><strong>Network Interfaces Loading Performance</strong>. Reduced load time of the Network Interfaces view on large-scale fabrics.</p></li>
+<li><p><strong>Graphite → VictoriaMetrics Data Migration on Upgrade</strong>. The controller upgrade flow now automatically backs up the existing Graphite dataset, transforms it for VictoriaMetrics, imports it, and validates integrity, preserving historical metrics continuity.</p></li>
 <li><p><strong>InfiniBand Debug Messages</strong>. Updated debug-mode log messages for the InfiniBand (IB) integration to be clearer and more actionable when troubleshooting.</p></li>
 </ul>
 </section>
