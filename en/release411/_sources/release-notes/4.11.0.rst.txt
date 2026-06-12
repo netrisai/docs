@@ -50,6 +50,7 @@ References
 - :doc:`Supported Switch Hardware <../supported-switch-hardware>`
 - Schedule a Demo_
 - Follow us on LinkedIn_
+- Follow us on YouTube_
 - Follow us on X-Twitter_
 - Join our Slack_
 
