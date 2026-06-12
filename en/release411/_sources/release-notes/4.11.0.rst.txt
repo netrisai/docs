@@ -20,10 +20,13 @@ Enhancements
 .. Customer-facing enhancements to existing functionality and features. If internal-only, keep wording generic.
 
 - **Host Networking Plugin**. Adds native IPv6 support for tenant Kubernetes clusters, enabling IPv6-only deployments.
-- **Topology Rendering Performance**. Optimized rendering of the topology view so large fabrics load and update significantly faster in the UI.
-- **Network Links Section Performance**. The Network Links section in the controller dashboard now loads much faster, with improved status-filter logic.
-- **Network Interfaces Loading Performance**. Reduced load time of the Network Interfaces view on large-scale fabrics.
-- **Graphite → VictoriaMetrics Data Migration on Upgrade**. The controller upgrade flow now automatically backs up the existing Graphite dataset, transforms it for VictoriaMetrics, imports it, and validates integrity, preserving historical metrics continuity.
+- **Performance at Scale**. Improved controller performance and responsiveness for large-scale deployments, including:
+
+  - Topology
+  - Network Links
+  - Network Interfaces
+  - Looking Glass, including preserving historical metrics data when upgrading from earlier versions
+
 - **InfiniBand Debug Messages**. Updated debug-mode log messages for the InfiniBand (IB) integration to be clearer and more actionable when troubleshooting.
 
 Bug fixes
