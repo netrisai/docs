@@ -11,7 +11,7 @@ What's new in Netris |version|?
 
 .. warning::
 
-   **Data loss warning:** When upgrading from Netris version 4.9 or earlier, historical monitoring data is not preserved. Future Netris releases will include a migration tool to preserve monitoring data during upgrades.
+   **Data loss warning:** When upgrading from Netris version 4.9 or earlier, historical monitoring data is not preserved. Future Netris releases will automatically preserve monitoring data during upgrades.
 
 Features
 --------
