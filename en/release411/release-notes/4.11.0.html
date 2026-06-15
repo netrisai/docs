@@ -1091,6 +1091,10 @@
 <span id="release-4-11-0"></span><h1>Netris 4.11.0 Release Notes (Jun/15/2026)<a class="headerlink" href="#netris-version-release-notes-jun-15-2026" title="Link to this heading"></a></h1>
 <section id="what-s-new-in-netris-version">
 <h2>What’s new in Netris 4.11.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Data loss warning:</strong> When upgrading from Netris version 4.9 or earlier, historical monitoring data is not preserved. Future Netris releases will include a migration tool to preserve monitoring data during upgrades.</p>
+</div>
 </section>
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
@@ -1101,16 +1105,15 @@
 <section id="enhancements">
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Host Networking Plugin</strong>. Adds native IPv6 support for tenant Kubernetes clusters, enabling IPv6-only deployments.</p></li>
 <li><p><strong>Performance at Scale</strong>. Improved controller performance and responsiveness for large-scale deployments, including:</p>
 <ul>
 <li><p>Topology</p></li>
 <li><p>Network Links</p></li>
 <li><p>Network Interfaces</p></li>
-<li><p>Looking Glass, including preserving historical metrics data when upgrading from earlier versions</p></li>
+<li><p>Looking Glass</p></li>
 </ul>
 </li>
-<li><p><strong>InfiniBand Debug Messages</strong>. Updated debug-mode log messages for the InfiniBand (IB) integration to be clearer and more actionable when troubleshooting.</p></li>
+<li><p><strong>InfiniBand Debug Messages</strong>. Updated debug-mode log messages for the InfiniBand (IB) integration to be more descriptive and more actionable when troubleshooting.</p></li>
 </ul>
 </section>
 <section id="bug-fixes">
@@ -1119,9 +1122,11 @@
 <li><p>Fixed Cumulus agent entering a loop when a route-map was created without a match rule; empty route-map sequences are now skipped safely.</p></li>
 <li><p>Fixed DNAT not working when backend IPs configured under the L4LB used the same ports as DNAT rules.</p></li>
 <li><p>Fixed backend health checks not responding within 1 second under load in large-scale deployments.</p></li>
-<li><p>Fixed Terraform silently accepting undefined Fabric Type values (e.g. “ew-plane5”), which resulted in a blank Fabric Type in the controller.</p></li>
+<li><p>Fixed Terraform silently accepting undefined Fabric Type values (e.g., “ew-plane5”), which resulted in a blank Fabric Type in the controller.</p></li>
 <li><p>Fixed wrong prefix length in the prefix-list used for Cumulus VPC peering; the agent now configures <code class="docutils literal notranslate"><span class="pre">min-prefix-len</span></code>.</p></li>
 <li><p>Fixed a UI error when changing the eBGP local IP for a peer created with the “connect with vnet” option.</p></li>
+<li><p>Fixed VPC Peering on Cumulus not propagating prefixes through a transit VPC.</p></li>
+<li><p>Fixed VPC Peering on Cumulus not propagating static IPv6 routes.</p></li>
 </ul>
 </section>
 <section id="security-fixes">
