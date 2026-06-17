@@ -527,7 +527,7 @@ Management Interfaces
 Netris and NOS versions compatibility matrix
 ============================================
 
-.. note:: SoftGate PRO has been discontinued. New deployments should use SoftGate HS. The SoftGate PRO column is retained for reference by existing deployments on older Netris versions.
+.. note:: SoftGate PRO has been discontinued and superceded by SoftGate HS. The SoftGate PRO column is retained for reference by existing deployments on older Netris versions.
 
 .. list-table::
    :header-rows: 0
@@ -540,6 +540,14 @@ Netris and NOS versions compatibility matrix
      - **SoftGate PRO OS**
      - **SoftGate HS OS**
      - **Availability**
+   * - 4.11.0
+     - 5.11 - 5.14, 5.16
+     - 4.5
+     - 202211-331
+     - 4.34.1F
+     - N/A
+     - Ubuntu 24.04
+     - ✔
    * - 4.10.0
      - 5.11 - 5.14, 5.16
      - 4.5
