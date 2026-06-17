@@ -66,6 +66,7 @@ You are welcome to join our community Slack_ channel to get additional support f
    vnet
    server-cluster
    l4-load-balancer
+   vpc-connect
    acls
 
 .. toctree::
