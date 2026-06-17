@@ -5,3 +5,4 @@
 .. _X-Twitter: https://x.com/netris_io
 .. _Demo: https://www.netris.io/demo/
 .. _Slack: https://netris.slack.com/
+.. _Youtube: https://www.youtube.com/@netris_io
