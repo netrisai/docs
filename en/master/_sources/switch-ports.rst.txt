@@ -15,6 +15,25 @@ The following options are available for editing on each port:
 * MTU - Maximum transmission unit of the port.
 * Autoneg - Toggle autonegotiation. Available only for physical ports.
 * Speed - Toggle speed. Available only for physical ports.
+* FEC - Toggle FEC mode. Available only for physical ports.
+
+  .. list-table::
+    :header-rows: 1
+
+    * - Platform
+      - Supported Modes
+      - Default
+    * - Spectrum-X (Cumulus)
+      - Auto, Base-R, RS, Off
+      - Auto
+    * - Arista
+      - Auto, Base-R, RS, Off
+      - Auto
+    * - SONiC
+      - Auto, Base-R, RS, Off
+      - Off
+
+* Link Training - Toggle link training. Default is "Auto", which means Automatically enable link-training if transceiver EEPROM reports copper medium and port speeds of 200Gbps or higher.
 * Duplex - Toggle duplex. Available only for physical ports.
 * Extension - Create extension ports. Available for physical and aggregate ports.
 * Extension Name - Name for new extension.
