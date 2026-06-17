@@ -1125,10 +1125,8 @@
 <ul class="simple">
 <li><p>Fixed Cumulus agent entering a loop when a route-map was created without a match rule; empty route-map sequences are now skipped safely.</p></li>
 <li><p>Fixed DNAT not working when backend IPs configured under the L4LB used the same ports as DNAT rules.</p></li>
-<li><p>Fixed backend health checks not responding within 1 second under load in large-scale deployments.</p></li>
 <li><p>Fixed Terraform silently accepting undefined Fabric Type values (e.g., “ew-plane5”), which resulted in a blank Fabric Type in the controller.</p></li>
 <li><p>Fixed wrong prefix length in the prefix-list used for Cumulus VPC peering; the agent now configures <code class="docutils literal notranslate"><span class="pre">min-prefix-len</span></code>.</p></li>
-<li><p>Fixed a UI error when changing the eBGP local IP for a peer created with the “connect with vnet” option.</p></li>
 <li><p>Fixed VPC Peering on Cumulus not propagating prefixes through a transit VPC.</p></li>
 <li><p>Fixed VPC Peering on Cumulus not propagating static IPv6 routes.</p></li>
 </ul>
