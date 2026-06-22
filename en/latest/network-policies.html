@@ -1175,10 +1175,18 @@ Take a look at the VPC features and services.</p>
 <p>Create at least one subnet with the Common purpose to use it for a new V-Net. IP addresses from this subnet will be assigned to your servers.</p>
 <img alt="_images/ipam_common_subnet.png" class="align-center" src="_images/ipam_common_subnet.png" />
 <p><strong>Create subnets for Load-balancing service</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Subnet intended for Load-balancing should be assigned to the system VPC.</p>
+</div>
 <p>If you plan to use load-balancing services, you should first define subnet(s) from which IP addresses will be assigned for Virtual IP (frontend).</p>
 <img alt="_images/ipam_l4lb_subnet.png" class="align-center" src="_images/ipam_l4lb_subnet.png" />
 <p id="ipam-nat-subnet"><strong>Create subnets for NAT service</strong></p>
 <p>If you plan to perform network address translation (NAT), you must first create subnets for this purpose.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Subnet intended for NAT should be assigned to the system VPC.</p>
+</div>
 <img alt="_images/ipam_nat_subnet.png" class="align-center" src="_images/ipam_nat_subnet.png" />
 <table class="docutils align-default" id="id2">
 <caption><span class="caption-text">Subnet fields</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>

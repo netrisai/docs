@@ -126,6 +126,10 @@ Create at least one subnet with the Common purpose to use it for a new V-Net. IP
 
 **Create subnets for Load-balancing service**
 
+.. warning::
+
+   Subnet intended for Load-balancing should be assigned to the system VPC.
+
 If you plan to use load-balancing services, you should first define subnet(s) from which IP addresses will be assigned for Virtual IP (frontend).
 
 .. image:: images/ipam_l4lb_subnet.png
@@ -137,6 +141,10 @@ If you plan to use load-balancing services, you should first define subnet(s) fr
 **Create subnets for NAT service**
 
 If you plan to perform network address translation (NAT), you must first create subnets for this purpose.
+
+.. warning::
+
+   Subnet intended for NAT should be assigned to the system VPC.
 
 .. image:: images/ipam_nat_subnet.png
   :align: center
