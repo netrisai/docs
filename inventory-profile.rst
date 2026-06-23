@@ -10,13 +10,15 @@ Inventory profiles allow security hardening of inventory devices and fabric-wide
 
 By default all traffic flow destined to switch/SoftGate is allowed. As soon as the inventory profile is attached to a device it denies all traffic destined to the device except Netris-defined and user-defined custom flows. 
 
-Automatically allowed flows include:
+Automatically allowed IPv4 and IPv6 inbound flows include:
 
-*  SSH from user defined subnets
-*  NTP from user defined ntp services
-*  DNS from user defined DNS servers
-*  SNMP from user defined subnets
-*  BGP, ICMP, DHCP
+*  SSH TCP port 22 from user defined subnets
+*  NTP UDP port 123
+*  DNS UDP and TCP port 53
+*  SNMP UDP port 161 (IPv4 only) from user defined subnets
+*  BGP TCP port 179 from defined neighbors and fe80::/64
+*  ICMP
+*  DHCP
 *  Custom user defined rules
 
 .. csv-table:: Inventory Profile Fields
@@ -61,6 +63,42 @@ Netris administers can define SNMPv2 credentials to monitor switches and SoftGat
 .. raw:: html
 
   <br />
+
+.. _netq_settings:
+
+NetQ Settings
+=============
+
+Netris administers can define NetQ server address and port to automatically configure the NetQ client on Cumulus Linux based switches.
+
+.. list-table:: NetQ Fields
+
+   * - NetQ Server
+     - ✅ required
+     - Specify the IP address(es) or the FQDN of the NetQ server. You can specify one(1) or three(3) addresses separated by commas or one FQDN.
+   * - NetQ Port
+     - ✅ required
+     - Specify the port of the NetQ server. Default is 31980.
+
+.. image:: images/NetQ-IPs.png
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+  <br />
+
+.. image:: images/NetQ-FQDN.png
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+  <br />
+
+.. tip::
+
+   You may also export your network topology as a Graphviz DOT to be imported into your NetQ instance. See :doc:`/monitoring-observability/netq` for more details.
 
 .. _fabric_settings:
 
