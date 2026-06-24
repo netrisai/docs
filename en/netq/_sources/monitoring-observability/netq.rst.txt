@@ -2,14 +2,14 @@
 NVIDIA NetQ Integration
 =======================
 
-NVIDIA NetQ is a real-time network monitoring, visibility, and analytics solution designed for data centers running NVIDIA Cumulus Linux. It helps network administrators and operators gain deep insights into their network infrastructure, ensuring optimal performance, rapid troubleshooting, and proactive issue resolution.
+NVIDIA® NetQ™ is a network operations tool set that provides visibility into overlay and underlay networks, enabling real-time troubleshooting across the entire data center stack — from container, virtual machine, or host, down to the switch and port. NetQ correlates configuration and operational status, tracks state changes, and delivers streaming telemetry for hardware-accelerated detection of data plane anomalies and intermittent network issues. It is purpose-built for NVIDIA Cumulus Linux environments running on NVIDIA Spectrum Ethernet platforms.
 
-Although Netris has built-in automatic monitoring and observability functionalities, integration with NVIDIA NetQ allows our NVIDIA customers to gain additional real-time monitoring, deeper visibility, and smarter analytics. Critical for AI Infrastructure. 
+Netris includes built-in monitoring and observability across the networks it manages. For operators running NVIDIA NetQ alongside Netris, Netris serves as the authoritative source of topology — and can export the complete, modeled network topology as a Graphviz ``.dot`` file. This file can be imported directly into your NetQ instance to create topology validation jobs, enabling NetQ to verify that the physical network matches the intended design. To learn more about NetQ topology validations, see the `NVIDIA NetQ documentation <https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-50/Validate-Operations/Validate-Network-Protocol-and-Service-Operations/?#topology-validations>`_.
 
 Topology Blueprint Activation
 ###############################
 
-NVIDIA NetQ requires the topology blueprint described in a .dot file format. Netris is aware of the Netris-managed network topology and has built-in functionality for exporting .dot file in NVIDIA NetQ format.
+NetQ topology validation requires a blueprint defined in Graphviz ``.dot`` format. Netris is the authoritative source of topology for all networks it manages, and provides built-in export functionality that generates a ``.dot`` file formatted for direct import into NVIDIA NetQ.
 
 In the Netris controller, navigate to Network->Topology, select the appropriate site (datacenter), click Export and select NVIDIA NetQ - the web browser will download a .dot file.
 
