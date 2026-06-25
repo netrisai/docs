@@ -862,7 +862,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#permission-groups">Permission Groups</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
@@ -1100,7 +1103,11 @@
 <li><p><strong>User</strong> - An account for accessing the Netris Controller through the web console, REST API, or Terraform. Users authenticate against the controller and are assigned permissions through User Roles and Permission Groups. Default administrator credentials are documented in <a class="reference internal" href="installation/installation.html"><span class="doc">Controller Installation</span></a> and must be changed immediately after deployment.</p></li>
 <li><p><strong>User Role</strong> - A named group of permissions and tenants used to implement role-based access control (RBAC). Apply a role to a user to grant scoped access to network resources.</p></li>
 <li><p><strong>Permission Group</strong> - A set of per-section permissions that can be attached individually to a User or to a User Role.</p></li>
-<li><p><strong>Tenant</strong> - A logical owner of network resources (IP addresses, switch ports, services). The Admin tenant owns all resources by default. Additional tenants are used to delegate management of network resources to other groups — for example, granting a DevOps team self-service access to provision VPCs, V-Nets, and services through the Netris Controller GUI, Kubernetes CRDs, or Terraform.</p></li>
+<li><p><strong>Tenant</strong> - A named principal used to delegate management of network resources. A Tenant has only a unique name and an optional description; it carries no quota, billing identity, or login of its own. Tenants are referenced from objects that support ownership (VPC, V-Net, IPAM allocations and subnets, Inventory units, switch ports, L4 Load Balancer, Server Cluster) and from User accounts to scope which resources a user can administer. The built-in <code class="docutils literal notranslate"><span class="pre">Admin</span></code> tenant owns all resources by default; additional tenants are created to delegate self-service access to other teams — for example, a DevOps team using the Netris Controller GUI, Kubernetes CRDs, or Terraform.</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Admin Tenant</strong> - The tenant that owns a VPC or V-Net and can manage all of its parameters.</p></li>
+<li><p><strong>Guest Tenant</strong> - A tenant granted delegated access to add and remove resources inside a VPC or V-Net, without permission to change the parameters of the VPC or V-Net itself. Guest Tenants of a VPC can add and remove services inside the VPC (V-Nets, L4 Load Balancers, Server Clusters, IPAM subnets). Guest Tenants of a V-Net can add and remove switch ports in the V-Net.</p></li>
 </ul>
 </section>
 <section id="fabric-roles">

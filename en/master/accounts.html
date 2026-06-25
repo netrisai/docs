@@ -862,7 +862,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tenants">Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#permission-groups">Permission Groups</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-roles">User Roles</a></li>
 </ul>
@@ -1116,10 +1119,21 @@
 </section>
 <section id="tenants">
 <h2>Tenants<a class="headerlink" href="#tenants" title="Link to this heading"></a></h2>
-<p>IP addresses and Network Interfaces are resources that can be assigned to different Tenants for their management. Admin is the default tenant, and by default, it owns all the resources. The concept of Tenants can be used for sharing and delegation of control over the network resources, typically used by network teams to grant access to other teams for requesting &amp; managing network services using the Netris Controller as a self service portal or programmatically (with Kubernetes CRDs or Terraform) as part of DevOps/NetOps pipeline.</p>
-<p>A Tenant has just two fields, the unique name and custom description.</p>
+<p>Tenants are named principals used to delegate management of network resources. The built-in <code class="docutils literal notranslate"><span class="pre">Admin</span></code> tenant owns all resources by default. Additional tenants are created to grant other teams self-service access to provision and manage network services via the Netris Controller GUI, Kubernetes CRDs, or Terraform.</p>
+<p>A Tenant object has only two fields: a unique name and an optional description. It carries no quota, billing identity, or login.</p>
+<p>For a glossary of related concepts — including <strong>Admin Tenant</strong> and <strong>Guest Tenant</strong> — see <a class="reference internal" href="definitions.html"><span class="doc">Definitions</span></a>.</p>
+<section id="admin-tenant-vs-guest-tenant">
+<h3>Admin Tenant vs Guest Tenant<a class="headerlink" href="#admin-tenant-vs-guest-tenant" title="Link to this heading"></a></h3>
+<p>VPCs and V-Nets in Netris support two tenant roles:</p>
+<ul class="simple">
+<li><p>The <strong>Admin Tenant</strong> owns the object and can manage all of its parameters.</p></li>
+<li><p><strong>Guest Tenants</strong> are tenants granted delegated access to add and remove resources inside the object, but cannot change the object’s parameters.</p></li>
+</ul>
+<p>For a VPC, the Admin Tenant manages all VPC-level parameters. Guest Tenants of a VPC can add and remove services inside it — V-Nets, L4 Load Balancers, Server Clusters, IPAM subnets — but cannot change the VPC’s own parameters.</p>
+<p>For a V-Net, the Admin Tenant manages all V-Net parameters. Guest Tenants of a V-Net can add and remove switch ports in it but cannot change the V-Net’s own parameters.</p>
 <p>Example: Adding a tenant.</p>
 <img alt="Adding Tenants" class="align-center" src="_images/add_tenant.png" />
+</section>
 </section>
 <section id="permission-groups">
 <h2>Permission Groups<a class="headerlink" href="#permission-groups" title="Link to this heading"></a></h2>
