@@ -37,9 +37,25 @@ Example: Creating a user with full access to all sections of Netris Controller, 
 Tenants
 =======
 
-IP addresses and Network Interfaces are resources that can be assigned to different Tenants for their management. Admin is the default tenant, and by default, it owns all the resources. The concept of Tenants can be used for sharing and delegation of control over the network resources, typically used by network teams to grant access to other teams for requesting & managing network services using the Netris Controller as a self service portal or programmatically (with Kubernetes CRDs or Terraform) as part of DevOps/NetOps pipeline.
+Tenants are named principals used to delegate management of network resources. The built-in ``Admin`` tenant owns all resources by default. Additional tenants are created to grant other teams self-service access to provision and manage network services via the Netris Controller GUI, Kubernetes CRDs, or Terraform.
 
-A Tenant has just two fields, the unique name and custom description.
+A Tenant object has only two fields: a unique name and an optional description. It carries no quota, billing identity, or login.
+
+For a glossary of related concepts — including **Admin Tenant** and **Guest Tenant** — see :doc:`definitions`.
+
+Admin Tenant vs Guest Tenant
+----------------------------
+
+VPCs and V-Nets in Netris support two tenant roles:
+
+* The **Admin Tenant** owns the object and can manage all of its parameters.
+* **Guest Tenants** are tenants granted delegated access to add and remove resources inside the object, but cannot change the object's parameters.
+
+.. TODO: Enumerate the specific parameters managed by Admin Tenant for VPC and V-Net once confirmed with engineering/architects.
+
+For a VPC, the Admin Tenant manages all VPC-level parameters. Guest Tenants of a VPC can add and remove services inside it — V-Nets, L4 Load Balancers, Server Clusters, IPAM subnets — but cannot change the VPC's own parameters.
+
+For a V-Net, the Admin Tenant manages all V-Net parameters. Guest Tenants of a V-Net can add and remove switch ports in it but cannot change the V-Net's own parameters.
 
 Example: Adding a tenant.
 
