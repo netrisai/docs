@@ -59,6 +59,7 @@ This example is common for AI fabrics where both Frontned (North-South) and Back
       "type": "l3vpn",
       "vlan": "untagged",
       "vlanID": "auto",
+      "ipFamily": "dual",
       "serverNics": [
         "eth3",
         "eth4"
@@ -74,6 +75,7 @@ This example is common for AI fabrics where both Frontned (North-South) and Back
         "eth2"
       ],
       "ipv4Gateway": "192.168.10.254/24",
+      "ipFamily": "ipv4",
       "ipv4DhcpEnabled": true
     },
     {
@@ -84,6 +86,7 @@ This example is common for AI fabrics where both Frontned (North-South) and Back
       "serverNics": [
         "eth0"
       ],
+      "ipFamily": "ipv4",
       "ipv4Gateway": {
         "assignType": "auto",
         "allocation": "10.10.0.0/16",
@@ -114,6 +117,7 @@ This example is common for AI fabrics where the frontend is based on Ethernet an
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
+      "ipFamily": "dual",
       "serverNics": [
         "eth9",
         "eth10"
@@ -129,6 +133,7 @@ This example is common for AI fabrics where the frontend is based on Ethernet an
       "serverNics": [
         "eth11"
       ],
+      "ipFamily": "ipv4",
       "ipv4Gateway": "192.168.100.1/24",
       "ipv4DhcpEnabled": true
     }
@@ -162,6 +167,7 @@ In systems where NVLink Multi-Node fabric is present, Netris can be configured t
         "type": "l2vpn",
         "vlan": "untagged",
         "vlanID": "auto",
+        "ipFamily": "dual",
         "serverNics": [
           "eth9",
           "eth10"
@@ -177,6 +183,7 @@ In systems where NVLink Multi-Node fabric is present, Netris can be configured t
         "serverNics": [
           "eth11"
         ],
+        "ipFamily": "dual",
         "ipv4Gateway": "192.168.100.1/24",
         "ipv4DhcpEnabled": true
       }    
@@ -206,7 +213,8 @@ IPv6 is fully supported in Netris. This example showcases how to optionally enab
       ],
       "type": "l3vpn",
       "vlan": "untagged",
-      "vlanID": "auto"
+      "vlanID": "auto",
+      "ipFamily": "ipv6"
     },
     {
       "postfix": "N-S",
@@ -217,6 +225,7 @@ IPv6 is fully supported in Netris. This example showcases how to optionally enab
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
+      "ipFamily": "ipv6",
       "ipv6Gateway": "2001:db8:1::1/64"
     },
     {
@@ -227,6 +236,7 @@ IPv6 is fully supported in Netris. This example showcases how to optionally enab
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
+      "ipFamily": "ipv6",
       "ipv6Gateway": {
         "assignType": "auto",
         "allocation": "2001:DB8::/32",
@@ -245,6 +255,7 @@ Each object in the **Vnets** JSON array may include a combination of the followi
   - **type**: A string specifying the type of V-Net (`l2vpn`, `l3vpn`, `netris-ufm`, `netris-nvlink`).
   - **vlan**: A string specifying whether the V-Net is `tagged` or `untagged`. Only `untagged` is permitted at this time.
   - **vlanID**: A string specifying the VLAN ID. Only `auto` is permitted at this time.
+  - **ipFamily**: A string specifying the IP family for the V-Net (`ipv4`, `ipv6`, or `dual`).
   - **serverNics**: An array of Netris server NIC names on the server that will be associated with this V-Net.
   - **ipv4Gateway**: When `type:l2vpn` one of the following values:
 
@@ -299,6 +310,11 @@ Each object in the **Vnets** JSON array may include a combination of the followi
    * - `vlanID`
      - ✅ (`auto` only)
      - ✅ (`auto` only)
+     - ❌
+     - ❌
+   * - `ipFamily`
+     - optional (defaults to `dual`)
+     - optional (defaults to `dual`)
      - ❌
      - ❌
    * - `serverNics`
@@ -365,6 +381,7 @@ This is done by specifying the `allocation` key in the `ipv4Gateway` or `ipv6Gat
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
+      "ipFamily": "ipv6",
       "serverNics": [
         "eth7",
         "eth8"
@@ -381,6 +398,7 @@ This is done by specifying the `allocation` key in the `ipv4Gateway` or `ipv6Gat
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
+      "ipFamily": "ipv4",
       "serverNics": [
         "eth9",
         "eth10"
@@ -398,6 +416,7 @@ This is done by specifying the `allocation` key in the `ipv4Gateway` or `ipv6Gat
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
+      "ipFamily": "ipv4",
       "serverNics": [
         "eth11"
       ],
@@ -429,6 +448,7 @@ In case you want to specify the IP gateway manually when creating a Server Clust
         "eth9",
         "eth10"
       ],
+      "ipFamily": "dual",
       "ipv4Gateway": "specify",
       "ipv6Gateway": "specify"
     },
@@ -437,6 +457,7 @@ In case you want to specify the IP gateway manually when creating a Server Clust
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
+      "ipFamily": "dual",
       "serverNics": [
         "eth11"
       ],
