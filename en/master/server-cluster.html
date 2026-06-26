@@ -1172,6 +1172,7 @@
 <span class="go">    &quot;type&quot;: &quot;l3vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth3&quot;,</span>
 <span class="go">      &quot;eth4&quot;</span>
@@ -1187,6 +1188,7 @@
 <span class="go">      &quot;eth2&quot;</span>
 <span class="go">    ],</span>
 <span class="go">    &quot;ipv4Gateway&quot;: &quot;192.168.10.254/24&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;ipv4DhcpEnabled&quot;: true</span>
 <span class="go">  },</span>
 <span class="go">  {</span>
@@ -1197,6 +1199,7 @@
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth0&quot;</span>
 <span class="go">    ],</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;ipv4Gateway&quot;: {</span>
 <span class="go">      &quot;assignType&quot;: &quot;auto&quot;,</span>
 <span class="go">      &quot;allocation&quot;: &quot;10.10.0.0/16&quot;,</span>
@@ -1223,6 +1226,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth9&quot;,</span>
 <span class="go">      &quot;eth10&quot;</span>
@@ -1238,6 +1242,7 @@
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth11&quot;</span>
 <span class="go">    ],</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;ipv4Gateway&quot;: &quot;192.168.100.1/24&quot;,</span>
 <span class="go">    &quot;ipv4DhcpEnabled&quot;: true</span>
 <span class="go">  }</span>
@@ -1266,6 +1271,7 @@
 <span class="go">      &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">      &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">      &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">      &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">      &quot;serverNics&quot;: [</span>
 <span class="go">        &quot;eth9&quot;,</span>
 <span class="go">        &quot;eth10&quot;</span>
@@ -1281,6 +1287,7 @@
 <span class="go">      &quot;serverNics&quot;: [</span>
 <span class="go">        &quot;eth11&quot;</span>
 <span class="go">      ],</span>
+<span class="go">      &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">      &quot;ipv4Gateway&quot;: &quot;192.168.100.1/24&quot;,</span>
 <span class="go">      &quot;ipv4DhcpEnabled&quot;: true</span>
 <span class="go">    }</span>
@@ -1307,7 +1314,8 @@
 <span class="go">    ],</span>
 <span class="go">    &quot;type&quot;: &quot;l3vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
-<span class="go">    &quot;vlanID&quot;: &quot;auto&quot;</span>
+<span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv6&quot;</span>
 <span class="go">  },</span>
 <span class="go">  {</span>
 <span class="go">    &quot;postfix&quot;: &quot;N-S&quot;,</span>
@@ -1318,6 +1326,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv6&quot;,</span>
 <span class="go">    &quot;ipv6Gateway&quot;: &quot;2001:db8:1::1/64&quot;</span>
 <span class="go">  },</span>
 <span class="go">  {</span>
@@ -1328,6 +1337,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv6&quot;,</span>
 <span class="go">    &quot;ipv6Gateway&quot;: {</span>
 <span class="go">      &quot;assignType&quot;: &quot;auto&quot;,</span>
 <span class="go">      &quot;allocation&quot;: &quot;2001:DB8::/32&quot;,</span>
@@ -1349,6 +1359,7 @@
 <li><p><strong>type</strong>: A string specifying the type of V-Net (<cite>l2vpn</cite>, <cite>l3vpn</cite>, <cite>netris-ufm</cite>, <cite>netris-nvlink</cite>).</p></li>
 <li><p><strong>vlan</strong>: A string specifying whether the V-Net is <cite>tagged</cite> or <cite>untagged</cite>. Only <cite>untagged</cite> is permitted at this time.</p></li>
 <li><p><strong>vlanID</strong>: A string specifying the VLAN ID. Only <cite>auto</cite> is permitted at this time.</p></li>
+<li><p><strong>ipFamily</strong>: A string specifying the IP family for the V-Net (<cite>ipv4</cite>, <cite>ipv6</cite>, or <cite>dual</cite>).</p></li>
 <li><p><strong>serverNics</strong>: An array of Netris server NIC names on the server that will be associated with this V-Net.</p></li>
 <li><p><strong>ipv4Gateway</strong>: When <cite>type:l2vpn</cite> one of the following values:</p>
 <ul>
@@ -1419,37 +1430,43 @@
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>serverNics</cite></p></td>
+<tr class="row-even"><td><p><cite>ipFamily</cite></p></td>
+<td><p>optional (defaults to <cite>dual</cite>)</p></td>
+<td><p>optional (defaults to <cite>dual</cite>)</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>serverNics</cite></p></td>
 <td><p>✅ required</p></td>
 <td><p>✅ required</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>ipv4Gateway</cite></p></td>
+<tr class="row-even"><td><p><cite>ipv4Gateway</cite></p></td>
 <td><p>optional</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>ipv4DhcpEnabled</cite></p></td>
+<tr class="row-odd"><td><p><cite>ipv4DhcpEnabled</cite></p></td>
 <td><p>optional (requires <cite>ipv4Gateway</cite>)</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>ipv6Gateway</cite></p></td>
+<tr class="row-even"><td><p><cite>ipv6Gateway</cite></p></td>
 <td><p>optional</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>ufm</cite></p></td>
+<tr class="row-odd"><td><p><cite>ufm</cite></p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>✅ (<cite>auto</cite> only)</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>pkey</cite></p></td>
+<tr class="row-even"><td><p><cite>pkey</cite></p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
@@ -1475,6 +1492,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv6&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth7&quot;,</span>
 <span class="go">      &quot;eth8&quot;</span>
@@ -1491,6 +1509,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth9&quot;,</span>
 <span class="go">      &quot;eth10&quot;</span>
@@ -1508,6 +1527,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth11&quot;</span>
 <span class="go">    ],</span>
@@ -1537,6 +1557,7 @@
 <span class="go">      &quot;eth9&quot;,</span>
 <span class="go">      &quot;eth10&quot;</span>
 <span class="go">    ],</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">    &quot;ipv4Gateway&quot;: &quot;specify&quot;,</span>
 <span class="go">    &quot;ipv6Gateway&quot;: &quot;specify&quot;</span>
 <span class="go">  },</span>
@@ -1545,6 +1566,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth11&quot;</span>
 <span class="go">    ],</span>
