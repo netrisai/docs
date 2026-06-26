@@ -1,0 +1,35 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.7.0
+.. _release_4.7.0:
+
+Netris |version| Release Notes (Mar/11/2026)
+============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **BlueField-3 DPU.** You can now use Netris to orchestrate BlueFiled-3 DPUs as part of your North-South network fabric. The DPU must be in DPU Zero-Turst mode and reachable from the Netris Controller.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Fixed disk space monitoring check incorrectly reporting disk usage on some platforms.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
