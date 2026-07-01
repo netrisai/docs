@@ -1,0 +1,59 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.12.0
+.. _release_4_12_0:
+
+Netris |version| Release Notes (Jul/2/2026)
+============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+This release expands observability with native NVIDIA NetQ integration, adds the ability to explicitly designate EVPN Route Servers to improve scalability in larger fabric topologies, and introduces configurable ESI-ID generation for multi-homing deployments. It also brings Cumulus Linux 5.16+ compatibility improvements for newer NVIDIA hardware and BER monitoring, strengthens Cumulus agent resilience during transient fabric events, makes large-deployment inventory easier to navigate with new filtering options, and delivers reliability improvements across HA upgrades, large-scale deployments, and host networking.
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **NVIDIA NetQ Integration**. Operators can now enable and configure the NVIDIA NetQ telemetry agent on Cumulus Linux switches directly from the Netris Controller — via UI, API, or Terraform. Once enabled, switches automatically begin delivering telemetry to the configured NetQ server without requiring per-switch manual configuration.
+- **EVPN Route Server Assignment** (Cumulus Linux). Operators can now manually designate any switch(es) as an EVPN Route Server directly in the Netris Controller inventory. This overrides the automatic selection logic that relies on pure-clos spine/super-spine roles, enabling BGP EVPN overlay optimization in complex fabric designs.
+- **Configurable ESI-ID Generation Method** (Cumulus Linux). Operators can now select the ESI-ID generation method per inventory profile, choosing between server-ID-based and the default partner-MAC-based logic. The setting defaults to disabled, so existing deployments retain their current ESI-ID behavior with no change required upon upgrade. When server-ID-based generation is enabled, the transition is backwards compatible: servers not modeled in Netris automatically fall back to partner-MAC generation. The method change is applied gracefully across the fabric with no BGP session drops or traffic interruption. Configurable via UI, API, and Terraform.
+
+Enhancements
+------------
+.. Customer-facing enhancements to existing functionality and features. If internal-only, keep wording generic.
+
+- **Inventory Filtering**. The Inventory page now supports filtering by ASN, inventory profile, switch role, server role, and softgate role, making it easier to locate and manage specific devices in large deployments.
+- **DHCP Relay Configuration Preservation**. Netris agent now preserves DHCP relay configuration during transient state changes — such as FRR restarts or uplink flaps — rather than removing and re-adding it, preventing unnecessary configuration churn during fabric instability.
+- **ECMP Scaling** (NVIDIA hardware). On hardware that supports more than 64 ECMP entries, the agent now configures the appropriate multipath value based on the hardware's limits, improving East-West performance in quad-plane deployments.
+- **BER (Bit Error Rate) support on Cumulus Linux 5.16.4+**. The Bit Error Rate monitoring check now supports Cumulus Linux 5.16.4 and newer.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Fixed a database corruption issue that could occur during a failed controller upgrade. The controller now automatically restores the database to its pre-upgrade state when an upgrade fails.
+- Fixed NHN (Netris Host Networking) IPv6 address assignment failing under certain conditions on Cumulus switches. IPv6 address is now correctly advertised in custom LLDP message.
+- Fixed an issue where ZTP may fail under high load conditions in deployments with multiple controller instances managing a large number of switches at a single site.
+- Fixed VNet creation with a large number of ports via the Terraform Provider failing intermittently under database load; requests now complete reliably without timing out.
+- Fixed Terraform Provider requiring the now obsolete ROH argument.
+- Fixed Cumulus agent not removing automatically-generated bonds when auto-aggregation is disabled, and no bonds remain in the server configuration.
+
+Security fixes
+----------------
+
+No security fixes in this release.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
