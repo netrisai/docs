@@ -16,7 +16,7 @@ Overview
 
 A **Virtual Private Cloud (VPC)** is the essence of Multi-Tenancy, one of the three pillars of the Netris NAAM (Network Automation, Abstraction, and Multi-Tenancy) platform (see :doc:`introduction`). It lets multiple tenants share the same physical infrastructure while remaining completely separated from one another.
 
-A Netris VPC lets you operate a group of resources inside a logically segregated virtual network, with each tenant's resources isolated from every other VPC. On Ethernet-based fabrics, each VPC maps to a dedicated VRF instance on the switch fabric, which means different VPCs can use overlapping IP ranges without any conflict. On InfiniBand and NVL72 fabrics, the VPC construct is purely administrative — it does not translate into any specific configuration construct on the hardware itself.
+A Netris VPC lets you operate a group of resources inside a logically segregated virtual network, with each tenant's resources isolated from every other VPC. On Ethernet-based fabrics, each VPC maps to a dedicated VRF instance on the switch fabric, which means different VPCs can use overlapping IP ranges without any conflict. On InfiniBand and NVL72 integrations, the VPC construct is purely administrative — it does not translate into any specific configuration construct on the hardware itself.
 
 VPC is the highest object in the Netris hierarchy and spans every :doc:`Site <site>` in the deployment. All other constructs, including V-Nets, IPAM allocations and subnets, BGP sessions, NAT rules, load balancers, and static routes, are **child objects** that belong to exactly one VPC. VPC Peering is the one construct that explicitly relates two VPCs to each other, enabling controlled connectivity between otherwise isolated environments.
 
@@ -98,7 +98,7 @@ The table below lists the objects that belong to a VPC, what selecting a VPC for
      - Same exit behavior as NAT: the frontend virtual IP is served from the System VPC via SoftGate.
    * - VPC Peering (``Network -> VPC Peering``)
      - Two VPCs whose routes are selectively exchanged.
-     - Commonly used to reach shared services (DNS, storage, and the like) from multiple tenant VPCs without giving those tenant VPCs a route to each other. See the VPC Peering section of :doc:`network-policies`.
+     - Commonly used to reach shared services (DNS, storage, and the like) from multiple tenant VPCs without giving those tenant VPCs a route to each other. See the VPC Peering section of the :doc:`Network Policies <network-policies>` page.
    * - :doc:`Server Cluster <server-cluster>` (``Services -> Server Cluster``)
      - Can create a brand-new VPC for you.
      - Setting VPC to **Create New** provisions a VPC along with its V-Nets and IPAM subnets in one step. See :doc:`server-cluster` for additional details.
@@ -142,7 +142,10 @@ In the web UI, the Default VPC is pre-selected in "Add new" dialogs for VPC-scop
 Modern Netris integrations set the VPC field explicitly on every object, so in a current deployment, anything that lands in the Default VPC via this substitution is more often a sign of a missing or mistaken VPC field in a call than an intentional placement. See :ref:`Why they're the same VPC today <vpc_history>` for how this fallback mechanism came about.
 
 .. tip::
-   Because the Default VPC is a catch-all for calls that didn't specify a VPC, don't treat objects that land there as trusted or related to each other. Two V-Nets that both end up in the Default VPC through omission may belong to two completely different tenants that just happen to share the same "nobody specified a VPC" fate. Periodically auditing the Default VPC's contents is a good way to catch missing ``VPC`` fields in Terraform/API calls.
+   Because the Default VPC is a catch-all for calls that didn't specify a VPC, don't treat objects that land there as trusted or related to each other. Two V-Nets that both end up in the Default VPC through omission may belong to two completely different tenants that just happen to share the same "nobody specified a VPC" fate.
+
+.. tip::
+   Periodically audit the Default VPC's contents — it's a good way to catch missing ``VPC`` fields in Terraform/API calls.
 
 What the System VPC is for
 ----------------------------
@@ -163,7 +166,7 @@ The System VPC is the **trust boundary and anchor point for platform/infrastruct
      - The VPC field on a NAT rule or load balancer selects the *local tenant VPC* being served. The public-facing side (the SNAT pool, or the DNAT/load-balancer virtual IP) is always the System VPC; you don't select it, and it can't be changed to another VPC.
 
 .. important::
-   Any eBGP peer whose BGP Router is set to a SoftGate node must be created in the System VPC — this is the only supported configuration, though the Controller does not technically block creating one elsewhere. eBGP peers terminated directly on a switch or V-Net (no SoftGate — Direct Connect) aren't restricted to the System VPC; see the E-BGP peer row in :ref:`VPC child objects <vpc_child_objects>`.
+   **Constraint:** any eBGP peer whose BGP Router is set to a SoftGate node must be created in the System VPC. The Controller does not block other placements, but they are unsupported and may produce unexpected behavior. eBGP peers terminated directly on a switch or V-Net (no SoftGate — Direct Connect) aren't restricted to the System VPC; see the E-BGP peer row in :ref:`VPC child objects <vpc_child_objects>`.
 
 .. warning::
    Avoid creating V-Nets or servers in the System VPC and then relying on SNAT/DNAT or VPC Peering to reach them from tenant VPCs — this is not a supported pattern, even though the Controller does not block it outright. Keep tenant services in tenant VPCs, and use the System VPC only for the objects above.
@@ -173,11 +176,9 @@ The System VPC is the **trust boundary and anchor point for platform/infrastruct
 
 .. _vpc_history:
 
-Historical note
-================
+Historical note: why System VPC and Default VPC are the same VPC today
+=========================================================================
 
-.. collapse:: Why System VPC and Default VPC are the same VPC today
+VPC-1 doubles as both System VPC and Default VPC because of how multi-VPC support was introduced. Earlier Netris versions supported only a single VPC per deployment, so every object belonged to it by definition. When multi-VPC support shipped, that single, pre-existing VPC had to keep working as both the anchor for infrastructure objects (System VPC) and the landing zone for objects with no VPC specified (Default VPC), so upgraded deployments would keep functioning without any changes. New deployments inherited the same shipping default.
 
-   VPC-1 doubles as both System VPC and Default VPC because of how multi-VPC support was introduced. Earlier Netris versions supported only a single VPC per deployment, so every object belonged to it by definition. When multi-VPC support shipped, that single, pre-existing VPC had to keep working as both the anchor for infrastructure objects (System VPC) and the landing zone for objects with no VPC specified (Default VPC), so upgraded deployments would keep functioning without any changes. New deployments inherited the same shipping default.
-
-   The practical result: anything you forget to assign a VPC to lands in the same VPC used for switch loopbacks, upstream BGP, and NAT/load-balancer exit traffic. If that combination doesn't fit your operational model, you can point the Default VPC flag at a different, non-system VPC — the System VPC's specific roles (loopbacks, SoftGate-terminated BGP, NAT/LB exit) stay with VPC-1 regardless of which VPC is flagged as default.
+The practical result: anything you forget to assign a VPC to lands in the same VPC used for switch loopbacks, upstream BGP, and NAT/load-balancer exit traffic. If that combination doesn't fit your operational model, you can point the Default VPC flag at a different, non-system VPC — the System VPC's specific roles (loopbacks, SoftGate-terminated BGP, NAT/LB exit) stay with VPC-1 regardless of which VPC is flagged as default.
