@@ -14,11 +14,11 @@ VPC
 Overview
 ========
 
-A **Netris VPC** lets you operate a group of resources inside a logically segregated virtual network. A VPC acts as a VRF in traditional networking: it allows overlapping IP ranges across different VPCs while keeping each VPC's resources securely managed and isolated from every other VPC.
+A **Virtual Private Cloud (VPC)** is the essence of Multi-Tenancy, one of the three pillars of the Netris NAAM (Network Automation, Abstraction, and Multi-Tenancy) platform (see :doc:`introduction`). It is the construct that makes it possible for multiple tenants to share the same physical infrastructure while remaining completely separated from one another. A Netris VPC lets you operate a group of resources inside a logically segregated virtual network, where each tenant's resources are securely managed and isolated from every other VPC. In traditional networking terms, a VPC acts as a VRF, which means different VPCs can use overlapping IP ranges without any conflict.
 
-VPC is the highest object in the Netris hierarchy and spans every :doc:`Site <site>` in the deployment. Everything else described in this document — V-Nets, IPAM allocations and subnets, BGP sessions, NAT rules, load balancers, static routes — is a **child object** that belongs to exactly one VPC (with VPC Peering being the one construct that explicitly relates two VPCs to each other).
+VPC is the highest object in the Netris hierarchy and spans every :doc:`Site <site>` in the deployment. All other constructs, including V-Nets, IPAM allocations and subnets, BGP sessions, NAT rules, load balancers, and static routes, are **child objects** that belong to exactly one VPC. VPC Peering is the one construct that explicitly relates two VPCs to each other, enabling controlled connectivity between otherwise isolated environments.
 
-You can create, edit, and remove VPCs under ``Network -> VPC``.
+VPCs are managed under ``Network -> VPC``, where you can create, edit, and remove them.
 
 .. image:: images/vpc_diagram.png
    :align: center
@@ -32,8 +32,7 @@ You can create, edit, and remove VPCs under ``Network -> VPC``.
 Adding a new VPC
 -----------------
 
-1. Navigate to ``Network -> VPC`` in the web UI.
-2. Click **Add**.
+New VPCs are created from ``Network -> VPC`` using the **Add** button. The Add VPC dialog defines the VPC's identity and access model:
 
 .. image:: images/vpc_add.png
     :align: center
@@ -66,7 +65,9 @@ Adding a new VPC
 System VPC and Default VPC
 ===========================
 
-Every Netris Controller ships with one VPC — commonly called **VPC-1** — pre-provisioned and impossible to delete. By default, VPC-1 carries two separate roles at once: it is both the **System VPC** and the **Default VPC**. These two roles exist for different reasons, and understanding the difference matters once you start creating additional VPCs for tenants.
+Every Netris Controller includes one system-defined VPC, commonly called **VPC-1**, which is provisioned automatically as part of the initial setup. Out of the box, VPC-1 carries two independent designations: it is the **System VPC**, home to the platform's own infrastructure objects such as switch loopback subnets, SoftGate eBGP sessions, and the public side of NAT and load balancer services, and it is also the **Default VPC**, the fallback the Controller substitutes whenever an API call or dialog leaves the VPC field unspecified.
+
+These are separate mechanisms that happen to point at the same VPC in a fresh deployment. The System VPC role is about trust: it anchors objects the operator implicitly relies on. The Default VPC role is about convenience: it is a catch-all for calls that did not specify a VPC. The distinction becomes important when creating additional VPCs for tenants, and the following sections cover each role in detail.
 
 .. image:: images/vpc_system_vs_default.png
    :align: center
@@ -76,9 +77,6 @@ Every Netris Controller ships with one VPC — commonly called **VPC-1** — pre
 .. raw:: html
 
    <p style="text-align: center;"><em>System and Default are independent flags: VPC-1 is System but not Default, VPC-3 is Default but not System</em></p>
-
-.. note::
-   Nothing below requires System VPC and Default VPC to be the same VPC — it's simply how every Controller ships today. Any VPC can be flagged as the Default VPC. The System VPC role, however, always stays with VPC-1; it isn't a flag you can move to another VPC.
 
 What the Default VPC is for
 ----------------------------
@@ -96,7 +94,7 @@ In the web UI, this is visible directly: the Default VPC is the VPC that comes p
 
    <p style="text-align: center;"><em>The VPC field in an Add new dialog comes pre-selected to whichever VPC is flagged Default</em></p>
 
-This exists mainly for historical reasons: earlier versions of the Netris API/Terraform provider predate the VPC field entirely, from back when a deployment had only one VPC. Once multi-VPC support shipped, existing integrations that had never set a VPC field kept working unmodified because the Controller quietly substituted the Default VPC. Modern Netris integrations set the VPC field explicitly on every object, so in a current deployment, anything that lands in the Default VPC via this substitution is more often a sign of a missing or mistaken VPC field in a call than an intentional placement.
+Modern Netris integrations set the VPC field explicitly on every object, so in a current deployment, anything that lands in the Default VPC via this substitution is more often a sign of a missing or mistaken VPC field in a call than an intentional placement. See :ref:`Why they're the same VPC today <vpc_history>` for how this fallback mechanism came about.
 
 .. tip::
    Because the Default VPC is a catch-all for calls that didn't specify a VPC, don't treat objects that land there as trusted or related to each other. Two V-Nets that both end up in the Default VPC through omission may belong to two completely different tenants that just happen to share the same "nobody specified a VPC" fate. Periodically auditing the Default VPC's contents is a good way to catch missing ``VPC`` fields in Terraform/API calls.
@@ -114,6 +112,8 @@ Because of this role, the System VPC is meant to hold **infrastructure objects t
 
 .. note::
    If you need a VPC for the operator's own shared infrastructure services (DNS, NTP, monitoring, and the like) that tenants should not have access to, create a dedicated VPC for it — do not reuse the System VPC for this purpose. The System VPC is for the platform's own BGP/NAT/loopback plumbing, not for "services I, the operator, own."
+
+.. _vpc_history:
 
 Why they're the same VPC today
 --------------------------------
