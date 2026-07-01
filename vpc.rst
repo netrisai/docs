@@ -4,7 +4,7 @@
 .. _vpc_top:
 
 ==========
-Netris VPC
+VPC
 ==========
 
 .. contents:: Table of Contents
