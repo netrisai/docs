@@ -429,7 +429,7 @@
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#ztp-settings">ZTP Settings</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="vpc.html">Netris VPC</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="vpc.html">VPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
 </ul>
@@ -1137,11 +1137,11 @@
 <section id="network-constructs">
 <h2>Network constructs<a class="headerlink" href="#network-constructs" title="Link to this heading"></a></h2>
 <ul>
-<li><p><strong>Netris VPC</strong> - A logically segregated virtual network. A Netris VPC acts as a VRF in traditional networking, allowing overlapping IP ranges across different VPCs while keeping resources securely managed and isolated. See <a class="reference internal" href="vpc.html"><span class="doc">Netris VPC</span></a> for the full explanation, including VPC child objects.</p>
+<li><p><strong>Netris VPC</strong> - A logically segregated virtual network. A Netris VPC acts as a VRF in traditional networking, allowing overlapping IP ranges across different VPCs while keeping resources securely managed and isolated. See <a class="reference internal" href="vpc.html"><span class="doc">VPC</span></a> for the full explanation, including VPC child objects.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>System VPC</strong> - The pre-provisioned VPC (VPC-1) that anchors infrastructure objects: switch loopback/VTEP IPAM subnets, eBGP sessions terminated on SoftGate, and the public/exit side of NAT and load-balancer services. Not deletable. Intended for platform/infrastructure objects only, not tenant workloads. See <a class="reference internal" href="vpc.html"><span class="doc">Netris VPC</span></a>.</p></li>
-<li><p><strong>Default VPC</strong> - The VPC the Controller substitutes for the (required) VPC field whenever a value isn’t explicitly given — the one pre-populated/auto-selected in “Add new” dialogs in the web UI, and the one used to fill in the field for API/Terraform calls that omit it. Ships as the same VPC as the System VPC (VPC-1), but the two are independent concepts — any VPC can be flagged as default. See <a class="reference internal" href="vpc.html"><span class="doc">Netris VPC</span></a>.</p></li>
+<li><p><strong>System VPC</strong> - The pre-provisioned VPC (VPC-1) that anchors infrastructure objects: switch loopback/VTEP IPAM subnets, eBGP sessions terminated on SoftGate, and the public/exit side of NAT and load-balancer services. Not deletable. Intended for platform/infrastructure objects only, not tenant workloads. See <a class="reference internal" href="vpc.html"><span class="doc">VPC</span></a>.</p></li>
+<li><p><strong>Default VPC</strong> - The VPC the Controller substitutes for the (required) VPC field whenever a value isn’t explicitly given — the one pre-populated/auto-selected in “Add new” dialogs in the web UI, and the one used to fill in the field for API/Terraform calls that omit it. Ships as the same VPC as the System VPC (VPC-1), but the two are independent concepts — any VPC can be flagged as default. See <a class="reference internal" href="vpc.html"><span class="doc">VPC</span></a>.</p></li>
 </ul>
 </div></blockquote>
 </li>
