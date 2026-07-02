@@ -75,7 +75,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netris 2.9.0 Release Notes (Mar/5/2021) &mdash; Netris Documentation</title>
+  <title>Netris 4.12.0 Release Notes (Jul/2/2026) &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -97,8 +97,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Netris 2.8.0 Release Notes (May/13/2020)" href="2.8.0.html" />
-    <link rel="prev" title="Netris 3.0.0 Release Notes (Oct/6/2021)" href="3.0.0.html" /> 
+    <link rel="next" title="Netris 4.11.0 Release Notes (Jun/15/2026)" href="4.11.0.html" />
+    <link rel="prev" title="Release Notes" href="index.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -861,7 +861,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../accounts.html">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#tenants">Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../accounts.html#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#permission-groups">Permission Groups</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#user-roles">User Roles</a></li>
 </ul>
@@ -871,6 +874,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Release Notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="4.11.0.html">Netris 4.11.0 Release Notes (Jun/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="4.11.0.html#what-s-new-in-netris-version">What’s new in Netris 4.11.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="4.11.0.html#features">Features</a></li>
@@ -1030,9 +1042,9 @@
 <li class="toctree-l3"><a class="reference internal" href="3.0.0.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 2.9.0 Release Notes (Mar/5/2021)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#what-s-new-in-netris-version">What’s new in Netris 2.9.0?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.9.0.html">Netris 2.9.0 Release Notes (Mar/5/2021)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="2.9.0.html#what-s-new-in-netris-version">What’s new in Netris 2.9.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.9.0.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="2.8.0.html">Netris 2.8.0 Release Notes (May/13/2020)</a><ul>
@@ -1078,42 +1090,57 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Release Notes</a></li>
-      <li class="breadcrumb-item active">Netris 2.9.0 Release Notes (Mar/5/2021)</li>
+      <li class="breadcrumb-item active">Netris 4.12.0 Release Notes (Jul/2/2026)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/release-notes/2.9.0.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/release-notes/4.12.0.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="3.0.0.html" class="btn btn-neutral float-left" title="Netris 3.0.0 Release Notes (Oct/6/2021)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="2.8.0.html" class="btn btn-neutral float-right" title="Netris 2.8.0 Release Notes (May/13/2020)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Release Notes" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.11.0.html" class="btn btn-neutral float-right" title="Netris 4.11.0 Release Notes (Jun/15/2026)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="netris-version-release-notes-mar-5-2021">
-<span id="release-2-9-0"></span><h1>Netris 2.9.0 Release Notes (Mar/5/2021)<a class="headerlink" href="#netris-version-release-notes-mar-5-2021" title="Link to this heading"></a></h1>
+  <section id="netris-version-release-notes-jul-2-2026">
+<span id="release-4-12-0"></span><h1>Netris 4.12.0 Release Notes (Jul/2/2026)<a class="headerlink" href="#netris-version-release-notes-jul-2-2026" title="Link to this heading"></a></h1>
 <section id="what-s-new-in-netris-version">
-<h2>What’s new in Netris 2.9.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
+<h2>What’s new in Netris 4.12.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
+<p>This release expands observability with native NVIDIA NetQ integration, adds the ability to explicitly designate EVPN Route Servers to improve scalability in larger fabric topologies, and introduces configurable ESI-ID generation for multi-homing deployments. It also brings Cumulus Linux 5.16+ compatibility improvements for newer NVIDIA hardware and BER monitoring, strengthens Cumulus agent resilience during transient fabric events, makes large-deployment inventory easier to navigate with new filtering options, and delivers reliability improvements across HA upgrades, large-scale deployments, and host networking.</p>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Native <strong>Kubernetes</strong> Networking and Load-Balancing</p></li>
-<li><p><strong>100Gbps</strong> performance upgrade for SoftGate Linux border router</p></li>
-<li><p>Automatic on-demand <strong>L4 Load-Balancer</strong></p></li>
-<li><p>Automatic site-to-site interconnect through <strong>SiteMesh</strong></p></li>
+<li><p><strong>NVIDIA NetQ Integration</strong>. Operators can now enable and configure the NVIDIA NetQ telemetry agent on Cumulus Linux switches directly from the Netris Controller — via UI, API, or Terraform. Once enabled, switches automatically begin delivering telemetry to the configured NetQ server without requiring per-switch manual configuration.</p></li>
+<li><p><strong>EVPN Route Server Assignment</strong> (Cumulus Linux). Operators can now manually designate any switch(es) as an EVPN Route Server directly in the Netris Controller inventory. This overrides the automatic selection logic that relies on pure-clos spine/super-spine roles, enabling BGP EVPN overlay optimization in complex fabric designs.</p></li>
+<li><p><strong>Configurable ESI-ID Generation Method</strong> (Cumulus Linux). Operators can now select the ESI-ID generation method per inventory profile, choosing between server-ID-based and the default partner-MAC-based logic. The setting defaults to disabled, so existing deployments retain their current ESI-ID behavior with no change required upon upgrade. When server-ID-based generation is enabled, the transition is backwards compatible: servers not modeled in Netris automatically fall back to partner-MAC generation. The method change is applied gracefully across the fabric with no BGP session drops or traffic interruption. Configurable via UI, API, and Terraform.</p></li>
 </ul>
-<p>Read the release notes below, or check out our documentation for detailed info.</p>
+</section>
+<section id="enhancements">
+<h2>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Kubenet</strong> – a network service purpose-built for Kubernetes cluster nodes. Kubenet integrates with Kube API to provide an on-demand load balancer and other Kubernetes-specific networking features. Netris Kubenet is designed to complement Kubernetes CNI networking with modern physical networking.</p></li>
-<li><p><strong>DPDK data plane support for SoftGate nodes</strong> – Provides higher performance for Linux-based Internet gateway (SoftGate). Up to 27Mpps/100Gbps for L3 routing, 12Mpps with NAT rules on.</p></li>
-<li><p><strong>L4 Load Balancer</strong> – In addition to switch-based Anycast Load Balancer, we now support a SoftGate/DPDK-based L4 Load Balancer. L4LB integrates with Kubernetes providing cloud-like on-demand load balancer service (type: load-balancer) in your local data center.</p></li>
-<li><p><strong>SiteMesh</strong> – a Netris service for automatically configuring site-to-site interconnect over the public Internet. SiteMesh supports configuration for WireGuard to create encrypted tunnels between participating sites and automatically generates configuration for FRR to run dynamic routing. In a few clicks, services in one site get connectivity to services in other sites over a mesh of WireGuard tunnels.</p></li>
-<li><p><strong>API logs</strong> – Comprehensive logging of all API calls sent to Netris Controller with the ability to search by various attributes, sort by any column, and filter by method type.</p></li>
-<li><p><strong>Ubuntu/SwitchDev</strong> updates – Removed the requirement for a hairpin loop cable. Removed the need for IP address reservation for V-NET, full support of anycast default gateway.</p></li>
-<li><p><strong>Controller distributions</strong> – Netris controller, is now available in three deployment forms. 1) On-prem KVM virtual machine. 2) Kubernetes application. 3) Managed/Hosted in the cloud.</p></li>
-<li><p><strong>Inventory Profiles</strong> – A construct for defining access security, timezone, DNS, NTP settings profiles for network switches and SoftGate nodes.</p></li>
-<li><p><strong>Switch/SoftGate agent</strong> – New installer with easy initial config tool. Support for IP and FQDN as a controller address. Authentication key.</p></li>
-<li><p><strong>GUI</strong> – Improved Net→Topology section, now the main place for declaring the network topology. All sections got a column organizer, so every user can order and hide/show columns to their comfort.</p></li>
+<li><p><strong>Inventory Filtering</strong>. The Inventory page now supports filtering by ASN, inventory profile, switch role, server role, and softgate role, making it easier to locate and manage specific devices in large deployments.</p></li>
+<li><p><strong>DHCP Relay Configuration Preservation</strong>. Netris agent now preserves DHCP relay configuration during transient state changes — such as FRR restarts or uplink flaps — rather than removing and re-adding it, preventing unnecessary configuration churn during fabric instability.</p></li>
+<li><p><strong>ECMP Scaling</strong> (NVIDIA hardware). On hardware that supports more than 64 ECMP entries, the agent now configures the appropriate multipath value based on the hardware’s limits, improving East-West performance in quad-plane deployments.</p></li>
+<li><p><strong>BER (Bit Error Rate) support on Cumulus Linux 5.16.4+</strong>. The Bit Error Rate monitoring check now supports Cumulus Linux 5.16.4 and newer.</p></li>
 </ul>
+</section>
+<section id="bug-fixes">
+<h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fixed a database corruption issue that could occur during a failed controller upgrade. The controller now automatically restores the database to its pre-upgrade state when an upgrade fails.</p></li>
+<li><p>Fixed NHN (Netris Host Networking) IPv6 address assignment failing under certain conditions on Cumulus switches. IPv6 address is now correctly advertised in custom LLDP message.</p></li>
+<li><p>Fixed an issue where ZTP may fail under high load conditions in deployments with multiple controller instances managing a large number of switches at a single site.</p></li>
+<li><p>Fixed VNet creation with a large number of ports via the Terraform Provider failing intermittently under database load; requests now complete reliably without timing out.</p></li>
+<li><p>Fixed Terraform Provider requiring the now obsolete ROH argument.</p></li>
+<li><p>Fixed Cumulus agent not removing automatically-generated bonds when auto-aggregation is disabled, and no bonds remain in the server configuration.</p></li>
+<li><p>Fixed UI bug preventing V-Net selection when creating E-BGP objects.</p></li>
+</ul>
+</section>
+<section id="security-fixes">
+<h2>Security fixes<a class="headerlink" href="#security-fixes" title="Link to this heading"></a></h2>
+<p>No security fixes in this release.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
@@ -1122,6 +1149,7 @@
 <li><p><a class="reference internal" href="../supported-switch-hardware.html"><span class="doc">Supported Switch Hardware</span></a></p></li>
 <li><p>Schedule a <a class="reference external" href="https://www.netris.io/demo/">Demo</a></p></li>
 <li><p>Follow us on <a class="reference external" href="https://www.linkedin.com/company/netrisio/">LinkedIn</a></p></li>
+<li><p>Follow us on <a class="reference external" href="https://www.youtube.com/&#64;netris_io">YouTube</a></p></li>
 <li><p>Follow us on <a class="reference external" href="https://x.com/netris_io">X-Twitter</a></p></li>
 <li><p>Join our <a class="reference external" href="https://netris.slack.com/">Slack</a></p></li>
 </ul>
@@ -1132,8 +1160,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="3.0.0.html" class="btn btn-neutral float-left" title="Netris 3.0.0 Release Notes (Oct/6/2021)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="2.8.0.html" class="btn btn-neutral float-right" title="Netris 2.8.0 Release Notes (May/13/2020)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Release Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.11.0.html" class="btn btn-neutral float-right" title="Netris 4.11.0 Release Notes (Jun/15/2026)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -1157,7 +1185,7 @@
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: optimize-bgp-overlay
+      v: master
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
