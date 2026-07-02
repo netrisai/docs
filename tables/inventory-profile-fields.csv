@@ -5,3 +5,5 @@
 **Timezone**,Devices using this inventory profile will adjust their system time to the selected timezone.
 **NTP servers**,List of domain names or IP addresses of NTP servers (one address per line). You can use your Netris Controller address as an NTP server for your switches and SoftGate.
 **DNS servers**,List of IP addresses of DNS servers (one address per line). You can use your Netris Controller address as a DNS server for your switches and SoftGate.
+**SNMPv2**,SNMPv2 Read-Only Community; IPv4 allow list; Contact information; Location information
+**NetQ**,NetQ server address and port
