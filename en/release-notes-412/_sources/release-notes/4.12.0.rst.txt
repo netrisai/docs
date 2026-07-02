@@ -38,6 +38,7 @@ Bug fixes
 - Fixed VNet creation with a large number of ports via the Terraform Provider failing intermittently under database load; requests now complete reliably without timing out.
 - Fixed Terraform Provider requiring the now obsolete ROH argument.
 - Fixed Cumulus agent not removing automatically-generated bonds when auto-aggregation is disabled, and no bonds remain in the server configuration.
+- Fixed UI bug preventing V-Net selection when creating E-BGP objects.
 
 Security fixes
 ----------------
