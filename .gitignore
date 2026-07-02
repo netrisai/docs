@@ -3,3 +3,4 @@ _build
 *.code-workspace
 .DS_Store
 CLAUDE.md
+confluence-sync-map.json
