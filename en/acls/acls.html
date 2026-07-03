@@ -1106,24 +1106,25 @@
              
   <section id="access-control-lists-acl">
 <span id="acl-def"></span><h1>Access Control Lists (ACL)<a class="headerlink" href="#access-control-lists-acl" title="Link to this heading"></a></h1>
-<p>Netris supports ACLs for switch network access control. (ACL and ACL2.0) ACL is for defining network access lists in a source IP: Port, destination IP: Port format. ACL2.0 is an object-oriented service way of describing network access.</p>
-<p>Both ACL and ACL2.0 services support tenant/RBAC based approval workflows. Access control lists execute in switch hardware providing line-rate performance for security enforcement. It’s important to keep in mind that the number of ACLs is limited to the limited size of TCAM of network switches.</p>
+<p>Netris supports ACLs for switch network access control (ACL and ACL2.0). ACLs are used to define network access lists in a source IP:Port, destination IP:Port format. ACL2.0 is an object-oriented service way of describing network access.</p>
+<p>Both ACL and ACL2.0 services support tenant- and RBAC-based approval workflows. Access control lists execute in switch hardware, providing line-rate performance for security enforcement. It’s important to keep in mind that the number of ACLs is limited by the limited size of TCAM of network switches.</p>
 <p>Screenshot: TCAM utilization can be seen under Net→Inventory</p>
 <img alt="_images/TCAM.png" class="with-shadow align-center" src="_images/TCAM.png" />
-<p>Netris is applying several optimization algorithms to minimize the usage of TCAM while achieving the user-defined requirements.</p>
+<p style="text-align: center;"><em>Figure: TCAM utilization view under Net→Inventory</em></p><p>Netris is applying several optimization algorithms to minimize TCAM usage while meeting the user-defined requirements.</p>
 <section id="acl-default-policy">
 <h2>ACL Default Policy<a class="headerlink" href="#acl-default-policy" title="Link to this heading"></a></h2>
-<p>The ACL default policy is to permit all hosts to communicate with each other.  You can change the default policy on a per Site basis by editing the Site features under Net→Sites. Once the “ACL Default Policy” is changed to “Deny,” the given site will start dropping any traffic unless specific communication is permitted through ACL or ACL2.0 rules.</p>
+<p>The ACL default policy is to permit all hosts to communicate with each other. You can change the default policy on a per-site basis by editing the Site features under Net→Sites. Once the “ACL Default Policy” is changed to “Deny,” the specified site will start dropping traffic unless specific communication is permitted by ACL or ACL2.0 rules.</p>
 <p>Example: Changing “ACL Default Policy” for the site “siteDefault”.</p>
-<img alt="_images/siteDefault.png" class="with-shadow align-center" src="_images/siteDefault.png" />
-</section>
+<img alt="_images/acl_site_default.png" class="with-shadow align-center" src="_images/acl_site_default.png" />
+<p style="text-align: center;"><em>Figure: Changing the ACL Default Policy for a site</em></p></section>
 <section id="acl-rules">
 <h2>ACL Rules<a class="headerlink" href="#acl-rules" title="Link to this heading"></a></h2>
-<p>ACL rules can be created, listed, edited, approved under Services→ACL.</p>
+<p>ACL rules can be created, listed, edited, and approved under Services→ACL.</p>
 <p>Description of ACL fields.
 General</p>
 <ul class="simple">
 <li><p><strong>Name</strong> - Unique name for the ACL entry.</p></li>
+<li><p><strong>VPC</strong> - VPC to use for this network ACL.</p></li>
 <li><p><strong>Protocol</strong> - IP protocol to match.</p>
 <ul>
 <li><p>All - Any IP protocols.</p></li>
@@ -1138,63 +1139,55 @@ General</p>
 </li>
 <li><p><strong>Active Until</strong> - Disable this rule at the defined date/time.</p></li>
 <li><p><strong>Action</strong> - Permit or Deny forwarding of matched packets.</p></li>
-<li><p><strong>Established/Reverse</strong> - For TCP, also match reverse packets except with TCP SYN flag. For non-TCP, also generate a reverse rule with swapped source/destination.</p></li>
+<li><p><strong>Established/Reverse</strong> - For TCP, also match reverse packets except with TCP SYN flag. For non-TCP, also generate a reverse rule with the source/destination swapped.</p></li>
 </ul>
-<p>Source/Destination - Source and destination addresses and ports to match.</p>
+<p><strong>Source/Destination</strong> - Source and destination addresses and ports to match.</p>
 <ul class="simple">
 <li><p><strong>Source</strong> IPv4/IPv6 - IPv4/IPv6 address.</p></li>
 <li><p><strong>Ports Type</strong></p>
 <ul>
 <li><p>Port Range - Match on the port or a port range defined in this window.</p></li>
-<li><p>Port Group - Match on a group of ports defined under Services→ ACL Port Group.</p></li>
+<li><p>Port Group - Match on a group of ports defined under Services→ACL Port Group.</p></li>
 </ul>
 </li>
 <li><p><strong>From Port</strong> - Port range starting from.</p></li>
 <li><p><strong>To Port</strong> - Port range ending with.</p></li>
 <li><p><strong>Comment</strong> - Descriptive comment, commonly used for approval workflows.</p></li>
-<li><p><strong>Check button</strong> - Check if Another ACL on the system already permits the described network access.</p></li>
+<li><p><strong>Check button</strong> - Check if another ACL on the system already permits the described network access.</p></li>
 </ul>
 <p>Example: Permit hosts in 10.0.3.0/24 to access hosts in 10.0.5.0/24 by SSH, also permit the return traffic (Established).</p>
-<img alt="_images/action_permit.png" class="with-shadow align-center" src="_images/action_permit.png" />
-<p>Example: “Check” shows that requested access is already provided by a broader ACL rule.</p>
+<img alt="_images/acl_action_permit.png" class="with-shadow align-center" src="_images/acl_action_permit.png" />
+<p style="text-align: center;"><em>Figure: Example ACL rule permitting SSH traffic with Established</em></p><p>Example: “Check” indicates that the requested access is already granted by a broader ACL rule.</p>
 <img alt="_images/ACL_rule.png" class="with-shadow align-center" src="_images/ACL_rule.png" />
-</section>
+<p style="text-align: center;"><em>Figure: Check button indicating an existing broader ACL rule</em></p></section>
 <section id="acl-approval-workflow">
 <h2>ACL Approval Workflow<a class="headerlink" href="#acl-approval-workflow" title="Link to this heading"></a></h2>
-<p>When one tenant (one team) needs to get network access to resources under the responsibility of another tenant (another team), an ACL can be created but will activate only after approval of the tenant responsible for the destination address resources. See the below example.</p>
-<p>Example: User representing QA_tenant is creating an ACL where source belongs to QA_tenant, but destination belongs to the Admin tenant.</p>
+<p>When one tenant (one team) needs network access to resources under the responsibility of another tenant (another team), an ACL can be created, but it will activate only after approval from the tenant responsible for the destination address resources. See the example below.</p>
+<p>Example: A user representing QA_tenant is creating an ACL where the source belongs to QA_tenant, but the destination belongs to the Admin tenant.</p>
 <img alt="_images/ACL_approval.png" class="with-shadow align-center" src="_images/ACL_approval.png" />
-<p>Screenshot: ACL stays in “waiting for approval” state until approved.</p>
+<p style="text-align: center;"><em>Figure: Creating an ACL that requires cross-tenant approval</em></p><p>Screenshot: ACL stays in “waiting for approval” state until approved.</p>
 <img alt="_images/waiting_approval.png" class="with-shadow align-center" src="_images/waiting_approval.png" />
-<p>Screenshot: Users of tenant Admin, receive a notification in the GUI, and optionally by email. Then one can review the access request and either approve or reject it.</p>
+<p style="text-align: center;"><em>Figure: ACL in "waiting for approval" state</em></p><p>Screenshot: Users of the Admin tenant receive a notification in the GUI and, optionally, by email. Then one can review the access request and either approve or reject it.</p>
 <img alt="_images/approve_reject.png" class="with-shadow align-center" src="_images/approve_reject.png" />
-<p>Screenshot: Once approved, users of both tenants will see the ACL in the “Active” state, and soon Netris Agents will push the appropriate config throughout the switch fabric.</p>
+<p style="text-align: center;"><em>Figure: Approving or rejecting a pending ACL request</em></p><p>Screenshot: Once approved, users of both tenants will see the ACL in the “Active” state, and soon Netris Agents will push the appropriate config throughout the switch fabric.</p>
 <img alt="_images/ACL_active.png" class="with-shadow align-center" src="_images/ACL_active.png" />
-</section>
+<p style="text-align: center;"><em>Figure: ACL in "Active" state after approval</em></p></section>
 <section id="acl-processing-order">
 <h2>ACL Processing Order<a class="headerlink" href="#acl-processing-order" title="Link to this heading"></a></h2>
+<p>Netris doesn’t group rules into separately named ACLs — every rule you create is one entry in a single ordered rule set. Netris determines the evaluation order across your rules automatically; there is no user- or API-exposed priority field. Rules are sorted as follows:</p>
 <ol class="arabic simple">
-<li><p>User-defined Deny Rules</p></li>
-<li><p>User-defined Permit Rules</p></li>
-<li><p>Deny the rest</p></li>
+<li><p>Sort by source IPv4/IPv6 prefix, longest to shortest.</p></li>
+<li><p>For rules with the same source prefix, sort by destination prefix, longest to shortest.</p></li>
+<li><p>For rules with the same source and destination prefix, sort by protocol, in the order: ICMP, UDP, TCP, ANYTHING_ELSE, IP.</p></li>
+<li><p>For rules with the same source prefix, destination prefix, and protocol, sort by source port range, smallest to largest.</p></li>
+<li><p>For rules with the same source prefix, destination prefix, protocol, and source port range, sort by destination port range, smallest to largest.</p></li>
 </ol>
-<p>Could you please share any available documentation describing your firewall/ACL rule evaluation model?
-Specifically, we are interested in understanding precedence and priority rules, including how overlapping or mixed rules are handled across protocols, IP ranges, source/destination criteria, and allow/deny actions. (edited)</p>
-<p>The algorithm of sorting the rules within single ACL &lt;NAME&gt; is following:</p>
-<p>Sort the rules by &lt;srcIP4/6&gt; from longest prefixes to shortest.
-For rules with same &lt;srcIP4/6&gt; sort by &lt;dstIP4/6&gt; from longest prefixes to shortest.
-For rules with same &lt;srcIP4/6&gt; and &lt;dstIP4/6&gt; sort by &lt;srcPORT&gt; sort by protocol by following order - icmp,udp,tcp,ANYTHING_ELSE,ip.</p>
-<p>For rules with same &lt;srcIP4/6&gt; and &lt;dstIP4/6&gt; and same protocol sort by &lt;srcPORT&gt; from smallest number of ports in range to biggest.
-For rules with same &lt;srcIP4/6&gt; and &lt;dstIP4/6&gt; and same protocol and same &lt;srcPORT&gt; sort by &lt;dstPORT&gt; from smallest number of ports in range to biggest.</p>
-<p>If site policy is deny add “deny ip any any” rule in the end.
-If site policy is permit add “permit ip any any” rule in the end.</p>
-<p>We need few additional clarifications from your side:</p>
-<p>Is there any explicit priority/order field that can be provided for ACL rules through the API? We did not notice such a field in the UI, so currently we assume rule ordering is derived entirely from the matching/sorting logic you described rather than being explicitly user-controlled.
-Are IPv4 and IPv6 rules evaluated under the same precedence model? How mixed IPv4/IPv6 rules are handled?
-What exactly is included under ANYTHING_ELSE versus ip?</p>
-<p>No, only rule sorting algorithm.
-Usually IPv4 and IPv6 are handled by separated ACLs written on devices. In Netris you can’t mix IPv4 and IPv6 in the same ACL. So in fact there is usually a dual stack and they don’t cross.
-ANYTHING_ELSE can be TCP flags, for example. You can’t set them in the rules, but with “Established” checkbox TCP flags will be set automatically in the reverse rule. Just FYI “ip” in the Netris controller means selection of the particular IP protocol number. For all protocols select “all”.</p>
+<p>Evaluation stops at the first rule that matches a given packet — that rule’s action (Permit or Deny) applies, and no further rules are checked. Action isn’t itself part of the sort order: a more specific Permit rule can take effect ahead of a broader Deny rule if it matches first, and vice versa. This gives more specific rules precedence over general ones, similar to longest-prefix-match behavior in routing.</p>
+<p>A rule with “Established/Reverse” enabled generates a second, independent rule with source and destination swapped; that reverse rule is sorted into the list by the same criteria above and isn’t guaranteed to sit next to its forward rule.</p>
+<p>After all user-defined rules, Netris appends one implicit rule matching the site’s ACL Default Policy: <code class="docutils literal notranslate"><span class="pre">deny</span> <span class="pre">ip</span> <span class="pre">any</span> <span class="pre">any</span></code> if the policy is Deny, or <code class="docutils literal notranslate"><span class="pre">permit</span> <span class="pre">ip</span> <span class="pre">any</span> <span class="pre">any</span></code> if the policy is Permit.</p>
+<p>You also don’t choose where a rule is enforced — Netris determines that automatically from your fabric’s topology. On the switch fabric, a rule is enforced inbound, at the switch port closest to its source subnet. When traffic reaches a VPC through a SoftGate, in most configurations the rule is enforced outbound on the SoftGate, which is closest to the destination subnet within that VPC.</p>
+<p>IPv4 and IPv6 traffic can’t be mixed in the same rule set — Netris requires separate rule sets per address family, so this sort order never has to resolve precedence across IPv4 and IPv6 rules.</p>
+<p>ANYTHING_ELSE in the protocol order covers protocols that carry TCP flags; these flags aren’t directly configurable on a rule, but checking “Established” automatically sets the appropriate flags on the generated reverse rule. IP, by contrast, refers to selecting a specific IP protocol number in the Netris controller — choose “All” to match every protocol.</p>
 </section>
 </section>
 
