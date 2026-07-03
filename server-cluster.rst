@@ -49,7 +49,7 @@ Server Cluster Template Examples:
 Ethernet-only Fabric Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This example is common for AI fabrics where both Frontned (North-South) and Backend (East-West) networks are based on Ethernet. A Server Cluster referenced to this template will create two L2VPN VXLAN V-Nets and one L3VPN VXLAN V-Net. V-Net names will start with the name of the server cluster and end with the value of each `postfix` attribute.
+This example is common for AI fabrics where both Frontend (North-South) and Backend (East-West) networks are based on Ethernet. A Server Cluster referenced to this template will create two L2VPN VXLAN V-Nets and one L3VPN VXLAN V-Net. V-Net names will start with the name of the server cluster and end with the value of each `postfix` attribute.
 
 .. code-block:: shell-session
 
@@ -476,7 +476,7 @@ With templates defined, you can create Server Clusters by referencing these temp
 Adding a Server Cluster
 -----------------------
 
-To define a Server Cluste, navigate to ``Services->Server Cluster`` and click ``+Add``. Give the new cluster a name, set Admin to the appropriate owner (this defines who can edit/delete this cluster and only servers already assigned to this owner will be available for selection), set the site, set VPC to "Create New", select the Template created earlier, and click ``+Add Server`` or ``+Add Shared Server`` to start selecting server members. Click Add.
+To define a Server Cluster, navigate to ``Services->Server Cluster`` and click ``+Add``. Give the new cluster a name, set Admin to the appropriate owner (this defines who can edit/delete this cluster and only servers already assigned to this owner will be available for selection), set the site, set VPC to "Create New", select the Template created earlier, and click ``+Add Server`` or ``+Add Shared Server`` to start selecting server members. Click Add.
 
 .. image:: images/add-server-cluster-selecting-servers.png
   :align: center
