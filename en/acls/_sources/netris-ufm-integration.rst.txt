@@ -30,8 +30,16 @@ When you define a :doc:`server-cluster </server-cluster>` in Netris, the plugin 
 
 - Discovers InfiniBand port GUIDs from UFM
 - Creates and manages appropriate PKeys in UFM
-- Sets up SHARP reservations for high-performance operations
+- Optionally sets up SHARP reservations for high-performance operations
 
+.. image:: images/ufm-basic-function.svg
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Netris-UFM Integration Workflow</em></p>
+   
 Prerequisites
 ==============
 
@@ -41,8 +49,6 @@ Before installing the Netris-UFM plugin, ensure:
 2. A properly configured NVIDIA UFM installation with limited membership enabled (see below)
 3. Network connectivity between both systems
 4. Appropriate access credentials for both platforms
-
-
 
 UFM Configuration Requirements
 ================================
@@ -106,6 +112,7 @@ This option is recommended if you already have a Netris Controller running in a 
         UFM_VERIFY_SSL: "false"
         UFM_ID: "ufm-lab"
         UFM_PKEY_RANGE: "100-7ffe"
+        UFM_ENABLE_SHARP: "true"
 
 3. Apply the configuration to your Kubernetes cluster:
 
@@ -133,6 +140,7 @@ This option is ideal for environments without Kubernetes or when you want to dep
       UFM_VERIFY_SSL="false"
       UFM_ID="ufm-lab"
       UFM_PKEY_RANGE="100-7ffe"
+      UFM_ENABLE_SHARP="true"
       LOG_LEVEL="info"
 
 2. Run the Docker container:
@@ -202,6 +210,9 @@ NVIDIA UFM Configuration
    * - UFM_PKEY_RANGE
      - Range of PKey IDs that can be allocated to clusters, in hexadecimal format
      - 100-7ffe
+   * - UFM_ENABLE_SHARP
+     - Whether to enable SHARP reservation management for clusters
+     - true or false
 
 Agent Configuration
 -------------------
@@ -235,10 +246,18 @@ The first step is to create servers in the Netris Controller inventory that matc
 
 1. In Netris Controller, navigate to **Network** → **Topology** → **+Add**.
 2. Create servers with **identical names** as they appear in UFM (this is crucial for proper GUID mapping)
-3. Once created, the Netris-UFM agent will automatically sync the InfiniBand GUIDs from UFM into Netris
+3. Once created, the Netris-UFM agent will automatically sync the InfiniBand host and HCA GUIDs from UFM into Netris
 
 .. important::
-   Server names must match exactly between UFM and Netris Controller for the integration to work properly.
+   Server names must match exactly between UFM and Netris Controller for the initial sync to complete properly. Once the initial sync is done and the `hosting_system_guid` field is populated in Netris inventory, the plugin will continue to maintain the mapping even if server names change in Netris or UFM. You can verify the GUID mapping in Netris Controller UI under **Network** → **Inventory** by examining the Custom field of the server object. It should show both the HCA GUIDs and the hosting system GUID.
+
+   .. image:: images/ufm-hosting-system-guid.png
+      :align: center
+      :class: with-shadow
+
+   .. raw:: html
+
+      <p style="text-align: center;"><em>Figure: Server Custom field showing GUIDs</em></p>
 
 2. Create a Server Cluster Template
 ------------------------------------
@@ -263,7 +282,7 @@ Once the server cluster is created:
 
    - Identify the InfiniBand GUIDs associated with the servers in the cluster
    - Provision appropriate PKeys in UFM
-   - Create necessary SHARP reservations if applicable
+   - Create necessary SHARP reservations if applicable (if UFM_ENABLE_SHARP is set to true)
 
 2. Verify the configuration:
 
@@ -304,7 +323,7 @@ Functional Workflow
 
 3. **SHARP Integration**:
 
-   - For high-performance network operations, SHARP reservations are created
+   - For high-performance network operations, SHARP reservations are created if UFM_ENABLE_SHARP is set to true
    - These correspond to the server clusters defined in Netris
 
 4. **Continuous Reconciliation**:
@@ -432,6 +451,8 @@ Test protection by querying a fabric device:
 Monitoring and Troubleshooting
 ===============================
 
+.. _ufm_integration_view_logs:
+
 Viewing Logs
 --------------
 
@@ -446,6 +467,16 @@ For Docker container:
 .. code-block:: bash
 
    docker logs -f netris-ufm
+
+Alternatively, you can view logs through the Netris Controller UI under Telescope > API Logs and filter by `ufm`. Please, note that the API logs in the UI are shown with a delay and require a manual screen refresh. To see UFM integration logs in real-time, we recommend using the command-line methods above.
+
+.. image:: images/ufm-api-logs.png
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Viewing UFM integration logs in Netris Controller UI</em></p>
 
 Common Issues and Solutions
 -----------------------------
@@ -536,10 +567,21 @@ Synchronization Delays
 
 **Solutions**:
 
-1. Adjust the RECONCILE_INTERVAL to a shorter time period for faster synchronization
-2. Check for high CPU or memory usage on the plugin host
-3. Verify network latency between the plugin and both systems
-4. Restart the plugin service if synchronization issues persist:
+1. Turn on debug logging in Settings>General to monitor synchronization operations in detail. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
+2. Adjust the Reconcile Interval Settings>General to a shorter time period for faster synchronization. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
+3. Use Dry Run mode Settings>General  to test changes without applying them, which can help identify issues before they affect the environment. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
+
+   .. image:: images/general-ufm-debug-dry-run-reconcile.png
+      :align: center
+      :class: with-shadow
+
+   .. raw:: html
+
+      </br>
+
+4. Check for high CPU or memory usage on the plugin host
+5. Verify network latency between the plugin and both systems
+6. Restart the plugin service if synchronization issues persist:
 
    .. code-block:: bash
 

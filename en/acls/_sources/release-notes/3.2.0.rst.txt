@@ -3,11 +3,8 @@
 .. |version| replace:: 3.2.0
 .. _release_3.2.0:
 
-.. meta::
-    :description: Netris Release Notes |version|
-
-Netris |version| (Sep/22/2022)
-==================================
+Netris |version| Release Notes (Sep/22/2022)
+=============================================
 
 One thing missing beyond the public cloud is the self-service VPC Networking of the public cloud. Your Elastic load balancers, self-service network firewall, self-service NAT and DHCP, and self-service site-to-site VPN. 
 

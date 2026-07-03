@@ -3,22 +3,22 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. include:: /_includes/links.rst
+
 Welcome to Netris Documentation
 ==================================================
 
-Learn how to get started with Netris VPC Networking for your network environment.
+Learn how to :doc:`get started with Netris VPC Networking</vpc-gateways-with-managed-fabric>` for your network environment.
 
-You are welcome to join our community Slack channel (see button at the top) to get additional support from our engineers and community.
+You are welcome to join our community Slack_ channel to get additional support from our engineers and community.
 
 .. toctree::
    :maxdepth: 2
-   :caption: General Information
+   :caption: Get Started
 
    introduction
-   supported-platform-matrix
-   supported-switch-hardware
-   netris-architecture
    definitions
+   netris-architecture
 
 .. toctree::
    :maxdepth: 2
@@ -29,7 +29,14 @@ You are welcome to join our community Slack channel (see button at the top) to g
 
 .. toctree::
    :maxdepth: 2
-   :caption: Detailed Installation
+   :caption: Reference
+
+   supported-platform-matrix
+   supported-switch-hardware
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Installation
 
    installation/installation
    switch-agent-installation
@@ -42,6 +49,8 @@ You are welcome to join our community Slack channel (see button at the top) to g
 
    site
    topology-management
+   inventory-profile
+   ipam
    network-policies
    switch-ports
    lag
@@ -56,6 +65,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
    vnet
    server-cluster
    l4-load-balancer
+   vpc-connect
    acls
 
 .. toctree::
@@ -68,6 +78,7 @@ You are welcome to join our community Slack channel (see button at the top) to g
    cloudstack/netris-cloudstack
    terraform-integration
    evpn-on-host
+   bluefield-3-dpus
 
 .. toctree::
    :maxdepth: 2
@@ -82,15 +93,12 @@ You are welcome to join our community Slack channel (see button at the top) to g
    :caption: Tutorials
 
    vpc-gateways-with-managed-fabric.rst
-   cloudstack/netris-cloudstack
-   ai-netris-host-networking
 
 .. toctree::
    :maxdepth: 4
    :caption: Miscellaneous
 
    accounts
-   try-learn/onprem-k8s
    snippets
 
 .. toctree::

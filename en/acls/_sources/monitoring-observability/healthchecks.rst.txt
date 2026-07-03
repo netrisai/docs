@@ -176,7 +176,7 @@ There are three main categories of healthchecks in Netris:
      -
        - OK - port is UP, and RX/TX utilization is below Warning threshold, Laser Signal Levels are below Warning threshold, pluggable is present or the port is fixed, temperature below threshold, BER below threshold
        - WARNING - port is UP and (RX/TX utilization is above Warning threshold or Laser Signal Levels are above Warning threshold), or temperature above Warning threshold
-       - CRITICAL - port is DOWN, or RX/TX utilization is above Critical threshold, or Laser Signal Levels are above Critical threshold, or pluggable is absent, ore temperature above Critical threshold, or BER above Critical threshold
+       - CRITICAL - port is DOWN, or RX/TX utilization is above Critical threshold, or Laser Signal Levels are above Critical threshold, or pluggable is absent, or temperature above Critical threshold, or BER above Critical threshold
      - swp57s0 port is UP, 0% RX Utilized of 1 Gbps, 0% TX Utilized of 1 Gbps
      -
        - TX/RX Warning threshold default 70

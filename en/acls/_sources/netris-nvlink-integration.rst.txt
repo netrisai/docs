@@ -43,9 +43,9 @@ When you define a :doc:`Server Cluster </server-cluster>` in Netris, the plugin 
 - Creates and manages appropriate NVL partitions in NMX-C
 - Assigns appropriate GPU UIDs to appropriate NVL partitions
 
-The Netris-NMX plug agent runs continuously and validates that the operator's intent is correctly applied every 20 seconds by default. If the NVLink partition doesn't match the intent declared in the Netris Controller, the Netris-NMX agent will enforce the intent in the NMX-Controller.
+The Netris-NMX plugin runs continuously and validates that the operator's intent is correctly applied every 20 seconds by default. If the NVLink partition doesn't match the intent declared in the Netris Controller, the Netris-NMX plugin will enforce the intent in the NMX-Controller.
 
-The NMX-Controller remains the source of truth for the state of the GPU assignments to NVLink partitions. The Netris Controller is the source of truth for the operator's intent, and the Netris agent will continuously enforce the operator's intent as expressed through the :doc:`Server Cluster </server-cluster>` object in the Netris Controller.
+The NMX-Controller remains the source of truth for the state of the GPU assignments to NVLink partitions. The Netris Controller is the source of truth for the operator's intent, and the Netris-NMX plugin will continuously enforce the operator's intent as expressed through the :doc:`Server Cluster </server-cluster>` object in the Netris Controller.
 
 When more than one NMX-Controller is defined in the configuration, Netris will automatically discover which NMX-Controller creates the NVLink partition and will only create the partitions in the appropriate NMX-Controllers. 
 
@@ -63,6 +63,23 @@ High-Level Workflow
 
 .. tip:: Netris does not perform any additional NVLink management tasks, like NVLink switch life cycle management, etc., other than creating, modifying, and destroying NVLink partitions and adding or removing GPU UIDs to those partitions. NVIDIA NMX-C is the NVLink fabric manager.
 
+Version Compatibility
+=====================
+
+.. list-table::
+   :header-rows: 1
+
+   * - Component
+     - Minimum Version
+   * - Netris Controller
+     - 4.6.0+
+   * - Netris-NMX Plugin
+     - Bundled with Netris Controller
+   * - NVIDIA NMX-C
+     - Consult your NVIDIA representative for supported versions
+
+.. note:: The Netris-NMX plugin communicates with NMX-C using its gRPC API with TLS client certificate authentication. Ensure your NMX-C version supports gRPC API access.
+
 Prerequisites
 ==============
 
@@ -70,9 +87,10 @@ Before installing the Netris-NMX plugin, ensure:
 
 1. A functioning Netris Controller environment
 2. A properly configured NVIDIA NMX-C installation
-3. Network connectivity between the Netris Controller or a dedicated server running the Netris-NMX plugin and the NVIDIA NMX-Controller.
-4. Appropriate access credentials for both platforms
-
+3. Network connectivity between the Netris Controller or a dedicated server running the Netris-NMX plugin and the NVIDIA NMX-Controller
+4. Admin credentials for the Netris Controller
+5. A GPU UID inventory file (CSV) mapping each server hostname to its GPU UIDs, ready to be loaded via `netris-nvl-loader`
+6. mTLS client certificate, private key, and root CA for authenticating to the NMX-Controller(s)
 
 Installation
 ================
@@ -82,7 +100,7 @@ Installing the plugin
 
 The Netris-NMX plugin can be installed on the same server as the Netris Controller or on a dedicated server, depending on customer requirements and network topology.
 
-If a dedicated server option is chosen, ensure that the server running the Netris-NMX plug can reach all the NVIDIA NMX-Controllers in the environment. This dedicated server must also be able to reach the Netris Controller. All communication between the Netris Controller, NVIDIA NMX-C, and the Netris-NMX plug is initiated from the server running the Netris-NMX plugin.
+If a dedicated server option is chosen, ensure that the server running the Netris-NMX plugin can reach all the NVIDIA NMX-Controllers in the environment. This dedicated server must also be able to reach the Netris Controller. All communication between the Netris Controller, NVIDIA NMX-C, and the Netris-NMX plugin is initiated from the server running the Netris-NMX plugin.
 
 1. Download the Kubernetes deployment YAML file:
 
@@ -143,7 +161,7 @@ Execute ``netris-nvl-loader`` script to import the GPU UID inventory into the Ne
 
 .. code-block:: bash
 
-   ./netris-nv-loader --csv-file gpu-mapping.csv --netris-url "https://conroller.acme.com" --username "admin" --password "passw0rd"
+   ./netris-nvl-loader --csv-file gpu-mapping.csv --netris-url "https://controller.acme.com" --username "admin" --password "passw0rd"
 
 Where 
 
@@ -193,7 +211,7 @@ Netris-NMX Plugin Configuration Parameters
 The following configuration options are available in the Netris-NMX plugin YAML configuration file:
 
 - **nmx-config** - top-level mapping for the plugin configuration
-- **verify-ssl** - key to signal the plug whether to use TLS authentication when accessing the NMX-Controller
+- **verify-ssl** - key to signal the plugin whether to use TLS authentication when accessing the NMX-Controller
 - **cert-file** - absolute path to the client certificate
 - **key-file**  - absolute path to the private key of the client certificate
 - **root-ca**   - absolute path to the root CA certificate file. 
