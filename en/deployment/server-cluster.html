@@ -449,6 +449,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#netq-settings">NetQ Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -888,7 +889,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#permission-groups">Permission Groups</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
@@ -898,6 +902,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.12.0.html">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.11.0.html">Netris 4.11.0 Release Notes (Jun/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.11.0.html#what-s-new-in-netris-version">What’s new in Netris 4.11.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.11.0.html#features">Features</a></li>
@@ -1188,13 +1201,14 @@
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Server Cluster Template Examples:</a><a class="headerlink" href="#server-cluster-template-examples" title="Link to this heading"></a></h3>
 <section id="ethernet-only-fabric-example">
 <h4><a class="toc-backref" href="#id8" role="doc-backlink">Ethernet-only Fabric Example</a><a class="headerlink" href="#ethernet-only-fabric-example" title="Link to this heading"></a></h4>
-<p>This example is common for AI fabrics where both Frontned (North-South) and Backend (East-West) networks are based on Ethernet. A Server Cluster referenced to this template will create two L2VPN VXLAN V-Nets and one L3VPN VXLAN V-Net. V-Net names will start with the name of the server cluster and end with the value of each <cite>postfix</cite> attribute.</p>
+<p>This example is common for AI fabrics where both Frontend (North-South) and Backend (East-West) networks are based on Ethernet. A Server Cluster referenced to this template will create two L2VPN VXLAN V-Nets and one L3VPN VXLAN V-Net. V-Net names will start with the name of the server cluster and end with the value of each <cite>postfix</cite> attribute.</p>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">[</span>
 <span class="go">  {</span>
 <span class="go">    &quot;postfix&quot;: &quot;E-W&quot;,</span>
 <span class="go">    &quot;type&quot;: &quot;l3vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth3&quot;,</span>
 <span class="go">      &quot;eth4&quot;</span>
@@ -1210,6 +1224,7 @@
 <span class="go">      &quot;eth2&quot;</span>
 <span class="go">    ],</span>
 <span class="go">    &quot;ipv4Gateway&quot;: &quot;192.168.10.254/24&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;ipv4DhcpEnabled&quot;: true</span>
 <span class="go">  },</span>
 <span class="go">  {</span>
@@ -1220,6 +1235,7 @@
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth0&quot;</span>
 <span class="go">    ],</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;ipv4Gateway&quot;: {</span>
 <span class="go">      &quot;assignType&quot;: &quot;auto&quot;,</span>
 <span class="go">      &quot;allocation&quot;: &quot;10.10.0.0/16&quot;,</span>
@@ -1246,6 +1262,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth9&quot;,</span>
 <span class="go">      &quot;eth10&quot;</span>
@@ -1261,6 +1278,7 @@
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth11&quot;</span>
 <span class="go">    ],</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;ipv4Gateway&quot;: &quot;192.168.100.1/24&quot;,</span>
 <span class="go">    &quot;ipv4DhcpEnabled&quot;: true</span>
 <span class="go">  }</span>
@@ -1289,6 +1307,7 @@
 <span class="go">      &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">      &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">      &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">      &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">      &quot;serverNics&quot;: [</span>
 <span class="go">        &quot;eth9&quot;,</span>
 <span class="go">        &quot;eth10&quot;</span>
@@ -1304,6 +1323,7 @@
 <span class="go">      &quot;serverNics&quot;: [</span>
 <span class="go">        &quot;eth11&quot;</span>
 <span class="go">      ],</span>
+<span class="go">      &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">      &quot;ipv4Gateway&quot;: &quot;192.168.100.1/24&quot;,</span>
 <span class="go">      &quot;ipv4DhcpEnabled&quot;: true</span>
 <span class="go">    }</span>
@@ -1330,7 +1350,8 @@
 <span class="go">    ],</span>
 <span class="go">    &quot;type&quot;: &quot;l3vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
-<span class="go">    &quot;vlanID&quot;: &quot;auto&quot;</span>
+<span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv6&quot;</span>
 <span class="go">  },</span>
 <span class="go">  {</span>
 <span class="go">    &quot;postfix&quot;: &quot;N-S&quot;,</span>
@@ -1341,6 +1362,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv6&quot;,</span>
 <span class="go">    &quot;ipv6Gateway&quot;: &quot;2001:db8:1::1/64&quot;</span>
 <span class="go">  },</span>
 <span class="go">  {</span>
@@ -1351,6 +1373,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv6&quot;,</span>
 <span class="go">    &quot;ipv6Gateway&quot;: {</span>
 <span class="go">      &quot;assignType&quot;: &quot;auto&quot;,</span>
 <span class="go">      &quot;allocation&quot;: &quot;2001:DB8::/32&quot;,</span>
@@ -1372,6 +1395,7 @@
 <li><p><strong>type</strong>: A string specifying the type of V-Net (<cite>l2vpn</cite>, <cite>l3vpn</cite>, <cite>netris-ufm</cite>, <cite>netris-nvlink</cite>).</p></li>
 <li><p><strong>vlan</strong>: A string specifying whether the V-Net is <cite>tagged</cite> or <cite>untagged</cite>. Only <cite>untagged</cite> is permitted at this time.</p></li>
 <li><p><strong>vlanID</strong>: A string specifying the VLAN ID. Only <cite>auto</cite> is permitted at this time.</p></li>
+<li><p><strong>ipFamily</strong>: A string specifying the IP family for the V-Net (<cite>ipv4</cite>, <cite>ipv6</cite>, or <cite>dual</cite>).</p></li>
 <li><p><strong>serverNics</strong>: An array of Netris server NIC names on the server that will be associated with this V-Net.</p></li>
 <li><p><strong>ipv4Gateway</strong>: When <cite>type:l2vpn</cite> one of the following values:</p>
 <ul>
@@ -1442,37 +1466,43 @@
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>serverNics</cite></p></td>
+<tr class="row-even"><td><p><cite>ipFamily</cite></p></td>
+<td><p>optional (defaults to <cite>dual</cite>)</p></td>
+<td><p>optional (defaults to <cite>dual</cite>)</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>serverNics</cite></p></td>
 <td><p>✅ required</p></td>
 <td><p>✅ required</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>ipv4Gateway</cite></p></td>
+<tr class="row-even"><td><p><cite>ipv4Gateway</cite></p></td>
 <td><p>optional</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>ipv4DhcpEnabled</cite></p></td>
+<tr class="row-odd"><td><p><cite>ipv4DhcpEnabled</cite></p></td>
 <td><p>optional (requires <cite>ipv4Gateway</cite>)</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>ipv6Gateway</cite></p></td>
+<tr class="row-even"><td><p><cite>ipv6Gateway</cite></p></td>
 <td><p>optional</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>ufm</cite></p></td>
+<tr class="row-odd"><td><p><cite>ufm</cite></p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>✅ (<cite>auto</cite> only)</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>pkey</cite></p></td>
+<tr class="row-even"><td><p><cite>pkey</cite></p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
@@ -1498,6 +1528,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv6&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth7&quot;,</span>
 <span class="go">      &quot;eth8&quot;</span>
@@ -1514,6 +1545,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth9&quot;,</span>
 <span class="go">      &quot;eth10&quot;</span>
@@ -1531,6 +1563,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;ipv4&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth11&quot;</span>
 <span class="go">    ],</span>
@@ -1560,6 +1593,7 @@
 <span class="go">      &quot;eth9&quot;,</span>
 <span class="go">      &quot;eth10&quot;</span>
 <span class="go">    ],</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">    &quot;ipv4Gateway&quot;: &quot;specify&quot;,</span>
 <span class="go">    &quot;ipv6Gateway&quot;: &quot;specify&quot;</span>
 <span class="go">  },</span>
@@ -1568,6 +1602,7 @@
 <span class="go">    &quot;type&quot;: &quot;l2vpn&quot;,</span>
 <span class="go">    &quot;vlan&quot;: &quot;untagged&quot;,</span>
 <span class="go">    &quot;vlanID&quot;: &quot;auto&quot;,</span>
+<span class="go">    &quot;ipFamily&quot;: &quot;dual&quot;,</span>
 <span class="go">    &quot;serverNics&quot;: [</span>
 <span class="go">      &quot;eth11&quot;</span>
 <span class="go">    ],</span>
@@ -1585,7 +1620,7 @@
 <p>With templates defined, you can create Server Clusters by referencing these templates and specifying a list of servers. This operation triggers the creation of the applicable network primitives such as V-Nets, IP subnets, Pkeys and other InfiniBand primitives based on the template’s definitions.</p>
 <section id="adding-a-server-cluster">
 <h3><a class="toc-backref" href="#id18" role="doc-backlink">Adding a Server Cluster</a><a class="headerlink" href="#adding-a-server-cluster" title="Link to this heading"></a></h3>
-<p>To define a Server Cluste, navigate to <code class="docutils literal notranslate"><span class="pre">Services-&gt;Server</span> <span class="pre">Cluster</span></code> and click <code class="docutils literal notranslate"><span class="pre">+Add</span></code>. Give the new cluster a name, set Admin to the appropriate owner (this defines who can edit/delete this cluster and only servers already assigned to this owner will be available for selection), set the site, set VPC to “Create New”, select the Template created earlier, and click <code class="docutils literal notranslate"><span class="pre">+Add</span> <span class="pre">Server</span></code> or <code class="docutils literal notranslate"><span class="pre">+Add</span> <span class="pre">Shared</span> <span class="pre">Server</span></code> to start selecting server members. Click Add.</p>
+<p>To define a Server Cluster, navigate to <code class="docutils literal notranslate"><span class="pre">Services-&gt;Server</span> <span class="pre">Cluster</span></code> and click <code class="docutils literal notranslate"><span class="pre">+Add</span></code>. Give the new cluster a name, set Admin to the appropriate owner (this defines who can edit/delete this cluster and only servers already assigned to this owner will be available for selection), set the site, set VPC to “Create New”, select the Template created earlier, and click <code class="docutils literal notranslate"><span class="pre">+Add</span> <span class="pre">Server</span></code> or <code class="docutils literal notranslate"><span class="pre">+Add</span> <span class="pre">Shared</span> <span class="pre">Server</span></code> to start selecting server members. Click Add.</p>
 <img alt="_images/add-server-cluster-selecting-servers.png" class="with-shadow align-center" src="_images/add-server-cluster-selecting-servers.png" />
 <br /><p>When you click the blue <code class="docutils literal notranslate"><span class="pre">Add</span></code> button, Netris will create the VPC, V-Nets, and IP subnets as defined in the template. It will also configure the switch ports for each server based on the NIC names specified in the template.</p>
 <img alt="_images/add-server-cluster.png" class="with-shadow align-center" src="_images/add-server-cluster.png" />

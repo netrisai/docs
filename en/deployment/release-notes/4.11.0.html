@@ -98,7 +98,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Netris 4.10.0 Release Notes (May/19/2026)" href="4.10.0.html" />
-    <link rel="prev" title="Release Notes" href="index.html" /> 
+    <link rel="prev" title="Netris 4.12.0 Release Notes (Jul/2/2026)" href="4.12.0.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -448,6 +448,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../inventory-profile.html">Inventory Profiles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#netq-settings">NetQ Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -887,7 +888,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../accounts.html">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#tenants">Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../accounts.html#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#permission-groups">Permission Groups</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#user-roles">User Roles</a></li>
 </ul>
@@ -897,6 +901,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="4.12.0.html">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="4.12.0.html#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.12.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.12.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.12.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.12.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.12.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 4.11.0 Release Notes (Jun/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-s-new-in-netris-version">What’s new in Netris 4.11.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
@@ -1109,7 +1122,7 @@
               <a href="https://github.com/netrisai/docs/blob/master/release-notes/4.11.0.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="index.html" class="btn btn-neutral float-left" title="Release Notes" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.12.0.html" class="btn btn-neutral float-left" title="Netris 4.12.0 Release Notes (Jul/2/2026)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="4.10.0.html" class="btn btn-neutral float-right" title="Netris 4.10.0 Release Notes (May/19/2026)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -1121,10 +1134,6 @@
 <span id="release-4-11-0"></span><h1>Netris 4.11.0 Release Notes (Jun/15/2026)<a class="headerlink" href="#netris-version-release-notes-jun-15-2026" title="Link to this heading"></a></h1>
 <section id="what-s-new-in-netris-version">
 <h2>What’s new in Netris 4.11.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>Data loss warning:</strong> When upgrading from Netris version 4.9 or earlier, historical monitoring data is not preserved. Future Netris releases will automatically preserve monitoring data during upgrades.</p>
-</div>
 </section>
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
@@ -1179,7 +1188,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Release Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.12.0.html" class="btn btn-neutral float-left" title="Netris 4.12.0 Release Notes (Jul/2/2026)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="4.10.0.html" class="btn btn-neutral float-right" title="Netris 4.10.0 Release Notes (May/19/2026)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

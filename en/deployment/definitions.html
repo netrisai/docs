@@ -449,6 +449,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#netq-settings">NetQ Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -888,7 +889,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#permission-groups">Permission Groups</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
@@ -898,6 +902,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.12.0.html">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.11.0.html">Netris 4.11.0 Release Notes (Jun/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.11.0.html#what-s-new-in-netris-version">What’s new in Netris 4.11.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.11.0.html#features">Features</a></li>
@@ -1126,7 +1139,11 @@
 <li><p><strong>User</strong> - An account for accessing the Netris Controller through the web console, REST API, or Terraform. Users authenticate against the controller and are assigned permissions through User Roles and Permission Groups. Default administrator credentials are documented in <a class="reference internal" href="installation/installation.html"><span class="doc">Controller Installation</span></a> and must be changed immediately after deployment.</p></li>
 <li><p><strong>User Role</strong> - A named group of permissions and tenants used to implement role-based access control (RBAC). Apply a role to a user to grant scoped access to network resources.</p></li>
 <li><p><strong>Permission Group</strong> - A set of per-section permissions that can be attached individually to a User or to a User Role.</p></li>
-<li><p><strong>Tenant</strong> - A logical owner of network resources (IP addresses, switch ports, services). The Admin tenant owns all resources by default. Additional tenants are used to delegate management of network resources to other groups — for example, granting a DevOps team self-service access to provision VPCs, V-Nets, and services through the Netris Controller GUI, Kubernetes CRDs, or Terraform.</p></li>
+<li><p><strong>Tenant</strong> - A named principal used to delegate management of network resources. A Tenant has only a unique name and an optional description; it carries no quota, billing identity, or login of its own. Tenants are referenced from objects that support ownership (VPC, V-Net, IPAM allocations and subnets, Inventory units, switch ports, L4 Load Balancer, Server Cluster) and from User accounts to scope which resources a user can administer. The built-in <code class="docutils literal notranslate"><span class="pre">Admin</span></code> tenant owns all resources by default; additional tenants are created to delegate self-service access to other teams — for example, a DevOps team using the Netris Controller GUI, Kubernetes CRDs, or Terraform.</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Admin Tenant</strong> - The tenant that owns a VPC or V-Net and can manage all of its parameters.</p></li>
+<li><p><strong>Guest Tenant</strong> - A tenant granted delegated access to add and remove resources inside a VPC or V-Net, without permission to change the parameters of the VPC or V-Net itself. Guest Tenants of a VPC can add and remove services inside the VPC (V-Nets, L4 Load Balancers, Server Clusters, IPAM subnets). Guest Tenants of a V-Net can add and remove switch ports in the V-Net.</p></li>
 </ul>
 </section>
 <section id="fabric-roles">

@@ -135,7 +135,7 @@ Link aggregation
 
 * What link aggregation model applies to servers connected to the North-South fabric? See :doc:`Link Aggregation <lag>`.
 
-  * **Automatic LAG with EVPN Multi-Homing** — Netris detects LACP on the server side and automatically forms an all-active LAG. Requires Cumulus Linux 5.3 or higher and Spectrum A1 ASIC with a two-switch EVPN-MH domain.
+  * **Automatic LAG with EVPN Multi-Homing** — Netris detects LACP on the server side and automatically forms an all-active LAG across a two-switch EVPN-MH domain. Ensure your switching hardware supports your desired LAG method.
   * **MC-LAG** — vendor-specific multi-chassis LAG with peer-link configuration.
   * **Custom LAG** — manual LAG configuration for hardware or topology combinations not covered by the automatic modes.
 

@@ -449,6 +449,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Inventory Profiles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#netq-settings">NetQ Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-rules">Custom Rules</a></li>
@@ -888,7 +889,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#permission-groups">Permission Groups</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
@@ -898,6 +902,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.12.0.html">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.11.0.html">Netris 4.11.0 Release Notes (Jun/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.11.0.html#what-s-new-in-netris-version">What’s new in Netris 4.11.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.11.0.html#features">Features</a></li>
@@ -1121,17 +1134,19 @@
 <span id="inventory-profile"></span><h1>Inventory Profiles<a class="headerlink" href="#inventory-profiles" title="Link to this heading"></a></h1>
 <p>Inventory profiles allow security hardening of inventory devices and fabric-wide configuration optimizations.</p>
 <p>By default all traffic flow destined to switch/SoftGate is allowed. As soon as the inventory profile is attached to a device it denies all traffic destined to the device except Netris-defined and user-defined custom flows.</p>
-<p>Automatically allowed flows include:</p>
+<p>Automatically allowed IPv4 and IPv6 inbound flows include:</p>
 <ul class="simple">
-<li><p>SSH from user defined subnets</p></li>
-<li><p>NTP from user defined ntp services</p></li>
-<li><p>DNS from user defined DNS servers</p></li>
-<li><p>SNMP from user defined subnets</p></li>
-<li><p>BGP, ICMP, DHCP</p></li>
+<li><p>SSH TCP port 22 from user defined subnets</p></li>
+<li><p>NTP UDP port 123</p></li>
+<li><p>DNS UDP and TCP port 53</p></li>
+<li><p>SNMP UDP port 161 (IPv4 only) from user defined subnets</p></li>
+<li><p>BGP TCP port 179 from defined neighbors and fe80::/64</p></li>
+<li><p>ICMP</p></li>
+<li><p>DHCP</p></li>
 <li><p>Custom user defined rules</p></li>
 </ul>
-<table class="docutils align-default" id="id4">
-<caption><span class="caption-text">Inventory Profile Fields</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Inventory Profile Fields</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 75.0%" />
@@ -1158,14 +1173,20 @@
 <tr class="row-odd"><td><p><strong>DNS servers</strong></p></td>
 <td><p>List of IP addresses of DNS servers (one address per line). You can use your Netris Controller address as a DNS server for your switches and SoftGate.</p></td>
 </tr>
+<tr class="row-even"><td><p><strong>SNMPv2</strong></p></td>
+<td><p>SNMPv2 Read-Only Community; IPv4 allow list; Contact information; Location information</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>NetQ</strong></p></td>
+<td><p>NetQ server address and port</p></td>
+</tr>
 </tbody>
 </table>
 <img alt="_images/Inventory-Profile-Top.png" class="with-shadow align-center" src="_images/Inventory-Profile-Top.png" />
 <br /><section id="snmpv2-credentials">
 <span id="snmp-settings"></span><h2>SNMPv2 credentials<a class="headerlink" href="#snmpv2-credentials" title="Link to this heading"></a></h2>
 <p>Netris administers can define SNMPv2 credentials to monitor switches and SoftGates in the inventory. To add SNMPv2 credentials, expand the SNMPv2 section of the Inventory Profile form, set the checkbox to enabled, and fill in the fields as described below:</p>
-<table class="docutils align-default" id="id5">
-<caption><span class="caption-text">SNMPv2 Fields</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">SNMPv2 Fields</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p>Read-Only Community</p></td>
 <td><p>✅ required</p></td>
@@ -1187,12 +1208,35 @@
 </table>
 <img alt="_images/SNMPv2-settings.png" class="with-shadow align-center" src="_images/SNMPv2-settings.png" />
 <br /></section>
+<section id="netq-settings">
+<span id="id1"></span><h2>NetQ Settings<a class="headerlink" href="#netq-settings" title="Link to this heading"></a></h2>
+<p>Netris administers can define NetQ server address and port to automatically configure the NetQ client on Cumulus Linux based switches.</p>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">NetQ Fields</span><a class="headerlink" href="#id7" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>NetQ Server</p></td>
+<td><p>✅ required</p></td>
+<td><p>Specify the IP address(es) or the FQDN of the NetQ server. You can specify one(1) or three(3) addresses separated by commas or one FQDN.</p></td>
+</tr>
+<tr class="row-even"><td><p>NetQ Port</p></td>
+<td><p>✅ required</p></td>
+<td><p>Specify the port of the NetQ server. Default is 31980.</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/NetQ-IPs.png" class="with-shadow align-center" src="_images/NetQ-IPs.png" />
+<br /><img alt="_images/NetQ-FQDN.png" class="with-shadow align-center" src="_images/NetQ-FQDN.png" />
+<br /><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You may also export your network topology as a Graphviz DOT to be imported into your NetQ instance. See <a class="reference internal" href="monitoring-observability/netq.html"><span class="doc">NVIDIA NetQ Integration</span></a> for more details.</p>
+</div>
+</section>
 <section id="fabric-settings">
-<span id="id1"></span><h2>Fabric Settings<a class="headerlink" href="#fabric-settings" title="Link to this heading"></a></h2>
+<span id="id2"></span><h2>Fabric Settings<a class="headerlink" href="#fabric-settings" title="Link to this heading"></a></h2>
 <p>Netris can automatically optimize fabric configurations based on administrator’s design and preferences. The following controls are available in the Fabric Settings section of the Inventory Profile form:</p>
-<ul class="simple">
-<li><p><strong>Fabric Type</strong> (default = General Purpose)  The selected fabric type acts as a filter to determine which switches are subject to the “Optimize BGP Overlay for leaf-spine topology” feature as described below. Supported values include:</p>
 <ul>
+<li><p><strong>Fabric Type</strong> (default = General Purpose).  The selected fabric type acts as a filter to determine which switches are subject to the “Optimize BGP Overlay for leaf-spine topology” feature as described below. Supported values include:</p>
+<ul class="simple">
 <li><p>Generic</p></li>
 <li><p>East-West</p></li>
 <li><p>East-West-Plane1</p></li>
@@ -1203,11 +1247,20 @@
 <li><p>OOB</p></li>
 </ul>
 </li>
-<li><p><strong>Optimize BGP Overlay for leaf-spine topology</strong> (default = checked)  When checked, overlay BGP updates will be optimized for large scale. Each leaf switch (based on its role) and Fabric Type will form its overlay BGP sessions only with two spine switches (with the lowest IDs). When unchecked, the Overlay BGP sessions will be configured on all point-to-point links without exceptions.</p></li>
+<li><p><strong>Optimize BGP Overlay for leaf-spine topology</strong> (default = checked). When checked, Netris applies the following logic to all switches sharing the Fabric Type value set in this Inventory Profile. Netris configures designated switches as EVPN Route Servers (EVPN-RS), and each switch with the Switch Role property set to Leaf forms overlay BGP sessions (address-family l2vpn evpn) exclusively with those nodes. No other overlay BGP sessions are configured.</p>
+<p>EVPN-RS designation works as follows:</p>
+<ul class="simple">
+<li><p>If no switch object has the <a class="reference internal" href="topology-management.html#topology-management-adding-switches"><span class="std std-ref">EVPN Route Server property</span></a> set, Netris automatically selects the two switches with the Switch Role property set to Super-Spine — or, if no Super-Spine switches are present, the two switches with the Switch Role property set to Spine — with the lowest loopback IPs.</p></li>
+<li><p>If one or more switch objects have the <a class="reference internal" href="topology-management.html#topology-management-adding-switches"><span class="std std-ref">EVPN Route Server property</span></a> set, automatic selection is disabled entirely and Netris uses only the explicitly designated switches as EVPN-RS nodes.</p></li>
+<li><p>Because setting the property on even one switch disables automatic selection, operators should explicitly designate at least two switches for redundancy. Netris does not automatically enforce this recommendation.</p></li>
+</ul>
+<p>When unchecked, overlay BGP sessions are configured on all point-to-point links.</p>
+</li>
 <li><p><strong>Optimize BGP Overlay for Hypervisor Integrated Fabric</strong> (default = unchecked). Required for BGP/EVPN VXLAN integration with compute hypervisor networking. This optimization makes sure that a large number of hypervisor virtual networking EVPN prefixes do not overflow switch TCAM.</p></li>
-<li><p><strong>BGP Numbered Underlay</strong> (default = unchecked)  When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP unnumbered method is used and p2p ipv6 link-local addresses are used for BGP sessions.</p></li>
+<li><p><strong>BGP Numbered Underlay</strong> (default = unchecked).  When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP unnumbered method is used and p2p ipv6 link-local addresses are used for BGP sessions.</p></li>
 <li><p><strong>Automatic Link Aggregation</strong> (default = unchecked). When checked, Enable MC-LAG shall become unchecked automatically through the UI.</p></li>
 <li><p><strong>Enable MC-LAG</strong> (default = unchecked). When checked, Automatic Link Aggregation shall become unchecked automatically through the UI.  If unchecked none of MC-LAG related configurations should be generated by switch agents. Help message: “Enabling MC-LAG functionality will disable any EVPN-MH functionality. Two multihoming methods are not supported simultaneously on the same switches.”</p></li>
+<li><p><strong>Generate ESI by Server ID</strong> (default = unchecked). When checked, ESI-IDs are generated using server-ID-based logic instead of the default partner-MAC-based method. The setting is backwards compatible: existing ESI-IDs remain valid, and servers not modeled in Netris automatically fall back to partner-MAC-based generation.</p></li>
 </ul>
 </section>
 <section id="gpu-cluster-specific-settings">
@@ -1221,7 +1274,7 @@
 <li><p><strong>HWMP</strong> (default = unchecked) Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture.</p></li>
 <li><p><strong>Reference Architecture</strong> (default = None)  This setting tells Netris which reference architecture is being deployed on the subject fabric, so Netris can apply the appropriate prefix summarization in the L3VPN overlay.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="00e69d82-6946-45bc-a6f7-93c095f1945d" name="00e69d82-6946-45bc-a6f7-93c095f1945d" type="checkbox"><label class="sphinx_collapse__label" for="00e69d82-6946-45bc-a6f7-93c095f1945d"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="7234117c-7c3b-4338-8260-bb5c69a2185b" name="7234117c-7c3b-4338-8260-bb5c69a2185b" type="checkbox"><label class="sphinx_collapse__label" for="7234117c-7c3b-4338-8260-bb5c69a2185b"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Reference Architecture</p></th>
@@ -1270,7 +1323,7 @@
 </ul>
 </section>
 <section id="custom-rules">
-<span id="id2"></span><h2>Custom Rules<a class="headerlink" href="#custom-rules" title="Link to this heading"></a></h2>
+<span id="id3"></span><h2>Custom Rules<a class="headerlink" href="#custom-rules" title="Link to this heading"></a></h2>
 <p>Custom rules allow the administrator to define specific allow/deny flows to/from inventory devices.</p>
 <p>If an inventory profile is attached to a switch or a softgate, then Netris configures an implicit inbounddeny ACL. Several rules are automatically added to this ACL to allow the necessary system services connections like NTP, DNS, SSH from Allowed Hosts, BGP, ICMP, DHCP, SNMP. Everything else is denied by the implicit deny rule.
 If additional inbound services (e.g., Netflow/Sflow) need to be allowed, you can use Custom Rules to permit those connections.</p>
@@ -1278,7 +1331,7 @@ If additional inbound services (e.g., Netflow/Sflow) need to be allowed, you can
 <img alt="_images/CustomRules.png" class="with-shadow align-center" src="_images/CustomRules.png" />
 <br /></section>
 <section id="ztp-settings">
-<span id="id3"></span><h2>ZTP Settings<a class="headerlink" href="#ztp-settings" title="Link to this heading"></a></h2>
+<span id="id4"></span><h2>ZTP Settings<a class="headerlink" href="#ztp-settings" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>NOS Image file</strong> When Zero Touch Provisioning (ZTP) is in use, this Network Operating System image will be used to bootstrap the switches subject to this Inventory Profile.</p></li>
 <li><p><strong>NOS Admin Password</strong> Once the ZTP process completes, Netris will configure this password for the builtin admin user.</p></li>
