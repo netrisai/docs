@@ -16,7 +16,13 @@ Access and roles
 
 * **Permission Group** - A set of per-section permissions that can be attached individually to a User or to a User Role.
 
-* **Tenant** - A logical owner of network resources (IP addresses, switch ports, services). The Admin tenant owns all resources by default. Additional tenants are used to delegate management of network resources to other groups — for example, granting a DevOps team self-service access to provision VPCs, V-Nets, and services through the Netris Controller GUI, Kubernetes CRDs, or Terraform.
+* **Tenant** - A named principal used to delegate management of network resources. A Tenant has only a unique name and an optional description; it carries no quota, billing identity, or login of its own. Tenants are referenced from objects that support ownership (VPC, V-Net, IPAM allocations and subnets, Inventory units, switch ports, L4 Load Balancer, Server Cluster) and from User accounts to scope which resources a user can administer. The built-in ``Admin`` tenant owns all resources by default; additional tenants are created to delegate self-service access to other teams — for example, a DevOps team using the Netris Controller GUI, Kubernetes CRDs, or Terraform.
+
+.. TODO: Enumerate the specific parameters managed by Admin Tenant for VPC and V-Net once confirmed with engineering/architects.
+
+* **Admin Tenant** - The tenant that owns a VPC or V-Net and can manage all of its parameters.
+
+* **Guest Tenant** - A tenant granted delegated access to add and remove resources inside a VPC or V-Net, without permission to change the parameters of the VPC or V-Net itself. Guest Tenants of a VPC can add and remove services inside the VPC (V-Nets, L4 Load Balancers, Server Clusters, IPAM subnets). Guest Tenants of a V-Net can add and remove switch ports in the V-Net.
 
 Fabric roles
 ------------
