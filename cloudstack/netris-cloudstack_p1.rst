@@ -30,7 +30,7 @@ Benefits
 --------
 
 * Scalability: Support for millions of VPCs with overlapping IPs.
-* AWS-Like Services: Enables Direct Connect functionality and scalable load balancing.
+* Cloud-Provider-Grade Services: Enables Direct Connect functionality and scalable load balancing.
 * Automation: Simplifies network operations with centralized control via the Netris Controller.
 * Cost-Efficiency: Uses multi-vendor hardware and commodity servers, reducing infrastructure costs.
 
@@ -39,7 +39,7 @@ Use Cases
 
 * Large-scale Apache CloudStack Providers needing a scalable alternative to VLANs.
 * Enterprises transforming their traditional data centers into private cloud environments.
-* Hosting providers seeking AWS-like network functionality for their customers.
+* Hosting providers seeking cloud-provider-grade network functionality for their customers.
 
 .. image:: images/acs-infra-diagram.png
   :align: center
