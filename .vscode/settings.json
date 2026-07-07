@@ -1,0 +1,14 @@
+{
+    // Workspace settings for local RST authoring (VS Code + Esbonio).
+    // Uses workspace-relative paths — no per-user editing needed.
+    // See the "Local RST Authoring Environment (VS Code + Esbonio)" page in
+    // Confluence (Documentation Procedures section) for the full setup.
+    "editor.wordWrap": "on",
+    "esbonio.server.enabled": true,
+    "esbonio.server.pythonCommand": "${workspaceFolder}/.venv/bin/python3",
+    "esbonio.sphinx.confDir": "${workspaceFolder}",
+    "restructuredtext.linter.doc8.extraArgs": [
+        "--ignore", "D001"
+    ],
+    "restructuredtext.linter.rstcheck.extraArgs": []
+}
