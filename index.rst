@@ -100,6 +100,7 @@ You are welcome to join our community Slack_ channel to get additional support f
 
    accounts
    snippets
+   labels
 
 .. toctree::
    :maxdepth: 2

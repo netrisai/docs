@@ -64,149 +64,15 @@ Optionally V-Net definition can also include:
   - List of collaborators (Guest tenants) who can add or remove switch ports to and from the V-Net, but not edit any other properties of the V-Net,
   - IP Address Family (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack) to specify the type of gateway IP configured on the V-Net,
   - IPv4 or IPv6 Gateway (for L2VPN V-Nets) to make the V-Net routable inside the VPC, i.e., add an SVI to the VLAN,
-  - DHCP scope and option set (for L2VPN V-Nets),
-  - Anycast MAC address (for L2VPN V-Nets), which Netris can assign for you.
+  - DHCP scope and option set (for L2VPN V-Nets) or DHCP Relay configuration,
+  - Anycast MAC address (for L2VPN V-Nets), which Netris can assign for you,
+  - VXLAN ID,
+  - IPv6 Neighbor Discovery configuration.
 
 .. image:: images/vnet-example.png
     :alt: Example V-Net configuration
     :align: center
     :class: with-shadow
-
-.. _vnet_dhcp:
-
-DHCP
-^^^^^^^^^^^^^^^^^^^^^^^^
-L2VPN routed V-Nets (where an IP gateway is added) may also be configured with a DHCP service fully managed by Netris and hosted on SoftGate.
-
-You can configure additional DHCP Option Sets before enabling a DHCP server for any V-Net. Add a DHCP Options Set by navigating to ``Services -> DHCP Options Sets`` and clicking ``+Add`` in the top right.
-
-.. image:: images/dhcp-option-set.png
-    :alt: DHCP Option Set
-    :align: center
-    :class: with-shadow
-
-.. raw:: html
-
-  <br />
-
-Netris supports a wide range of Standard DHCP Options.
-
-.. image:: images/dhcp-standard-options.png
-    :alt: Standard DHCP Options
-    :align: center
-    :class: with-shadow
-
-.. raw:: html
-
-  <br />
-
-Netris also enables you to define Custom DHCP Options.
-
-.. image:: images/dhcp-custom-options.png
-    :alt: Custom DHCP Options
-    :align: center
-    :class: with-shadow
-
-.. raw:: html
-
-  <br />
-
-DHCP Relay
-^^^^^^^^^^^^^^^^^^^^^^^^
-Netris supports using an external DHCP server (outside of Netris) by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC.
-
-To configure DHCP Relay in a V-Net:
- - Specify the VPC where the DHCP server is located.
- - Enter the IP addresses of the primary and (optionally) backup DHCP servers.
-  
-.. tip::
-  In a VPC a DHCP Relay service and a DHCP service cannot be enabled simultaneously.
-
-.. image:: images/dhcp-relay.png
-    :alt: DHCP Relay
-    :align: center
-    :class: with-shadow
-
-.. raw:: html
-
-    <br />
-
-.. note::
-  * VPC peering is mandatory on Cumulus Linux fabrics. Without it, relay traffic cannot reach the DHCP server. Configure peering under Network → VPC Peering in the Controller.
-  * Non-overlapping IP ranges are required between the client VPCs (Coke and Pepsi) and the DHCP server’s VPC (Shared). The DHCP server must be able to route back to both Coke and Pepsi.
-  * Switch loopback IP is the source IP of relayed packets
-
-.. raw:: html
-
-  <br />
-
-Example:
-""""""""
-
-Suppose you have tenant workloads in VPC Coke and VPC Pepsi. Both need DHCP, but you want to run a single DHCP service in VPC Shared.
-
-.. image:: images/dhcp-relay-diagram.png
-    :alt: DHCP Relay
-    :align: center
-    :class: with-shadow
-
-.. raw:: html
-
-  <br />
-
-1. In each tenant’s V-Net (Coke and Pepsi), enable DHCP Relay and set the DHCP server address to the IPs of the DHCP servers in VPC Shared.
-
-  .. image:: images/dhcp-relay-coke.png
-      :alt: DHCP Relay
-      :align: center
-      :class: with-shadow
-
-  .. raw:: html
-
-    <br />
-
-  .. image:: images/dhcp-relay-pepsi.png
-      :alt: DHCP Relay
-      :align: center
-      :class: with-shadow
-
-  .. raw:: html
-
-    <br />
-
-  .. image:: images/dhcp-relay-shared.png
-      :alt: DHCP Relay
-      :align: center
-      :class: with-shadow
-
-  .. raw:: html
-
-    <br />
-
-2. Establish VPC peering between Coke ↔ Shared and Pepsi ↔ Shared.
-
-  .. image:: images/dhcp-relay-vpc-peer-coke.png
-      :alt: DHCP Relay
-      :align: center
-      :class: with-shadow
-
-  .. raw:: html
-
-    <br />
-
-  .. image:: images/dhcp-relay-vpc-peer-pepsi.png
-      :alt: DHCP Relay
-      :align: center
-      :class: with-shadow
-
-  .. raw:: html
-
-    <br />
-
-
-Now:
- - DHCP clients in the tenant VPC (Coke and Pepsi) broadcast their DHCP requests normally in their respective V-Nets
- - Netris configures the fabric to forward these requests across the peering link to the DHCP server in the shared VPC.
 
 V-Net Fields explained
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -279,6 +145,45 @@ Advanced V-Net Fields explained
    * - **IPv4 Gateway / IPv6 Gateway**
      - Anycast gateway IPs for Layer-3-enabled L2VPN.
      - Hidden when L3VPN is on. Leave blank for pure Layer-2 V-Net. Must be configured under ``Network -> IPAM`` as a subnet with purpose set to ``common``, assigned to the Owner, and available in the site where V-Net is intended to span.
+   * - **IPv6 Neighbor Discovery**
+     - Master switch for Netris-managed IPv6 ND. Unchecked (default): Netris does not manage IPv6 ND for this V-Net; the fabric's vendor-default behavior applies, and none of the fields below are shown. Checked: reveals **Mode** (defaults to Enabled) and the fields below. Within this group, an unchecked checkbox always means explicitly off, not "vendor default" — only a blank text field (a lifetime or interval) falls back to the vendor default.
+     - Cumulus Linux fabrics only.
+   * - **Mode** (Enabled / Disabled)
+     - Enables or disables active Router Advertisement (`RFC 4861 <https://datatracker.ietf.org/doc/html/rfc4861>`_) on the segment.
+     - Requires IPv6 Neighbor Discovery checked. **Enabled** requires an IPv6 Gateway configured on the V-Net. **Disabled** explicitly suppresses ND regardless of the platform default and does not require a gateway; it also hides and resets Router Lifetime, Advertisement Interval, the M/O flags, Prefix Advertisement, and RDNSS below.
+   * - **Router Lifetime**
+     - RA Router Lifetime, in seconds. Left blank, the switch agent uses the platform's vendor default.
+     - Requires IPv6 Neighbor Discovery checked and Mode = Enabled.
+   * - **Advertisement Interval**
+     - Interval between RA transmissions, in seconds. Left blank, uses the platform's vendor default.
+     - Requires IPv6 Neighbor Discovery checked and Mode = Enabled.
+   * - **Managed Config (M flag)**
+     - RA Managed Configuration flag. Unchecked = explicitly off.
+     - Requires IPv6 Neighbor Discovery checked and Mode = Enabled.
+   * - **Other Config (O flag)**
+     - RA Other Configuration flag. Unchecked = explicitly off.
+     - Requires IPv6 Neighbor Discovery checked and Mode = Enabled.
+   * - **Prefix Advertisement**
+     - Enables the Prefix Information Option (`RFC 4861 <https://datatracker.ietf.org/doc/html/rfc4861>`_ §4.6.2) carried in RA. Unchecked = explicitly off.
+     - Requires IPv6 Neighbor Discovery checked and Mode = Enabled.
+   * - **Preferred Lifetime**
+     - Prefix Information Option Preferred Lifetime, in seconds. Left blank, uses the platform's vendor default.
+     - Requires Prefix Advertisement checked.
+   * - **Valid Lifetime**
+     - Prefix Information Option Valid Lifetime, in seconds. Left blank, uses the platform's vendor default.
+     - Requires Prefix Advertisement checked.
+   * - **Autoconfig (A flag)**
+     - Prefix Information Option Autonomous flag; triggers SLAAC (`RFC 4862 <https://datatracker.ietf.org/doc/html/rfc4862>`_) on clients. Unchecked = explicitly off.
+     - Requires Prefix Advertisement checked.
+   * - **RDNSS** (Recursive DNS Server)
+     - Enables the RDNSS option (`RFC 8106 <https://datatracker.ietf.org/doc/html/rfc8106>`_). Unchecked = explicitly off.
+     - Requires IPv6 Neighbor Discovery checked and Mode = Enabled.
+   * - **DNS Servers**
+     - Up to three IPv6 DNS server addresses advertised via RDNSS.
+     - Requires RDNSS checked.
+   * - **DNS Server Lifetime**
+     - RDNSS lifetime, in seconds. Left blank, uses the platform's vendor default. A separate **Infinite** checkbox sets the lifetime to never expire.
+     - Requires RDNSS checked.
 
 .. warning::
     Many switches cannot autodetect 1Gbps link speed. If attaching hosts with 1Gbps NICs to 10Gbps switch ports, set the speed for the given Switch Port from Auto(default) to 1Gbps. You can edit a port in ``Network -> Network Interfaces`` individually or in bulk.
@@ -287,7 +192,7 @@ Advanced V-Net Fields explained
 
 Multisite V-Nets
 ^^^^^^^^^^^^^^^^^^^^^^^^
-Any V-Net may span multiple sites. If the V-Net spans multiple sites and you add a gateway, you must first create the subnet under ``Network -> Subnets`` and assign it to all sites the V-Net will span (You can define additional sites in ``Network -> Sites``). This way the anycast IP is valid everywhere.
+Any V-Net may span multiple :doc:`sites <site>`. If the V-Net spans multiple sites and you add a gateway, you must first create the subnet under ``Network -> Subnets`` and assign it to all sites the V-Net will span (You can define additional sites in ``Network -> Sites``). This way the anycast IP is valid everywhere.
 
 
 .. image:: images/vnet-multisite.png
@@ -302,332 +207,22 @@ Any V-Net may span multiple sites. If the V-Net spans multiple sites and you add
 
 Link Aggregation and Multihoming
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-**Link Aggregation (LAG)**, also known as link bundling, Ethernet/network/NIC bonding, or port teaming, is a method of combining (aggregating) multiple network interfaces to increase throughput beyond what a single switch port could provide and/or provide redundancy in case one of the links fails.
+V-Net switch ports support Link Aggregation (LAG) for higher throughput and redundancy, including automatic EVPN Multi-Homing and manually configured MC-LAG. See :doc:`link-aggregation-and-multihoming` for details.
 
-An endpoint may be connected to a single switch with multiple cables, which are aggregated into a single logical bonded interface. This is known as single-homing.
-
-An endpoint may be connected to two or more switches simultaneously, with these connections aggregated into a single logical bonded interface. Often done to eliminate single points of hardware failure, this method is known as multi-homing.
-
-.. image:: images/lag_diagram.png
-    :align: center
-    :alt: LAG diagram
-
-For best results, Netris recommends enabling **Link Aggregation Control Protocol (LACP/802.3ad)** when configuring server-side bonding.
-
-Netris fully supports both single-home and multi-home use cases, and for multi-home use cases, Netris supports EVPN-MH and MC-LAG, subject to switch hardware support.
-
-* **EVPN-MH** (recommended by Netris) is a standardized way to multi-home a device. It uses BGP EVPN with Ethernet Segment Identifiers (ESI) for control plane and Designated Forwarder (DF) election to avoid loops. EVPN-MH works with VXLAN overlays, supports all-active and single-active configurations, and offers quick convergence via aliasing and multi-homing.
-* **MC-LAG** (or MLAG) is a switch vendor feature that extends LACP across two switches, avoiding loops with a shared control domain. It requires ICCP (Inter-Chassis Control Protocol), one or more peer-links, and typically scales to two devices, providing active-active L2 forwarding. Convergence and scaling are limited compared to EVPN-MH
-
-Ethernet VPN Multi-Homing (EVPN-MH)
-""""""""""""""""""""""""""""""""""""
-**Ethernet VPN Multi-Homing** (EVPN-MH) is a standards-based network feature that allows a single endpoint to connect to two or more switches for redundancy and load sharing. This setup ensures that if one switch or link fails, traffic can continue to flow through the remaining connections without needing to reconfigure the network.
-
-You can configure EVPN-MH in Netris in one of two ways: **Automatic Link Aggregation** or **Server Object custom JSON**.
-
-Automatic Link Aggregation
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Automatic Link Aggregation** is a Netris feature that allows Netris to automatically create a bond interface for each switch port that is added to a V-Net. This prepares the network side to support bonded server connections without requiring manual configuration in the controller or switch port downtime.
-
-The behavior of the bond is determined entirely by the **server-side configuration**. This gives the server administrator direct control over bonding behavior, enabling adjustments without waiting for network team changes, and allowing deployments to be adapted quickly and efficiently.
-
-* Active/Standby (no LACP): The bonded links function for basic redundancy. Traffic fails over if one link goes down, but only one link is active at a time.
-* Active/Active with LACP: If the server bond uses LACP, Netris detects the LACP negotiation and automatically determines which switches and switch ports the member links connect to. It then configures EVPN-MH on those switches and ports, allowing the server to take advantage of multi-homing with active/active load sharing and fault tolerance.
-
-To enable Automatic Link Aggregation
-  * Navigate to ``Network -> Inventory Profiles``.
-  * Edit the Inventory Profile assigned to relevant switches and enable the ``Automatic Link Aggregation`` checkbox.
-
-.. image:: images/inventory-profile-automatic-link-aggregation.png
-   :align: center
-   :alt: Inventory Profile with Automatic Link Aggregation enabled
-   :class: with-shadow
-
-.. raw:: html
-
-  <br />
-
-
-Server object custom JSON
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-Server Object Custom JSON method enables you to exercise granular control over which endpoints get a bond interface.
-
-In a server object definition, Netris supports the use of optional JSON snippets to describe how server NICs are grouped. When you include such a snippet to declare NICs as part of a bond, this serves as a signal to Netris to place the corresponding switch ports into a bond. Just like with the Automatic Link Aggregation method, the server administrator retains full control over the bond behavior, including whether the bond operates in active/standby or active/active mode.
-
-.. image:: images/server-custom-json.png
-   :align: center
-   :alt: Server Object with custom JSON defining a bond interface
-   :class: with-shadow
-
-.. raw:: html
-
-  <br />
-
-.. code-block:: json
-    :caption: Example JSON snippet defining a bond interface
-
-    {
-        "network": {
-            "eth9": {
-                "slave": "bond0",
-                "mtu": 9216
-            },
-            "eth10": {
-                "slave": "bond0",
-                "mtu": 9216
-            }
-        }
-    }
-
-.. warning::
-    The JSON method and Automatic Link Aggregation serve the same purpose. If Automatic Link Aggregation is turned on, any JSON entries are ignored.
-
-MC-LAG
-"""""""""""""""""""""""
-**Mult-chassis Link Aggregation** (MC-LAG) is a switch vendor's proprietary link aggregation method available to you and supported by Netris. Please check our :ref:`Overlay Network Functions <overlay-network-functions>` to verify which switches support this functionality.
-
-In contrast to EVPN-MH, when using MC-LAG, users are expected to manually define the aggregation interfaces in the Netris controller and explicitly specify the switch ports to be added as bond members.
-
-Additionally, you must add the aggregation interfaces (aggX) to the V-Net instead of the individual switch ports (swpX), like you would in EVPN-MH.
-
-.. warning::
-    MC-LAG requires the use of peer-link.
-
-Enable MC-LAG in the inventory profile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-You must enable MC-LAG support in the Inventory Profile that is assigned to the switch fabric.
-
-To enable MC-LAG support:
-  - Navigate to ``Network -> Inventory Profiles``.
-  - Edit the Inventory Profile that is applied to the appropriate switches and set the checkbox for ``Enable MC-LAG``.
-
-.. image:: images/inventory-profile-set-enable-MCLAG.png
-   :align: center
-   :alt: Inventory Profile with Enable MC-LAG checkbox set
-   :class: with-shadow
-
-.. raw:: html
-
-    <br />
-
-.. warning::
-    When you enable MC-LAG functionality, Netris will automatically disable EVPN-MH support. These two features are mutually exclusive in a given fabric.
-
-Configure MC-LAG Peer Link(s)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-MC-LAG requires the presence of a physical peer link between the two switches participating in an MC-LAG configuration. Netris recommends multiple peer links for redundancy.
-
-To define a peer link in Topology Manager
-  - Navigate to ``Network -> Topology``.
-  - Right-click one of the switches you will use in the MC-LAG pair.
-  - Select ``Create Link``.
-  - In the *Create Link* dialog box, select the other switch in the MC-LAG pair in the *To Device* drop-down.
-  - Set the ``MC-LAG Peer Link`` check box.
-  - ENter the shared MC-LAG IPv4 address and MC-LAG anycast MAC address.
-
-.. image:: images/create-mclag-peer-link.png
-   :align: center
-   :alt: Create Link dialog with MC-LAG Peer Link checkbox set
-   :class: with-shadow
-
-.. raw:: html
-
-    <br />
-
-.. important::
-    - Multiple MC-LAG peer links between the same pair of switches must have the same MC-LAG IPv4 and MAC addresses.
-    - The MC-LAG shared IPv4 address must be a part of any IPAM-defined subnet with the purpose set to loopback.
-    - For MC-LAG anycast MAC address, Netris recommends choosing any MAC address from  44:38:39:ff:00:00 - 44:38:39:ff:ff:ff range. The MAC address should be globally unique compared to other links in the Netris controller, except when other links are between the same pair of switches.
-
-Create MC-LAG aggregation interfaces
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Navigate to ``Network -> Network Interfaces``, select one or more switch ports, use the bulk action menu, and select ``Add to LAG``.
-
-.. image:: images/interfaces-bulk-action-add-to-lag.png
-    :align: center
-    :alt: Bulk action menu with Add to LAG option
-    :class: with-shadow
-
-.. raw:: html
-
-    <br />
-
-Click the ``ADD`` button and fill out other values as needed.
-
-.. image:: images/add-to-LAG.png
-    :align: center
-    :alt: Add to LAG dialog
-    :class: with-shadow
-
-.. raw:: html
-
-    <br />
-
-You must set ``MC-LAG`` to *Enabled* and manually enter ``MC-LAG ID`` for Netris to configure the bond as MC-LAG instead of single switch LAG or EVPN-MH.
-
-.. tip::
-    The MC-LAG ID value is locally significant to the switch pair.
-
-You can now add these new *aggX* interfaces to V-Nets the same way you normally add switch ports.
-
-.. image:: images/interfaces-list-agg-interface.png
-    :align: center
-    :alt: List of network interfaces with aggregation interface
-    :class: with-shadow
-
-.. raw:: html
-
-    <br />
-
-.. _tags:
+DHCP
+^^^^
+L2VPN V-Nets may include a native, Netris-managed DHCP service (SoftGate required), or a DHCP Relay to an external non-Netris-managed DHCP server. See :doc:`dhcp-and-dhcp-relay` for details.
 
 Labels
 ^^^^^^
-Labels (sometimes called tags) can be used to automatically place hundreds of switch ports into a V-Net. They can work together with the :doc:`Server Cluster </server-cluster>` and manual methods, or they can replace those methods.
+Labels let you dynamically place switch ports into a V-Net by tagging server NICs, instead of listing switch ports explicitly. See :doc:`labels` for details.
 
-Because Netris knows the topology, When you label server NICs, Netris can automatically identify the connected switch ports and place them into the V-Net.
+.. toctree::
+   :hidden:
+   :maxdepth: 1
 
-How labels work
-""""""""""""""""
-
-When defining a server object in ``Network -> Inventory`` or ``Network -> Topology``, use the *Labels* section to label each NIC on the server using the following key/value syntax.
-
-.. code-block::
-
-    iface.eth1 = prod
-    iface.eth2 = prod
-    iface.eth3 = storage
-    iface.eth4 = storage
-
-.. tip::
-    The hard-coded prefix *iface*. is required; it tells Netris the label applies to that specific NIC, not the whole server.
-
-.. image:: images/server-interface-labels.png
-    :align: center
-    :alt: Server interface labels
-    :class: with-shadow
-
-.. raw:: html
-
-    <br />
-
-To automatically add switch ports to a V-Net based on a label, in the V-Net definition dialog:
-  - Click the ``Add Network Interface Label`` button.
-  - Enter the “value” portion of the label. E.g., *storage* is the value of *iface.eth3=storage* label.
-  - Specify whether you want the switch port to be 802.1q tagged or untagged.
-
-Based on the links defined in the Topology, Netris finds the switch ports eth1 and eth2 are connected to and adds them to the V-Net.
-
-.. image:: images/add-vnet-interface-based-on-label.png
-    :align: center
-    :alt: Add Network Interface Label dialog
-    :class: with-shadow
-
-.. raw:: html
-
-    <br />
-
-Rules and limits
-"""""""""""""""""""""
-
-- If a port is added both directly and by label, the direct entry wins even if you remove the label from the server NIC.
-- The same NIC can be untagged in only one V-Net.
-- Switch ports used for underlay links are ignored.
-- Works only on server objects with switch-to-server links defined.
-- Labels can only be used to add switch ports to a VLAN-unaware L2VPN V-Nets. L3VPN and VLAN-aware L2VPN are not supported.
-
-When to use labels
-""""""""""""""""""
-Labels can be used on their own or together with :doc:`Server Cluster </server-cluster>`.
-
-Imagine a multi-tenant cloud operator manages hundreds of GPU servers, each with 11 network interfaces (a very typical situation): 8 interfaces for East-West traffic, 2 interfaces for North-South, and the last one for management.
-
-The operator wants to be able to dynamically assign servers to different tenants, which means NICs *eth1* through *eth10* must be placed into the correct tenant’s VPC.
-
-At the same time, the operator wants to keep the server’s IPMI / ILO / iDrac interface eth11 in the management VPC regardless of which tenant the server is reassigned to.
-
-To achieve this outcome, the cloud operator can
-
-    - Define a Server Cluster Template and only include non-management server NICs (*eth1* through *eth10*) in the template.
-
-      .. code-block:: json
-
-        [
-            {
-                "postfix": "East-West",
-                "type": "l3vpn",
-                "vlan": "untagged",
-                "vlanID": "auto",
-                "serverNics": [
-                    "eth1",
-                    "eth2",
-                    "eth3",
-                    "eth4",
-                    "eth5",
-                    "eth6",
-                    "eth7",
-                    "eth8"
-                ]
-            },
-            {
-                "postfix": "North-South-in-band-and-storage",
-                "type": "l2vpn",
-                "vlan": "untagged",
-                "vlanID": "auto",
-                "serverNics": [
-                    "eth9",
-                    "eth10"
-                ],
-                "ipv4Gateway": "192.168.7.254/21"
-            }
-        ]
-
-    .. image:: images/GPU-cluster-template.png
-        :align: center
-        :alt: GPU Cluster Template
-        :class: with-shadow
-
-    .. raw:: html
-
-        <br />
-
-    - Label the IPMI (*eth11*) NIC rather than include it in the Server Cluster Template.
-
-    .. figure:: images/label-eth11-ipmi.png
-        :align: center
-        :alt: Label eth11 for IPMI
-        :class: with-shadow
-
-        The operator adds a *iface.eth11=ipmi* label to each server object for *eth11*
-
-    .. raw:: html
-
-        <br />
-
-    - Create a V-Net that includes this label as described earlier.
-
-    .. figure:: images/create-vnet-label-ipmi.png
-        :align: center
-        :alt: Create V-Net for IPMI label
-        :class: with-shadow
-
-        The operator creates a V-Net for the management interfaces and adds network interfaces matching the *ipmi* label value.
-    
-    .. raw:: html
-
-        <br />
-
-As a result of this configuration, Netris automatically adds *eth11* into the “Management” V-Net.
-
-When a Server Cluster is created referencing the *GPU-cluster-template*, Netris will:
-
-  - Keep *eth11* in the Management V-Net (notice in this example the V-Net is in the Default VPC).
-  - Create new *East-West* and *North-South-in-band-and-storage* V-Nets in the VPCs selected when defining the Server Cluster. See :doc:`Server Cluster documentation </server-cluster>` for more details about creating Server Clusters.
-  - Place *eth1* through *eth10* into the tenant’s V-Nets as specified in the template, even though the V-Nets are in a different VPC from the Management V-Net.
-
-When the operator needs to reallocate the GPU servers to a different tenant, they simply reassign these servers to a different tenant’s Server Cluster. Netris will reconfigure the appropriate switch ports on the appropriate switches, but will keep the *eth11* in the Management V-Net.
-
+   dhcp-and-dhcp-relay
+   link-aggregation-and-multihoming
 
 L3VPN
 -----------------

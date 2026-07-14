@@ -11,24 +11,49 @@ Topology Blueprint Activation
 
 NetQ topology validation requires a blueprint defined in Graphviz ``.dot`` format. Netris is the authoritative source of topology for all networks it manages, and provides built-in export functionality that generates a ``.dot`` file formatted for direct import into NVIDIA NetQ.
 
-In the Netris controller, navigate to Network->Topology, select the appropriate site (datacenter), click Export and select NVIDIA NetQ - the web browser will download a .dot file.
+In the Netris controller, navigate to Network→Topology, select the appropriate site (datacenter), click Export and select NVIDIA NetQ — the web browser will download a .dot file.
 
 .. image:: netq-0.png
+  :alt: Export topology as NetQ blueprint
   :align: center
 
+.. raw:: html
 
-Upload the newly generated .dot file into the NVIDIA NetQ. Navigate to Validation, Create a validation, Run on all switches, Topology, and click Upload Blueprint file. 
+   <p style="text-align: center;"><em>Figure: Export topology as NetQ blueprint</em></p>
+
+
+Upload the newly generated .dot file into the NVIDIA NetQ. Navigate to Validation, Create a validation, Run on all switches, Topology, and click Upload Blueprint file.
 
 .. image:: netq-1.png
+  :alt: NetQ create validation step 1
   :align: center
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: NetQ create validation step 1</em></p>
 
 .. image:: netq-2.png
+  :alt: NetQ create validation step 2
   :align: center
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: NetQ create validation step 2</em></p>
 
 .. image:: netq-3.png
+  :alt: NetQ create validation step 3
   :align: center
 
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: NetQ create validation step 3</em></p>
+
 .. image:: netq-4.png
+  :alt: NetQ create validation step 4
   :align: center
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: NetQ create validation step 4</em></p>
 
 When you see the Blueprint successfully activated, your NVIDIA NetQ is aligned with the Netris topology and ready for further operation.
