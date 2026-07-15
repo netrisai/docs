@@ -48,6 +48,14 @@ Netris V-Net supports **two transport modes**:
 
 L2VPN V-Nets
 ----------------
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   dhcp-and-dhcp-relay
+   link-aggregation-and-multihoming
+
 You can start creating a new V-Net by navigating to ``Services -> V-Net`` and clicking ``+Add`` in the top right.
 
 Every V-Net must include:
@@ -216,13 +224,6 @@ L2VPN V-Nets may include a native, Netris-managed DHCP service (SoftGate require
 Labels
 ^^^^^^
 Labels let you dynamically place switch ports into a V-Net by tagging server NICs, instead of listing switch ports explicitly. See :doc:`labels` for details.
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   dhcp-and-dhcp-relay
-   link-aggregation-and-multihoming
 
 L3VPN
 -----------------
