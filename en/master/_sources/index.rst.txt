@@ -48,9 +48,9 @@ You are welcome to join our community Slack_ channel to get additional support f
    :caption: Fabric Management
 
    site
+   vpc
    topology-management
    inventory-profile
-   vpc
    ipam
    network-policies
    switch-ports

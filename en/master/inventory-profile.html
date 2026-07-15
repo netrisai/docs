@@ -98,7 +98,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="VPC" href="vpc.html" />
+    <link rel="next" title="IP Address Management (IPAM)" href="ipam.html" />
     <link rel="prev" title="Inventory" href="topology-management.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
@@ -410,6 +410,18 @@
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="site.html">Netris Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vpc.html">VPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#vpc-child-objects">VPC child objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#system-vpc-and-default-vpc">System VPC and Default VPC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vpc.html#what-the-default-vpc-is-for">What the Default VPC is for</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpc.html#what-the-system-vpc-is-for">What the System VPC is for</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#historical-note-why-system-vpc-and-default-vpc-are-the-same-vpc-today">Historical note: why System VPC and Default VPC are the same VPC today</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-softgates">Adding SoftGates</a></li>
@@ -428,18 +440,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-rules">Custom Rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ztp-settings">ZTP Settings</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="vpc.html">VPC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vpc.html#vpc-child-objects">VPC child objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vpc.html#system-vpc-and-default-vpc">System VPC and Default VPC</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="vpc.html#what-the-default-vpc-is-for">What the Default VPC is for</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vpc.html#what-the-system-vpc-is-for">What the System VPC is for</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="vpc.html#historical-note-why-system-vpc-and-default-vpc-are-the-same-vpc-today">Historical note: why System VPC and Default VPC are the same VPC today</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipam.html">IP Address Management (IPAM)</a><ul>
@@ -1124,7 +1124,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
         <a href="topology-management.html" class="btn btn-neutral float-left" title="Inventory" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="vpc.html" class="btn btn-neutral float-right" title="VPC" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ipam.html" class="btn btn-neutral float-right" title="IP Address Management (IPAM)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -1275,7 +1275,7 @@
 <li><p><strong>HWMP</strong> (default = unchecked) Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture.</p></li>
 <li><p><strong>Reference Architecture</strong> (default = None)  This setting tells Netris which reference architecture is being deployed on the subject fabric, so Netris can apply the appropriate prefix summarization in the L3VPN overlay.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="194b9585-4980-415f-b1f7-cfbe494d90f1" name="194b9585-4980-415f-b1f7-cfbe494d90f1" type="checkbox"><label class="sphinx_collapse__label" for="194b9585-4980-415f-b1f7-cfbe494d90f1"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="506a2986-4823-43d9-9f8b-ff8a1019d863" name="506a2986-4823-43d9-9f8b-ff8a1019d863" type="checkbox"><label class="sphinx_collapse__label" for="506a2986-4823-43d9-9f8b-ff8a1019d863"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Reference Architecture</p></th>
@@ -1346,7 +1346,7 @@ If additional inbound services (e.g., Netflow/Sflow) need to be allowed, you can
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="topology-management.html" class="btn btn-neutral float-left" title="Inventory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="vpc.html" class="btn btn-neutral float-right" title="VPC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ipam.html" class="btn btn-neutral float-right" title="IP Address Management (IPAM)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
