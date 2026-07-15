@@ -63,7 +63,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Labels for automatically assigning switch ports to a V-Net based on server NIC tags" name="description" />
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
     <script>
@@ -74,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Netris Documentation</title>
+  <title>Labels &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -94,8 +96,10 @@
       <script src="_static/design-tabs.js?v=f930bc37"></script>
       <script src="_static/version-picker.js?v=51bfea80"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Release Notes" href="release-notes/index.html" />
+    <link rel="prev" title="Custom NVUE Configuration Snippets" href="snippets.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -856,7 +860,7 @@
 <li class="toctree-l1"><a class="reference internal" href="vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a><ul>
@@ -868,10 +872,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="snippets.html">Custom NVUE Configuration Snippets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="labels.html#when-to-use-labels">When to use labels</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Labels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-labels-work">How labels work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rules-and-limits">Rules and limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#when-to-use-labels">When to use labels</a></li>
 </ul>
 </li>
 </ul>
@@ -1102,27 +1106,124 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item active">Labels</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/genindex" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/labels.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
-  </ul>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="snippets.html" class="btn btn-neutral float-left" title="Custom NVUE Configuration Snippets" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="release-notes/index.html" class="btn btn-neutral float-right" title="Release Notes" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section id="labels">
+<span id="tags"></span><h1>Labels<a class="headerlink" href="#labels" title="Link to this heading"></a></h1>
+<p>Labels (sometimes called tags) can be used to automatically place hundreds of switch ports into a V-Net. They can work together with the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> and manual methods, or they can replace those methods.</p>
+<p>Because Netris knows the topology, when you label server NICs, Netris can automatically identify the connected switch ports and place them into the V-Net.</p>
+<section id="how-labels-work">
+<h2>How labels work<a class="headerlink" href="#how-labels-work" title="Link to this heading"></a></h2>
+<p>When defining a server object in <code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">Inventory</span></code> or <code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">Topology</span></code>, use the <em>Labels</em> section to label each NIC on the server using the following key/value syntax.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iface.eth1 = prod
+iface.eth2 = prod
+iface.eth3 = storage
+iface.eth4 = storage
+</pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The hard-coded prefix <em>iface.</em> is required; it tells Netris the label applies to that specific NIC, not the whole server.</p>
+</div>
+<img alt="Server interface labels" class="align-center" src="_images/server-interface-labels.png" />
+<p style="text-align: center;"><em>Figure: Server interface labels</em></p><p>To automatically add switch ports to a V-Net based on a label, in the V-Net definition dialog:</p>
+<ul class="simple">
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Network</span> <span class="pre">Interface</span> <span class="pre">Label</span></code> button.</p></li>
+<li><p>Enter the “value” portion of the label. E.g., <em>storage</em> is the value of <em>iface.eth3=storage</em> label.</p></li>
+<li><p>Specify whether you want the switch port to be 802.1q tagged or untagged.</p></li>
+</ul>
+<p>Based on the links defined in the Topology, Netris finds the switch ports eth1 and eth2 are connected to and adds them to the V-Net.</p>
+<img alt="Add Network Interface Label dialog" class="align-center" src="_images/add-vnet-interface-based-on-label.png" />
+<p style="text-align: center;"><em>Figure: Add Network Interface Label dialog</em></p></section>
+<section id="rules-and-limits">
+<h2>Rules and limits<a class="headerlink" href="#rules-and-limits" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>If a port is added both directly and by label, the direct entry wins even if you remove the label from the server NIC.</p></li>
+<li><p>The same NIC can be untagged in only one V-Net.</p></li>
+<li><p>Switch ports used for underlay links are ignored.</p></li>
+<li><p>Works only on server objects with switch-to-server links defined.</p></li>
+<li><p>Labels can only be used to add switch ports to a VLAN-unaware L2VPN V-Nets. L3VPN and VLAN-aware L2VPN are not supported.</p></li>
+</ul>
+</section>
+<section id="when-to-use-labels">
+<h2>When to use labels<a class="headerlink" href="#when-to-use-labels" title="Link to this heading"></a></h2>
+<p>Labels can be used on their own or together with <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a>.</p>
+<p>Imagine a multi-tenant cloud operator manages hundreds of GPU servers, each with 11 network interfaces (a very typical situation): 8 interfaces for East-West traffic, 2 interfaces for North-South, and the last one for management.</p>
+<p>The operator wants to be able to dynamically assign servers to different tenants, which means NICs <em>eth1</em> through <em>eth10</em> must be placed into the correct tenant’s VPC.</p>
+<p>At the same time, the operator wants to keep the server’s IPMI / ILO / iDrac interface eth11 in the management VPC regardless of which tenant the server is reassigned to.</p>
+<p>To achieve this outcome, the cloud operator can:</p>
+<ul class="simple">
+<li><p>Define a Server Cluster Template and only include non-management server NICs (<em>eth1</em> through <em>eth10</em>) in the template.</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;postfix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;East-West&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l3vpn&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;vlan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;untagged&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;vlanID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;serverNics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;eth1&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;eth2&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;eth3&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;eth4&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;eth5&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;eth6&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;eth7&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;eth8&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;postfix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;North-South-in-band-and-storage&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l2vpn&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;vlan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;untagged&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;vlanID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;serverNics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;eth9&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;eth10&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;ipv4Gateway&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.7.254/21&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<img alt="GPU Cluster Template" class="align-center" src="_images/GPU-cluster-template.png" />
+<p style="text-align: center;"><em>Figure: GPU Cluster Template</em></p><ul class="simple">
+<li><p>Label the IPMI (<em>eth11</em>) NIC rather than include it in the Server Cluster Template.</p></li>
+</ul>
+<img alt="Label eth11 for IPMI" class="align-center" src="_images/label-eth11-ipmi.png" />
+<p style="text-align: center;"><em>Figure: The operator adds a iface.eth11=ipmi label to each server object for eth11</em></p><ul class="simple">
+<li><p>Create a V-Net that includes this label as described earlier.</p></li>
+</ul>
+<img alt="Create V-Net for IPMI label" class="align-center" src="_images/create-vnet-label-ipmi.png" />
+<p style="text-align: center;"><em>Figure: The operator creates a V-Net for the management interfaces and adds network interfaces matching the ipmi label value.</em></p><p>As a result of this configuration, Netris automatically adds <em>eth11</em> into the “Management” V-Net.</p>
+<p>When a Server Cluster is created referencing the <em>GPU-cluster-template</em>, Netris will:</p>
+<ul class="simple">
+<li><p>Keep <em>eth11</em> in the Management V-Net (notice in this example the V-Net is in the Default VPC).</p></li>
+<li><p>Create new <em>East-West</em> and <em>North-South-in-band-and-storage</em> V-Nets in the VPCs selected when defining the Server Cluster. See <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> for more details about creating Server Clusters.</p></li>
+<li><p>Place <em>eth1</em> through <em>eth10</em> into the tenant’s V-Nets as specified in the template, even though the V-Nets are in a different VPC from the Management V-Net.</p></li>
+</ul>
+<p>When the operator needs to reallocate the GPU servers to a different tenant, they simply reassign these servers to a different tenant’s Server Cluster. Netris will reconfigure the appropriate switch ports on the appropriate switches, but will keep the <em>eth11</em> in the Management V-Net.</p>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="snippets.html" class="btn btn-neutral float-left" title="Custom NVUE Configuration Snippets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="release-notes/index.html" class="btn btn-neutral float-right" title="Release Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

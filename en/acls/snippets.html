@@ -98,7 +98,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Release Notes" href="release-notes/index.html" />
+    <link rel="next" title="Labels" href="labels.html" />
     <link rel="prev" title="Accounts" href="accounts.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
@@ -514,30 +514,26 @@
 <li class="toctree-l1"><a class="reference internal" href="vnet.html">V-Net</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp">DHCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp-relay">DHCP Relay</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#example">Example:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="link-aggregation-and-multihoming.html">Link Aggregation and Multihoming</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="link-aggregation-and-multihoming.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="link-aggregation-and-multihoming.html#mc-lag">MC-LAG</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#v-net-fields-explained">V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#advanced-v-net-fields-explained">Advanced V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#multisite-v-nets">Multisite V-Nets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#mc-lag">MC-LAG</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#labels">Labels</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#how-labels-work">How labels work</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#rules-and-limits">Rules and limits</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#when-to-use-labels">When to use labels</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp">DHCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#labels">Labels</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l3vpn">L3VPN</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#creating-an-l3vpn-v-net">Creating an L3VPN V-Net</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#id1">Rules and limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#rules-and-limits">Rules and limits</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#verification-tools">Verification Tools</a><ul>
@@ -586,14 +582,14 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="acls.html">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#where-acl-entries-are-installed">Where ACL Entries Are Installed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acls.html#acl-default-policy">ACL Default Policy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="acls.html#acl-rules">ACL Rules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="acls.html#description-of-ace-fields">Description of ACE fields.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#acl-entries-rules">ACL Entries / Rules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="acls.html#description-of-acl-entry-fields">Description of ACL entry fields.</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="acls.html#checking-for-overlapping-rules">Checking for overlapping rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acls.html#acl-processing-order">ACL Processing Order</a></li>
-<li class="toctree-l2"><a class="reference internal" href="acls.html#where-aces-are-installed">Where ACEs Are Installed</a></li>
 </ul>
 </li>
 </ul>
@@ -876,10 +872,25 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labels.html#when-to-use-labels">When to use labels</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.13.0.html">Netris 4.13.0 Release Notes (Jul/15/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#what-s-new-in-netris-version">What’s new in Netris 4.13.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.12.0.html">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#features">Features</a></li>
@@ -1101,7 +1112,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
         <a href="accounts.html" class="btn btn-neutral float-left" title="Accounts" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="release-notes/index.html" class="btn btn-neutral float-right" title="Release Notes" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="labels.html" class="btn btn-neutral float-right" title="Labels" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -1165,7 +1176,7 @@ nv<span class="w"> </span>config<span class="w"> </span>diff
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="accounts.html" class="btn btn-neutral float-left" title="Accounts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="release-notes/index.html" class="btn btn-neutral float-right" title="Release Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="labels.html" class="btn btn-neutral float-right" title="Labels" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
