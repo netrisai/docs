@@ -50,6 +50,7 @@ You are welcome to join our community Slack_ channel to get additional support f
    site
    topology-management
    inventory-profile
+   vpc
    ipam
    network-policies
    switch-ports

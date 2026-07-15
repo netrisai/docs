@@ -40,7 +40,11 @@ Brief glossary entries for the four AI data center fabric roles. The :doc:`Intro
 Network constructs
 ------------------
 
-* **Netris VPC** - A logically segregated virtual network. A Netris VPC acts as a VRF in traditional networking, allowing overlapping IP ranges across different VPCs while keeping resources securely managed and isolated.
+* **Netris VPC** - A logically segregated virtual network. A Netris VPC acts as a VRF in traditional networking, allowing overlapping IP ranges across different VPCs while keeping resources securely managed and isolated. See :doc:`vpc` for the full explanation, including VPC child objects.
+
+    * **System VPC** - The pre-provisioned VPC (VPC-1) that anchors infrastructure objects: switch loopback/VTEP IPAM subnets, eBGP sessions terminated on SoftGate, and the public/exit side of NAT and load-balancer services. Not deletable. Intended for platform/infrastructure objects only, not tenant workloads. See :doc:`vpc`.
+
+    * **Default VPC** - The VPC the Controller substitutes for the (required) VPC field whenever a value isn't explicitly given — the one pre-populated/auto-selected in "Add new" dialogs in the web UI, and the one used to fill in the field for API/Terraform calls that omit it. Ships as the same VPC as the System VPC (VPC-1), but the two are independent concepts — any VPC can be flagged as default. See :doc:`vpc`.
 
 * **V-Net (Virtual Network)** - A Netris construct for grouping switch ports into a defined network segment — much like a traditional VLAN or a public cloud subnet. A virtual networking service that provides Layer 2 (unrouted) or Layer 3 (routed) virtual network segments inside a Netris VPC. A V-Net is assigned to one VPC and one or more sites. Endpoints (servers, VMs) are connected to V-Nets.
 
