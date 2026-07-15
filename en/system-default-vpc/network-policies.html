@@ -423,6 +423,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#netq-settings">NetQ Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -525,30 +526,26 @@
 <li class="toctree-l1"><a class="reference internal" href="vnet.html">V-Net</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp">DHCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp-relay">DHCP Relay</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#example">Example:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="link-aggregation-and-multihoming.html">Link Aggregation and Multihoming</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="link-aggregation-and-multihoming.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="link-aggregation-and-multihoming.html#mc-lag">MC-LAG</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#v-net-fields-explained">V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#advanced-v-net-fields-explained">Advanced V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#multisite-v-nets">Multisite V-Nets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#mc-lag">MC-LAG</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#labels">Labels</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#how-labels-work">How labels work</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#rules-and-limits">Rules and limits</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#when-to-use-labels">When to use labels</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp">DHCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#labels">Labels</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l3vpn">L3VPN</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#creating-an-l3vpn-v-net">Creating an L3VPN V-Net</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#id1">Rules and limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#rules-and-limits">Rules and limits</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#verification-tools">Verification Tools</a><ul>
@@ -597,9 +594,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="acls.html">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#where-acl-entries-are-installed">Where ACL Entries Are Installed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acls.html#acl-default-policy">ACL Default Policy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="acls.html#acl-rules">ACL Rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="acls.html#acl-approval-workflow">ACL Approval Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#acl-entries-rules">ACL Entries / Rules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="acls.html#description-of-acl-entry-fields">Description of ACL entry fields.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#checking-for-overlapping-rules">Checking for overlapping rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acls.html#acl-processing-order">ACL Processing Order</a></li>
 </ul>
 </li>
@@ -883,10 +884,34 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labels.html#when-to-use-labels">When to use labels</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.13.0.html">Netris 4.13.0 Release Notes (Jul/15/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#what-s-new-in-netris-version">What’s new in Netris 4.13.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.12.0.html">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.11.0.html">Netris 4.11.0 Release Notes (Jun/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.11.0.html#what-s-new-in-netris-version">What’s new in Netris 4.11.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.11.0.html#features">Features</a></li>
@@ -1109,7 +1134,7 @@
   <section id="netris-vpc">
 <span id="vpc-def"></span><h1>Netris VPC<a class="headerlink" href="#netris-vpc" title="Link to this heading"></a></h1>
 <p>The Netris VPC offers you the ability to operate your resources within a logically segregated virtual network. You can create, edit, and remove VPCs as needed. The VPC acts as a VRF in traditional networking, providing the flexibility to employ overlapping IP ranges across various VPCs while maintaining secure management and operation of resources.</p>
-<p>Netris Controller ships with one VPC (VPC-1) pre-provisioned; it cannot be deleted. VPC-1 carries two distinct roles at once — it is both the <strong>System VPC</strong> (the trust boundary and anchor for infrastructure objects such as switch loopbacks and SoftGate-terminated BGP/NAT/load-balancer traffic) and the <strong>Default VPC</strong> (the VPC the Controller substitutes for the required VPC field when a value isn’t explicitly given, and the one pre-populated in “Add new” dialogs in the web UI). These are different concepts that happen to be the same VPC by default. See <a class="reference internal" href="vpc.html"><span class="doc">VPC</span></a> for the full explanation and for the list of objects that belong to a VPC, before creating additional VPCs.</p>
+<p>Netris Controller ships with one VPC (VPC-1) pre-provisioned; it cannot be deleted. VPC-1 carries two distinct roles at once — it is both the <strong>System VPC</strong> (the trust boundary and anchor for infrastructure objects such as switch loopbacks and SoftGate-terminated BGP/NAT/load-balancer traffic) and the <strong>Default VPC</strong> (the VPC the Controller substitutes for the required VPC field when a value isn’t explicitly given, and the one pre-populated in “Add new” dialogs in the web UI). These are different concepts that happen to be the same VPC by default. See the Netris VPC page for the full explanation and for the list of objects that belong to a VPC, before creating additional VPCs.</p>
 <p>The following diagram shows a VPC concept in the Netris Controller.</p>
 <img alt="VPC diagram" class="align-center" src="_images/vpc_diagram.png" />
 <p>VPC is the highest entity in the hierarchy and it spreads over all Sites.

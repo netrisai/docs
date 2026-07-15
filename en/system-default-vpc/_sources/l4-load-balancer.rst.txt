@@ -32,7 +32,7 @@ Screenshot: Listing of Net→IPAM after adding a load-balancer assignment
     
 Consuming L4LB service
 ----------------------
-This guide describes how to request an L4 Load Balancer using GUI. For Kubernetes integration, check the Kubenet section.
+This guide describes how to request an L4 Load Balancer using the GUI. For Kubernetes integration, see the :doc:`Kubernetes Integration <kubernetes-integration>` documentation.
 
 Click +add under Services→L4 Load Balancer to request an L4LB service.
 

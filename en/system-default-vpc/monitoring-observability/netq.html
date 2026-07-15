@@ -422,6 +422,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../inventory-profile.html">Inventory Profiles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#netq-settings">NetQ Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -524,30 +525,26 @@
 <li class="toctree-l1"><a class="reference internal" href="../vnet.html">V-Net</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../vnet.html#dhcp">DHCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vnet.html#dhcp-relay">DHCP Relay</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#example">Example:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../link-aggregation-and-multihoming.html">Link Aggregation and Multihoming</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../link-aggregation-and-multihoming.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../link-aggregation-and-multihoming.html#mc-lag">MC-LAG</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../vnet.html#v-net-fields-explained">V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../vnet.html#advanced-v-net-fields-explained">Advanced V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../vnet.html#multisite-v-nets">Multisite V-Nets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#mc-lag">MC-LAG</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../vnet.html#labels">Labels</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#how-labels-work">How labels work</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#rules-and-limits">Rules and limits</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#when-to-use-labels">When to use labels</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#dhcp">DHCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#labels">Labels</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#l3vpn">L3VPN</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../vnet.html#creating-an-l3vpn-v-net">Creating an L3VPN V-Net</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vnet.html#id1">Rules and limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#rules-and-limits">Rules and limits</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#verification-tools">Verification Tools</a><ul>
@@ -596,9 +593,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../acls.html">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#where-acl-entries-are-installed">Where ACL Entries Are Installed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-default-policy">ACL Default Policy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-rules">ACL Rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-approval-workflow">ACL Approval Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-entries-rules">ACL Entries / Rules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../acls.html#description-of-acl-entry-fields">Description of ACL entry fields.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#checking-for-overlapping-rules">Checking for overlapping rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-processing-order">ACL Processing Order</a></li>
 </ul>
 </li>
@@ -882,10 +883,34 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labels.html">Labels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../labels.html#how-labels-work">How labels work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../labels.html#rules-and-limits">Rules and limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../labels.html#when-to-use-labels">When to use labels</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.13.0.html">Netris 4.13.0 Release Notes (Jul/15/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#what-s-new-in-netris-version">What’s new in Netris 4.13.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.12.0.html">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.12.0.html#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.12.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.12.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.12.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.12.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.12.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../release-notes/4.11.0.html">Netris 4.11.0 Release Notes (Jun/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.11.0.html#what-s-new-in-netris-version">What’s new in Netris 4.11.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.11.0.html#features">Features</a></li>
@@ -1107,19 +1132,19 @@
              
   <section id="nvidia-netq-integration">
 <h1>NVIDIA NetQ Integration<a class="headerlink" href="#nvidia-netq-integration" title="Link to this heading"></a></h1>
-<p>NVIDIA NetQ is a real-time network monitoring, visibility, and analytics solution designed for data centers running NVIDIA Cumulus Linux. It helps network administrators and operators gain deep insights into their network infrastructure, ensuring optimal performance, rapid troubleshooting, and proactive issue resolution.</p>
-<p>Although Netris has built-in automatic monitoring and observability functionalities, integration with NVIDIA NetQ allows our NVIDIA customers to gain additional real-time monitoring, deeper visibility, and smarter analytics. Critical for AI Infrastructure.</p>
+<p>NVIDIA® NetQ™ is a network operations tool set that provides visibility into overlay and underlay networks, enabling real-time troubleshooting across the entire data center stack — from container, virtual machine, or host, down to the switch and port. NetQ correlates configuration and operational status, tracks state changes, and delivers streaming telemetry for hardware-accelerated detection of data plane anomalies and intermittent network issues. It is purpose-built for NVIDIA Cumulus Linux environments running on NVIDIA Spectrum Ethernet platforms.</p>
+<p>Netris includes built-in monitoring and observability across the networks it manages. For operators running NVIDIA NetQ alongside Netris, Netris serves as the authoritative source of topology — and can export the complete, modeled network topology as a Graphviz <code class="docutils literal notranslate"><span class="pre">.dot</span></code> file. This file can be imported directly into your NetQ instance to create topology validation jobs, enabling NetQ to verify that the physical network matches the intended design. To learn more about NetQ topology validations, see the <a class="reference external" href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-50/Validate-Operations/Validate-Network-Protocol-and-Service-Operations/?#topology-validations">NVIDIA NetQ documentation</a>.</p>
 <section id="topology-blueprint-activation">
 <h2>Topology Blueprint Activation<a class="headerlink" href="#topology-blueprint-activation" title="Link to this heading"></a></h2>
-<p>NVIDIA NetQ requires the topology blueprint described in a .dot file format. Netris is aware of the Netris-managed network topology and has built-in functionality for exporting .dot file in NVIDIA NetQ format.</p>
-<p>In the Netris controller, navigate to Network-&gt;Topology, select the appropriate site (datacenter), click Export and select NVIDIA NetQ - the web browser will download a .dot file.</p>
-<img alt="../_images/netq-0.png" class="align-center" src="../_images/netq-0.png" />
-<p>Upload the newly generated .dot file into the NVIDIA NetQ. Navigate to Validation, Create a validation, Run on all switches, Topology, and click Upload Blueprint file.</p>
-<img alt="../_images/netq-1.png" class="align-center" src="../_images/netq-1.png" />
-<img alt="../_images/netq-2.png" class="align-center" src="../_images/netq-2.png" />
-<img alt="../_images/netq-3.png" class="align-center" src="../_images/netq-3.png" />
-<img alt="../_images/netq-4.png" class="align-center" src="../_images/netq-4.png" />
-<p>When you see the Blueprint successfully activated, your NVIDIA NetQ is aligned with the Netris topology and ready for further operation.</p>
+<p>NetQ topology validation requires a blueprint defined in Graphviz <code class="docutils literal notranslate"><span class="pre">.dot</span></code> format. Netris is the authoritative source of topology for all networks it manages, and provides built-in export functionality that generates a <code class="docutils literal notranslate"><span class="pre">.dot</span></code> file formatted for direct import into NVIDIA NetQ.</p>
+<p>In the Netris controller, navigate to Network→Topology, select the appropriate site (datacenter), click Export and select NVIDIA NetQ — the web browser will download a .dot file.</p>
+<img alt="Export topology as NetQ blueprint" class="align-center" src="../_images/netq-0.png" />
+<p style="text-align: center;"><em>Figure: Export topology as NetQ blueprint</em></p><p>Upload the newly generated .dot file into the NVIDIA NetQ. Navigate to Validation, Create a validation, Run on all switches, Topology, and click Upload Blueprint file.</p>
+<img alt="NetQ create validation step 1" class="align-center" src="../_images/netq-1.png" />
+<p style="text-align: center;"><em>Figure: NetQ create validation step 1</em></p><img alt="NetQ create validation step 2" class="align-center" src="../_images/netq-2.png" />
+<p style="text-align: center;"><em>Figure: NetQ create validation step 2</em></p><img alt="NetQ create validation step 3" class="align-center" src="../_images/netq-3.png" />
+<p style="text-align: center;"><em>Figure: NetQ create validation step 3</em></p><img alt="NetQ create validation step 4" class="align-center" src="../_images/netq-4.png" />
+<p style="text-align: center;"><em>Figure: NetQ create validation step 4</em></p><p>When you see the Blueprint successfully activated, your NVIDIA NetQ is aligned with the Netris topology and ready for further operation.</p>
 </section>
 </section>
 

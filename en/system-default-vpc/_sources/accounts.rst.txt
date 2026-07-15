@@ -15,7 +15,7 @@ Description of User account fields:
 * **Full Name** - Full Name of the user. 
 * **E-mail** - The email address of the user. Also used for system notifications and for password retrieval.
 * **E-mail CC** - Send copies of email notifications to this address.
-* **Phone Number** - User’s phone number.
+* **Phone Number** - User's phone number.
 * **Company** - Company the user works for. Usually useful for multi-tenant systems where the company provides Netris Controller access to customers.
 * **Position** - Position within the company.
 * **User Role** - When using a User Role object to define RBAC (role-based access control), Permissions Group and Tenant fields will deactivate.
@@ -27,13 +27,21 @@ Example: Creating a user with full access to all sections of Netris Controller, 
 .. image:: images/add_user.png
     :align: center
     :alt: User Management
-    
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: User Management</em></p>
+
 **Password**: To set a password or email the user for a password form, go to the listing of usernames and click the menu on the right side. 
 
 .. image:: images/user_set_password.png
     :align: center
-    :alt:  List User Accounts
-    
+    :alt: List User Accounts
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: List User Accounts</em></p>
+
 Tenants
 =======
 
@@ -51,8 +59,6 @@ VPCs and V-Nets in Netris support two tenant roles:
 * The **Admin Tenant** owns the object and can manage all of its parameters.
 * **Guest Tenants** are tenants granted delegated access to add and remove resources inside the object, but cannot change the object's parameters.
 
-.. TODO: Enumerate the specific parameters managed by Admin Tenant for VPC and V-Net once confirmed with engineering/architects.
-
 For a VPC, the Admin Tenant manages all VPC-level parameters. Guest Tenants of a VPC can add and remove services inside it — V-Nets, L4 Load Balancers, Server Clusters, IPAM subnets — but cannot change the VPC's own parameters.
 
 For a V-Net, the Admin Tenant manages all V-Net parameters. Guest Tenants of a V-Net can add and remove switch ports in it but cannot change the V-Net's own parameters.
@@ -62,7 +68,11 @@ Example: Adding a tenant.
 .. image:: images/add_tenant.png
     :align: center
     :alt: Adding Tenants
-    
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Adding Tenants</em></p>
+
 Permission Groups
 =================
 
@@ -72,8 +82,12 @@ Example: Permission Group.
 
 .. image:: images/add_perm_group.png
     :align: center
-    :alt: Managing Permissions 
-    
+    :alt: Managing Permissions
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Managing Permissions</em></p>
+
 User Roles
 ==========
 
@@ -82,4 +96,8 @@ Permission Groups and Tenants can be either linked directly to an individual use
 .. image:: images/add_user_role.png
     :align: center
     :alt: User Roles
-    
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: User Roles</em></p>
+
