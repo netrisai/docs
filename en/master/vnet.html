@@ -514,16 +514,21 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">V-Net</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#l2vpn-v-nets">L2VPN V-Nets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="link-aggregation-and-multihoming.html">Link Aggregation and Multihoming</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="link-aggregation-and-multihoming.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="link-aggregation-and-multihoming.html#mc-lag">MC-LAG</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#v-net-fields-explained">V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-v-net-fields-explained">Advanced V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#multisite-v-nets">Multisite V-Nets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dhcp">DHCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#labels">Labels</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a></li>
-<li class="toctree-l4"><a class="reference internal" href="link-aggregation-and-multihoming.html">Link Aggregation and Multihoming</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#labels">Labels</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#l3vpn">L3VPN</a><ul>
@@ -1176,6 +1181,8 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 </section>
 <section id="l2vpn-v-nets">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">L2VPN V-Nets</a><a class="headerlink" href="#l2vpn-v-nets" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+</div>
 <p>You can start creating a new V-Net by navigating to <code class="docutils literal notranslate"><span class="pre">Services</span> <span class="pre">-&gt;</span> <span class="pre">V-Net</span></code> and clicking <code class="docutils literal notranslate"><span class="pre">+Add</span></code> in the top right.</p>
 <dl class="simple">
 <dt>Every V-Net must include:</dt><dd><ul class="simple">
@@ -1372,8 +1379,6 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <section id="labels">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Labels</a><a class="headerlink" href="#labels" title="Link to this heading"></a></h3>
 <p>Labels let you dynamically place switch ports into a V-Net by tagging server NICs, instead of listing switch ports explicitly. See <a class="reference internal" href="labels.html"><span class="doc">Labels</span></a> for details.</p>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 </section>
 <section id="l3vpn">
