@@ -514,30 +514,21 @@
 <li class="toctree-l1"><a class="reference internal" href="vnet.html">V-Net</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp">DHCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp-relay">DHCP Relay</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#example">Example:</a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#v-net-fields-explained">V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#advanced-v-net-fields-explained">Advanced V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#multisite-v-nets">Multisite V-Nets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#mc-lag">MC-LAG</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp">DHCP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#labels">Labels</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#how-labels-work">How labels work</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#rules-and-limits">Rules and limits</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnet.html#when-to-use-labels">When to use labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="link-aggregation-and-multihoming.html">Link Aggregation and Multihoming</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l3vpn">L3VPN</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#creating-an-l3vpn-v-net">Creating an L3VPN V-Net</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#id1">Rules and limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html#rules-and-limits">Rules and limits</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#verification-tools">Verification Tools</a><ul>
@@ -586,9 +577,13 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#where-acl-entries-are-installed">Where ACL Entries Are Installed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#acl-default-policy">ACL Default Policy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#acl-rules">ACL Rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#acl-approval-workflow">ACL Approval Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acl-entries-rules">ACL Entries / Rules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description-of-acl-entry-fields">Description of ACL entry fields.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#checking-for-overlapping-rules">Checking for overlapping rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#acl-processing-order">ACL Processing Order</a></li>
 </ul>
 </li>
@@ -872,10 +867,25 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labels.html#when-to-use-labels">When to use labels</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.13.0.html">Netris 4.13.0 Release Notes (Jul/15/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#what-s-new-in-netris-version">What’s new in Netris 4.13.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.12.0.html">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.12.0.html#features">Features</a></li>
@@ -1106,78 +1116,224 @@
              
   <section id="access-control-lists-acl">
 <span id="acl-def"></span><h1>Access Control Lists (ACL)<a class="headerlink" href="#access-control-lists-acl" title="Link to this heading"></a></h1>
-<p>Netris supports ACLs for switch network access control. (ACL and ACL2.0) ACL is for defining network access lists in a source IP: Port, destination IP: Port format. ACL2.0 is an object-oriented service way of describing network access.</p>
-<p>Both ACL and ACL2.0 services support tenant/RBAC based approval workflows. Access control lists execute in switch hardware providing line-rate performance for security enforcement. It’s important to keep in mind that the number of ACLs is limited to the limited size of TCAM of network switches.</p>
-<p>Screenshot: TCAM utilization can be seen under Net→Inventory</p>
-<img alt="_images/TCAM.png" class="with-shadow align-center" src="_images/TCAM.png" />
-<p>Netris is applying several optimization algorithms to minimize the usage of TCAM while achieving the user-defined requirements.</p>
+<p>Netris supports ACL-based network access control on managed switch fabrics. Each entry you configure — an ACL entry — matches traffic by source and destination IP address, port or port range, and protocol, and applies a Permit or Deny action.</p>
+<img alt="_images/acl-main-view.png" class="with-shadow align-center" src="_images/acl-main-view.png" />
+<p style="text-align: center;"><em>Figure: Netris ACL main view</em></p><p>ACL entries execute in switch hardware or on SoftGate depending on the source and destination values (see “Where ACL Entries Are Installed”), providing line-rate performance for security enforcement.</p>
+<p>There’s no fixed limit on the number of ACL entries you can create in the Netris Controller, because Netris only installs any given ACL entry on the switches where it’s actually needed. However, the number of ACL entries that can be installed on any single switch is limited by that switch’s TCAM capacity.</p>
+<p>You can review the usage metrics of any Netris-managed switch in the Inventory screen.</p>
+<img alt="_images/acl-tcam.png" class="with-shadow align-center" src="_images/acl-tcam.png" />
+<p style="text-align: center;"><em>Figure: TCAM utilization view under Net→Inventory</em></p><section id="where-acl-entries-are-installed">
+<h2>Where ACL Entries Are Installed<a class="headerlink" href="#where-acl-entries-are-installed" title="Link to this heading"></a></h2>
+<p>The Netris algorithm automatically determines where in the fabric any given ACL entry is installed and, therefore, enforced, based on whether the source or destination values resolve outside the selected VPC.</p>
+<p>If either the source or destination network is outside the selected VPC, the ACL entry will be added to SoftGate’s output chain.</p>
+<p>If both source and destination networks resolve to the selected VPC, the ACL entry will be installed on an SVI (Switch Virtual Interface) closest to the source of the matching traffic.</p>
+<p>Netris fully supports using overlapping IP schemas in different VPCs. Because every SVI (a Layer-3 interface) belongs to exactly one VPC, two VPCs with overlapping or identical IP ranges never conflict, even if both have sources on the same physical switch: the route lookup happens in the VPC selected on the ACL entry, and the resulting entry always lands on an L3 interface belonging to that VPC.</p>
+</section>
 <section id="acl-default-policy">
 <h2>ACL Default Policy<a class="headerlink" href="#acl-default-policy" title="Link to this heading"></a></h2>
-<p>The ACL default policy is to permit all hosts to communicate with each other.  You can change the default policy on a per Site basis by editing the Site features under Net→Sites. Once the “ACL Default Policy” is changed to “Deny,” the given site will start dropping any traffic unless specific communication is permitted through ACL or ACL2.0 rules.</p>
-<p>Example: Changing “ACL Default Policy” for the site “siteDefault”.</p>
-<img alt="_images/siteDefault.png" class="with-shadow align-center" src="_images/siteDefault.png" />
-</section>
-<section id="acl-rules">
-<h2>ACL Rules<a class="headerlink" href="#acl-rules" title="Link to this heading"></a></h2>
-<p>ACL rules can be created, listed, edited, approved under Services→ACL.</p>
-<p>Description of ACL fields.
-General</p>
+<p>The ACL default policy is to permit all hosts to communicate with each other. You can change the default policy on a per-site basis by editing the Site features under Net→Sites. Once the “ACL Default Policy” is changed to “Deny,” the specified site will start dropping traffic unless specific communication is permitted by an ACL entry.</p>
+<img alt="_images/acl_site_default.png" class="with-shadow align-center" src="_images/acl_site_default.png" />
+<p style="text-align: center;"><em>Figure: Changing the ACL Default Policy for a site</em></p></section>
+<section id="acl-entries-rules">
+<h2>ACL Entries / Rules<a class="headerlink" href="#acl-entries-rules" title="Link to this heading"></a></h2>
+<p>ACL entries can be created, listed, and edited under Services→ACL. IPv4 and IPv6 addresses can’t be mixed in the same entry — each ACL entry matches a single address family.</p>
+<img alt="_images/acl_action_permit.png" class="with-shadow align-center" src="_images/acl_action_permit.png" />
+<p style="text-align: center;"><em>Figure: Example ACL rule permitting SSH traffic with Established</em></p><section id="description-of-acl-entry-fields">
+<h3>Description of ACL entry fields.<a class="headerlink" href="#description-of-acl-entry-fields" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Name</strong> - Unique name for the ACL entry.</p></li>
+<li><p><strong>VPC</strong> - The VPC this ACL entry applies to.
+Netris uses this value to determine where to install the ACL entry. See “Where ACL Entries Are Installed” section.</p></li>
 <li><p><strong>Protocol</strong> - IP protocol to match.</p>
 <ul>
-<li><p>All - Any IP protocols.</p></li>
+<li><p>All - Any IP protocol.</p></li>
 <li><p>IP - Specific IP protocol number.</p></li>
 <li><p>TCP - TCP.</p></li>
 <li><p>UDP - UDP.</p></li>
 <li><p>ICMP ALL - Any IPv4 ICMP protocol.</p></li>
-<li><p>ICMP Custom - Custom IPv4 ICMP code.</p></li>
+<li><p>ICMP Custom - Custom IPv4 ICMP type. See “ICMP Custom values” below.</p></li>
 <li><p>ICMPv6 ALL - Any IPv6 ICMP protocol.</p></li>
 <li><p>ICMPv6 Custom - Custom IPv6 ICMP code.</p></li>
 </ul>
 </li>
 <li><p><strong>Active Until</strong> - Disable this rule at the defined date/time.</p></li>
 <li><p><strong>Action</strong> - Permit or Deny forwarding of matched packets.</p></li>
-<li><p><strong>Established/Reverse</strong> - For TCP, also match reverse packets except with TCP SYN flag. For non-TCP, also generate a reverse rule with swapped source/destination.</p></li>
+<li><p><strong>Established</strong> - For TCP, match reverse packets except with TCP SYN flag. For non-TCP, generate a reverse rule with the source/destination swapped.</p></li>
 </ul>
-<p>Source/Destination - Source and destination addresses and ports to match.</p>
+<p><strong>ICMP Custom values</strong> (Protocol = ICMP Custom) - each value sets the ACL entry to match one ICMPv4 type. Several of these are deprecated and unlikely to appear in real traffic, but Netris still lets you match on them.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">ICMP Custom values</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>ICMP Type</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Echo Reply</p></td>
+<td><p>0</p></td>
+<td><p>Reply to an Echo (ping) request.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Unassigned</p></td>
+<td><p>1</p></td>
+<td><p>Reserved by IANA; no defined meaning.</p></td>
+</tr>
+<tr class="row-even"><td><p>Unassigned</p></td>
+<td><p>2</p></td>
+<td><p>Reserved by IANA; no defined meaning.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Destination Unreachable</p></td>
+<td><p>3</p></td>
+<td><p>The destination network, host, protocol, or port couldn’t be reached (also covers conditions like “fragmentation needed”).</p></td>
+</tr>
+<tr class="row-even"><td><p>Source Quench</p></td>
+<td><p>4</p></td>
+<td><p>Deprecated congestion-control message that once asked a sender to slow down.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Redirect</p></td>
+<td><p>5</p></td>
+<td><p>A router tells a host to use a different next hop for a destination.</p></td>
+</tr>
+<tr class="row-even"><td><p>Alternate Host Address</p></td>
+<td><p>6</p></td>
+<td><p>Deprecated; identified an alternate address for the destination host.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Unassigned</p></td>
+<td><p>7</p></td>
+<td><p>Reserved by IANA; no defined meaning.</p></td>
+</tr>
+<tr class="row-even"><td><p>Echo</p></td>
+<td><p>8</p></td>
+<td><p>Echo (ping) request.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Router Advertisement</p></td>
+<td><p>9</p></td>
+<td><p>Part of ICMP Router Discovery; a router periodically announces itself.</p></td>
+</tr>
+<tr class="row-even"><td><p>Router Selection</p></td>
+<td><p>10</p></td>
+<td><p>Part of ICMP Router Discovery; a host requests an immediate router advertisement at startup.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Time Exceeded</p></td>
+<td><p>11</p></td>
+<td><p>Sent when a packet’s TTL expires in transit (e.g. traceroute) or a fragment reassembly times out.</p></td>
+</tr>
+<tr class="row-even"><td><p>Parameter Problem</p></td>
+<td><p>12</p></td>
+<td><p>Sent when a router or host finds a problem with an IP header field.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Timestamp</p></td>
+<td><p>13</p></td>
+<td><p>Requests a timestamp exchange for basic clock sync/latency measurement.</p></td>
+</tr>
+<tr class="row-even"><td><p>Timestamp Reply</p></td>
+<td><p>14</p></td>
+<td><p>Reply to a Timestamp request.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Information Request</p></td>
+<td><p>15</p></td>
+<td><p>Deprecated; let a host learn its network number.</p></td>
+</tr>
+<tr class="row-even"><td><p>Information Reply</p></td>
+<td><p>16</p></td>
+<td><p>Reply to an Information Request.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Address Mask Request</p></td>
+<td><p>17</p></td>
+<td><p>Deprecated; a host asks for its subnet mask.</p></td>
+</tr>
+<tr class="row-even"><td><p>Address Mask Reply</p></td>
+<td><p>18</p></td>
+<td><p>Reply to an Address Mask Request.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Traceroute</p></td>
+<td><p>30</p></td>
+<td><p>Deprecated ICMP-based traceroute mechanism.</p></td>
+</tr>
+<tr class="row-even"><td><p>Datagram Conversion Error</p></td>
+<td><p>31</p></td>
+<td><p>Deprecated; reported errors converting a datagram between protocols (e.g. IP-to-X.25 gateways).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mobile Host Redirect</p></td>
+<td><p>32</p></td>
+<td><p>Deprecated mobile-IP redirect message.</p></td>
+</tr>
+<tr class="row-even"><td><p>IPv6 Where-Are-You</p></td>
+<td><p>33</p></td>
+<td><p>Deprecated host-discovery message. Despite the name, this is an ICMPv4 type, unrelated to IPv6.</p></td>
+</tr>
+<tr class="row-odd"><td><p>IPv6 I-Am-Here</p></td>
+<td><p>34</p></td>
+<td><p>Deprecated; the paired reply to “IPv6 Where-Are-You.”</p></td>
+</tr>
+<tr class="row-even"><td><p>Mobile Registration Request</p></td>
+<td><p>35</p></td>
+<td><p>Deprecated mobile-IP registration message.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mobile Registration Reply</p></td>
+<td><p>36</p></td>
+<td><p>Reply to a Mobile Registration Request.</p></td>
+</tr>
+<tr class="row-even"><td><p>Domain Name Request</p></td>
+<td><p>37</p></td>
+<td><p>Deprecated; let a host ask for its own domain name.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Domain Name Reply</p></td>
+<td><p>38</p></td>
+<td><p>Reply to a Domain Name Request.</p></td>
+</tr>
+<tr class="row-even"><td><p>Photuris</p></td>
+<td><p>40</p></td>
+<td><p>Signals a security failure during a Photuris key-management exchange.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Source/Destination</strong> - Source and destination addresses and ports to match.</p>
 <ul class="simple">
 <li><p><strong>Source</strong> IPv4/IPv6 - IPv4/IPv6 address.</p></li>
 <li><p><strong>Ports Type</strong></p>
 <ul>
 <li><p>Port Range - Match on the port or a port range defined in this window.</p></li>
-<li><p>Port Group - Match on a group of ports defined under Services→ ACL Port Group.</p></li>
+<li><p>Port Group - Match on a group of ports defined under Services→ACL Port Group.</p></li>
 </ul>
 </li>
 <li><p><strong>From Port</strong> - Port range starting from.</p></li>
 <li><p><strong>To Port</strong> - Port range ending with.</p></li>
-<li><p><strong>Comment</strong> - Descriptive comment, commonly used for approval workflows.</p></li>
-<li><p><strong>Check button</strong> - Check if Another ACL on the system already permits the described network access.</p></li>
+<li><p><strong>Comment</strong> - Descriptive comment.</p></li>
 </ul>
-<p>Example: Permit hosts in 10.0.3.0/24 to access hosts in 10.0.5.0/24 by SSH, also permit the return traffic (Established).</p>
-<img alt="_images/action_permit.png" class="with-shadow align-center" src="_images/action_permit.png" />
-<p>Example: “Check” shows that requested access is already provided by a broader ACL rule.</p>
-<img alt="_images/ACL_rule.png" class="with-shadow align-center" src="_images/ACL_rule.png" />
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At least one of Source or Destination must fall within an existing IPAM entry of type Subnet (not Allocation) — Netris uses this to confirm the ACL entry is anchored to your deployment. The address doesn’t have to match a Subnet entry exactly; it just needs to fit entirely within one; for example, source 10.0.0.1/32 is valid as long as an IPAM Subnet of 10.0.0.0/24 (or any Subnet-type entry that contains it) exists, even though 10.0.0.1/32 itself was never entered into IPAM. If neither Source nor Destination fits within a known Subnet, Netris rejects the ACL entry with “Both Source and Destination addresses are out of this deployment.”</p>
+</div>
+<img alt="_images/acl-src-dst-out-of-deployment.png" class="with-shadow align-center" src="_images/acl-src-dst-out-of-deployment.png" />
+<p style="text-align: center;"><em>Figure: Rejecting an ACL entry that will never be installed on any switch</em></p></section>
 </section>
-<section id="acl-approval-workflow">
-<h2>ACL Approval Workflow<a class="headerlink" href="#acl-approval-workflow" title="Link to this heading"></a></h2>
-<p>When one tenant (one team) needs to get network access to resources under the responsibility of another tenant (another team), an ACL can be created but will activate only after approval of the tenant responsible for the destination address resources. See the below example.</p>
-<p>Example: User representing QA_tenant is creating an ACL where source belongs to QA_tenant, but destination belongs to the Admin tenant.</p>
-<img alt="_images/ACL_approval.png" class="with-shadow align-center" src="_images/ACL_approval.png" />
-<p>Screenshot: ACL stays in “waiting for approval” state until approved.</p>
-<img alt="_images/waiting_approval.png" class="with-shadow align-center" src="_images/waiting_approval.png" />
-<p>Screenshot: Users of tenant Admin, receive a notification in the GUI, and optionally by email. Then one can review the access request and either approve or reject it.</p>
-<img alt="_images/approve_reject.png" class="with-shadow align-center" src="_images/approve_reject.png" />
-<p>Screenshot: Once approved, users of both tenants will see the ACL in the “Active” state, and soon Netris Agents will push the appropriate config throughout the switch fabric.</p>
-<img alt="_images/ACL_active.png" class="with-shadow align-center" src="_images/ACL_active.png" />
+<section id="checking-for-overlapping-rules">
+<h2>Checking for overlapping rules<a class="headerlink" href="#checking-for-overlapping-rules" title="Link to this heading"></a></h2>
+<p>Netris can show you whether the ACL entry you are creating will overlap with another already existing entry. The <strong>Check</strong> button checks the ACL entry you’re adding, editing, or copying against existing ACL entries, and flags any existing entry whose matched traffic overlaps with it — whether that entry is fully shadowed by (entirely contained within) the candidate, or only partially overlaps with it.</p>
+<img alt="_images/acl-check-button.png" class="with-shadow align-center" src="_images/acl-check-button.png" />
+<p style="text-align: center;"><em>Figure: Check button indicates other rules with partial match to the candidate ACL entry</em></p><p>Example: Checking a candidate ACL entry for TCP from 10.0.0.0/8 to 10.1.0.0/24 surfaces two existing ACL entries: TCP from 10.0.0.0/24 to 10.1.0.0/24 (fully shadowed — that traffic is entirely contained within the candidate’s), and TCP from 10.1.0.0/24 to 10.0.0.0/8 (a partial match — since 10.1.0.0/24 is a subset of 10.0.0.0/8, any traffic from 10.1.0.0/24 to 10.1.0.0/24 satisfies both rules’ address ranges, even though neither rule is a superset of the other).</p>
 </section>
 <section id="acl-processing-order">
 <h2>ACL Processing Order<a class="headerlink" href="#acl-processing-order" title="Link to this heading"></a></h2>
+<p>From Services→ACL, every entry you create lives in one flat list. Netris installs entries on a per-interface basis (see “Where ACL Entries Are Installed”): for each interface, it identifies the entries that apply and then sorts that subset independently. That sorted position becomes the entry’s literal sequence number in the switch or SoftGate’s installed rule table, so this order is what determines match precedence on the device. Within each interface’s subset, entries are sorted as follows:</p>
 <ol class="arabic simple">
-<li><p>User-defined Deny Rules</p></li>
-<li><p>User-defined Permit Rules</p></li>
-<li><p>Deny the rest</p></li>
+<li><p>Sort by source IPv4/IPv6 prefix, longest to shortest.</p></li>
+<li><p>For rules with the same source prefix, sort by destination prefix, longest to shortest.</p></li>
+<li><p>For rules with the same source and destination prefix, sort by protocol, in the order: ICMP, UDP, TCP, ANYTHING_ELSE, IP.</p></li>
+<li><p>For rules with the same source prefix, destination prefix, and protocol, sort by source port range, smallest to largest.</p></li>
+<li><p>For rules with the same source prefix, destination prefix, protocol, and source port range, sort by destination port range, smallest to largest.</p></li>
 </ol>
+<p>Action isn’t itself part of the sort order: a more specific Permit rule can take effect ahead of a broader Deny rule and vice versa. This gives more specific rules precedence over general ones, similar to longest-prefix-match behavior in routing.</p>
+<p>A rule with “Established” enabled generates a second, independent rule with source and destination swapped. That reverse rule is sorted into the list by the same criteria above, and — because installation location is based on a route lookup on each rule’s own source address (see “Where ACL Entries Are Installed”) — it’s often installed on a different switch, or SoftGate, than its forward rule, each one taking its own independent position in that interface’s sorted list.</p>
+<p>After all the entries relevant to a given interface, Netris appends an explicit rule that matches the site’s ACL Default Policy: <code class="docutils literal notranslate"><span class="pre">deny</span> <span class="pre">ip</span> <span class="pre">any</span> <span class="pre">any</span></code> if the policy is Deny, or <code class="docutils literal notranslate"><span class="pre">permit</span> <span class="pre">ip</span> <span class="pre">any</span> <span class="pre">any</span></code> if the policy is Permit.</p>
+<p>Because a single ACL entry is always one address family or the other (see above), this sort order never has to resolve precedence between IPv4 and IPv6 entries.</p>
+<p>ANYTHING_ELSE in the protocol order covers protocols that carry TCP flags; these flags aren’t directly configurable on a rule, but checking “Established” automatically sets the appropriate flags on the generated reverse rule. IP, by contrast, refers to selecting a specific IP protocol number in the Netris controller — choose “All” to match every protocol.</p>
 </section>
 </section>
 

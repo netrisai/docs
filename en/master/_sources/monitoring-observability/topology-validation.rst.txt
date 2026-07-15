@@ -2,33 +2,38 @@
 Topology & Wiring Validation
 =============================================
 
-Topology & wiring validation is designed to identify wiring errors and suggest fixes. (how is it vs how is it supposed to be)
+Topology & wiring validation is designed to identify wiring errors and suggest fixes (how it is vs. how it is supposed to be).
 
 Switch-to-switch and Switch-to-SoftGate
 #######################################
 
-Topology wiring validation between backbone links, switch-to-switch, and switch-to-SoftGate happens fully automatically without any user input. Netris agents running on switches and SoftGate nodes perform LLDP neighbor lookups and compare the actual neighbor device & interface with the blueprint (Network->Topology), and in case of a mismatch, report the inconsistency.
+Topology wiring validation between backbone links, switch-to-switch, and switch-to-SoftGate happens fully automatically without any user input. Netris agents running on switches and SoftGate nodes perform LLDP neighbor lookups and compare the actual neighbor device & interface with the blueprint (Network→Topology), and in case of a mismatch, report the inconsistency.
 
 The below screenshot demonstrates a case when two cables between the leaf and the spine switches are miswired.
 
 .. image:: switch-to-switch-cables-swapped.png
+  :alt: Switch-to-switch cables swapped
   :align: center
 
-Switch-to-Server 
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Two cables between the leaf and the spine switches are miswired</em></p>
+
+Switch-to-Server
 ################
 
-Enabling wiring validation between switches and servers. 
+Enabling wiring validation between switches and servers.
 
 *Requirements*
 
- * Server objects should be created and wired to switches in the Netris->Network->Topology
+ * Server objects should be created and wired to switches in the Netris→Network→Topology
  * Server objects should have mapping of Netris interface names (eth1, eth2, eth3, etc.) and expected interface names on the server (enp47s0, enp3s0, enp4s0, etc.)
  * LLDP service should be running on the server and responding to standard LLDP neighbor queries
-                                                                 
+
 **How to define interface mappings?**
 
-The JSON snippet below should be included in every server's custom field. Commonly it's done through Terraform when initializing-creating servers in the Inventory. 
-                                                                 
+The JSON snippet below should be included in every server's custom field. Commonly it's done through Terraform when initializing/creating servers in the Inventory.
+
 .. code-block:: shell-session
 
  {
@@ -37,7 +42,7 @@ The JSON snippet below should be included in every server's custom field. Common
     "hostname-alias": ["abc", "system-default"],
     "ignore-check-if-hostname": ["xyz", "ignore-me-hostname"],
     "eth1": "enp10s0",
-    "eth2": [“enp456”, “enp567”, “enp212”],
+    "eth2": ["enp456", "enp567", "enp212"],
     "eth3": "enp47s0",
     "eth4": "enp1s0",
     "eth5": "enp17s0",
@@ -51,15 +56,19 @@ The JSON snippet below should be included in every server's custom field. Common
  }
 
 * ``topology-validation`` tells Netris to enable server-to-switch wiring validation for the given server
-* ``"hostname": "hgx-pod00-su0-h00"`` tells Netris that the expected hostname of the server should be
-* ``"hgx-pod00-su0-h00"`` -- so Netris will LLDP lookup for the hostname and compare to this value.
+* ``"hostname": "hgx-pod00-su0-h00"`` tells Netris that the expected hostname of the server should be ``"hgx-pod00-su0-h00"`` — so Netris will LLDP lookup for the hostname and compare to this value.
 * ``"hostname-alias": (array of strings)`` If the server's current hostname matches any value in this list, treat it as equivalent to the main hostname for validation purposes.
-* ``"ignore-check-if-hostname": (array of strings)`` If the server's current hostname matches any value in this list, skip topology validation entirely for that server. If both keys are present: ``"ignore-check-if-hostname"`` take precedence over ``"hostname-alias"``.
+* ``"ignore-check-if-hostname": (array of strings)`` If the server's current hostname matches any value in this list, skip topology validation entirely for that server. If both keys are present, ``"ignore-check-if-hostname"`` takes precedence over ``"hostname-alias"``.
 * ``"eth1": "enp10s0",`` lines tell Netris what should be the expected (normal) interface name (enp10s0 in this example) for the logical "eth1" in the Netris Topology. Typically, most users standardize groups of servers for interface order and names; that way, the mapping is the same for all servers in a given group (vendor/type). Typically this data is inserted through Terraform for convenience, or through the web console, one-by-one.
 
 
-The below screenshot demonstrates a case, from two leaf switches perspective, when two cables between two leaf switches and server NICs are miswired.
+The below screenshot demonstrates a case, from two leaf switches' perspective, when two cables between two leaf switches and server NICs are miswired.
 
 .. image:: switch-to-server-cables-swapped.png
+  :alt: Switch-to-server cables swapped
   :align: center
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Two cables between two leaf switches and server NICs are miswired</em></p>
 

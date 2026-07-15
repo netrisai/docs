@@ -64,7 +64,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Netris System Visibility, Monitoring &amp; Telemetry" name="description" />
+<meta content="DHCP and DHCP Relay for V-Nets" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -76,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maintenance Mode &mdash; Netris Documentation</title>
+  <title>DHCP and DHCP Relay &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -98,8 +98,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Upgrade and Rollback" href="upgrading-netris.html" />
-    <link rel="prev" title="Graph Boards" href="visibility.html" /> 
+    <link rel="next" title="Link Aggregation and Multihoming" href="link-aggregation-and-multihoming.html" />
+    <link rel="prev" title="V-Net" href="vnet.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -408,7 +408,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="site.html">Netris Site</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
@@ -483,10 +483,10 @@
 <li class="toctree-l2"><a class="reference internal" href="visibility.html#dashboard">Dashboard</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Maintenance Mode</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#maintenance-mode-for-softgate-whats-happening-behind-the-scenes">Maintenance Mode for Softgate - What’s happening behind the scenes?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#maintenance-mode-for-switch-whats-happening-behind-the-scenes">Maintenance Mode for Switch - What’s happening behind the scenes?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maintenance-mode.html">Maintenance Mode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maintenance-mode.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance-mode.html#maintenance-mode-for-softgate-whats-happening-behind-the-scenes">Maintenance Mode for Softgate - What’s happening behind the scenes?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance-mode.html#maintenance-mode-for-switch-whats-happening-behind-the-scenes">Maintenance Mode for Switch - What’s happening behind the scenes?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="upgrading-netris.html">Upgrade and Rollback</a><ul>
@@ -510,17 +510,17 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Services</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="vnet.html">V-Net</a><ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="vnet.html">V-Net</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#v-net-fields-explained">V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#advanced-v-net-fields-explained">Advanced V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#multisite-v-nets">Multisite V-Nets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html#dhcp">DHCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vnet.html#labels">Labels</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="vnet.html#labels">Labels</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">DHCP and DHCP Relay</a></li>
 <li class="toctree-l4"><a class="reference internal" href="link-aggregation-and-multihoming.html">Link Aggregation and Multihoming</a></li>
 </ul>
 </li>
@@ -1101,64 +1101,77 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Maintenance Mode</li>
+          <li class="breadcrumb-item"><a href="vnet.html">V-Net</a></li>
+      <li class="breadcrumb-item active">DHCP and DHCP Relay</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/maintenance-mode.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/dhcp-and-dhcp-relay.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="visibility.html" class="btn btn-neutral float-left" title="Graph Boards" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="upgrading-netris.html" class="btn btn-neutral float-right" title="Upgrade and Rollback" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="vnet.html" class="btn btn-neutral float-left" title="V-Net" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="link-aggregation-and-multihoming.html" class="btn btn-neutral float-right" title="Link Aggregation and Multihoming" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="maintenance-mode">
-<h1>Maintenance Mode<a class="headerlink" href="#maintenance-mode" title="Link to this heading"></a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>Maintenance mode is intended to assist in smoothly redirecting traffic away from a particular device for a maintenance to be carried out with minimal impact on your network. It’s advisable to activate Maintenance Mode, wait a few minutes and ensure that traffic has been re-routed, prior to initiating maintenance procedures on the device. Once the maintenance is completed, you should deactivate Maintenance Mode to switchover the traffic back to normal.
-To toggle Maintenance Mode on or off, navigate to the Inventory section, or Topology manager (more convenient for switch-fabric). Edit the devices, and use the Maintenance Mode checkbox to enable/disable.</p>
-<img alt="_images/maintenance-mode.png" class="align-center" src="_images/maintenance-mode.png" />
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Maintenance mode strives to redirect traffic away from the current device; however, please note that it does not guarantee the complete offloading of traffic.</p>
-</div>
-</section>
-<section id="maintenance-mode-for-softgate-whats-happening-behind-the-scenes">
-<h2>Maintenance Mode for Softgate - What’s happening behind the scenes?<a class="headerlink" href="#maintenance-mode-for-softgate-whats-happening-behind-the-scenes" title="Link to this heading"></a></h2>
-<p>When you activate Maintenance Mode for the softgate, several automatic actions are undertaken behind the scenes to redirect traffic away from the softgate:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>The BGP local preference attribute is lowered for both external and internal peers.</p></li>
-<li><p>Route information is prepended tenfold for outbound direction to all external and internal peers.</p></li>
-<li><p>The BGP MED attribute is increased for all external and internal peers.</p></li>
-<li><p>The BGP origin attribute is decreased for all external and internal peers.</p></li>
-<li><p>Connection-oriented services such as SNAT and L4LB will be transferred to the second softgate, resulting in a reestablishment of TCP connections.</p></li>
+  <section id="dhcp-and-dhcp-relay">
+<span id="vnet-dhcp"></span><h1>DHCP and DHCP Relay<a class="headerlink" href="#dhcp-and-dhcp-relay" title="Link to this heading"></a></h1>
+<p>L2VPN routed V-Nets (where an IP gateway is added) may also be configured with a DHCP service fully managed by Netris and hosted on SoftGate.</p>
+<p>You can configure additional DHCP Option Sets before enabling a DHCP server for any V-Net. Add a DHCP Options Set by navigating to <code class="docutils literal notranslate"><span class="pre">Services</span> <span class="pre">-&gt;</span> <span class="pre">DHCP</span> <span class="pre">Options</span> <span class="pre">Sets</span></code> and clicking <code class="docutils literal notranslate"><span class="pre">+Add</span></code> in the top right.</p>
+<img alt="DHCP Option Set" class="with-shadow align-center" src="_images/dhcp-option-set.png" />
+<br /><p>Netris supports a wide range of Standard DHCP Options.</p>
+<img alt="Standard DHCP Options" class="with-shadow align-center" src="_images/dhcp-standard-options.png" />
+<br /><p>Netris also enables you to define Custom DHCP Options.</p>
+<img alt="Custom DHCP Options" class="with-shadow align-center" src="_images/dhcp-custom-options.png" />
+<br /><section id="dhcp-relay">
+<h2>DHCP Relay<a class="headerlink" href="#dhcp-relay" title="Link to this heading"></a></h2>
+<p>Netris supports using an external DHCP server by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC. Both DHCPv4 and DHCPv6 are supported.</p>
+<dl class="simple">
+<dt>To configure DHCP Relay in a V-Net:</dt><dd><ul class="simple">
+<li><p>Specify the VPC where the DHCP server is located.</p></li>
+<li><p>Enter the IP addresses of the primary and (optionally) backup DHCP servers.</p></li>
 </ul>
-</div></blockquote>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Before activating the maintenance mode, make sure that the second softgate is operating correctly.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In a V-Net a DHCP Relay service and a DHCP service cannot be enabled simultaneously.</p>
 </div>
-</section>
-<section id="maintenance-mode-for-switch-whats-happening-behind-the-scenes">
-<h2>Maintenance Mode for Switch - What’s happening behind the scenes?<a class="headerlink" href="#maintenance-mode-for-switch-whats-happening-behind-the-scenes" title="Link to this heading"></a></h2>
-<p>When you activate Maintenance Mode for the switch, several automatic actions are undertaken behind the scenes to redirect traffic away from the switch:</p>
+<img alt="DHCP Relay" class="with-shadow align-center" src="_images/vnet-dhcp-relay.png" />
+<br /><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a V-Net and the DHCP server specified in the DHCP Relay configuration are homed in different VPCs, VPC peering is mandatory. Without it, the relay traffic cannot reach the DHCP server. Configure peering under Network → VPC Peering in the Controller.</p>
+<p>Non-overlapping IP ranges are required between the client VPCs (e.g., VPC-Alpha1) and the DHCP server’s VPC (VPC-Shared-Infra). The DHCP server must be able to route back to the client’s V-Net.</p>
+<p>Switch loopback IP is the source IP of relayed packets.</p>
+</div>
+<br /><section id="example">
+<h3>Example:<a class="headerlink" href="#example" title="Link to this heading"></a></h3>
+<p>Suppose you have tenant workloads in VPC-Bravo1 and VPC-Alpha1. Both need DHCP, but you want to run a single DHCP service in VPC-Shared-Infra.</p>
+<img alt="DHCP Relay" class="with-shadow align-center" src="_images/vnet-dhcp-relay-diagram.png" />
+<br /><ol class="arabic simple">
+<li><p>In each tenant’s V-Net (VPC-Bravo1 and VPC-Alpha1), enable DHCP Relay and set the DHCP server address to the IPs of the DHCP servers in VPC-Shared-Infra.</p></li>
+</ol>
 <blockquote>
-<div><ul class="simple">
-<li><p>The BGP local preference attribute is lowered for both external and internal peers.</p></li>
-<li><p>Route information is prepended tenfold for outbound direction to all external and internal peers.</p></li>
-<li><p>The BGP MED attribute is increased for all external and internal peers.</p></li>
-<li><p>The BGP origin attribute is decreased for all external and internal peers.</p></li>
-<li><p>The LACP system ID will undergo modification for EVPN Multihomed hosts, resulting in a reorganization of traffic from ports that connect to these multihomed hosts. The traffic will be redirected to other switches where the hosts are also linked.</p></li>
+<div><img alt="DHCP Relay" class="with-shadow align-center" src="_images/dhcp-relay-coke.png" />
+<br /><img alt="DHCP Relay" class="with-shadow align-center" src="_images/dhcp-relay-pepsi.png" />
+<br /><img alt="DHCP Relay" class="with-shadow align-center" src="_images/dhcp-relay-shared.png" />
+<br /></div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Establish VPC peering between VPC-Bravo1 ↔ VPC-Shared-Infra and VPC-Alpha1 ↔ VPC-Shared-Infra.</p></li>
+</ol>
+<blockquote>
+<div><img alt="DHCP Relay" class="with-shadow align-center" src="_images/dhcp-relay-vpc-peer-coke.png" />
+<br /><img alt="DHCP Relay" class="with-shadow align-center" src="_images/dhcp-relay-vpc-peer-pepsi.png" />
+<br /></div></blockquote>
+<dl class="simple">
+<dt>Now:</dt><dd><ul class="simple">
+<li><p>DHCP clients in the tenant VPCs (VPC-Bravo1 and VPC-Alpha1) broadcast their DHCP requests normally in their respective V-Nets</p></li>
+<li><p>Netris configures the fabric to forward these requests across the peering link to the DHCP server in the VPC-Shared-Infra VPC.</p></li>
 </ul>
-</div></blockquote>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If a host is connected to two switches, and the first switch is in Maintenance Mode, if the link connected to the second switch experiences instability (link flapping), the connection linked to the first switch will become active. However, this connection will not automatically revert back to the second switch once it stabilizes (no preemption).</p>
-</div>
+</dd>
+</dl>
+</section>
 </section>
 </section>
 
@@ -1166,8 +1179,8 @@ To toggle Maintenance Mode on or off, navigate to the Inventory section, or Topo
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="visibility.html" class="btn btn-neutral float-left" title="Graph Boards" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="upgrading-netris.html" class="btn btn-neutral float-right" title="Upgrade and Rollback" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="vnet.html" class="btn btn-neutral float-left" title="V-Net" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="link-aggregation-and-multihoming.html" class="btn btn-neutral float-right" title="Link Aggregation and Multihoming" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -513,30 +513,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../vnet.html">V-Net</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../vnet.html#dhcp">DHCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vnet.html#dhcp-relay">DHCP Relay</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#example">Example:</a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="../vnet.html#v-net-fields-explained">V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../vnet.html#advanced-v-net-fields-explained">Advanced V-Net Fields explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../vnet.html#multisite-v-nets">Multisite V-Nets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#ethernet-vpn-multi-homing-evpn-mh">Ethernet VPN Multi-Homing (EVPN-MH)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#mc-lag">MC-LAG</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#link-aggregation-and-multihoming">Link Aggregation and Multihoming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#dhcp">DHCP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../vnet.html#labels">Labels</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#how-labels-work">How labels work</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#rules-and-limits">Rules and limits</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../vnet.html#when-to-use-labels">When to use labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../link-aggregation-and-multihoming.html">Link Aggregation and Multihoming</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#l3vpn">L3VPN</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../vnet.html#creating-an-l3vpn-v-net">Creating an L3VPN V-Net</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vnet.html#id1">Rules and limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html#rules-and-limits">Rules and limits</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#verification-tools">Verification Tools</a><ul>
@@ -585,9 +576,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../acls.html">Access Control Lists (ACL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#where-acl-entries-are-installed">Where ACL Entries Are Installed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-default-policy">ACL Default Policy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-rules">ACL Rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-approval-workflow">ACL Approval Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-entries-rules">ACL Entries / Rules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../acls.html#description-of-acl-entry-fields">Description of ACL entry fields.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html#checking-for-overlapping-rules">Checking for overlapping rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../acls.html#acl-processing-order">ACL Processing Order</a></li>
 </ul>
 </li>
@@ -871,10 +866,25 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labels.html">Labels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../labels.html#how-labels-work">How labels work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../labels.html#rules-and-limits">Rules and limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../labels.html#when-to-use-labels">When to use labels</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.13.0.html">Netris 4.13.0 Release Notes (Jul/15/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#what-s-new-in-netris-version">What’s new in Netris 4.13.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../release-notes/4.12.0.html">Netris 4.12.0 Release Notes (Jul/2/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.12.0.html#what-s-new-in-netris-version">What’s new in Netris 4.12.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.12.0.html#features">Features</a></li>
@@ -1105,33 +1115,33 @@
              
   <section id="topology-wiring-validation">
 <h1>Topology &amp; Wiring Validation<a class="headerlink" href="#topology-wiring-validation" title="Link to this heading"></a></h1>
-<p>Topology &amp; wiring validation is designed to identify wiring errors and suggest fixes. (how is it vs how is it supposed to be)</p>
+<p>Topology &amp; wiring validation is designed to identify wiring errors and suggest fixes (how it is vs. how it is supposed to be).</p>
 <section id="switch-to-switch-and-switch-to-softgate">
 <h2>Switch-to-switch and Switch-to-SoftGate<a class="headerlink" href="#switch-to-switch-and-switch-to-softgate" title="Link to this heading"></a></h2>
-<p>Topology wiring validation between backbone links, switch-to-switch, and switch-to-SoftGate happens fully automatically without any user input. Netris agents running on switches and SoftGate nodes perform LLDP neighbor lookups and compare the actual neighbor device &amp; interface with the blueprint (Network-&gt;Topology), and in case of a mismatch, report the inconsistency.</p>
+<p>Topology wiring validation between backbone links, switch-to-switch, and switch-to-SoftGate happens fully automatically without any user input. Netris agents running on switches and SoftGate nodes perform LLDP neighbor lookups and compare the actual neighbor device &amp; interface with the blueprint (Network→Topology), and in case of a mismatch, report the inconsistency.</p>
 <p>The below screenshot demonstrates a case when two cables between the leaf and the spine switches are miswired.</p>
-<img alt="../_images/switch-to-switch-cables-swapped.png" class="align-center" src="../_images/switch-to-switch-cables-swapped.png" />
-</section>
+<img alt="Switch-to-switch cables swapped" class="align-center" src="../_images/switch-to-switch-cables-swapped.png" />
+<p style="text-align: center;"><em>Figure: Two cables between the leaf and the spine switches are miswired</em></p></section>
 <section id="switch-to-server">
 <h2>Switch-to-Server<a class="headerlink" href="#switch-to-server" title="Link to this heading"></a></h2>
 <p>Enabling wiring validation between switches and servers.</p>
 <p><em>Requirements</em></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Server objects should be created and wired to switches in the Netris-&gt;Network-&gt;Topology</p></li>
+<li><p>Server objects should be created and wired to switches in the Netris→Network→Topology</p></li>
 <li><p>Server objects should have mapping of Netris interface names (eth1, eth2, eth3, etc.) and expected interface names on the server (enp47s0, enp3s0, enp4s0, etc.)</p></li>
 <li><p>LLDP service should be running on the server and responding to standard LLDP neighbor queries</p></li>
 </ul>
 </div></blockquote>
 <p><strong>How to define interface mappings?</strong></p>
-<p>The JSON snippet below should be included in every server’s custom field. Commonly it’s done through Terraform when initializing-creating servers in the Inventory.</p>
+<p>The JSON snippet below should be included in every server’s custom field. Commonly it’s done through Terraform when initializing/creating servers in the Inventory.</p>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go"> &quot;topology-validation&quot;: {</span>
 <span class="go">   &quot;hostname&quot;: &quot;hgx-pod00-su0-h00&quot;,</span>
 <span class="go">   &quot;hostname-alias&quot;: [&quot;abc&quot;, &quot;system-default&quot;],</span>
 <span class="go">   &quot;ignore-check-if-hostname&quot;: [&quot;xyz&quot;, &quot;ignore-me-hostname&quot;],</span>
 <span class="go">   &quot;eth1&quot;: &quot;enp10s0&quot;,</span>
-<span class="go">   &quot;eth2&quot;: [“enp456”, “enp567”, “enp212”],</span>
+<span class="go">   &quot;eth2&quot;: [&quot;enp456&quot;, &quot;enp567&quot;, &quot;enp212&quot;],</span>
 <span class="go">   &quot;eth3&quot;: &quot;enp47s0&quot;,</span>
 <span class="go">   &quot;eth4&quot;: &quot;enp1s0&quot;,</span>
 <span class="go">   &quot;eth5&quot;: &quot;enp17s0&quot;,</span>
@@ -1147,15 +1157,14 @@
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">topology-validation</span></code> tells Netris to enable server-to-switch wiring validation for the given server</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;hostname&quot;:</span> <span class="pre">&quot;hgx-pod00-su0-h00&quot;</span></code> tells Netris that the expected hostname of the server should be</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;hgx-pod00-su0-h00&quot;</span></code> – so Netris will LLDP lookup for the hostname and compare to this value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;hostname&quot;:</span> <span class="pre">&quot;hgx-pod00-su0-h00&quot;</span></code> tells Netris that the expected hostname of the server should be <code class="docutils literal notranslate"><span class="pre">&quot;hgx-pod00-su0-h00&quot;</span></code> — so Netris will LLDP lookup for the hostname and compare to this value.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;hostname-alias&quot;:</span> <span class="pre">(array</span> <span class="pre">of</span> <span class="pre">strings)</span></code> If the server’s current hostname matches any value in this list, treat it as equivalent to the main hostname for validation purposes.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;ignore-check-if-hostname&quot;:</span> <span class="pre">(array</span> <span class="pre">of</span> <span class="pre">strings)</span></code> If the server’s current hostname matches any value in this list, skip topology validation entirely for that server. If both keys are present: <code class="docutils literal notranslate"><span class="pre">&quot;ignore-check-if-hostname&quot;</span></code> take precedence over <code class="docutils literal notranslate"><span class="pre">&quot;hostname-alias&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;ignore-check-if-hostname&quot;:</span> <span class="pre">(array</span> <span class="pre">of</span> <span class="pre">strings)</span></code> If the server’s current hostname matches any value in this list, skip topology validation entirely for that server. If both keys are present, <code class="docutils literal notranslate"><span class="pre">&quot;ignore-check-if-hostname&quot;</span></code> takes precedence over <code class="docutils literal notranslate"><span class="pre">&quot;hostname-alias&quot;</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;eth1&quot;:</span> <span class="pre">&quot;enp10s0&quot;,</span></code> lines tell Netris what should be the expected (normal) interface name (enp10s0 in this example) for the logical “eth1” in the Netris Topology. Typically, most users standardize groups of servers for interface order and names; that way, the mapping is the same for all servers in a given group (vendor/type). Typically this data is inserted through Terraform for convenience, or through the web console, one-by-one.</p></li>
 </ul>
-<p>The below screenshot demonstrates a case, from two leaf switches perspective, when two cables between two leaf switches and server NICs are miswired.</p>
-<img alt="../_images/switch-to-server-cables-swapped.png" class="align-center" src="../_images/switch-to-server-cables-swapped.png" />
-</section>
+<p>The below screenshot demonstrates a case, from two leaf switches’ perspective, when two cables between two leaf switches and server NICs are miswired.</p>
+<img alt="Switch-to-server cables swapped" class="align-center" src="../_images/switch-to-server-cables-swapped.png" />
+<p style="text-align: center;"><em>Figure: Two cables between two leaf switches and server NICs are miswired</em></p></section>
 </section>
 
 
