@@ -24,4 +24,5 @@ Route exchange between tenant VPCs and the external network is explicitly contro
 
 The external endpoint—such as a router, firewall, or other network transport device—is typically owned and operated by the operator's networking team.
 
-More details are coming soon...
+.. note::
+   More details are coming soon.

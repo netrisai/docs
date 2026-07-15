@@ -15,7 +15,7 @@ Key Benefits
 
 - **Unified Management Interface**: Define tenant isolation by simply listing servers in a :doc:`Server Cluster </server-cluster>` object
 - **Automated Provisioning**: Automatically configure NVLink partitions on NVL72/NVL144 Multi-Node fabrics to align with tenant boundaries configured on other fabrics such as East-West (via Ethernet or :doc:`InfiniBand </netris-ufm-integration>`) and North-South Ethernet.
-- **Simplified Operations**: Eliminate the need to manage SwitchPorts, VLANs, VRFs on Ethernet, GUIDs, PKeys, SHARP groups on :doc:`InfiniBand </netris-ufm-integration>`), and NVLink partitions and GPU UIDs separately.
+- **Simplified Operations**: Eliminate the need to manage SwitchPorts, VLANs, VRFs on Ethernet, GUIDs, PKeys, SHARP groups on :doc:`InfiniBand </netris-ufm-integration>`, and NVLink partitions and GPU UIDs separately.
 
 Architecture
 =============
@@ -316,7 +316,7 @@ Maintenance and Deprovisioning
 
 If you need to perform maintenance on one or more GPU servers that are part of an NVLink partition, Netris recommends that you remove those servers from the Server Cluster before performing this maintenance. Doing so will remove the relevant GPU UIDs from the tenant's NVLink partition.
 
-.. warning:: Removing a server from a Server Cluster will also remove this server from ever and all V-Nets and VPCs that this server was a member of as a result of being a member of a Server Cluster. Netris will not remove this server from any V-Nets where the switch ports connected to this server were assigned to this V-Net manually or using :ref:`tags`.
+.. warning:: Removing a server from a Server Cluster will also remove this server from every and all V-Nets and VPCs that this server was a member of as a result of being a member of a Server Cluster. Netris will not remove this server from any V-Nets where the switch ports connected to this server were assigned to this V-Net manually or using :ref:`labels <tags>`.
 
 Additional Resources
 ===============================
