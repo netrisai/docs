@@ -1,0 +1,62 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.13.0
+.. _release_4_13_0:
+
+Netris |version| Release Notes (Jul/15/2026)
+============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+This release introduces the ability to configure IPv6 Neighbor Discovery (ND) Router Advertisement (RA) parameters, including Prefix Advertisement (PA) options and RDNSS, as well as standalone DHCPv6 relay support for V-Nets. The NVLink agent is now part of the standard Netris distribution for production NVL72 deployments, alongside added support for Cumulus Linux 5.16.5. Operators also gain background CSV exports that respect UI filters. Bug fixes across the eBGP page, LAG database consistency, Redis stability, port allocation, IPsec traffic handling by SoftGate, controller license reporting, and interface selection round out the release.
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **IPv6 Neighbor Discovery for V-Nets** (Cumulus). A new IPv6 Neighbor Discovery configuration section on V-Nets lets operators explicitly control IPv6 RA behavior and advertise DNS server information alongside RA, including:
+
+  - Router Advertisement state (Enabled / Disabled / vendor Default) with configurable Lifetime and Interval per V-Net
+  - RDNSS (Recursive DNS Server) advertisement per RFC 8106 — up to three IPv6 DNS servers with configurable lifetime, so IPv6 clients receive DNS server information via RA without requiring DHCPv6
+
+- **DHCPv6 Relay for V-Nets** (Cumulus). V-Nets can now relay DHCPv6 client requests to external DHCPv6 servers, including cross-VPC relay through VPC peering, bringing managed IPv6 address assignment to parity with existing IPv4 DHCP relay support.
+- **NVLink Agent Installation in the Standard Netris Distribution**. The Netris NVLink agent is now installable through the standard Netris deployment workflow — supporting both controller-node co-location and dedicated-node topologies — so NVL72 deployments can reach production readiness through the same installation path as the rest of the platform.
+
+Enhancements
+------------
+.. Customer-facing enhancements to existing functionality and features. If internal-only, keep wording generic.
+
+- **CSV Export Enhancements**. CSV downloads now respect any filters applied in the UI, so exported data matches exactly what is displayed on screen. Downloads also run in the background, allowing navigation to other sections of the controller without interrupting an active export.
+- **Cumulus Linux 5.16.5 support**. Netris is now validated on Cumulus Linux 5.16.5.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Fixed missing traffic graphs on the eBGP page.
+- Fixed the local IP field remaining disabled when creating a BGP neighbor terminating on a V-Net.
+- Fixed a LAG configuration error that left dangling LAG port entries in the database after all member ports had been removed.
+- Fixed a port-conflict issue where a port already assigned to an L3VPN V-Net could be reused when creating a Server Cluster.
+- Fixed an issue where IPsec traffic was not processed correctly by SoftGate and was dropped.
+- Fixed switch agents repeatedly reporting an invalid controller license.
+- Fixed selected interfaces not displaying in the Admin Up/Down panel when more than 20 interfaces were selected.
+
+Security fixes
+----------------
+
+No security fixes in this release.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
