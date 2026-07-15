@@ -16,7 +16,7 @@ Netris **Server Cluster** makes it possible to define network boundaries by refe
 
 Behind the scenes, Netris figures out which VXLANs, VLANs, Pkeys, and NVLink partitions, when appropriate to configure for every appropriate switch and switch port. The Server Cluster object will also create the underlying V-Net, VPC, and other Netris objects.
 
-This helps infrastructure operators create, edit, and delete network boundaries by focusing only on the list of servers and not worrying about switch ports, GUIDs, GPU UIDs,or any other implementation details.
+This helps infrastructure operators create, edit, and delete network boundaries by focusing only on the list of servers and not worrying about switch ports, GUIDs, GPU UIDs, or any other implementation details.
 
 Server Cluster Template
 =======================
