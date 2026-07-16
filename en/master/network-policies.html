@@ -1605,7 +1605,7 @@ Take a look at the VPC features and services.</p>
 </section>
 <section id="nat">
 <span id="nat-def"></span><h1>NAT<a class="headerlink" href="#nat" title="Link to this heading"></a></h1>
-<p>If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT, DNAT and Masquerade features.</p>
+<p>If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT and DNAT features.</p>
 <section id="enabling-nat">
 <h2>Enabling NAT<a class="headerlink" href="#enabling-nat" title="Link to this heading"></a></h2>
 <p>To enable NAT for a given site, you first need to <a class="reference internal" href="#ipam-nat-subnet"><span class="std std-ref">create a subnet with NAT purpose</span></a> in the IPAM section. The NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need.
@@ -1639,8 +1639,7 @@ Adding an IP Subnet under Network → IPAM.</p>
 <tr class="row-even"><td><p><strong>Action</strong></p></td>
 <td><p><em>SNAT</em> - Replace the source IP address with specified NAT IP along with port overloading.
 <em>DNAT</em> - Replace the destination IP address and/or destination port with specified NAT IP.
-<em>ACCEPT</em> - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule.
-<em>MASQUERADE</em> - Replace the source IP address with the IP address of the exit interface.</p></td>
+<em>ACCEPT</em> - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Protocol</strong></p></td>
 <td><p><em>All</em> - Match any IP protocol.

@@ -424,7 +424,7 @@ Screenshot shows that the back route is actually applied on Softgate1 and Softga
 NAT
 ======================
 
-If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT, DNAT and Masquerade features.
+If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT and DNAT features.
 
 Enabling NAT
 ------------
@@ -460,7 +460,6 @@ Example: Port forwarding. DNAT the traffic destined to 192.0.2.130:8080 to be fo
     - *SNAT* - Replace the source IP address with specified NAT IP along with port overloading.
       *DNAT* - Replace the destination IP address and/or destination port with specified NAT IP.
       *ACCEPT* - Silently forward, typically used to add an exclusion to broader SNAT or DNAT rule.
-      *MASQUERADE* - Replace the source IP address with the IP address of the exit interface.
   * - **Protocol**
     - *All* - Match any IP protocol.
       *TCP* - Match TCP traffic and ports.
