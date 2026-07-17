@@ -678,12 +678,22 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#version-compatibility">Version Compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#installing-the-plugin">Installing the plugin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#loading-gpu-inventory">Loading GPU inventory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#netris-nmx-plugin-configuration-parameters">Netris-NMX Plugin Configuration Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#netris-nvlink-plugin-installation">Netris NVLink Plugin Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#installing-the-netris-nvlink-plugin">Installing the Netris NVLink plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-nvlink-integration.html#step-1-configuring-the-nmx-c-plugin-credentials">Step 1: Configuring the NMX-C plugin credentials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-nvlink-integration.html#step-2-configuring-nmx-controller-connection">Step 2: Configuring NMX Controller connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-nvlink-integration.html#step-3-applying-the-k8s-deployment">Step 3: Applying the K8S deployment</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#loading-gpu-inventory">Loading GPU Inventory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="netris-nvlink-integration.html#step-1-install-the-nvlink-loader">Step 1: Install the nvlink-loader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-nvlink-integration.html#step-2-load-the-gpu-inventory-into-the-netris-controller">Step 2: Load the GPU inventory into the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netris-nvlink-integration.html#step-3-verify-the-imported-gpu-inventory">Step 3: Verify the imported GPU inventory</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#using-the-netris-nvlink-plugin">Using the Netris NVLink plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#verification">Verification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#maintenance-and-deprovisioning">Maintenance and Deprovisioning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#additional-resources">Additional Resources</a></li>
@@ -1275,7 +1285,7 @@
 <li><p><strong>HWMP</strong> (default = unchecked) Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture.</p></li>
 <li><p><strong>Reference Architecture</strong> (default = None)  This setting tells Netris which reference architecture is being deployed on the subject fabric, so Netris can apply the appropriate prefix summarization in the L3VPN overlay.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="be86f85f-e1b1-4fc2-991d-a3a65fc77ffe" name="be86f85f-e1b1-4fc2-991d-a3a65fc77ffe" type="checkbox"><label class="sphinx_collapse__label" for="be86f85f-e1b1-4fc2-991d-a3a65fc77ffe"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="f0586071-41ab-4ab5-b74b-7b2c8644b537" name="f0586071-41ab-4ab5-b74b-7b2c8644b537" type="checkbox"><label class="sphinx_collapse__label" for="f0586071-41ab-4ab5-b74b-7b2c8644b537"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Reference Architecture</p></th>
