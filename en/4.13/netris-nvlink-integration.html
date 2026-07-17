@@ -678,12 +678,22 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#version-compatibility">Version Compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installing-the-plugin">Installing the plugin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#loading-gpu-inventory">Loading GPU inventory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#netris-nmx-plugin-configuration-parameters">Netris-NMX Plugin Configuration Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#netris-nvlink-plugin-installation">Netris NVLink Plugin Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-netris-nvlink-plugin">Installing the Netris NVLink plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-configuring-the-nmx-c-plugin-credentials">Step 1: Configuring the NMX-C plugin credentials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-configuring-nmx-controller-connection">Step 2: Configuring NMX Controller connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-applying-the-k8s-deployment">Step 3: Applying the K8S deployment</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-gpu-inventory">Loading GPU Inventory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-install-the-nvlink-loader">Step 1: Install the nvlink-loader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-load-the-gpu-inventory-into-the-netris-controller">Step 2: Load the GPU inventory into the Netris Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-verify-the-imported-gpu-inventory">Step 3: Verify the imported GPU inventory</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-netris-nvlink-plugin">Using the Netris NVLink plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#maintenance-and-deprovisioning">Maintenance and Deprovisioning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#additional-resources">Additional Resources</a></li>
@@ -1133,62 +1143,100 @@
              
   <section id="nvidia-nmx-c-nvlink-integration-plugin-for-netris-controller">
 <h1>NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller<a class="headerlink" href="#nvidia-nmx-c-nvlink-integration-plugin-for-netris-controller" title="Link to this heading"></a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>The Netris-NMX plugin provides seamless integration between Netris Controller and <a class="reference external" href="https://docs.nvidia.com/networking/software/nvlink-management-software/index.html#nmx-c">NVIDIA NMX-C (NMX-Controller)</a> for AI infrastructures with NVIDIA NVLink Multi-Node (NVL72/NVL144) fabrics present. This integration allows infrastructure operators to define compute multi-tenancy in a single place through Netris, significantly simplifying management across all network types.</p>
-<section id="key-benefits">
-<h3>Key Benefits<a class="headerlink" href="#key-benefits" title="Link to this heading"></a></h3>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><strong>Unified Management Interface</strong>: Define tenant isolation by simply listing servers in a <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> object</p></li>
-<li><p><strong>Automated Provisioning</strong>: Automatically configure NVLink partitions on NVL72/NVL144 Multi-Node fabrics to align with tenant boundaries configured on other fabrics such as East-West (via Ethernet or <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">InfiniBand</span></a>) and North-South Ethernet.</p></li>
-<li><p><strong>Simplified Operations</strong>: Eliminate the need to manage SwitchPorts, VLANs, VRFs on Ethernet, GUIDs, PKeys, SHARP groups on <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">InfiniBand</span></a>, and NVLink partitions and GPU UIDs separately.</p></li>
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p>
+<ul>
+<li><p><a class="reference internal" href="#key-benefits" id="id3">Key Benefits</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#architecture" id="id4">Architecture</a></p>
+<ul>
+<li><p><a class="reference internal" href="#high-level-workflow" id="id5">High-Level Workflow</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#version-compatibility" id="id6">Version Compatibility</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id7">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#netris-nvlink-plugin-installation" id="id8">Netris NVLink Plugin Installation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installing-the-netris-nvlink-plugin" id="id9">Installing the Netris NVLink plugin</a></p>
+<ul>
+<li><p><a class="reference internal" href="#step-1-configuring-the-nmx-c-plugin-credentials" id="id10">Step 1: Configuring the NMX-C plugin credentials</a></p></li>
+<li><p><a class="reference internal" href="#step-2-configuring-nmx-controller-connection" id="id11">Step 2: Configuring NMX Controller connection</a></p></li>
+<li><p><a class="reference internal" href="#step-3-applying-the-k8s-deployment" id="id12">Step 3: Applying the K8S deployment</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#loading-gpu-inventory" id="id13">Loading GPU Inventory</a></p>
+<ul>
+<li><p><a class="reference internal" href="#step-1-install-the-nvlink-loader" id="id14">Step 1: Install the nvlink-loader</a></p></li>
+<li><p><a class="reference internal" href="#step-2-load-the-gpu-inventory-into-the-netris-controller" id="id15">Step 2: Load the GPU inventory into the Netris Controller</a></p></li>
+<li><p><a class="reference internal" href="#step-3-verify-the-imported-gpu-inventory" id="id16">Step 3: Verify the imported GPU inventory</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#using-the-netris-nvlink-plugin" id="id17">Using the Netris NVLink plugin</a></p></li>
+<li><p><a class="reference internal" href="#verification" id="id18">Verification</a></p></li>
+<li><p><a class="reference internal" href="#maintenance-and-deprovisioning" id="id19">Maintenance and Deprovisioning</a></p></li>
+<li><p><a class="reference internal" href="#additional-resources" id="id20">Additional Resources</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The Netris NVLink plugin provides an integration between your Netris Controller and <a class="reference external" href="https://docs.nvidia.com/networking/software/nvlink-management-software/index.html#nmx-c">NVIDIA NMX Controller (NMX-C)</a> for AI infrastructures that include NVIDIA NVLink Multi-Node NVL72 fabrics. Netris already acts as your Ethernet fabric manager and, with this NVLink integration, allows you to continue using Netris as your one source of truth for all your data center networking intent, including your East-West, North-South, Out-of-Band management, and scale-up (NVL72) networking fabrics. See the “How an AI network differs from a traditional network” section of <a class="reference internal" href="introduction.html"><span class="doc">Introduction to Netris</span></a> for more details about different network fabrics in a typical AI data center.</p>
+<section id="key-benefits">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Key Benefits</a><a class="headerlink" href="#key-benefits" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Unified Management Interface</strong>: Define tenant isolation intent by simply listing servers in a <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> object. Netris implements your declared intent in all appropriate Netris-managed fabrics, including Ethernet, InfiniBand, DPUs, and NVL72.</p></li>
+<li><p><strong>Automated Provisioning</strong>: Automatically configure NVLink partitions on NVL72 Multi-Node fabrics to align with tenant boundaries configured on other fabrics such as East-West (via Ethernet or <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">InfiniBand</span></a>) and North-South Ethernet. No additional actions are required to be taken outside of Netris to partition the NVL72 domain, making Netris your one-stop shop for declaring your multi-tenancy intent across all Netris-managed networking fabrics.</p></li>
+<li><p><strong>Simplified Operations</strong>: The <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> feature eliminates the need to manage NVL72 partitions and GPU UIDs separately, as well as switch ports, VLANs, VRFs on Ethernet, and GUIDs, PKeys, SHARP groups on <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">InfiniBand</span></a>.</p></li>
 </ul>
 </section>
 </section>
 <section id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h2>
-<p>The Netris-NMX plugin acts as the integration layer between Netris Controller and NVIDIA NMX-Controller:</p>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Architecture</a><a class="headerlink" href="#architecture" title="Link to this heading"></a></h2>
+<p>The Netris NVLink plugin acts as the integration layer between Netris Controller and NVIDIA NMX controllers (NMX-C):</p>
 <ol class="arabic simple">
-<li><p><strong>Netris Controller</strong>: Orchestrates the Ethernet switches and provides the primary user interface.</p></li>
-<li><p><strong>NVIDIA NMX-C</strong>: Manages the NVLink Multi-Node fabric switches and provides specialized NVLink functionality.</p></li>
-<li><p><strong>Netris-NMX Plugin</strong>: Synchronizes configurations between both systems</p></li>
+<li><p><strong>Netris Controller</strong>: Orchestrates the Ethernet switches and provides the primary user interface for all your network automation, abstraction, and multi-tenancy actions.</p></li>
+<li><p><strong>NVIDIA NMX Controller (NMX-C)</strong>: Manages the NVLink Multi-Node fabric switches and provides specialized NVLink functionality, such as hardware lifecycle management.</p></li>
+<li><p><strong>Netris NVLink Plugin</strong>: Synchronizes multi-tenancy configurations between both systems.</p></li>
 </ol>
 <img alt="_images/NVIDIA_NVLink-Integration.svg" class="with-shadow align-center" src="_images/NVIDIA_NVLink-Integration.svg" />
-<br /><div class="admonition tip">
+<p style="text-align: center;"><em>Figure: Netris NVLink Integration architecture</em></p><div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>NVIDIA NetQ (NMX-M) is not required by Netris, but it is recommended for granular Network + GPU telemetry</p>
+<p>NVIDIA NetQ (NMX-M) is not required by Netris, but it is recommended for granular Network + GPU telemetry.</p>
 </div>
 <p>When you define a <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> in Netris, the plugin automatically:</p>
 <ul class="simple">
-<li><p>Discovers GPU UIDs for each server using the preloaded GPU ledger.</p></li>
-<li><p>Creates and manages appropriate NVL partitions in NMX-C</p></li>
-<li><p>Assigns appropriate GPU UIDs to appropriate NVL partitions</p></li>
+<li><p>Discovers GPU UIDs for each server using the preloaded GPU ledger (see the <a class="reference internal" href="#nvlink-loading-gpu-inventory"><span class="std std-ref">Loading GPU Inventory</span></a> section below for more details).</p></li>
+<li><p>Creates and manages appropriate NVL partitions in NMX-C.</p></li>
+<li><p>Assigns appropriate GPU UIDs to appropriate NVL partitions.</p></li>
 </ul>
-<p>The Netris-NMX plugin runs continuously and validates that the operator’s intent is correctly applied every 20 seconds by default. If the NVLink partition doesn’t match the intent declared in the Netris Controller, the Netris-NMX plugin will enforce the intent in the NMX-Controller.</p>
-<p>The NMX-Controller remains the source of truth for the state of the GPU assignments to NVLink partitions. The Netris Controller is the source of truth for the operator’s intent, and the Netris-NMX plugin will continuously enforce the operator’s intent as expressed through the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> object in the Netris Controller.</p>
-<p>When more than one NMX-Controller is defined in the configuration, Netris will automatically discover which NMX-Controller creates the NVLink partition and will only create the partitions in the appropriate NMX-Controllers.</p>
+<p>The Netris NVLink plugin runs continuously and, by default, validates that the operator’s intent is correctly applied every 10 seconds. If the NVLink partition doesn’t match the intent declared in the Netris Controller, the Netris NVLink plugin will enforce the intent in the appropriate NMX controller (NMX-C).</p>
+<p>The NMX controller (NMX-C) remains the source of truth for GPU assignment to NVLink partitions (see the <a class="reference internal" href="#nvlink-verification"><span class="std std-ref">Verification</span></a> section below). The Netris Controller is the source of truth for the operator’s intent, and the Netris NVLink plugin will continuously enforce the operator’s intent as expressed through the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> object in the Netris Controller.</p>
+<p>NVL72 is a rack-scale system, and a typical data center deployment will have multiple NMX controllers (NMX-Cs) — one per rack (see <a class="reference external" href="https://www.nvidia.com/en-us/data-center/nvlink/">NVIDIA materials</a> for more information on NVL72). Netris will automatically discover which NMX controllers (NMX-Cs) must create the NVL72 partition and will only create partitions in the appropriate NMX controllers.</p>
 <section id="high-level-workflow">
-<h3>High-Level Workflow<a class="headerlink" href="#high-level-workflow" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">High-Level Workflow</a><a class="headerlink" href="#high-level-workflow" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
-<li><p>Preload GPU mapping</p></li>
-<li><p>Configure NVLink agent</p></li>
-<li><p>Agent discovers the current state from NMX-C(s)</p></li>
-<li><p>Netris determines the desired partition based on the server cluster template and server cluster membership.</p></li>
-<li><p>Agent reconciles every 20s</p></li>
-<li><p>Debug via script</p></li>
+<li><p>Install and configure the Netris NVLink plugin.</p></li>
+<li><p>Preload GPU mapping.</p></li>
+<li><p>The Netris NVLink plugin automatically discovers the current state from defined NMX-C(s).</p></li>
+<li><p>Netris determines the desired partition based on the Server Cluster Template and <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> membership.</p></li>
+<li><p>The Netris NVLink plugin reconciles every 10 seconds.</p></li>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Server Cluster is the only supported way for Netris to manage NVLink partitions.</p>
+<p><a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> is the only supported way for Netris to manage NVLink partitions.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Netris does not perform any additional NVLink management tasks, like NVLink switch life cycle management, etc., other than creating, modifying, and destroying NVLink partitions and adding or removing GPU UIDs to those partitions. NVIDIA NMX-C is the NVLink fabric manager.</p>
+<p>Netris creates, modifies, and destroys NVL72 partitions, and adds or removes GPU UIDs from them. All other NVLink related activities, such as NVLink switch life cycle management, are performed by NMX-C and/or other relevant NVIDIA solutions. NVIDIA NMX-C is the NVLink fabric manager.</p>
 </div>
 </section>
 </section>
 <section id="version-compatibility">
-<h2>Version Compatibility<a class="headerlink" href="#version-compatibility" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Version Compatibility</a><a class="headerlink" href="#version-compatibility" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Component</p></th>
@@ -1199,7 +1247,7 @@
 <tr class="row-even"><td><p>Netris Controller</p></td>
 <td><p>4.6.0+</p></td>
 </tr>
-<tr class="row-odd"><td><p>Netris-NMX Plugin</p></td>
+<tr class="row-odd"><td><p>Netris NVLink Plugin</p></td>
 <td><p>Bundled with Netris Controller</p></td>
 </tr>
 <tr class="row-even"><td><p>NVIDIA NMX-C</p></td>
@@ -1207,68 +1255,272 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The Netris-NMX plugin communicates with NMX-C using its gRPC API with TLS client certificate authentication. Ensure your NMX-C version supports gRPC API access.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The Netris NVLink plugin communicates with NMX-C using its gRPC API with TLS client certificate authentication. Ensure your NMX-C version supports gRPC API access.</p>
 </div>
 </section>
 <section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
-<p>Before installing the Netris-NMX plugin, ensure:</p>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>Before installing the Netris NVLink plugin, ensure there is:</p>
 <ol class="arabic simple">
-<li><p>A functioning Netris Controller environment</p></li>
-<li><p>A properly configured NVIDIA NMX-C installation</p></li>
-<li><p>Network connectivity between the Netris Controller or a dedicated server running the Netris-NMX plugin and the NVIDIA NMX-Controller</p></li>
-<li><p>Admin credentials for the Netris Controller</p></li>
-<li><p>A GPU UID inventory file (CSV) mapping each server hostname to its GPU UIDs, ready to be loaded via <cite>netris-nvl-loader</cite></p></li>
-<li><p>mTLS client certificate, private key, and root CA for authenticating to the NMX-Controller(s)</p></li>
+<li><p>A functioning Netris Controller environment. See <a class="reference internal" href="installation/installation.html"><span class="doc">Netris Controller Installation</span></a> documentation for more details.</p></li>
+<li><p>Network connectivity between the Netris Controller and the NVIDIA NMX controller (NMX-C).</p></li>
+<li><p>Credentials for the Netris Controller.</p></li>
+<li><p>A GPU UID inventory file (CSV) mapping each server hostname to its GPU UIDs, ready to be loaded via <code class="docutils literal notranslate"><span class="pre">nvlink-loader</span></code> (see the <a class="reference internal" href="#nvlink-loading-gpu-inventory"><span class="std std-ref">Loading GPU Inventory</span></a> section below for CSV format details).</p></li>
+<li><p>mTLS client certificate(s), private key(s), and the root CA certificate for authenticating NMX controllers (NMX-Cs).</p></li>
 </ol>
 </section>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<section id="installing-the-plugin">
-<h3>Installing the plugin<a class="headerlink" href="#installing-the-plugin" title="Link to this heading"></a></h3>
-<p>The Netris-NMX plugin can be installed on the same server as the Netris Controller or on a dedicated server, depending on customer requirements and network topology.</p>
-<p>If a dedicated server option is chosen, ensure that the server running the Netris-NMX plugin can reach all the NVIDIA NMX-Controllers in the environment. This dedicated server must also be able to reach the Netris Controller. All communication between the Netris Controller, NVIDIA NMX-C, and the Netris-NMX plugin is initiated from the server running the Netris-NMX plugin.</p>
-<ol class="arabic simple">
-<li><p>Download the Kubernetes deployment YAML file:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://get.netris.io/netris-controller-nmx.yaml
+<section id="netris-nvlink-plugin-installation">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Netris NVLink Plugin Installation</a><a class="headerlink" href="#netris-nvlink-plugin-installation" title="Link to this heading"></a></h2>
+<section id="installing-the-netris-nvlink-plugin">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Installing the Netris NVLink plugin</a><a class="headerlink" href="#installing-the-netris-nvlink-plugin" title="Link to this heading"></a></h3>
+<p>The Netris NVLink plugin ships with the Netris Controller, but requires the additional steps outlined below to initialize. In the rest of the steps below, the guide assumes you unpacked the tarball into <code class="docutils literal notranslate"><span class="pre">~/netris-controller-ha/</span></code> (see <a class="reference internal" href="installation/controller-k3s-air-gap-ha.html"><span class="doc">Installing HA Netris Controller in Air-Gapped Environments</span></a> for more details).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Perform all steps in this section from the primary Netris Controller node only; they do not need to be repeated on standby nodes.</p>
+</div>
+<section id="step-1-configuring-the-nmx-c-plugin-credentials">
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Step 1: Configuring the NMX-C plugin credentials</a><a class="headerlink" href="#step-1-configuring-the-nmx-c-plugin-credentials" title="Link to this heading"></a></h4>
+<p>Provide the controller credentials that the Netris NVLink plugin will use to communicate with the Netris Controller by editing and applying the <code class="docutils literal notranslate"><span class="pre">netris-controller-ha/manifests/netris-controller/nvlink/secret.yaml</span></code> file.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">~$ vi ./netris-controller-ha/manifests/netris-controller/nvlink/secret.yaml</span>
+<span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent-envs</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
+<span class="nt">stringData</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_ADDR</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://netris-controller-ha-web-service-backend.netris-controller</span>
+<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_LOGIN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;netris&quot;</span>
+<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Password!&quot;</span>
+<span class="w">  </span><span class="nt">NETRIS_SITE_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Site&quot;</span>
+<span class="w">  </span><span class="c1"># NETRIS_VERIFY_SSL: &quot;true&quot;</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="2">
-<li><p>Edit the YAML file to update the secret values based on your environment:</p></li>
-</ol>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">nmx-config</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">verify-ssl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">cert-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/netris-nvlink-agent/client.crt</span>
-<span class="w">  </span><span class="nt">key-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/netris-nvlink-agent/client.key</span>
-<span class="w">  </span><span class="nt">root-ca</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/netris-nvlink-agent/rootCA.crt</span>
-<span class="w">  </span><span class="nt">common-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmxc-01.acme.com</span>
-<span class="w">  </span><span class="nt">nmx-c</span><span class="p">:</span>
-<span class="w">     </span><span class="nt">nmxc_01</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmxc-01.acme.com:8601</span>
+<p>In the <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code> file you should only need to update the values of the <code class="docutils literal notranslate"><span class="pre">NETRIS_CONTROLLER_LOGIN</span></code>, <code class="docutils literal notranslate"><span class="pre">NETRIS_CONTROLLER_PASSWORD</span></code>, and <code class="docutils literal notranslate"><span class="pre">NETRIS_SITE_NAME</span></code> variables. The value of <code class="docutils literal notranslate"><span class="pre">NETRIS_SITE_NAME</span></code> must match the Site name defined in the Netris controller. See <a class="reference internal" href="site.html"><span class="doc">Netris Site</span></a> for more details on creating a Site in Netris.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not modify the value of the <code class="docutils literal notranslate"><span class="pre">NETRIS_CONTROLLER_ADDR</span></code> variable.</p>
+</div>
+<p>Apply the updated <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$<span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>./netris-controller-ha/manifests/netris-controller/nvlink/secret.yaml
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
-<li><p>Apply the configuration to your Kubernetes cluster:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netris-controller-nmx.yaml
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The username and password supplied in the <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code> must have “Permit All” selected as the value of the “Permission Group” field, “All Tenants” added, and Edit selected when adding a Netris user.</p>
+<img alt="_images/nvlink-add-user.png" class="with-shadow align-center" src="_images/nvlink-add-user.png" />
+<p style="text-align: center;"><em>Figure: Adding a Netris user with the Permission Group set to Permit All and All Tenants selected</em></p></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you update the credentials, please repeat Step 1 of this installation guide and restart the deployment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment/netris-controller-nvlink-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller
 </pre></div>
 </div>
+</div>
+</section>
+<section id="step-2-configuring-nmx-controller-connection">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Step 2: Configuring NMX Controller connection</a><a class="headerlink" href="#step-2-configuring-nmx-controller-connection" title="Link to this heading"></a></h4>
+<p>Edit the <code class="docutils literal notranslate"><span class="pre">./netris-controller-ha/manifests/netris-controller/nvlink/config.yaml</span></code> file and provide the IP addresses of all the NMX Controllers (NMX-Cs) in scope, as well as the NMX-C PKI certificate bundle, i.e., the file names for the Signed Certificate, Private Key, and the Root CA Certificate.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">~$ vi ./netris-controller-ha/manifests/netris-controller/nvlink/config.yaml</span>
+<span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent-config</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">nmx-config:</span>
+<span class="w">      </span><span class="no">verify-ssl: true</span>
+<span class="w">      </span><span class="no">cert-file: /etc/netris-nvlink-agent/tls/client.crt</span>
+<span class="w">      </span><span class="no">key-file: /etc/netris-nvlink-agent/tls/client.key</span>
+<span class="w">      </span><span class="no">root-ca: /etc/netris-nvlink-agent/tls/rootCA.crt</span>
+<span class="w">      </span><span class="no">common-name: nmxc.example.com</span>
+<span class="w">      </span><span class="no">nmx-c:</span>
+<span class="w">        </span><span class="no">nmxc_001:</span>
+<span class="w">          </span><span class="no">addresses:</span>
+<span class="w">            </span><span class="no">- 192.0.2.1:8601</span>
+<span class="w">        </span><span class="no">nmxc_002:</span>
+<span class="w">          </span><span class="no">addresses:</span>
+<span class="w">            </span><span class="no">- 192.0.2.2:8601</span>
+<span class="w">        </span><span class="no">nmxc_003:</span>
+<span class="w">          </span><span class="no">addresses:</span>
+<span class="w">            </span><span class="no">- 192.0.2.3:8601</span>
+<span class="w">        </span><span class="no">nmxc_004:</span>
+<span class="w">          </span><span class="no">addresses:</span>
+<span class="w">            </span><span class="no">- 192.0.2.4:8601</span>
+<span class="w">        </span><span class="no">nmxc_005:</span>
+<span class="w">          </span><span class="no">addresses:</span>
+<span class="w">            </span><span class="no">- 192.0.2.5:8601</span>
+<span class="w">        </span><span class="no">nmxc_006:</span>
+<span class="w">          </span><span class="no">addresses:</span>
+<span class="w">            </span><span class="no">- 192.0.2.6:8601</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">/etc/netris-nvlink-agent/tls/</span></code> path is the path to the file inside the container, and not on the host system. It should match the value of the <code class="docutils literal notranslate"><span class="pre">mountPath</span></code> key in the <code class="docutils literal notranslate"><span class="pre">deploy.yaml</span></code> file.</p>
+</div>
+<p>Depending on your NMX-C configuration, you may provide one shared PKI certificate bundle for all NMX Controllers, as shown above, or specify a unique certificate bundle per NMX-C as shown below.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent-config</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">nmx-config:</span>
+<span class="w">      </span><span class="no">verify-ssl: true</span>
+<span class="w">      </span><span class="no">root-ca: /etc/netris-nvlink-agent/tls/rootCA.crt</span>
+<span class="w">      </span><span class="no">nmx-c:</span>
+<span class="w">        </span><span class="no">nmxc_001:</span>
+<span class="w">          </span><span class="no">cert-file: /etc/netris-nvlink-agent/tls/nmx01/client.crt</span>
+<span class="w">          </span><span class="no">key-file: /etc/netris-nvlink-agent/tls/nmx01/client.key</span>
+<span class="w">          </span><span class="no">common-name: nmxc001.example.com</span>
+<span class="w">          </span><span class="no">addresses:</span>
+<span class="w">            </span><span class="no">- 192.0.2.1:8601</span>
+<span class="w">        </span><span class="no">nmxc_002:</span>
+<span class="w">          </span><span class="no">cert-file: /etc/netris-nvlink-agent/tls/nmx02/client.crt</span>
+<span class="w">          </span><span class="no">key-file: /etc/netris-nvlink-agent/tls/nmx02/client.key</span>
+<span class="w">          </span><span class="no">common-name: nmxc002.example.com</span>
+<span class="w">          </span><span class="no">addresses:</span>
+<span class="w">            </span><span class="no">- 192.0.2.2:8601</span>
+<span class="w">        </span><span class="no">nmxc_003:</span>
+<span class="w">          </span><span class="no">cert-file: /etc/netris-nvlink-agent/tls/nmx03/client.crt</span>
+<span class="w">          </span><span class="no">key-file: /etc/netris-nvlink-agent/tls/nmx03/client.key</span>
+<span class="w">          </span><span class="no">common-name: nmxc003.example.com</span>
+<span class="w">          </span><span class="no">addresses:</span>
+<span class="w">            </span><span class="no">- 192.0.2.3:8601</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Netris NVLink Plugin Configuration Parameters</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">The following configuration options are available in the Netris NVLink plugin YAML configuration file:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>nmx-config</strong> - top-level mapping for the plugin configuration</p></li>
+<li><p class="sd-card-text"><strong>verify-ssl</strong> - key to signal the plugin whether to use TLS authentication when accessing the NMX controller (NMX-C)</p></li>
+<li><p class="sd-card-text"><strong>cert-file</strong> - absolute path to the client certificate</p></li>
+<li><p class="sd-card-text"><strong>key-file</strong> - absolute path to the private key of the client certificate</p></li>
+<li><p class="sd-card-text"><strong>root-ca</strong> - absolute path to the root CA certificate file.</p></li>
+<li><p class="sd-card-text"><strong>common-name</strong> - must match the value of the CN field of the certificate presented by the NMX controller (NMX-C).</p></li>
+<li><p class="sd-card-text"><strong>nmx-c</strong> - contains a mapping describing each NMX controller (NMX-C) you’d like Netris to create NVLink partitions in. It must contain at least one key with a value of a list of hostnames and port numbers</p>
+<ul>
+<li><p class="sd-card-text"><strong>addresses</strong> - IP address and port number of each NMX-C endpoint.</p></li>
+</ul>
+</li>
+</ul>
+<p class="sd-card-text">Each NMX-C must be presented through a separate key.</p>
+</div>
+</details><p>Apply the configuration to your Kubernetes cluster:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$<span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>./netris-controller-ha/manifests/netris-controller/nvlink/config.yaml
+</pre></div>
+</div>
+<p>Load the PKI certificate bundle into the K8S secrets (the example command below assumes the relevant PKI files are located in current directory):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$<span class="w"> </span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>netris-controller-nvlink-agent-tls<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>client.key<span class="o">=</span>./client.key<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>client.crt<span class="o">=</span>./client.crt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>rootCA.crt<span class="o">=</span>./rootCA.crt
+</pre></div>
+</div>
+<p>If your deployment requires a unique client certificate per NMX-C, you will need to create multiple K8S secrets as shown below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$<span class="w"> </span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>netris-controller-nvlink-agent-tls-nmx01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>client.key<span class="o">=</span>./nmx01/client.key<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>client.crt<span class="o">=</span>./nmx01/client.crt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>rootCA.crt<span class="o">=</span>./rootCA.crt
+~$<span class="w"> </span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>netris-controller-nvlink-agent-tls-nmx02<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>client.key<span class="o">=</span>./nmx02/client.key<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>client.crt<span class="o">=</span>./nmx02/client.crt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>rootCA.crt<span class="o">=</span>./rootCA.crt
+~$<span class="w"> </span>kubectl<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>netris-controller-nvlink-agent-tls-nmx03<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>client.key<span class="o">=</span>./nmx03/client.key<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>client.crt<span class="o">=</span>./nmx03/client.crt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>rootCA.crt<span class="o">=</span>./rootCA.crt
+</pre></div>
+</div>
+</section>
+<section id="step-3-applying-the-k8s-deployment">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">Step 3: Applying the K8S deployment</a><a class="headerlink" href="#step-3-applying-the-k8s-deployment" title="Link to this heading"></a></h4>
+<p>If you are using a unique certificate bundle per NMX-C, you will need to edit <code class="docutils literal notranslate"><span class="pre">./netris-controller-ha/manifests/netris-controller/nvlink/deploy.yaml</span></code> before using it to include all the volume mounts and secrets you have created earlier. Otherwise, no changes to <code class="docutils literal notranslate"><span class="pre">deploy.yaml</span></code> are necessary.</p>
+<p>The example below shows the per-NMX-C-certificate variant of the <code class="docutils literal notranslate"><span class="pre">deploy.yaml</span></code> file.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-agent</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netrisai/bare-metal-nvlink-agent:4.6.1-001</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/app/servicebin&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;/app/config.yaml&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">envFrom</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretRef</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent-envs</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NETRIS_TIMEOUT</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RECONCILE_INTERVAL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-tls-nmxc01</span>
+<span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/netris-nvlink-agent/tls/nmxc01</span>
+<span class="w">          </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-tls-nmxc02</span>
+<span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/netris-nvlink-agent/tls/nmxc02</span>
+<span class="w">          </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-tls-nmxc03</span>
+<span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/netris-nvlink-agent/tls/nmxc03</span>
+<span class="w">          </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-config</span>
+<span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/app/config.yaml</span>
+<span class="w">          </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config</span>
+<span class="w">          </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-tls-nmxc01</span>
+<span class="w">          </span><span class="nt">secret</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent-tls-nmx01</span>
+<span class="w">            </span><span class="nt">defaultMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0400</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-tls-nmxc02</span>
+<span class="w">          </span><span class="nt">secret</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent-tls-nmx02</span>
+<span class="w">            </span><span class="nt">defaultMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0400</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-tls-nmxc03</span>
+<span class="w">          </span><span class="nt">secret</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent-tls-nmx03</span>
+<span class="w">            </span><span class="nt">defaultMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0400</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-config</span>
+<span class="w">          </span><span class="nt">configMap</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent-config</span>
+</pre></div>
+</div>
+<p>Apply the deployment</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$<span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>./netris-controller-ha/manifests/netris-controller/nvlink/deploy.yaml
+</pre></div>
+</div>
+</section>
 </section>
 <section id="loading-gpu-inventory">
-<h3>Loading GPU inventory<a class="headerlink" href="#loading-gpu-inventory" title="Link to this heading"></a></h3>
-<p>Netris must have the mapping between the GPU UIDs and the servers those GPUs are installed in preloaded before automatic NVL partition management can start.</p>
+<span id="nvlink-loading-gpu-inventory"></span><h3><a class="toc-backref" href="#id13" role="doc-backlink">Loading GPU Inventory</a><a class="headerlink" href="#loading-gpu-inventory" title="Link to this heading"></a></h3>
+<p>You must preload the mapping between the GPU UIDs and the servers in which those GPUs are installed before the automatic NVL partition management can start.</p>
 <p>Here is an example of the GPU UID inventory file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hgx-pod00-su0-h00,875835130816197840
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hostname,gpuUid
+hgx-pod00-su0-h00,875835130816197840
 hgx-pod00-su0-h00,961186615343340613
 hgx-pod00-su0-h00,796824814706104730
 hgx-pod00-su0-h00,684212070855729123
 hgx-pod00-su0-h01,718625720642846212
 hgx-pod00-su0-h01,788578661925003442
-hgx-pod00-su0-h01,910329703472956766
+hgx-pod00-su0-h01,910329783472956766
 hgx-pod00-su0-h01,814561743235261831
 hgx-pod00-su0-h02,996615732638596030
 hgx-pod00-su0-h02,884228998345288014
@@ -1278,158 +1530,182 @@ hgx-pod00-su0-h03,893225768947662203
 hgx-pod00-su0-h03,825286183620844317
 hgx-pod00-su0-h03,784007583961668668
 hgx-pod00-su0-h03,713366763878128965
-…
 </pre></div>
 </div>
-<p>Execute <code class="docutils literal notranslate"><span class="pre">netris-nvl-loader</span></code> script to import the GPU UID inventory into the Netris Controller</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./netris-nvl-loader<span class="w"> </span>--csv-file<span class="w"> </span>gpu-mapping.csv<span class="w"> </span>--netris-url<span class="w"> </span><span class="s2">&quot;https://controller.acme.com&quot;</span><span class="w"> </span>--username<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;passw0rd&quot;</span>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In this file, the <code class="docutils literal notranslate"><span class="pre">hostname</span></code> refers to the server’s object name in <a class="reference internal" href="topology-management.html"><span class="doc">Netris Inventory</span></a>.</p>
+</div>
+<section id="step-1-install-the-nvlink-loader">
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">Step 1: Install the nvlink-loader</a><a class="headerlink" href="#step-1-install-the-nvlink-loader" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">nvlink-loader</span></code> binary ships as part of the Netris Controller distribution package. Copy the <code class="docutils literal notranslate"><span class="pre">nvlink-loader.bin</span></code> binary into the Netris controller’s local <code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code> and make it executable.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$<span class="w"> </span>sudo<span class="w"> </span>cp<span class="w"> </span>./netris-controller-ha/files/k3s/nvlink-loader.bin<span class="w"> </span>/usr/local/bin/nvlink-loader<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/nvlink-loader
+</pre></div>
+</div>
+</section>
+<section id="step-2-load-the-gpu-inventory-into-the-netris-controller">
+<h4><a class="toc-backref" href="#id15" role="doc-backlink">Step 2: Load the GPU inventory into the Netris Controller</a><a class="headerlink" href="#step-2-load-the-gpu-inventory-into-the-netris-controller" title="Link to this heading"></a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You only need to load the inventory on the primary Netris controller node. Do not repeat this action on standby controller nodes.</p>
+</div>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">nvlink-loader</span></code> script to import the GPU UID inventory into the Netris Controller</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$<span class="w"> </span>nvlink-loader<span class="w"> </span>--csv-file<span class="w"> </span>gpu-mapping.csv<span class="w"> </span>--netris-url<span class="w"> </span><span class="s2">&quot;https://controller.acme.com&quot;</span><span class="w"> </span>--username<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;passw0rd&quot;</span>
 </pre></div>
 </div>
 <p>Where</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--csv-file<span class="w"> </span>&lt;filename&gt;<span class="w">    </span>specifies<span class="w"> </span>the<span class="w"> </span>comma-separated<span class="w"> </span>value<span class="w"> </span><span class="o">(</span>CSV<span class="o">)</span><span class="w"> </span>file<span class="w"> </span>with<span class="w"> </span>GPU<span class="w"> </span>UID<span class="w"> </span>inventory
 
---netris-url<span class="w"> </span><span class="s2">&quot;&lt;URL&gt;”     specifies the Netris Controller URL</span>
+--netris-url<span class="w"> </span><span class="s2">&quot;&lt;URL&gt;&quot;</span><span class="w">     </span>specifies<span class="w"> </span>the<span class="w"> </span>Netris<span class="w"> </span>Controller<span class="w"> </span>URL
 
-<span class="s2">--username &quot;</span>&lt;username&gt;<span class="s2">&quot;  specifies the Netris administrator username</span>
+--username<span class="w"> </span><span class="s2">&quot;&lt;username&gt;&quot;</span><span class="w">  </span>specifies<span class="w"> </span>the<span class="w"> </span>Netris<span class="w"> </span>administrator<span class="w"> </span>username
 
-<span class="s2">--password &quot;</span>&lt;password&gt;<span class="s2">&quot;  specifies the Netris administrator password</span>
+--password<span class="w"> </span><span class="s2">&quot;&lt;password&gt;&quot;</span><span class="w">  </span>specifies<span class="w"> </span>the<span class="w"> </span>Netris<span class="w"> </span>administrator<span class="w"> </span>password
 </pre></div>
 </div>
 <p>Upon successful import, you should see output similar to the one below</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>INFO<span class="w"> </span><span class="o">[</span><span class="m">0000</span><span class="o">]</span><span class="w"> </span>Found<span class="w"> </span><span class="m">72</span><span class="w"> </span>GPU<span class="w"> </span>mappings<span class="w"> </span><span class="k">in</span><span class="w"> </span>CSV<span class="w"> </span>file
-INFO<span class="w"> </span><span class="o">[</span><span class="m">0000</span><span class="o">]</span><span class="w"> </span>Logging<span class="w"> </span><span class="k">in</span><span class="w"> </span>to<span class="w"> </span>Netris…
-INFO<span class="w"> </span><span class="o">[</span><span class="m">0000</span><span class="o">]</span><span class="w"> </span>Successfully<span class="w"> </span>logged<span class="w"> </span><span class="k">in</span><span class="w"> </span>to<span class="w"> </span>Netris
-INFO<span class="w"> </span><span class="o">[</span><span class="m">0000</span><span class="o">]</span><span class="w"> </span>Fetching<span class="w"> </span>inventory<span class="w"> </span>from<span class="w"> </span>Netris<span class="w"> </span><span class="o">(</span>import<span class="w"> </span>mode<span class="o">)</span>...
-INFO<span class="w"> </span><span class="o">[</span><span class="m">0001</span><span class="o">]</span><span class="w"> </span>Found<span class="w"> </span><span class="m">38</span><span class="w"> </span>server<span class="w"> </span>inventory<span class="w"> </span>items
-INFO<span class="w"> </span><span class="o">[</span><span class="m">0002</span><span class="o">]</span><span class="w"> </span>Successfully<span class="w"> </span>updated<span class="w"> </span>server<span class="w"> </span>‘hgx-pod00-su0-h00’<span class="w"> </span>with<span class="w"> </span><span class="m">4</span><span class="w"> </span>GPU<span class="w"> </span>mappings
-INFO<span class="w"> </span><span class="o">[</span><span class="m">0003</span><span class="o">]</span><span class="w"> </span>Successfully<span class="w"> </span>updated<span class="w"> </span>server<span class="w"> </span>‘hgx-pod00-su0-h01’<span class="w"> </span>with<span class="w"> </span><span class="m">4</span><span class="w"> </span>GPU<span class="w"> </span>mappings
-INFO<span class="w"> </span><span class="o">[</span><span class="m">0004</span><span class="o">]</span><span class="w"> </span>Successfully<span class="w"> </span>updated<span class="w"> </span>server<span class="w"> </span>‘hgx-pod00-su0-h02’<span class="w"> </span>with<span class="w"> </span><span class="m">4</span><span class="w"> </span>GPU<span class="w"> </span>mappings
-…
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>INFO [0000] Found 72 GPU mappings in CSV file
+INFO [0000] Logging in to Netris…
+INFO [0000] Successfully logged in to Netris
+INFO [0000] Fetching inventory from Netris (import mode)...
+INFO [0001] Found 38 server inventory items
+INFO [0002] Successfully updated server &#39;hgx-pod00-su0-h00&#39; with 4 GPU mappings
+INFO [0003] Successfully updated server &#39;hgx-pod00-su0-h01&#39; with 4 GPU mappings
+INFO [0004] Successfully updated server &#39;hgx-pod00-su0-h02&#39; with 4 GPU mappings
+&lt;output truncated for brevity&gt;
 </pre></div>
 </div>
-<p>You can further confirm successful import by examining the appropriate server objects in the Netris controller. In the Custom JSON field of each GPU server in scope, you should see a JSON object similar to the following</p>
+</section>
+<section id="step-3-verify-the-imported-gpu-inventory">
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">Step 3: Verify the imported GPU inventory</a><a class="headerlink" href="#step-3-verify-the-imported-gpu-inventory" title="Link to this heading"></a></h4>
+<p>You can also confirm successful import by examining the appropriate server objects in the Netris controller. In the Custom JSON field of each relevant server object in Netris <a class="reference internal" href="topology-management.html"><span class="doc">Inventory</span></a>, you should see a JSON object similar to the following</p>
 <img alt="_images/NVL-Server-GPU-inventory.png" class="with-shadow align-center" src="_images/NVL-Server-GPU-inventory.png" />
-<br /><div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Netris does not enforce the completeness of the GPU inventory or whether the mapping is correct. Please ensure that you validate your inventory file content before loading the inventory into the Netris Controller.</p>
+<p style="text-align: center;"><em>Figure: GPU UID mapping shown in the server's Custom JSON field</em></p></section>
+</section>
+</section>
+<section id="using-the-netris-nvlink-plugin">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Using the Netris NVLink plugin</a><a class="headerlink" href="#using-the-netris-nvlink-plugin" title="Link to this heading"></a></h2>
+<p>After successfully configuring the Netris NVLink plugin and loading the GPU inventory, as shown above, you can use the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> functionality to create, update, and delete NVL72 NVLink partitions.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You must update your Server Cluster Template to include NVLink integration. See the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster documentation</span></a> for more details.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In the most basic sense, when you create a Server Cluster using a Server Cluster Template that references NVLink integration, as shown in the Server Cluster documentation, Netris will look up GPU UIDs in the Netris server inventory for each server in the Server Cluster and create one NVLink partition per NMX-C named after the Server Cluster, including the Server Cluster ID, and assign the appropriate GPUs to that partition.</p>
+<p>In the most basic sense, when you create a Server Cluster using a Server Cluster Template with NVLink integration, as shown in the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster documentation</span></a>, Netris will look up the relevant GPU UIDs in the Netris <a class="reference internal" href="topology-management.html"><span class="doc">Inventory</span></a> for each server object included in the given Server Cluster and create one NVL72 partition per NMX-C named after the Server Cluster, including the Server Cluster ID. Then Netris will assign the appropriate GPU UIDs to that partition.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>NVIDIA does not support NVLink partitions spanning more than one NVL domain.</p>
+<p>Netris does not enforce the completeness of the GPU inventory or the correctness of the server-to-GPU ID mapping. Please verify the content of your inventory CSV file before loading it into the Netris Controller.</p>
 </div>
-</section>
-<section id="netris-nmx-plugin-configuration-parameters">
-<h3>Netris-NMX Plugin Configuration Parameters<a class="headerlink" href="#netris-nmx-plugin-configuration-parameters" title="Link to this heading"></a></h3>
-<p>The following configuration options are available in the Netris-NMX plugin YAML configuration file:</p>
-<ul class="simple">
-<li><p><strong>nmx-config</strong> - top-level mapping for the plugin configuration</p></li>
-<li><p><strong>verify-ssl</strong> - key to signal the plugin whether to use TLS authentication when accessing the NMX-Controller</p></li>
-<li><p><strong>cert-file</strong> - absolute path to the client certificate</p></li>
-<li><p><strong>key-file</strong>  - absolute path to the private key of the client certificate</p></li>
-<li><p><strong>root-ca</strong>   - absolute path to the root CA certificate file.</p></li>
-<li><p><strong>common-name</strong> - must match the value of the CN field of the certificate presented by the NMX-Controller.</p></li>
-<li><p><strong>nmx-c</strong>      - contains a mapping describing each NMX-Controller you’d like Netris to create NVLink partitions in. It must contain at least one key with a value of a list of hostnames and port numbers</p>
-<ul>
-<li><p><strong>addresses</strong> - is a list of hostnames and port numbers of each NMX-C node in an NMX-C HA cluster.</p></li>
-</ul>
-</li>
-</ul>
-<p>Each NMX-C must be presented through a separate key. The <code class="docutils literal notranslate"><span class="pre">addresses</span></code> key is intended to contain a list of every node in a single NMX-C HA instance.</p>
-<p>In the deployment where each NMX-Controller requires a separate client authentication certificate, the relevant keys may be included in the mapping for that specific NMX-Controller, like so:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">nmx-config</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">verify-ssl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">cert-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/netris-nvlink-agent/client.crt</span>
-<span class="w">  </span><span class="nt">key-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/netris-nvlink-agent/client.key</span>
-<span class="w">  </span><span class="nt">root-ca</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/netris-nvlink-agent/rootCA.crt</span>
-<span class="w">  </span><span class="nt">common-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmxc-x.acme.com</span>
-<span class="w">  </span><span class="nt">nmx-c</span><span class="p">:</span>
-<span class="w">     </span><span class="nt">nmxc_01</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">cert-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/netris-nvlink-agent/client01.crt</span>
-<span class="w">        </span><span class="nt">key-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/netris-nvlink-agent/client01.key</span>
-<span class="w">        </span><span class="nt">root-ca</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/netris-nvlink-agent/rootCA.crt</span>
-<span class="w">        </span><span class="nt">common-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmxc-01.acme.com</span>
-<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmxc-01.acme.com:8601</span>
-<span class="w">     </span><span class="nt">nmxc_02</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmxc-02.acme.com:8601</span>
-<span class="w">     </span><span class="nt">nmxc_03</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmxc-03.acme.com:8681</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmxc-03.acme.com:8682</span>
-</pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>NVIDIA does not support NVL72 partitions spanning more than one NVL domain. If your Server Cluster spans multiple NVL72 domains, each NVL72 domain will have a partition created within it with GPU UIDs from that domain only. Please reach out to Netris support or your NVIDIA representative with questions about operating multiple NVL72 domains.</p>
 </div>
-<p>After successfully installing and configuring the Netris-NMX agent, you can use <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a> to create NVLink partitions via the creation of Server Clusters. You must update your Server Cluster Template to include NVLink integration. See the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster documentation</span></a> for more details.</p>
-</section>
 </section>
 <section id="verification">
-<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h2>
-<p>Netris ships <code class="docutils literal notranslate"><span class="pre">nmx-get-partititions.sh</span></code> script, which helps the operator to verify proper operation of the Netris-NMX plugin.</p>
-<p>Below are a few examples of running the verification script.</p>
-<p>The output shows that only a default partition is present in the NMX-Controller and no GPU UIDs are assigned to it.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>./nmx-get-partitions.sh
-<span class="o">===</span><span class="w"> </span>NMX-C<span class="w"> </span>Partition<span class="w"> </span><span class="nv">Information</span><span class="w"> </span><span class="o">===</span>
-Gateway<span class="w"> </span>ID:<span class="w"> </span>gateway_id
-Host:<span class="w"> </span>nmxc-01.acme.com:8601
-<span class="o">===================================</span>
+<span id="nvlink-verification"></span><h2><a class="toc-backref" href="#id18" role="doc-backlink">Verification</a><a class="headerlink" href="#verification" title="Link to this heading"></a></h2>
+<p>When you need to directly validate NVL72 partitions and their membership, Netris recommends using a script to simplify access to NMX-C.</p>
+<p>Here is an example of that script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
-Partition<span class="w"> </span>ID:<span class="w"> </span><span class="m">32766</span>
-Name:<span class="w"> </span>Default<span class="w"> </span>Partition
-Number<span class="w"> </span>of<span class="w"> </span>GPUs:<span class="w"> </span>N/A
-GPU<span class="w"> </span>UIDS:
--<span class="w"> </span>None
-Health:<span class="w"> </span>NAX_PARTITION_HEALTH_HEALTHY
-Type:<span class="w"> </span>NMX_PARTITION_TYPE_GPUUID_BASED
+<span class="c1"># NMX-C Partition Info Script</span>
+<span class="c1"># Usage: ./nmx-get-partitions.sh [gateway_id]</span>
+
+<span class="c1"># Configuration</span>
+<span class="nv">GATEWAY_ID</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">gateway_id</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">NMX_HOST</span><span class="o">=</span><span class="s2">&quot;nmxc-01.acme.com:8601&quot;</span>
+<span class="nv">CERT_PATH</span><span class="o">=</span><span class="s2">&quot;/home/ubuntu/netris-nvlink-agent/client.crt&quot;</span>
+<span class="nv">KEY_PATH</span><span class="o">=</span><span class="s2">&quot;/home/ubuntu/netris-nvlink-agent/client.key&quot;</span>
+<span class="nv">CACERT_PATH</span><span class="o">=</span><span class="s2">&quot;/home/ubuntu/netris-nvlink-agent/rootCA.crt&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== NMX-C Partition Information ===&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Gateway ID: </span><span class="nv">$GATEWAY_ID</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Host: </span><span class="nv">$NMX_HOST</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=====================================&quot;</span>
+<span class="nb">echo</span>
+
+<span class="c1"># Get partition info from NMX-C</span>
+grpcurl<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;{\&quot;gatewayId\&quot;: \&quot;</span><span class="nv">$GATEWAY_ID</span><span class="s2">\&quot;}&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-cert<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CERT_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-key<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$KEY_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-cacert<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CACERT_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;</span><span class="nv">$NMX_HOST</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>nmx_c.NMX_Controller.GetPartitionInfoList<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;</span>
+<span class="s1">  .partitionInfoList[] |</span>
+<span class="s1">  &quot;Partition ID: \(.partitionId.partitionId)&quot;,</span>
+<span class="s1">  &quot;Name: \(.name // &quot;N/A&quot;)&quot;,</span>
+<span class="s1">  &quot;Number of GPUs: \(.numGpus // &quot;N/A&quot;)&quot;,</span>
+<span class="s1">  &quot;GPU UIDs:&quot;,</span>
+<span class="s1">  (if .gpuUidList then (.gpuUidList[] | &quot;  - \(.)&quot;) else &quot;  - None&quot; end),</span>
+<span class="s1">  &quot;Health: \(.health // &quot;N/A&quot;)&quot;,</span>
+<span class="s1">  &quot;Type: \(.partitionType // &quot;N/A&quot;)&quot;,</span>
+<span class="s1">  &quot;----------------------------------------&quot;</span>
+<span class="s1">&#39;</span>
 </pre></div>
 </div>
-<p>The customer may choose to configure the NVLink domain with a default partition (see <a class="reference external" href="https://docs.nvidia.com/multi-node-nvlink-systems/partition-guide-v1-2.pdf">NVIDIA NVLink Multi-Node Documentation</a> for more details). Netris is fully compatible with this scenario and will remove the GPU UIDs from the default NVLink partition when those GPU UIDs are scheduled to be assigned to a new tenant partition.</p>
-<p>The output below shows a new NVLink partition created with 8 GPUs after a server cluster was instantiated containing servers with those GPU UIDs. Note that the partition name contains the Server Cluster ID (192 in this example), which may be helpful during troubleshooting. Netris will always include the Server Cluster ID in the NVLink partition name.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>./nmx-get-partitions.sh
-<span class="o">===</span><span class="w"> </span>NMX-C<span class="w"> </span>Partition<span class="w"> </span><span class="nv">Information</span><span class="w"> </span><span class="o">===</span>
-Gateway<span class="w"> </span>ID:<span class="w"> </span>gateway_id
-Host:<span class="w"> </span>nmxc-01.acme.com:8601
-<span class="o">===================================</span>
+<p>Below are a few examples of running this verification script.</p>
+<p>The following output shows that only a default partition is present in the NMX controller (NMX-C) and no GPU UIDs are assigned to it.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~$ ./nmx-get-partitions.sh
+=== NMX-C Partition Information ===
+Gateway ID: gateway_id
+Host: nmxc-01.acme.com:8601
+===================================
 
-Partition<span class="w"> </span>ID:<span class="w"> </span><span class="m">32766</span>
-Name:<span class="w"> </span>Default<span class="w"> </span>Partition
-Number<span class="w"> </span>of<span class="w"> </span>GPUs:<span class="w"> </span>N/A
-GPU<span class="w"> </span>UIDS:
--<span class="w"> </span>None
-Health:<span class="w"> </span>NMX_PARTITION<span class="w"> </span>HEALTH_<span class="w"> </span>HEALTHY
-Туре:<span class="w"> </span>NMX_PARTITION_TYPE_GPUUID_BASED
-—-----------------------------------
-Partition<span class="w"> </span>1D:<span class="w"> </span><span class="m">8593</span>
-Name:<span class="w"> </span>netris-cluster-192
-Number<span class="w"> </span>of<span class="w"> </span>GPUs:<span class="w"> </span><span class="m">8</span>
-GPU<span class="w"> </span>UIDs:
--<span class="w"> </span><span class="m">875835130816197840</span>
--<span class="w"> </span><span class="m">961186615343340613</span>
--<span class="w"> </span><span class="m">796824814706184730</span>
--<span class="w"> </span><span class="m">684212070855729123</span>
--<span class="w"> </span><span class="m">718625720642846212</span>
--<span class="w"> </span><span class="m">788578661925003442</span>
--<span class="w"> </span><span class="m">910329783472956766</span>
--<span class="w"> </span><span class="m">814561743235261831</span>
-Health:<span class="w"> </span>NMX_PARTITION<span class="w"> </span>HEALTH_<span class="w"> </span>HEALTHY
-Type:<span class="w"> </span>N/A
-—-----------------------------------
+Partition ID: 32766
+Name: Default Partition
+Number of GPUs: N/A
+GPU UIDs:
+- None
+Health: NMX_PARTITION_HEALTH_HEALTHY
+Type: NMX_PARTITION_TYPE_GPUUID_BASED
+</pre></div>
+</div>
+<p>The customer may choose to configure each NVL72 domain with a default partition (see <a class="reference external" href="https://docs.nvidia.com/multi-node-nvlink-systems/partition-guide-v1-2.pdf">NVIDIA NVLink Multi-Node Documentation</a> for more details). Netris is fully compatible with this scenario and will remove the GPU UIDs from the default NVL72 partition prior to assigning them to a new tenant partition.</p>
+<p>The output below shows a new NVL72 partition created with 8 GPUs after a Server Cluster was instantiated containing servers with those GPU UIDs. Note that the partition name contains the Server Cluster ID (192 in this example), which may be helpful during troubleshooting. Netris will always include the Server Cluster ID in the NVL72 partition name.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~$ ./nmx-get-partitions.sh
+=== NMX-C Partition Information ===
+Gateway ID: gateway_id
+Host: nmxc-01.acme.com:8601
+===================================
+
+Partition ID: 32766
+Name: Default Partition
+Number of GPUs: N/A
+GPU UIDs:
+- None
+Health: NMX_PARTITION_HEALTH_HEALTHY
+Type: NMX_PARTITION_TYPE_GPUUID_BASED
+-----------------------------------
+Partition ID: 8593
+Name: netris-cluster-192
+Number of GPUs: 8
+GPU UIDs:
+- 875835130816197840
+- 961186615343340613
+- 796824814706104730
+- 684212070855729123
+- 718625720642846212
+- 788578661925003442
+- 910329783472956766
+- 814561743235261831
+Health: NMX_PARTITION_HEALTH_HEALTHY
+Type: N/A
+-----------------------------------
 </pre></div>
 </div>
 </section>
 <section id="maintenance-and-deprovisioning">
-<h2>Maintenance and Deprovisioning<a class="headerlink" href="#maintenance-and-deprovisioning" title="Link to this heading"></a></h2>
-<p>If you need to perform maintenance on one or more GPU servers that are part of an NVLink partition, Netris recommends that you remove those servers from the Server Cluster before performing this maintenance. Doing so will remove the relevant GPU UIDs from the tenant’s NVLink partition.</p>
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Maintenance and Deprovisioning</a><a class="headerlink" href="#maintenance-and-deprovisioning" title="Link to this heading"></a></h2>
+<p>If you need to perform maintenance on one or more GPU servers that are part of an NVL72 partition, Netris recommends that you remove those servers from the Server Cluster before performing this maintenance. Doing so will remove the relevant GPU UIDs from the tenant’s NVL72 partition.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Removing a server from a Server Cluster will also remove this server from every and all V-Nets and VPCs that this server was a member of as a result of being a member of a Server Cluster. Netris will not remove this server from any V-Nets where the switch ports connected to this server were assigned to this V-Net manually or using <a class="reference internal" href="labels.html#tags"><span class="std std-ref">labels</span></a>.</p>
 </div>
 </section>
 <section id="additional-resources">
-<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Additional Resources</a><a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.nvidia.com/networking/software/nvlink-management-software/index.html#nmx-c">NVIDIA NMX-C Documentation</a></p></li>
 <li><p><a class="reference external" href="https://docs.nvidia.com/multi-node-nvlink-systems/partition-guide-v1-2.pdf">NVIDIA NVLink Multi-Node Documentation</a></p></li>
