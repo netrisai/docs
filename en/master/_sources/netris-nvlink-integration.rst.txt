@@ -5,6 +5,10 @@
 NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller
 ################################################################
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 4
+
 Overview
 ========
 
@@ -117,7 +121,7 @@ Provide the controller credentials that the Netris NVLink plugin will use to com
    stringData:
      NETRIS_CONTROLLER_ADDR: http://netris-controller-ha-web-service-backend.netris-controller
      NETRIS_CONTROLLER_LOGIN: "netris"
-     NETRIS_CONTROLLER_PASSWORD: "newNet0ps"
+     NETRIS_CONTROLLER_PASSWORD: "Password!"
      NETRIS_SITE_NAME: "Site"
      # NETRIS_VERIFY_SSL: "true"
 
@@ -125,8 +129,14 @@ In the ``secret.yaml`` file you should only need to update the values of the ``N
 
 .. warning:: Do not modify the value of the ``NETRIS_CONTROLLER_ADDR`` variable.
 
+Apply the updated ``secret.yaml``
+
+.. code-block:: bash
+
+   ~$ kubectl apply -f ./netris-controller-ha/manifests/netris-controller/nvlink/secret.yaml
+
 .. tip::
-   The username and password supplied in the ``secret.yaml`` must have "Permit All" selected as a value of the "Permission Group" field and "All Tenants" added and Edit selected when adding a Netris user.
+   The username and password supplied in the ``secret.yaml`` must have "Permit All" selected as the value of the "Permission Group" field, "All Tenants" added, and Edit selected when adding a Netris user.
 
    .. image:: images/nvlink-add-user.png
       :align: center
@@ -142,12 +152,6 @@ In the ``secret.yaml`` file you should only need to update the values of the ``N
    .. code-block:: bash
 
       kubectl rollout restart deployment/netris-controller-nvlink-agent -n netris-controller
-
-Apply the updated ``secret.yaml``
-
-.. code-block:: bash
-
-   ~$ kubectl apply -f ./netris-controller-ha/manifests/netris-controller/nvlink/secret.yaml
 
 Step 2: Configuring NMX Controller connection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -376,7 +380,7 @@ Here is an example of the GPU UID inventory file:
    hgx-pod00-su0-h03,784007583961668668
    hgx-pod00-su0-h03,713366763878128965
 
-In this file, the ``hostname`` refers to the server's object name in :doc:`Netris Inventory </topology-management>`.
+.. tip:: In this file, the ``hostname`` refers to the server's object name in :doc:`Netris Inventory </topology-management>`.
 
 Step 1: Install the nvlink-loader
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -390,7 +394,7 @@ The ``nvlink-loader`` binary ships as part of the Netris Controller distribution
 Step 2: Load the GPU inventory into the Netris Controller
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You only need to load the inventory on the primary Netris controller node. Do not repeat this action on standby controller nodes.
+.. warning:: You only need to load the inventory on the primary Netris controller node. Do not repeat this action on standby controller nodes.
 
 Execute ``nvlink-loader`` script to import the GPU UID inventory into the Netris Controller
 
