@@ -18,7 +18,7 @@ Access and roles
 
 * **Tenant** - A named principal used to delegate management of network resources. A Tenant has only a unique name and an optional description; it carries no quota, billing identity, or login of its own. Tenants are referenced from objects that support ownership (VPC, V-Net, IPAM allocations and subnets, Inventory units, switch ports, L4 Load Balancer, Server Cluster) and from User accounts to scope which resources a user can administer. The built-in ``Admin`` tenant owns all resources by default; additional tenants are created to delegate self-service access to other teams — for example, a DevOps team using the Netris Controller GUI, Kubernetes CRDs, or Terraform.
 
-.. TODO: Enumerate the specific parameters managed by Admin Tenant for VPC and V-Net once confirmed with engineering/architects.
+.. TODO: Blocked on NET-1350 (Document, Stabilize, and Rename the Netris Tenant Object). Architect must confirm the two-role Admin/Guest model, enumerate which VPC and V-Net parameters are Admin-Tenant-only vs. Guest-accessible, and decide the object's final name before this section can be completed.
 
 * **Admin Tenant** - The tenant that owns a VPC or V-Net and can manage all of its parameters.
 

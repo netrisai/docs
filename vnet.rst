@@ -124,6 +124,8 @@ V-Net Fields explained
      - Set port to untagged mode. Triggers whether traffic should be sent VLAN tagged (trunk mode) or VLAN untagged (access mode) for this switch port.
      - VLAN tags are only significant on each port’s ingress/egress unless VLAN aware mode is used.
 
+.. TODO: "Owner" here is the same underlying field as Tenant/Admin Tenant elsewhere in the docs — see NET-1350 (Document, Stabilize, and Rename the Netris Tenant Object). Reconcile naming once that story resolves.
+
 Advanced V-Net Fields explained
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. list-table::
