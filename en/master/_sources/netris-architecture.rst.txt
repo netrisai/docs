@@ -18,7 +18,7 @@ Every Netris deployment — whether you are running a traditional Ethernet data 
 
 * **Netris Switch Agent** — software running on every Netris-managed switch. Translates controller intent into vendor-specific switch configuration and reports telemetry back to the controller over an outbound, encrypted gRPC channel.
 
-* **Netris SoftGate** (VPC Gateway) — optional but adopted by 95% of Netris customers. A multi-tenant, horizontally scalable, XDP accelerated software edge that provides ingress and egress services for VPCs — elastic IPs, NAT, tenant-specific connectivity, and L4 load balancing — and runs on operator-provided bare-metal x86 servers at the edge of the North-South fabric.
+* **Netris SoftGate** (VPC Gateway) — optional but adopted by 95% of Netris customers. A multi-tenant, horizontally scalable, XDP-accelerated software edge that provides ingress and egress services for VPCs — NAT (SNAT and DNAT), tenant-specific connectivity, and L4 load balancing — and runs on operator-provided bare-metal x86 servers at the edge of the North-South fabric.
 
 These three components are present in every Netris deployment. If you are running a traditional data center without a GPU cluster, this is the whole picture.
 
@@ -75,7 +75,7 @@ Infrastructure devices managed by Netris establish **outbound** connections to t
 Netris SoftGate
 ===============
 
-Netris SoftGate (also known as VPC Gateway) is a multi-tenant, horizontally scalable edge gateway for cloud providers. SoftGate provides elastic IPs, NAT, tenant-specific connectivity, and L4 load balancing — complementing physical network multi-tenancy with cloud networking functionality that switches alone cannot provide. The SoftGate software runs on a dedicated set of operator-provided bare-metal x86 servers at the edge of the Netris-managed North-South fabric. 95% of Netris customers have opted to add SoftGate to their Netris-managed switch fabrics.
+Netris SoftGate (also known as VPC Gateway) is a multi-tenant, horizontally scalable edge gateway for cloud providers. SoftGate provides NAT (SNAT and DNAT), tenant-specific connectivity, and L4 load balancing — complementing physical network multi-tenancy with cloud networking functionality that switches alone cannot provide. The SoftGate software runs on a dedicated set of operator-provided bare-metal x86 servers at the edge of the Netris-managed North-South fabric. 95% of Netris customers have opted to add SoftGate to their Netris-managed switch fabrics.
 
 You can learn more about SoftGate architecture and deployment scenarios in the :doc:`Netris SoftGate HS <netris-softgate-HS>` document.
 
