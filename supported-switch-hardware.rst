@@ -370,9 +370,16 @@ Arista
      -
      - ✔
    * - Arista
-     - 7280R3A
-     - Jericho2
-     - 144 x 100G or 36 x 400G
+     - 7060X6-32PE
+     - Tomahawk 5
+     - 32 x 800G OSFP
+     - EOS
+     -
+     - ✔
+   * - Arista
+     - 7060X6-64PE
+     - Tomahawk 5
+     - 64 x 800G OSFP + 2 x SFP+
      - EOS
      -
      - ✔
@@ -380,6 +387,27 @@ Arista
      - 7280R3
      - Jericho2
      - 24 x 400G; 96 x 100G; 25G + 8 x 100G
+     - EOS
+     -
+     - ✔
+   * - Arista
+     - 7280R3A
+     - Jericho2
+     - 144 x 100G or 36 x 400G
+     - EOS
+     -
+     - ✔
+   * - Arista
+     - 7280R4
+     - Jericho3+
+     - Up to 32 x 800G
+     - EOS
+     -
+     - ✔
+   * - Arista
+     - 7300R3
+     - Trident-4
+     - 256 wire-speed 40GbE ports
      - EOS
      -
      - ✔
@@ -398,16 +426,16 @@ Arista
      -
      - ✔
    * - Arista
-     - 7300R3
-     - Trident-4
-     - 256 wire-speed 40GbE ports
+     - 7500R3
+     - Jericho, Jericho2
+     - Up to 288 wire-speed 400G ports
      - EOS
      -
      - ✔
    * - Arista
-     - 7500R3
-     - Jericho, Jericho2
-     - Up to 288 wire-speed 400G ports
+     - 7700R4
+     - Jericho3-AI
+     - Per leaf: 18 x 800G host + 20 x 800G fabric (AI distributed Etherlink fabric, not a general leaf/spine switch)
      - EOS
      -
      - ✔
