@@ -42,6 +42,37 @@ Netris also enables you to define Custom DHCP Options.
 
   <br />
 
+Netris DHCP
+===========
+
+To enable Netris' built-in DHCP service on an L2VPN V-Net:
+
+ - Add a gateway to the V-Net — native DHCP requires a gateway.
+ - Check the DHCP checkbox next to the gateway IP address.
+ - Provide a starting and ending IP address for the DHCP scope.
+ - Select a DHCP Options Set.
+
+.. note::
+  A DHCP Options Set is required to enable Netris DHCP — Netris does not currently ship a default option set, so one must be created (see DHCP Option Sets above) before DHCP can be enabled on a V-Net.
+
+.. image:: images/dhcp-builtin.png
+    :alt: Netris DHCP configuration in V-Net settings
+    :align: center
+    :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Netris DHCP configuration in V-Net settings</em></p>
+
+SoftGate–Controller dependency for Netris DHCP
+-----------------------------------------------
+
+Netris DHCP has no hard dependency on the Controller for day-to-day service. The active SoftGate's local DHCP server hands out leases from its own local leases file, independent of Controller reachability — if the Controller is unreachable, the SoftGate keeps issuing dynamic leases on its own, from its last Controller-synced configuration, which the Netris agent caches locally.
+
+The Controller's role is keeping IP assignments stable across a SoftGate failover: the Netris agent on the active SoftGate pushes each new lease up to the Controller, which converts it into a static IP–MAC reservation and syncs it back down to every SoftGate as a static binding. That round trip isn't instantaneous — if the SoftGate serving DHCP for a V-Net fails over before a given client's lease has completed the round trip and been written into every SoftGate's static bindings, the newly active SoftGate has no record of that client yet and may hand it a different dynamic IP.
+
+The Controller's reservation set persists independently of most V-Net edits: setting a V-Net to inactive preserves it, so DHCP can't hand a previously leased IP to a different endpoint and create a conflict once the V-Net is reactivated, and changing the lease range doesn't clear it either. Unchecking DHCP, or removing the V-Net's IP subnet and saving, resets it; deleting the V-Net cleans it up entirely.
+
 DHCP Relay
 ==========
 Netris supports using an external DHCP server by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC. Both DHCPv4 and DHCPv6 are supported.
@@ -72,6 +103,13 @@ To configure DHCP Relay in a V-Net:
 .. raw:: html
 
   <br />
+
+DHCPv6 Relay: Switch Loopback IPv6 Address
+-------------------------------------------
+
+When DHCPv6 Relay to a third-party server is configured (Address Family set to IPv4/IPv6 Dual-Stack or IPv6-Only), Netris derives an IPv6 loopback address for the switch and assigns it, as a /128, to the loopback interface in the relevant VRF(s). This address is used as the source address of relayed DHCPv6 traffic, the same role the switch's existing IPv4 loopback plays for DHCPv4 relay.
+
+The address is not randomly generated — it's deterministically derived from the switch's existing main IPv4 loopback address: Netris takes the IPv4 loopback address, converts it to hex, and uses that as the lower 32 bits of an address in the ``fd00::/8`` unique local address range. For example, an IPv4 loopback of ``10.2.3.4`` produces the IPv6 loopback ``fd00::0a02:0304/128``.
 
 Example:
 """"""""
