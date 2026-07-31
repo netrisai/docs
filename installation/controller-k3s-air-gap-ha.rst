@@ -639,10 +639,6 @@ For any issues or additional assistance, please contact Netris Support.
 Upgrading HA Netris Controller in Air-Gapped Environments
 =========================================================
 
-.. tip::
-
-   See :doc:`/upgrading-netris` for more information on upgrading the Netris Controller in non-air-gapped environments.
-
 Obtain the Upgrade File
 ----------------------------
 

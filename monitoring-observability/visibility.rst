@@ -14,12 +14,12 @@ To start with Graph Boards, first, you need to add a new Graph Board.
 
 1. Navigate to Telescope → Graph Boards, open the dropdown menu in the top left corner, then click + button.
 
-.. image:: images/add_board.png
+.. image:: ../images/add_board.png
     :align: center
     
 2. Type a name and assign it to one of the tenants that you manage. Later on, you can optionally mark the Graph Board as public if you want the particular board to be visible to all users across multiple tenants.  
 
-.. image:: images/create_board.png
+.. image:: ../images/create_board.png
     :align: center
     
 Now you can add graphs by clicking +Add graph. 
@@ -39,17 +39,17 @@ Description of +Add graph fields:
 
 Example: Sum of traffic on two ISP uplinks.
 
-.. image:: images/add_graph.png
+.. image:: ../images/add_graph.png
     :align: center
 
 Example: Sum of the traffic on all ports under the service called “PC06 V-NET”.
 
-.. image:: images/add_graph2.png
+.. image:: ../images/add_graph2.png
     :align: center
 
 Screenshot: Listing of a Graph Board with the explanation of the controls.
 
-.. image:: images/graph_board.png
+.. image:: ../images/graph_board.png
     :align: center
 
 API Logs
@@ -74,13 +74,13 @@ By clicking on each title you can see the details of the checks on the right sid
 
 Screenshot: Dashboard showing details of “Hardware Health.”
 
-.. image:: images/hardware_health.png
+.. image:: ../images/hardware_health.png
     :align: center
 
 Port up/down state can be set to “Save as normal.” So the system will alarm only if the actual state is different from the saved as the normal state. 
 
 Screenshot: “Save as normal” on selected ports.
 
-.. image:: images/saveasnormal.png
+.. image:: ../images/saveasnormal.png
     :align: center
         

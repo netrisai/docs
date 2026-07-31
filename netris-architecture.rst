@@ -127,7 +127,7 @@ Netris is built on the following security design principles:
 
 * **Customer-Controlled Security Boundary:** Because the Netris Controller is deployed within the customer's environment, organizations retain full control over the security perimeter. Netris does not offer hosted control planes.
 
-* **Audit Logging:** All requests processed by the Netris API are logged. Because the web GUI operates through the same API, UI activity is also captured in the audit logs. Logs can be retrieved programmatically through the controller API or inspected in the GUI. See :doc:`visibility` for details.
+* **Audit Logging:** All requests processed by the Netris API are logged. Because the web GUI operates through the same API, UI activity is also captured in the audit logs. Logs can be retrieved programmatically through the controller API or inspected in the GUI. See :doc:`monitoring-observability/visibility` for details.
 
 .. _shared_responsibility:
 
@@ -140,7 +140,7 @@ Security of the overall infrastructure environment is a shared responsibility be
 
 * Role-based access control (:doc:`accounts`)
 * Infrastructure configuration enforcement
-* Audit logging (:doc:`visibility`)
+* Audit logging (:doc:`monitoring-observability/visibility`)
 * Tenant isolation orchestration across Ethernet, InfiniBand, and NVLink fabrics
 * Device management hardening via :doc:`Inventory Profiles <inventory-profile>`
 

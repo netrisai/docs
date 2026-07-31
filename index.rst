@@ -52,12 +52,11 @@ You are welcome to join our community Slack_ channel to get additional support f
    topology-management
    inventory-profile
    ipam
-   network-policies
+   bgp
    switch-ports
    lag
-   visibility
    maintenance-mode
-   upgrading-netris
+   static-routing
 
 .. toctree::
    :maxdepth: 4
@@ -65,7 +64,9 @@ You are welcome to join our community Slack_ channel to get additional support f
 
    vnet
    server-cluster
+   nat
    l4-load-balancer
+   vpc-peering
    vpc-connect
    acls
 
@@ -85,9 +86,11 @@ You are welcome to join our community Slack_ channel to get additional support f
    :maxdepth: 2
    :caption: Monitoring & Observability
 
+   monitoring-observability/visibility
    monitoring-observability/topology-validation
    monitoring-observability/netq
    monitoring-observability/healthchecks
+   monitoring-observability/looking-glass
 
 .. toctree::
    :maxdepth: 0
