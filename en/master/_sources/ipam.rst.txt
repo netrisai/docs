@@ -28,6 +28,39 @@ IPAM Tree View
 
 --------------------------
 
+Subnet purpose and service dependencies
+----------------------------------------
+
+Netris models address space first and consumes it second: you create an IPAM subnet with the right **purpose** before the service that will use it. A service only offers addresses from subnets whose purpose matches, so the IPAM entry is a prerequisite, not an afterthought.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 55 25
+
+   * - Purpose
+     - Required for
+     - Typical VPC
+   * - ``common``
+     - A :doc:`V-Net <vnet>`'s Layer-3 gateway (SVI), and the address pool :doc:`DHCP <dhcp-and-dhcp-relay>` hands out. For a multi-site V-Net, create the subnet and assign it to every site the V-Net spans before adding the gateway.
+     - Tenant VPC
+   * - ``loopback``
+     - Loopback IPs for Netris hardware (switches, SoftGates).
+     - System VPC
+   * - ``management``
+     - Out-of-band management IPs for switches and SoftGates; a management-purpose subnet also drives ZTP. (Since 4.9, management subnets can also be used in V-Nets and VPCs.)
+     - System VPC
+   * - ``load-balancer``
+     - :doc:`L4 Load Balancer <l4-load-balancer>` frontend VIP pool.
+     - System VPC
+   * - ``nat``
+     - :doc:`NAT <nat>` public addresses (SNAT pools and DNAT targets).
+     - System VPC
+   * - ``inactive``
+     - Nothing — reserve or document a prefix for future use.
+     - —
+
+See the :doc:`V-Net <vnet>`, :doc:`L4 Load Balancer <l4-load-balancer>`, :doc:`NAT <nat>`, and :doc:`DHCP and DHCP Relay <dhcp-and-dhcp-relay>` pages for how each service consumes its subnet, and :doc:`Netris VPC <vpc>` for why loopback, management, load-balancer, and nat subnets live in the System VPC.
+
 Add an Allocation
 -----------------
 

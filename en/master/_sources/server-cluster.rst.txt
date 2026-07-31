@@ -254,7 +254,10 @@ Each object in the **Vnets** JSON array may include a combination of the followi
   - **postfix**: A string appended to the server cluster name to form the V-Net name.
   - **type**: A string specifying the type of V-Net (`l2vpn`, `l3vpn`, `netris-ufm`, `netris-nvlink`).
   - **vlan**: A string specifying whether the V-Net is `tagged` or `untagged`. Only `untagged` is permitted at this time.
-  - **vlanID**: A string specifying the VLAN ID. Only `auto` is permitted at this time.
+  - **vlanID**: A string specifying the VLAN ID. Accepts `auto` or `specify`.
+
+    - Use `auto` to instruct Netris to automatically assign a new VLAN ID.
+    - Use `specify` to require the operator to enter the VLAN ID explicitly at cluster creation.
   - **ipFamily**: A string specifying the IP family for the V-Net (`ipv4`, `ipv6`, or `dual`).
   - **serverNics**: An array of Netris server NIC names on the server that will be associated with this V-Net.
   - **ipv4Gateway**: When `type:l2vpn` one of the following values:
@@ -478,29 +481,37 @@ Adding a Server Cluster
 
 To define a Server Cluster, navigate to ``Services->Server Cluster`` and click ``+Add``. Give the new cluster a name, set Admin to the appropriate owner (this defines who can edit/delete this cluster and only servers already assigned to this owner will be available for selection), set the site, set VPC to "Create New", select the Template created earlier, and click ``+Add Server`` or ``+Add Shared Server`` to start selecting server members. Click Add.
 
-.. image:: images/add-server-cluster-selecting-servers.png
+.. image:: images/server-cluster-add-single-vpc.png
   :align: center
   :class: with-shadow
 
 .. raw:: html
 
-  <br />
+   <p style="text-align: center;"><em>Figure: Adding a server cluster with a single VPC</em></p>
 
 When you click the blue ``Add`` button, Netris will create the VPC, V-Nets, and IP subnets as defined in the template. It will also configure the switch ports for each server based on the NIC names specified in the template.
-
-.. image:: images/add-server-cluster.png
-  :align: center
-  :class: with-shadow
-
-.. raw:: html
-
-  <br />
 
 .. note::
 
   - A VPC will be created automatically when "Create New" is selected.
   - After creation, the template, the VPC, and the site fields are locked.
   - The same Netris NIC name must be used consistently across all server objects in a cluster. For example, when eth10 is assigned to a V-Net in the template, Netris will assign every switch port that corresponds to every server's eth10 to the same  V-Net throughout the server cluster.
+
+You can also assign one or more V-Nets to a separate VPC while assigning others to another VPC. To do so, select **Per template object** under the VPC mapping option. Doing so shows a drop down menu to select an existing VPC or create a new VPC for each V-Net specified in the template.
+
+.. image:: images/server-cluster-add-per-vnet-vpc.png
+  :align: center
+  :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Adding a server cluster with multiple VPCs</em></p>
+
+.. note::
+
+  - V-Nets selected together on one line will be placed into the same VPC.
+  - In the screenshot above the Mgmt V-Net will be added to the existing VPC-102 (Shared-infra), while one new VPC will be created with the EastWest and the NorthSouth V-Nets assigned to it.
+  - If you require a separate VPC per V-Net, add a dedicated line for each V-Net.
 
 .. _server-cluster-shared-endpoints:
 

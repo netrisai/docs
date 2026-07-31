@@ -64,7 +64,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Netris Controller User Account Management" name="description" />
+<meta content="Netris BGP" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -76,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accounts &mdash; Netris Documentation</title>
+  <title>BGP &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -98,8 +98,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Custom NVUE Configuration Snippets" href="snippets.html" />
-    <link rel="prev" title="Getting Started with Switch-Fabric Manager &amp; VPC" href="vpc-gateways-with-managed-fabric.html" /> 
+    <link rel="next" title="Switch Ports" href="switch-ports.html" />
+    <link rel="prev" title="IP Address Management (IPAM)" href="ipam.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -408,7 +408,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="site.html">Netris Site</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vpc.html">VPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
@@ -450,18 +450,18 @@
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#add-a-subnet">Add a Subnet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bgp.html">BGP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="bgp.html#basic-bgp">Basic BGP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bgp.html#advanced-bgp">Advanced BGP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-objects">BGP Objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="bgp.html#ipv4-prefix">IPv4 Prefix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bgp.html#ipv6-prefix">IPv6 Prefix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bgp.html#community">Community</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-bgp">Basic BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-bgp">Advanced BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bgp-objects">BGP Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ipv4-prefix">IPv4 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipv6-prefix">IPv6 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#community">Community</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-route-maps">BGP route-maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bgp.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="bgp.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bgp-route-maps">BGP route-maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
 </ul>
 </li>
 </ul>
@@ -860,15 +860,15 @@
 <li class="toctree-l1"><a class="reference internal" href="vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Accounts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tenants">Tenants</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#permission-groups">Permission Groups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#user-roles">User Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#permission-groups">Permission Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="snippets.html">Custom NVUE Configuration Snippets</a></li>
@@ -1115,79 +1115,362 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Accounts</li>
+      <li class="breadcrumb-item active">BGP</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/accounts.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/bgp.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="vpc-gateways-with-managed-fabric.html" class="btn btn-neutral float-left" title="Getting Started with Switch-Fabric Manager &amp; VPC" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="snippets.html" class="btn btn-neutral float-right" title="Custom NVUE Configuration Snippets" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ipam.html" class="btn btn-neutral float-left" title="IP Address Management (IPAM)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="switch-ports.html" class="btn btn-neutral float-right" title="Switch Ports" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="accounts">
-<h1>Accounts<a class="headerlink" href="#accounts" title="Link to this heading"></a></h1>
-<p>The accounts section is for the management of user accounts, access permissions, and tenants.</p>
-<section id="users">
-<h2>Users<a class="headerlink" href="#users" title="Link to this heading"></a></h2>
-<p>Description of User account fields:</p>
+  <section id="bgp">
+<span id="bgp-def"></span><h1>BGP<a class="headerlink" href="#bgp" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><strong>Username</strong> - Unique username.</p></li>
-<li><p><strong>Full Name</strong> - Full Name of the user.</p></li>
-<li><p><strong>E-mail</strong> - The email address of the user. Also used for system notifications and for password retrieval.</p></li>
-<li><p><strong>E-mail CC</strong> - Send copies of email notifications to this address.</p></li>
-<li><p><strong>Phone Number</strong> - User’s phone number.</p></li>
-<li><p><strong>Company</strong> - Company the user works for. Usually useful for multi-tenant systems where the company provides Netris Controller access to customers.</p></li>
-<li><p><strong>Position</strong> - Position within the company.</p></li>
-<li><p><strong>User Role</strong> - When using a User Role object to define RBAC (role-based access control), Permissions Group and Tenant fields will deactivate.</p></li>
-<li><p><strong>Permission Group</strong> - User permissions for viewing and editing parts of the Netris Controller. (if User Role is not used)</p></li>
-<li><p><strong>+Tenant</strong> - User permissions for viewing and editing services using Switch Port and IP resources assigned to various Tenants. (if User Role is not used)</p></li>
+<li><p><a class="reference internal" href="#basic-bgp" id="id3">Basic BGP</a></p></li>
+<li><p><a class="reference internal" href="#advanced-bgp" id="id4">Advanced BGP</a></p></li>
+<li><p><a class="reference internal" href="#bgp-objects" id="id5">BGP Objects</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ipv4-prefix" id="id6">IPv4 Prefix</a></p></li>
+<li><p><a class="reference internal" href="#ipv6-prefix" id="id7">IPv6 Prefix</a></p></li>
+<li><p><a class="reference internal" href="#community" id="id8">Community</a></p></li>
 </ul>
-<p>Example: Creating a user with full access to all sections of Netris Controller, read-only access to resources managed by any Tenant, and full access to resources assigned to the Tenant Admin.</p>
-<img alt="User Management" class="align-center" src="_images/add_user.png" />
-<p style="text-align: center;"><em>Figure: User Management</em></p><p><strong>Password</strong>: To set a password or email the user for a password form, go to the listing of usernames and click the menu on the right side.</p>
-<img alt="List User Accounts" class="align-center" src="_images/user_set_password.png" />
-<p style="text-align: center;"><em>Figure: List User Accounts</em></p></section>
-<section id="tenants">
-<h2>Tenants<a class="headerlink" href="#tenants" title="Link to this heading"></a></h2>
-<p>Tenants are named principals used to delegate management of network resources. The built-in <code class="docutils literal notranslate"><span class="pre">Admin</span></code> tenant owns all resources by default. Additional tenants are created to grant other teams self-service access to provision and manage network services via the Netris Controller GUI, Kubernetes CRDs, or Terraform.</p>
-<p>A Tenant object has only two fields: a unique name and an optional description. It carries no quota, billing identity, or login.</p>
-<p>For a glossary of related concepts — including <strong>Admin Tenant</strong> and <strong>Guest Tenant</strong> — see <a class="reference internal" href="definitions.html"><span class="doc">Definitions</span></a>.</p>
-<section id="admin-tenant-vs-guest-tenant">
-<h3>Admin Tenant vs Guest Tenant<a class="headerlink" href="#admin-tenant-vs-guest-tenant" title="Link to this heading"></a></h3>
-<p>VPCs and V-Nets in Netris support two tenant roles:</p>
+</li>
+<li><p><a class="reference internal" href="#bgp-route-maps" id="id9">BGP route-maps</a></p></li>
+<li><p><a class="reference internal" href="#ebgp-importing-non-default-routes-into-a-vpc" id="id10">eBGP Importing Non-Default Routes into a VPC</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-to-import-non-default-prefixes" id="id11">How to Import Non-Default Prefixes</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="basic-bgp">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Basic BGP</a><a class="headerlink" href="#basic-bgp" title="Link to this heading"></a></h2>
+<p>BGP neighbors can be declared in the Network → E-BGP section. Netris software will automatically generate and program the network configuration to meet the requirements.</p>
+<p>A BGP session with an external to the Netris-managed fabric neighbor is defined by two independent choices:</p>
 <ul class="simple">
-<li><p>The <strong>Admin Tenant</strong> owns the object and can manage all of its parameters.</p></li>
-<li><p><strong>Guest Tenants</strong> are tenants granted delegated access to add and remove resources inside the object, but cannot change the object’s parameters.</p></li>
+<li><p><strong>BGP Router</strong> — the switch (or SoftGate) that hosts the local BGP speaker and where the Netris-managed side of the session terminates.</p></li>
+<li><p><strong>Local endpoint interface</strong> — either a routed <strong>switch port</strong> or a <strong>V-Net gateway (SVI)</strong>, selected by setting either <em>Switch port</em> or <em>Connect via V-Net</em> (under Advanced).</p></li>
 </ul>
-<p>For a VPC, the Admin Tenant manages all VPC-level parameters. Guest Tenants of a VPC can add and remove services inside it — V-Nets, L4 Load Balancers, Server Clusters, IPAM subnets — but cannot change the VPC’s own parameters.</p>
-<p>For a V-Net, the Admin Tenant manages all V-Net parameters. Guest Tenants of a V-Net can add and remove switch ports in it but cannot change the V-Net’s own parameters.</p>
-<p>Example: Adding a tenant.</p>
-<img alt="Adding Tenants" class="align-center" src="_images/add_tenant.png" />
-<p style="text-align: center;"><em>Figure: Adding Tenants</em></p></section>
+<p>The peer-facing port can be any port on the Netris-managed fabric; it does not have to sit on the switch selected as the BGP Router. When the port and the BGP Router are on different switches, Netris connects the two automatically — it creates a dedicated SVI on the BGP Router switch and provisions a hidden (meaning not visible in the GUI under the V-Net menu) “virtual wire” V-Net to the switch where the peer is physically connected.</p>
+<p>The resulting combinations:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 35.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Local endpoint</p></th>
+<th class="head"><p>Peer port on the BGP Router switch</p></th>
+<th class="head"><p>Peer port on a different switch</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Routed switch port</strong></p></td>
+<td><p>The session and the port are on the same switch.</p></td>
+<td><p>Netris builds a virtual wire from the peer’s port to the SVI created on the BGP Router switch.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>V-Net gateway (SVI)</strong></p></td>
+<td><p>The V-Net’s SVI on that switch is the local endpoint.</p></td>
+<td><p>The V-Net is extended to the BGP Router switch, and the SVI created there terminates the session.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Adding BGP Peers</strong></p>
+<ol class="arabic simple">
+<li><p>Navigate to Network → E-BGP in the web UI.</p></li>
+<li><p>Click the Add button.</p></li>
+<li><p>Fill in the fields as described in the table below.</p></li>
+<li><p>Click the Add button.</p></li>
+</ol>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">BGP Peer Fields</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p>User assigned name of BGP session.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Description</strong></p></td>
+<td><p>Free description.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>VPC</strong></p></td>
+<td><p>Select the VPC to which the BGP session should belong.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Site</strong></p></td>
+<td><p>Select the site (data center) where this BGP session should be terminated on.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>BGP Router</strong></p></td>
+<td><p>Define on which node the BGP session should be terminated.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Switch port</strong></p></td>
+<td><p>Switch Port where the physical cable to the BGP neighbor is connected (any port on the fabric). If terminating the BGP session on a V-Net (See Advanced&gt;Connect via V-Net), this option is disabled and the switch port must be added to the V-Net rather than being selected here.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>VLAN ID</strong></p></td>
+<td><p>Optionally tag with a VLAN ID (usually untagged). Disabled if terminating the BGP session on a V-Net (See Advanced&gt;Connect via V-Net option below).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Neighbor AS</strong></p></td>
+<td><p>Autonomous System number of the remote side. (Local AS is defined in the Advanced section)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>IP Family</strong></p></td>
+<td><p>IPv4 or IPv6.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Local IP</strong></p></td>
+<td><p>BGP peering IP address on Netris controlled side.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Remote IP</strong></p></td>
+<td><p>BGP peering IP address on the remote end.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>State</strong></p></td>
+<td><p>Administrative state (Enabled/Disabled).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Labels</strong></p></td>
+<td><p>Tags associated with the BGP session.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Advanced</strong></p></td>
+<td><p>Advanced policy settings are described in the next section.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example: Declare a basic BGP neighbor.</p>
+<img alt="_images/create_bgp.png" class="align-center" src="_images/create_bgp.png" />
+<p>If everything is correct, State, port and BGP will get green status.</p>
+<img alt="_images/bgp_status.png" class="align-center" src="_images/bgp_status.png" />
 </section>
-<section id="permission-groups">
-<h2>Permission Groups<a class="headerlink" href="#permission-groups" title="Link to this heading"></a></h2>
-<p>Permission Groups are a list of permissions on a per section basis that can be attached individually to a User or a User Role. Every section has a View and Edit attribute. The view defines if users with this Permission Group can see the particular section at all. Edit defines if users with this Permission Group can edit services and policies in specific sections.</p>
-<p>Example: Permission Group.</p>
-<img alt="Managing Permissions" class="align-center" src="_images/add_perm_group.png" />
-<p style="text-align: center;"><em>Figure: Managing Permissions</em></p></section>
-<section id="user-roles">
-<h2>User Roles<a class="headerlink" href="#user-roles" title="Link to this heading"></a></h2>
-<p>Permission Groups and Tenants can be either linked directly to an individual username or can be linked to a User Role object which then can be linked to an individual username.</p>
-<img alt="User Roles" class="align-center" src="_images/add_user_role.png" />
-<p style="text-align: center;"><em>Figure: User Roles</em></p></section>
+<section id="advanced-bgp">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Advanced BGP</a><a class="headerlink" href="#advanced-bgp" title="Link to this heading"></a></h2>
+<p>BGP neighbor declaration can optionally include advanced BGP attributes and BGP route-maps for fine-tuning of BGP policies.</p>
+<p>Click Advanced to expand the BGP neighbor add/edit window.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">BGP Peer Fields - Advanced</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Connect via V-Net</strong></p></td>
+<td><p>Select a V-Net if the BGP session is to be established with an endpoint from that V-Net rather than with the switch port directly.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>BFD</strong></p></td>
+<td><p>Enable/Disable BFD.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>BGP Timers</strong></p></td>
+<td><p>Keepalive (Hello) Interval, Hold Time and Connect Retry timers for the BGP session. Netris default values are 3 10 10.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Neighbor address</strong></p></td>
+<td><p>IP address of the neighbor when peering with the loopback IP address instead of the interface IP address (aka Multihop).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Update source</strong></p></td>
+<td><p>When Multihop BGP peering is used it allows the operator to choose one of the loopback IP addresses of the SoftGate node as a BGP speaker source IP address.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>BGP password</strong></p></td>
+<td><p>Password for the BGP session</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Remove Private AS</strong></p></td>
+<td><p>Strip private ASNs (64512-65534, or 4200000000-4294967294 for 4-byte ASNs) from the AS-PATH before advertising to this neighbor. Enabled by default. If multiple SoftGates advertise the same prefix to the same upstream, whether this is enabled or disabled affects whether their AS-PATHs end up identical or distinct. See the note below this table for more details.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Local ASN</strong></p></td>
+<td><p>The local Autonomous System Number the BGP speaker advertises for this session. Three options: Site Public ASN (default) - use the AS number defined as the public ASN in the current Site configuration. Switch Local ASN - if a switch is selected as the BGP Router for this session, use that switch’s individual local ASN. Not applicable when the BGP Router is a SoftGate. Custom ASN - enter a specific AS number for this session only.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Allowas-in</strong></p></td>
+<td><p>Define the number of allowed occurrences of the self AS number in the received BGP NLRI to consider it valid (normally 0).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Default Originate</strong></p></td>
+<td><p>Originate default route to the current neighbor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Prefix Inbound Max</strong></p></td>
+<td><p>Drop the BGP session if the number of received prefixes exceeds this max limit. For switch termination maximum allowed is 1000 prefixes and SoftGate termination can handle up to one million prefixes.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Inbound Route-Map</strong></p></td>
+<td><p>Apply BGP policies described in a route-map for inbound BGP updates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Outbound Route-Map</strong></p></td>
+<td><p>Apply BGP policies described in a route-map for outbound BGP updates.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Local Preference</strong></p></td>
+<td><p>Set local preference for all inbound routes for the current neighbor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Weight</strong></p></td>
+<td><p>Set weight for all inbound routes for the current neighbor.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Prepend Inbound (times)</strong></p></td>
+<td><p>How many times to prepend self AS number for inbound routes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Prepend Outbound (times)</strong></p></td>
+<td><p>How many times to prepend self AS number for outbound routes.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Prefix List Inbound</strong></p></td>
+<td><p>List of IP addresses prefixes to permit or deny inbound.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Prefix List Outbound</strong></p></td>
+<td><p>List of IP addresses prefixes to permit or deny outbound.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Send BGP Community</strong></p></td>
+<td><p>List of BGP communities to send to the current neighbor.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Effect of Remove Private AS on prefixes advertised by SoftGate nodes to their upstream BGP neighbors:</strong></p>
+<ul class="simple">
+<li><p>Typically, all SoftGate nodes in a deployment share the same AS number.</p></li>
+<li><p>All SoftGate nodes advertise all prefixes (locally originated as well as originated on other SoftGate nodes and subsequently learned through the fabric) to their upstreams.</p></li>
+<li><p>When the <strong>Remove Private AS</strong> is switched on (check box is set), all inter-SoftGate path information is stripped from the AS PATH before the prefix is advertised upstream, thus each prefix will appear to the upstream BGP neighbor as equidistant (ECMP). As a result some traffic might be forwarded to SoftGates that would then have to forward it again to the “correct” SoftGate, thus resulting in suboptimal routing behavior and increased load.</p></li>
+<li><p>With the <strong>Remove Private AS</strong> toggle set to off (check box is cleared), the AS PATH of each prefix will include the full list of ASN, including the list of ASNs of switches connecting SoftGates to each other. Because of this, on any given SoftGate locally originated prefixes will always have the AS PATH shorter than prefixes learned through the switch fabric from other SoftGates.</p></li>
+</ul>
+</section>
+<section id="bgp-objects">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">BGP Objects</a><a class="headerlink" href="#bgp-objects" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Under Network → E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.</div>
+<div class="line">Supported objects include:</div>
+</div>
+<ul class="simple">
+<li><p>IPv4 Prefix</p></li>
+<li><p>IPv6 Prefix</p></li>
+<li><p>AS-PATH</p></li>
+<li><p>Community</p></li>
+<li><p>Extended Community</p></li>
+<li><p>Large Community</p></li>
+</ul>
+<section id="ipv4-prefix">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">IPv4 Prefix</a><a class="headerlink" href="#ipv4-prefix" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line">The rules are defined one per line.</div>
+<div class="line">Each line in IPv4 prefix list field consists of three parts:</div>
+</div>
+<ul class="simple">
+<li><p>Action - Possible values are: permit or deny (mandatory).</p></li>
+<li><p>IP Prefix - Any valid IPv4 prefix (mandatory).</p></li>
+<li><p>Length - Possible values are: le &lt;len&gt;, ge &lt;len&gt; or ge &lt;len&gt; le &lt;len&gt;.</p></li>
+</ul>
+<p>Example: Creating an IPv4 Prefix list.</p>
+<img alt="_images/ipv4_prefix.png" class="align-center" src="_images/ipv4_prefix.png" />
+</section>
+<section id="ipv6-prefix">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">IPv6 Prefix</a><a class="headerlink" href="#ipv6-prefix" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line">Rules defined one per line.</div>
+<div class="line">Each line in IPv6 prefix list field consists of three parts:</div>
+</div>
+<ul class="simple">
+<li><p>Action - Possible values are: permit or deny (mandatory).</p></li>
+<li><p>IP Prefix - Any valid IPv6 prefix (mandatory).</p></li>
+<li><p>Keyword - Possible values are: le &lt;len&gt;, ge &lt;len&gt; or ge &lt;len&gt; le &lt;len&gt;.</p></li>
+</ul>
+<p>Example: Creating an IPv6 Prefix list.</p>
+<img alt="_images/ipv6_prefix.png" class="align-center" src="_images/ipv6_prefix.png" />
+</section>
+<section id="community">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Community</a><a class="headerlink" href="#community" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line">Community field has two parts:</div>
+</div>
+<ul class="simple">
+<li><p><strong>Action</strong> - Possible values: permit or deny (mandatory).</p></li>
+<li><p><strong>Community string</strong> - Allowed format: <code class="docutils literal notranslate"><span class="pre">&lt;permit/deny&gt;</span> <span class="pre">LINE</span></code>. LINE is AA:NN Community number in AA:NN format (where AA and NN are (0-65535)) or <code class="docutils literal notranslate"><span class="pre">local-AS</span></code>, <code class="docutils literal notranslate"><span class="pre">no-advertise</span></code>, <code class="docutils literal notranslate"><span class="pre">no-export</span></code>, <code class="docutils literal notranslate"><span class="pre">internet</span></code> or <code class="docutils literal notranslate"><span class="pre">additive</span></code>.</p></li>
+</ul>
+<p>Example: Creating community.</p>
+<img alt="_images/community.png" class="align-center" src="_images/community.png" />
+</section>
+</section>
+<section id="bgp-route-maps">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">BGP route-maps</a><a class="headerlink" href="#bgp-route-maps" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Under the Network → E-BGP Route-maps section, you can define route-map policies, which can be associated with the BGP neighbors inbound or outbound.</div>
+</div>
+<div class="line-block">
+<div class="line">Description of route-map fields:</div>
+</div>
+<ul class="simple">
+<li><p><strong>Sequence Number</strong> - Automatically assigned a sequence number. Drag and move sequences to organize the order.</p></li>
+<li><p><strong>Description</strong> - Free description.</p></li>
+<li><p><strong>Policy</strong> - Permit or deny the routes which match below all match clauses within the current sequence.</p></li>
+<li><p><strong>Match</strong> - Rules for route matching.</p>
+<ul>
+<li><p><strong>Type</strong> - Type of the object to match: AS-Path, Community, Extended Community, Large Community, IPv4 prefix-list, IPv4 next-hop, Route Source, IPv6 prefix-list, IPv6 next-hop, local-preference, MED, Origin, Route Tag.</p></li>
+<li><p><strong>Object</strong> - Select an object from the list.</p></li>
+</ul>
+</li>
+<li><p><strong>Action</strong> - Action when all match clauses are met.</p>
+<ul>
+<li><p><strong>Action type</strong> - Define whether to manipulate a particular BGP attribute or go to another sequence.</p></li>
+<li><p><strong>Attribute</strong> - The attribute to be manipulated.</p></li>
+<li><p><strong>Value</strong> - New attribute value.</p></li>
+</ul>
+</li>
+</ul>
+<p>Example: route-map</p>
+<img alt="_images/route-map.png" class="with-shadow align-center" src="_images/route-map.png" />
+</section>
+<section id="ebgp-importing-non-default-routes-into-a-vpc">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">eBGP Importing Non-Default Routes into a VPC</a><a class="headerlink" href="#ebgp-importing-non-default-routes-into-a-vpc" title="Link to this heading"></a></h2>
+<p>In multi-uplink deployments, SoftGate Hyperscale (SG-HS) nodes can be eBGP peered with different upstream networks.</p>
+<p>By default, Netris SoftGates only redistribute the default route into tenant VPCs, regardless of what other prefixes they receive from upstream peers. This ensures a consistent routing table across all SoftGates, but can lead to suboptimal routing, where traffic from the VPC is always routed to the SoftGate receiving the default, even if another SoftGate has a better path via specific prefixes.</p>
+<p>Starting with version 4.5.4, Netris introduces a mechanism to selectively import non-default routes into VPCs by tagging them with a special <strong>BGP community: 0:7</strong>. Routes marked with this community will be redistributed into tenant VPCs alongside the default.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Importing additional prefixes into VPCs increases the size of the routing table on SoftGates and switches. Ensure that your hardware can handle the increased load, especially if you plan to import many prefixes.</p>
+</div>
+<section id="how-to-import-non-default-prefixes">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">How to Import Non-Default Prefixes</a><a class="headerlink" href="#how-to-import-non-default-prefixes" title="Link to this heading"></a></h3>
+<p>You have two options for tagging the desired prefixes with the required 0:7 community.</p>
+<p><strong>Option 1</strong>: Tag Inbound in Netris (on SoftGate HS)</p>
+<p>If you manage the eBGP peer configuration using the Netris Controller, you can mark specific routes for redistribution into tenant VPCs by tagging them with the special BGP community 0:7.</p>
+<ol class="arabic simple">
+<li><p>Create a Prefix List under Network → E-BGP Objects</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Do not include 0.0.0.0/0 — it is automatically imported</p>
+</div>
+<img alt="prefix list" class="with-shadow align-center" src="_images/prefix-list-imported-prefixes.png" />
+<br/><ol class="arabic simple" start="2">
+<li><p>Create a Route Map under Network → E-BGP Route-Maps</p></li>
+</ol>
+<p>Add a new route-map that</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Matches the prefix list created in Step 1</p></li>
+<li><p>Sets the BGP community to <code class="docutils literal notranslate"><span class="pre">0:7</span></code></p></li>
+</ul>
+</div></blockquote>
+<img alt="route-map" class="with-shadow align-center" src="_images/ebgp-route-map-set-07.png" />
+<br/><ol class="arabic simple" start="3">
+<li><p>Attach the Route Map to the eBGP Peer under Network → E-BGP</p></li>
+</ol>
+<p>Edit the relevant eBGP neighbor and under Advanced Settings, set the inbound route-map to the one created in Step 2</p>
+<img alt="inbound route-map" class="with-shadow align-center" src="_images/ebgp-advanced-inbound-route-map.png" />
+<br/><p>Once applied, any matching prefixes received from this eBGP peer will be tagged with community 0:7, making them eligible for redistribution into tenant VPCs by the SoftGate.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can verify imported routes in the <a class="reference internal" href="monitoring-observability/looking-glass.html"><span class="doc">Looking Glass</span></a> (Network → Looking Glass) section of the Controller UI.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When configuring an inbound route-map on an eBGP peer, an outbound route-map must also be set. If no outbound route-map is needed, create a dummy one that permits all routes without modification and attach it to the outbound direction.</p>
+</div>
+<p><strong>Option 2</strong>: Tag Outbound from External BGP Peer</p>
+<p>Alternatively, the external BGP speaker can set the 0:7 community on outbound updates before advertising routes to the SoftGate. This option does not require any configuration in Netris, as long as the incoming route already carries the community.</p>
+<p>This is useful when the upstream router is under the customer’s control and managing policy from that side is preferred.</p>
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="vpc-gateways-with-managed-fabric.html" class="btn btn-neutral float-left" title="Getting Started with Switch-Fabric Manager &amp; VPC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="snippets.html" class="btn btn-neutral float-right" title="Custom NVUE Configuration Snippets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ipam.html" class="btn btn-neutral float-left" title="IP Address Management (IPAM)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="switch-ports.html" class="btn btn-neutral float-right" title="Switch Ports" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

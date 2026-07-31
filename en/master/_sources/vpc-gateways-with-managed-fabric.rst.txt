@@ -5,8 +5,8 @@ Getting Started with Switch-Fabric Manager & VPC
 * :doc:`../introduction`
 * :doc:`../installation/controller-k3s-air-gap-ha`
 * :doc:`../site`
-* :ref:`vpc_def`
-* :ref:`ipam_def_vpc`
+* :doc:`Netris VPC <../vpc>`
+* :doc:`../ipam`
 * :ref:`topology-management`
 * :ref:`topology-manager`
 * :doc:`../netris-softgate-HS`

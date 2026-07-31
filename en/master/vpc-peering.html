@@ -64,7 +64,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Netris Controller User Account Management" name="description" />
+<meta content="Netris VPC Peering" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -76,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accounts &mdash; Netris Documentation</title>
+  <title>VPC Peering &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -98,8 +98,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Custom NVUE Configuration Snippets" href="snippets.html" />
-    <link rel="prev" title="Getting Started with Switch-Fabric Manager &amp; VPC" href="vpc-gateways-with-managed-fabric.html" /> 
+    <link rel="next" title="VPC Connect" href="vpc-connect.html" />
+    <link rel="prev" title="L4 Load Balancer (L4LB)" href="l4-load-balancer.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -481,7 +481,7 @@
 <li class="toctree-l1"><a class="reference internal" href="static-routing.html">Static Routing</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Services</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="vnet.html">V-Net</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
@@ -554,8 +554,8 @@
 <li class="toctree-l2"><a class="reference internal" href="l4-load-balancer.html#consuming-l4lb-service">Consuming L4LB service</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="vpc-peering.html">VPC Peering</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="vpc-peering.html#peering-a-bgp-only-vpc">Peering a BGP-only VPC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">VPC Peering</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#peering-a-bgp-only-vpc">Peering a BGP-only VPC</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vpc-connect.html">VPC Connect</a><ul>
@@ -860,15 +860,15 @@
 <li class="toctree-l1"><a class="reference internal" href="vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Accounts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tenants">Tenants</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#permission-groups">Permission Groups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#user-roles">User Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#permission-groups">Permission Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="snippets.html">Custom NVUE Configuration Snippets</a></li>
@@ -1115,79 +1115,45 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Accounts</li>
+      <li class="breadcrumb-item active">VPC Peering</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/accounts.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/vpc-peering.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="vpc-gateways-with-managed-fabric.html" class="btn btn-neutral float-left" title="Getting Started with Switch-Fabric Manager &amp; VPC" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="snippets.html" class="btn btn-neutral float-right" title="Custom NVUE Configuration Snippets" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="l4-load-balancer.html" class="btn btn-neutral float-left" title="L4 Load Balancer (L4LB)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vpc-connect.html" class="btn btn-neutral float-right" title="VPC Connect" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="accounts">
-<h1>Accounts<a class="headerlink" href="#accounts" title="Link to this heading"></a></h1>
-<p>The accounts section is for the management of user accounts, access permissions, and tenants.</p>
-<section id="users">
-<h2>Users<a class="headerlink" href="#users" title="Link to this heading"></a></h2>
-<p>Description of User account fields:</p>
-<ul class="simple">
-<li><p><strong>Username</strong> - Unique username.</p></li>
-<li><p><strong>Full Name</strong> - Full Name of the user.</p></li>
-<li><p><strong>E-mail</strong> - The email address of the user. Also used for system notifications and for password retrieval.</p></li>
-<li><p><strong>E-mail CC</strong> - Send copies of email notifications to this address.</p></li>
-<li><p><strong>Phone Number</strong> - User’s phone number.</p></li>
-<li><p><strong>Company</strong> - Company the user works for. Usually useful for multi-tenant systems where the company provides Netris Controller access to customers.</p></li>
-<li><p><strong>Position</strong> - Position within the company.</p></li>
-<li><p><strong>User Role</strong> - When using a User Role object to define RBAC (role-based access control), Permissions Group and Tenant fields will deactivate.</p></li>
-<li><p><strong>Permission Group</strong> - User permissions for viewing and editing parts of the Netris Controller. (if User Role is not used)</p></li>
-<li><p><strong>+Tenant</strong> - User permissions for viewing and editing services using Switch Port and IP resources assigned to various Tenants. (if User Role is not used)</p></li>
-</ul>
-<p>Example: Creating a user with full access to all sections of Netris Controller, read-only access to resources managed by any Tenant, and full access to resources assigned to the Tenant Admin.</p>
-<img alt="User Management" class="align-center" src="_images/add_user.png" />
-<p style="text-align: center;"><em>Figure: User Management</em></p><p><strong>Password</strong>: To set a password or email the user for a password form, go to the listing of usernames and click the menu on the right side.</p>
-<img alt="List User Accounts" class="align-center" src="_images/user_set_password.png" />
-<p style="text-align: center;"><em>Figure: List User Accounts</em></p></section>
-<section id="tenants">
-<h2>Tenants<a class="headerlink" href="#tenants" title="Link to this heading"></a></h2>
-<p>Tenants are named principals used to delegate management of network resources. The built-in <code class="docutils literal notranslate"><span class="pre">Admin</span></code> tenant owns all resources by default. Additional tenants are created to grant other teams self-service access to provision and manage network services via the Netris Controller GUI, Kubernetes CRDs, or Terraform.</p>
-<p>A Tenant object has only two fields: a unique name and an optional description. It carries no quota, billing identity, or login.</p>
-<p>For a glossary of related concepts — including <strong>Admin Tenant</strong> and <strong>Guest Tenant</strong> — see <a class="reference internal" href="definitions.html"><span class="doc">Definitions</span></a>.</p>
-<section id="admin-tenant-vs-guest-tenant">
-<h3>Admin Tenant vs Guest Tenant<a class="headerlink" href="#admin-tenant-vs-guest-tenant" title="Link to this heading"></a></h3>
-<p>VPCs and V-Nets in Netris support two tenant roles:</p>
-<ul class="simple">
-<li><p>The <strong>Admin Tenant</strong> owns the object and can manage all of its parameters.</p></li>
-<li><p><strong>Guest Tenants</strong> are tenants granted delegated access to add and remove resources inside the object, but cannot change the object’s parameters.</p></li>
-</ul>
-<p>For a VPC, the Admin Tenant manages all VPC-level parameters. Guest Tenants of a VPC can add and remove services inside it — V-Nets, L4 Load Balancers, Server Clusters, IPAM subnets — but cannot change the VPC’s own parameters.</p>
-<p>For a V-Net, the Admin Tenant manages all V-Net parameters. Guest Tenants of a V-Net can add and remove switch ports in it but cannot change the V-Net’s own parameters.</p>
-<p>Example: Adding a tenant.</p>
-<img alt="Adding Tenants" class="align-center" src="_images/add_tenant.png" />
-<p style="text-align: center;"><em>Figure: Adding Tenants</em></p></section>
+  <section id="vpc-peering">
+<h1>VPC Peering<a class="headerlink" href="#vpc-peering" title="Link to this heading"></a></h1>
+<p>VPC peering allows routing between two VPCs. It is typically used to connect a tenant VPC to a “shared” VPC where the shared services (like storage access, DNS, etc.) are located.</p>
+<p>Consider the following scenario. Customer VPC A and Customer VPC B accessing common services in a “Shared” VPC via VPC peering.</p>
+<p>Customer A and Customer B cannot access each other’s VPCs.</p>
+<p>Customer A VPC will have routes of the “Shared” VPC, it will NOT have routes of Customer B VPC. Customer B VPC will have routes of the “Shared” VPC, it will NOT have routes of Customer A VPC.</p>
+<p>The “Shared” VPC will have routes of both A and B. Because A does not have routes of B and vice versa they cannot reach each other.</p>
+<p>Network Administrators are free to define prefix lists of VPC peering: if VPC A is configured to accept routes of VPC B from the “Shared” VPC, then Customer A can reach Customer B, but not if peering is created without defining a prefix list (letting Netris auto-populate).</p>
+<section id="peering-a-bgp-only-vpc">
+<h2>Peering a BGP-only VPC<a class="headerlink" href="#peering-a-bgp-only-vpc" title="Link to this heading"></a></h2>
+<p>A VPC that has no V-Nets — only BGP sessions — can still be peered. The BGP session provisions the VPC’s VRF on the switch where it terminates, so peering works without creating a placeholder (“dummy”) V-Net just to bring the VRF into existence. See <a class="reference internal" href="vpc.html#vpc-vrf-placement"><span class="std std-ref">How a VPC’s VRF is placed on the fabric</span></a> on the Netris VPC page for the underlying behavior.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Additional details are coming soon…</p>
+</div>
+<hr class="docutils" />
+<p><strong>See also:</strong> <a class="reference internal" href="vpc.html"><span class="doc">Netris VPC</span></a> and <a class="reference internal" href="vpc-connect.html"><span class="doc">VPC Connect</span></a>. VPC Peering connects VPCs to one another, while VPC Connect connects a VPC to external networks — both concern connectivity beyond a single VPC’s boundary.</p>
 </section>
-<section id="permission-groups">
-<h2>Permission Groups<a class="headerlink" href="#permission-groups" title="Link to this heading"></a></h2>
-<p>Permission Groups are a list of permissions on a per section basis that can be attached individually to a User or a User Role. Every section has a View and Edit attribute. The view defines if users with this Permission Group can see the particular section at all. Edit defines if users with this Permission Group can edit services and policies in specific sections.</p>
-<p>Example: Permission Group.</p>
-<img alt="Managing Permissions" class="align-center" src="_images/add_perm_group.png" />
-<p style="text-align: center;"><em>Figure: Managing Permissions</em></p></section>
-<section id="user-roles">
-<h2>User Roles<a class="headerlink" href="#user-roles" title="Link to this heading"></a></h2>
-<p>Permission Groups and Tenants can be either linked directly to an individual username or can be linked to a User Role object which then can be linked to an individual username.</p>
-<img alt="User Roles" class="align-center" src="_images/add_user_role.png" />
-<p style="text-align: center;"><em>Figure: User Roles</em></p></section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="vpc-gateways-with-managed-fabric.html" class="btn btn-neutral float-left" title="Getting Started with Switch-Fabric Manager &amp; VPC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="snippets.html" class="btn btn-neutral float-right" title="Custom NVUE Configuration Snippets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="l4-load-balancer.html" class="btn btn-neutral float-left" title="L4 Load Balancer (L4LB)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vpc-connect.html" class="btn btn-neutral float-right" title="VPC Connect" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

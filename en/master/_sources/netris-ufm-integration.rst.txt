@@ -79,18 +79,9 @@ After making this configuration change, restart the UFM enterprise service:
 Installation
 =============
 
-Option 1: Deploy within an existing Netris Controller Kubernetes cluster
-------------------------------------------------------------------------
+The Netris-UFM plugin manifest ships inside the same air-gapped installation tarball used to deploy the Netris Controller — no internet access is required. The steps below assume you unpacked that tarball into ``~/netris-controller-ha/`` (see :doc:`installation/controller-k3s-air-gap-ha` for details).
 
-This option is recommended if you already have a Netris Controller running in a Kubernetes environment.
-
-1. Download the Kubernetes deployment YAML file:
-
-   .. code-block:: bash
-
-      wget https://get.netris.io/netris-controller-ufm.yaml
-
-2. Edit the YAML file to update the secret values based on your environment:
+1. Edit ``netris-controller-ha/manifests/netris-controller/ufm.yaml`` to update the secret values based on your environment:
 
    .. code-block:: yaml
 
@@ -103,7 +94,7 @@ This option is recommended if you already have a Netris Controller running in a 
       stringData:
         NETRIS_CONTROLLER_ADDR: "https://netris.example.com"
         NETRIS_CONTROLLER_LOGIN: "netris"
-        NETRIS_CONTROLLER_PASSWORD: "newNet0ps"
+        NETRIS_CONTROLLER_PASSWORD: "Password!"
         NETRIS_VERIFY_SSL: "true"
         NETRIS_SITE_NAME: "Site"
         UFM_ADDR: "https://ufm.example.com"
@@ -114,44 +105,32 @@ This option is recommended if you already have a Netris Controller running in a 
         UFM_PKEY_RANGE: "100-7ffe"
         UFM_ENABLE_SHARP: "true"
 
-3. Apply the configuration to your Kubernetes cluster:
+2. Apply the configuration to your Kubernetes cluster:
 
    .. code-block:: bash
 
-      kubectl apply -f netris-controller-ufm.yaml
+      kubectl apply -f netris-controller-ha/manifests/netris-controller/ufm.yaml
 
-Option 2: Deploy as a standalone Docker container
--------------------------------------------------
+Multiple UFM Instances
+-----------------------
 
-This option is ideal for environments without Kubernetes or when you want to deploy on a separate host.
+If a customer's InfiniBand environment has more than one fabric — each with its own UFM (for example, separate compute and storage fabrics) — deploy a separate Netris-UFM agent per UFM:
 
-1. Create an environment file (e.g., ``env``) with the following content:
+1. Copy ``ufm.yaml`` to a new file name.
+2. In the copy, give the agent a unique Kubernetes resource name (``metadata.name``), ``UFM_ADDR``, and a unique ``UFM_ID``, and update the other UFM/Netris connection values as needed.
 
-   .. code-block:: bash
-
-      NETRIS_CONTROLLER_ADDR="https://netris.example.com"
-      NETRIS_CONTROLLER_LOGIN="netris"
-      NETRIS_CONTROLLER_PASSWORD="newNet0ps"
-      NETRIS_VERIFY_SSL="true"
-      NETRIS_SITE_NAME="Site"
-      UFM_ADDR="https://ufm.example.com"
-      UFM_LOGIN="admin"
-      UFM_PASSWORD="123456"
-      UFM_VERIFY_SSL="false"
-      UFM_ID="ufm-lab"
-      UFM_PKEY_RANGE="100-7ffe"
-      UFM_ENABLE_SHARP="true"
-      LOG_LEVEL="info"
-
-2. Run the Docker container:
+.. tip::
+   Here is a quick way to update the YAML file for the 2nd UFM instance:
 
    .. code-block:: bash
 
-      docker run -d \
-        --env-file=env \
-        --name=netris-ufm \
-        --entrypoint "/app/servicebin" \
-        netrisai/bare-metal-netris-ufm-agent:0.3.0
+      cp ufm.yaml ufm-storage.yaml
+      sed -i 's/netris-controller-nvidia-ufm-agent/netris-controller-nvidia-ufm-agent-storage/g' ufm-storage.yaml
+
+3. Apply the copy with ``kubectl apply -f``.
+
+.. important::
+   Re-applying a manifest with the same ``metadata.name`` updates the existing agent rather than creating a second one. Each UFM instance needs its own uniquely-named deployment and a unique ``UFM_ID``.
 
 Configuration Parameters
 ========================
@@ -214,6 +193,8 @@ NVIDIA UFM Configuration
      - Whether to enable SHARP reservation management for clusters
      - true or false
 
+Before assigning a PKey from ``UFM_PKEY_RANGE``, the agent always checks whether that PKey already exists in UFM, and will not overwrite an existing PKey. If a customer already has PKeys configured manually and wants to preserve them, set ``UFM_PKEY_RANGE`` to start above their existing range (e.g., start at ``200`` instead of ``100``) to avoid collisions.
+
 Agent Configuration
 -------------------
 
@@ -233,6 +214,8 @@ Agent Configuration
      - Interval in seconds between reconciliation operations
      - 10
      - 10
+
+Starting in Netris Controller 4.11, the Reconcile Interval can also be set from the UI (**Settings** → **General**). When that field is present, it takes precedence over ``RECONCILE_INTERVAL`` in the YAML/env file; the YAML/env value is used only as a fallback on controllers predating 4.11.
 
 Usage Guide
 ===========
@@ -259,6 +242,11 @@ The first step is to create servers in the Netris Controller inventory that matc
 
       <p style="text-align: center;"><em>Figure: Server Custom field showing GUIDs</em></p>
 
+``hosting_system_guid`` always corresponds to the GUID of the server's first HCA. You can cross-check this value in the UFM UI under the server's Device view, which displays one general GUID that should match. Replacing that first HCA — for example, during an RMA — changes this GUID and breaks the Netris↔UFM mapping. If a server's first HCA is replaced, re-establish the mapping manually: either rename the server to force a fresh name-based sync, or set ``hosting_system_guid`` directly to the new value.
+
+.. note::
+   The server's Custom field may also show GPU UID entries. Those come from the separate :doc:`NVLink integration <netris-nvlink-integration>` and are unrelated to UFM — the Netris-UFM plugin doesn't read or write them.
+
 2. Create a Server Cluster Template
 ------------------------------------
 
@@ -267,6 +255,9 @@ Next, create a Server Cluster Template.
 1. Navigate to **Services** → **Server Cluster Template**.
 2. Click **Add** to create a new template
 3. Configure the template using JSON with specific sections for different network fabrics. Use :ref:`infiniband-fabric-example`.
+
+.. note::
+   Netris Controller has no visibility into individual UFM NICs or ports, so the InfiniBand side of the template is just a single generic ``netris-ufm`` fabric entry — you don't (and can't) enumerate individual HCAs the way you would for Ethernet interfaces. Per-host HCA/port mapping happens automatically via the GUID sync described above.
 
 4. Create Server Clusters
 --------------------------
@@ -301,11 +292,7 @@ To monitor the status of the integration:
 
    .. code-block:: bash
 
-      # For Kubernetes
       kubectl logs -f deployment/netris-controller-nvidia-ufm-agent -n netris-controller
-
-      # For Docker
-      docker logs -f netris-ufm
 
 Functional Workflow
 =====================
@@ -456,19 +443,9 @@ Monitoring and Troubleshooting
 Viewing Logs
 --------------
 
-For Kubernetes deployment:
-
 .. code-block:: bash
 
    kubectl logs -f deployment/netris-controller-nvidia-ufm-agent -n netris-controller
-
-For Docker container:
-
-.. code-block:: bash
-
-   docker logs -f netris-ufm
-
-Alternatively, you can view logs through the Netris Controller UI under Telescope > API Logs and filter by `ufm`. Please, note that the API logs in the UI are shown with a delay and require a manual screen refresh. To see UFM integration logs in real-time, we recommend using the command-line methods above.
 
 .. image:: images/ufm-api-logs.png
    :align: center
@@ -507,6 +484,11 @@ Connection Issues to Netris Controller or UFM
 
    - If using self-signed certificates, set NETRIS_VERIFY_SSL/UFM_VERIFY_SSL to "false"
    - For production, use valid certificates and set verification to "true"
+   - Certificates typically expire within one year (sometimes two); plan for rotation. When a certificate expires or becomes invalid, Netris logs a connection failure in the agent logs.
+
+**Note on log behavior:** The agent logs an entry only when it takes an action or encounters an error. A reconciliation cycle that completes normally and finds nothing to change does not produce a log message — so no new log entries is the expected, healthy state, not a sign that something has stalled.
+
+If connectivity to UFM goes down, you will see a new timeout message every reconcile interval (every 10 seconds by default) for as long as the outage lasts. Once connectivity is restored, those timeout messages stop, and no separate "connection restored" message is logged in their place. So a timeout logged hours ago with nothing since typically means connectivity was restored, not that the integration is still down.
 
 PKey Assignment Issues
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -532,11 +514,7 @@ PKey Assignment Issues
 
    .. code-block:: bash
 
-      # For Kubernetes
       kubectl logs -f deployment/netris-controller-nvidia-ufm-agent -n netris-controller | grep "PKey"
-
-      # For Docker
-      docker logs -f netris-ufm | grep "PKey"
 
 SHARP Reservation Issues
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -569,7 +547,7 @@ Synchronization Delays
 
 1. Turn on debug logging in Settings>General to monitor synchronization operations in detail. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
 2. Adjust the Reconcile Interval Settings>General to a shorter time period for faster synchronization. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
-3. Use Dry Run mode Settings>General  to test changes without applying them, which can help identify issues before they affect the environment. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
+3. Use Dry Run mode (Settings → General) to test changes without applying them. This is particularly useful in two situations: (a) the agent was disabled for a while, and Netris and UFM have drifted apart from manual changes made on both sides, so you want to preview what enabling it would do before actually re-enabling it; and (b) your change-management process requires reviewing planned changes before they're applied — Dry Run lets you generate that preview for approval. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
 
    .. image:: images/general-ufm-debug-dry-run-reconcile.png
       :align: center
@@ -587,11 +565,7 @@ Synchronization Delays
 
       kubectl rollout restart deployment/netris-controller-nvidia-ufm-agent -n netris-controller
 
-   or
-
-   .. code-block:: bash
-
-      docker restart netris-ufm
+**Checking PKey/GUID membership:** To see which GUIDs belong to a given server cluster's PKey, use the Netris API (v2) PKey Ledger endpoint for the ``netris-ufm`` integration. Useful when troubleshooting cluster membership that doesn't match expectations.
 
 Version Compatibility
 ======================
@@ -613,16 +587,12 @@ Getting Started Guide
 Quick Setup Example
 --------------------
 
-1. Install the plugin using the Kubernetes or Docker method above
+1. Install the plugin as described above
 2. Verify the plugin is running properly:
 
    .. code-block:: bash
 
-      # For Kubernetes
       kubectl get pods -n netris-controller | grep ufm
-
-      # For Docker
-      docker ps | grep netris-ufm
 
 3. Create a Server Cluster Template in Netris Controller UI or API
 4. Create Server Cluster with the servers that have InfiniBand connections

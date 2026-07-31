@@ -98,7 +98,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="NVIDIA NetQ Integration" href="netq.html" />
-    <link rel="prev" title="BlueField-3 DPU Support in Netris" href="../bluefield-3-dpus.html" /> 
+    <link rel="prev" title="Graph Boards" href="visibility.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -411,6 +411,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../site.html">Netris Site</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vpc.html">VPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vpc.html#how-a-vpc-s-vrf-is-placed-on-the-fabric">How a VPC’s VRF is placed on the fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#vpc-child-objects">VPC child objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#system-vpc-and-default-vpc">System VPC and Default VPC</a><ul>
@@ -443,55 +444,31 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ipam.html">IP Address Management (IPAM)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ipam.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ipam.html#subnet-purpose-and-service-dependencies">Subnet purpose and service dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ipam.html#add-an-allocation">Add an Allocation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ipam.html#add-a-subnet">Add a Subnet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../network-policies.html">Netris VPC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#adding-new-vpc">Adding new VPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bgp.html">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bgp.html#basic-bgp">Basic BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bgp.html#advanced-bgp">Advanced BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bgp.html#bgp-objects">BGP Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bgp.html#ipv4-prefix">IPv4 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bgp.html#ipv6-prefix">IPv6 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bgp.html#community">Community</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#ip-address-management">IP Address Management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#allocations-and-subnets">Allocations and Subnets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#ipam-tree-view">IPAM Tree View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#add-an-allocation">Add an Allocation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#add-a-subnet">Add a Subnet</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#bgp">BGP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#basic-bgp">Basic BGP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#advanced-bgp">Advanced BGP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#bgp-objects">BGP Objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../network-policies.html#ipv4-prefix">IPv4 Prefix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../network-policies.html#ipv6-prefix">IPv6 Prefix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../network-policies.html#community">Community</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#bgp-route-maps">BGP route-maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../network-policies.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bgp.html#bgp-route-maps">BGP route-maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bgp.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bgp.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#static-routing">Static Routing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#nat">NAT</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#enabling-nat">Enabling NAT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../network-policies.html#defining-nat-rules">Defining NAT rules</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#looking-glass">Looking Glass</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../network-policies.html#vpc-peering">VPC Peering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../switch-ports.html">Switch Ports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lag.html">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lag.html#custom-lag">Custom LAG</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../visibility.html">Graph Boards</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../visibility.html#id1">Graph Boards</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../visibility.html#api-logs">API Logs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../visibility.html#dashboard">Dashboard</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../maintenance-mode.html">Maintenance Mode</a><ul>
@@ -500,25 +477,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../maintenance-mode.html#maintenance-mode-for-switch-whats-happening-behind-the-scenes">Maintenance Mode for Switch - What’s happening behind the scenes?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../upgrading-netris.html">Upgrade and Rollback</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#backup-current-database">Backup current database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#check-your-current-version">Check your current version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#id1">Stop Netris Agents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#restore-the-database">Restore The Database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../static-routing.html">Static Routing</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Services</span></p>
 <ul>
@@ -584,9 +543,18 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../nat.html">NAT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nat.html#enabling-nat">Enabling NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nat.html#defining-nat-rules">Defining NAT rules</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../l4-load-balancer.html">L4 Load Balancer (L4LB)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../l4-load-balancer.html#enabling-l4lb-service">Enabling L4LB service</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../l4-load-balancer.html#consuming-l4lb-service">Consuming L4LB service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vpc-peering.html">VPC Peering</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vpc-peering.html#peering-a-bgp-only-vpc">Peering a BGP-only VPC</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../vpc-connect.html">VPC Connect</a><ul>
@@ -616,8 +584,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#ufm-configuration-requirements">UFM Configuration Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#option-1-deploy-within-an-existing-netris-controller-kubernetes-cluster">Option 1: Deploy within an existing Netris Controller Kubernetes cluster</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#option-2-deploy-as-a-standalone-docker-container">Option 2: Deploy as a standalone Docker container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#multiple-ufm-instances">Multiple UFM Instances</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#configuration-parameters">Configuration Parameters</a><ul>
@@ -866,6 +833,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="visibility.html">Graph Boards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visibility.html#id1">Graph Boards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visibility.html#api-logs">API Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visibility.html#dashboard">Dashboard</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Topology &amp; Wiring Validation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#switch-to-server">Switch-to-Server</a></li>
@@ -875,7 +848,11 @@
 <li class="toctree-l2"><a class="reference internal" href="netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="healthchecks.html">Netris Healthchecks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="healthchecks.html">Netris Healthchecks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="healthchecks.html#rx-tx-drops-and-errors-threshold-calculation-method">RX/TX drops and errors threshold calculation method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="looking-glass.html">Looking Glass</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -904,6 +881,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.14.0.html">Netris 4.14.0 Release Notes (Jul/31/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#what-s-new-in-netris-version">What’s new in Netris 4.14.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../release-notes/4.13.0.html">Netris 4.13.0 Release Notes (Jul/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#what-s-new-in-netris-version">What’s new in Netris 4.13.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.13.0.html#features">Features</a></li>
@@ -1133,7 +1119,7 @@
               <a href="https://github.com/netrisai/docs/blob/master/monitoring-observability/topology-validation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="../bluefield-3-dpus.html" class="btn btn-neutral float-left" title="BlueField-3 DPU Support in Netris" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="visibility.html" class="btn btn-neutral float-left" title="Graph Boards" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="netq.html" class="btn btn-neutral float-right" title="NVIDIA NetQ Integration" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -1199,7 +1185,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../bluefield-3-dpus.html" class="btn btn-neutral float-left" title="BlueField-3 DPU Support in Netris" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="visibility.html" class="btn btn-neutral float-left" title="Graph Boards" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="netq.html" class="btn btn-neutral float-right" title="NVIDIA NetQ Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

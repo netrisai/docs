@@ -412,6 +412,7 @@
 <li class="toctree-l1"><a class="reference internal" href="site.html">Netris Site</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vpc.html">VPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#how-a-vpc-s-vrf-is-placed-on-the-fabric">How a VPC’s VRF is placed on the fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#vpc-child-objects">VPC child objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#system-vpc-and-default-vpc">System VPC and Default VPC</a><ul>
@@ -444,55 +445,31 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipam.html">IP Address Management (IPAM)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#allocations-and-subnets">Allocations and Subnets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#subnet-purpose-and-service-dependencies">Subnet purpose and service dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#add-an-allocation">Add an Allocation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#add-a-subnet">Add a Subnet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="network-policies.html">Netris VPC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#adding-new-vpc">Adding new VPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bgp.html">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bgp.html#basic-bgp">Basic BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgp.html#advanced-bgp">Advanced BGP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-objects">BGP Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bgp.html#ipv4-prefix">IPv4 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bgp.html#ipv6-prefix">IPv6 Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bgp.html#community">Community</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="network-policies.html#ip-address-management">IP Address Management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#allocations-and-subnets">Allocations and Subnets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#ipam-tree-view">IPAM Tree View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-an-allocation">Add an Allocation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#add-a-subnet">Add a Subnet</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="network-policies.html#bgp">BGP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#basic-bgp">Basic BGP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#advanced-bgp">Advanced BGP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-objects">BGP Objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#ipv4-prefix">IPv4 Prefix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#ipv6-prefix">IPv6 Prefix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#community">Community</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#bgp-route-maps">BGP route-maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="network-policies.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-route-maps">BGP route-maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgp.html#ebgp-importing-non-default-routes-into-a-vpc">eBGP Importing Non-Default Routes into a VPC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bgp.html#how-to-import-non-default-prefixes">How to Import Non-Default Prefixes</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="network-policies.html#static-routing">Static Routing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network-policies.html#nat">NAT</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#enabling-nat">Enabling NAT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-policies.html#defining-nat-rules">Defining NAT rules</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="network-policies.html#looking-glass">Looking Glass</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network-policies.html#vpc-peering">VPC Peering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="switch-ports.html">Switch Ports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lag.html">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#custom-lag">Custom LAG</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="visibility.html">Graph Boards</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="visibility.html#id1">Graph Boards</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visibility.html#api-logs">API Logs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visibility.html#dashboard">Dashboard</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="maintenance-mode.html">Maintenance Mode</a><ul>
@@ -501,25 +478,7 @@
 <li class="toctree-l2"><a class="reference internal" href="maintenance-mode.html#maintenance-mode-for-switch-whats-happening-behind-the-scenes">Maintenance Mode for Switch - What’s happening behind the scenes?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="upgrading-netris.html">Upgrade and Rollback</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="upgrading-netris.html#netris-upgrade-procedure">Netris upgrade Procedure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#backup-current-database">Backup current database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#stop-netris-agents">Stop Netris Agents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#check-your-current-version">Check your current version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#upgrade-the-controller">Upgrade the Controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#check-the-upgraded-version">Check the upgraded version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#upgrade-switches-and-softgate-nodes">Upgrade Switches and SoftGate nodes</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="upgrading-netris.html#rollback-procedure">Rollback Procedure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#id1">Stop Netris Agents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#restore-the-database">Restore The Database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#downgrade-the-controller-software">Downgrade the Controller Software</a></li>
-<li class="toctree-l3"><a class="reference internal" href="upgrading-netris.html#downgrade-netris-agent-software">Downgrade Netris Agent Software</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="static-routing.html">Static Routing</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Services</span></p>
 <ul>
@@ -585,9 +544,18 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="nat.html">NAT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nat.html#enabling-nat">Enabling NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nat.html#defining-nat-rules">Defining NAT rules</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="l4-load-balancer.html">L4 Load Balancer (L4LB)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="l4-load-balancer.html#enabling-l4lb-service">Enabling L4LB service</a></li>
 <li class="toctree-l2"><a class="reference internal" href="l4-load-balancer.html#consuming-l4lb-service">Consuming L4LB service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vpc-peering.html">VPC Peering</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vpc-peering.html#peering-a-bgp-only-vpc">Peering a BGP-only VPC</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vpc-connect.html">VPC Connect</a><ul>
@@ -617,8 +585,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ufm-configuration-requirements">UFM Configuration Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#option-1-deploy-within-an-existing-netris-controller-kubernetes-cluster">Option 1: Deploy within an existing Netris Controller Kubernetes cluster</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#option-2-deploy-as-a-standalone-docker-container">Option 2: Deploy as a standalone Docker container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-ufm-instances">Multiple UFM Instances</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration-parameters">Configuration Parameters</a><ul>
@@ -867,6 +834,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/visibility.html">Graph Boards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/visibility.html#id1">Graph Boards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/visibility.html#api-logs">API Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/visibility.html#dashboard">Dashboard</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="monitoring-observability/topology-validation.html">Topology &amp; Wiring Validation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="monitoring-observability/topology-validation.html#switch-to-switch-and-switch-to-softgate">Switch-to-switch and Switch-to-SoftGate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitoring-observability/topology-validation.html#switch-to-server">Switch-to-Server</a></li>
@@ -876,7 +849,11 @@
 <li class="toctree-l2"><a class="reference internal" href="monitoring-observability/netq.html#topology-blueprint-activation">Topology Blueprint Activation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/healthchecks.html">Netris Healthchecks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/healthchecks.html">Netris Healthchecks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/healthchecks.html#rx-tx-drops-and-errors-threshold-calculation-method">RX/TX drops and errors threshold calculation method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/looking-glass.html">Looking Glass</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -905,6 +882,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.14.0.html">Netris 4.14.0 Release Notes (Jul/31/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#what-s-new-in-netris-version">What’s new in Netris 4.14.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.13.0.html">Netris 4.13.0 Release Notes (Jul/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#what-s-new-in-netris-version">What’s new in Netris 4.13.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.13.0.html#features">Features</a></li>
@@ -1203,16 +1189,9 @@
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<section id="option-1-deploy-within-an-existing-netris-controller-kubernetes-cluster">
-<h3>Option 1: Deploy within an existing Netris Controller Kubernetes cluster<a class="headerlink" href="#option-1-deploy-within-an-existing-netris-controller-kubernetes-cluster" title="Link to this heading"></a></h3>
-<p>This option is recommended if you already have a Netris Controller running in a Kubernetes environment.</p>
+<p>The Netris-UFM plugin manifest ships inside the same air-gapped installation tarball used to deploy the Netris Controller — no internet access is required. The steps below assume you unpacked that tarball into <code class="docutils literal notranslate"><span class="pre">~/netris-controller-ha/</span></code> (see <a class="reference internal" href="installation/controller-k3s-air-gap-ha.html"><span class="doc">Installing HA Netris Controller in Air-Gapped Environments</span></a> for details).</p>
 <ol class="arabic">
-<li><p>Download the Kubernetes deployment YAML file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://get.netris.io/netris-controller-ufm.yaml
-</pre></div>
-</div>
-</li>
-<li><p>Edit the YAML file to update the secret values based on your environment:</p>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">netris-controller-ha/manifests/netris-controller/ufm.yaml</span></code> to update the secret values based on your environment:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -1222,7 +1201,7 @@
 <span class="nt">stringData</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">NETRIS_CONTROLLER_ADDR</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://netris.example.com&quot;</span>
 <span class="w">  </span><span class="nt">NETRIS_CONTROLLER_LOGIN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;netris&quot;</span>
-<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;newNet0ps&quot;</span>
+<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Password!&quot;</span>
 <span class="w">  </span><span class="nt">NETRIS_VERIFY_SSL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
 <span class="w">  </span><span class="nt">NETRIS_SITE_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Site&quot;</span>
 <span class="w">  </span><span class="nt">UFM_ADDR</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://ufm.example.com&quot;</span>
@@ -1236,43 +1215,33 @@
 </div>
 </li>
 <li><p>Apply the configuration to your Kubernetes cluster:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netris-controller-ufm.yaml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netris-controller-ha/manifests/netris-controller/ufm.yaml
 </pre></div>
 </div>
 </li>
 </ol>
-</section>
-<section id="option-2-deploy-as-a-standalone-docker-container">
-<h3>Option 2: Deploy as a standalone Docker container<a class="headerlink" href="#option-2-deploy-as-a-standalone-docker-container" title="Link to this heading"></a></h3>
-<p>This option is ideal for environments without Kubernetes or when you want to deploy on a separate host.</p>
-<ol class="arabic">
-<li><p>Create an environment file (e.g., <code class="docutils literal notranslate"><span class="pre">env</span></code>) with the following content:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">NETRIS_CONTROLLER_ADDR</span><span class="o">=</span><span class="s2">&quot;https://netris.example.com&quot;</span>
-<span class="nv">NETRIS_CONTROLLER_LOGIN</span><span class="o">=</span><span class="s2">&quot;netris&quot;</span>
-<span class="nv">NETRIS_CONTROLLER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;newNet0ps&quot;</span>
-<span class="nv">NETRIS_VERIFY_SSL</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-<span class="nv">NETRIS_SITE_NAME</span><span class="o">=</span><span class="s2">&quot;Site&quot;</span>
-<span class="nv">UFM_ADDR</span><span class="o">=</span><span class="s2">&quot;https://ufm.example.com&quot;</span>
-<span class="nv">UFM_LOGIN</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
-<span class="nv">UFM_PASSWORD</span><span class="o">=</span><span class="s2">&quot;123456&quot;</span>
-<span class="nv">UFM_VERIFY_SSL</span><span class="o">=</span><span class="s2">&quot;false&quot;</span>
-<span class="nv">UFM_ID</span><span class="o">=</span><span class="s2">&quot;ufm-lab&quot;</span>
-<span class="nv">UFM_PKEY_RANGE</span><span class="o">=</span><span class="s2">&quot;100-7ffe&quot;</span>
-<span class="nv">UFM_ENABLE_SHARP</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-<span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="s2">&quot;info&quot;</span>
-</pre></div>
-</div>
-</li>
-<li><p>Run the Docker container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--env-file<span class="o">=</span>env<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--name<span class="o">=</span>netris-ufm<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/app/servicebin&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>netrisai/bare-metal-netris-ufm-agent:0.3.0
-</pre></div>
-</div>
-</li>
+<section id="multiple-ufm-instances">
+<h3>Multiple UFM Instances<a class="headerlink" href="#multiple-ufm-instances" title="Link to this heading"></a></h3>
+<p>If a customer’s InfiniBand environment has more than one fabric — each with its own UFM (for example, separate compute and storage fabrics) — deploy a separate Netris-UFM agent per UFM:</p>
+<ol class="arabic simple">
+<li><p>Copy <code class="docutils literal notranslate"><span class="pre">ufm.yaml</span></code> to a new file name.</p></li>
+<li><p>In the copy, give the agent a unique Kubernetes resource name (<code class="docutils literal notranslate"><span class="pre">metadata.name</span></code>), <code class="docutils literal notranslate"><span class="pre">UFM_ADDR</span></code>, and a unique <code class="docutils literal notranslate"><span class="pre">UFM_ID</span></code>, and update the other UFM/Netris connection values as needed.</p></li>
 </ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Here is a quick way to update the YAML file for the 2nd UFM instance:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>ufm.yaml<span class="w"> </span>ufm-storage.yaml
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/netris-controller-nvidia-ufm-agent/netris-controller-nvidia-ufm-agent-storage/g&#39;</span><span class="w"> </span>ufm-storage.yaml
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Apply the copy with <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">apply</span> <span class="pre">-f</span></code>.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Re-applying a manifest with the same <code class="docutils literal notranslate"><span class="pre">metadata.name</span></code> updates the existing agent rather than creating a second one. Each UFM instance needs its own uniquely-named deployment and a unique <code class="docutils literal notranslate"><span class="pre">UFM_ID</span></code>.</p>
+</div>
 </section>
 </section>
 <section id="configuration-parameters">
@@ -1360,6 +1329,7 @@
 </tr>
 </tbody>
 </table>
+<p>Before assigning a PKey from <code class="docutils literal notranslate"><span class="pre">UFM_PKEY_RANGE</span></code>, the agent always checks whether that PKey already exists in UFM, and will not overwrite an existing PKey. If a customer already has PKeys configured manually and wants to preserve them, set <code class="docutils literal notranslate"><span class="pre">UFM_PKEY_RANGE</span></code> to start above their existing range (e.g., start at <code class="docutils literal notranslate"><span class="pre">200</span></code> instead of <code class="docutils literal notranslate"><span class="pre">100</span></code>) to avoid collisions.</p>
 </section>
 <section id="agent-configuration">
 <h3>Agent Configuration<a class="headerlink" href="#agent-configuration" title="Link to this heading"></a></h3>
@@ -1390,6 +1360,7 @@
 </tr>
 </tbody>
 </table>
+<p>Starting in Netris Controller 4.11, the Reconcile Interval can also be set from the UI (<strong>Settings</strong> → <strong>General</strong>). When that field is present, it takes precedence over <code class="docutils literal notranslate"><span class="pre">RECONCILE_INTERVAL</span></code> in the YAML/env file; the YAML/env value is used only as a fallback on controllers predating 4.11.</p>
 </section>
 </section>
 <section id="usage-guide">
@@ -1408,6 +1379,11 @@
 <p>Server names must match exactly between UFM and Netris Controller for the initial sync to complete properly. Once the initial sync is done and the <cite>hosting_system_guid</cite> field is populated in Netris inventory, the plugin will continue to maintain the mapping even if server names change in Netris or UFM. You can verify the GUID mapping in Netris Controller UI under <strong>Network</strong> → <strong>Inventory</strong> by examining the Custom field of the server object. It should show both the HCA GUIDs and the hosting system GUID.</p>
 <img alt="_images/ufm-hosting-system-guid.png" class="with-shadow align-center" src="_images/ufm-hosting-system-guid.png" />
 <p style="text-align: center;"><em>Figure: Server Custom field showing GUIDs</em></p></div>
+<p><code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code> always corresponds to the GUID of the server’s first HCA. You can cross-check this value in the UFM UI under the server’s Device view, which displays one general GUID that should match. Replacing that first HCA — for example, during an RMA — changes this GUID and breaks the Netris↔UFM mapping. If a server’s first HCA is replaced, re-establish the mapping manually: either rename the server to force a fresh name-based sync, or set <code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code> directly to the new value.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The server’s Custom field may also show GPU UID entries. Those come from the separate <a class="reference internal" href="netris-nvlink-integration.html"><span class="doc">NVLink integration</span></a> and are unrelated to UFM — the Netris-UFM plugin doesn’t read or write them.</p>
+</div>
 </section>
 <section id="create-a-server-cluster-template">
 <h3>2. Create a Server Cluster Template<a class="headerlink" href="#create-a-server-cluster-template" title="Link to this heading"></a></h3>
@@ -1417,6 +1393,10 @@
 <li><p>Click <strong>Add</strong> to create a new template</p></li>
 <li><p>Configure the template using JSON with specific sections for different network fabrics. Use <a class="reference internal" href="server-cluster.html#infiniband-fabric-example"><span class="std std-ref">Infiniband Fabric Example</span></a>.</p></li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Netris Controller has no visibility into individual UFM NICs or ports, so the InfiniBand side of the template is just a single generic <code class="docutils literal notranslate"><span class="pre">netris-ufm</span></code> fabric entry — you don’t (and can’t) enumerate individual HCAs the way you would for Ethernet interfaces. Per-host HCA/port mapping happens automatically via the GUID sync described above.</p>
+</div>
 </section>
 <section id="create-server-clusters">
 <h3>4. Create Server Clusters<a class="headerlink" href="#create-server-clusters" title="Link to this heading"></a></h3>
@@ -1448,11 +1428,7 @@
 <ol class="arabic">
 <li><p>Check the Netris-UFM agent logs (as described in the Monitoring section)</p></li>
 <li><p>Verify the synchronization state:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Kubernetes</span>
-kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/netris-controller-nvidia-ufm-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller
-
-<span class="c1"># For Docker</span>
-docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>netris-ufm
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/netris-controller-nvidia-ufm-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller
 </pre></div>
 </div>
 </li>
@@ -1592,15 +1568,9 @@ sudo<span class="w"> </span>smpquery<span class="w"> </span>--m_key<span class="
 <h2>Monitoring and Troubleshooting<a class="headerlink" href="#monitoring-and-troubleshooting" title="Link to this heading"></a></h2>
 <section id="viewing-logs">
 <span id="ufm-integration-view-logs"></span><h3>Viewing Logs<a class="headerlink" href="#viewing-logs" title="Link to this heading"></a></h3>
-<p>For Kubernetes deployment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/netris-controller-nvidia-ufm-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller
 </pre></div>
 </div>
-<p>For Docker container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>netris-ufm
-</pre></div>
-</div>
-<p>Alternatively, you can view logs through the Netris Controller UI under Telescope &gt; API Logs and filter by <cite>ufm</cite>. Please, note that the API logs in the UI are shown with a delay and require a manual screen refresh. To see UFM integration logs in real-time, we recommend using the command-line methods above.</p>
 <img alt="_images/ufm-api-logs.png" class="with-shadow align-center" src="_images/ufm-api-logs.png" />
 <p style="text-align: center;"><em>Figure: Viewing UFM integration logs in Netris Controller UI</em></p></section>
 <section id="common-issues-and-solutions">
@@ -1630,9 +1600,12 @@ ping<span class="w"> </span>ufm.example.com
 <ul class="simple">
 <li><p>If using self-signed certificates, set NETRIS_VERIFY_SSL/UFM_VERIFY_SSL to “false”</p></li>
 <li><p>For production, use valid certificates and set verification to “true”</p></li>
+<li><p>Certificates typically expire within one year (sometimes two); plan for rotation. When a certificate expires or becomes invalid, Netris logs a connection failure in the agent logs.</p></li>
 </ul>
 </li>
 </ol>
+<p><strong>Note on log behavior:</strong> The agent logs an entry only when it takes an action or encounters an error. A reconciliation cycle that completes normally and finds nothing to change does not produce a log message — so no new log entries is the expected, healthy state, not a sign that something has stalled.</p>
+<p>If connectivity to UFM goes down, you will see a new timeout message every reconcile interval (every 10 seconds by default) for as long as the outage lasts. Once connectivity is restored, those timeout messages stop, and no separate “connection restored” message is logged in their place. So a timeout logged hours ago with nothing since typically means connectivity was restored, not that the integration is still down.</p>
 </section>
 <section id="pkey-assignment-issues">
 <h4>PKey Assignment Issues<a class="headerlink" href="#pkey-assignment-issues" title="Link to this heading"></a></h4>
@@ -1656,11 +1629,7 @@ ping<span class="w"> </span>ufm.example.com
 </ul>
 </li>
 <li><p>Examine the PKey allocation process in debug logs:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Kubernetes</span>
-kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/netris-controller-nvidia-ufm-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;PKey&quot;</span>
-
-<span class="c1"># For Docker</span>
-docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>netris-ufm<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;PKey&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/netris-controller-nvidia-ufm-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;PKey&quot;</span>
 </pre></div>
 </div>
 </li>
@@ -1696,7 +1665,7 @@ docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </s
 <ol class="arabic">
 <li><p>Turn on debug logging in Settings&gt;General to monitor synchronization operations in detail. Tail the logs once turned on. See <a class="reference internal" href="#ufm-integration-view-logs"><span class="std std-ref">Viewing Logs</span></a> for instructions on viewing logs.</p></li>
 <li><p>Adjust the Reconcile Interval Settings&gt;General to a shorter time period for faster synchronization. Tail the logs once turned on. See <a class="reference internal" href="#ufm-integration-view-logs"><span class="std std-ref">Viewing Logs</span></a> for instructions on viewing logs.</p></li>
-<li><p>Use Dry Run mode Settings&gt;General  to test changes without applying them, which can help identify issues before they affect the environment. Tail the logs once turned on. See <a class="reference internal" href="#ufm-integration-view-logs"><span class="std std-ref">Viewing Logs</span></a> for instructions on viewing logs.</p>
+<li><p>Use Dry Run mode (Settings → General) to test changes without applying them. This is particularly useful in two situations: (a) the agent was disabled for a while, and Netris and UFM have drifted apart from manual changes made on both sides, so you want to preview what enabling it would do before actually re-enabling it; and (b) your change-management process requires reviewing planned changes before they’re applied — Dry Run lets you generate that preview for approval. Tail the logs once turned on. See <a class="reference internal" href="#ufm-integration-view-logs"><span class="std std-ref">Viewing Logs</span></a> for instructions on viewing logs.</p>
 <img alt="_images/general-ufm-debug-dry-run-reconcile.png" class="with-shadow align-center" src="_images/general-ufm-debug-dry-run-reconcile.png" />
 </br></li>
 <li><p>Check for high CPU or memory usage on the plugin host</p></li>
@@ -1705,12 +1674,9 @@ docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </s
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment/netris-controller-nvidia-ufm-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller
 </pre></div>
 </div>
-<p>or</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>restart<span class="w"> </span>netris-ufm
-</pre></div>
-</div>
 </li>
 </ol>
+<p><strong>Checking PKey/GUID membership:</strong> To see which GUIDs belong to a given server cluster’s PKey, use the Netris API (v2) PKey Ledger endpoint for the <code class="docutils literal notranslate"><span class="pre">netris-ufm</span></code> integration. Useful when troubleshooting cluster membership that doesn’t match expectations.</p>
 </section>
 </section>
 </section>
@@ -1741,13 +1707,9 @@ docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </s
 <section id="quick-setup-example">
 <h3>Quick Setup Example<a class="headerlink" href="#quick-setup-example" title="Link to this heading"></a></h3>
 <ol class="arabic">
-<li><p>Install the plugin using the Kubernetes or Docker method above</p></li>
+<li><p>Install the plugin as described above</p></li>
 <li><p>Verify the plugin is running properly:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Kubernetes</span>
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ufm
-
-<span class="c1"># For Docker</span>
-docker<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>netris-ufm
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ufm
 </pre></div>
 </div>
 </li>

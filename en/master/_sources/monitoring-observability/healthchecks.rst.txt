@@ -102,7 +102,7 @@ There are three main categories of healthchecks in Netris:
    * - Node Health
      - sys_service
      - Monitors service status:
-     
+
        - rsyslog
        - collectd
        - switchd
@@ -165,20 +165,58 @@ There are three main categories of healthchecks in Netris:
      -
    * - Switch Port Health
      - check_port
-     - Checks
+     - Checks:
 
        - port status
        - % of RX/TX bandwidth utilization
-       - laser signal level threshold breach
+       - threshold breach
+
+         - RX/TX drops
+         - RX/TX errors
+       - laser signal level
        - transceiver temperature
        - transceiver presence
        - Bit Error Rate (BER)
      -
-       - OK - port is UP, and RX/TX utilization is below Warning threshold, Laser Signal Levels are below Warning threshold, pluggable is present or the port is fixed, temperature below threshold, BER below threshold
-       - WARNING - port is UP and (RX/TX utilization is above Warning threshold or Laser Signal Levels are above Warning threshold), or temperature above Warning threshold
-       - CRITICAL - port is DOWN, or RX/TX utilization is above Critical threshold, or Laser Signal Levels are above Critical threshold, or pluggable is absent, or temperature above Critical threshold, or BER above Critical threshold
-     - swp57s0 port is UP, 0% RX Utilized of 1 Gbps, 0% TX Utilized of 1 Gbps
+       - OK - port is UP, and all metrics are below the Warning threshold, pluggable is present or the port is fixed
+       - WARNING - port is UP and any one or more metrics are above Warning threshold, but below Critical threshold
+       - CRITICAL - port is DOWN, or any one or more metrics are above Critical threshold, or pluggable is absent
      -
-       - TX/RX Warning threshold default 70
-       - TX/RX Critical threshold default 90
+       - swp57s0 port is UP, 0% RX Utilized of 1 Gbps, 0% TX Utilized of 1 Gbps
+       - swp9s1 in-drops:critical(>=0.1%),out-drops:ok,in-errors:ok,out-errors:ok, port is UP, 0% RX Utilized of 200 Gbps, 0% TX Utilized of 200 Gbps, Signal | Levels(dBm) per lane = N/A, Temperature: N/A, Bit Error Rate: N/A
+       - in-drops Increase percentage is 0.03%.
+     -
+       - TX/RX bandwidth utilization Warning threshold default 70
+       - TX/RX bandwidth utilization Critical threshold default 90
        - Laser signal levels thresholds are taken from the transceiver
+       - TX/RX drops: Warning threshold percentage ≥ 0.01% AND Δdrops/errors > 50; Critical threshold percentage ≥ 0.1% AND Δdrops/errors > 50
+
+RX/TX drops and errors threshold calculation method
+=====================================================
+
+.. tip::
+   You can verify the counter values on a Cumulus switch by running the following command:
+
+   .. code-block:: bash
+
+      nv show interface --view counters -o json
+
+.. tip::
+   Only physical interfaces are evaluated.
+
+**Calculation**:
+
+For each of the four drop/error counters (``in-drops``, ``out-drops``, ``in-errors``, ``out-errors``), the check performs the following steps:
+
+#. Read the counter value from the previous check run. If no previous value exists, return OK and store the current value.
+#. Read the current counter value.
+#. Read the corresponding packet counter (``in-pkts`` for ``in-drops`` / ``in-errors``; ``out-pkts`` for ``out-drops`` / ``out-errors``) from the previous check run. If no previous value exists, return OK and store the current value.
+#. Read the current packet counter value.
+#. Calculate the drop/error percentage using the Δ (Δ = current value − previous value).
+
+.. code-block:: text
+
+   in_drop_percentage  = 100 * Δin_drops  / (Δin_packets  + Δin_drops)
+   out_drop_percentage = 100 * Δout_drops / (Δout_packets + Δout_drops)
+   in_error_percentage  = 100 * Δin_errors  / (Δin_packets  + Δin_errors)
+   out_error_percentage = 100 * Δout_errors / (Δout_packets + Δout_errors)

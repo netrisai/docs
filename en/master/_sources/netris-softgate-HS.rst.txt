@@ -70,17 +70,53 @@ The Netris engineering team has performed SoftGate HS performance benchmarking u
 
    .. tab-item:: Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz
 
-      .. csv-table:: SoftGate HS Performance Intel
-         :file: tables/softgate-hs-perf-intel.csv
-         :widths: 40, 40, 40
+      **1 Netris VPC**
+
+      .. csv-table:: SoftGate HS Performance Intel - 1 VPC
+         :file: tables/softgate-hs-perf-intel-1vpc.csv
+         :widths: 60, 40
+         :header-rows: 1
+         :align: center
+
+      **100 Netris VPCs**
+
+      .. csv-table:: SoftGate HS Performance Intel - 100 VPCs
+         :file: tables/softgate-hs-perf-intel-100vpc.csv
+         :widths: 60, 40
+         :header-rows: 1
+         :align: center
+
+      **1000 Netris VPCs**
+
+      .. csv-table:: SoftGate HS Performance Intel - 1000 VPCs
+         :file: tables/softgate-hs-perf-intel-1000vpc.csv
+         :widths: 60, 40
          :header-rows: 1
          :align: center
 
    .. tab-item:: AMD EPYC 7413 24-Core CPU @ 2.6GHz, 48 core
 
-      .. csv-table:: SoftGate HS Performance AMD
-         :file: tables/softgate-hs-perf-amd.csv
-         :widths: 40, 40, 40
+      **1 Netris VPC**
+
+      .. csv-table:: SoftGate HS Performance AMD - 1 VPC
+         :file: tables/softgate-hs-perf-amd-1vpc.csv
+         :widths: 60, 40
+         :header-rows: 1
+         :align: center
+
+      **100 Netris VPCs**
+
+      .. csv-table:: SoftGate HS Performance AMD - 100 VPCs
+         :file: tables/softgate-hs-perf-amd-100vpc.csv
+         :widths: 60, 40
+         :header-rows: 1
+         :align: center
+
+      **1000 Netris VPCs**
+
+      .. csv-table:: SoftGate HS Performance AMD - 1000 VPCs
+         :file: tables/softgate-hs-perf-amd-1000vpc.csv
+         :widths: 60, 40
          :header-rows: 1
          :align: center
 
