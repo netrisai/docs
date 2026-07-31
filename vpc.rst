@@ -31,6 +31,17 @@ VPC is the highest object in the Netris hierarchy and spans every :doc:`Site <si
 
    <p style="text-align: center;"><em>Netris VPC concept diagram</em></p>
 
+.. _vpc_vrf_placement:
+
+How a VPC's VRF is placed on the fabric
+==========================================
+
+On Ethernet fabrics a VPC maps to a VRF, but that VRF (and its associated L3 VNI) is not instantiated on every switch. Netris creates it on a given switch only where that switch hosts a Layer 3 service belonging to the VPC. Three things require it: a V-Net with an IP default gateway (an SVI), a BGP session terminated on that switch, or VPC peering. When the last such L3 service on a switch is removed, the VRF and its L3 VNI are withdrawn from that switch.
+
+A V-Net configured without an IP default gateway is a pure Layer 2 segment: it provisions only an L2 VNI, with no VRF or L3 VNI.
+
+Because a BGP session on its own provisions the VRF, a VPC that contains only BGP sessions and no V-Nets still gets its VRF on the terminating switches — so it can take part in VPC peering without a placeholder V-Net.
+
 Adding a new VPC
 ==================
 
@@ -98,7 +109,7 @@ The table below lists the objects that belong to a VPC, what selecting a VPC for
      - Same exit behavior as NAT: the frontend virtual IP is served from the System VPC via SoftGate.
    * - VPC Peering (``Network -> VPC Peering``)
      - Two VPCs whose routes are selectively exchanged.
-     - Commonly used to reach shared services (DNS, storage, and the like) from multiple tenant VPCs without giving those tenant VPCs a route to each other. See the VPC Peering section of the :doc:`Network Policies <network-policies>` page.
+     - Commonly used to reach shared services (DNS, storage, and the like) from multiple tenant VPCs without giving those tenant VPCs a route to each other. See the :doc:`VPC Peering <vpc-peering>` page.
    * - :doc:`Server Cluster <server-cluster>` (``Services -> Server Cluster``)
      - Can create a brand-new VPC for you.
      - Setting VPC to **Create New** provisions a VPC along with its V-Nets and IPAM subnets in one step. See :doc:`server-cluster` for additional details.

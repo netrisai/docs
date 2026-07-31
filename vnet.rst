@@ -21,7 +21,7 @@ To build a V-Net you need to supply
 
 * a list of switch ports
 * a name
-* parent :ref:`VPC <vpc_def>`
+* parent :doc:`VPC <vpc>`
 * :doc:`site(s) <site>`
 * Optionally IP subnet, gateway, and DHCP settings.
 

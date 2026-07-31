@@ -5,7 +5,7 @@
 Switch Ports
 ============
 
-Switch ports can be directly managed in the **Switch Port** UI section.  Both physical and virtual ports (extended, aggregate, etc…) will appear in this section once they have been added to inventory. The Netris Controller will automatically sync the list of available ports that appear on each device.
+Switch ports can be directly managed in the **Network Interfaces** UI section. Both physical and virtual ports (extended, aggregate, etc…) will appear in this section once they have been added to inventory. The Netris Controller will automatically sync the list of available ports that appear on each device.
 
 The following options are available for editing on each port:
 

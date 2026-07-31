@@ -1,9 +1,11 @@
-**Connect via V-Net**,Select a V-Net if the BGP session is to be established with an endpoint from that V-Net.
+**Connect via V-Net**,Select a V-Net if the BGP session is to be established with an endpoint from that V-Net rather than with the switch port directly.
 **BFD**,Enable/Disable BFD.
-**BGP Timers**,Keepalive Interval, Hold Time and Connect Retry timers for the BGP session. Netris default values are 3 10 10.
+**BGP Timers**,"Keepalive (Hello) Interval, Hold Time and Connect Retry timers for the BGP session. Netris default values are 3 10 10."
 **Neighbor address**,IP address of the neighbor when peering with the loopback IP address instead of the interface IP address (aka Multihop).
 **Update source**,When Multihop BGP peering is used it allows the operator to choose one of the loopback IP addresses of the SoftGate node as a BGP speaker source IP address.
 **BGP password**,Password for the BGP session
+**Remove Private AS**,"Strip private ASNs (64512-65534, or 4200000000-4294967294 for 4-byte ASNs) from the AS-PATH before advertising to this neighbor. Enabled by default. If multiple SoftGates advertise the same prefix to the same upstream, whether this is enabled or disabled affects whether their AS-PATHs end up identical or distinct. See the note below this table for more details."
+**Local ASN**,"The local Autonomous System Number the BGP speaker advertises for this session. Three options: Site Public ASN (default) - use the AS number defined as the public ASN in the current Site configuration. Switch Local ASN - if a switch is selected as the BGP Router for this session, use that switch's individual local ASN. Not applicable when the BGP Router is a SoftGate. Custom ASN - enter a specific AS number for this session only."
 **Allowas-in**,Define the number of allowed occurrences of the self AS number in the received BGP NLRI to consider it valid (normally 0).
 **Default Originate**,Originate default route to the current neighbor.
 **Prefix Inbound Max**,Drop the BGP session if the number of received prefixes exceeds this max limit. For switch termination maximum allowed is 1000 prefixes and SoftGate termination can handle up to one million prefixes.
