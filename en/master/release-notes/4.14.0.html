@@ -1136,7 +1136,7 @@
 <p>Netris 4.14.0 is a feature release focused on fabric flexibility and multi-tenant scale. It decouples BGP session placement from physical port topology and exposes InfiniBand fabric path visibility through the Netris API. It also extends DHCPv6 relay support to more switch platforms, extends Server Cluster provisioning, and ships a substantial set of platform bug fixes.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>Apache CloudStack integration.</strong> Enhancements to the Netris integration for Apache CloudStack are landing alongside 4.14.0, delivered as part of the CloudStack 4.22 codebase.</p>
+<p><strong>Apache CloudStack integration.</strong> Enhancements to the Netris integration for Apache CloudStack are landing alongside 4.14.0. This work is delivered as part of the CloudStack codebase and is mentioned here for awareness. Please, contact Netris for more details.</p>
 </div>
 </section>
 <section id="features">
@@ -1164,7 +1164,7 @@
 <li><p>Fixed ACLs not being applied correctly on Arista switches where a trunk port reported its allowed VLANs as a range. Note: with this fix in place, some switches may now receive additional ACLs.</p></li>
 <li><p>Fixed topology diagram rendering to use the inventory-profile fabric type for correct switch placement.</p></li>
 <li><p>Fixed RDNSS configuration incorrectly rejecting valid IPv6 addresses.</p></li>
-<li><p>Fixed bond interfaces being auto-populated for V-Net members when Automatic Link Aggregation is disabled in the inventory profile.</p></li>
+<li><p>Fixed bond interfaces being auto-populated on Dell SONiC for V-Net members when Automatic Link Aggregation is disabled in the inventory profile.</p></li>
 <li><p>Fixed an issue where Netris would return “no V-net” to CloudStack hypervisors for recently created V-Nets, thus preventing workloads from deploying.</p></li>
 <li><p>Fixed ARP and neighbor entries silently not being programmed on CloudStack hosts using EVPN/VXLAN bridges. The interface list is now re-evaluated continuously, so interfaces that appear later, or that flap, are picked up automatically.</p></li>
 <li><p>Fixed the CloudStack agent creating VXLAN interfaces without the intended bridge-port settings. MAC learning is now disabled and ARP/ND neighbor suppression enabled on the VXLAN bridge port, as specified.</p></li>
