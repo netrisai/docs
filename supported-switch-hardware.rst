@@ -5,7 +5,7 @@ Hardware Requirements
 Netris Controller
 =================
 
-We recommend three (for HA) Ubuntu 24.04 servers with the below specs. HA Netris Controller can run both in air-gapped or Internet accessible environments.
+The Netris Controller requires at least three (for HA) Ubuntu 24.04 bare-metal servers with the specs below. HA Netris Controller can run in both air-gapped and Internet-accessible environments.
 
 .. list-table::
    :header-rows: 0
@@ -15,12 +15,7 @@ We recommend three (for HA) Ubuntu 24.04 servers with the below specs. HA Netris
      - **RAM**
      - **SSD/NVME**
      - **Network**
-   * - Leaf/Spine 1-30 switches
-     - 8
-     - 32 GB
-     - 1 TB
-     - 4x 25GbE+ NIC
-   * - Leaf/Spine 30-100 switches
+   * - Leaf/Spine 1-100 switches
      - 8
      - 32 GB
      - 1 TB
@@ -250,15 +245,19 @@ Dell
      - Broadcom Tomahawk IV
      - 64x QSFP-DD 400GbE
      - Dell-SONiC
-     -
+     - Spine only [#dell-fn1]_
      - ✔
    * - Dell
      - PowerSwitch Z Series Z9864F-ON
      - Tomahawk 5
      - 64x OSFP800
      - Dell-SONiC
-     -
+     - Routing VTEP only [#dell-fn2]_
      - ✔
+
+.. [#dell-fn1] This platform's Broadcom Tomahawk IV ASIC does not support VXLAN tunnel termination under either NOS Dell currently offers for it (Dell Enterprise SONiC or SmartFabric OS10). It cannot function as a VTEP and is only suitable for a spine (underlay-only) role. This is a hardware/NOS limitation. See Dell's `Enterprise SONiC Distribution Compatibility Matrix <https://www.delltechnologies.com/asset/en-us/products/networking/technical-support/enterprise-sonic-features-and-supported-platforms-matrix.pdf>`_.
+
+.. [#dell-fn2] This platform supports Layer-3 VXLAN routing but not Layer-2 VXLAN bridging or EVPN in Dell Enterprise SONiC. It can serve as a routed-overlay VTEP for Layer-3-only designs. Contact Netris support to confirm fit if your design requires VXLAN bridging or EVPN multihoming. This is a platform/NOS limitation. See Dell's `Enterprise SONiC Distribution Compatibility Matrix <https://www.delltechnologies.com/asset/en-us/products/networking/technical-support/enterprise-sonic-features-and-supported-platforms-matrix.pdf>`_.
 
 EdgeCore
 ========
@@ -305,7 +304,7 @@ EdgeCore
      - Broadcom Tomahawk 3
      - 32 x 400G QSFP-DD
      - EC-SONiC
-     -
+     - Contact Netris support [#edgecore-fn1]_
      - ✔
    * - EdgeCore
      - DCS511 (AS9737-32DB)
@@ -321,6 +320,8 @@ EdgeCore
      - EC-SONiC
      -
      - ✔
+
+.. [#edgecore-fn1] VXLAN/VTEP support for this platform is not clearly confirmed in EdgeCore's published platform documentation. Contact Netris support before deploying this switch in a leaf/VTEP role. See EdgeCore's `DCS510 (AS9716-32D) datasheet <https://www.edge-core.com/wp-content/uploads/2026/07/2026-042-DCS510_AS9716-32D-DS-R11-20260709.pdf>`_.
 
 Arista
 ========
@@ -374,14 +375,14 @@ Arista
      - Tomahawk 5
      - 32 x 800G OSFP
      - EOS
-     -
+     - Bridging VTEP only [#arista-fn1]_
      - ✔
    * - Arista
      - 7060X6-64PE
      - Tomahawk 5
      - 64 x 800G OSFP + 2 x SFP+
      - EOS
-     -
+     - Bridging VTEP only [#arista-fn1]_
      - ✔
    * - Arista
      - 7280R3
@@ -423,7 +424,7 @@ Arista
      - Tomahawk 3
      - 128 x 100G or 32 x 400G
      - EOS
-     -
+     - Contact Netris support [#arista-fn2]_
      - ✔
    * - Arista
      - 7500R3
@@ -439,3 +440,7 @@ Arista
      - EOS
      -
      - ✔
+
+.. [#arista-fn1] Current Arista EOS releases on this platform support VXLAN bridging but not VXLAN routing, per Arista's published datasheet. It can serve as a bridging-only VTEP. Contact Netris support if your design requires EVPN/VXLAN routing. This is a platform/NOS limitation. See Arista's `7060X6 Series datasheet <https://www.arista.com/assets/data/pdf/Datasheets/7060X6-Datasheet.pdf>`_.
+
+.. [#arista-fn2] VXLAN/VTEP support for this platform is not clearly confirmed in Arista's published documentation. Contact Netris support before deploying this switch in a leaf/VTEP role. See Arista's `7368X4 datasheet <https://www.arista.com/assets/data/pdf/Datasheets/7368X4-Datasheet.pdf>`_.
