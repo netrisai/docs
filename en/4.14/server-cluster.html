@@ -451,6 +451,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bgp.html">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-overview">BGP Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#basic-bgp">Basic BGP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#advanced-bgp">Advanced BGP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-objects">BGP Objects</a><ul>
@@ -597,7 +598,7 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#usage-guide">Usage Guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">4. Create Server Clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">3. Create Server Clusters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">3. Verification</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
@@ -1180,7 +1181,7 @@
 <ul class="simple">
 <li><p>What V-Nets to create and their types (VXLAN, VLAN, UFM, NVLink, and others)</p></li>
 <li><p>What subnets to assign to each these V-Nets, when applicable</p></li>
-<li><p>Which server NICs map to these V-Nets</p></li>
+<li><p>Which server NICs map to these V-Nets (for Ethernet-based V-Nets only)</p></li>
 <li><p>Other applicable settings specific to Ethernet, InfiniBand, and NVLink fabrics</p></li>
 </ul>
 <p>You can find more information about these primitives in the <a class="reference internal" href="vnet.html"><span class="doc">V-Net</span></a> and <a class="reference internal" href="ipam.html"><span class="doc">IP Address Management</span></a> Netris documentation.</p>
@@ -1282,6 +1283,10 @@
 <span class="go">  }</span>
 <span class="go">]</span>
 </pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If your deployment includes more than one InfiniBand fabric (e.g., East-West GPU-to-GPU fabric and a dedicated InifiBand-based storage fabric) you can include multiple stanzas with “type”:”netris-ufm”. See <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">Netris UFM documentation</span></a> for more details.</p>
 </div>
 <p>You can find more details about NVIDIA UFM (InfiniBand) integration in <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">Netris UFM documentation</span></a>.</p>
 </section>
@@ -1404,14 +1409,7 @@
 <ul>
 <li><p>A string specifying the IPv4 gateway for V-Net in CIDR notation</p></li>
 <li><p>A string <cite>specify</cite> to force the operator to enter the gateway explicitly at cluster creation</p></li>
-<li><p>an object (see <a class="reference internal" href="#advanced-uses"><span class="std std-ref">Advanced Uses</span></a>) with the following properties:</p>
-<ul>
-<li><p><strong>assignType</strong>: A string indicating the type of assignment. Only <cite>auto</cite> is permitted at this time.</p></li>
-<li><p><strong>allocation</strong>: A string specifying the IPv4 address allocation, a supernet from which the child subnets will be derived.</p></li>
-<li><p><strong>childSubnetPrefixLength</strong>: An integer specifying the prefix length for child subnets.</p></li>
-<li><p><strong>hostnum</strong>: An integer specifying the host number for the gateway.</p></li>
-</ul>
-</li>
+<li><p>an object (see <a class="reference internal" href="#advanced-uses"><span class="std std-ref">Advanced Uses</span></a>) with the following properties: <strong>assignType</strong> (only <cite>auto</cite> is permitted at this time), <strong>allocation</strong> (the IPv4 address allocation, a supernet from which the child subnets will be derived), <strong>childSubnetPrefixLength</strong> (the prefix length for child subnets), and <strong>hostnum</strong> (the host number for the gateway).</p></li>
 </ul>
 </li>
 <li><p><strong>ipv4DhcpEnabled</strong>: A boolean to enable/disable DHCP for IPv4.</p></li>
@@ -1419,14 +1417,7 @@
 <ul>
 <li><p>A string specifying the IPv6 gateway for V-Net in CIDR notation</p></li>
 <li><p>A string <cite>specify</cite> to force the operator to enter the gateway explicitly at cluster creation</p></li>
-<li><p>an object (see <a class="reference internal" href="#advanced-uses"><span class="std std-ref">Advanced Uses</span></a>) with the following properties:</p>
-<ul>
-<li><p><strong>assignType</strong>: A string indicating the type of assignment. Only <cite>auto</cite> is permitted at this time.</p></li>
-<li><p><strong>allocation</strong>: A string specifying the IPv6 address allocation, a supernet from which the child subnets will be derived.</p></li>
-<li><p><strong>childSubnetPrefixLength</strong>: An integer specifying the prefix length for child subnets.</p></li>
-<li><p><strong>hostnum</strong>: An integer specifying the host number for the gateway.</p></li>
-</ul>
-</li>
+<li><p>an object (see <a class="reference internal" href="#advanced-uses"><span class="std std-ref">Advanced Uses</span></a>) with the same <strong>assignType</strong>, <strong>allocation</strong>, <strong>childSubnetPrefixLength</strong>, and <strong>hostnum</strong> properties as above (IPv6-scoped).</p></li>
 </ul>
 </li>
 <li><p><strong>Ufm</strong>: Nvidia UFM controller identifier (<cite>ufm_id</cite>) for V-Net <cite>type:netris-ufm</cite>. See <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">Netris UFM documentation</span></a> for details.</p></li>
@@ -1634,15 +1625,13 @@
 <li><p>The same Netris NIC name must be used consistently across all server objects in a cluster. For example, when eth10 is assigned to a V-Net in the template, Netris will assign every switch port that corresponds to every server’s eth10 to the same  V-Net throughout the server cluster.</p></li>
 </ul>
 </div>
-<p>You can also assign one or more V-Nets to a separate VPC while assigning others to another VPC. To do so, select <strong>Per template object</strong> under the VPC mapping option. Doing so shows a drop down menu to select an existing VPC or create a new VPC for each V-Net specified in the template.</p>
+<p>In some architectures you may want to assign some V-Nets to one VPC, while assigning others to another VPC when creating a Server Cluster. A typical use case might be assigning East-West and North-South scoped V-Nets to a new dedicated VPC, while assigning the management V-Net to an existing management VPC. Alternatively, you can use Labels to achieve a similar outcome as described <a class="reference internal" href="labels.html"><span class="doc">here</span></a>.</p>
+<p>To assign the templated V-Nets to different VPCs at the time of Server Cluster creation, select <code class="docutils literal notranslate"><span class="pre">Per</span> <span class="pre">template</span> <span class="pre">object</span></code> under the VPC mapping option and select an existing VPC or create a new VPC for each V-Net specified in the template.</p>
+<p>To assign multiple V-Nets to the same VPC, select them together as shown on the screenshot below.</p>
 <img alt="_images/server-cluster-add-per-vnet-vpc.png" class="with-shadow align-center" src="_images/server-cluster-add-per-vnet-vpc.png" />
 <p style="text-align: center;"><em>Figure: Adding a server cluster with multiple VPCs</em></p><div class="admonition note">
 <p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p>V-Nets selected together on one line will be placed into the same VPC.</p></li>
-<li><p>In the screenshot above the Mgmt V-Net will be added to the existing VPC-102 (Shared-infra), while one new VPC will be created with the EastWest and the NorthSouth V-Nets assigned to it.</p></li>
-<li><p>If you require a separate VPC per V-Net, add a dedicated line for each V-Net.</p></li>
-</ul>
+<p>In the screenshot above the Mgmt V-Net will be added to the existing VPC-102 (Shared-infra), while one new VPC will be created with the EastWest and the NorthSouth V-Nets assigned to it.</p>
 </div>
 </section>
 <section id="shared-endpoints">
@@ -1651,9 +1640,9 @@
 <p>However, certain infrastructure components, such as hypervisors or shared storage nodes, may need to serve multiple VPCs simultaneously. In such cases, these endpoints must participate in more than one server cluster.</p>
 <p>To support this, Netris allows administrators to designate specific endpoints as shared. A shared endpoint may be assigned to multiple server clusters, making it possible for Hypervisors, Storage, or other shared resources to be exposed across multiple VPCs.</p>
 <img alt="_images/add-server-cluster-selecting-servers-shared.png" class="with-shadow align-center" src="_images/add-server-cluster-selecting-servers-shared.png" />
-<br /><img alt="_images/add-server-cluster-shared.png" class="with-shadow align-center" src="_images/add-server-cluster-shared.png" />
-<br /><p>Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink.</p>
-<p>In essence: Shared endpoint = Tagged switch port</p>
+<p style="text-align: center;"><em>Figure. Selecting servers as shared endpoints</em></p><img alt="_images/add-server-cluster-shared.png" class="with-shadow align-center" src="_images/add-server-cluster-shared.png" />
+<p style="text-align: center;"><em>Figure. Server01 and server02 are added to th My-Cluster-01 server cluster as shared endpoints</em></p><p>Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink.</p>
+<p>In essence: Shared endpoint = Tagged switch port.</p>
 <p>This is the primary behavioral change triggered by marking an endpoint as shared.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

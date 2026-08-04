@@ -450,6 +450,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bgp.html">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-overview">BGP Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#basic-bgp">Basic BGP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#advanced-bgp">Advanced BGP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-objects">BGP Objects</a><ul>
@@ -596,7 +597,7 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#usage-guide">Usage Guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">4. Create Server Clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">3. Create Server Clusters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">3. Verification</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
@@ -1222,7 +1223,7 @@
 <td><p>✔</p></td>
 </tr>
 <tr class="row-odd"><td><p>AI switch fabric</p></td>
-<td><p>Optimizations for AI workloads. See AI functions section below.</p></td>
+<td><p>Optimizations for AI workloads. See AI Specific Functions section below.</p></td>
 <td><p>✔</p></td>
 <td><p>TBD</p></td>
 <td><p>✔</p></td>
@@ -1237,17 +1238,17 @@
 </tr>
 <tr class="row-odd"><td><p>Upgrade/Downgrade</p></td>
 <td><p>Upgrade &amp; Downgrade of Netris agent through the controller</p></td>
+<td><p>✔</p></td>
+<td><p>Coming Soon</p></td>
 <td><p>Coming Soon</p></td>
 <td><p>TBD</p></td>
-<td><p>TBD</p></td>
-<td><p>Coming Soon</p></td>
 </tr>
 <tr class="row-even"><td><p>Custom Config Snippets</p></td>
 <td><p>Custom configuration snippets for unique use cases.</p></td>
+<td><p>✔</p></td>
 <td><p>Coming Soon</p></td>
 <td><p>Coming Soon</p></td>
-<td><p>Coming Soon</p></td>
-<td><p>Coming Soon</p></td>
+<td><p>TBD</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="inventory-profile.html#snmp-settings"><span class="std std-ref">SNMPv2 polling</span></a></p></td>
 <td><p>Enable SNMPv2 server.</p></td>
@@ -1283,7 +1284,7 @@
 <td><p>✔</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="evpn-on-host.html"><span class="doc">Compute VXLAN/EVPN extension (EOH)</span></a></p></td>
-<td><p>Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.</p></td>
+<td><p>Extend VXLAN/EVPN fabric into compute layer. See Compute Platform Integrations section below.</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>TBD</p></td>
@@ -1299,7 +1300,7 @@
 <tr class="row-odd"><th class="head"><p>Function</p></th>
 <th class="head"><p>Description</p></th>
 <th class="head"><p>NVIDIA Cumulus</p></th>
-<th class="head"><p>Dell SONiC</p>
+<th class="head"><p>Dell-SONiC</p>
 <p>BCM-SONiC</p>
 </th>
 <th class="head"><p>Arista EOS</p></th>
@@ -1374,7 +1375,7 @@
 <td><p>EdgeCore-SONiC</p></td>
 </tr>
 <tr class="row-even"><td><p>External BGP (SoftGate)</p></td>
-<td><p>Terminate full routing table on SoftGate  Gateway-server.</p></td>
+<td><p>Terminate full routing table on SoftGate Gateway-server.</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
@@ -1732,7 +1733,7 @@
 <h1>Netris and NOS versions compatibility matrix<a class="headerlink" href="#netris-and-nos-versions-compatibility-matrix" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>SoftGate PRO has been discontinued and superceded by SoftGate HS. The SoftGate PRO column is retained for reference by existing deployments on older Netris versions.</p>
+<p>SoftGate PRO has been discontinued and superseded by SoftGate HS. The SoftGate PRO column is retained for reference by existing deployments on earlier Netris versions.</p>
 </div>
 <table class="docutils align-default">
 <tbody>

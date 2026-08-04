@@ -153,7 +153,7 @@ Netris Controller Configuration
      - netris
    * - NETRIS_CONTROLLER_PASSWORD
      - Password for authenticating with Netris Controller
-     - newNet0ps
+     - Password!
    * - NETRIS_VERIFY_SSL
      - Whether to verify SSL certificates when connecting to Netris Controller
      - true or false
@@ -184,7 +184,7 @@ NVIDIA UFM Configuration
      - Whether to verify SSL certificates when connecting to UFM
      - true or false
    * - UFM_ID
-     - Unique identifier for this UFM instance
+     - Unique identifier for this UFM instance. This will be referenced from the :doc:`Server Cluster Template </server-cluster>`
      - ufm-lab
    * - UFM_PKEY_RANGE
      - Range of PKey IDs that can be allocated to clusters, in hexadecimal format
@@ -259,7 +259,7 @@ Next, create a Server Cluster Template.
 .. note::
    Netris Controller has no visibility into individual UFM NICs or ports, so the InfiniBand side of the template is just a single generic ``netris-ufm`` fabric entry — you don't (and can't) enumerate individual HCAs the way you would for Ethernet interfaces. Per-host HCA/port mapping happens automatically via the GUID sync described above.
 
-4. Create Server Clusters
+3. Create Server Clusters
 --------------------------
 
 After setting up the template, create server clusters as described in :ref:`creating-server-cluster`.
@@ -605,4 +605,4 @@ Additional Resources
 =====================
 
 - `NVIDIA UFM Documentation <https://docs.nvidia.com/networking/display/ufmenterpriseumv6200/>`_
-- `Netris NVIDIA Spectrum-X Scenario <https://www.netris.io/docs/en/latest/try-learn/nvidia-spectrum-x-scenario.html>`_
+- :doc:`Netris NVIDIA Spectrum-X Scenario </try-learn/nvidia-spectrum-x-scenario>`

@@ -82,7 +82,7 @@ Switch Fabric Management Functions
       - ✔
       - ✔
    *  - AI switch fabric
-      - Optimizations for AI workloads. See AI functions section below.
+      - Optimizations for AI workloads. See AI Specific Functions section below.
       - ✔
       - TBD
       - ✔
@@ -95,16 +95,16 @@ Switch Fabric Management Functions
       - TBD
    *  - Upgrade/Downgrade
       - Upgrade & Downgrade of Netris agent through the controller
+      - ✔
+      - Coming Soon
       - Coming Soon
       - TBD
-      - TBD
-      - Coming Soon
    *  - Custom Config Snippets
       - Custom configuration snippets for unique use cases.
+      - ✔
       - Coming Soon
       - Coming Soon
-      - Coming Soon
-      - Coming Soon   
+      - TBD  
    *  - :ref:`SNMPv2 polling <snmp_settings>`
       - Enable SNMPv2 server.
       - ✔
@@ -135,7 +135,7 @@ Host Networking
       - ✔
       - ✔
    *  - :doc:`Compute VXLAN/EVPN extension (EOH) </evpn-on-host>`
-      - Extend VXLAN/EVPN fabric into compute layer. See Compute integrations section below.
+      - Extend VXLAN/EVPN fabric into compute layer. See Compute Platform Integrations section below.
       - ✔
       - ✔
       - TBD
@@ -149,7 +149,7 @@ Monitoring & Telemetry
    *  - Function
       - Description
       - NVIDIA Cumulus
-      - Dell SONiC
+      - Dell-SONiC
 
         BCM-SONiC
       - Arista EOS
@@ -214,7 +214,7 @@ External Routing Functions
       - Arista EOS
       - EdgeCore-SONiC
    *  - External BGP (SoftGate)
-      - Terminate full routing table on SoftGate  Gateway-server.
+      - Terminate full routing table on SoftGate Gateway-server.
       - ✔
       - ✔
       - ✔
@@ -527,7 +527,7 @@ Management Interfaces
 Netris and NOS versions compatibility matrix
 ============================================
 
-.. note:: SoftGate PRO has been discontinued and superceded by SoftGate HS. The SoftGate PRO column is retained for reference by existing deployments on older Netris versions.
+.. note:: SoftGate PRO has been discontinued and superseded by SoftGate HS. The SoftGate PRO column is retained for reference by existing deployments on earlier Netris versions.
 
 .. list-table::
    :header-rows: 0

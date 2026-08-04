@@ -11,6 +11,18 @@ BGP
    :local:
    :depth: 4
 
+BGP Overview
+------------
+
+Netris uses BGP to connect tenant VPCs and management networks to the world outside the Netris-managed fabric — upstream carriers, non-Netris-managed data center networks, WAN routers, and security appliances such as firewalls.
+
+There are two main types of BGP-enabled connectivity:
+
+- **SoftGate-terminated BGP** — the session terminates on a :doc:`SoftGate <netris-softgate-HS>` node. Typically used for connecting to ISPs, border routers, and similar upstream peers, since SoftGate also provides :doc:`NAT <nat>` and :doc:`Layer-4 load balancing <l4-load-balancer>` for that traffic.
+- **:doc:`VPC Connect <vpc-connect>` (switch-terminated BGP)** — the session terminates directly on a switch port or V-Net SVI. Typically used to establish line-rate connections to external gateways that don't require NAT or L4LB as part of the connection.
+
+Typical use cases are connecting the Netris-managed fabric to external networks such as WAN, non-Netris-managed parts of the data center network, Internet Service Providers, and similar external networks.
+
 Basic BGP
 ---------
 

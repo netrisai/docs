@@ -450,6 +450,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bgp.html">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-overview">BGP Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#basic-bgp">Basic BGP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#advanced-bgp">Advanced BGP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-objects">BGP Objects</a><ul>
@@ -596,7 +597,7 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#usage-guide">Usage Guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">4. Create Server Clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">3. Create Server Clusters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">3. Verification</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
@@ -1131,7 +1132,7 @@
 <h1>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Link to this heading"></a></h1>
 <section id="netris-controller">
 <h2>Netris Controller<a class="headerlink" href="#netris-controller" title="Link to this heading"></a></h2>
-<p>We recommend three (for HA) Ubuntu 24.04 servers with the below specs. HA Netris Controller can run both in air-gapped or Internet accessible environments.</p>
+<p>The Netris Controller requires at least three (for HA) Ubuntu 24.04 bare-metal servers with the specs below. HA Netris Controller can run in both air-gapped and Internet-accessible environments.</p>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><strong>Use Case</strong></p></td>
@@ -1140,43 +1141,37 @@
 <td><p><strong>SSD/NVME</strong></p></td>
 <td><p><strong>Network</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>Leaf/Spine 1-30 switches</p></td>
+<tr class="row-even"><td><p>Leaf/Spine 1-100 switches</p></td>
 <td><p>8</p></td>
 <td><p>32 GB</p></td>
 <td><p>1 TB</p></td>
 <td><p>4x 25GbE+ NIC</p></td>
 </tr>
-<tr class="row-odd"><td><p>Leaf/Spine 30-100 switches</p></td>
-<td><p>8</p></td>
-<td><p>32 GB</p></td>
-<td><p>1 TB</p></td>
-<td><p>4x 25GbE+ NIC</p></td>
-</tr>
-<tr class="row-even"><td><p>Leaf/Spine 100-300 switches</p></td>
+<tr class="row-odd"><td><p>Leaf/Spine 100-300 switches</p></td>
 <td><p>16</p></td>
 <td><p>64 GB</p></td>
 <td><p>1 TB</p></td>
 <td><p>4x 25GbE+ NIC</p></td>
 </tr>
-<tr class="row-odd"><td><p>Leaf/Spine 300+ switches</p></td>
+<tr class="row-even"><td><p>Leaf/Spine 300+ switches</p></td>
 <td><p>32</p></td>
 <td><p>128 GB</p></td>
 <td><p>2 TB</p></td>
 <td><p>4x 25GbE+ NIC</p></td>
 </tr>
-<tr class="row-even"><td><p>Spectrum-X 1-8 SUs</p></td>
+<tr class="row-odd"><td><p>Spectrum-X 1-8 SUs</p></td>
 <td><p>16</p></td>
 <td><p>64 GB</p></td>
 <td><p>1 TB</p></td>
 <td><p>4x 25GbE+ NIC</p></td>
 </tr>
-<tr class="row-odd"><td><p>Spectrum-X 16-32 SUs</p></td>
+<tr class="row-even"><td><p>Spectrum-X 16-32 SUs</p></td>
 <td><p>32</p></td>
 <td><p>128 GB</p></td>
 <td><p>2 TB</p></td>
 <td><p>4x 25GbE+ NIC</p></td>
 </tr>
-<tr class="row-even"><td><p>Spectrum-X 32+ SUs (10K+ GPUs)</p></td>
+<tr class="row-odd"><td><p>Spectrum-X 32+ SUs (10K+ GPUs)</p></td>
 <td><p>64</p></td>
 <td><p>256 GB</p></td>
 <td><p>10 TB</p></td>
@@ -1188,8 +1183,8 @@
 <section id="netris-softgate-hs-multi-vpc-version">
 <h2>Netris SoftGate HS (Multi-VPC version)<a class="headerlink" href="#netris-softgate-hs-multi-vpc-version" title="Link to this heading"></a></h2>
 <p>A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward the stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can be scaled horizontally by deploying more servers as CPU &amp; RAM utilization necessitates.</p>
-<table class="docutils align-center" id="id2">
-<caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id9">
+<caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id9" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 25.0%" />
@@ -1443,7 +1438,7 @@
 <td><p>Broadcom Tomahawk IV</p></td>
 <td><p>64x QSFP-DD 400GbE</p></td>
 <td><p>Dell-SONiC</p></td>
-<td></td>
+<td><p>Spine only <a class="footnote-reference brackets" href="#dell-fn1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>✔</p></td>
 </tr>
 <tr class="row-odd"><td><p>Dell</p></td>
@@ -1451,11 +1446,21 @@
 <td><p>Tomahawk 5</p></td>
 <td><p>64x OSFP800</p></td>
 <td><p>Dell-SONiC</p></td>
-<td></td>
+<td><p>Routing VTEP only <a class="footnote-reference brackets" href="#dell-fn2" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></td>
 <td><p>✔</p></td>
 </tr>
 </tbody>
 </table>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="dell-fn1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>This platform’s Broadcom Tomahawk IV ASIC does not support VXLAN tunnel termination under either NOS Dell currently offers for it (Dell Enterprise SONiC or SmartFabric OS10). It cannot function as a VTEP and is only suitable for a spine (underlay-only) role. This is a hardware/NOS limitation. See Dell’s <a class="reference external" href="https://www.delltechnologies.com/asset/en-us/products/networking/technical-support/enterprise-sonic-features-and-supported-platforms-matrix.pdf">Enterprise SONiC Distribution Compatibility Matrix</a>.</p>
+</aside>
+<aside class="footnote brackets" id="dell-fn2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<p>This platform supports Layer-3 VXLAN routing but not Layer-2 VXLAN bridging or EVPN in Dell Enterprise SONiC. It can serve as a routed-overlay VTEP for Layer-3-only designs. Contact Netris support to confirm fit if your design requires VXLAN bridging or EVPN multihoming. This is a platform/NOS limitation. See Dell’s <a class="reference external" href="https://www.delltechnologies.com/asset/en-us/products/networking/technical-support/enterprise-sonic-features-and-supported-platforms-matrix.pdf">Enterprise SONiC Distribution Compatibility Matrix</a>.</p>
+</aside>
+</aside>
 </section>
 <section id="edgecore">
 <h2>EdgeCore<a class="headerlink" href="#edgecore" title="Link to this heading"></a></h2>
@@ -1506,7 +1511,7 @@
 <td><p>Broadcom Tomahawk 3</p></td>
 <td><p>32 x 400G QSFP-DD</p></td>
 <td><p>EC-SONiC</p></td>
-<td></td>
+<td><p>Contact Netris support <a class="footnote-reference brackets" href="#edgecore-fn1" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></td>
 <td><p>✔</p></td>
 </tr>
 <tr class="row-odd"><td><p>EdgeCore</p></td>
@@ -1527,6 +1532,12 @@
 </tr>
 </tbody>
 </table>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="edgecore-fn1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">3</a><span class="fn-bracket">]</span></span>
+<p>VXLAN/VTEP support for this platform is not clearly confirmed in EdgeCore’s published platform documentation. Contact Netris support before deploying this switch in a leaf/VTEP role. See EdgeCore’s <a class="reference external" href="https://www.edge-core.com/wp-content/uploads/2026/07/2026-042-DCS510_AS9716-32D-DS-R11-20260709.pdf">DCS510 (AS9716-32D) datasheet</a>.</p>
+</aside>
+</aside>
 </section>
 <section id="arista">
 <h2>Arista<a class="headerlink" href="#arista" title="Link to this heading"></a></h2>
@@ -1585,7 +1596,7 @@
 <td><p>Tomahawk 5</p></td>
 <td><p>32 x 800G OSFP</p></td>
 <td><p>EOS</p></td>
-<td></td>
+<td><p>Bridging VTEP only <a class="footnote-reference brackets" href="#arista-fn1" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
 <td><p>✔</p></td>
 </tr>
 <tr class="row-even"><td><p>Arista</p></td>
@@ -1593,7 +1604,7 @@
 <td><p>Tomahawk 5</p></td>
 <td><p>64 x 800G OSFP + 2 x SFP+</p></td>
 <td><p>EOS</p></td>
-<td></td>
+<td><p>Bridging VTEP only <a class="footnote-reference brackets" href="#arista-fn1" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
 <td><p>✔</p></td>
 </tr>
 <tr class="row-odd"><td><p>Arista</p></td>
@@ -1641,7 +1652,7 @@
 <td><p>Tomahawk 3</p></td>
 <td><p>128 x 100G or 32 x 400G</p></td>
 <td><p>EOS</p></td>
-<td></td>
+<td><p>Contact Netris support <a class="footnote-reference brackets" href="#arista-fn2" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a></p></td>
 <td><p>✔</p></td>
 </tr>
 <tr class="row-odd"><td><p>Arista</p></td>
@@ -1662,6 +1673,17 @@
 </tr>
 </tbody>
 </table>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="arista-fn1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id6">1</a>,<a role="doc-backlink" href="#id7">2</a>)</span>
+<p>Current Arista EOS releases on this platform support VXLAN bridging but not VXLAN routing, per Arista’s published datasheet. It can serve as a bridging-only VTEP. Contact Netris support if your design requires EVPN/VXLAN routing. This is a platform/NOS limitation. See Arista’s <a class="reference external" href="https://www.arista.com/assets/data/pdf/Datasheets/7060X6-Datasheet.pdf">7060X6 Series datasheet</a>.</p>
+</aside>
+<aside class="footnote brackets" id="arista-fn2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">5</a><span class="fn-bracket">]</span></span>
+<p>VXLAN/VTEP support for this platform is not clearly confirmed in Arista’s published documentation. Contact Netris support before deploying this switch in a leaf/VTEP role. See Arista’s <a class="reference external" href="https://www.arista.com/assets/data/pdf/Datasheets/7368X4-Datasheet.pdf">7368X4 datasheet</a>.</p>
+</aside>
+</aside>
 </section>
 </section>
 

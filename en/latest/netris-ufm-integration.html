@@ -451,6 +451,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bgp.html">BGP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-overview">BGP Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#basic-bgp">Basic BGP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#advanced-bgp">Advanced BGP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgp.html#bgp-objects">BGP Objects</a><ul>
@@ -597,7 +598,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#usage-guide">Usage Guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-server-clusters">4. Create Server Clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-server-clusters">3. Create Server Clusters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#verification">3. Verification</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
@@ -1271,7 +1272,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/net
 </tr>
 <tr class="row-even"><td><p>NETRIS_CONTROLLER_PASSWORD</p></td>
 <td><p>Password for authenticating with Netris Controller</p></td>
-<td><p>newNet0ps</p></td>
+<td><p>Password!</p></td>
 </tr>
 <tr class="row-odd"><td><p>NETRIS_VERIFY_SSL</p></td>
 <td><p>Whether to verify SSL certificates when connecting to Netris Controller</p></td>
@@ -1316,7 +1317,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/net
 <td><p>true or false</p></td>
 </tr>
 <tr class="row-even"><td><p>UFM_ID</p></td>
-<td><p>Unique identifier for this UFM instance</p></td>
+<td><p>Unique identifier for this UFM instance. This will be referenced from the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster Template</span></a></p></td>
 <td><p>ufm-lab</p></td>
 </tr>
 <tr class="row-odd"><td><p>UFM_PKEY_RANGE</p></td>
@@ -1399,7 +1400,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/net
 </div>
 </section>
 <section id="create-server-clusters">
-<h3>4. Create Server Clusters<a class="headerlink" href="#create-server-clusters" title="Link to this heading"></a></h3>
+<h3>3. Create Server Clusters<a class="headerlink" href="#create-server-clusters" title="Link to this heading"></a></h3>
 <p>After setting up the template, create server clusters as described in <a class="reference internal" href="server-cluster.html#creating-server-cluster"><span class="std std-ref">Creating Server Cluster</span></a>.</p>
 </section>
 <section id="verification">
@@ -1728,7 +1729,7 @@ ping<span class="w"> </span>ufm.example.com
 <h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.nvidia.com/networking/display/ufmenterpriseumv6200/">NVIDIA UFM Documentation</a></p></li>
-<li><p><a class="reference external" href="https://www.netris.io/docs/en/latest/try-learn/nvidia-spectrum-x-scenario.html">Netris NVIDIA Spectrum-X Scenario</a></p></li>
+<li><p><a class="reference internal" href="try-learn/nvidia-spectrum-x-scenario.html"><span class="doc">Netris NVIDIA Spectrum-X Scenario</span></a></p></li>
 </ul>
 </section>
 </section>
