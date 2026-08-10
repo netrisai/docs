@@ -64,7 +64,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Custom NVUE Configuration Snippets" name="description" />
+<meta content="Custom Arista Configuration Snippets" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -76,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom NVUE Configuration Snippets &mdash; Netris Documentation</title>
+  <title>Custom Arista Configuration Snippets &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -99,7 +99,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Labels" href="labels.html" />
-    <link rel="prev" title="Accounts" href="accounts.html" /> 
+    <link rel="prev" title="Custom NVUE Configuration Snippets" href="nvue-configuration-snippets.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -236,7 +236,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
@@ -294,7 +294,7 @@
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning (ZTP)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#prerequisites">Prerequisites</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
@@ -487,6 +487,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-option-sets">DHCP Option Sets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#netris-dhcp">Netris DHCP</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
 </ul>
@@ -537,6 +538,7 @@
 <li class="toctree-l2"><a class="reference internal" href="server-cluster.html#creating-server-cluster">Creating Server Cluster</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#shared-endpoints">Shared Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#shared-and-dedicated-endpoints-across-fabrics">Shared and dedicated endpoints across fabrics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
 </ul>
 </li>
@@ -603,7 +605,10 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#infiniband-security-recommended">InfiniBand Security (Recommended)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#what-is-mkey-protection">What is MKey Protection?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#impact-on-netris-integration">Impact on Netris Integration</a></li>
@@ -872,7 +877,8 @@
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Arista Configuration Snippets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1116,12 +1122,12 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Custom NVUE Configuration Snippets</li>
+      <li class="breadcrumb-item active">Custom Arista Configuration Snippets</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/snippets.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/arista-configuration-snippets.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="accounts.html" class="btn btn-neutral float-left" title="Accounts" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nvue-configuration-snippets.html" class="btn btn-neutral float-left" title="Custom NVUE Configuration Snippets" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="labels.html" class="btn btn-neutral float-right" title="Labels" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -1129,63 +1135,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="custom-nvue-configuration-snippets">
-<h1>Custom NVUE Configuration Snippets<a class="headerlink" href="#custom-nvue-configuration-snippets" title="Link to this heading"></a></h1>
-<p>Netris allows administrators to deploy custom configuration to switches running Cumulus Linux using NVUE configuration snippets. These snippets are YAML files that define specific configurations to be applied to the network devices.</p>
-<p>Example:</p>
+  <section id="custom-arista-configuration-snippets">
+<h1>Custom Arista Configuration Snippets<a class="headerlink" href="#custom-arista-configuration-snippets" title="Link to this heading"></a></h1>
+<p>Netris allows administrators to deploy custom configuration to switches running Arista EOS using configuration snippets. These snippets are plain EOS CLI configuration fragments that are merged into the configuration the agent generates before it’s applied to the switch, letting clients apply local customizations the controller doesn’t yet support without patching the agent.</p>
+<p>The agent reads snippets from a fixed directory on the switch:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/mnt/flash/netris-snippets
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This path is a constant and entirely operator-managed, meaning the agent does not create this directory, write to it, or modify its contents.</p>
+</div>
+<p><strong>Selection rules:</strong></p>
 <ol class="arabic simple">
-<li><p>Stage desired configuration using NVUE commands</p></li>
+<li><p>Only files whose name contains <code class="docutils literal notranslate"><span class="pre">.conf</span></code> are included. Anything else in the directory — other files, subdirectories, sockets, devices, or editor leftovers like <code class="docutils literal notranslate"><span class="pre">foo.conf~</span></code> — is ignored. Selection is by filename only.</p></li>
+<li><p>Files are read in filename sort order, so a numeric prefix convention is required to control merge order: <code class="docutils literal notranslate"><span class="pre">00-snippet.conf</span></code>, <code class="docutils literal notranslate"><span class="pre">01-snippet.conf</span></code>, etc.</p></li>
+<li><p>Snippet contents are appended to the end of the generated <code class="docutils literal notranslate"><span class="pre">new_config.conf</span></code>, before the trailing <code class="docutils literal notranslate"><span class="pre">END</span></code>, in that sort order — after the controller-managed configuration.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>state<span class="w"> </span>enabled
-nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>listening-address<span class="w"> </span>all<span class="w"> </span>vrf<span class="w"> </span>mgmt
-nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>listening-address<span class="w"> </span>all-v6<span class="w"> </span>vrf<span class="w"> </span>mgmt
-nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>readonly-community<span class="w"> </span>clear_text<span class="w"> </span>access<span class="w"> </span>any
+<p><strong>Example:</strong></p>
+<ol class="arabic simple">
+<li><p>Determine the desired EOS configuration. For example,</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>management api http-commands
+   vrf default
+      no shutdown
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>Retreive the YAML version of the configuration diff</p></li>
+<li><p>Save it as a file under <code class="docutils literal notranslate"><span class="pre">/mnt/flash/netris-snippets/</span></code> using the numeric-prefix convention — for example, <code class="docutils literal notranslate"><span class="pre">/mnt/flash/netris-snippets/00-api-http-commands.conf</span></code>.</p></li>
+<li><p>On the next agent run, this fragment is appended to the end of <code class="docutils literal notranslate"><span class="pre">new_config.conf</span></code> (before <code class="docutils literal notranslate"><span class="pre">END</span></code>) and applied to the switch along with the controller-generated configuration.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span>config<span class="w"> </span>diff
-</pre></div>
-</div>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">set</span><span class="p">:</span>
-<span class="w">   </span><span class="nt">system</span><span class="p">:</span>
-<span class="w">     </span><span class="nt">snmp-server</span><span class="p">:</span>
-<span class="w">       </span><span class="nt">listening-address</span><span class="p">:</span>
-<span class="w">         </span><span class="nt">all</span><span class="p">:</span>
-<span class="w">           </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mgmt</span>
-<span class="w">         </span><span class="nt">all-v6</span><span class="p">:</span>
-<span class="w">           </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mgmt</span>
-<span class="w">       </span><span class="nt">readonly-community</span><span class="p">:</span>
-<span class="w">         </span><span class="nt">$nvsec$bc2dea2ea717f9e9aef0265a8f09f949</span><span class="p">:</span>
-<span class="w">           </span><span class="nt">access</span><span class="p">:</span>
-<span class="w">             </span><span class="nt">any</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-<span class="w">       </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Create a file under <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/nvue/</span></code> with the YAML content you retrieved in step 2. For example, create the file <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/nvue/50-snmp.yaml</span></code> with the content above.</p></li>
-</ol>
-<br /><ol class="arabic simple" start="4">
-<li><p>Check if the configuration on the file is correct:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span>config<span class="w"> </span>patch<span class="w"> </span>/opt/netris/etc/nvue/&lt;file&gt;
-nv<span class="w"> </span>config<span class="w"> </span>diff
-</pre></div>
-</div>
-<ol class="arabic simple" start="5">
-<li><p>Check for any configuration errors by applying manually</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span>config<span class="w"> </span>apply
-</pre></div>
-</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="accounts.html" class="btn btn-neutral float-left" title="Accounts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nvue-configuration-snippets.html" class="btn btn-neutral float-left" title="Custom NVUE Configuration Snippets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="labels.html" class="btn btn-neutral float-right" title="Labels" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

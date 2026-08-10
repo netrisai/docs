@@ -64,7 +64,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Inventory Profiles" name="description" />
+<meta content="Custom NVUE Configuration Snippets" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -76,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inventory Profiles &mdash; Netris Documentation</title>
+  <title>Custom NVUE Configuration Snippets &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -98,8 +98,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="IP Address Management (IPAM)" href="ipam.html" />
-    <link rel="prev" title="Inventory" href="topology-management.html" /> 
+    <link rel="next" title="Custom Arista Configuration Snippets" href="arista-configuration-snippets.html" />
+    <link rel="prev" title="Accounts" href="accounts.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -408,7 +408,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="site.html">Netris Site</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vpc.html">VPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
@@ -434,13 +434,13 @@
 <li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-links">Adding Links</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Inventory Profiles</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#snmpv2-credentials">SNMPv2 credentials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#netq-settings">NetQ Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fabric-settings">Fabric Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#custom-rules">Custom Rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ztp-settings">ZTP Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#netq-settings">NetQ Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#ztp-settings">ZTP Settings</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipam.html">IP Address Management (IPAM)</a><ul>
@@ -866,7 +866,7 @@
 <li class="toctree-l1"><a class="reference internal" href="vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a><ul>
@@ -877,7 +877,7 @@
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom NVUE Configuration Snippets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
@@ -1122,235 +1122,77 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Inventory Profiles</li>
+      <li class="breadcrumb-item active">Custom NVUE Configuration Snippets</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/inventory-profile.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/nvue-configuration-snippets.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="topology-management.html" class="btn btn-neutral float-left" title="Inventory" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ipam.html" class="btn btn-neutral float-right" title="IP Address Management (IPAM)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="accounts.html" class="btn btn-neutral float-left" title="Accounts" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="arista-configuration-snippets.html" class="btn btn-neutral float-right" title="Custom Arista Configuration Snippets" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="inventory-profiles">
-<span id="inventory-profile"></span><h1>Inventory Profiles<a class="headerlink" href="#inventory-profiles" title="Link to this heading"></a></h1>
-<p>Inventory profiles allow security hardening of inventory devices and fabric-wide configuration optimizations.</p>
-<p>By default all traffic flow destined to switch/SoftGate is allowed. As soon as the inventory profile is attached to a device it denies all traffic destined to the device except Netris-defined and user-defined custom flows.</p>
-<p>Automatically allowed IPv4 and IPv6 inbound flows include:</p>
-<ul class="simple">
-<li><p>SSH TCP port 22 from user defined subnets</p></li>
-<li><p>NTP UDP port 123</p></li>
-<li><p>DNS UDP and TCP port 53</p></li>
-<li><p>SNMP UDP port 161 (IPv4 only) from user defined subnets</p></li>
-<li><p>BGP TCP port 179 from defined neighbors and fe80::/64</p></li>
-<li><p>ICMP</p></li>
-<li><p>DHCP</p></li>
-<li><p>Custom user defined rules</p></li>
-</ul>
-<table class="docutils align-default" id="id5">
-<caption><span class="caption-text">Inventory Profile Fields</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
-<colgroup>
-<col style="width: 25.0%" />
-<col style="width: 75.0%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><strong>Name</strong></p></td>
-<td><p>Profile name</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Description</strong></p></td>
-<td><p>Free text description</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Allow SSH from IPv4</strong></p></td>
-<td><p>List of IPv4 subnets allowed to ssh (one address per line)</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Allow SSH from IPv6</strong></p></td>
-<td><p>List of IPv6 subnets allowed to ssh (one address per line)</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Timezone</strong></p></td>
-<td><p>Devices using this inventory profile will adjust their system time to the selected timezone.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>NTP servers</strong></p></td>
-<td><p>List of domain names or IP addresses of NTP servers (one address per line). You can use your Netris Controller address as an NTP server for your switches and SoftGate.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>DNS servers</strong></p></td>
-<td><p>List of IP addresses of DNS servers (one address per line). You can use your Netris Controller address as a DNS server for your switches and SoftGate.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>SNMPv2</strong></p></td>
-<td><p>SNMPv2 Read-Only Community; IPv4 allow list; Contact information; Location information</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>NetQ</strong></p></td>
-<td><p>NetQ server address and port</p></td>
-</tr>
-</tbody>
-</table>
-<img alt="_images/Inventory-Profile-Top.png" class="with-shadow align-center" src="_images/Inventory-Profile-Top.png" />
-<br /><section id="snmpv2-credentials">
-<span id="snmp-settings"></span><h2>SNMPv2 credentials<a class="headerlink" href="#snmpv2-credentials" title="Link to this heading"></a></h2>
-<p>Netris administers can define SNMPv2 credentials to monitor switches and SoftGates in the inventory. To add SNMPv2 credentials, expand the SNMPv2 section of the Inventory Profile form, set the checkbox to enabled, and fill in the fields as described below:</p>
-<table class="docutils align-default" id="id6">
-<caption><span class="caption-text">SNMPv2 Fields</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
-<tbody>
-<tr class="row-odd"><td><p>Read-Only Community</p></td>
-<td><p>✅ required</p></td>
-<td><p>Specify the SNMPv2 read-only community string.</p></td>
-</tr>
-<tr class="row-even"><td><p>Allow SNMPv2 from IPv4</p></td>
-<td><p>✅ required</p></td>
-<td><p>Specify the IPv4 subnets from which SNMPv2 requests will be accepted.</p></td>
-</tr>
-<tr class="row-odd"><td><p>SNMP Contact</p></td>
-<td><p>🔹 Optional</p></td>
-<td><p>Specify the SNMP contact information.</p></td>
-</tr>
-<tr class="row-even"><td><p>SNMP Location</p></td>
-<td><p>🔹 Optional</p></td>
-<td><p>Specify the SNMP location information.</p></td>
-</tr>
-</tbody>
-</table>
-<img alt="_images/SNMPv2-settings.png" class="with-shadow align-center" src="_images/SNMPv2-settings.png" />
-<br /></section>
-<section id="netq-settings">
-<span id="id1"></span><h2>NetQ Settings<a class="headerlink" href="#netq-settings" title="Link to this heading"></a></h2>
-<p>Netris administers can define NetQ server address and port to automatically configure the NetQ client on Cumulus Linux based switches.</p>
-<table class="docutils align-default" id="id7">
-<caption><span class="caption-text">NetQ Fields</span><a class="headerlink" href="#id7" title="Link to this table"></a></caption>
-<tbody>
-<tr class="row-odd"><td><p>NetQ Server</p></td>
-<td><p>✅ required</p></td>
-<td><p>Specify the IP address(es) or the FQDN of the NetQ server. You can specify one(1) or three(3) addresses separated by commas or one FQDN.</p></td>
-</tr>
-<tr class="row-even"><td><p>NetQ Port</p></td>
-<td><p>✅ required</p></td>
-<td><p>Specify the port of the NetQ server. Default is 31980.</p></td>
-</tr>
-</tbody>
-</table>
-<img alt="_images/NetQ-IPs.png" class="with-shadow align-center" src="_images/NetQ-IPs.png" />
-<br /><img alt="_images/NetQ-FQDN.png" class="with-shadow align-center" src="_images/NetQ-FQDN.png" />
-<br /><div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You may also export your network topology as a Graphviz DOT to be imported into your NetQ instance. See <a class="reference internal" href="monitoring-observability/netq.html"><span class="doc">NVIDIA NetQ Integration</span></a> for more details.</p>
+  <section id="custom-nvue-configuration-snippets">
+<h1>Custom NVUE Configuration Snippets<a class="headerlink" href="#custom-nvue-configuration-snippets" title="Link to this heading"></a></h1>
+<p>Netris allows administrators to deploy custom configuration to switches running Cumulus Linux using NVUE configuration snippets. These snippets are YAML files that define specific configurations to be applied to the network devices.</p>
+<p>Example:</p>
+<ol class="arabic simple">
+<li><p>Stage desired configuration using NVUE commands</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>state<span class="w"> </span>enabled
+nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>listening-address<span class="w"> </span>all<span class="w"> </span>vrf<span class="w"> </span>mgmt
+nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>listening-address<span class="w"> </span>all-v6<span class="w"> </span>vrf<span class="w"> </span>mgmt
+nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>readonly-community<span class="w"> </span>clear_text<span class="w"> </span>access<span class="w"> </span>any
+</pre></div>
 </div>
-</section>
-<section id="fabric-settings">
-<span id="id2"></span><h2>Fabric Settings<a class="headerlink" href="#fabric-settings" title="Link to this heading"></a></h2>
-<p>Netris can automatically optimize fabric configurations based on administrator’s design and preferences. The following controls are available in the Fabric Settings section of the Inventory Profile form:</p>
-<ul>
-<li><p><strong>Fabric Type</strong> (default = General Purpose).  The selected fabric type acts as a filter to determine which switches are subject to the “Optimize BGP Overlay for leaf-spine topology” feature as described below. Supported values include:</p>
-<ul class="simple">
-<li><p>Generic</p></li>
-<li><p>East-West</p></li>
-<li><p>East-West-Plane1</p></li>
-<li><p>East-West-Plane2</p></li>
-<li><p>East-West-Plane3</p></li>
-<li><p>East-West-Plane4</p></li>
-<li><p>North-South</p></li>
-<li><p>OOB</p></li>
-</ul>
-</li>
-<li><p><strong>Optimize BGP Overlay for leaf-spine topology</strong> (default = checked). When checked, Netris applies the following logic to all switches sharing the Fabric Type value set in this Inventory Profile. Netris configures designated switches as EVPN Route Servers (EVPN-RS), and each switch with the Switch Role property set to Leaf forms overlay BGP sessions (address-family l2vpn evpn) exclusively with those nodes. No other overlay BGP sessions are configured.</p>
-<p>EVPN-RS designation works as follows:</p>
-<ul class="simple">
-<li><p>If no switch object has the <a class="reference internal" href="topology-management.html#topology-management-adding-switches"><span class="std std-ref">EVPN Route Server property</span></a> set, Netris automatically selects the two switches with the Switch Role property set to Super-Spine — or, if no Super-Spine switches are present, the two switches with the Switch Role property set to Spine — with the lowest loopback IPs.</p></li>
-<li><p>If one or more switch objects have the <a class="reference internal" href="topology-management.html#topology-management-adding-switches"><span class="std std-ref">EVPN Route Server property</span></a> set, automatic selection is disabled entirely and Netris uses only the explicitly designated switches as EVPN-RS nodes.</p></li>
-<li><p>Because setting the property on even one switch disables automatic selection, operators should explicitly designate at least two switches for redundancy. Netris does not automatically enforce this recommendation.</p></li>
-</ul>
-<p>When unchecked, overlay BGP sessions are configured on all point-to-point links.</p>
-</li>
-<li><p><strong>Optimize BGP Overlay for Hypervisor Integrated Fabric</strong> (default = unchecked). Required for BGP/EVPN VXLAN integration with compute hypervisor networking. This optimization makes sure that a large number of hypervisor virtual networking EVPN prefixes do not overflow switch TCAM.</p></li>
-<li><p><strong>BGP Numbered Underlay</strong> (default = unchecked).  When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP unnumbered method is used and p2p ipv6 link-local addresses are used for BGP sessions.</p></li>
-<li><p><strong>Automatic Link Aggregation</strong> (default = unchecked). When checked, Enable MC-LAG shall become unchecked automatically through the UI.</p></li>
-<li><p><strong>Generate ESI by Server ID</strong> (default = unchecked). When checked, ESI-IDs are generated using server-ID-based logic instead of the default partner-MAC-based method. The setting is backwards compatible: existing ESI-IDs remain valid, and servers not modeled in Netris automatically fall back to partner-MAC-based generation.</p></li>
-<li><p><strong>Enable MC-LAG</strong> (default = unchecked). When checked, Automatic Link Aggregation shall become unchecked automatically through the UI.  If unchecked none of MC-LAG related configurations should be generated by switch agents. Help message: “Enabling MC-LAG functionality will disable any EVPN-MH functionality. Two multihoming methods are not supported simultaneously on the same switches.”</p></li>
-</ul>
-</section>
-<section id="gpu-cluster-specific-settings">
-<span id="gpu-cluster-settings"></span><h2>GPU Cluster Specific Settings<a class="headerlink" href="#gpu-cluster-specific-settings" title="Link to this heading"></a></h2>
-<p>Additional optimizations are available for East-West GPU interconnect fabrics.</p>
-<ul>
-<li><p><strong>QoS &amp; RoCE</strong> (default = unchecked) Optimize for RDMA over Converged Ethernet</p></li>
-<li><p><strong>RoCE Adaptive Routing (AR)</strong> (default = unchecked) Enable Adaptive Routing for RoCE</p></li>
-<li><p><strong>Congestion Control</strong> (default = unchecked) Enable Zero Touch RoCE Congestion Control</p></li>
-<li><p><strong>ASIC monitoring</strong> (default = unchecked) Enable ASIC monitoring: histograms and telemetry snapshots.</p></li>
-<li><p><strong>HWMP</strong> (default = unchecked) Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture.</p></li>
-<li><p><strong>Reference Architecture</strong> (default = None)  This setting tells Netris which reference architecture is being deployed on the subject fabric, so Netris can apply the appropriate prefix summarization in the L3VPN overlay.</p>
-<div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="639e7145-c65f-41c3-b1bf-18e6f1faf3a8" name="639e7145-c65f-41c3-b1bf-18e6f1faf3a8" type="checkbox"><label class="sphinx_collapse__label" for="639e7145-c65f-41c3-b1bf-18e6f1faf3a8"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Reference Architecture</p></th>
-<th class="head"><p>IPv4</p>
-<p>Summarization mask</p>
-</th>
-<th class="head"><p>IPv6</p>
-<p>Summarization mask</p>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>H100/H200/B200 SPX 2-TIER</p>
-<p>H100/H200/B200 SPX 3-TIER</p>
-</td>
-<td><p>/26</p></td>
-<td><p>/56</p></td>
-</tr>
-<tr class="row-odd"><td><p>GB200 SPX 2-TIER</p>
-<p>GB200 SPX 3-TIER</p>
-</td>
-<td><p>/25</p></td>
-<td><p>/46</p></td>
-</tr>
-<tr class="row-even"><td><p>B300 SPX 2-TIER SINGLE-PLANE</p>
-<p>B300 SPX 3-TIER SINGLE-PLANE</p>
-<p>B300 SPX 2-TIER DUAL-PLANE</p>
-<p>B300 SPX 3-TIER DUAL-PLANE</p>
-<p>B300 SPX 2-TIER QUAD-PLANE</p>
-<p>B300 SPX 3-TIER QUAD-PLANE</p>
-<p>GB300 SPX 2-TIER SINGLE-PLANE</p>
-<p>GB300 SPX 3-TIER SINGLE-PLANE</p>
-<p>GB300 SPX 2-TIER DUAL-PLANE</p>
-<p>GB300 SPX 3-TIER DUAL-PLANE</p>
-<p>GB300 SPX 2-TIER QUAD-PLANE</p>
-<p>GB300 SPX 3-TIER QUAD-PLANE</p>
-</td>
-<td><p>/24</p></td>
-<td><p>/56</p></td>
-</tr>
-</tbody>
-</table>
+<ol class="arabic simple" start="2">
+<li><p>Retreive the YAML version of the configuration diff</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span>config<span class="w"> </span>diff
+</pre></div>
 </div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">set</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">system</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">snmp-server</span><span class="p">:</span>
+<span class="w">       </span><span class="nt">listening-address</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">all</span><span class="p">:</span>
+<span class="w">           </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mgmt</span>
+<span class="w">         </span><span class="nt">all-v6</span><span class="p">:</span>
+<span class="w">           </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mgmt</span>
+<span class="w">       </span><span class="nt">readonly-community</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">$nvsec$bc2dea2ea717f9e9aef0265a8f09f949</span><span class="p">:</span>
+<span class="w">           </span><span class="nt">access</span><span class="p">:</span>
+<span class="w">             </span><span class="nt">any</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">       </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
+</pre></div>
 </div>
-</li>
-</ul>
-</section>
-<section id="custom-rules">
-<span id="id3"></span><h2>Custom Rules<a class="headerlink" href="#custom-rules" title="Link to this heading"></a></h2>
-<p>Custom rules allow the administrator to define specific allow/deny flows to/from inventory devices.</p>
-<p>If an inventory profile is attached to a switch or a softgate, then Netris configures an implicit inbound deny ACL. Several rules are automatically added to this ACL to allow the necessary system services connections like NTP, DNS, SSH from Allowed Hosts, BGP, ICMP, DHCP, SNMP. Everything else is denied by the implicit deny rule.
-If additional inbound services (e.g., Netflow/Sflow) need to be allowed, you can use Custom Rules to permit those connections.</p>
-<p>In the example below, a custom rule is defined to allow inbound TCP traffic on port 555 from 1.1.1.1/32 to the inventory device.</p>
-<img alt="_images/CustomRules.png" class="with-shadow align-center" src="_images/CustomRules.png" />
-<br /></section>
-<section id="ztp-settings">
-<span id="id4"></span><h2>ZTP Settings<a class="headerlink" href="#ztp-settings" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><strong>NOS Image file</strong> When Zero Touch Provisioning (ZTP) is in use, this Network Operating System image will be used to bootstrap the switches subject to this Inventory Profile.</p></li>
-<li><p><strong>NOS Admin Password</strong> Once the ZTP process completes, Netris will configure this password for the builtin admin user.</p></li>
-<li><p><strong>NOS Admin Confirm Password</strong> Confirmation of the NOS Admin Password.</p></li>
-</ul>
-</section>
+<ol class="arabic simple" start="3">
+<li><p>Create a file under <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/nvue/</span></code> with the YAML content you retrieved in step 2. For example, create the file <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/nvue/50-snmp.yaml</span></code> with the content above.</p></li>
+</ol>
+<br /><ol class="arabic simple" start="4">
+<li><p>Check if the configuration on the file is correct:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span>config<span class="w"> </span>patch<span class="w"> </span>/opt/netris/etc/nvue/&lt;file&gt;
+nv<span class="w"> </span>config<span class="w"> </span>diff
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Check for any configuration errors by applying manually</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span>config<span class="w"> </span>apply
+</pre></div>
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="topology-management.html" class="btn btn-neutral float-left" title="Inventory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ipam.html" class="btn btn-neutral float-right" title="IP Address Management (IPAM)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="accounts.html" class="btn btn-neutral float-left" title="Accounts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="arista-configuration-snippets.html" class="btn btn-neutral float-right" title="Custom Arista Configuration Snippets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

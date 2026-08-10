@@ -103,7 +103,8 @@ You are welcome to join our community Slack_ channel to get additional support f
    :caption: Miscellaneous
 
    accounts
-   snippets
+   nvue-configuration-snippets
+   arista-configuration-snippets
    labels
 
 .. toctree::

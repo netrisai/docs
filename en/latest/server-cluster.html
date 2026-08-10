@@ -236,7 +236,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
@@ -294,7 +294,7 @@
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning (ZTP)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#prerequisites">Prerequisites</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
@@ -487,6 +487,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-option-sets">DHCP Option Sets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#netris-dhcp">Netris DHCP</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
 </ul>
@@ -537,6 +538,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#creating-server-cluster">Creating Server Cluster</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#adding-a-server-cluster">Adding a Server Cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#shared-endpoints">Shared Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#shared-and-dedicated-endpoints-across-fabrics">Shared and dedicated endpoints across fabrics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
 </ul>
 </li>
@@ -603,7 +605,10 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#infiniband-security-recommended">InfiniBand Security (Recommended)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#what-is-mkey-protection">What is MKey Protection?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#impact-on-netris-integration">Impact on Netris Integration</a></li>
@@ -872,7 +877,8 @@
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1160,10 +1166,11 @@
 <li><p><a class="reference internal" href="#adding-a-server-cluster" id="id18">Adding a Server Cluster</a></p></li>
 <li><p><a class="reference internal" href="#shared-endpoints" id="id19">Shared Endpoints</a></p>
 <ul>
-<li><p><a class="reference internal" href="#untagged-vlan-on-shared-endpoints" id="id20">Untagged VLAN on Shared Endpoints</a></p></li>
+<li><p><a class="reference internal" href="#shared-and-dedicated-endpoints-across-fabrics" id="id20">Shared and dedicated endpoints across fabrics</a></p></li>
+<li><p><a class="reference internal" href="#untagged-vlan-on-shared-endpoints" id="id21">Untagged VLAN on Shared Endpoints</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#server-cluster-fields-explained" id="id21">Server Cluster Fields Explained:</a></p></li>
+<li><p><a class="reference internal" href="#server-cluster-fields-explained" id="id22">Server Cluster Fields Explained:</a></p></li>
 </ul>
 </li>
 </ul>
@@ -1641,8 +1648,8 @@
 <p>To support this, Netris allows administrators to designate specific endpoints as shared. A shared endpoint may be assigned to multiple server clusters, making it possible for Hypervisors, Storage, or other shared resources to be exposed across multiple VPCs.</p>
 <img alt="_images/add-server-cluster-selecting-servers-shared.png" class="with-shadow align-center" src="_images/add-server-cluster-selecting-servers-shared.png" />
 <p style="text-align: center;"><em>Figure. Selecting servers as shared endpoints</em></p><img alt="_images/add-server-cluster-shared.png" class="with-shadow align-center" src="_images/add-server-cluster-shared.png" />
-<p style="text-align: center;"><em>Figure. Server01 and server02 are added to th My-Cluster-01 server cluster as shared endpoints</em></p><p>Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink.</p>
-<p>In essence: Shared endpoint = Tagged switch port.</p>
+<p style="text-align: center;"><em>Figure. Server01 and server02 are added to th My-Cluster-01 server cluster as shared endpoints</em></p><p>Designating an endpoint as shared changes how the associated switch port is provisioned. On Ethernet, Netris configures the switch port as 802.1Q tagged rather than untagged. On InfiniBand, Netris sets the equivalent by adding the server’s GUIDs to the PKey with <code class="docutils literal notranslate"><span class="pre">index0=false</span></code>.</p>
+<p>In essence: Shared endpoint = 802.1Q tagged switch port.</p>
 <p>This is the primary behavioral change triggered by marking an endpoint as shared.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1653,8 +1660,37 @@
 <li><p><cite>vlan</cite> key is silently ignored.</p></li>
 </ul>
 </div>
+<section id="shared-and-dedicated-endpoints-across-fabrics">
+<h4><a class="toc-backref" href="#id20" role="doc-backlink">Shared and dedicated endpoints across fabrics</a><a class="headerlink" href="#shared-and-dedicated-endpoints-across-fabrics" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fabric</p></th>
+<th class="head"><p>Dedicated member</p></th>
+<th class="head"><p>Shared member</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ethernet</p></td>
+<td><p>Untagged (native VLAN) switch port</p></td>
+<td><p>802.1Q tagged switch port</p></td>
+</tr>
+<tr class="row-odd"><td><p>InfiniBand</p></td>
+<td><p>GUID added to the PKey with <code class="docutils literal notranslate"><span class="pre">index0=true</span></code></p></td>
+<td><p>GUID added to the PKey with <code class="docutils literal notranslate"><span class="pre">index0=false</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>NVLink (NVL72 / NVL144)</p></td>
+<td><p>Not applicable — the distinction applies to Ethernet and InfiniBand fabrics</p></td>
+<td><p>Not applicable — the distinction applies to Ethernet and InfiniBand fabrics</p></td>
+</tr>
+</tbody>
+</table>
+<p>On InfiniBand the distinction is expressed through PKey membership rather than VLAN tagging. A GUID can hold <code class="docutils literal notranslate"><span class="pre">index0=true</span></code> membership in one PKey, which is what a dedicated member uses, and <code class="docutils literal notranslate"><span class="pre">index0=false</span></code> membership in any number of PKeys, which is what makes a node shared. The UFM UI renders <code class="docutils literal notranslate"><span class="pre">index0=true</span></code> as Index-0 enabled.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">index0=false</span></code>, additional server-side configuration is required and is under the control of your compute orchestrator.</p>
+<p>A server can be added to a Server Cluster as a shared member directly, whether or not it is a dedicated member of another cluster.</p>
+<p>See <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">NVIDIA UFM (InfiniBand) Integration</span></a> and <a class="reference internal" href="netris-nvlink-integration.html"><span class="doc">NMX-C (NVLink) Integration</span></a> for fabric-specific detail.</p>
+</section>
 <section id="untagged-vlan-on-shared-endpoints">
-<h4><a class="toc-backref" href="#id20" role="doc-backlink">Untagged VLAN on Shared Endpoints</a><a class="headerlink" href="#untagged-vlan-on-shared-endpoints" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id21" role="doc-backlink">Untagged VLAN on Shared Endpoints</a><a class="headerlink" href="#untagged-vlan-on-shared-endpoints" title="Link to this heading"></a></h4>
 <p>In some cases, you may need to have an untagged VLAN on a switch port with a shared endpoint. For example, some storage solutions require an untagged VLAN for internal communication.</p>
 <p>To enable this, a node can be added to one cluster as a dedicated member (e.g., to use native/untagged VLAN or its InfiniBand/NVLink equivalent). That same node can be added to any number of other clusters as a shared member, as long as it’s not the same cluster where it is already dedicated. A node cannot be both a dedicated and a shared member of the same cluster.</p>
 <p>Once a node is selected as dedicated in a cluster:</p>
@@ -1665,7 +1701,7 @@
 </section>
 </section>
 <section id="server-cluster-fields-explained">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink">Server Cluster Fields Explained:</a><a class="headerlink" href="#server-cluster-fields-explained" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Server Cluster Fields Explained:</a><a class="headerlink" href="#server-cluster-fields-explained" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Name</strong>: A descriptive name for the server cluster.</p></li>
 <li><p><strong>Admin</strong>: The administrative owner of this server cluster.</p></li>

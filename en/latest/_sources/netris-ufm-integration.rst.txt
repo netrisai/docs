@@ -280,6 +280,7 @@ Once the server cluster is created:
    - Check the Netris Controller UI for successful cluster creation
    - Examine the UFM UI to confirm PKey assignments
    - Test connectivity between servers in the cluster via InfiniBand
+   - In the UFM UI, open the PKey and confirm the ``index0`` value of each GUID matches whether that server is a dedicated or shared member
 
 
 4. Monitoring Integration Status
@@ -318,6 +319,20 @@ Functional Workflow
    - Plugin periodically synchronizes between Netris and UFM
    - Ensures consistency between Ethernet and InfiniBand configurations
    - Reconciliation interval is configurable (default: 10 seconds)
+
+PKey membership: dedicated and shared
+--------------------------------------
+
+When Netris provisions a PKey for a Server Cluster, each member server's HCA GUIDs are added to that PKey. The ``index0`` attribute records whether the server is a dedicated or a shared member:
+
+- **Dedicated member** — GUIDs added with ``index0=true``. A GUID holds ``index0=true`` membership in one PKey.
+- **Shared member** — GUIDs added with ``index0=false``. A GUID can hold ``index0=false`` membership in any number of PKeys.
+
+This is the InfiniBand equivalent of untagged versus 802.1Q tagged switch ports on Ethernet. See :ref:`server-cluster-shared-endpoints` on the Server Cluster page.
+
+When ``index0=false``, additional server-side configuration is required and is under the control of your compute orchestrator.
+
+A server can be added as a shared member directly, whether or not it is a dedicated member of another cluster.
 
 InfiniBand Security (Recommended)
 ======================================

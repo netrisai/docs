@@ -76,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zero Touch Provisioning &mdash; Netris Documentation</title>
+  <title>Zero Touch Provisioning (ZTP) &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -236,7 +236,7 @@
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
@@ -294,7 +294,7 @@
 <li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Zero Touch Provisioning</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Zero Touch Provisioning (ZTP)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
@@ -487,6 +487,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dhcp-and-dhcp-relay.html#dhcp-option-sets">DHCP Option Sets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dhcp-and-dhcp-relay.html#netris-dhcp">Netris DHCP</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
 </ul>
@@ -537,6 +538,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../server-cluster.html#creating-server-cluster">Creating Server Cluster</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#shared-endpoints">Shared Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#shared-and-dedicated-endpoints-across-fabrics">Shared and dedicated endpoints across fabrics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
 </ul>
 </li>
@@ -603,7 +605,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#functional-workflow">Functional Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#functional-workflow">Functional Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#infiniband-security-recommended">InfiniBand Security (Recommended)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#what-is-mkey-protection">What is MKey Protection?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#impact-on-netris-integration">Impact on Netris Integration</a></li>
@@ -872,7 +877,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1117,7 +1123,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="installation.html">Controller Installation</a></li>
-      <li class="breadcrumb-item active">Zero Touch Provisioning</li>
+      <li class="breadcrumb-item active">Zero Touch Provisioning (ZTP)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/netrisai/docs/blob/master/installation/ztp.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1130,8 +1136,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="zero-touch-provisioning">
-<h1>Zero Touch Provisioning<a class="headerlink" href="#zero-touch-provisioning" title="Link to this heading"></a></h1>
+  <section id="zero-touch-provisioning-ztp">
+<h1>Zero Touch Provisioning (ZTP)<a class="headerlink" href="#zero-touch-provisioning-ztp" title="Link to this heading"></a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>Netris Zero Touch Provisioning (ZTP) automates the initial configuration and onboarding of Netris-managed switches. Netris ZTP automatically installs the appropriate Network Operating System (NOS) based on the switch make and model, configures management networking, and registers the device with the Netris Controller.</p>
@@ -1158,15 +1164,20 @@
 </section>
 <section id="upload-nos-images-to-the-local-repo">
 <h3>3. Upload NOS images to the local repo<a class="headerlink" href="#upload-nos-images-to-the-local-repo" title="Link to this heading"></a></h3>
-<p>Identify the directory name where the local repo is located on the controller nodes (<code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code>) as described in the <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Local Repo installation instructions</span></a>.</p>
-<p>Upload required NOS images to this new subdirectory on each controller node in the HA cluster (substitue <code class="docutils literal notranslate"><span class="pre">&lt;controller_IP&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code> with the appropriate values):</p>
+<p>Identify the path to the local directory where the local repo is located on each of the controller nodes (<code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code>), as described in the <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Local Repo installation instructions</span></a>.</p>
+<p>Below is the command to identify the directory name on a controller node (must be run on each controller node separately):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PVC_PATH</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pv<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>staticsite-<span class="k">$(</span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>netris-local-repo<span class="w"> </span>--field-selector<span class="w"> </span>spec.nodeName<span class="o">=</span><span class="k">$(</span>hostname<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;[:upper:]&#39;</span><span class="w"> </span><span class="s1">&#39;[:lower:]&#39;</span><span class="k">)</span><span class="w"> </span>--no-headers<span class="w"> </span>-o<span class="w"> </span>custom-columns<span class="o">=</span><span class="s2">&quot;:metadata.name&quot;</span><span class="k">)</span><span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.spec.volumeName}&quot;</span><span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.spec.local.path}&quot;</span><span class="k">)</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$PVC_PATH</span>
+</pre></div>
+</div>
+<p>Upload required NOS images to this subdirectory on each controller node in the HA cluster (substitue <code class="docutils literal notranslate"><span class="pre">&lt;controller_IP&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">$PVC_PATH</span></code> with the appropriate values):</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>cumulus-linux-5.16.1-mlx-amd64.bin<span class="w"> </span>&lt;username&gt;@&lt;controller_IP&gt;:/<span class="nv">$PVC_PATH</span>/repo/ztp_images/
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The above example command may need to be modified to include the appropriate username and/or port number for your environment.</p>
-<p>Furmthermore, the NOS image must be uploaded to the same path on all controller nodes in the HA cluster. This ensures that whichever node is active can serve the NOS image to switches during ZTP.</p>
 <p>This method will be improved in future releases to allow uploading through the Netris Controller UI or API, eliminating the need for manual file transfer to each controller node.</p>
 </div>
 </section>

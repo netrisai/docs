@@ -98,7 +98,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Custom NVUE Configuration Snippets" href="snippets.html" />
+    <link rel="next" title="Custom NVUE Configuration Snippets" href="nvue-configuration-snippets.html" />
     <link rel="prev" title="Getting Started with Switch-Fabric Manager &amp; VPC" href="vpc-gateways-with-managed-fabric.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
@@ -236,7 +236,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
@@ -294,7 +294,7 @@
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning (ZTP)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#prerequisites">Prerequisites</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
@@ -487,6 +487,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-option-sets">DHCP Option Sets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#netris-dhcp">Netris DHCP</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
 </ul>
@@ -537,6 +538,7 @@
 <li class="toctree-l2"><a class="reference internal" href="server-cluster.html#creating-server-cluster">Creating Server Cluster</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#shared-endpoints">Shared Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#shared-and-dedicated-endpoints-across-fabrics">Shared and dedicated endpoints across fabrics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
 </ul>
 </li>
@@ -603,7 +605,10 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#infiniband-security-recommended">InfiniBand Security (Recommended)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#what-is-mkey-protection">What is MKey Protection?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#impact-on-netris-integration">Impact on Netris Integration</a></li>
@@ -872,7 +877,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1122,7 +1128,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
         <a href="vpc-gateways-with-managed-fabric.html" class="btn btn-neutral float-left" title="Getting Started with Switch-Fabric Manager &amp; VPC" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="snippets.html" class="btn btn-neutral float-right" title="Custom NVUE Configuration Snippets" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="nvue-configuration-snippets.html" class="btn btn-neutral float-right" title="Custom NVUE Configuration Snippets" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -1188,7 +1194,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="vpc-gateways-with-managed-fabric.html" class="btn btn-neutral float-left" title="Getting Started with Switch-Fabric Manager &amp; VPC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="snippets.html" class="btn btn-neutral float-right" title="Custom NVUE Configuration Snippets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="nvue-configuration-snippets.html" class="btn btn-neutral float-right" title="Custom NVUE Configuration Snippets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

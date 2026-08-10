@@ -36,7 +36,7 @@ If there is no DHCP in the management network, stop the onie-discovery service a
 
   echo "nameserver <DNS server address>" > /etc/resolv.conf
 
-The Cumulus image should be available on a web server to which the switch has access through the local network or the Internet.
+The NOS image should be available on a web server to which the switch has access through the local network or the Internet.
 
 Example:
 

@@ -535,9 +535,9 @@ To support this, Netris allows administrators to designate specific endpoints as
 
    <p style="text-align: center;"><em>Figure. Server01 and server02 are added to th My-Cluster-01 server cluster as shared endpoints</em></p>
 
-Designating an endpoint as shared changes how the associated switch port is provisioned. Netris automatically configures the switch port in tagged mode, or the functional equivalent in environments such as InfiniBand or NVLink.
+Designating an endpoint as shared changes how the associated switch port is provisioned. On Ethernet, Netris configures the switch port as 802.1Q tagged rather than untagged. On InfiniBand, Netris sets the equivalent by adding the server's GUIDs to the PKey with ``index0=false``.
 
-In essence: Shared endpoint = Tagged switch port.
+In essence: Shared endpoint = 802.1Q tagged switch port.
 
 This is the primary behavioral change triggered by marking an endpoint as shared.
 
@@ -547,6 +547,33 @@ This is the primary behavioral change triggered by marking an endpoint as shared
   - Ensure host networking is appropriately configured to work in a shared use case.
   - `type:l3vpn` is silently ignored.
   - `vlan` key is silently ignored.
+
+Shared and dedicated endpoints across fabrics
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Fabric
+     - Dedicated member
+     - Shared member
+   * - Ethernet
+     - Untagged (native VLAN) switch port
+     - 802.1Q tagged switch port
+   * - InfiniBand
+     - GUID added to the PKey with ``index0=true``
+     - GUID added to the PKey with ``index0=false``
+   * - NVLink (NVL72 / NVL144)
+     - Not applicable — the distinction applies to Ethernet and InfiniBand fabrics
+     - Not applicable — the distinction applies to Ethernet and InfiniBand fabrics
+
+On InfiniBand the distinction is expressed through PKey membership rather than VLAN tagging. A GUID can hold ``index0=true`` membership in one PKey, which is what a dedicated member uses, and ``index0=false`` membership in any number of PKeys, which is what makes a node shared. The UFM UI renders ``index0=true`` as Index-0 enabled.
+
+When ``index0=false``, additional server-side configuration is required and is under the control of your compute orchestrator.
+
+A server can be added to a Server Cluster as a shared member directly, whether or not it is a dedicated member of another cluster.
+
+See :doc:`NVIDIA UFM (InfiniBand) Integration </netris-ufm-integration>` and :doc:`NMX-C (NVLink) Integration </netris-nvlink-integration>` for fabric-specific detail.
 
 Untagged VLAN on Shared Endpoints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

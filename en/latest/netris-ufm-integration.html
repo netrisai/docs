@@ -236,7 +236,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
@@ -294,7 +294,7 @@
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning (ZTP)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#prerequisites">Prerequisites</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
@@ -487,6 +487,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-option-sets">DHCP Option Sets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#netris-dhcp">Netris DHCP</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
 </ul>
@@ -537,6 +538,7 @@
 <li class="toctree-l2"><a class="reference internal" href="server-cluster.html#creating-server-cluster">Creating Server Cluster</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#shared-endpoints">Shared Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#shared-and-dedicated-endpoints-across-fabrics">Shared and dedicated endpoints across fabrics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
 </ul>
 </li>
@@ -603,7 +605,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#functional-workflow">Functional Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#functional-workflow">Functional Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#infiniband-security-recommended">InfiniBand Security (Recommended)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-is-mkey-protection">What is MKey Protection?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#impact-on-netris-integration">Impact on Netris Integration</a></li>
@@ -872,7 +877,8 @@
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1419,6 +1425,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/net
 <li><p>Check the Netris Controller UI for successful cluster creation</p></li>
 <li><p>Examine the UFM UI to confirm PKey assignments</p></li>
 <li><p>Test connectivity between servers in the cluster via InfiniBand</p></li>
+<li><p>In the UFM UI, open the PKey and confirm the <code class="docutils literal notranslate"><span class="pre">index0</span></code> value of each GUID matches whether that server is a dedicated or shared member</p></li>
 </ul>
 </li>
 </ol>
@@ -1466,6 +1473,17 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/net
 </ul>
 </li>
 </ol>
+<section id="pkey-membership-dedicated-and-shared">
+<h3>PKey membership: dedicated and shared<a class="headerlink" href="#pkey-membership-dedicated-and-shared" title="Link to this heading"></a></h3>
+<p>When Netris provisions a PKey for a Server Cluster, each member server’s HCA GUIDs are added to that PKey. The <code class="docutils literal notranslate"><span class="pre">index0</span></code> attribute records whether the server is a dedicated or a shared member:</p>
+<ul class="simple">
+<li><p><strong>Dedicated member</strong> — GUIDs added with <code class="docutils literal notranslate"><span class="pre">index0=true</span></code>. A GUID holds <code class="docutils literal notranslate"><span class="pre">index0=true</span></code> membership in one PKey.</p></li>
+<li><p><strong>Shared member</strong> — GUIDs added with <code class="docutils literal notranslate"><span class="pre">index0=false</span></code>. A GUID can hold <code class="docutils literal notranslate"><span class="pre">index0=false</span></code> membership in any number of PKeys.</p></li>
+</ul>
+<p>This is the InfiniBand equivalent of untagged versus 802.1Q tagged switch ports on Ethernet. See <a class="reference internal" href="server-cluster.html#server-cluster-shared-endpoints"><span class="std std-ref">Shared Endpoints</span></a> on the Server Cluster page.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">index0=false</span></code>, additional server-side configuration is required and is under the control of your compute orchestrator.</p>
+<p>A server can be added as a shared member directly, whether or not it is a dedicated member of another cluster.</p>
+</section>
 </section>
 <section id="infiniband-security-recommended">
 <h2>InfiniBand Security (Recommended)<a class="headerlink" href="#infiniband-security-recommended" title="Link to this heading"></a></h2>

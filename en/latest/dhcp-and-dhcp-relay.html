@@ -236,7 +236,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
@@ -294,7 +294,7 @@
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation/ztp.html">Zero Touch Provisioning (ZTP)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation/ztp.html#prerequisites">Prerequisites</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
@@ -487,6 +487,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dhcp-option-sets">DHCP Option Sets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#netris-dhcp">Netris DHCP</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dhcp-relay">DHCP Relay</a></li>
 </ul>
@@ -537,6 +538,7 @@
 <li class="toctree-l2"><a class="reference internal" href="server-cluster.html#creating-server-cluster">Creating Server Cluster</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#shared-endpoints">Shared Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#shared-and-dedicated-endpoints-across-fabrics">Shared and dedicated endpoints across fabrics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
 </ul>
 </li>
@@ -603,7 +605,10 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#infiniband-security-recommended">InfiniBand Security (Recommended)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#what-is-mkey-protection">What is MKey Protection?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#impact-on-netris-integration">Impact on Netris Integration</a></li>
@@ -872,7 +877,8 @@
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1133,13 +1139,17 @@
   <section id="dhcp-and-dhcp-relay">
 <span id="vnet-dhcp"></span><h1>DHCP and DHCP Relay<a class="headerlink" href="#dhcp-and-dhcp-relay" title="Link to this heading"></a></h1>
 <p>L2VPN routed V-Nets (where an IP gateway is added) may also be configured with a DHCP service fully managed by Netris and hosted on SoftGate.</p>
-<p>You can configure additional DHCP Option Sets before enabling a DHCP server for any V-Net. Add a DHCP Options Set by navigating to <code class="docutils literal notranslate"><span class="pre">Services</span> <span class="pre">-&gt;</span> <span class="pre">DHCP</span> <span class="pre">Options</span> <span class="pre">Sets</span></code> and clicking <code class="docutils literal notranslate"><span class="pre">+Add</span></code> in the top right.</p>
+<section id="dhcp-option-sets">
+<h2>DHCP Option Sets<a class="headerlink" href="#dhcp-option-sets" title="Link to this heading"></a></h2>
+<p>The Controller ships with a default DHCP Options Set. The default set cannot be deleted, but it can be modified. You can also configure additional DHCP Option Sets before enabling a DHCP server for any V-Net.</p>
+<p>Add a DHCP Options Set by navigating to <code class="docutils literal notranslate"><span class="pre">Services</span> <span class="pre">-&gt;</span> <span class="pre">DHCP</span> <span class="pre">Options</span> <span class="pre">Sets</span></code> and clicking <code class="docutils literal notranslate"><span class="pre">+Add</span></code> in the top right.</p>
 <img alt="DHCP Option Set" class="with-shadow align-center" src="_images/dhcp-option-set.png" />
 <br /><p>Netris supports a wide range of Standard DHCP Options.</p>
 <img alt="Standard DHCP Options" class="with-shadow align-center" src="_images/dhcp-standard-options.png" />
 <br /><p>Netris also enables you to define Custom DHCP Options.</p>
 <img alt="Custom DHCP Options" class="with-shadow align-center" src="_images/dhcp-custom-options.png" />
-<br /><section id="netris-dhcp">
+<br /></section>
+<section id="netris-dhcp">
 <h2>Netris DHCP<a class="headerlink" href="#netris-dhcp" title="Link to this heading"></a></h2>
 <p>To enable Netris’ built-in DHCP service on an L2VPN V-Net:</p>
 <blockquote>
@@ -1150,16 +1160,22 @@
 <li><p>Select a DHCP Options Set.</p></li>
 </ul>
 </div></blockquote>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A DHCP Options Set is required to enable Netris DHCP — Netris does not currently ship a default option set, so one must be created (see DHCP Option Sets above) before DHCP can be enabled on a V-Net.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A DHCP Options Set is required to enable Netris DHCP. You can use the default DHCP Options Set the Controller ships with, or create your own (see DHCP Option Sets above), before DHCP can be enabled on a V-Net.</p>
 </div>
 <img alt="Netris DHCP configuration in V-Net settings" class="with-shadow align-center" src="_images/dhcp-builtin.png" />
 <p style="text-align: center;"><em>Figure: Netris DHCP configuration in V-Net settings</em></p><section id="softgatecontroller-dependency-for-netris-dhcp">
 <h3>SoftGate–Controller dependency for Netris DHCP<a class="headerlink" href="#softgatecontroller-dependency-for-netris-dhcp" title="Link to this heading"></a></h3>
-<p>Netris DHCP has no hard dependency on the Controller for day-to-day service. The active SoftGate’s local DHCP server hands out leases from its own local leases file, independent of Controller reachability — if the Controller is unreachable, the SoftGate keeps issuing dynamic leases on its own, from its last Controller-synced configuration, which the Netris agent caches locally.</p>
+<p>Netris DHCP has no hard dependency on the Controller for day-to-day service. The active SoftGate’s local DHCP server hands out leases from its own local leases file, independent of Controller reachability — if the Controller is unreachable, the SoftGate keeps issuing dynamic leases on its own, from its last Controller-synced configuration, which the Netris SoftGate agent caches locally.</p>
 <p>The Controller’s role is keeping IP assignments stable across a SoftGate failover: the Netris agent on the active SoftGate pushes each new lease up to the Controller, which converts it into a static IP–MAC reservation and syncs it back down to every SoftGate as a static binding. That round trip isn’t instantaneous — if the SoftGate serving DHCP for a V-Net fails over before a given client’s lease has completed the round trip and been written into every SoftGate’s static bindings, the newly active SoftGate has no record of that client yet and may hand it a different dynamic IP.</p>
-<p>The Controller’s reservation set persists independently of most V-Net edits: setting a V-Net to inactive preserves it, so DHCP can’t hand a previously leased IP to a different endpoint and create a conflict once the V-Net is reactivated, and changing the lease range doesn’t clear it either. Unchecking DHCP, or removing the V-Net’s IP subnet and saving, resets it; deleting the V-Net cleans it up entirely.</p>
+<p>The Controller’s reservation set persists independently of most V-Net edits:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Setting a V-Net to inactive preserves it, so DHCP can’t hand a previously leased IP to a different endpoint and create a conflict once the V-Net is reactivated, and changing the lease range doesn’t clear it either.</p></li>
+<li><p>Unchecking DHCP, or removing the V-Net’s IP subnet and saving, resets it; deleting the V-Net cleans it up entirely.</p></li>
+</ul>
+</div></blockquote>
 </section>
 </section>
 <section id="dhcp-relay">
@@ -1181,12 +1197,13 @@
 <p class="admonition-title">Note</p>
 <p>When a V-Net and the DHCP server specified in the DHCP Relay configuration are homed in different VPCs, VPC peering is mandatory. Without it, the relay traffic cannot reach the DHCP server. Configure peering under Network → VPC Peering in the Controller.</p>
 <p>Non-overlapping IP ranges are required between the client VPCs (e.g., VPC-Alpha1) and the DHCP server’s VPC (VPC-Shared-Infra). The DHCP server must be able to route back to the client’s V-Net.</p>
-<p>Switch loopback IP is the source IP of relayed packets.</p>
+<p>The switch loopback IP is the source IP of relayed packets.</p>
 </div>
 <br /><section id="dhcpv6-relay-switch-loopback-ipv6-address">
 <h3>DHCPv6 Relay: Switch Loopback IPv6 Address<a class="headerlink" href="#dhcpv6-relay-switch-loopback-ipv6-address" title="Link to this heading"></a></h3>
 <p>When DHCPv6 Relay to a third-party server is configured (Address Family set to IPv4/IPv6 Dual-Stack or IPv6-Only), Netris derives an IPv6 loopback address for the switch and assigns it, as a /128, to the loopback interface in the relevant VRF(s). This address is used as the source address of relayed DHCPv6 traffic, the same role the switch’s existing IPv4 loopback plays for DHCPv4 relay.</p>
-<p>The address is not randomly generated — it’s deterministically derived from the switch’s existing main IPv4 loopback address: Netris takes the IPv4 loopback address, converts it to hex, and uses that as the lower 32 bits of an address in the <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code> unique local address range. For example, an IPv4 loopback of <code class="docutils literal notranslate"><span class="pre">10.2.3.4</span></code> produces the IPv6 loopback <code class="docutils literal notranslate"><span class="pre">fd00::0a02:0304/128</span></code>.</p>
+<p>The loopback is configured when DHCPv6 Relay is enabled on the V-Net (with Address Family covering IPv6), and removed when DHCPv6 Relay is turned off. Switches cannot have a pre-existing IPv6 loopback address configured through any other means, so this derived address is always the switch’s only IPv6 loopback.</p>
+<p>The address is deterministically derived from the switch’s existing main IPv4 loopback address: Netris takes the IPv4 loopback address, converts it to hex, and uses that as the lower 32 bits of an address in the <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code> unique local address range. For example, an IPv4 loopback of <code class="docutils literal notranslate"><span class="pre">10.2.3.4</span></code> produces the IPv6 loopback <code class="docutils literal notranslate"><span class="pre">fd00::0a02:0304/128</span></code>.</p>
 <section id="example">
 <h4>Example:<a class="headerlink" href="#example" title="Link to this heading"></a></h4>
 <p>Suppose you have tenant workloads in VPC-Bravo1 and VPC-Alpha1. Both need DHCP, but you want to run a single DHCP service in VPC-Shared-Infra.</p>

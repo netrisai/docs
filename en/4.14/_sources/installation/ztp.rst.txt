@@ -1,9 +1,9 @@
 .. meta::
    :description: Netris Zero Touch Provisioning (ZTP)
 
-########################
-Zero Touch Provisioning
-########################
+##############################
+Zero Touch Provisioning (ZTP)
+##############################
 
 Overview
 ========
@@ -48,9 +48,17 @@ See: :ref:`Installing the Local Repository <install-local-repo>`
 3. Upload NOS images to the local repo
 ---------------------------------------
 
-Identify the directory name where the local repo is located on the controller nodes (``$PVC_PATH``) as described in the :ref:`Local Repo installation instructions <install-local-repo>`.
+Identify the path to the local directory where the local repo is located on each of the controller nodes (``$PVC_PATH``), as described in the :ref:`Local Repo installation instructions <install-local-repo>`.
 
-Upload required NOS images to this new subdirectory on each controller node in the HA cluster (substitue ``<controller_IP>`` and ``$PVC_PATH`` with the appropriate values):
+Below is the command to identify the directory name on a controller node (must be run on each controller node separately):
+
+.. code-block:: shell
+
+   export PVC_PATH=$(kubectl get pv $(kubectl get pvc staticsite-$(kubectl -nnetris-controller get pod -l app.kubernetes.io/instance=netris-local-repo --field-selector spec.nodeName=$(hostname | tr '[:upper:]' '[:lower:]') --no-headers -o custom-columns=":metadata.name") -n netris-controller -o jsonpath="{.spec.volumeName}") -o jsonpath="{.spec.local.path}")
+
+   echo $PVC_PATH
+
+Upload required NOS images to this subdirectory on each controller node in the HA cluster (substitue ``<controller_IP>`` and ``$PVC_PATH`` with the appropriate values):
 
 .. code-block:: shell
 
@@ -59,8 +67,6 @@ Upload required NOS images to this new subdirectory on each controller node in t
 .. tip::
 
    The above example command may need to be modified to include the appropriate username and/or port number for your environment.
-
-   Furmthermore, the NOS image must be uploaded to the same path on all controller nodes in the HA cluster. This ensures that whichever node is active can serve the NOS image to switches during ZTP.
 
    This method will be improved in future releases to allow uploading through the Netris Controller UI or API, eliminating the need for manual file transfer to each controller node.
 
