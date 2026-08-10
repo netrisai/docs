@@ -236,7 +236,7 @@
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip">9. Deploy North-South controller VIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
@@ -294,7 +294,7 @@
 <li class="toctree-l3"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="ztp.html">Zero Touch Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ztp.html">Zero Touch Provisioning (ZTP)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ztp.html#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ztp.html#prerequisites">Prerequisites</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
@@ -487,6 +487,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vnet.html#l2vpn-v-nets">L2VPN V-Nets</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../dhcp-and-dhcp-relay.html">DHCP and DHCP Relay</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dhcp-and-dhcp-relay.html#dhcp-option-sets">DHCP Option Sets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dhcp-and-dhcp-relay.html#netris-dhcp">Netris DHCP</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../dhcp-and-dhcp-relay.html#dhcp-relay">DHCP Relay</a></li>
 </ul>
@@ -537,6 +538,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../server-cluster.html#creating-server-cluster">Creating Server Cluster</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../server-cluster.html#shared-endpoints">Shared Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#shared-and-dedicated-endpoints-across-fabrics">Shared and dedicated endpoints across fabrics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
 </ul>
 </li>
@@ -603,7 +605,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#functional-workflow">Functional Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#functional-workflow">Functional Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#infiniband-security-recommended">InfiniBand Security (Recommended)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#what-is-mkey-protection">What is MKey Protection?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#impact-on-netris-integration">Impact on Netris Integration</a></li>
@@ -872,7 +877,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1131,64 +1137,17 @@
              
   <section id="controller-installation">
 <h1>Controller Installation<a class="headerlink" href="#controller-installation" title="Link to this heading"></a></h1>
-<p>Netris Controller can be installed as a VM or deployed as a Kubernetes application. Both options provide the same functionality.</p>
+<p>Netris Controller is installed as a Kubernetes application on dedicated bare-metal hosts.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Select ONE installation option below.</p>
 </div>
+<ul class="simple">
+<li><p><a class="reference internal" href="controller-k3s-air-gap-ha.html"><span class="doc">Installing HA Netris Controller in Air-Gapped Environments</span></a> — install the Netris Controller as a highly-available VM-based deployment, including in air-gapped environments.</p></li>
+<li><p><a class="reference internal" href="controller-k8s-installation.html"><span class="doc">Helm Chart Installation</span></a> — deploy the Netris Controller as a Kubernetes application using the official Helm chart.</p></li>
+<li><p><a class="reference internal" href="ztp.html"><span class="doc">Zero Touch Provisioning (ZTP)</span></a> — automatically provision and onboard switches once the controller is installed.</p></li>
+</ul>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Controller Installation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#why-a-high-availability-ha-cluster">Why a High Availability (HA) Cluster?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="controller-k3s-air-gap-ha.html#mariadb-automatic-backups-locate-verify-and-restore">MariaDB automatic backups: locate, verify, and restore</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#locate-the-backup-directory-on-each-controller-node">Locate the backup directory on each controller node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#copy-the-backup-file-to-your-home-directory">Copy the backup file to your home directory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-the-backup-file-integrity">Verify the backup file integrity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#verify-mariadb-cluster-readiness-before-restore">Verify MariaDB cluster readiness before restore</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#copy-the-backup-file-into-a-mariadb-pod">Copy the backup file into a MariaDB pod</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#restore-the-backup">Restore the backup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#take-a-manual-backup">Take a manual backup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k3s-air-gap-ha.html#summary">Summary</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="controller-k8s-installation.html">Helm Chart Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html#get-repo-info">Get Repo Info</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html#installing-the-chart">Installing the Chart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html#uninstalling-the-chart">Uninstalling the Chart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controller-k8s-installation.html#chart-configuration">Chart Configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ztp.html">Zero Touch Provisioning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ztp.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ztp.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ztp.html#how-ztp-works-process-summary">How ZTP works (Process Summary)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ztp.html#troubleshooting">Troubleshooting</a></li>
-</ul>
-</li>
-</ul>
 </div>
 </section>
 
