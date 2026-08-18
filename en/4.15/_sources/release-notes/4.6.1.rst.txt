@@ -1,0 +1,100 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.6.1
+.. _release_4.6.1:
+
+Netris |version| Release Notes (Feb/27/2026)
+============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+This is a maitenance release focused on bug fixes and performance improvements. No new features were added in this release.
+
+Enhancements
+------------
+.. Customer-facing enhancements to existing functionality and features. If internal-only, keep wording generic.
+
+- **Add server NICs to V-Net**. Server NICs can now be added as V-Net endpoints. Netris will automatically calculate the appropriate switch ports to be added to the V-Net based on the topology information.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Fixed L4LB reset button.
+- Fixed unabled to set gateway for management subnet.
+- Fixed ZTP template generation for Arista and Cumulus switches.
+- Resovled all known CVEs (Critical and High severity).
+
+Security fixes
+----------------
+- Resolved 42 Crtical and 223 High severity CVEs in third-party dependencies.
+- Updated Debian base container image to Debian 12 (Bookworm)
+- Updated Alpine base container image to Alpine 3.19.9
+- Updated Golang to 1.26.0
+- Updated other affected dependencies to the following versions:
+
+    - nginx: 1.29.4-alpine
+    - bitnami / nginx / 1.29.5-2
+    - bitnami / redis / 8.6.1-0
+    - golang /google.golang.org/protobuf v1.34.1
+    - golang / google.golang.org/grpc / 1.65.0
+    - golang / golang.org/x/text / 0.34.0
+    - golang / golang.org/x/net / 0.50.0
+    - golang / golang.org/x/sys / 0.41.0
+    - golang / golang.org/x/crypto / 0.48.0
+    - golang / github.com/sirupsen/logrus / 1.9.4
+    - deb / debian/python3.9 / 3.9.2-1+deb11u5
+    - deb / debian/libpng1.6 / 1.6.37-3+deb11u2
+    - deb / debian/gnupg2 / 2.2.27-2+deb11u3
+    - rpm / photon/libxml2 / 2.12.10-8.ph5
+    - rpm / photon/openssl / 3.0.18-2.ph5
+    - rpm / photon/glibc / 2.36-22.ph5
+    - rpm / photon/Linux-PAM / 1.7.2-1.ph5
+    - rpm / photon/Linux-PAM / 1.7.2-1.ph5
+    - rpm / photon/openssl / 3.0.18-2.ph5
+    - rpm / photon/glibc / 2.36-22.ph5
+    - npm / mongoose / 6.13.9
+    - npm / nodemailer / 8.0.1
+    - npm / netmask / 2.0.2
+    - npm / growl / 1.10.5
+    - npm / form-data / 4.0.5
+    - npm / minimatch / 10.2.4
+    - npm / braces / 3.0.3
+    - npm / serialize-javascript / 7.0.3
+    - npm / debug / 4.4.3
+    - npm / diff / 5.2.2
+    - npm / qs / 6.15.0
+    - npm / fresh / 0.5.2
+    - npm / @hapi/hoek / 9.3.0
+    - npm / glob-parent / 5.1.2
+    - npm / mocha / 9.2.2
+    - npm / semver / 7.7.4
+    - npm / redis / 3.1.2
+
+**Deprecation Notices**
+
+- Routing On Host ASN, Routing Profile
+- VM ASN
+- SoftGate (generic flavor)
+- SoftGate PRO
+- Calico ASN
+- Built-in chat.
+- Proxmox, Equinix metal, and PhoenixNap as supported platforms.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file

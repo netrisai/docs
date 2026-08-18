@@ -1,0 +1,59 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.11.0
+.. _release_4_11_0:
+
+Netris |version| Release Notes (Jun/15/2026)
+============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **Per-Port FEC Configuration**. Allows operators to configure Forward Error Correction (FEC) mode per physical port via the Netris Controller UI and API. Supported on Cumulus, SONiC, and Arista platforms.
+
+Enhancements
+------------
+.. Customer-facing enhancements to existing functionality and features. If internal-only, keep wording generic.
+
+- **Performance at Scale**. Improved controller performance and responsiveness for large-scale deployments, including:
+
+  - Topology
+  - Network Links
+  - Network Interfaces
+  - Looking Glass
+
+- **InfiniBand Debug Messages**. Updated debug-mode log messages for the InfiniBand (IB) integration to be more descriptive and more actionable when troubleshooting.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Fixed Cumulus agent entering a loop when a route-map was created without a match rule; empty route-map sequences are now skipped safely.
+- Fixed DNAT not working when backend IPs configured under the L4LB used the same ports as DNAT rules.
+- Fixed Terraform silently accepting undefined Fabric Type values (e.g., "ew-plane5"), which resulted in a blank Fabric Type in the controller.
+- Fixed wrong prefix length in the prefix-list used for Cumulus VPC peering; the agent now configures ``min-prefix-len``.
+- Fixed VPC Peering on Cumulus not propagating prefixes through a transit VPC.
+- Fixed VPC Peering on Cumulus not propagating static IPv6 routes.
+
+Security fixes
+----------------
+
+No security fixes in this release.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
