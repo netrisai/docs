@@ -540,6 +540,14 @@ Netris and NOS versions compatibility matrix
      - **SoftGate PRO OS**
      - **SoftGate HS OS**
      - **Availability**
+   * - 4.15.0
+     - 5.11 - 5.14, 5.16 - 5.16.5
+     - 4.5
+     - 202211-331
+     - 4.34.1F
+     - N/A
+     - Ubuntu 24.04
+     - ✔
    * - 4.14.0
      - 5.11 - 5.14, 5.16 - 5.16.5
      - 4.5
