@@ -1239,7 +1239,7 @@ You may find earlier version of this document in the Netris 4.8 documentation: <
 </pre></div>
 </div>
 <p>Add the Netris repository to your system’s sources list:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;deb [signed-by=/usr/share/keyrings/netris.gpg] http://repo.netris.ai/repo/ noble main&quot;</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">netris</span><span class="o">.</span><span class="n">list</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">"deb [signed-by=/usr/share/keyrings/netris.gpg] http://repo.netris.ai/repo/ noble main"</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">netris</span><span class="o">.</span><span class="n">list</span>
 </pre></div>
 </div>
 <p>Install the Netris NHN Package</p>
@@ -1300,10 +1300,10 @@ You may find earlier version of this document in the Netris 4.8 documentation: <
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Match switches named su0-r0, su1-r1, etc.</span>
 <span class="n">ew</span><span class="o">-</span><span class="n">switch</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">template</span> <span class="o">=</span> <span class="n">su</span><span class="p">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span><span class="o">-+</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span>
 
-<span class="c1"># Match switches with &#39;ew-&#39; prefix</span>
+<span class="c1"># Match switches with 'ew-' prefix</span>
 <span class="n">ew</span><span class="o">-</span><span class="n">switch</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">template</span> <span class="o">=</span> <span class="n">ew</span><span class="o">-.+</span>
 
-<span class="c1"># Match any switch with &#39;fabric&#39; in the name</span>
+<span class="c1"># Match any switch with 'fabric' in the name</span>
 <span class="n">ew</span><span class="o">-</span><span class="n">switch</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">template</span> <span class="o">=</span> <span class="o">.*</span><span class="n">fabric</span><span class="o">.*</span>
 </pre></div>
 </div>
