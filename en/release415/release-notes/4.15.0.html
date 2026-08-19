@@ -1179,6 +1179,8 @@
 <li><p>Resolved an issue where monitoring data on the Dashboard would occasionally disappear intermittently.</p></li>
 <li><p>Resolved an issue where BGP sessions were established and healthy on the switch, but the controller’s <code class="docutils literal notranslate"><span class="pre">check_bgp</span></code> monitor incorrectly reported the state as “unknown” for affected switches.</p></li>
 <li><p>Resolved an issue where the RAM utilization graph on the Dashboard displayed incorrect values that did not match the <code class="docutils literal notranslate"><span class="pre">check_memory</span></code> monitor.</p></li>
+<li><p>Fixed custom static routes configured in the system VPC on a SoftGate not being advertised into the fabric unless the prefix matched a public subnet defined in IPAM for that site — including the default route. Applies to IPv4 and IPv6.</p></li>
+<li><p>Fixed the Default Originate option on a SoftGate’s external BGP neighbors not advertising a default route to the peer.</p></li>
 </ul>
 </section>
 <section id="security-fixes">
