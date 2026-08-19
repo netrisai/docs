@@ -964,6 +964,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.5.3.html#references">References</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.4.0.html">Netris 4.4.0 Release Notes (May/15/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.4.0.html#what-s-new-in-netris-version">What’s new in Netris 4.4.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.4.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.4.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.4.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../release-notes/4.3.0.html">Netris 4.3.0 Release Notes (July/31/2024)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#what-s-new-in-netris-version">What’s new in Netris 4.3.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.3.0.html#features">Features</a></li>
@@ -1164,7 +1171,7 @@
 </div>
 </li>
 <li><p><strong>Add PATH to .bashrc</strong>: Add ~/.local/bin to the user’s PATH in their .bashrc file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=&quot;$PATH:$HOME/.local/bin&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">'export PATH="$PATH:$HOME/.local/bin"'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
 <span class="nb">source</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc
 </pre></div>
 </div>
@@ -1237,15 +1244,15 @@
 <span class="nt">netris_cloudsim_name_prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cudo</span>
 
 <span class="c1"># Domain Name</span>
-<span class="c1"># Replace &#39;null&#39; with your domain name for FQDN configuration (e.g. ctl_fqdn: netris-ctl.example.com)</span>
+<span class="c1"># Replace 'null' with your domain name for FQDN configuration (e.g. ctl_fqdn: netris-ctl.example.com)</span>
 <span class="nt">netris_ctl_fqdn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 
 <span class="c1"># Create SSH Key Pair</span>
-<span class="c1"># Set to &#39;false&#39; if an SSH key pair exists at /home/&lt;user&gt;/.ssh. Set to &#39;true&#39; to generate a new key pair. Possible values: true | false (e.g. create_ssh_keypair: false)</span>
+<span class="c1"># Set to 'false' if an SSH key pair exists at /home/&lt;user&gt;/.ssh. Set to 'true' to generate a new key pair. Possible values: true | false (e.g. create_ssh_keypair: false)</span>
 <span class="nt">create_ssh_keypair</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="c1"># Netris Controller SSH Exposure</span>
-<span class="c1"># Set to &#39;true&#39; to expose the Netris Controller VM to SSH access over the hypervisor’s public IP on the specified port (default port 2222). Set to &#39;false&#39; to disable SSH exposure. Possible values: true | false (e.g. netris_cloudsim_ssh_expose: false)</span>
+<span class="c1"># Set to 'true' to expose the Netris Controller VM to SSH access over the hypervisor’s public IP on the specified port (default port 2222). Set to 'false' to disable SSH exposure. Possible values: true | false (e.g. netris_cloudsim_ssh_expose: false)</span>
 <span class="nt">netris_cloudsim_ssh_expose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="c1"># Netris Controller SSH Port</span>
@@ -1253,35 +1260,35 @@
 <span class="nt">netris_cloudsim_ssh_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2222</span>
 
 <span class="c1"># Private Network CIDR</span>
-<span class="c1"># Use &#39;10.254.45.0/24&#39; for the management network unless it conflicts with an existing network. If conflicting, choose another private CIDR (e.g. netris_cloudsim_priv_cidr: 10.254.46.0/24)</span>
+<span class="c1"># Use '10.254.45.0/24' for the management network unless it conflicts with an existing network. If conflicting, choose another private CIDR (e.g. netris_cloudsim_priv_cidr: 10.254.46.0/24)</span>
 <span class="nt">netris_cloudsim_priv_cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.254.45.0/24</span>
 
 <span class="c1"># Netris Controller Private IP</span>
-<span class="c1"># Use &#39;10.254.45.1&#39; for the controller’s private IP unless the management network conflicts. Update to match the chosen CIDR (e.g. netris_cloudsim_ctl_priv_ip: 10.254.46.1)</span>
+<span class="c1"># Use '10.254.45.1' for the controller’s private IP unless the management network conflicts. Update to match the chosen CIDR (e.g. netris_cloudsim_ctl_priv_ip: 10.254.46.1)</span>
 <span class="nt">netris_cloudsim_ctl_priv_ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.254.45.1</span>
 
 <span class="c1"># Hypervisor Bridge Private Management IP and Gateway</span>
-<span class="c1"># Use &#39;10.254.45.254&#39; for the hypervisor’s bridge IP unless the management network conflicts. Update to match the chosen CIDR (e.g. netris_cloudsim_hyper_bridge_priv_mgmt_ip: 10.254.46.254)</span>
+<span class="c1"># Use '10.254.45.254' for the hypervisor’s bridge IP unless the management network conflicts. Update to match the chosen CIDR (e.g. netris_cloudsim_hyper_bridge_priv_mgmt_ip: 10.254.46.254)</span>
 <span class="nt">netris_cloudsim_hyper_bridge_priv_mgmt_ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.254.45.254</span>
 
 <span class="c1"># Hypervisor Public Interface Name</span>
-<span class="c1"># Replace &#39;null&#39; with the name of the interface configured with the public IP. Verify the interface name on your server (e.g. netris_cloudsim_hyper_public_interface: eth0)</span>
+<span class="c1"># Replace 'null' with the name of the interface configured with the public IP. Verify the interface name on your server (e.g. netris_cloudsim_hyper_public_interface: eth0)</span>
 <span class="nt">netris_cloudsim_hyper_public_interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 
 <span class="c1"># Hypervisor Public IP</span>
-<span class="c1"># Replace &#39;null&#39; with the public IP of the hypervisor. Ensure it’s routable for internet access (e.g. netris_cloudsim_hyper_pub_ip: 216.172.128.201)</span>
+<span class="c1"># Replace 'null' with the public IP of the hypervisor. Ensure it’s routable for internet access (e.g. netris_cloudsim_hyper_pub_ip: 216.172.128.201)</span>
 <span class="nt">netris_cloudsim_hyper_pub_ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 
 <span class="c1"># BGP CIDR Block</span>
-<span class="c1"># Replace &#39;null&#39; with a public /29 or /30 CIDR block for BGP routing (e.g. netris_cloudsim_bgp_cidr: 45.38.161.0/30)</span>
+<span class="c1"># Replace 'null' with a public /29 or /30 CIDR block for BGP routing (e.g. netris_cloudsim_bgp_cidr: 45.38.161.0/30)</span>
 <span class="nt">netris_cloudsim_bgp_cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 
 <span class="c1"># NAT CIDR Block</span>
-<span class="c1"># Replace &#39;null&#39; with a public /29 CIDR block for NAT configuration (e.g. netris_cloudsim_nat_cidr: 45.38.161.8/29)</span>
+<span class="c1"># Replace 'null' with a public /29 CIDR block for NAT configuration (e.g. netris_cloudsim_nat_cidr: 45.38.161.8/29)</span>
 <span class="nt">netris_cloudsim_nat_cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 
 <span class="c1"># Layer 4 Load Balancer CIDR Block</span>
-<span class="c1"># Replace &#39;null&#39; with a public /29 CIDR block for the Layer 4 Load Balancer (e.g. netris_cloudsim_l4lb_cidr: 45.38.161.16/29)</span>
+<span class="c1"># Replace 'null' with a public /29 CIDR block for the Layer 4 Load Balancer (e.g. netris_cloudsim_l4lb_cidr: 45.38.161.16/29)</span>
 <span class="nt">netris_cloudsim_l4lb_cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 </pre></div>
 </div>

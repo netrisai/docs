@@ -967,6 +967,13 @@
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.5.3.html#references">References</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.4.0.html">Netris 4.4.0 Release Notes (May/15/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#what-s-new-in-netris-version">What’s new in Netris 4.4.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.3.0.html">Netris 4.3.0 Release Notes (July/31/2024)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.3.0.html#what-s-new-in-netris-version">What’s new in Netris 4.3.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.3.0.html#features">Features</a></li>
@@ -1240,17 +1247,17 @@ hgx-pod00-su0-h03,713366763878128965
 </pre></div>
 </div>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">netris-nvl-loader</span></code> script to import the GPU UID inventory into the Netris Controller</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./netris-nv-loader<span class="w"> </span>--csv-file<span class="w"> </span>gpu-mapping.csv<span class="w"> </span>--netris-url<span class="w"> </span><span class="s2">&quot;https://conroller.acme.com&quot;</span><span class="w"> </span>--username<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;passw0rd&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./netris-nv-loader<span class="w"> </span>--csv-file<span class="w"> </span>gpu-mapping.csv<span class="w"> </span>--netris-url<span class="w"> </span><span class="s2">"https://conroller.acme.com"</span><span class="w"> </span>--username<span class="w"> </span><span class="s2">"admin"</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">"passw0rd"</span>
 </pre></div>
 </div>
 <p>Where</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--csv-file<span class="w"> </span>&lt;filename&gt;<span class="w">    </span>specifies<span class="w"> </span>the<span class="w"> </span>comma-separated<span class="w"> </span>value<span class="w"> </span><span class="o">(</span>CSV<span class="o">)</span><span class="w"> </span>file<span class="w"> </span>with<span class="w"> </span>GPU<span class="w"> </span>UID<span class="w"> </span>inventory
 
---netris-url<span class="w"> </span><span class="s2">&quot;&lt;URL&gt;”     specifies the Netris Controller URL</span>
+--netris-url<span class="w"> </span><span class="s2">"&lt;URL&gt;”     specifies the Netris Controller URL</span>
 
-<span class="s2">--username &quot;</span>&lt;username&gt;<span class="s2">&quot;  specifies the Netris administrator username</span>
+<span class="s2">--username "</span>&lt;username&gt;<span class="s2">"  specifies the Netris administrator username</span>
 
-<span class="s2">--password &quot;</span>&lt;password&gt;<span class="s2">&quot;  specifies the Netris administrator password</span>
+<span class="s2">--password "</span>&lt;password&gt;<span class="s2">"  specifies the Netris administrator password</span>
 </pre></div>
 </div>
 <p>Upon successful import, you should see output similar to the one below</p>

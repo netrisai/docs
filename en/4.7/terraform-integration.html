@@ -967,6 +967,13 @@
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.5.3.html#references">References</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.4.0.html">Netris 4.4.0 Release Notes (May/15/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#what-s-new-in-netris-version">What’s new in Netris 4.4.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.3.0.html">Netris 4.3.0 Release Notes (July/31/2024)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.3.0.html#what-s-new-in-netris-version">What’s new in Netris 4.3.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.3.0.html#features">Features</a></li>
@@ -1152,16 +1159,16 @@ To learn the basics of Terraform using this provider, follow the hands-on <a cla
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">terraform</span> <span class="p">{</span>
   <span class="n">required_providers</span> <span class="p">{</span>
     <span class="n">netris</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">source</span>  <span class="o">=</span> <span class="s2">&quot;netrisai/netris&quot;</span>
-      <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;&gt;= 2.0.0&quot;</span>
+      <span class="n">source</span>  <span class="o">=</span> <span class="s2">"netrisai/netris"</span>
+      <span class="n">version</span> <span class="o">=</span> <span class="s2">"&gt;= 2.0.0"</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">provider</span> <span class="s2">&quot;netris&quot;</span> <span class="p">{</span>
-  <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;&lt;controller address&gt;&quot;</span>
-  <span class="n">login</span> <span class="o">=</span> <span class="s2">&quot;&lt;controller login&gt;&quot;</span>
-  <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&lt;controller password&gt;&quot;</span>
+<span class="n">provider</span> <span class="s2">"netris"</span> <span class="p">{</span>
+  <span class="n">address</span> <span class="o">=</span> <span class="s2">"&lt;controller address&gt;"</span>
+  <span class="n">login</span> <span class="o">=</span> <span class="s2">"&lt;controller login&gt;"</span>
+  <span class="n">password</span> <span class="o">=</span> <span class="s2">"&lt;controller password&gt;"</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1182,8 +1189,8 @@ To create a resource, specify a set of required and optional parameters that def
 <p>Infrastructure provisioning in Netris starts with Site resources. The Netris-Controller comes with the initial site <code class="docutils literal notranslate"><span class="pre">Default</span></code>. You can use it in your Terraform configuration files by getting its ID with the Terraform <a class="reference external" href="https://www.terraform.io/language/data-sources">Data source element</a>.</p>
 <p>Let’s create a separate file for site resource, and get its ID via Terraform Data source element.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">site</span><span class="o">.</span><span class="n">tf</span>
-<span class="n">data</span> <span class="s2">&quot;netris_site&quot;</span> <span class="s2">&quot;default&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Default&quot;</span>
+<span class="n">data</span> <span class="s2">"netris_site"</span> <span class="s2">"default"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"Default"</span>
 <span class="p">}</span>
 <span class="n">EOF</span>
 </pre></div>
@@ -1192,60 +1199,60 @@ To create a resource, specify a set of required and optional parameters that def
 <p>Now, when we’re clear on <code class="docutils literal notranslate"><span class="pre">Site</span></code> resource usage, let’s define our IPAM. There are two types of IPAM resources in the Netris-Controller it’s <code class="docutils literal notranslate"><span class="pre">Allocation</span></code> and <code class="docutils literal notranslate"><span class="pre">Subnet</span></code>.
 IPAM resources only require <code class="docutils literal notranslate"><span class="pre">tenantid</span></code> field, let’s get our default Admin tenant ID with the Data source element.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">tenant</span><span class="o">.</span><span class="n">tf</span>
-<span class="n">data</span> <span class="s2">&quot;netris_tenant&quot;</span> <span class="s2">&quot;admin&quot;</span><span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Admin&quot;</span>
+<span class="n">data</span> <span class="s2">"netris_tenant"</span> <span class="s2">"admin"</span><span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"Admin"</span>
 <span class="p">}</span>
 <span class="n">EOF</span>
 </pre></div>
 </div>
 <p>Then, when we have the <code class="docutils literal notranslate"><span class="pre">tenantid</span></code>, we can create IPAM resources.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">ipam</span><span class="o">.</span><span class="n">tf</span>
-<span class="n">resource</span> <span class="s2">&quot;netris_allocation&quot;</span> <span class="s2">&quot;my-allocation-mgmt&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-allocation-mgmt&quot;</span>
-  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;192.0.2.0/24&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_allocation"</span> <span class="s2">"my-allocation-mgmt"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-allocation-mgmt"</span>
+  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"192.0.2.0/24"</span>
   <span class="n">tenantid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_tenant</span><span class="o">.</span><span class="n">admin</span><span class="o">.</span><span class="n">id</span>
 <span class="p">}</span>
 
-<span class="n">resource</span> <span class="s2">&quot;netris_allocation&quot;</span> <span class="s2">&quot;my-allocation-loopback&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-allocation-loopback&quot;</span>
-  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;198.51.100.0/24&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_allocation"</span> <span class="s2">"my-allocation-loopback"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-allocation-loopback"</span>
+  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"198.51.100.0/24"</span>
   <span class="n">tenantid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_tenant</span><span class="o">.</span><span class="n">admin</span><span class="o">.</span><span class="n">id</span>
 <span class="p">}</span>
 
-<span class="n">resource</span> <span class="s2">&quot;netris_allocation&quot;</span> <span class="s2">&quot;my-allocation-common&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-allocation-common&quot;</span>
-  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;203.0.113.0/24&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_allocation"</span> <span class="s2">"my-allocation-common"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-allocation-common"</span>
+  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"203.0.113.0/24"</span>
   <span class="n">tenantid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_tenant</span><span class="o">.</span><span class="n">admin</span><span class="o">.</span><span class="n">id</span>
 <span class="p">}</span>
 
-<span class="n">resource</span> <span class="s2">&quot;netris_subnet&quot;</span> <span class="s2">&quot;my-subnet-mgmt&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-subnet-mgmt&quot;</span>
-  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;192.0.2.0/24&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_subnet"</span> <span class="s2">"my-subnet-mgmt"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-subnet-mgmt"</span>
+  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"192.0.2.0/24"</span>
   <span class="n">tenantid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_tenant</span><span class="o">.</span><span class="n">admin</span><span class="o">.</span><span class="n">id</span>
-  <span class="n">purpose</span> <span class="o">=</span> <span class="s2">&quot;management&quot;</span>
-  <span class="n">defaultgateway</span> <span class="o">=</span> <span class="s2">&quot;192.0.2.254&quot;</span>
+  <span class="n">purpose</span> <span class="o">=</span> <span class="s2">"management"</span>
+  <span class="n">defaultgateway</span> <span class="o">=</span> <span class="s2">"192.0.2.254"</span>
   <span class="n">siteids</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">netris_site</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
   <span class="n">depends_on</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">netris_allocation</span><span class="o">.</span><span class="n">my</span><span class="o">-</span><span class="n">allocation</span><span class="o">-</span><span class="n">mgmt</span><span class="p">,</span>
   <span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">resource</span> <span class="s2">&quot;netris_subnet&quot;</span> <span class="s2">&quot;my-subnet-loopback&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-subnet-loopback&quot;</span>
-  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;198.51.100.0/24&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_subnet"</span> <span class="s2">"my-subnet-loopback"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-subnet-loopback"</span>
+  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"198.51.100.0/24"</span>
   <span class="n">tenantid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_tenant</span><span class="o">.</span><span class="n">admin</span><span class="o">.</span><span class="n">id</span>
-  <span class="n">purpose</span> <span class="o">=</span> <span class="s2">&quot;loopback&quot;</span>
+  <span class="n">purpose</span> <span class="o">=</span> <span class="s2">"loopback"</span>
   <span class="n">siteids</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">netris_site</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
   <span class="n">depends_on</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">netris_allocation</span><span class="o">.</span><span class="n">my</span><span class="o">-</span><span class="n">allocation</span><span class="o">-</span><span class="n">loopback</span><span class="p">,</span>
   <span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">resource</span> <span class="s2">&quot;netris_subnet&quot;</span> <span class="s2">&quot;my-subnet-common&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-subnet-common&quot;</span>
-  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;203.0.113.0/25&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_subnet"</span> <span class="s2">"my-subnet-common"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-subnet-common"</span>
+  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"203.0.113.0/25"</span>
   <span class="n">tenantid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_tenant</span><span class="o">.</span><span class="n">admin</span><span class="o">.</span><span class="n">id</span>
-  <span class="n">purpose</span> <span class="o">=</span> <span class="s2">&quot;common&quot;</span>
+  <span class="n">purpose</span> <span class="o">=</span> <span class="s2">"common"</span>
   <span class="n">siteids</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">netris_site</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
   <span class="n">depends_on</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">netris_allocation</span><span class="o">.</span><span class="n">my</span><span class="o">-</span><span class="n">allocation</span><span class="o">-</span><span class="n">common</span><span class="p">,</span>
@@ -1259,28 +1266,28 @@ For more details, get familiar with the IPAM <a class="reference external" href=
 <p>Now, when we have all the required resources let’s define our Inventory.
 We’re going to create 1 SoftGate, 1 switch and connect them with a link.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">inventory</span><span class="o">.</span><span class="n">tf</span>
-<span class="n">resource</span> <span class="s2">&quot;netris_softgate&quot;</span> <span class="s2">&quot;my-softgate&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-softgate&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_softgate"</span> <span class="s2">"my-softgate"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-softgate"</span>
   <span class="n">tenantid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_tenant</span><span class="o">.</span><span class="n">admin</span><span class="o">.</span><span class="n">id</span>
   <span class="n">siteid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_site</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">id</span>
-  <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Softgate 1&quot;</span>
-  <span class="n">mainip</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
-  <span class="n">mgmtip</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+  <span class="n">description</span> <span class="o">=</span> <span class="s2">"Softgate 1"</span>
+  <span class="n">mainip</span> <span class="o">=</span> <span class="s2">"auto"</span>
+  <span class="n">mgmtip</span> <span class="o">=</span> <span class="s2">"auto"</span>
   <span class="n">depends_on</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">netris_subnet</span><span class="o">.</span><span class="n">my</span><span class="o">-</span><span class="n">subnet</span><span class="o">-</span><span class="n">mgmt</span><span class="p">,</span>
     <span class="n">netris_subnet</span><span class="o">.</span><span class="n">my</span><span class="o">-</span><span class="n">subnet</span><span class="o">-</span><span class="n">loopback</span><span class="p">,</span>
   <span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">resource</span> <span class="s2">&quot;netris_switch&quot;</span> <span class="s2">&quot;my-switch&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-switch&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_switch"</span> <span class="s2">"my-switch"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-switch"</span>
   <span class="n">tenantid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_tenant</span><span class="o">.</span><span class="n">admin</span><span class="o">.</span><span class="n">id</span>
   <span class="n">siteid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_site</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">id</span>
-  <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Switch 01&quot;</span>
-  <span class="n">nos</span> <span class="o">=</span> <span class="s2">&quot;cumulus_linux&quot;</span>
-  <span class="n">asnumber</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
-  <span class="n">mainip</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
-  <span class="n">mgmtip</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+  <span class="n">description</span> <span class="o">=</span> <span class="s2">"Switch 01"</span>
+  <span class="n">nos</span> <span class="o">=</span> <span class="s2">"cumulus_linux"</span>
+  <span class="n">asnumber</span> <span class="o">=</span> <span class="s2">"auto"</span>
+  <span class="n">mainip</span> <span class="o">=</span> <span class="s2">"auto"</span>
+  <span class="n">mgmtip</span> <span class="o">=</span> <span class="s2">"auto"</span>
   <span class="n">portcount</span> <span class="o">=</span> <span class="mi">16</span>
   <span class="n">depends_on</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">netris_subnet</span><span class="o">.</span><span class="n">my</span><span class="o">-</span><span class="n">subnet</span><span class="o">-</span><span class="n">mgmt</span><span class="p">,</span>
@@ -1288,10 +1295,10 @@ We’re going to create 1 SoftGate, 1 switch and connect them with a link.</p>
   <span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">resource</span> <span class="s2">&quot;netris_link&quot;</span> <span class="s2">&quot;sg-to-sw&quot;</span> <span class="p">{</span>
+<span class="n">resource</span> <span class="s2">"netris_link"</span> <span class="s2">"sg-to-sw"</span> <span class="p">{</span>
   <span class="n">ports</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;swp1@my-softgate&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;swp16@my-switch&quot;</span>
+    <span class="s2">"swp1@my-softgate"</span><span class="p">,</span>
+    <span class="s2">"swp16@my-switch"</span>
   <span class="p">]</span>
   <span class="n">depends_on</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">netris_softgate</span><span class="o">.</span><span class="n">my</span><span class="o">-</span><span class="n">softgate</span><span class="p">,</span>
@@ -1303,25 +1310,25 @@ We’re going to create 1 SoftGate, 1 switch and connect them with a link.</p>
 </div>
 <p>Next, let’s define a local L3 network for our servers, suppose we want to connect 3 servers to our switch first 3 ports</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">vnet</span><span class="o">.</span><span class="n">tf</span>
-<span class="n">resource</span> <span class="s2">&quot;netris_vnet&quot;</span> <span class="s2">&quot;my-vnet&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-vnet&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_vnet"</span> <span class="s2">"my-vnet"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-vnet"</span>
   <span class="n">tenantid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_tenant</span><span class="o">.</span><span class="n">admin</span><span class="o">.</span><span class="n">id</span>
-  <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;active&quot;</span>
+  <span class="n">state</span> <span class="o">=</span> <span class="s2">"active"</span>
   <span class="n">sites</span><span class="p">{</span>
     <span class="nb">id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_site</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">id</span>
     <span class="n">gateways</span> <span class="p">{</span>
-      <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;203.0.113.1/25&quot;</span>
+      <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"203.0.113.1/25"</span>
     <span class="p">}</span>
     <span class="n">ports</span> <span class="p">{</span>
-      <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;swp1@my-switch&quot;</span>
+      <span class="n">name</span> <span class="o">=</span> <span class="s2">"swp1@my-switch"</span>
       <span class="n">vlanid</span> <span class="o">=</span> <span class="mi">1050</span>
     <span class="p">}</span>
     <span class="n">ports</span> <span class="p">{</span>
-      <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;swp2@my-switch&quot;</span>
+      <span class="n">name</span> <span class="o">=</span> <span class="s2">"swp2@my-switch"</span>
       <span class="n">vlanid</span> <span class="o">=</span> <span class="mi">1050</span>
     <span class="p">}</span>
     <span class="n">ports</span> <span class="p">{</span>
-      <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;swp3@my-switch&quot;</span>
+      <span class="n">name</span> <span class="o">=</span> <span class="s2">"swp3@my-switch"</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="n">depends_on</span> <span class="o">=</span> <span class="p">[</span>
@@ -1334,23 +1341,23 @@ We’re going to create 1 SoftGate, 1 switch and connect them with a link.</p>
 </div>
 <p>And finally, we have to provide internet connectivity to our fabric, for that we’ll define BGP resource. Suppose we’re going to connect our ISP cable to the 10th port of our switch, and want to establish the BGP session on our Softgate.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">bgp</span><span class="o">.</span><span class="n">tf</span>
-<span class="n">data</span> <span class="s2">&quot;netris_port&quot;</span> <span class="s2">&quot;swp10_my_switch&quot;</span><span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;swp10@my-switch&quot;</span>
+<span class="n">data</span> <span class="s2">"netris_port"</span> <span class="s2">"swp10_my_switch"</span><span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"swp10@my-switch"</span>
   <span class="n">depends_on</span> <span class="o">=</span> <span class="p">[</span><span class="n">netris_switch</span><span class="o">.</span><span class="n">my</span><span class="o">-</span><span class="n">switch</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">resource</span> <span class="s2">&quot;netris_bgp&quot;</span> <span class="s2">&quot;my-bgp&quot;</span> <span class="p">{</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-bgp&quot;</span>
+<span class="n">resource</span> <span class="s2">"netris_bgp"</span> <span class="s2">"my-bgp"</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-bgp"</span>
   <span class="n">siteid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_site</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">id</span>
-  <span class="n">hardware</span> <span class="o">=</span> <span class="s2">&quot;my-softgate&quot;</span>
+  <span class="n">hardware</span> <span class="o">=</span> <span class="s2">"my-softgate"</span>
   <span class="n">neighboras</span> <span class="o">=</span> <span class="mi">23456</span>
   <span class="n">portid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">netris_port</span><span class="o">.</span><span class="n">swp10_my_switch</span><span class="o">.</span><span class="n">id</span>
   <span class="n">vlanid</span> <span class="o">=</span> <span class="mi">3000</span>
-  <span class="n">localip</span> <span class="o">=</span> <span class="s2">&quot;172.16.0.2/30&quot;</span>
-  <span class="n">remoteip</span> <span class="o">=</span> <span class="s2">&quot;172.16.0.1/30&quot;</span>
-  <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;My First BGP&quot;</span>
-  <span class="n">prefixlistinbound</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;deny 127.0.0.0/8 le 32&quot;</span><span class="p">,</span> <span class="s2">&quot;permit 0.0.0.0/0 le 24&quot;</span><span class="p">]</span>
-  <span class="n">prefixlistoutbound</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;permit 192.0.2.0/24&quot;</span><span class="p">,</span> <span class="s2">&quot;permit 198.51.100.0/24 le 25&quot;</span><span class="p">,</span> <span class="s2">&quot;permit 203.0.113.0/24 le 26&quot;</span><span class="p">]</span>
+  <span class="n">localip</span> <span class="o">=</span> <span class="s2">"172.16.0.2/30"</span>
+  <span class="n">remoteip</span> <span class="o">=</span> <span class="s2">"172.16.0.1/30"</span>
+  <span class="n">description</span> <span class="o">=</span> <span class="s2">"My First BGP"</span>
+  <span class="n">prefixlistinbound</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"deny 127.0.0.0/8 le 32"</span><span class="p">,</span> <span class="s2">"permit 0.0.0.0/0 le 24"</span><span class="p">]</span>
+  <span class="n">prefixlistoutbound</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"permit 192.0.2.0/24"</span><span class="p">,</span> <span class="s2">"permit 198.51.100.0/24 le 25"</span><span class="p">,</span> <span class="s2">"permit 203.0.113.0/24 le 26"</span><span class="p">]</span>
   <span class="n">depends_on</span> <span class="o">=</span> <span class="p">[</span><span class="n">netris_link</span><span class="o">.</span><span class="n">sg</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">sw</span><span class="p">]</span>
 <span class="p">}</span>
 <span class="n">EOF</span>

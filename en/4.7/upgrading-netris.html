@@ -967,6 +967,13 @@
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.5.3.html#references">References</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.4.0.html">Netris 4.4.0 Release Notes (May/15/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#what-s-new-in-netris-version">What’s new in Netris 4.4.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.4.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.3.0.html">Netris 4.3.0 Release Notes (July/31/2024)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.3.0.html#what-s-new-in-netris-version">What’s new in Netris 4.3.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.3.0.html#features">Features</a></li>
@@ -1124,7 +1131,7 @@
 <section id="backup-current-database">
 <h3>Backup current database<a class="headerlink" href="#backup-current-database" title="Link to this heading"></a></h3>
 <p>Always have a backup, just in case anything hypothetically goes wrong. SSH to the host running the Netris Controller and execute below command.</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysqldump -u $MARIADB_USER -p${MARIADB_PASSWORD} $MARIADB_DATABASE&#39; &gt; db-snapshot.sql</span>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysqldump -u $MARIADB_USER -p${MARIADB_PASSWORD} $MARIADB_DATABASE' &gt; db-snapshot.sql</span>
 </pre></div>
 </div>
 <p>Ensure that SQL file <code class="docutils literal notranslate"><span class="pre">db-snapshot.sql</span></code> is generated and present in the current directory.</p>
@@ -1240,13 +1247,13 @@ to copy/paste into the right devices.</p>
 <h3>Restore The Database<a class="headerlink" href="#restore-the-database" title="Link to this heading"></a></h3>
 <p>Restore the database from the previously taken snapshot.</p>
 <p>Drop the current database and create a new one by running the following command after SSHing to the Controller:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysql -u root -p${MARIADB_ROOT_PASSWORD} -e &quot;DROP DATABASE $MARIADB_DATABASE&quot;&#39;</span>
-<span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysql -u root -p${MARIADB_ROOT_PASSWORD} -e &quot;CREATE DATABASE $MARIADB_DATABASE&quot;&#39;</span>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "DROP DATABASE $MARIADB_DATABASE"'</span>
+<span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "CREATE DATABASE $MARIADB_DATABASE"'</span>
 </pre></div>
 </div>
 <p>While still connected to the Controller, copy the backup file from the controller host system to the MariaDB container and restore the database:</p>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n netris-controller cp db-snapshot.sql netris-controller-mariadb-0:/opt/db-snapshot.sql</span>
-<span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c &#39;mysql -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE &lt; /opt/db-snapshot.sql&#39;</span>
+<span class="go">kubectl -n netris-controller exec -it netris-controller-mariadb-0 -- bash -c 'mysql -u root -p${MARIADB_ROOT_PASSWORD} $MARIADB_DATABASE &lt; /opt/db-snapshot.sql'</span>
 </pre></div>
 </div>
 </section>
