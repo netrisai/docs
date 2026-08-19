@@ -1413,14 +1413,14 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <br /><div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Example JSON snippet defining a bond interface</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;eth9&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;slave&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bond0&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;mtu&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9216</span>
+<span class="w">    </span><span class="nt">"network"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"eth9"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"slave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bond0"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"mtu"</span><span class="p">:</span><span class="w"> </span><span class="mi">9216</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;eth10&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;slave&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bond0&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;mtu&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9216</span>
+<span class="w">        </span><span class="nt">"eth10"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"slave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bond0"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"mtu"</span><span class="p">:</span><span class="w"> </span><span class="mi">9216</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
@@ -1549,31 +1549,31 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <li><p>Define a Server Cluster Template and only include non-management server NICs (<em>eth1</em> through <em>eth10</em>) in the template.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;postfix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;East-West&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l3vpn&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;vlan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;untagged&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;vlanID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;serverNics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="s2">&quot;eth1&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth2&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth3&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth4&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth5&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth6&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth7&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth8&quot;</span>
+<span class="w">        </span><span class="nt">"postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"East-West"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"l3vpn"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"vlan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"untagged"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"vlanID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auto"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"serverNics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">"eth1"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth2"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth3"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth4"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth5"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth6"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth7"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth8"</span>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;postfix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;North-South-in-band-and-storage&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l2vpn&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;vlan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;untagged&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;vlanID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;serverNics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="s2">&quot;eth9&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth10&quot;</span>
+<span class="w">        </span><span class="nt">"postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North-South-in-band-and-storage"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"l2vpn"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"vlan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"untagged"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"vlanID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auto"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"serverNics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">"eth9"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth10"</span>
 <span class="w">        </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;ipv4Gateway&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.7.254/21&quot;</span>
+<span class="w">        </span><span class="nt">"ipv4Gateway"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.7.254/21"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
 </pre></div>
