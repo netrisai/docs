@@ -1229,8 +1229,8 @@
 <span class="go">Enable ESM Apps to receive additional future security updates.</span>
 <span class="go">See https://ubuntu.com/esm or run: sudo pro status</span>
 
-<span class="go">New release &#39;24.04.1 LTS&#39; available.</span>
-<span class="go">Run &#39;do-release-upgrade&#39; to upgrade to it.</span>
+<span class="go">New release '24.04.1 LTS' available.</span>
+<span class="go">Run 'do-release-upgrade' to upgrade to it.</span>
 
 
 <span class="go">Last login: Thu Sep 12 23:20:36 2024 from 10.8.0.2</span>
@@ -1295,41 +1295,41 @@ Server Cluster allows the creation of VPC, IPAM, and V-Net objects by listing se
 <p>The Template basically tells the system which server interfaces should be grouped into which V-Nets. Netris will find out the appropriate switch ports by looking up the topology.</p>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">[</span>
 <span class="go">    {</span>
-<span class="go">        &quot;postfix&quot;: &quot;East-West&quot;,</span>
-<span class="go">        &quot;type&quot;: &quot;l3vpn&quot;,</span>
-<span class="go">        &quot;vlan&quot;: &quot;untagged&quot;,</span>
-<span class="go">        &quot;vlanID&quot;: &quot;auto&quot;,</span>
-<span class="go">        &quot;serverNics&quot;: [</span>
-<span class="go">            &quot;eth1&quot;,</span>
-<span class="go">            &quot;eth2&quot;,</span>
-<span class="go">            &quot;eth3&quot;,</span>
-<span class="go">            &quot;eth4&quot;,</span>
-<span class="go">            &quot;eth5&quot;,</span>
-<span class="go">            &quot;eth6&quot;,</span>
-<span class="go">            &quot;eth7&quot;,</span>
-<span class="go">            &quot;eth8&quot;</span>
+<span class="go">        "postfix": "East-West",</span>
+<span class="go">        "type": "l3vpn",</span>
+<span class="go">        "vlan": "untagged",</span>
+<span class="go">        "vlanID": "auto",</span>
+<span class="go">        "serverNics": [</span>
+<span class="go">            "eth1",</span>
+<span class="go">            "eth2",</span>
+<span class="go">            "eth3",</span>
+<span class="go">            "eth4",</span>
+<span class="go">            "eth5",</span>
+<span class="go">            "eth6",</span>
+<span class="go">            "eth7",</span>
+<span class="go">            "eth8"</span>
 <span class="go">        ]</span>
 <span class="go">    },</span>
 <span class="go">    {</span>
-<span class="go">        &quot;postfix&quot;: &quot;North-South-in-band-and-storage&quot;,</span>
-<span class="go">        &quot;type&quot;: &quot;l2vpn&quot;,</span>
-<span class="go">        &quot;vlan&quot;: &quot;untagged&quot;,</span>
-<span class="go">        &quot;vlanID&quot;: &quot;auto&quot;,</span>
-<span class="go">        &quot;serverNics&quot;: [</span>
-<span class="go">            &quot;eth9&quot;,</span>
-<span class="go">            &quot;eth10&quot;</span>
+<span class="go">        "postfix": "North-South-in-band-and-storage",</span>
+<span class="go">        "type": "l2vpn",</span>
+<span class="go">        "vlan": "untagged",</span>
+<span class="go">        "vlanID": "auto",</span>
+<span class="go">        "serverNics": [</span>
+<span class="go">            "eth9",</span>
+<span class="go">            "eth10"</span>
 <span class="go">        ],</span>
-<span class="go">        &quot;ipv4Gateway&quot;: &quot;192.168.7.254/21&quot;</span>
+<span class="go">        "ipv4Gateway": "192.168.7.254/21"</span>
 <span class="go">    },</span>
 <span class="go">    {</span>
-<span class="go">        &quot;postfix&quot;: &quot;OOB-Management&quot;,</span>
-<span class="go">        &quot;type&quot;: &quot;l2vpn&quot;,</span>
-<span class="go">        &quot;vlan&quot;: &quot;untagged&quot;,</span>
-<span class="go">        &quot;vlanID&quot;: &quot;auto&quot;,</span>
-<span class="go">        &quot;serverNics&quot;: [</span>
-<span class="go">            &quot;eth11&quot;</span>
+<span class="go">        "postfix": "OOB-Management",</span>
+<span class="go">        "type": "l2vpn",</span>
+<span class="go">        "vlan": "untagged",</span>
+<span class="go">        "vlanID": "auto",</span>
+<span class="go">        "serverNics": [</span>
+<span class="go">            "eth11"</span>
 <span class="go">        ],</span>
-<span class="go">        &quot;ipv4Gateway&quot;: &quot;192.168.15.254/21&quot;</span>
+<span class="go">        "ipv4Gateway": "192.168.15.254/21"</span>
 <span class="go">    }</span>
 <span class="go">]</span>
 </pre></div>
