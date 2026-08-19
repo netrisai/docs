@@ -1219,18 +1219,18 @@
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller</span>
 <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
 <span class="nt">stringData</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_ADDR</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://netris.example.com&quot;</span>
-<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_LOGIN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;netris&quot;</span>
-<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;newNet0ps&quot;</span>
-<span class="w">  </span><span class="nt">NETRIS_VERIFY_SSL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
-<span class="w">  </span><span class="nt">NETRIS_SITE_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Site&quot;</span>
-<span class="w">  </span><span class="nt">UFM_ADDR</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://ufm.example.com&quot;</span>
-<span class="w">  </span><span class="nt">UFM_LOGIN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span>
-<span class="w">  </span><span class="nt">UFM_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456&quot;</span>
-<span class="w">  </span><span class="nt">UFM_VERIFY_SSL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
-<span class="w">  </span><span class="nt">UFM_ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ufm-lab&quot;</span>
-<span class="w">  </span><span class="nt">UFM_PKEY_RANGE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100-7ffe&quot;</span>
-<span class="w">  </span><span class="nt">UFM_ENABLE_SHARP</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_ADDR</span><span class="p">:</span><span class="w"> </span><span class="s">"https://netris.example.com"</span>
+<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_LOGIN</span><span class="p">:</span><span class="w"> </span><span class="s">"netris"</span>
+<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">"newNet0ps"</span>
+<span class="w">  </span><span class="nt">NETRIS_VERIFY_SSL</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+<span class="w">  </span><span class="nt">NETRIS_SITE_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">"Site"</span>
+<span class="w">  </span><span class="nt">UFM_ADDR</span><span class="p">:</span><span class="w"> </span><span class="s">"https://ufm.example.com"</span>
+<span class="w">  </span><span class="nt">UFM_LOGIN</span><span class="p">:</span><span class="w"> </span><span class="s">"admin"</span>
+<span class="w">  </span><span class="nt">UFM_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">"123456"</span>
+<span class="w">  </span><span class="nt">UFM_VERIFY_SSL</span><span class="p">:</span><span class="w"> </span><span class="s">"false"</span>
+<span class="w">  </span><span class="nt">UFM_ID</span><span class="p">:</span><span class="w"> </span><span class="s">"ufm-lab"</span>
+<span class="w">  </span><span class="nt">UFM_PKEY_RANGE</span><span class="p">:</span><span class="w"> </span><span class="s">"100-7ffe"</span>
+<span class="w">  </span><span class="nt">UFM_ENABLE_SHARP</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
 </pre></div>
 </div>
 </li>
@@ -1246,19 +1246,19 @@
 <p>This option is ideal for environments without Kubernetes or when you want to deploy on a separate host.</p>
 <ol class="arabic">
 <li><p>Create an environment file (e.g., <code class="docutils literal notranslate"><span class="pre">env</span></code>) with the following content:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">NETRIS_CONTROLLER_ADDR</span><span class="o">=</span><span class="s2">&quot;https://netris.example.com&quot;</span>
-<span class="nv">NETRIS_CONTROLLER_LOGIN</span><span class="o">=</span><span class="s2">&quot;netris&quot;</span>
-<span class="nv">NETRIS_CONTROLLER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;newNet0ps&quot;</span>
-<span class="nv">NETRIS_VERIFY_SSL</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-<span class="nv">NETRIS_SITE_NAME</span><span class="o">=</span><span class="s2">&quot;Site&quot;</span>
-<span class="nv">UFM_ADDR</span><span class="o">=</span><span class="s2">&quot;https://ufm.example.com&quot;</span>
-<span class="nv">UFM_LOGIN</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
-<span class="nv">UFM_PASSWORD</span><span class="o">=</span><span class="s2">&quot;123456&quot;</span>
-<span class="nv">UFM_VERIFY_SSL</span><span class="o">=</span><span class="s2">&quot;false&quot;</span>
-<span class="nv">UFM_ID</span><span class="o">=</span><span class="s2">&quot;ufm-lab&quot;</span>
-<span class="nv">UFM_PKEY_RANGE</span><span class="o">=</span><span class="s2">&quot;100-7ffe&quot;</span>
-<span class="nv">UFM_ENABLE_SHARP</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-<span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="s2">&quot;info&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">NETRIS_CONTROLLER_ADDR</span><span class="o">=</span><span class="s2">"https://netris.example.com"</span>
+<span class="nv">NETRIS_CONTROLLER_LOGIN</span><span class="o">=</span><span class="s2">"netris"</span>
+<span class="nv">NETRIS_CONTROLLER_PASSWORD</span><span class="o">=</span><span class="s2">"newNet0ps"</span>
+<span class="nv">NETRIS_VERIFY_SSL</span><span class="o">=</span><span class="s2">"true"</span>
+<span class="nv">NETRIS_SITE_NAME</span><span class="o">=</span><span class="s2">"Site"</span>
+<span class="nv">UFM_ADDR</span><span class="o">=</span><span class="s2">"https://ufm.example.com"</span>
+<span class="nv">UFM_LOGIN</span><span class="o">=</span><span class="s2">"admin"</span>
+<span class="nv">UFM_PASSWORD</span><span class="o">=</span><span class="s2">"123456"</span>
+<span class="nv">UFM_VERIFY_SSL</span><span class="o">=</span><span class="s2">"false"</span>
+<span class="nv">UFM_ID</span><span class="o">=</span><span class="s2">"ufm-lab"</span>
+<span class="nv">UFM_PKEY_RANGE</span><span class="o">=</span><span class="s2">"100-7ffe"</span>
+<span class="nv">UFM_ENABLE_SHARP</span><span class="o">=</span><span class="s2">"true"</span>
+<span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="s2">"info"</span>
 </pre></div>
 </div>
 </li>
@@ -1266,7 +1266,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--env-file<span class="o">=</span>env<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--name<span class="o">=</span>netris-ufm<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">&quot;/app/servicebin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--entrypoint<span class="w"> </span><span class="s2">"/app/servicebin"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>netrisai/bare-metal-netris-ufm-agent:0.3.0
 </pre></div>
 </div>
@@ -1563,7 +1563,7 @@ We strongly recommend enabling MKey protection in production environments to pre
 <section id="id1">
 <h4>5. Verification<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
 <p>Verify MKey and protection level are applied:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>/opt/ufm/files/conf/opensm/opensm.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;^m_key|^m_key_protection_level|^vs_key_enable&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>/opt/ufm/files/conf/opensm/opensm.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"^m_key|^m_key_protection_level|^vs_key_enable"</span>
 </pre></div>
 </div>
 <p>Should show:</p>
@@ -1656,10 +1656,10 @@ ping<span class="w"> </span>ufm.example.com
 </li>
 <li><p>Examine the PKey allocation process in debug logs:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Kubernetes</span>
-kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/netris-controller-nvidia-ufm-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;PKey&quot;</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/netris-controller-nvidia-ufm-agent<span class="w"> </span>-n<span class="w"> </span>netris-controller<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"PKey"</span>
 
 <span class="c1"># For Docker</span>
-docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>netris-ufm<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;PKey&quot;</span>
+docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>netris-ufm<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"PKey"</span>
 </pre></div>
 </div>
 </li>
@@ -1678,7 +1678,7 @@ docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </s
 <li><p>Check UFM configuration for SHARP support</p></li>
 <li><p>Ensure the plugin has permission to create SHARP reservations</p></li>
 <li><p>Set LOG_LEVEL to “debug” for more detailed information:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="s2">&quot;debug&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="s2">"debug"</span>
 </pre></div>
 </div>
 </li>

@@ -1292,10 +1292,10 @@
 <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
 <span class="nt">stringData</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">NETRIS_CONTROLLER_ADDR</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://netris-controller-ha-web-service-backend.netris-controller</span>
-<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_LOGIN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;netris&quot;</span>
-<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Password!&quot;</span>
-<span class="w">  </span><span class="nt">NETRIS_SITE_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Site&quot;</span>
-<span class="w">  </span><span class="c1"># NETRIS_VERIFY_SSL: &quot;true&quot;</span>
+<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_LOGIN</span><span class="p">:</span><span class="w"> </span><span class="s">"netris"</span>
+<span class="w">  </span><span class="nt">NETRIS_CONTROLLER_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">"Password!"</span>
+<span class="w">  </span><span class="nt">NETRIS_SITE_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">"Site"</span>
+<span class="w">  </span><span class="c1"># NETRIS_VERIFY_SSL: "true"</span>
 </pre></div>
 </div>
 <p>In the <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code> file you should only need to update the values of the <code class="docutils literal notranslate"><span class="pre">NETRIS_CONTROLLER_LOGIN</span></code>, <code class="docutils literal notranslate"><span class="pre">NETRIS_CONTROLLER_PASSWORD</span></code>, and <code class="docutils literal notranslate"><span class="pre">NETRIS_SITE_NAME</span></code> variables. The value of <code class="docutils literal notranslate"><span class="pre">NETRIS_SITE_NAME</span></code> must match the Site name defined in the Netris controller. See <a class="reference internal" href="site.html"><span class="doc">Netris Site</span></a> for more details on creating a Site in Netris.</p>
@@ -1462,15 +1462,15 @@
 <span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-agent</span>
 <span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netrisai/bare-metal-nvlink-agent:4.6.1-001</span>
-<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/app/servicebin&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;/app/config.yaml&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"/app/servicebin"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"-c"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"/app/config.yaml"</span><span class="p p-Indicator">]</span>
 <span class="w">        </span><span class="nt">envFrom</span><span class="p">:</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretRef</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-controller-nvlink-agent-envs</span>
 <span class="w">        </span><span class="nt">env</span><span class="p">:</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NETRIS_TIMEOUT</span>
-<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"10"</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RECONCILE_INTERVAL</span>
-<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"10"</span>
 <span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvlink-tls-nmxc01</span>
 <span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/netris-nvlink-agent/tls/nmxc01</span>
@@ -1550,17 +1550,17 @@ hgx-pod00-su0-h03,713366763878128965
 <p>You only need to load the inventory on the primary Netris controller node. Do not repeat this action on standby controller nodes.</p>
 </div>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">nvlink-loader</span></code> script to import the GPU UID inventory into the Netris Controller</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$<span class="w"> </span>nvlink-loader<span class="w"> </span>--csv-file<span class="w"> </span>gpu-mapping.csv<span class="w"> </span>--netris-url<span class="w"> </span><span class="s2">&quot;https://controller.acme.com&quot;</span><span class="w"> </span>--username<span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;passw0rd&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$<span class="w"> </span>nvlink-loader<span class="w"> </span>--csv-file<span class="w"> </span>gpu-mapping.csv<span class="w"> </span>--netris-url<span class="w"> </span><span class="s2">"https://controller.acme.com"</span><span class="w"> </span>--username<span class="w"> </span><span class="s2">"admin"</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">"passw0rd"</span>
 </pre></div>
 </div>
 <p>Where</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--csv-file<span class="w"> </span>&lt;filename&gt;<span class="w">    </span>specifies<span class="w"> </span>the<span class="w"> </span>comma-separated<span class="w"> </span>value<span class="w"> </span><span class="o">(</span>CSV<span class="o">)</span><span class="w"> </span>file<span class="w"> </span>with<span class="w"> </span>GPU<span class="w"> </span>UID<span class="w"> </span>inventory
 
---netris-url<span class="w"> </span><span class="s2">&quot;&lt;URL&gt;&quot;</span><span class="w">     </span>specifies<span class="w"> </span>the<span class="w"> </span>Netris<span class="w"> </span>Controller<span class="w"> </span>URL
+--netris-url<span class="w"> </span><span class="s2">"&lt;URL&gt;"</span><span class="w">     </span>specifies<span class="w"> </span>the<span class="w"> </span>Netris<span class="w"> </span>Controller<span class="w"> </span>URL
 
---username<span class="w"> </span><span class="s2">&quot;&lt;username&gt;&quot;</span><span class="w">  </span>specifies<span class="w"> </span>the<span class="w"> </span>Netris<span class="w"> </span>administrator<span class="w"> </span>username
+--username<span class="w"> </span><span class="s2">"&lt;username&gt;"</span><span class="w">  </span>specifies<span class="w"> </span>the<span class="w"> </span>Netris<span class="w"> </span>administrator<span class="w"> </span>username
 
---password<span class="w"> </span><span class="s2">&quot;&lt;password&gt;&quot;</span><span class="w">  </span>specifies<span class="w"> </span>the<span class="w"> </span>Netris<span class="w"> </span>administrator<span class="w"> </span>password
+--password<span class="w"> </span><span class="s2">"&lt;password&gt;"</span><span class="w">  </span>specifies<span class="w"> </span>the<span class="w"> </span>Netris<span class="w"> </span>administrator<span class="w"> </span>password
 </pre></div>
 </div>
 <p>Upon successful import, you should see output similar to the one below</p>
@@ -1569,9 +1569,9 @@ INFO [0000] Logging in to Netris…
 INFO [0000] Successfully logged in to Netris
 INFO [0000] Fetching inventory from Netris (import mode)...
 INFO [0001] Found 38 server inventory items
-INFO [0002] Successfully updated server &#39;hgx-pod00-su0-h00&#39; with 4 GPU mappings
-INFO [0003] Successfully updated server &#39;hgx-pod00-su0-h01&#39; with 4 GPU mappings
-INFO [0004] Successfully updated server &#39;hgx-pod00-su0-h02&#39; with 4 GPU mappings
+INFO [0002] Successfully updated server 'hgx-pod00-su0-h00' with 4 GPU mappings
+INFO [0003] Successfully updated server 'hgx-pod00-su0-h01' with 4 GPU mappings
+INFO [0004] Successfully updated server 'hgx-pod00-su0-h02' with 4 GPU mappings
 &lt;output truncated for brevity&gt;
 </pre></div>
 </div>
@@ -1613,36 +1613,36 @@ INFO [0004] Successfully updated server &#39;hgx-pod00-su0-h02&#39; with 4 GPU m
 <span class="c1"># Usage: ./nmx-get-partitions.sh [gateway_id]</span>
 
 <span class="c1"># Configuration</span>
-<span class="nv">GATEWAY_ID</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">gateway_id</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nv">NMX_HOST</span><span class="o">=</span><span class="s2">&quot;nmxc-01.acme.com:8601&quot;</span>
-<span class="nv">CERT_PATH</span><span class="o">=</span><span class="s2">&quot;/home/ubuntu/netris-nvlink-agent/client.crt&quot;</span>
-<span class="nv">KEY_PATH</span><span class="o">=</span><span class="s2">&quot;/home/ubuntu/netris-nvlink-agent/client.key&quot;</span>
-<span class="nv">CACERT_PATH</span><span class="o">=</span><span class="s2">&quot;/home/ubuntu/netris-nvlink-agent/rootCA.crt&quot;</span>
+<span class="nv">GATEWAY_ID</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">gateway_id</span><span class="si">}</span><span class="s2">"</span>
+<span class="nv">NMX_HOST</span><span class="o">=</span><span class="s2">"nmxc-01.acme.com:8601"</span>
+<span class="nv">CERT_PATH</span><span class="o">=</span><span class="s2">"/home/ubuntu/netris-nvlink-agent/client.crt"</span>
+<span class="nv">KEY_PATH</span><span class="o">=</span><span class="s2">"/home/ubuntu/netris-nvlink-agent/client.key"</span>
+<span class="nv">CACERT_PATH</span><span class="o">=</span><span class="s2">"/home/ubuntu/netris-nvlink-agent/rootCA.crt"</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== NMX-C Partition Information ===&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Gateway ID: </span><span class="nv">$GATEWAY_ID</span><span class="s2">&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Host: </span><span class="nv">$NMX_HOST</span><span class="s2">&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=====================================&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"=== NMX-C Partition Information ==="</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Gateway ID: </span><span class="nv">$GATEWAY_ID</span><span class="s2">"</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Host: </span><span class="nv">$NMX_HOST</span><span class="s2">"</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"====================================="</span>
 <span class="nb">echo</span>
 
 <span class="c1"># Get partition info from NMX-C</span>
-grpcurl<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;{\&quot;gatewayId\&quot;: \&quot;</span><span class="nv">$GATEWAY_ID</span><span class="s2">\&quot;}&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-cert<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CERT_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-key<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$KEY_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-cacert<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CACERT_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="s2">&quot;</span><span class="nv">$NMX_HOST</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+grpcurl<span class="w"> </span>-d<span class="w"> </span><span class="s2">"{\"gatewayId\": \"</span><span class="nv">$GATEWAY_ID</span><span class="s2">\"}"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-cert<span class="w"> </span><span class="s2">"</span><span class="nv">$CERT_PATH</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-key<span class="w"> </span><span class="s2">"</span><span class="nv">$KEY_PATH</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-cacert<span class="w"> </span><span class="s2">"</span><span class="nv">$CACERT_PATH</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"</span><span class="nv">$NMX_HOST</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>nmx_c.NMX_Controller.GetPartitionInfoList<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;</span>
+jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">'</span>
 <span class="s1">  .partitionInfoList[] |</span>
-<span class="s1">  &quot;Partition ID: \(.partitionId.partitionId)&quot;,</span>
-<span class="s1">  &quot;Name: \(.name // &quot;N/A&quot;)&quot;,</span>
-<span class="s1">  &quot;Number of GPUs: \(.numGpus // &quot;N/A&quot;)&quot;,</span>
-<span class="s1">  &quot;GPU UIDs:&quot;,</span>
-<span class="s1">  (if .gpuUidList then (.gpuUidList[] | &quot;  - \(.)&quot;) else &quot;  - None&quot; end),</span>
-<span class="s1">  &quot;Health: \(.health // &quot;N/A&quot;)&quot;,</span>
-<span class="s1">  &quot;Type: \(.partitionType // &quot;N/A&quot;)&quot;,</span>
-<span class="s1">  &quot;----------------------------------------&quot;</span>
-<span class="s1">&#39;</span>
+<span class="s1">  "Partition ID: \(.partitionId.partitionId)",</span>
+<span class="s1">  "Name: \(.name // "N/A")",</span>
+<span class="s1">  "Number of GPUs: \(.numGpus // "N/A")",</span>
+<span class="s1">  "GPU UIDs:",</span>
+<span class="s1">  (if .gpuUidList then (.gpuUidList[] | "  - \(.)") else "  - None" end),</span>
+<span class="s1">  "Health: \(.health // "N/A")",</span>
+<span class="s1">  "Type: \(.partitionType // "N/A")",</span>
+<span class="s1">  "----------------------------------------"</span>
+<span class="s1">'</span>
 </pre></div>
 </div>
 <p>Below are a few examples of running this verification script.</p>
