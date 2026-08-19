@@ -13,7 +13,7 @@ Features
 --------
 .. New capabilities visible to customers. One line each; optional 1–2 lines of context.
 
-- **BlueField-3 DPU.** You can now use Netris to orchestrate BlueFiled-3 DPUs as part of your North-South network fabric. The DPU must be in DPU Zero-Turst mode and reachable from the Netris Controller.
+- **BlueField-3 DPU.** You can now use Netris to orchestrate BlueField-3 DPUs as part of your North-South network fabric. The DPU must be in DPU Zero-Trust mode and reachable from the Netris Controller.
 
 Bug fixes
 ---------
