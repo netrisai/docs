@@ -888,6 +888,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.15.0.html">Netris 4.15.0 Release Notes (Aug/18/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#what-s-new-in-netris-version">What’s new in Netris 4.15.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.14.0.html">Netris 4.14.0 Release Notes (Jul/31/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#what-s-new-in-netris-version">What’s new in Netris 4.14.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#features">Features</a></li>
@@ -1161,7 +1170,7 @@
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add default via &lt;gateway of the management network&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">echo &quot;nameserver &lt;DNS server address&gt;&quot; &gt; /etc/resolv.conf</span>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">echo "nameserver &lt;DNS server address&gt;" &gt; /etc/resolv.conf</span>
 </pre></div>
 </div>
 <p>The Cumulus image should be available on a web server to which the switch has access through the local network or the Internet.</p>
@@ -1192,7 +1201,7 @@
 <span class="go">source /etc/network/interfaces.d/*</span>
 </pre></div>
 </div>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">echo &quot;nameserver &lt;dns server&gt;&quot; | sudo tee /etc/resolv.conf</span>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">echo "nameserver &lt;dns server&gt;" | sudo tee /etc/resolv.conf</span>
 </pre></div>
 </div>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">sudo ifreload -a</span>

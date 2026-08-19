@@ -889,6 +889,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.15.0.html">Netris 4.15.0 Release Notes (Aug/18/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#what-s-new-in-netris-version">What’s new in Netris 4.15.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.14.0.html">Netris 4.14.0 Release Notes (Jul/31/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#what-s-new-in-netris-version">What’s new in Netris 4.14.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.14.0.html#features">Features</a></li>
@@ -1184,31 +1193,31 @@ iface.eth4 = storage
 </ul>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;postfix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;East-West&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l3vpn&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;vlan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;untagged&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;vlanID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;serverNics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="s2">&quot;eth1&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth2&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth3&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth4&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth5&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth6&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth7&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth8&quot;</span>
+<span class="w">        </span><span class="nt">"postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"East-West"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"l3vpn"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"vlan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"untagged"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"vlanID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auto"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"serverNics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">"eth1"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth2"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth3"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth4"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth5"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth6"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth7"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth8"</span>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;postfix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;North-South-in-band-and-storage&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l2vpn&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;vlan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;untagged&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;vlanID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;serverNics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="s2">&quot;eth9&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;eth10&quot;</span>
+<span class="w">        </span><span class="nt">"postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North-South-in-band-and-storage"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"l2vpn"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"vlan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"untagged"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"vlanID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auto"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"serverNics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">"eth9"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"eth10"</span>
 <span class="w">        </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;ipv4Gateway&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.7.254/21&quot;</span>
+<span class="w">        </span><span class="nt">"ipv4Gateway"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.7.254/21"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
 </pre></div>

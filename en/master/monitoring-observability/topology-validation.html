@@ -888,6 +888,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.15.0.html">Netris 4.15.0 Release Notes (Aug/18/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#what-s-new-in-netris-version">What’s new in Netris 4.15.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../release-notes/4.14.0.html">Netris 4.14.0 Release Notes (Jul/31/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#what-s-new-in-netris-version">What’s new in Netris 4.14.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#features">Features</a></li>
@@ -1157,21 +1166,21 @@
 <p><strong>How to define interface mappings?</strong></p>
 <p>The JSON snippet below should be included in every server’s custom field. Commonly it’s done through Terraform when initializing/creating servers in the Inventory.</p>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
-<span class="go"> &quot;topology-validation&quot;: {</span>
-<span class="go">   &quot;hostname&quot;: &quot;hgx-pod00-su0-h00&quot;,</span>
-<span class="go">   &quot;hostname-alias&quot;: [&quot;abc&quot;, &quot;system-default&quot;],</span>
-<span class="go">   &quot;ignore-check-if-hostname&quot;: [&quot;xyz&quot;, &quot;ignore-me-hostname&quot;],</span>
-<span class="go">   &quot;eth1&quot;: &quot;enp10s0&quot;,</span>
-<span class="go">   &quot;eth2&quot;: [&quot;enp456&quot;, &quot;enp567&quot;, &quot;enp212&quot;],</span>
-<span class="go">   &quot;eth3&quot;: &quot;enp47s0&quot;,</span>
-<span class="go">   &quot;eth4&quot;: &quot;enp1s0&quot;,</span>
-<span class="go">   &quot;eth5&quot;: &quot;enp17s0&quot;,</span>
-<span class="go">   &quot;eth6&quot;: &quot;enp22s0&quot;,</span>
-<span class="go">   &quot;eth7&quot;: &quot;enp2s0&quot;,</span>
-<span class="go">   &quot;eth8&quot;: &quot;enp0s0&quot;,</span>
-<span class="go">   &quot;eth9&quot;: &quot;enp99s0&quot;,</span>
-<span class="go">   &quot;eth10&quot;: &quot;enp8s0&quot;,</span>
-<span class="go">   &quot;eth11&quot;: &quot;enp9s0&quot;</span>
+<span class="go"> "topology-validation": {</span>
+<span class="go">   "hostname": "hgx-pod00-su0-h00",</span>
+<span class="go">   "hostname-alias": ["abc", "system-default"],</span>
+<span class="go">   "ignore-check-if-hostname": ["xyz", "ignore-me-hostname"],</span>
+<span class="go">   "eth1": "enp10s0",</span>
+<span class="go">   "eth2": ["enp456", "enp567", "enp212"],</span>
+<span class="go">   "eth3": "enp47s0",</span>
+<span class="go">   "eth4": "enp1s0",</span>
+<span class="go">   "eth5": "enp17s0",</span>
+<span class="go">   "eth6": "enp22s0",</span>
+<span class="go">   "eth7": "enp2s0",</span>
+<span class="go">   "eth8": "enp0s0",</span>
+<span class="go">   "eth9": "enp99s0",</span>
+<span class="go">   "eth10": "enp8s0",</span>
+<span class="go">   "eth11": "enp9s0"</span>
 <span class="go"> }</span>
 <span class="go">}</span>
 </pre></div>

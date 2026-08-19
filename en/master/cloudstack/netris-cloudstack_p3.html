@@ -889,6 +889,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.15.0.html">Netris 4.15.0 Release Notes (Aug/18/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#what-s-new-in-netris-version">What’s new in Netris 4.15.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.15.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../release-notes/4.14.0.html">Netris 4.14.0 Release Notes (Jul/31/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#what-s-new-in-netris-version">What’s new in Netris 4.14.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.14.0.html#features">Features</a></li>
@@ -1289,7 +1298,7 @@ ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span
 </pre></div>
 </div>
 <p>To verify, run:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>link<span class="w"> </span>show<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;state UP&#39;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>link<span class="w"> </span>show<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'state UP'</span>
 </pre></div>
 </div>
 <p>Ensure all NICs are in the UP state before proceeding.</p>
@@ -1320,8 +1329,8 @@ Follow the <strong>pre-installation steps</strong> below to temporarily configur
 </div>
 </li>
 <li><p><strong>Set DNS resolvers</strong> to enable domain name resolution:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;nameserver 1.1.1.1&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/resolv.conf
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;nameserver 8.8.8.8&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/resolv.conf
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">"nameserver 1.1.1.1"</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/resolv.conf
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"nameserver 8.8.8.8"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/resolv.conf
 </pre></div>
 </div>
 </li>

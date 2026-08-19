@@ -139,7 +139,7 @@ There are three main categories of healthchecks in Netris:
      - Switch loopbacks reachability
      -
        - OK - all loopbacks are learned from other switches
-       - CRITICAL - not all all loopbacks are learned from other switches
+       - CRITICAL - not all loopbacks are learned from other switches
      - 
        - All loopback routes present in routing table
        - Missing loopback routes: Host `ns-leaf-0` - 10.2.0.1 is not reachable
