@@ -586,7 +586,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#ufm-configuration-requirements">UFM Configuration Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../netris-ufm-integration.html#upgrading-the-ufm-integration">Upgrading the UFM Integration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../netris-ufm-integration.html#multiple-ufm-instances">Multiple UFM Instances</a></li>
 </ul>
 </li>
@@ -876,8 +877,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom-configuration-snippets.html">Custom Configuration Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../custom-configuration-snippets.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-configuration-snippets.html#arista-eos">Arista EOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-configuration-snippets.html#nvidia-cumulus-linux-nvue">NVIDIA Cumulus Linux (NVUE)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1176,9 +1181,11 @@
 <li><p>Resolved an issue where entering an invalid value in the V-Net VLAN ID field did not display a validation error message.</p></li>
 <li><p>Resolved an issue on Arista platforms where changing the ACL Default Policy from Permit to Deny did not apply the corresponding access-lists to switch interfaces, resulting in all IPv4 and IPv6 traffic being allowed regardless of the configured policy.</p></li>
 <li><p>Resolved an issue on Arista platforms where IPv6 ACL deny rules did not block traffic between hosts in different VPCs. The agent was generating access-list entries using the generic <code class="docutils literal notranslate"><span class="pre">ipv6</span></code> keyword instead of the specific protocol keyword (e.g., <code class="docutils literal notranslate"><span class="pre">icmpv6</span></code>, <code class="docutils literal notranslate"><span class="pre">tcp</span></code>), causing deny policies to be ineffective for IPv6 traffic.</p></li>
-<li><p>Resolved an issue where monitoring data on the Dashboard would occasionally disappear intermittently.</p></li>
+<li><p>Resolved an issue where monitoring data on the Dashboard would intermittently disappear.</p></li>
 <li><p>Resolved an issue where BGP sessions were established and healthy on the switch, but the controller’s <code class="docutils literal notranslate"><span class="pre">check_bgp</span></code> monitor incorrectly reported the state as “unknown” for affected switches.</p></li>
 <li><p>Resolved an issue where the RAM utilization graph on the Dashboard displayed incorrect values that did not match the <code class="docutils literal notranslate"><span class="pre">check_memory</span></code> monitor.</p></li>
+<li><p>Fixed custom static default routes configured in the system VPC on a SoftGate not being advertised into other VPCs. Applies to IPv4 and IPv6.</p></li>
+<li><p>Fixed the Default Originate option on a SoftGate’s external BGP neighbors not advertising a default route to the peer.</p></li>
 </ul>
 </section>
 <section id="security-fixes">

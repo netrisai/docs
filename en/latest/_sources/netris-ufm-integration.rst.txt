@@ -32,6 +32,8 @@ When you define a :doc:`server-cluster </server-cluster>` in Netris, the plugin 
 - Creates and manages appropriate PKeys in UFM
 - Optionally sets up SHARP reservations for high-performance operations
 
+Netris interacts with UFM exclusively through UFM's REST API, where it creates and maintains PKeys, GUID membership including the ``index0`` attribute, and SHARP reservations.
+
 .. image:: images/ufm-basic-function.svg
    :align: center
    :class: with-shadow
@@ -111,10 +113,26 @@ The Netris-UFM plugin manifest ships inside the same air-gapped installation tar
 
       kubectl apply -f netris-controller-ha/manifests/netris-controller/ufm.yaml
 
+Upgrading the UFM Integration
+===============================
+
+When you upgrade an existing Netris deployment, Netris recommends setting the ``netris-controller-nvidia-ufm-agent`` replicas to 0, which effectively disables the UFM integration, then following the normal Netris upgrade procedure (see :doc:`installation/controller-k3s-air-gap-ha`).
+
+To set the replicas to 0:
+
+.. code-block:: bash
+
+   kubectl -nnetris-controller scale deploy netris-controller-nvidia-ufm-agent --replicas=0
+
+To upgrade the plugin, simply apply the updated ``ufm.yaml`` manifest.
+
+.. tip::
+   Remember to populate the updated ``ufm.yaml`` manifest file with the current netris credentials as shown in the installation section above.
+
 Multiple UFM Instances
 -----------------------
 
-If a customer's InfiniBand environment has more than one fabric — each with its own UFM (for example, separate compute and storage fabrics) — deploy a separate Netris-UFM agent per UFM:
+If a customer's InfiniBand environment has more than one fabric — each with its own UFM (for example, separate compute and storage fabrics) — deploy a separate Netris-UFM agent per UFM. A highly available UFM pair presents a single address to Netris and is served by one agent.
 
 1. Copy ``ufm.yaml`` to a new file name.
 2. In the copy, give the agent a unique Kubernetes resource name (``metadata.name``), ``UFM_ADDR``, and a unique ``UFM_ID``, and update the other UFM/Netris connection values as needed.
@@ -184,7 +202,7 @@ NVIDIA UFM Configuration
      - Whether to verify SSL certificates when connecting to UFM
      - true or false
    * - UFM_ID
-     - Unique identifier for this UFM instance. This will be referenced from the :doc:`Server Cluster Template </server-cluster>`
+     - Unique identifier for this UFM instance, referenced from the ``ufm`` field in the :doc:`Server Cluster Template </server-cluster>`. The value is operator-chosen and arbitrary; it must match exactly between this agent and the template. An agent acts on templates whose ``ufm`` value matches its own ``UFM_ID``.
      - ufm-lab
    * - UFM_PKEY_RANGE
      - Range of PKey IDs that can be allocated to clusters, in hexadecimal format

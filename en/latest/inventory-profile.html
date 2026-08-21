@@ -587,7 +587,8 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#ufm-configuration-requirements">UFM Configuration Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#upgrading-the-ufm-integration">Upgrading the UFM Integration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#multiple-ufm-instances">Multiple UFM Instances</a></li>
 </ul>
 </li>
@@ -877,8 +878,12 @@
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom-configuration-snippets.html">Custom Configuration Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#arista-eos">Arista EOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#nvidia-cumulus-linux-nvue">NVIDIA Cumulus Linux (NVUE)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1288,7 +1293,7 @@
 <li><p><strong>HWMP</strong> (default = unchecked) Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture.</p></li>
 <li><p><strong>Reference Architecture</strong> (default = None)  This setting tells Netris which reference architecture is being deployed on the subject fabric, so Netris can apply the appropriate prefix summarization in the L3VPN overlay.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="24eed777-5b64-46e5-8c6d-a7b6f6a79783" name="24eed777-5b64-46e5-8c6d-a7b6f6a79783" type="checkbox"><label class="sphinx_collapse__label" for="24eed777-5b64-46e5-8c6d-a7b6f6a79783"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="8e60b110-4635-45be-8f98-8cbc42c384ad" name="8e60b110-4635-45be-8f98-8cbc42c384ad" type="checkbox"><label class="sphinx_collapse__label" for="8e60b110-4635-45be-8f98-8cbc42c384ad"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Reference Architecture</p></th>
@@ -1311,7 +1316,7 @@
 <p>GB200 SPX 3-TIER</p>
 </td>
 <td><p>/25</p></td>
-<td><p>/46</p></td>
+<td><p>/56</p></td>
 </tr>
 <tr class="row-even"><td><p>B300/GB300 SPX 2-TIER/3-TIER, SINGLE/DUAL/QUAD-PLANE (all combinations)</p></td>
 <td><p>/24</p></td>

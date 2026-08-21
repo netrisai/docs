@@ -169,7 +169,7 @@ Additional optimizations are available for East-West GPU interconnect fabrics.
             
             GB200 SPX 3-TIER
           - /25
-          - /46
+          - /56
         * - B300/GB300 SPX 2-TIER/3-TIER, SINGLE/DUAL/QUAD-PLANE (all combinations)
           - /24
           - /56
