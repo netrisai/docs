@@ -83,7 +83,7 @@ The Controller's reservation set persists independently of most V-Net edits:
 
 DHCP Relay
 ==========
-Netris supports using an external DHCP server by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC. Both DHCPv4 and DHCPv6 are supported.
+Netris supports using an external DHCP server by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC. Both DHCPv4 and DHCPv6 are supported. DHCPv6 Relay is currently supported on Cumulus and Arista platforms.
 
 To configure DHCP Relay in a V-Net:
  - Specify the VPC where the DHCP server is located.
