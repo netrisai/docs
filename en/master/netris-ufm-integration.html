@@ -587,7 +587,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ufm-configuration-requirements">UFM Configuration Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrading-the-ufm-integration">Upgrading the UFM Integration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#multiple-ufm-instances">Multiple UFM Instances</a></li>
 </ul>
 </li>
@@ -877,8 +878,12 @@
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="nvue-configuration-snippets.html">Custom NVUE Configuration Snippets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom-configuration-snippets.html">Custom Configuration Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#arista-eos">Arista EOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#nvidia-cumulus-linux-nvue">NVIDIA Cumulus Linux (NVUE)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1172,6 +1177,7 @@
 <li><p>Creates and manages appropriate PKeys in UFM</p></li>
 <li><p>Optionally sets up SHARP reservations for high-performance operations</p></li>
 </ul>
+<p>Netris interacts with UFM exclusively through UFM’s REST API, where it creates and maintains PKeys, GUID membership including the <code class="docutils literal notranslate"><span class="pre">index0</span></code> attribute, and SHARP reservations.</p>
 <img alt="_images/ufm-basic-function.svg" class="with-shadow align-center" src="_images/ufm-basic-function.svg" />
 <p style="text-align: center;"><em>Figure: Netris-UFM Integration Workflow</em></p></section>
 <section id="prerequisites">
@@ -1236,9 +1242,22 @@
 </div>
 </li>
 </ol>
+</section>
+<section id="upgrading-the-ufm-integration">
+<h2>Upgrading the UFM Integration<a class="headerlink" href="#upgrading-the-ufm-integration" title="Link to this heading"></a></h2>
+<p>When you upgrade an existing Netris deployment, Netris recommends setting the <code class="docutils literal notranslate"><span class="pre">netris-controller-nvidia-ufm-agent</span></code> replicas to 0, which effectively disables the UFM integration, then following the normal Netris upgrade procedure (see <a class="reference internal" href="installation/controller-k3s-air-gap-ha.html"><span class="doc">Installing HA Netris Controller in Air-Gapped Environments</span></a>).</p>
+<p>To set the replicas to 0:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>scale<span class="w"> </span>deploy<span class="w"> </span>netris-controller-nvidia-ufm-agent<span class="w"> </span>--replicas<span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<p>To upgrade the plugin, simply apply the updated <code class="docutils literal notranslate"><span class="pre">ufm.yaml</span></code> manifest.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Remember to populate the updated <code class="docutils literal notranslate"><span class="pre">ufm.yaml</span></code> manifest file with the current netris credentials as shown in the installation section above.</p>
+</div>
 <section id="multiple-ufm-instances">
 <h3>Multiple UFM Instances<a class="headerlink" href="#multiple-ufm-instances" title="Link to this heading"></a></h3>
-<p>If a customer’s InfiniBand environment has more than one fabric — each with its own UFM (for example, separate compute and storage fabrics) — deploy a separate Netris-UFM agent per UFM:</p>
+<p>If a customer’s InfiniBand environment has more than one fabric — each with its own UFM (for example, separate compute and storage fabrics) — deploy a separate Netris-UFM agent per UFM. A highly available UFM pair presents a single address to Netris and is served by one agent.</p>
 <ol class="arabic simple">
 <li><p>Copy <code class="docutils literal notranslate"><span class="pre">ufm.yaml</span></code> to a new file name.</p></li>
 <li><p>In the copy, give the agent a unique Kubernetes resource name (<code class="docutils literal notranslate"><span class="pre">metadata.name</span></code>), <code class="docutils literal notranslate"><span class="pre">UFM_ADDR</span></code>, and a unique <code class="docutils literal notranslate"><span class="pre">UFM_ID</span></code>, and update the other UFM/Netris connection values as needed.</p></li>
@@ -1332,7 +1351,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-
 <td><p>true or false</p></td>
 </tr>
 <tr class="row-even"><td><p>UFM_ID</p></td>
-<td><p>Unique identifier for this UFM instance. This will be referenced from the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster Template</span></a></p></td>
+<td><p>Unique identifier for this UFM instance, referenced from the <code class="docutils literal notranslate"><span class="pre">ufm</span></code> field in the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster Template</span></a>. The value is operator-chosen and arbitrary; it must match exactly between this agent and the template. An agent acts on templates whose <code class="docutils literal notranslate"><span class="pre">ufm</span></code> value matches its own <code class="docutils literal notranslate"><span class="pre">UFM_ID</span></code>.</p></td>
 <td><p>ufm-lab</p></td>
 </tr>
 <tr class="row-odd"><td><p>UFM_PKEY_RANGE</p></td>

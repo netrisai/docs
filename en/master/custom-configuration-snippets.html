@@ -64,7 +64,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Custom NVUE Configuration Snippets" name="description" />
+<meta content="Custom Configuration Snippets" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -76,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom NVUE Configuration Snippets &mdash; Netris Documentation</title>
+  <title>Custom Configuration Snippets &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -98,7 +98,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Custom Arista Configuration Snippets" href="arista-configuration-snippets.html" />
+    <link rel="next" title="Labels" href="labels.html" />
     <link rel="prev" title="Accounts" href="accounts.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
@@ -587,7 +587,8 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#ufm-configuration-requirements">UFM Configuration Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#upgrading-the-ufm-integration">Upgrading the UFM Integration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#multiple-ufm-instances">Multiple UFM Instances</a></li>
 </ul>
 </li>
@@ -877,8 +878,12 @@
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom NVUE Configuration Snippets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="arista-configuration-snippets.html">Custom Arista Configuration Snippets</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Configuration Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arista-eos">Arista EOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-cumulus-linux-nvue">NVIDIA Cumulus Linux (NVUE)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
@@ -1131,36 +1136,104 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Custom NVUE Configuration Snippets</li>
+      <li class="breadcrumb-item active">Custom Configuration Snippets</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/nvue-configuration-snippets.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/custom-configuration-snippets.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
         <a href="accounts.html" class="btn btn-neutral float-left" title="Accounts" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="arista-configuration-snippets.html" class="btn btn-neutral float-right" title="Custom Arista Configuration Snippets" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="labels.html" class="btn btn-neutral float-right" title="Labels" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="custom-nvue-configuration-snippets">
-<h1>Custom NVUE Configuration Snippets<a class="headerlink" href="#custom-nvue-configuration-snippets" title="Link to this heading"></a></h1>
-<p>Netris allows administrators to deploy custom configuration to switches running Cumulus Linux using NVUE configuration snippets. These snippets are YAML files that define specific configurations to be applied to the network devices.</p>
-<p>Example:</p>
+  <section id="custom-configuration-snippets">
+<h1>Custom Configuration Snippets<a class="headerlink" href="#custom-configuration-snippets" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#arista-eos" id="id2">Arista EOS</a></p></li>
+<li><p><a class="reference internal" href="#nvidia-cumulus-linux-nvue" id="id3">NVIDIA Cumulus Linux (NVUE)</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Netris lets administrators deploy custom switch configurations using configuration snippets.</p>
+<p>Snippets are plain-text configuration fragments that merge into the configuration the Netris agent generates before applying it to the switch.</p>
+<p>Configuration snippets are supported on switches running Arista EOS and NVIDIA Cumulus Linux (NVUE).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Snippets become part of the enforced configuration.</strong> The Netris agent treats the combined configuration — the agent-generated configuration plus your snippets — as the switch’s desired state. Each agent run reconciles the switch against this combined configuration, so snippet-provided settings are maintained on an ongoing basis, the same way agent-managed settings are.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Test snippets before applying them broadly.</strong> Snippet content is appended after the agent-generated configuration and, in most cases, takes precedence for the specific settings it defines. The exact outcome depends on how the switch resolves concurrent configuration for those commands — some settings merge, others override — so behavior can vary by platform and by the specific configuration involved.</p>
+<p>Include every dependency your snippet needs, and validate the combined configuration in a low-impact environment before rolling it out more broadly.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Because snippets live only on the switch and aren’t tracked by the controller, plan to reapply your snippet files whenever you reprovision a switch.</p>
+</div>
+</section>
+<section id="arista-eos">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Arista EOS</a><a class="headerlink" href="#arista-eos" title="Link to this heading"></a></h2>
+<p>The Netris agent creates a dedicated directory on the switch for snippets:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/mnt/flash/netris-snippets
+</pre></div>
+</div>
+<p><strong>Selection rules:</strong></p>
 <ol class="arabic simple">
-<li><p>Stage desired configuration using NVUE commands</p></li>
+<li><p>Only files whose name contains <code class="docutils literal notranslate"><span class="pre">.conf</span></code> are included. Anything else in the directory — other files, subdirectories, sockets, devices, or editor leftovers like <code class="docutils literal notranslate"><span class="pre">foo.conf~</span></code> — is ignored. Selection is by filename only.</p></li>
+<li><p>Files are read in filename sort order, so use a naming convention — such as a numeric prefix — to control merge order of multiple snippet files: <code class="docutils literal notranslate"><span class="pre">00-snippet.conf</span></code>, <code class="docutils literal notranslate"><span class="pre">01-snippet.conf</span></code>, etc.</p></li>
+<li><p>Snippet contents are appended to the end of the generated <code class="docutils literal notranslate"><span class="pre">new_config.conf</span></code>, before the trailing <code class="docutils literal notranslate"><span class="pre">END</span></code>, in that sort order — after the agent-generated configuration.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>state<span class="w"> </span>enabled
-nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>listening-address<span class="w"> </span>all<span class="w"> </span>vrf<span class="w"> </span>mgmt
-nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>listening-address<span class="w"> </span>all-v6<span class="w"> </span>vrf<span class="w"> </span>mgmt
-nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>system<span class="w"> </span>snmp-server<span class="w"> </span>readonly-community<span class="w"> </span>clear_text<span class="w"> </span>access<span class="w"> </span>any
+<p><strong>Example:</strong></p>
+<ol class="arabic simple">
+<li><p>Determine the desired EOS configuration. For example,</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>management api http-commands
+   vrf default
+      no shutdown
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>Retreive the YAML version of the configuration diff</p></li>
+<li><p>Save it as a file under <code class="docutils literal notranslate"><span class="pre">/mnt/flash/netris-snippets/</span></code> using the numeric-prefix convention — for example, <code class="docutils literal notranslate"><span class="pre">/mnt/flash/netris-snippets/00-api-http-commands.conf</span></code>.</p></li>
+<li><p>On the next agent run, this fragment is appended to the end of <code class="docutils literal notranslate"><span class="pre">new_config.conf</span></code> (before <code class="docutils literal notranslate"><span class="pre">END</span></code>) and applied to the switch along with the agent-generated configuration.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span>config<span class="w"> </span>diff
+</section>
+<section id="nvidia-cumulus-linux-nvue">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">NVIDIA Cumulus Linux (NVUE)</a><a class="headerlink" href="#nvidia-cumulus-linux-nvue" title="Link to this heading"></a></h2>
+<p>The Netris agent creates and manages a directory on the switch that holds the switch’s full configuration, generated locally based on the intent defined on the controller:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/opt/netris/etc/nvue/
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This directory holds the agent’s own configuration files alongside your snippet files — add your snippets into this same directory.</p>
+</div>
+<p><strong>Selection rules:</strong></p>
+<ol class="arabic simple">
+<li><p>Only files with a <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> extension are considered. Anything else in the directory is ignored.</p></li>
+<li><p>Files are read in filename sort order, so use a naming convention — such as a numeric prefix — to control merge order among multiple snippet files: <code class="docutils literal notranslate"><span class="pre">00-snippet.yaml</span></code>, <code class="docutils literal notranslate"><span class="pre">01-snippet.yaml</span></code>, etc.</p></li>
+<li><p>Snippet contents are merged into the agent-generated configuration in that sort order.</p></li>
+</ol>
+<p><strong>Example:</strong></p>
+<ol class="arabic simple">
+<li><p>Stage the desired configuration using NVUE commands:</p></li>
+</ol>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">nv set system snmp-server state enabled</span>
+<span class="go">nv set system snmp-server listening-address all vrf mgmt</span>
+<span class="go">nv set system snmp-server listening-address all-v6 vrf mgmt</span>
+<span class="go">nv set system snmp-server readonly-community clear_text access any</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Retrieve the YAML version of the configuration diff:</p></li>
+</ol>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">nv config diff</span>
 </pre></div>
 </div>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">set</span><span class="p">:</span>
@@ -1179,21 +1252,20 @@ nv<span class="w"> </span><span class="nb">set</span><span class="w"> </span>sys
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li><p>Create a file under <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/nvue/</span></code> with the YAML content you retrieved in step 2. For example, create the file <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/nvue/50-snmp.yaml</span></code> with the content above.</p></li>
+<li><p>Create a file under <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/nvue/</span></code> with the YAML content retrieved in step 2, using the numeric-prefix convention. For example, create the file <code class="docutils literal notranslate"><span class="pre">/opt/netris/etc/nvue/50-snmp.yaml</span></code> with the content above.</p></li>
+<li><p>Check that the configuration in the file is correct:</p></li>
 </ol>
-<br /><ol class="arabic simple" start="4">
-<li><p>Check if the configuration on the file is correct:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span>config<span class="w"> </span>patch<span class="w"> </span>/opt/netris/etc/nvue/&lt;file&gt;
-nv<span class="w"> </span>config<span class="w"> </span>diff
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">nv config patch /opt/netris/etc/nvue/&lt;file&gt;</span>
+<span class="go">nv config diff</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
-<li><p>Check for any configuration errors by applying manually</p></li>
+<li><p>Check for any configuration errors by applying it manually:</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nv<span class="w"> </span>config<span class="w"> </span>apply
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">nv config apply</span>
 </pre></div>
 </div>
+</section>
 </section>
 
 
@@ -1201,7 +1273,7 @@ nv<span class="w"> </span>config<span class="w"> </span>diff
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="accounts.html" class="btn btn-neutral float-left" title="Accounts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="arista-configuration-snippets.html" class="btn btn-neutral float-right" title="Custom Arista Configuration Snippets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="labels.html" class="btn btn-neutral float-right" title="Labels" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
