@@ -304,7 +304,7 @@ Each object in the **Vnets** JSON array may include a combination of the followi
      - ❌
      - ❌
    * - `vlanID`
-     - ✅ (`auto` only)
+     - ✅ required
      - ✅ (`auto` only)
      - ❌
      - ❌
@@ -336,9 +336,14 @@ Each object in the **Vnets** JSON array may include a combination of the followi
    * - `ufm`
      - ❌
      - ❌
-     - ✅ (`auto` only)
+     - ✅ required
      - ❌
    * - `pkey`
+     - ❌
+     - ❌
+     - ✅ (`auto` only)
+     - ❌
+   * - `partition`
      - ❌
      - ❌
      - ❌

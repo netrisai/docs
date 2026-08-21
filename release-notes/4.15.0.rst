@@ -39,10 +39,10 @@ Bug fixes
 - Resolved an issue where entering an invalid value in the V-Net VLAN ID field did not display a validation error message.
 - Resolved an issue on Arista platforms where changing the ACL Default Policy from Permit to Deny did not apply the corresponding access-lists to switch interfaces, resulting in all IPv4 and IPv6 traffic being allowed regardless of the configured policy.
 - Resolved an issue on Arista platforms where IPv6 ACL deny rules did not block traffic between hosts in different VPCs. The agent was generating access-list entries using the generic ``ipv6`` keyword instead of the specific protocol keyword (e.g., ``icmpv6``, ``tcp``), causing deny policies to be ineffective for IPv6 traffic.
-- Resolved an issue where monitoring data on the Dashboard would occasionally disappear intermittently.
+- Resolved an issue where monitoring data on the Dashboard would intermittently disappear.
 - Resolved an issue where BGP sessions were established and healthy on the switch, but the controller's ``check_bgp`` monitor incorrectly reported the state as "unknown" for affected switches.
 - Resolved an issue where the RAM utilization graph on the Dashboard displayed incorrect values that did not match the ``check_memory`` monitor.
-- Fixed custom static routes configured in the system VPC on a SoftGate not being advertised into the fabric unless the prefix matched a public subnet defined in IPAM for that site — including the default route. Applies to IPv4 and IPv6.
+- Fixed custom static default routes configured in the system VPC on a SoftGate not being advertised into other VPCs. Applies to IPv4 and IPv6.
 - Fixed the Default Originate option on a SoftGate's external BGP neighbors not advertising a default route to the peer.
 
 Security fixes
