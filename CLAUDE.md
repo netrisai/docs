@@ -11,3 +11,7 @@ Before writing or editing any customer-facing content in this repo (product docs
 - Don't invent claims, customer names, or statistics not present in your reference material.
 - This repo is technical documentation, not marketing collateral — what matters here is terminology consistency and factual accuracy, not marketing tone.
 - Treat any reference material you're given as potentially sensitive. Don't copy it verbatim into this public repo, and don't reveal its name, location, or internal structure here — link to it generically, the way this file does.
+
+## Editing user docs = editing Confluence, not this repo
+
+When Andrey (or anyone) asks to "update the docs" / "update the Inventory Profiles page" / similar for customer-facing content, that means editing the Confluence page in the NETRIS space — never editing the `.rst` files in this repo directly. Propose changes as a diff against the current Confluence page content and wait for explicit approval before writing (see confluence-pages skill and the Documentation Procedures page). The `.rst` files here are regenerated from Confluence via a separate, documented RST-generation process — don't touch them as part of a "update the docs" request.
