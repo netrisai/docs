@@ -39,6 +39,8 @@ Example: Port forwarding. DNAT the traffic destined to 192.0.2.130:8080 to be fo
   :widths: 25 75
   :header-rows: 1
 
+  * - Field
+    - Description
   * - Name
     - Unique name.
   * - **State**

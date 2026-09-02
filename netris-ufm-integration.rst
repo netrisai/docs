@@ -103,7 +103,7 @@ The Netris-UFM plugin manifest ships inside the same air-gapped installation tar
         UFM_LOGIN: "admin"
         UFM_PASSWORD: "123456"
         UFM_VERIFY_SSL: "false"
-        UFM_ID: "ufm-lab"
+        UFM_ID: "ufm-88"
         UFM_PKEY_RANGE: "100-7ffe"
         UFM_ENABLE_SHARP: "true"
 
@@ -168,7 +168,7 @@ Netris Controller Configuration
      - https://netris.example.com
    * - NETRIS_CONTROLLER_LOGIN
      - Username for authenticating with Netris Controller
-     - netris
+     - ufm_integration_account
    * - NETRIS_CONTROLLER_PASSWORD
      - Password for authenticating with Netris Controller
      - Password!
@@ -203,7 +203,7 @@ NVIDIA UFM Configuration
      - true or false
    * - UFM_ID
      - Unique identifier for this UFM instance, referenced from the ``ufm`` field in the :doc:`Server Cluster Template </server-cluster>`. The value is operator-chosen and arbitrary; it must match exactly between this agent and the template. An agent acts on templates whose ``ufm`` value matches its own ``UFM_ID``.
-     - ufm-lab
+     - ufm-88
    * - UFM_PKEY_RANGE
      - Range of PKey IDs that can be allocated to clusters, in hexadecimal format
      - 100-7ffe
@@ -260,7 +260,7 @@ The first step is to create servers in the Netris Controller inventory that matc
 
       <p style="text-align: center;"><em>Figure: Server Custom field showing GUIDs</em></p>
 
-``hosting_system_guid`` always corresponds to the GUID of the server's first HCA. You can cross-check this value in the UFM UI under the server's Device view, which displays one general GUID that should match. Replacing that first HCA — for example, during an RMA — changes this GUID and breaks the Netris↔UFM mapping. If a server's first HCA is replaced, re-establish the mapping manually: either rename the server to force a fresh name-based sync, or set ``hosting_system_guid`` directly to the new value.
+``hosting_system_guid`` always corresponds to the GUID of the server's first HCA. You can cross-check this value in the UFM UI under the server's Device view, which displays one general GUID that should match. See "Replacing HCAs and Servers" below for what to do when hardware is replaced or the mapping is lost.
 
 .. note::
    The server's Custom field may also show GPU UID entries. Those come from the separate :doc:`NVLink integration <netris-nvlink-integration>` and are unrelated to UFM — the Netris-UFM plugin doesn't read or write them.
@@ -282,7 +282,7 @@ Next, create a Server Cluster Template.
 
 After setting up the template, create server clusters as described in :ref:`creating-server-cluster`.
 
-3. Verification
+4. Verification
 -----------------
 
 Once the server cluster is created:
@@ -301,7 +301,7 @@ Once the server cluster is created:
    - In the UFM UI, open the PKey and confirm the ``index0`` value of each GUID matches whether that server is a dedicated or shared member
 
 
-4. Monitoring Integration Status
+5. Monitoring Integration Status
 ----------------------------------
 
 To monitor the status of the integration:
@@ -312,6 +312,18 @@ To monitor the status of the integration:
    .. code-block:: bash
 
       kubectl logs -f deployment/netris-controller-nvidia-ufm-agent -n netris-controller
+
+Replacing HCAs and Servers
+===========================
+
+- **Renamed server, no hardware change** — if a server is renamed in Netris or in UFM after the initial sync, the mapping is preserved automatically via ``hosting_system_guid``. No action needed.
+- **Non-primary HCA replacement** (any HCA other than the first) — no action needed. UFM keeps reporting the existing ``hosting_system_guid`` (inherited from the primary HCA), and the Netris-UFM agent automatically syncs the replaced HCA's GUIDs into the existing mapping.
+- **Primary HCA replacement** (the HCA ``hosting_system_guid`` is derived from) — UFM assigns the server a new ``hosting_system_guid``, so this requires manual intervention. Use one of:
+
+  - Delete the ``hosting_system_guid`` key/value from the server's Custom JSON in Netris and let the Netris-UFM agent repopulate it. Reminder: server object name in Netris must match the server name in UFM — rename either side first if they've drifted apart.
+  - Or manually set ``hosting_system_guid`` in the Custom JSON to the new value.
+
+- **Full server replacement** (1:1 swap, re-onboarded into the cluster as a new system) — the same two options as primary HCA replacement apply. As long as the replacement is onboarded under the same name it had in UFM, Netris discovers it as a new system and repopulates the HCA GUID mappings automatically; the old mapping does not cause a conflict.
 
 Functional Workflow
 =====================

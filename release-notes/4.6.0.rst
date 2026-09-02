@@ -19,7 +19,7 @@ Features
 - **Control plane verification of VTEP reachability.** Netris managed VTEPs (switches and Softgates) keep track of the reachability of other Netris VTEPs.
 - **CloudStack supported with Cumulus Linux.** CloudStack now integrates with Nvidia switch fabrics running Cumulus Linux.
 - **VPC peering is now supported in CloudStack**.
-- **Spectrum-X Deployment Guide v1.3 support** Spectrum-X Deployment Guide v1.3 is now supported.
+- **Spectrum-X Deployment Guide v1.3 support**. Spectrum-X Deployment Guide v1.3 is now supported.
 - **SNMPv2.** Netris can now configure SNMPv2 read-only access on supported switches
 - **Topology View Filtering.** Topology view now supports filtering by device name.
 - **Dell/BC-SONiC VPC peering.** VPC peering can now be established on :ref:`Dell/BC-SONiC Ethernet <overlay-network-functions>` fabrics.
@@ -33,7 +33,7 @@ Enhancements
 - **DHCP Relay** now supports inter-VPC routing on all :ref:`supported-switch-hardware`.
 - **ACLs on Arista EOS** are now available on :ref:`supported-switch-hardware`.
 - **Topology validation** added new fields in custom JSON.
-- **Added switch port health checks** Switch port healt checks now include Bit Error Rate (BER) and temperature monitoring on NVUE-supported platforms.
+- **Added switch port health checks**. Switch port healt checks now include Bit Error Rate (BER) and temperature monitoring on NVUE-supported platforms.
 - **Performance and UI improvements.**
 
   - Add Network > Links page showing all topology links.

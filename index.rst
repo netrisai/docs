@@ -42,6 +42,7 @@ You are welcome to join our community Slack_ channel to get additional support f
    switch-agent-installation
    netris-softgate-HS
    ai-netris-host-networking
+   bluefield-3-dpu-installation
 
 .. toctree::
    :maxdepth: 2
@@ -53,7 +54,7 @@ You are welcome to join our community Slack_ channel to get additional support f
    inventory-profile
    ipam
    bgp
-   switch-ports
+   network-interfaces
    lag
    maintenance-mode
    static-routing

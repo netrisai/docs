@@ -72,7 +72,7 @@ Optionally V-Net definition can also include:
   - List of collaborators (Guest tenants) who can add or remove switch ports to and from the V-Net, but not edit any other properties of the V-Net,
   - IP Address Family (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack) to specify the type of gateway IP configured on the V-Net,
   - IPv4 or IPv6 Gateway (for L2VPN V-Nets) to make the V-Net routable inside the VPC, i.e., add an SVI to the VLAN,
-  - DHCP scope and option set (for L2VPN V-Nets) or DHCP Relay configuration,
+  - For L2VPN V-Nets, DHCP scope and option set (SoftGate required), or DHCP Relay configuration,
   - Anycast MAC address (for L2VPN V-Nets), which Netris can assign for you,
   - VXLAN ID,
   - IPv6 Neighbor Discovery configuration.
@@ -157,7 +157,7 @@ Advanced V-Net Fields explained
      - Hidden when L3VPN is on. Leave blank for pure Layer-2 V-Net. Must be configured under ``Network -> IPAM`` as a subnet with purpose set to ``common``, assigned to the Owner, and available in the site where V-Net is intended to span.
    * - **IPv6 Neighbor Discovery**
      - Master switch for Netris-managed IPv6 ND. Unchecked (default): Netris does not manage IPv6 ND for this V-Net; the fabric's vendor-default behavior applies, and none of the fields below are shown. Checked: reveals **Mode** (defaults to Enabled) and the fields below. Within this group, an unchecked checkbox always means explicitly off, not "vendor default" — only a blank text field (a lifetime or interval) falls back to the vendor default.
-     - Cumulus Linux fabrics only.
+     -
    * - **Mode** (Enabled / Disabled)
      - Enables or disables active Router Advertisement (`RFC 4861 <https://datatracker.ietf.org/doc/html/rfc4861>`_) on the segment.
      - Requires IPv6 Neighbor Discovery checked. **Enabled** requires an IPv6 Gateway configured on the V-Net. **Disabled** explicitly suppresses ND regardless of the platform default and does not require a gateway; it also hides and resets Router Lifetime, Advertisement Interval, the M/O flags, Prefix Advertisement, and RDNSS below.

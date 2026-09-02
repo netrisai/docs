@@ -123,6 +123,14 @@ The above screenshot demonstrates this configuration.
 * ``10.254.96.0/24`` is the subnet for the "seed" switches (attached to the System VPC)
 * ``10.254.98.0/24`` is the subnet for all other Netris-managed switches (attached to the Management VPC)
 
+.. important::
+
+   You must set the default gateway value on the subnet. This option is visible only when the subnet purpose is set to management.
+
+   .. image:: ../images/ztp-ipam-management-default-gateway.png
+      :align: center
+      :class: with-shadow
+
 If your Netris deployment includes a dedicated subnet for the controller's North-South VIP, this subnet should also be created in the IPAM.
 
 .. tip::
@@ -288,7 +296,7 @@ For reference, here is the sequence of events that occurs when a switch is provi
 2. The ZTP DHCP server matches the DHCP request to a switch object in Netris using the source MAC address.
 3. The server assigns the correct management IP address and provides boot parameters, including the URL of the NOS image on the local repository.
 4. The switch downloads and installs the NOS image.
-5. After installation, the switch reboots into the new NOS, initiates the ZTP process, which configures the admin credentials from the inventory profile, downloads the Netris switch agent, and establishes a connection to the Netris Controller.
+5. After installation, the switch reboots into the new NOS, initiates the ZTP process, which configures the admin credentials from the inventory profile, downloads the Netris switch agent, and establishes a connection to the Netris Controller. Note that a switch make take upwards of 10-15 minutes to become provisioned depending on the switch's hardware and other factors.
 6. The switch appears as provisioned in the Netris inventory and begins receiving its intended network configuration.
 
 Troubleshooting
