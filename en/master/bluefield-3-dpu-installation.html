@@ -64,7 +64,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Kubernetes Integration" name="description" />
+<meta content="Installing BlueField-3 DPUs" name="description" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152905529-2"></script>
@@ -76,7 +76,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kubernetes Integration &mdash; Netris Documentation</title>
+  <title>Installing BlueField-3 DPUs &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -98,8 +98,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Netris-CloudStack Integration" href="cloudstack/netris-cloudstack.html" />
-    <link rel="prev" title="NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller" href="netris-nvlink-integration.html" /> 
+    <link rel="next" title="Netris Site" href="site.html" />
+    <link rel="prev" title="Netris Host Networking" href="ai-netris-host-networking.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -219,7 +219,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Installation</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation/installation.html">Controller Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html">Installing HA Netris Controller in Air-Gapped Environments</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#why-air-gapped-installation">Why Air-Gapped Installation?</a></li>
@@ -405,22 +405,22 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpu-installation.html">Installing BlueField-3 DPUs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#concepts">Concepts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#creating-the-resources">Creating the Resources</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#interfaces-physical-ifaces-yaml">1. Interfaces — <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#bfb-bfb-yaml">2. BFB — <code class="docutils literal notranslate"><span class="pre">bfb.yaml</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpuflavor-hbn-dpuflavor-yaml">3. DPUFlavor — <code class="docutils literal notranslate"><span class="pre">hbn-dpuflavor.yaml</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#doca-hbn-service-hbn-service-yaml">4. DOCA HBN service — <code class="docutils literal notranslate"><span class="pre">hbn-service.yaml</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#netris-dpu-agent-service-netris-agent-service-yaml">5. Netris DPU agent service — <code class="docutils literal notranslate"><span class="pre">netris-agent-service.yaml</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpudeployment-dpudeployment-yaml">6. DPUDeployment — <code class="docutils literal notranslate"><span class="pre">dpudeployment.yaml</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing BlueField-3 DPUs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-the-resources">Creating the Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interfaces-physical-ifaces-yaml">1. Interfaces — <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bfb-bfb-yaml">2. BFB — <code class="docutils literal notranslate"><span class="pre">bfb.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dpuflavor-hbn-dpuflavor-yaml">3. DPUFlavor — <code class="docutils literal notranslate"><span class="pre">hbn-dpuflavor.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#doca-hbn-service-hbn-service-yaml">4. DOCA HBN service — <code class="docutils literal notranslate"><span class="pre">hbn-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#netris-dpu-agent-service-netris-agent-service-yaml">5. Netris DPU agent service — <code class="docutils literal notranslate"><span class="pre">netris-agent-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dpudeployment-dpudeployment-yaml">6. DPUDeployment — <code class="docutils literal notranslate"><span class="pre">dpudeployment.yaml</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#apply-order">Apply Order</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#verify">Verify</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#apply-order">Apply Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verify">Verify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
 </ul>
@@ -597,7 +597,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Netris Integrations</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="netris-ufm-integration.html">NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#key-benefits">Key Benefits</a></li>
@@ -694,24 +694,24 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#additional-resources">Additional Resources</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Kubernetes Integration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#install-netris-operator">Install Netris Operator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#helm-chart-method">Helm Chart Method</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#regular-manifest-method">Regular Manifest Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kubernetes-integration.html">Kubernetes Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes-integration.html#install-netris-operator">Install Netris Operator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#helm-chart-method">Helm Chart Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#regular-manifest-method">Regular Manifest Method</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#using-type-loadbalancer">Using Type ‘LoadBalancer’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#l4lb-custom-resource">L4LB Custom Resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v-net-custom-resource">V-Net Custom Resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bgp-custom-resource">BGP Custom Resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#importing-existing-resources-from-netris-controller-to-kubernetes">Importing existing resources from Netris Controller to Kubernetes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reclaim-policy">Reclaim Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes-integration.html#using-type-loadbalancer">Using Type ‘LoadBalancer’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes-integration.html#using-netris-custom-resources">Using Netris Custom Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#introduction-to-netris-custom-resources">Introduction to Netris Custom Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#l4lb-custom-resource">L4LB Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#v-net-custom-resource">V-Net Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#bgp-custom-resource">BGP Custom Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#importing-existing-resources-from-netris-controller-to-kubernetes">Importing existing resources from Netris Controller to Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#reclaim-policy">Reclaim Policy</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#calico-cni-integration">Calico CNI Integration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#disabling-netris-calico-integration">Disabling Netris-Calico Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes-integration.html#calico-cni-integration">Calico CNI Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kubernetes-integration.html#disabling-netris-calico-integration">Disabling Netris-Calico Integration</a></li>
 </ul>
 </li>
 </ul>
@@ -1165,386 +1165,503 @@
 --><div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Kubernetes Integration</li>
+      <li class="breadcrumb-item active">Installing BlueField-3 DPUs</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/netrisai/docs/blob/master/kubernetes-integration.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/netrisai/docs/blob/master/bluefield-3-dpu-installation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="netris-nvlink-integration.html" class="btn btn-neutral float-left" title="NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cloudstack/netris-cloudstack.html" class="btn btn-neutral float-right" title="Netris-CloudStack Integration" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ai-netris-host-networking.html" class="btn btn-neutral float-left" title="Netris Host Networking" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="site.html" class="btn btn-neutral float-right" title="Netris Site" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="kubernetes-integration">
-<h1>Kubernetes Integration<a class="headerlink" href="#kubernetes-integration" title="Link to this heading"></a></h1>
-<p>Netris integrates with Kube API to provide on-demand load balancer and other Kubernetes specific networking features. Netris-Kubernetes integration is designed to complement Kubernetes CNI networking and provide a cloud-like user experience to local Kubernetes clusters.</p>
-<section id="install-netris-operator">
-<h2>Install Netris Operator<a class="headerlink" href="#install-netris-operator" title="Link to this heading"></a></h2>
-<p>Integration between the Netris Controller and the Kubernetes API is completed by installing the Netris Operator.  Installation can be accomplished by installing regular manifests or a helm chart:</p>
-<section id="helm-chart-method">
-<h3>Helm Chart Method<a class="headerlink" href="#helm-chart-method" title="Link to this heading"></a></h3>
-<p>Instructions are available on Github: <a class="reference external" href="https://github.com/netrisai/netris-operator/tree/master/deploy/charts/netris-operator#installing-the-chart">https://github.com/netrisai/netris-operator/tree/master/deploy/charts/netris-operator#installing-the-chart</a></p>
-</section>
-<section id="regular-manifest-method">
-<h3>Regular Manifest Method<a class="headerlink" href="#regular-manifest-method" title="Link to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p>Install the latest Netris Operator:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl apply -f https://github.com/netrisai/netris-operator/releases/latest/download/netris-operator.yaml</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Create credentials secret for Netris Operator:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -nnetris-operator create secret generic netris-creds \</span>
-<span class="go">--from-literal=host='http://**your-netris-controller-ip-or-host**' \</span>
-<span class="go">--from-literal=login='**your-netris-admin-username**' --from-literal=password='**your-netris-admin-password**'</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Inspect the pod logs and make sure the operator is connected to Netris Controller:</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="o">-</span><span class="n">nnetris</span><span class="o">-</span><span class="n">operator</span> <span class="n">logs</span> <span class="o">-</span><span class="n">l</span> <span class="n">netris</span><span class="o">-</span><span class="n">operator</span><span class="o">=</span><span class="n">controller</span><span class="o">-</span><span class="n">manager</span> <span class="o">--</span><span class="nb">all</span><span class="o">-</span><span class="n">containers</span> <span class="o">-</span><span class="n">f</span>
-</pre></div>
-</div>
-<p>Example output demonstrating the successful operation of Netris Operator:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">{"level":"info","ts":1629994653.6441543,"logger":"controller","msg":"Starting workers","reconcilerGroup":"k8s.netris.ai","reconcilerKind":"L4LB","controller":"l4lb","worker count":1}</span>
-</pre></div>
-</div>
+  <section id="installing-bluefield-3-dpus">
+<h1>Installing BlueField-3 DPUs<a class="headerlink" href="#installing-bluefield-3-dpus" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#concepts" id="id2">Concepts</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id3">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#overview" id="id4">Overview</a></p></li>
+<li><p><a class="reference internal" href="#creating-the-resources" id="id5">Creating the Resources</a></p>
+<ul>
+<li><p><a class="reference internal" href="#interfaces-physical-ifaces-yaml" id="id6">1. Interfaces — <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code></a></p></li>
+<li><p><a class="reference internal" href="#bfb-bfb-yaml" id="id7">2. BFB — <code class="docutils literal notranslate"><span class="pre">bfb.yaml</span></code></a></p></li>
+<li><p><a class="reference internal" href="#dpuflavor-hbn-dpuflavor-yaml" id="id8">3. DPUFlavor — <code class="docutils literal notranslate"><span class="pre">hbn-dpuflavor.yaml</span></code></a></p></li>
+<li><p><a class="reference internal" href="#doca-hbn-service-hbn-service-yaml" id="id9">4. DOCA HBN service — <code class="docutils literal notranslate"><span class="pre">hbn-service.yaml</span></code></a></p></li>
+<li><p><a class="reference internal" href="#netris-dpu-agent-service-netris-agent-service-yaml" id="id10">5. Netris DPU agent service — <code class="docutils literal notranslate"><span class="pre">netris-agent-service.yaml</span></code></a></p></li>
+<li><p><a class="reference internal" href="#dpudeployment-dpudeployment-yaml" id="id11">6. DPUDeployment — <code class="docutils literal notranslate"><span class="pre">dpudeployment.yaml</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#apply-order" id="id12">Apply Order</a></p></li>
+<li><p><a class="reference internal" href="#verify" id="id13">Verify</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id14">Next Steps</a></p></li>
+</ul>
+</nav>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>After installing the Netris Operator, your Kubernetes cluster and physical network control planes are connected.</p>
+<p><strong>New to BlueField-3 DPUs?</strong> Read the Overview and “What Is a DPU” sections on
+<a class="reference internal" href="bluefield-3-dpus.html"><span class="doc">BlueField-3 DPU Support in Netris</span></a> first for background on what a DPU is and how Netris uses one. This
+page assumes that context and focuses only on installing the agent.</p>
 </div>
+<section id="concepts">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Concepts</a><a class="headerlink" href="#concepts" title="Link to this heading"></a></h2>
+<p>A few terms this guide relies on that aren’t covered on the Integration page:</p>
+<p><strong>NVIDIA DPF (DOCA Platform Framework)</strong> is NVIDIA’s tool for automating the DPU lifecycle — provisioning, OS installation, mode switching, and ongoing configuration of BlueField DPUs. Netris relies on DPF to manage all of that, and this guide assumes it is already installed. See NVIDIA’s <a class="reference external" href="https://networking-docs.nvidia.com/sol/rdg-for-dpf-zero-trust-dpf-zt">reference guide</a> if it isn’t yet.</p>
+<p><strong>Zero-Trust mode</strong> is a DPF deployment mode. In this mode, the host server is treated as untrusted: the DPU sits as a hard boundary between the host and the network, and the host can only see the DPU as an ordinary NIC — it has no access to the DPU’s own management plane. Netris’s DPU support assumes DPUs are running in Zero-Trust mode.</p>
+<p><strong>The DPF management cluster</strong> is the Kubernetes cluster where the DPF Operator runs. It is a single cluster: a few master nodes run the control plane, and the bare-metal servers that physically hold your BlueField-3 DPUs join it as worker nodes. All the <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> commands in this guide are run from a machine with <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> access to that cluster.</p>
+<p><strong>BlueField Bootstream (BFB)</strong> is the DPU’s bootable OS image. DPF’s <code class="docutils literal notranslate"><span class="pre">BFB</span></code> custom resource (see below) tells DPF which BFB image to install on each DPU.</p>
+<p><strong>Custom Resource Definition (CRD)</strong> is a <a class="reference external" href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/">Kubernetes</a> mechanism that lets a tool like DPF define its own object types — such as <code class="docutils literal notranslate"><span class="pre">BFB</span></code>, <code class="docutils literal notranslate"><span class="pre">DPUFlavor</span></code>, and <code class="docutils literal notranslate"><span class="pre">DPUDeployment</span></code> below — that you manage with ordinary <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> commands.</p>
+<p><strong>DOCA Host-Based Networking (HBN)</strong> is NVIDIA’s data-plane service that runs on the DPU and speaks BGP EVPN / VXLAN — it’s what actually forwards and tags traffic on the DPU’s behalf.</p>
 </section>
+<section id="prerequisites">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>Before you start, confirm:</p>
+<ul class="simple">
+<li><p><strong>NVIDIA DPF is installed and running in Zero-Trust mode.</strong> If it isn’t, follow NVIDIA’s <a class="reference external" href="https://networking-docs.nvidia.com/sol/rdg-for-dpf-zero-trust-dpf-zt">reference guide</a> first — this page picks up where that guide leaves off.</p></li>
+<li><p><strong>Your BlueField-3 DPUs are discoverable by the DPF Operator.</strong> Their BMC/OOB (Baseboard Management Controller / Out-of-Band) interfaces are reachable, and NVIDIA’s node-feature-discovery component — installed as part of DPF — has labeled the bare-metal servers containing your DPUs with <code class="docutils literal notranslate"><span class="pre">feature.node.kubernetes.io/dpu-enabled:</span> <span class="pre">&quot;true&quot;</span></code>. This is how the DPF Operator knows which cluster worker nodes to provision DPUs on.</p></li>
+<li><p><strong>You have</strong> <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> <strong>access to the DPF management cluster</strong> — the cluster where the DPF Operator is installed. All commands below run there.</p></li>
+</ul>
+<p>The DPF Operator installs the CRDs used in this guide (<code class="docutils literal notranslate"><span class="pre">BFB</span></code>, <code class="docutils literal notranslate"><span class="pre">DPUFlavor</span></code>, <code class="docutils literal notranslate"><span class="pre">DPUServiceInterface</span></code>, <code class="docutils literal notranslate"><span class="pre">DPUServiceTemplate</span></code>, <code class="docutils literal notranslate"><span class="pre">DPUServiceConfiguration</span></code>, <code class="docutils literal notranslate"><span class="pre">DPUDeployment</span></code>) as part of its own setup — you do not install them separately.</p>
 </section>
-<section id="using-type-loadbalancer">
-<h2>Using Type ‘LoadBalancer’<a class="headerlink" href="#using-type-loadbalancer" title="Link to this heading"></a></h2>
-<p>In this scenario we will be installing a simple application that requires a network load balancer:</p>
-<p>Install the application <a class="reference external" href="https://github.com/stefanprodan/podinfo">“Podinfo”</a>:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl apply -k github.com/stefanprodan/podinfo/kustomize</span>
+<section id="overview">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Once DPF is up, deploying Netris on the DPU is a matter of creating a handful of these custom resources on the DPF management cluster. A single <code class="docutils literal notranslate"><span class="pre">DPUDeployment</span></code> ties everything together:</p>
+<ul class="simple">
+<li><p><strong>DOCA HBN</strong> — the host-based networking data plane running on the DPU (BGP EVPN / VXLAN VTEP).</p></li>
+<li><p><strong>netris-dpu-agent</strong> — the Netris control-plane agent that registers the DPU with your Netris controller and manages HBN’s configuration on Netris’s behalf.</p></li>
+<li><p>A <strong>service chain</strong> that wires the physical ports (<code class="docutils literal notranslate"><span class="pre">p0</span></code>/<code class="docutils literal notranslate"><span class="pre">p1</span></code>) and every Physical Function (PF) / Virtual Function (VF) representor through to HBN, so host traffic is correctly forwarded into the appropriate tenant’s segment on the Netris-managed fabric.</p></li>
+</ul>
+<p>No manual container installation is needed on the DPU itself. DPF pulls and runs both Helm charts as DPUServices once the <code class="docutils literal notranslate"><span class="pre">DPUDeployment</span></code> is created.</p>
+</section>
+<section id="creating-the-resources">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Creating the Resources</a><a class="headerlink" href="#creating-the-resources" title="Link to this heading"></a></h2>
+<p>Create the following six resources on the DPF management cluster. <a class="reference internal" href="#apply-order">Apply Order</a> below shows the sequence used to apply them.</p>
+<section id="interfaces-physical-ifaces-yaml">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">1. Interfaces — <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code></a><a class="headerlink" href="#interfaces-physical-ifaces-yaml" title="Link to this heading"></a></h3>
+<p>Declares the physical ports (<code class="docutils literal notranslate"><span class="pre">p0</span></code>, <code class="docutils literal notranslate"><span class="pre">p1</span></code>), the two PF representors (<code class="docutils literal notranslate"><span class="pre">pf0hpf</span></code>, <code class="docutils literal notranslate"><span class="pre">pf1hpf</span></code>), and 16 VF representors (<code class="docutils literal notranslate"><span class="pre">pf0vf0-7</span></code>, <code class="docutils literal notranslate"><span class="pre">pf1vf0-7</span></code>) that will be wired into the service chain.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceInterface</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p0</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="s">"p0"</span>
+<span class="w">        </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">interfaceType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">physical</span>
+<span class="w">          </span><span class="nt">physical</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">interfaceName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p0</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceInterface</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p1</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="s">"p1"</span>
+<span class="w">        </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">interfaceType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">physical</span>
+<span class="w">          </span><span class="nt">physical</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">interfaceName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p1</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceInterface</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0hpf</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="s">"pf0hpf"</span>
+<span class="w">        </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">interfaceType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf</span>
+<span class="w">          </span><span class="nt">pf</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">pfID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceInterface</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf1hpf</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="s">"pf1hpf"</span>
+<span class="w">        </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">interfaceType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf</span>
+<span class="w">          </span><span class="nt">pf</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">pfID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceInterface</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0vf0-rep</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="s">"pf0vf0"</span>
+<span class="w">        </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">interfaceType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vf</span>
+<span class="w">          </span><span class="nt">vf</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">parentInterfaceRef</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p0</span>
+<span class="w">            </span><span class="nt">pfID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">            </span><span class="nt">vfID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceInterface</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0vf1-rep</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="s">"pf0vf1"</span>
+<span class="w">        </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">interfaceType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vf</span>
+<span class="w">          </span><span class="nt">vf</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">parentInterfaceRef</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p0</span>
+<span class="w">            </span><span class="nt">pfID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">            </span><span class="nt">vfID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nn">---</span>
+<span class="c1"># ... one entry per remaining VF you need, e.g. pf0vf2-rep ... pf0vf7-rep (parentInterfaceRef: p0, pfID: 0, vfID: 2-7)</span>
+<span class="c1"># and pf1vf0-rep ... pf1vf7-rep (parentInterfaceRef: p1, pfID: 1, vfID: 0-7)</span>
 </pre></div>
 </div>
-<p>Get the list of pods and services in the default namespace:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get po,svc</span>
+<p><em>(Full 19-interface manifest — 2 physical + 2 PF + 16 VF — available on request; trimmed here for brevity. Adjust the VF count to match how many VFs you actually need per PF.)</em></p>
+</section>
+<section id="bfb-bfb-yaml">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">2. BFB — <code class="docutils literal notranslate"><span class="pre">bfb.yaml</span></code></a><a class="headerlink" href="#bfb-bfb-yaml" title="Link to this heading"></a></h3>
+<p>Points DPF at the BlueField Bootstream (BFB) image to provision onto the DPUs.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">provisioning.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BFB</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bf-bundle</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$BFB_URL</span>
 </pre></div>
 </div>
-<p>As you can see, the service type is “ClusterIP”:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME                           READY   STATUS    RESTARTS   AGE</span>
-<span class="go">pod/podinfo-576d5bf6bd-7z9jl   1/1     Running   0          49s</span>
-<span class="go">pod/podinfo-576d5bf6bd-nhlmh   1/1     Running   0          33s</span>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">$BFB_URL</span></code> with the actual download URL for the BFB image matching your BlueField/DOCA version before applying this file.</p>
+</section>
+<section id="dpuflavor-hbn-dpuflavor-yaml">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">3. DPUFlavor — <code class="docutils literal notranslate"><span class="pre">hbn-dpuflavor.yaml</span></code></a><a class="headerlink" href="#dpuflavor-hbn-dpuflavor-yaml" title="Link to this heading"></a></h3>
+<p>Zero-Trust mode flavor with SR-IOV enabled (46 VFs across both PFs), the OVS bridge (<code class="docutils literal notranslate"><span class="pre">br-sfc</span></code>) bring-up script, and the grub/nvconfig parameters HBN needs.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">provisioning.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUFlavor</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hbn-ntrs</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dpuMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zero-trust</span>
+<span class="w">  </span><span class="nt">bfcfgParameters</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UPDATE_ATF_UEFI=yes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UPDATE_DPU_OS=yes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WITH_NIC_FW_UPDATE=yes</span>
+<span class="w">  </span><span class="nt">configFiles</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">operation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">override</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/mellanox/mlnx-bf.conf</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span><span class="w"> </span><span class="s">"0644"</span>
+<span class="w">    </span><span class="nt">raw</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">ALLOW_SHARED_RQ="no"</span>
+<span class="w">      </span><span class="no">IPSEC_FULL_OFFLOAD="no"</span>
+<span class="w">      </span><span class="no">ENABLE_ESWITCH_MULTIPORT="yes"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">operation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">override</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/mellanox/mlnx-ovs.conf</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span><span class="w"> </span><span class="s">"0644"</span>
+<span class="w">    </span><span class="nt">raw</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">CREATE_OVS_BRIDGES="no"</span>
+<span class="w">      </span><span class="no">OVS_DOCA="yes"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">operation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">override</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/mellanox/mlnx-sf.conf</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span><span class="w"> </span><span class="s">"0644"</span>
+<span class="w">    </span><span class="nt">raw</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">  </span><span class="nt">grub</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kernelParameters</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console=hvc0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console=ttyAMA0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">earlycon=pl011,0x13010000</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fixrttc</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">net.ifnames=0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biosdevname=0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iommu.passthrough=1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cgroup_no_v1=net_prio,net_cls</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hugepagesz=2048kB</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hugepages=3072</span>
+<span class="w">  </span><span class="nt">nvconfig</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">'*'</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PF_BAR2_ENABLE=0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PER_PF_NUM_SF=1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PF_TOTAL_SF=21</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PF_SF_BAR_SIZE=10</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NUM_PF_MSIX_VALID=0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PF_NUM_PF_MSIX_VALID=1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PF_NUM_PF_MSIX=228</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INTERNAL_CPU_MODEL=1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INTERNAL_CPU_OFFLOAD_ENGINE=0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SRIOV_EN=1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NUM_OF_VFS=46</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LAG_RESOURCE_ALLOCATION=1</span>
+<span class="w">  </span><span class="nt">ovs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">rawConfigScript</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">_ovs-vsctl() {</span>
+<span class="w">        </span><span class="no">ovs-vsctl --no-wait --timeout 15 "$@"</span>
+<span class="w">      </span><span class="no">}</span>
 
-<span class="go">NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE</span>
-<span class="go">service/podinfo      ClusterIP   172.21.65.106   &lt;none&gt;        9898/TCP,9999/TCP   50s</span>
-</pre></div>
-</div>
-<p>In order to request access from outside, change the type to “LoadBalancer”:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl patch svc podinfo -p '{"spec":{"type":"LoadBalancer"}}'</span>
-</pre></div>
-</div>
-<p>Check the services again:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get svc</span>
-</pre></div>
-</div>
-<p>Now we can see that the service type changed to LoadBalancer, and “EXTERNAL-IP” switched to pending state:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                         AGE</span>
-<span class="go">podinfo      LoadBalancer   172.21.65.106   &lt;pending&gt;     9898:32584/TCP,9999:30365/TCP   8m57s</span>
-</pre></div>
-</div>
-<p>Going into the Netris Controller web interface, navigate to <strong>Services / L4 Load Balancer</strong>, and you may see L4LBs provisioning in real-time. If you do not see the provisioning process it is likely because it already completed. Look for the service with the name <strong>“podinfo-xxxxxxxx”</strong></p>
-<img alt="Sandbox pod provisioning" class="with-shadow align-center" src="_images/sandbox-podinfo-prov.png" />
-<p>After provisioning has finished, inspect the service in k8s:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get svc</span>
-</pre></div>
-</div>
-<p>You can see that “EXTERNAL-IP” has been injected into Kubernetes:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)                         AGE</span>
-<span class="go">podinfo      LoadBalancer   172.21.65.106   50.117.59.202   9898:32584/TCP,9999:30365/TCP   9m17s</span>
-</pre></div>
-</div>
-</section>
-<section id="using-netris-custom-resources">
-<h2>Using Netris Custom Resources<a class="headerlink" href="#using-netris-custom-resources" title="Link to this heading"></a></h2>
-<section id="introduction-to-netris-custom-resources">
-<h3>Introduction to Netris Custom Resources<a class="headerlink" href="#introduction-to-netris-custom-resources" title="Link to this heading"></a></h3>
-<p>In addition to provisioning on-demand network load balancers, Netris Operator can also provide automatic creation of network services based on Kubernetes CRD objects. Let’s take a look at a few common examples:</p>
-</section>
-<section id="l4lb-custom-resource">
-<h3>L4LB Custom Resource<a class="headerlink" href="#l4lb-custom-resource" title="Link to this heading"></a></h3>
-<p>In the previous section, when we changed the service type from “ClusterIP” to “LoadBalancer”, Netris Operator detected a new request for a network load balancer, then it created L4LB custom resources. Let’s see them:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get l4lb</span>
-</pre></div>
-</div>
-<p>As you can see, there are two L4LB resources, one for each podinfo’s service port:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS   AGE</span>
-<span class="go">podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9898   active   50.117.59.202   9898/TCP   US/NYC   Admin    OK       33m</span>
-<span class="go">podinfo-default-66d44feb-0278-412a-a32d-73afe011f2c6-tcp-9999   active   50.117.59.202   9999/TCP   US/NYC   Admin    OK       32m</span>
-</pre></div>
-</div>
-<p>You can’t edit/delete them, because Netris Operator will recreate them based on what was originally deployed in the service specifications.</p>
-<p>Instead, let’s create a new load balancer using the CRD method.  This method allows us to create L4 load balancers for services outside of what is being created natively with the Kubernetes service schema.  Our new L4LB’s backends will be “srv04-nyc” &amp; “srv05-nyc” on TCP port 80. These servers are already running the Nginx web server, with the hostname present in the index.html file.</p>
-<p>Create a yaml file:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">cat &lt;&lt; EOF &gt; srv04-5-nyc-http.yaml</span>
-<span class="go">apiVersion: k8s.netris.ai/v1alpha1</span>
-<span class="go">kind: L4LB</span>
-<span class="go">metadata:</span>
-<span class="go"> name: srv04-5-nyc-http</span>
-<span class="go">spec:</span>
-<span class="go"> ownerTenant: Admin</span>
-<span class="go"> site: US/NYC</span>
-<span class="go"> state: active</span>
-<span class="go"> protocol: tcp</span>
-<span class="go"> frontend:</span>
-<span class="go">   port: 80</span>
-<span class="go"> backend:</span>
-<span class="go">   - 192.168.45.64:80</span>
-<span class="go">   - 192.168.46.65:80</span>
-<span class="go"> check:</span>
-<span class="go">   type: tcp</span>
-<span class="go">   timeout: 3000</span>
-<span class="go">EOF</span>
-</pre></div>
-</div>
-<p>And apply it:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl apply -f srv04-5-nyc-http.yaml</span>
-</pre></div>
-</div>
-<p>Inspect the new L4LB resources via kubectl:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get l4lb</span>
-</pre></div>
-</div>
-<p>As you can see, provisioning started:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME                                                            STATE    FRONTEND        PORT       SITE     TENANT   STATUS         AGE</span>
-<span class="go">podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-9898   active   50.117.59.202   9898/TCP   US/NYC   Admin    OK             2m17s</span>
-<span class="go">podinfo-default-d07acd0f-51ea-429a-89dd-8e4c1d6d0a86-tcp-9999   active   50.117.59.202   9999/TCP   US/NYC   Admin    OK             3m47s</span>
-<span class="go">srv04-5-nyc-http                                                active   50.117.59.203   80/TCP     US/NYC   Admin    Provisioning   6s</span>
-</pre></div>
-</div>
-<p>When provisioning is finished, you should be able to connect to L4LB. Try to curl, using the L4LB frontend address displayed in the above command output:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl 50.117.59.203</span>
-</pre></div>
-</div>
-<p>You will see the servers’ hostname in curl output:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">SRV04-NYC</span>
-</pre></div>
-</div>
-<p>You can also inspect the L4LB in the Netris Controller web interface:</p>
-<img alt="View L4 LB instances" class="with-shadow align-center" src="_images/sandbox-l4lbs.png" />
-</section>
-<section id="v-net-custom-resource">
-<h3>V-Net Custom Resource<a class="headerlink" href="#v-net-custom-resource" title="Link to this heading"></a></h3>
-<p>You can also create Netris V-Nets (L2 segments) via Kubernetes with a simple manifest:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">cat &lt;&lt; EOF &gt; vnet-customer.yaml</span>
-<span class="go">apiVersion: k8s.netris.ai/v1alpha1</span>
-<span class="go">kind: VNet</span>
-<span class="go">metadata:</span>
-<span class="go"> name: vnet-customer</span>
-<span class="go">spec:</span>
-<span class="go"> ownerTenant: Admin</span>
-<span class="go"> guestTenants: []</span>
-<span class="go"> sites:</span>
-<span class="go">   - name: US/NYC</span>
-<span class="go">     gateways:</span>
-<span class="go">       - 192.168.46.1/24</span>
-<span class="go">     switchPorts:</span>
-<span class="go">       - name: swp2@sw22-nyc</span>
-<span class="go">EOF</span>
-</pre></div>
-</div>
-<p>And apply it:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl apply -f vnet-customer.yaml</span>
-</pre></div>
-</div>
-<p>Let’s check our VNet resources in Kubernetes:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get vnet</span>
-</pre></div>
-</div>
-<p>As you can see, provisioning for our new VNet has started:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME            STATE    GATEWAYS          SITES    OWNER   STATUS         AGE</span>
-<span class="go">vnet-customer   active   192.168.46.1/24   US/NYC   Admin   Provisioning   7s</span>
-</pre></div>
-</div>
-<p>After provisioning has completed, the L4LB’s checks should work for both backend servers, and incoming requests should be balanced between them.</p>
-</section>
-<section id="bgp-custom-resource">
-<h3>BGP Custom Resource<a class="headerlink" href="#bgp-custom-resource" title="Link to this heading"></a></h3>
-<p>You can create BGP peers via Kubernetes manifests:</p>
-<ol class="arabic simple">
-<li><p>Create a yaml file:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">cat &lt;&lt; EOF &gt; isp2-customer.yaml</span>
-<span class="go">apiVersion: k8s.netris.ai/v1alpha1</span>
-<span class="go">kind: BGP</span>
-<span class="go">metadata:</span>
-<span class="go">  name: isp2-customer</span>
-<span class="go">spec:</span>
-<span class="go">  site: US/NYC</span>
-<span class="go">  softgate: SoftGate2</span>
-<span class="go">  neighborAs: 65007</span>
-<span class="go">  transport:</span>
-<span class="go">    name: swp14@sw02-nyc</span>
-<span class="go">    vlanId: 1092</span>
-<span class="go">  localIP: 50.117.59.118/30</span>
-<span class="go">  remoteIP: 50.117.59.117/30</span>
-<span class="go">  description: Example BGP to ISP2</span>
-<span class="go">  prefixListOutbound:</span>
-<span class="go">    - permit 50.117.59.192/28 le 32</span>
-<span class="go">EOF</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Apply the manifest file:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl apply -f isp2-customer.yaml</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Check created BGP:</p></li>
-</ol>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get bgp</span>
-</pre></div>
-</div>
-<p>Allow up to 1 minute for both sides of the BGP sessions to come up:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME            STATE     BGP STATE   PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE</span>
-<span class="go">isp2-customer   enabled                            65007         50.117.59.118/30   50.117.59.117/30   15s</span>
-</pre></div>
-</div>
-<p>Then check the state again:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get bgp</span>
-</pre></div>
-</div>
-<p>The output is similar to this:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME            STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS     AGE</span>
-<span class="go">isp2-customer   enabled   bgp: Established; prefix: 30; time: 00:00:51   UP           65007         50.117.59.118/30   50.117.59.117/30   2m3s</span>
-</pre></div>
-</div>
-<p>Feel free to use the import annotation for this BGP if you created it from the controller web interface previously.</p>
-<p>Return to the Netris UI and navigate to <strong>Net / Topology</strong> to see the new BGP neighbor you created.</p>
-</section>
-<section id="importing-existing-resources-from-netris-controller-to-kubernetes">
-<h3>Importing existing resources from Netris Controller to Kubernetes<a class="headerlink" href="#importing-existing-resources-from-netris-controller-to-kubernetes" title="Link to this heading"></a></h3>
-<p>You can import any custom resources, already created from the Netris Controller to k8s by adding this annotation:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">resource.k8s.netris.ai/import</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
-</pre></div>
-</div>
-<p>Otherwise, if try to apply them w/out “import” annotation, the Netris Operator will complain that the resource with such name or specs already exists.</p>
-<p>After importing resources to k8s, they will belong to the Netris Operator, and you won’t be able to edit/delete them directly from the Netris Controller web interface, because the Netris Operator will put everything back, as declared in the custom resources.</p>
-</section>
-<section id="reclaim-policy">
-<h3>Reclaim Policy<a class="headerlink" href="#reclaim-policy" title="Link to this heading"></a></h3>
-<p>There is also one useful annotation. So suppose you want to remove some custom resource from k8s, and want to prevent its deletion from the controller, for that you can use “reclaimPolicy” annotation:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">resource.k8s.netris.ai/reclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="s">"retain"</span>
-</pre></div>
-</div>
-<p>Just add this annotation in any custom resource while creating it. Or if the custom resource has already been created, change the <code class="docutils literal notranslate"><span class="pre">&quot;delete&quot;</span></code> value to <code class="docutils literal notranslate"><span class="pre">&quot;retain&quot;</span></code> for key <code class="docutils literal notranslate"><span class="pre">resource.k8s.netris.ai/reclaimPolicy</span></code> in the resource annotation. After that, you’ll be able to delete any Netris Custom Resource from Kubernetes, and it won’t be deleted from the controller.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>See all options and examples for Netris Custom Resources <a class="reference external" href="https://github.com/netrisai/netris-operator/tree/master/samples">here</a>.</p>
-</div>
-</section>
-</section>
-<section id="calico-cni-integration">
-<h2>Calico CNI Integration<a class="headerlink" href="#calico-cni-integration" title="Link to this heading"></a></h2>
-<p>Netris Operator can integrate with Calico CNI.  This annotation will automatically create BGP peering between cluster nodes and the leaf/TOR switch for each node, then to clean up it will disable Calico Node-to-Node mesh. To understand why you need to configure peering between Kubernetes nodes and the leaf/TOR switch, and why you should disable Node-to-Node mesh, review the <a class="reference external" href="https://docs.projectcalico.org/networking/bgp">calico docs</a>.</p>
-<p>Integration is very simple, just need to add the annotation in calico’s <code class="docutils literal notranslate"><span class="pre">bgpconfigurations</span></code> custom resource. Before doing that, let’s see the current state of <code class="docutils literal notranslate"><span class="pre">bgpconfigurations</span></code>:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get bgpconfigurations default -o yaml</span>
-</pre></div>
-</div>
-<p>As we can see, <code class="docutils literal notranslate"><span class="pre">nodeToNodeMeshEnabled</span></code> is enabled, and <code class="docutils literal notranslate"><span class="pre">asNumber</span></code> is 64512 (it’s Calico default AS number):</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">crd.projectcalico.org/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BGPConfiguration</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w"> </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-<span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w"> </span><span class="nt">asNumber</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64512</span>
-<span class="w"> </span><span class="nt">logSeverityScreen</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Info</span>
-<span class="w"> </span><span class="nt">nodeToNodeMeshEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</pre></div>
-</div>
-<p>Let’s enable the “netris-calico” integration:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl annotate bgpconfigurations default manage.k8s.netris.ai/calico='true'</span>
-</pre></div>
-</div>
-<p>Let’s check our BGP resources in k8s:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get bgp</span>
-</pre></div>
-</div>
-<p>Here are our freshly created BGPs, one for each k8s node:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE</span>
-<span class="go">isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:06:18   UP           65007         50.117.59.118/30   50.117.59.117/30    7m59s</span>
-<span class="go">sandbox9-srv06-nyc-192.168.110.66   enabled                                                               4200070000    192.168.110.1/24   192.168.110.66/24   26s</span>
-<span class="go">sandbox9-srv07-nyc-192.168.110.67   enabled                                                               4200070001    192.168.110.1/24   192.168.110.67/24   26s</span>
-<span class="go">sandbox9-srv08-nyc-192.168.110.68   enabled                                                               4200070002    192.168.110.1/24   192.168.110.68/24   26s</span>
-</pre></div>
-</div>
-<p>You might notice that peering neighbor AS is different from Calico’s default 64512.  The is because the Netris Operator is setting a particular AS number for each node.</p>
-<p>Allow up to 1 minute for the BGP sessions to come up, then check BGP resources again:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get bgp</span>
-</pre></div>
-</div>
-<p>As seen our BGP peers are established:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">NAME                                STATE     BGP STATE                                      PORT STATE   NEIGHBOR AS   LOCAL ADDRESS      REMOTE ADDRESS      AGE</span>
-<span class="go">isp2-customer                       enabled   bgp: Established; prefix: 28; time: 00:07:48   UP           65007         50.117.59.118/30   50.117.59.117/30    8m41s</span>
-<span class="go">sandbox9-srv06-nyc-192.168.110.66   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070000    192.168.110.1/24   192.168.110.66/24   68s</span>
-<span class="go">sandbox9-srv07-nyc-192.168.110.67   enabled   bgp: Established; prefix: 5; time: 00:00:19    N/A          4200070001    192.168.110.1/24   192.168.110.67/24   68s</span>
-<span class="go">sandbox9-srv08-nyc-192.168.110.68   enabled   bgp: Established; prefix: 5; time: 00:00:44    N/A          4200070002    192.168.110.1/24   192.168.110.68/24   68s</span>
-</pre></div>
-</div>
-<p>Now let’s check if <code class="docutils literal notranslate"><span class="pre">nodeToNodeMeshEnabled</span></code> is still enabled:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl get bgpconfigurations default -o yaml</span>
-</pre></div>
-</div>
-<p>It is disabled, which means the “netris-calico” integration process is finished:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">crd.projectcalico.org/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BGPConfiguration</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">manage.k8s.netris.ai/calico</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">asNumber</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64512</span>
-<span class="w">  </span><span class="nt">nodeToNodeMeshEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Open_vSwitch . other_config:doca-init=true</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Open_vSwitch . other_config:dpdk-max-memzones=50000</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Open_vSwitch . other_config:hw-offload=true</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Open_vSwitch . other_config:pmd-quiet-idle=true</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Open_vSwitch . other_config:max-idle=20000</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Open_vSwitch . other_config:max-revalidator=5000</span>
+<span class="w">      </span><span class="no">_ovs-vsctl --if-exists del-br ovsbr1</span>
+<span class="w">      </span><span class="no">_ovs-vsctl --if-exists del-br ovsbr2</span>
+<span class="w">      </span><span class="no">_ovs-vsctl --may-exist add-br br-sfc</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set bridge br-sfc datapath_type=netdev</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set bridge br-sfc fail_mode=secure</span>
+<span class="w">      </span><span class="no">_ovs-vsctl --may-exist add-port br-sfc p0</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Interface p0 type=dpdk</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Interface p0 mtu_request=9216</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Port p0 external_ids:dpf-type=physical</span>
+<span class="w">      </span><span class="no">_ovs-vsctl --may-exist add-port br-sfc p1</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Interface p1 type=dpdk</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Interface p1 mtu_request=9216</span>
+<span class="w">      </span><span class="no">_ovs-vsctl set Port p1 external_ids:dpf-type=physical</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Netris Operator won’t disable Node-to-Node mesh until k8s cluster all nodes’ BGP peers are being established.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NUM_OF_VFS=46</span></code> is the example value from NVIDIA’s own DPF Zero-Trust reference guide, sized for that guide’s reference hardware — it is not a Netris requirement. This sets how many VFs the firmware makes available in total; <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code> above only wires up the subset you actually intend to use (16, in that example — 8 per PF) into Netris’s service chain. Size this to your own DPU’s port and workload count, keeping it at least as large as the VF count you declare in <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code>.</p>
 </div>
-<p>Finally, let’s check if our earlier deployed “Podinfo” application is still working when Calico Node-to-Node mesh is disabled:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">curl 50.117.59.202</span>
-</pre></div>
-</div>
-<p>Yes, it works:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w"> </span><span class="nt">"hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"podinfo-576d5bf6bd-mfpdt"</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6.0.0"</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"revision"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#34577c"</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif"</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"greetings from podinfo v6.0.0"</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"goos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"linux"</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"goarch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"amd64"</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"runtime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"go1.16.5"</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"num_goroutine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">"num_cpu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<section id="disabling-netris-calico-integration">
-<h3>Disabling Netris-Calico Integration<a class="headerlink" href="#disabling-netris-calico-integration" title="Link to this heading"></a></h3>
-<p>To disable “Netris-Calico” integration, delete the annotation from Calico’s <code class="docutils literal notranslate"><span class="pre">bgpconfigurations</span></code> resource:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl annotate bgpconfigurations default manage.k8s.netris.ai/calico-</span>
-</pre></div>
-</div>
-<p>or change its value to <code class="docutils literal notranslate"><span class="pre">&quot;false&quot;</span></code>.</p>
 </section>
+<section id="doca-hbn-service-hbn-service-yaml">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">4. DOCA HBN service — <code class="docutils literal notranslate"><span class="pre">hbn-service.yaml</span></code></a><a class="headerlink" href="#doca-hbn-service-hbn-service-yaml" title="Link to this heading"></a></h3>
+<p>Two resources: the <code class="docutils literal notranslate"><span class="pre">DPUServiceTemplate</span></code> (which Helm chart/image to run) and the <code class="docutils literal notranslate"><span class="pre">DPUServiceConfiguration</span></code> (which internal interfaces the HBN service exposes — all mapped to the <code class="docutils literal notranslate"><span class="pre">mybrhbn</span></code> network, one per physical/PF/VF interface).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceTemplate</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploymentServiceName</span><span class="p">:</span><span class="w"> </span><span class="s">"doca-hbn"</span>
+<span class="w">  </span><span class="nt">helmChart</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$HELM_REGISTRY_REPO_URL</span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.3</span>
+<span class="w">      </span><span class="nt">chart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">image</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$HBN_NGC_IMAGE_URL</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.1.0-doca3.1.0</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6Gi</span>
+<span class="w">        </span><span class="nt">nvidia.com/bf_sf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">      </span><span class="nt">configuration</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">user</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">create</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">          </span><span class="nt">password</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">secretKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
+<span class="w">            </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bmc-shared-password</span>
+<span class="w">          </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hbn</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceConfiguration</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploymentServiceName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">  </span><span class="nt">serviceConfiguration</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">interfaces</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p0_if</span>
+<span class="w">    </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mybrhbn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p1_if</span>
+<span class="w">    </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mybrhbn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0hpf_if</span>
+<span class="w">    </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mybrhbn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf1hpf_if</span>
+<span class="w">    </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mybrhbn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0vf0_if</span>
+<span class="w">    </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mybrhbn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0vf1_if</span>
+<span class="w">    </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mybrhbn</span>
+<span class="w">  </span><span class="c1"># ... one entry per remaining VF interface (pf0vf2_if ... pf1vf7_if), all on network: mybrhbn</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">mybrhbn</span></code> is an arbitrary internal network label, not a fixed or reserved name — NVIDIA’s own reference guide uses a different made-up name (<code class="docutils literal notranslate"><span class="pre">mybrsfc</span></code>) for the equivalent field. You can rename it to whatever you like as long as every <code class="docutils literal notranslate"><span class="pre">network:</span></code> value in this file stays consistent; it isn’t referenced from any of the other five files.</p>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">$HELM_REGISTRY_REPO_URL</span></code> with your Helm chart registry URL and <code class="docutils literal notranslate"><span class="pre">$HBN_NGC_IMAGE_URL</span></code> with the HBN container image location before applying this file. <code class="docutils literal notranslate"><span class="pre">bmc-shared-password</span></code> must already exist as a Secret in <code class="docutils literal notranslate"><span class="pre">dpf-operator-system</span></code> before applying — it’s the same credential used elsewhere in your DPF Zero-Trust setup.</p>
+</section>
+<section id="netris-dpu-agent-service-netris-agent-service-yaml">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">5. Netris DPU agent service — <code class="docutils literal notranslate"><span class="pre">netris-agent-service.yaml</span></code></a><a class="headerlink" href="#netris-dpu-agent-service-netris-agent-service-yaml" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceConfiguration</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-dpu-agent</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploymentServiceName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-dpu-agent</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUServiceTemplate</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-dpu-agent</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploymentServiceName</span><span class="p">:</span><span class="w"> </span><span class="s">"netris-dpu-agent"</span>
+<span class="w">  </span><span class="nt">helmChart</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://netrisai.github.io/charts</span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1.0</span>
+<span class="w">      </span><span class="nt">chart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-dpu-agent</span>
+<span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">controller</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_NETRIS_CONTROLLER_HOST&gt;</span>
+<span class="w">        </span><span class="nt">authKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_NETRIS_CONTROLLER_AUTH_KEY&gt;</span>
+<span class="w">      </span><span class="nt">hbn</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://&lt;HBN_SERVICE_ENDPOINT&gt;:8765</span>
+<span class="w">        </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;HBN_SERVICE_PASSWORD&gt;</span>
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">controller.host</span></code> / <code class="docutils literal notranslate"><span class="pre">controller.authKey</span></code> with the values from your Netris controller (Settings → Auth Keys). <code class="docutils literal notranslate"><span class="pre">hbn.url</span></code> should point at the doca-hbn service’s ClusterIP/hostname on port 8765, and <code class="docutils literal notranslate"><span class="pre">hbn.password</span></code> must match the credential configured in the HBN service (<code class="docutils literal notranslate"><span class="pre">bmc-shared-password</span></code> above).</p>
+</section>
+<section id="dpudeployment-dpudeployment-yaml">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">6. DPUDeployment — <code class="docutils literal notranslate"><span class="pre">dpudeployment.yaml</span></code></a><a class="headerlink" href="#dpudeployment-dpudeployment-yaml" title="Link to this heading"></a></h3>
+<p>This is the resource that, once applied, actually triggers provisioning. It references the <code class="docutils literal notranslate"><span class="pre">bfb</span></code> and <code class="docutils literal notranslate"><span class="pre">flavor</span></code> from steps 2–3, both services from steps 4–5, and defines the full service chain wiring every physical/PF/VF interface through to HBN.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc.dpu.nvidia.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DPUDeployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hbn</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dpf-operator-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dpus</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">bfb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bf-bundle</span>
+<span class="w">    </span><span class="nt">flavor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hbn-ntrs</span>
+<span class="w">    </span><span class="nt">nodeEffect</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">noEffect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">dpuSets</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">nameSuffix</span><span class="p">:</span><span class="w"> </span><span class="s">"dpuset1"</span>
+<span class="w">      </span><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">feature.node.kubernetes.io/dpu-enabled</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+<span class="w">  </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">doca-hbn</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">serviceTemplate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">      </span><span class="nt">serviceConfiguration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">    </span><span class="nt">netris-dpu-agent</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">serviceTemplate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-dpu-agent</span>
+<span class="w">      </span><span class="nt">serviceConfiguration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netris-dpu-agent</span>
+<span class="w">  </span><span class="nt">serviceChains</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">switches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serviceInterface</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p0</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p0_if</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serviceInterface</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p1</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p1_if</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serviceInterface</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0hpf</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0hpf_if</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serviceInterface</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf1hpf</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf1hpf_if</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serviceInterface</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0vf0</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0vf0_if</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serviceInterface</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0vf1</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-hbn</span>
+<span class="w">            </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pf0vf1_if</span>
+<span class="w">      </span><span class="c1"># ... one switch entry per remaining VF (pf0vf2 ... pf1vf7), each wiring</span>
+<span class="w">      </span><span class="c1"># serviceInterface "pfXvfY" to doca-hbn interface "pfXvfY_if"</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="apply-order">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Apply Order</a><a class="headerlink" href="#apply-order" title="Link to this heading"></a></h2>
+<p>Run the following from a machine with <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> configured against the DPF management cluster:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>physical-ifaces.yaml
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>bfb.yaml
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>hbn-dpuflavor.yaml
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>hbn-service.yaml
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netris-agent-service.yaml
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>dpudeployment.yaml
+</pre></div>
+</div>
+</section>
+<section id="verify">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Verify</a><a class="headerlink" href="#verify" title="Link to this heading"></a></h2>
+<p>Same pattern as DPU provisioning verification in the DPF RDG:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>watch<span class="w"> </span>-n10<span class="w"> </span><span class="s2">"kubectl describe dpu -n dpf-operator-system | grep 'Node Name\|Type\|Last\|Phase'"</span>
+</pre></div>
+</div>
+<p>or with <code class="docutils literal notranslate"><span class="pre">dpfctl</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-n<span class="w"> </span>dpf-operator-system<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>deploy/dpf-operator-controller-manager<span class="w"> </span>--<span class="w"> </span>/dpfctl<span class="w"> </span>describe<span class="w"> </span>dpudeployments
+</pre></div>
+</div>
+<p>Once the DPU reaches <code class="docutils literal notranslate"><span class="pre">Ready</span></code>, both <code class="docutils literal notranslate"><span class="pre">doca-hbn</span></code> and <code class="docutils literal notranslate"><span class="pre">netris-dpu-agent</span></code> should show as running DPUServices, and the DPU should register in your Netris controller’s inventory automatically.</p>
+</section>
+<section id="next-steps">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>Continue to <a class="reference internal" href="bluefield-3-dpus.html"><span class="doc">BlueField-3 DPU Support in Netris</span></a> to attach the DPU to a server object in Netris inventory and connect its VFs to a VNet.</p>
 </section>
 </section>
 
@@ -1552,8 +1669,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="netris-nvlink-integration.html" class="btn btn-neutral float-left" title="NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cloudstack/netris-cloudstack.html" class="btn btn-neutral float-right" title="Netris-CloudStack Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ai-netris-host-networking.html" class="btn btn-neutral float-left" title="Netris Host Networking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="site.html" class="btn btn-neutral float-right" title="Netris Site" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

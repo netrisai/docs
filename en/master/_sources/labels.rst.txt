@@ -143,3 +143,5 @@ When a Server Cluster is created referencing the *GPU-cluster-template*, Netris 
 * Place *eth1* through *eth10* into the tenant's V-Nets as specified in the template, even though the V-Nets are in a different VPC from the Management V-Net.
 
 When the operator needs to reallocate the GPU servers to a different tenant, they simply reassign these servers to a different tenant's Server Cluster. Netris will reconfigure the appropriate switch ports on the appropriate switches, but will keep the *eth11* in the Management V-Net.
+
+Similarly, by changing a label on in the server object, Netris will change the V-Net membership of that interface automatically, saving you the manual step of reassinging the switch port to a different V-net yourself.

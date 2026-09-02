@@ -83,14 +83,17 @@ The Controller's reservation set persists independently of most V-Net edits:
 
 DHCP Relay
 ==========
-Netris supports using an external DHCP server by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC. Both DHCPv4 and DHCPv6 are supported. DHCPv6 Relay is currently supported on Cumulus and Arista platforms.
+Netris supports using an external DHCP server by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC. Both DHCPv4 and DHCPv6 are supported.
+
+.. note::
+  DHCPv6 Relay is currently supported on Cumulus and Arista platforms.
+
+.. tip::
+  In a V-Net, a DHCP Relay service and a DHCP service cannot be enabled simultaneously.
 
 To configure DHCP Relay in a V-Net:
  - Specify the VPC where the DHCP server is located.
  - Enter the IP addresses of the primary and (optionally) backup DHCP servers.
-
-.. tip::
-  In a V-Net a DHCP Relay service and a DHCP service cannot be enabled simultaneously.
 
 .. image:: images/vnet-dhcp-relay.png
     :alt: DHCP Relay
@@ -121,8 +124,8 @@ The loopback is configured when DHCPv6 Relay is enabled on the V-Net (with Addre
 
 The address is deterministically derived from the switch's existing main IPv4 loopback address: Netris takes the IPv4 loopback address, converts it to hex, and uses that as the lower 32 bits of an address in the ``fd00::/8`` unique local address range. For example, an IPv4 loopback of ``10.2.3.4`` produces the IPv6 loopback ``fd00::0a02:0304/128``.
 
-Example:
-""""""""
+DHCPv4 Relay Example:
+----------------------
 
 Suppose you have tenant workloads in VPC-Bravo1 and VPC-Alpha1. Both need DHCP, but you want to run a single DHCP service in VPC-Shared-Infra.
 

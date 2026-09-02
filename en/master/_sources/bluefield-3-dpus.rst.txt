@@ -55,7 +55,8 @@ Management connectivity must be established either through an external Out-of-Ba
 through a VNet that includes the DPU management port.
 
 **Agent installation.** Registering a DPU in Netris inventory does not automatically install
-the Netris agent onto the DPU. Agent installation is handled through DPF.
+the Netris agent onto the DPU. Agent installation is handled through NVIDIA DPF and is
+described in :doc:`bluefield-3-dpu-installation`.
 
 
 Use Cases
@@ -86,6 +87,11 @@ Configuring a Server with a DPU
 
 For step-by-step instructions on adding a DPU to a server object in Netris inventory,
 see :ref:`topology-management-adding-dpus`.
+
+.. note::
+   Saving the server object here does not install the Netris agent on the DPU. If it isn't
+   installed yet, see :doc:`bluefield-3-dpu-installation` — the DPU won't report in or expose
+   VFs to attach to a VNet until the agent is running.
 
 
 VF Interface Naming

@@ -6,7 +6,10 @@
 Inventory Profiles
 ==================
 
-Inventory profiles allow security hardening of inventory devices and fabric-wide configuration optimizations. 
+Overview
+========
+
+Inventory profiles allow security hardening of inventory devices and fabric-wide configuration optimizations.
 
 By default all traffic flow destined to switch/SoftGate is allowed. As soon as the inventory profile is attached to a device it denies all traffic destined to the device except Netris-defined and user-defined custom flows. 
 
@@ -39,7 +42,7 @@ Automatically allowed IPv4 and IPv6 inbound flows include:
 SNMPv2 credentials
 ==================
 
-Netris administers can define SNMPv2 credentials to monitor switches and SoftGates in the inventory. To add SNMPv2 credentials, expand the SNMPv2 section of the Inventory Profile form, set the checkbox to enabled, and fill in the fields as described below:
+Netris administrators can define SNMPv2 credentials to monitor switches in the inventory. To add SNMPv2 credentials, expand the SNMPv2 section of the Inventory Profile form, set the checkbox to enabled, and fill in the fields as described below:
 
 .. list-table:: SNMPv2 Fields
 
@@ -64,12 +67,16 @@ Netris administers can define SNMPv2 credentials to monitor switches and SoftGat
 
   <br />
 
+.. note::
+
+   Configuring SNMP monitoring of SoftGates is planned for future releases.
+
 .. _netq_settings:
 
 NetQ Settings
 =============
 
-Netris administers can define NetQ server address and port to automatically configure the NetQ client on Cumulus Linux based switches.
+Netris administrators can define the NetQ server address and port to automatically configure the NetQ client on Cumulus Linux-based switches.
 
 .. list-table:: NetQ Fields
 
@@ -98,14 +105,51 @@ Netris administers can define NetQ server address and port to automatically conf
 
 .. tip::
 
-   You may also export your network topology as a Graphviz DOT to be imported into your NetQ instance. See :doc:`/monitoring-observability/netq` for more details.
+   You may also export your network topology as a Graphviz DOT file to import into your NetQ instance. See :doc:`/monitoring-observability/netq` for more details.
+
+.. _syslog_settings:
+
+Syslog Settings
+===============
+
+Netris administrators can define up to four remote syslog destinations per Inventory Profile. Once configured, Netris pushes the syslog configuration to every switch assigned to the profile, so devices forward their logs to your SIEM or log collection system without any manual per-switch configuration. To configure syslog forwarding, expand the Syslog Servers section of the Inventory Profile form, set the checkbox to enabled, and fill in the fields as described below:
+
+.. list-table:: Syslog Fields
+
+   * - RFC 5424 Format
+     - 🔹 Optional
+     - Send messages in the structured RFC 5424 format. When disabled (default), messages use the legacy RFC 3164 format.
+   * - Host / Server Address
+     - ✅ required
+     - IPv4 address or FQDN of the remote syslog server.
+   * - Port
+     - ✅ required
+     - Destination port. Default is 514.
+   * - Protocol
+     - ✅ required
+     - UDP (default) or TCP.
+   * - Severity Level
+     - ✅ required
+     - Minimum severity to forward: Emergency, Alert, Critical, Error, Warning, Notice, Informational (default), or Debug. Only messages at or above the selected severity are forwarded.
+
+.. image:: images/inventory-profile-syslog.png
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Syslog Servers section of the Inventory Profile form</em></p>
+
+Use **+ Add** to configure additional servers, up to four per profile. Each server row can be removed with the trash icon; at least one server must remain while Syslog is enabled.
+
+Syslog destination configuration is supported on Arista EOS, NVIDIA Cumulus Linux, and Dell SONiC switches. See the :doc:`Supported Functionality and Platforms Matrix </supported-platform-matrix>` for platform-by-platform support.
 
 .. _fabric_settings:
 
 Fabric Settings
 ================
 
-Netris can automatically optimize fabric configurations based on administrator's design and preferences. The following controls are available in the Fabric Settings section of the Inventory Profile form:
+Netris can automatically optimize fabric configurations based on the administrator's design and preferences. The following controls are available in the Fabric Settings section of the Inventory Profile form:
 
 - **Fabric Type** (default = General Purpose).  The selected fabric type acts as a filter to determine which switches are subject to the "Optimize BGP Overlay for leaf-spine topology" feature as described below. Supported values include:
   
@@ -129,10 +173,10 @@ Netris can automatically optimize fabric configurations based on administrator's
   When unchecked, overlay BGP sessions are configured on all point-to-point links.
 
 - **Optimize BGP Overlay for Hypervisor Integrated Fabric** (default = unchecked). Required for BGP/EVPN VXLAN integration with compute hypervisor networking. This optimization makes sure that a large number of hypervisor virtual networking EVPN prefixes do not overflow switch TCAM.
-- **BGP Numbered Underlay** (default = unchecked).  When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP unnumbered method is used and p2p ipv6 link-local addresses are used for BGP sessions.
-- **Automatic Link Aggregation** (default = unchecked). When checked, Enable MC-LAG shall become unchecked automatically through the UI.
-- **Generate ESI by Server ID** (default = unchecked). When checked, ESI-IDs are generated using server-ID-based logic instead of the default partner-MAC-based method. The setting is backwards compatible: existing ESI-IDs remain valid, and servers not modeled in Netris automatically fall back to partner-MAC-based generation.
-- **Enable MC-LAG** (default = unchecked). When checked, Automatic Link Aggregation shall become unchecked automatically through the UI.  If unchecked none of MC-LAG related configurations should be generated by switch agents. Help message: “Enabling MC-LAG functionality will disable any EVPN-MH functionality. Two multihoming methods are not supported simultaneously on the same switches.”
+- **BGP Numbered Underlay** (default = unchecked). When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, the BGP unnumbered method is used, and BGP sessions use p2p IPv6 link-local addresses.
+- **Automatic Link Aggregation** (default = unchecked). When checked, the UI automatically unchecks Enable MC-LAG.
+- **Generate ESI by Server ID** (default = unchecked). When checked, ESI-IDs are generated using server-ID-based logic instead of the default partner-MAC-based method. The setting is backward compatible: existing ESI-IDs remain valid, and servers not modeled in Netris automatically fall back to partner-MAC-based generation. Note that when multiple bond interfaces are present on servers, this should remain unchecked.
+- **Enable MC-LAG** (default = unchecked). When checked, Automatic Link Aggregation will automatically become unchecked through the UI. If unchecked none of MC-LAG related configurations should be generated by switch agents. Help message: “Enabling MC-LAG functionality will disable any EVPN-MH functionality. Two multihoming methods are not supported simultaneously on the same switches.”
 
 .. _gpu_cluster_settings:
 

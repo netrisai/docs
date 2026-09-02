@@ -111,6 +111,12 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - TBD
+   *  - :ref:`Syslog Destinations <syslog_settings>`
+      - Forward switch logs to up to 4 remote syslog servers configured on the Inventory Profile.
+      - ✔
+      - ✔
+      - ✔
+      - TBD
 
 \* Netris also integrates with NVIDIA UFM and NVIDIA NMX-C to automate partition management across NVIDIA Quantum InfiniBand and NVL72 fabrics.
 
@@ -135,7 +141,7 @@ Host Networking
       - ✔
       - ✔
    *  - :doc:`Compute VXLAN/EVPN extension (EOH) </evpn-on-host>`
-      - Extend VXLAN/EVPN fabric into compute layer. See Compute Platform Integrations section below.
+      - Extend VXLAN/EVPN fabric into compute layer.
       - ✔
       - ✔
       - TBD
@@ -412,40 +418,6 @@ AI Specific Functions
       - TBD
       - TBD
 
-
-Compute Platform Integrations
-=================================
-.. list-table::
-   :header-rows: 0
-
-   *  - Function
-      - Description
-      - NVIDIA Cumulus
-      - Dell-SONiC
-
-        BCM-SONiC
-      - Arista EOS
-      - EdgeCore-SONiC
-   *  - Kubernetes Operator
-      - Automatically serve Kubernetes LoadBalancer Type service
-      - ✔
-      - ✔
-      - ✔
-      - ✔
-   *  - :doc:`Apache Cloud Stack<cloudstack/netris-cloudstack>`
-      - Netris VXLAN isolation & VR replacement
-      - ✔
-      - ✔
-      - TBD
-      - TBD
-   *  - VMware VSphere
-      - Automatically provision VSphere defined VLANs in VXLAN/EVPN switch fabric
-      - ✔
-      - ✔
-      - ✔
-      - ✔
-
-
 Security
 ========
 .. list-table::
@@ -491,11 +463,8 @@ Netris Controller Administration
    *  - :doc:`Role Based Access Control <accounts>`
       - Who can view and edit which aspects of the system.
       - ✔
-   *  - Tenant RBAC
-      - Network resource delegation to tenants.
-      - ✔
-   *  - Active/Standby
-      - Daily backup of Netris Controller on a Standby node
+   *  - Automated Backup
+      - Daily backup of Netris Controller
       - ✔
    *  - HA Controller
       - 3-node, HA Netris Controller cluster
@@ -540,6 +509,14 @@ Netris and NOS versions compatibility matrix
      - **SoftGate PRO OS**
      - **SoftGate HS OS**
      - **Availability**
+   * - 4.16.0
+     - 5.11 - 5.14, 5.16 - 5.16.6
+     - 4.5
+     - 202211-331
+     - 4.34.1F
+     - N/A
+     - Ubuntu 24.04
+     - ✔
    * - 4.15.0
      - 5.11 - 5.14, 5.16 - 5.16.6
      - 4.5

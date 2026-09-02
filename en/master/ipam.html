@@ -199,7 +199,6 @@
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#cloud-networking-functions-constructs">Cloud Networking Functions &amp; Constructs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#overlay-network-functions">Overlay Network Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#ai-specific-functions">AI Specific Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#compute-platform-integrations">Compute Platform Integrations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#security">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#netris-controller-administration">Netris Controller Administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#management-interfaces">Management Interfaces</a></li>
@@ -240,7 +239,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">14. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
@@ -406,6 +405,24 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpu-installation.html">Installing BlueField-3 DPUs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#creating-the-resources">Creating the Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#interfaces-physical-ifaces-yaml">1. Interfaces — <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#bfb-bfb-yaml">2. BFB — <code class="docutils literal notranslate"><span class="pre">bfb.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpuflavor-hbn-dpuflavor-yaml">3. DPUFlavor — <code class="docutils literal notranslate"><span class="pre">hbn-dpuflavor.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#doca-hbn-service-hbn-service-yaml">4. DOCA HBN service — <code class="docutils literal notranslate"><span class="pre">hbn-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#netris-dpu-agent-service-netris-agent-service-yaml">5. Netris DPU agent service — <code class="docutils literal notranslate"><span class="pre">netris-agent-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpudeployment-dpudeployment-yaml">6. DPUDeployment — <code class="docutils literal notranslate"><span class="pre">dpudeployment.yaml</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#apply-order">Apply Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#verify">Verify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
 <ul class="current">
@@ -435,8 +452,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#netq-settings">NetQ Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#syslog-settings">Syslog Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -467,7 +486,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="switch-ports.html">Switch Ports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-interfaces.html">Network Interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lag.html">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#custom-lag">Custom LAG</a></li>
@@ -602,10 +621,11 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">3. Create Server Clusters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">3. Verification</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">4. Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">5. Monitoring Integration Status</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#replacing-hcas-and-servers">Replacing HCAs and Servers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
 </ul>
@@ -894,6 +914,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.16.0.html">Netris 4.16.0 Release Notes (Sep/02/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#what-s-new-in-netris-version">What’s new in Netris 4.16.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.15.0.html">Netris 4.15.0 Release Notes (Aug/18/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#what-s-new-in-netris-version">What’s new in Netris 4.15.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#features">Features</a></li>
@@ -1151,17 +1180,18 @@
              
   <section id="ip-address-management-ipam">
 <span id="ipam-def"></span><h1>IP Address Management (IPAM)<a class="headerlink" href="#ip-address-management-ipam" title="Link to this heading"></a></h1>
-<p>Netris IPAM allows users to document their IP addresses and track pool usage. It is designed to have a tree-like view to provide opportunity to perform any kind of subnetting.</p>
+<p>Netris IPAM is the address-space source of truth every address-consuming object in Netris depends on: V-Net gateways and DHCP pools, NAT and L4 Load Balancer address pools, switch and SoftGate loopback and management IPs, and BGP route advertisement all draw from subnets created here first. Allocations and subnets are tracked per VPC in a nested, tree-like structure, and each subnet’s purpose and tenant determine which services are allowed to consume it.</p>
 <section id="allocations-and-subnets">
 <h2>Allocations and Subnets<a class="headerlink" href="#allocations-and-subnets" title="Link to this heading"></a></h2>
-<p>There are 2 main types of IP prefixes - allocation and subnet. Allocations are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network. Subnets are prefixes which are going to be used in services. Subnets are always childs of allocation. Allocations do not have parent subnets.</p>
+<p>There are 2 main types of IP prefixes - allocation and subnet. Allocations are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network. Subnets are prefixes which are going to be used in services.</p>
+<p>An allocation never has a parent — creating an allocation inside another allocation is rejected. A subnet may sit under another subnet, to any depth: creating a <code class="docutils literal notranslate"><span class="pre">10.0.10.0/25</span></code> where a <code class="docutils literal notranslate"><span class="pre">10.0.10.0/24</span></code> subnet already exists files the <code class="docutils literal notranslate"><span class="pre">/25</span></code> under the <code class="docutils literal notranslate"><span class="pre">/24</span></code>. The parent is never chosen — there is no parent selector. You enter a prefix, and the Controller places it under the containing allocation or subnet in that VPC.</p>
+<p>Only top-level subnets are advertised upstream by SoftGate, so whether a subnet is nested under another subnet changes what leaves the fabric — see <a class="reference internal" href="netris-softgate-HS.html"><span class="doc">SoftGate HS</span></a>.</p>
 <img alt="IPAM Tree View" class="with-shadow align-center" src="_images/subnet-tree.png" />
-<p>IPAM Tree View</p>
-</section>
-<hr class="docutils" />
+<p style="text-align: center;"><em>Figure: IPAM Tree View</em></p></section>
 <section id="subnet-purpose-and-service-dependencies">
 <h2>Subnet purpose and service dependencies<a class="headerlink" href="#subnet-purpose-and-service-dependencies" title="Link to this heading"></a></h2>
 <p>Netris models address space first and consumes it second: you create an IPAM subnet with the right <strong>purpose</strong> before the service that will use it. A service only offers addresses from subnets whose purpose matches, so the IPAM entry is a prerequisite, not an afterthought.</p>
+<p>Subnets — not allocations — are what render the <code class="docutils literal notranslate"><span class="pre">network</span></code> statements Netris uses for BGP route advertisement. To have a particular prefix or subprefix advertised, create a subnet for it — see <a class="reference internal" href="bgp.html"><span class="doc">BGP</span></a>.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 20.0%" />
@@ -1202,6 +1232,10 @@
 </tbody>
 </table>
 <p>See the <a class="reference internal" href="vnet.html"><span class="doc">V-Net</span></a>, <a class="reference internal" href="l4-load-balancer.html"><span class="doc">L4 Load Balancer</span></a>, <a class="reference internal" href="nat.html"><span class="doc">NAT</span></a>, and <a class="reference internal" href="dhcp-and-dhcp-relay.html"><span class="doc">DHCP and DHCP Relay</span></a> pages for how each service consumes its subnet, and <a class="reference internal" href="vpc.html"><span class="doc">Netris VPC</span></a> for why loopback, management, load-balancer, and nat subnets live in the System VPC.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Purpose is necessary but not sufficient.</strong> A service also only offers subnets owned by its own Owner (<a class="reference internal" href="accounts.html"><span class="doc">Tenant</span></a>). For a V-Net, the gateway subnet must have purpose <code class="docutils literal notranslate"><span class="pre">common</span></code>, be assigned to the V-Net’s Owner, and be available in a site the V-Net spans — see <a class="reference internal" href="vnet.html"><span class="doc">V-Net</span></a>. An empty address picker with no error therefore has four possible causes: purpose, VPC, site, or tenant.</p>
+</div>
 </section>
 <section id="add-an-allocation">
 <h2>Add an Allocation<a class="headerlink" href="#add-an-allocation" title="Link to this heading"></a></h2>
@@ -1222,11 +1256,14 @@
 <tr class="row-odd"><td><p>Name</p></td>
 <td><p>Unique name for current allocation.</p></td>
 </tr>
-<tr class="row-even"><td><p>Prefix</p></td>
-<td><p>Unique prefix for allocation, must not overlap with other allocations.</p></td>
+<tr class="row-even"><td><p>VPC</p></td>
+<td><p>The VPC the allocation belongs to.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Tenant</p></td>
-<td><p>Owner of the allocation.</p></td>
+<tr class="row-odd"><td><p>Prefix</p></td>
+<td><p>Unique prefix for the allocation, must not overlap with other allocations in the same VPC. Allocations may hold the same prefix in different VPCs — see <a class="reference internal" href="definitions.html"><span class="doc">Definitions</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Tenant</p></td>
+<td><p>Owner of the allocation. Must be a tenant with access to the VPC — the VPC’s Admin Tenant or one of its Guest Tenants; any other tenant is rejected.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1253,11 +1290,17 @@
 <tr class="row-odd"><td><p><strong>Name</strong></p></td>
 <td><p>Unique name for current subnet.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>Prefix</strong></p></td>
-<td><p>Unique prefix for subnet, ust be included in one of allocations.</p></td>
+<tr class="row-even"><td><p><strong>VPC</strong></p></td>
+<td><p>The VPC the subnet belongs to. Any VPC can be selected here, but only the VPC already carried by the parent allocation will be accepted — selecting any other VPC prevents the subnet from being created.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Prefix</strong></p></td>
+<td><p>Unique prefix for the subnet, must be included in one of the allocations.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Sites</strong></p></td>
+<td><p>One or more sites the subnet is assigned to. A subnet can be assigned to multiple sites — this is the mechanism for extending a V-Net across multiple locations; see <a class="reference internal" href="vnet.html"><span class="doc">V-Net</span></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Tenant</strong></p></td>
-<td><p>Owner of the subnet.</p></td>
+<td><p>Owner of the subnet. Must be a tenant with access to the VPC — the VPC’s Admin Tenant or one of its Guest Tenants; any other tenant is rejected. It does not otherwise restrict who may carve subnets: any tenant with access to the VPC can create subnets under an allocation owned by a different tenant, and a child subnet need not share a tenant with its parent subnet or with the allocation — VPC is the only field that must match all the way down the tree. See <em>Subnet purpose and service dependencies</em>, above, for how a subnet’s Tenant gates which services can consume it.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Purpose</strong></p></td>
 <td><p>This field describes for what kind of services the current subnet can be used. It can have the following values:</p>
@@ -1276,7 +1319,10 @@
 </tbody>
 </table>
 <img alt="Add a New Subnet" class="with-shadow align-center" src="_images/add-subnet.png" />
-<p>Add Subnet Window</p>
+<p style="text-align: center;"><em>Figure: Add Subnet Window</em></p><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>IPAM does not track point-to-point link addressing.</strong> Underlay BGP-numbered links and L3VPN per-port links are configured directly on the Link object in Topology Manager instead — see <a class="reference internal" href="topology-management.html"><span class="doc">Topology Management</span></a>, <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profiles</span></a>, and <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a>. Netris can auto-allocate them, or an operator can enter them manually; L3VPN link addresses are typically pre-populated with Terraform during server onboarding.</p>
+</div>
 </section>
 </section>
 

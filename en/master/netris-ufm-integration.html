@@ -199,7 +199,6 @@
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#cloud-networking-functions-constructs">Cloud Networking Functions &amp; Constructs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#overlay-network-functions">Overlay Network Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#ai-specific-functions">AI Specific Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#compute-platform-integrations">Compute Platform Integrations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#security">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#netris-controller-administration">Netris Controller Administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#management-interfaces">Management Interfaces</a></li>
@@ -240,7 +239,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">14. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
@@ -406,6 +405,24 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpu-installation.html">Installing BlueField-3 DPUs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#creating-the-resources">Creating the Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#interfaces-physical-ifaces-yaml">1. Interfaces — <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#bfb-bfb-yaml">2. BFB — <code class="docutils literal notranslate"><span class="pre">bfb.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpuflavor-hbn-dpuflavor-yaml">3. DPUFlavor — <code class="docutils literal notranslate"><span class="pre">hbn-dpuflavor.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#doca-hbn-service-hbn-service-yaml">4. DOCA HBN service — <code class="docutils literal notranslate"><span class="pre">hbn-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#netris-dpu-agent-service-netris-agent-service-yaml">5. Netris DPU agent service — <code class="docutils literal notranslate"><span class="pre">netris-agent-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpudeployment-dpudeployment-yaml">6. DPUDeployment — <code class="docutils literal notranslate"><span class="pre">dpudeployment.yaml</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#apply-order">Apply Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#verify">Verify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
 <ul>
@@ -435,8 +452,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#netq-settings">NetQ Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#syslog-settings">Syslog Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -467,7 +486,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="switch-ports.html">Switch Ports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-interfaces.html">Network Interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lag.html">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#custom-lag">Custom LAG</a></li>
@@ -602,10 +621,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-server-clusters">3. Create Server Clusters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#verification">3. Verification</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#monitoring-integration-status">4. Monitoring Integration Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verification">4. Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monitoring-integration-status">5. Monitoring Integration Status</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#replacing-hcas-and-servers">Replacing HCAs and Servers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#functional-workflow">Functional Workflow</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
 </ul>
@@ -894,6 +914,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.16.0.html">Netris 4.16.0 Release Notes (Sep/02/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#what-s-new-in-netris-version">What’s new in Netris 4.16.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.15.0.html">Netris 4.15.0 Release Notes (Aug/18/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#what-s-new-in-netris-version">What’s new in Netris 4.15.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#features">Features</a></li>
@@ -1230,7 +1259,7 @@
 <span class="w">  </span><span class="nt">UFM_LOGIN</span><span class="p">:</span><span class="w"> </span><span class="s">"admin"</span>
 <span class="w">  </span><span class="nt">UFM_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">"123456"</span>
 <span class="w">  </span><span class="nt">UFM_VERIFY_SSL</span><span class="p">:</span><span class="w"> </span><span class="s">"false"</span>
-<span class="w">  </span><span class="nt">UFM_ID</span><span class="p">:</span><span class="w"> </span><span class="s">"ufm-lab"</span>
+<span class="w">  </span><span class="nt">UFM_ID</span><span class="p">:</span><span class="w"> </span><span class="s">"ufm-88"</span>
 <span class="w">  </span><span class="nt">UFM_PKEY_RANGE</span><span class="p">:</span><span class="w"> </span><span class="s">"100-7ffe"</span>
 <span class="w">  </span><span class="nt">UFM_ENABLE_SHARP</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
 </pre></div>
@@ -1302,7 +1331,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-
 </tr>
 <tr class="row-odd"><td><p>NETRIS_CONTROLLER_LOGIN</p></td>
 <td><p>Username for authenticating with Netris Controller</p></td>
-<td><p>netris</p></td>
+<td><p>ufm_integration_account</p></td>
 </tr>
 <tr class="row-even"><td><p>NETRIS_CONTROLLER_PASSWORD</p></td>
 <td><p>Password for authenticating with Netris Controller</p></td>
@@ -1352,7 +1381,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-
 </tr>
 <tr class="row-even"><td><p>UFM_ID</p></td>
 <td><p>Unique identifier for this UFM instance, referenced from the <code class="docutils literal notranslate"><span class="pre">ufm</span></code> field in the <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster Template</span></a>. The value is operator-chosen and arbitrary; it must match exactly between this agent and the template. An agent acts on templates whose <code class="docutils literal notranslate"><span class="pre">ufm</span></code> value matches its own <code class="docutils literal notranslate"><span class="pre">UFM_ID</span></code>.</p></td>
-<td><p>ufm-lab</p></td>
+<td><p>ufm-88</p></td>
 </tr>
 <tr class="row-odd"><td><p>UFM_PKEY_RANGE</p></td>
 <td><p>Range of PKey IDs that can be allocated to clusters, in hexadecimal format</p></td>
@@ -1414,7 +1443,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-
 <p>Server names must match exactly between UFM and Netris Controller for the initial sync to complete properly. Once the initial sync is done and the <cite>hosting_system_guid</cite> field is populated in Netris inventory, the plugin will continue to maintain the mapping even if server names change in Netris or UFM. You can verify the GUID mapping in Netris Controller UI under <strong>Network</strong> → <strong>Inventory</strong> by examining the Custom field of the server object. It should show both the HCA GUIDs and the hosting system GUID.</p>
 <img alt="_images/ufm-hosting-system-guid.png" class="with-shadow align-center" src="_images/ufm-hosting-system-guid.png" />
 <p style="text-align: center;"><em>Figure: Server Custom field showing GUIDs</em></p></div>
-<p><code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code> always corresponds to the GUID of the server’s first HCA. You can cross-check this value in the UFM UI under the server’s Device view, which displays one general GUID that should match. Replacing that first HCA — for example, during an RMA — changes this GUID and breaks the Netris↔UFM mapping. If a server’s first HCA is replaced, re-establish the mapping manually: either rename the server to force a fresh name-based sync, or set <code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code> directly to the new value.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code> always corresponds to the GUID of the server’s first HCA. You can cross-check this value in the UFM UI under the server’s Device view, which displays one general GUID that should match. See “Replacing HCAs and Servers” below for what to do when hardware is replaced or the mapping is lost.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The server’s Custom field may also show GPU UID entries. Those come from the separate <a class="reference internal" href="netris-nvlink-integration.html"><span class="doc">NVLink integration</span></a> and are unrelated to UFM — the Netris-UFM plugin doesn’t read or write them.</p>
@@ -1438,7 +1467,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-
 <p>After setting up the template, create server clusters as described in <a class="reference internal" href="server-cluster.html#creating-server-cluster"><span class="std std-ref">Creating Server Cluster</span></a>.</p>
 </section>
 <section id="verification">
-<h3>3. Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h3>
+<h3>4. Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h3>
 <p>Once the server cluster is created:</p>
 <ol class="arabic simple">
 <li><p>The Netris-UFM agent will automatically:</p>
@@ -1459,7 +1488,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-
 </ol>
 </section>
 <section id="monitoring-integration-status">
-<h3>4. Monitoring Integration Status<a class="headerlink" href="#monitoring-integration-status" title="Link to this heading"></a></h3>
+<h3>5. Monitoring Integration Status<a class="headerlink" href="#monitoring-integration-status" title="Link to this heading"></a></h3>
 <p>To monitor the status of the integration:</p>
 <ol class="arabic">
 <li><p>Check the Netris-UFM agent logs (as described in the Monitoring section)</p></li>
@@ -1470,6 +1499,20 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-
 </li>
 </ol>
 </section>
+</section>
+<section id="replacing-hcas-and-servers">
+<h2>Replacing HCAs and Servers<a class="headerlink" href="#replacing-hcas-and-servers" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Renamed server, no hardware change</strong> — if a server is renamed in Netris or in UFM after the initial sync, the mapping is preserved automatically via <code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code>. No action needed.</p></li>
+<li><p><strong>Non-primary HCA replacement</strong> (any HCA other than the first) — no action needed. UFM keeps reporting the existing <code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code> (inherited from the primary HCA), and the Netris-UFM agent automatically syncs the replaced HCA’s GUIDs into the existing mapping.</p></li>
+<li><p><strong>Primary HCA replacement</strong> (the HCA <code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code> is derived from) — UFM assigns the server a new <code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code>, so this requires manual intervention. Use one of:</p>
+<ul>
+<li><p>Delete the <code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code> key/value from the server’s Custom JSON in Netris and let the Netris-UFM agent repopulate it. Reminder: server object name in Netris must match the server name in UFM — rename either side first if they’ve drifted apart.</p></li>
+<li><p>Or manually set <code class="docutils literal notranslate"><span class="pre">hosting_system_guid</span></code> in the Custom JSON to the new value.</p></li>
+</ul>
+</li>
+<li><p><strong>Full server replacement</strong> (1:1 swap, re-onboarded into the cluster as a new system) — the same two options as primary HCA replacement apply. As long as the replacement is onboarded under the same name it had in UFM, Netris discovers it as a new system and repopulates the HCA GUID mappings automatically; the old mapping does not cause a conflict.</p></li>
+</ul>
 </section>
 <section id="functional-workflow">
 <h2>Functional Workflow<a class="headerlink" href="#functional-workflow" title="Link to this heading"></a></h2>

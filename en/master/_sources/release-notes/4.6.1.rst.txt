@@ -55,9 +55,6 @@ Security fixes
     - rpm / photon/openssl / 3.0.18-2.ph5
     - rpm / photon/glibc / 2.36-22.ph5
     - rpm / photon/Linux-PAM / 1.7.2-1.ph5
-    - rpm / photon/Linux-PAM / 1.7.2-1.ph5
-    - rpm / photon/openssl / 3.0.18-2.ph5
-    - rpm / photon/glibc / 2.36-22.ph5
     - npm / mongoose / 6.13.9
     - npm / nodemailer / 8.0.1
     - npm / netmask / 2.0.2

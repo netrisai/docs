@@ -163,7 +163,7 @@ Once the Netris EVPN-on-Host agent is installed and able to communicate with the
 
 When you enable the underlay mode on one or both of the switch-to-server links in the Netris controller, an EVPN BGP session per enabled link is established as a result. An ESTABLISHED EVPN BGP session triggers the Netris agent to automatically transfer the management IP (192.168.1.10/24) and the associated default route from the server's NIC to the VXLAN bridge. This action keeps the server reachable via the same management IP. Without this action, the IP directly configured on a NIC would become inaccessible due to the switch-to-server links switching to the EVPN/VXLAN mode. 
 
-.. image:: images/evpn-on-host/EVPN-on-Host-Management-V-Net.svg
+.. image:: images/evpn-on-host/EVPN-on-Host-Management-V-net.svg
   :align: center
   :class: with-shadow
 

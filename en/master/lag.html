@@ -99,7 +99,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Maintenance Mode" href="maintenance-mode.html" />
-    <link rel="prev" title="Switch Ports" href="switch-ports.html" /> 
+    <link rel="prev" title="Network Interfaces" href="network-interfaces.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -199,7 +199,6 @@
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#cloud-networking-functions-constructs">Cloud Networking Functions &amp; Constructs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#overlay-network-functions">Overlay Network Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#ai-specific-functions">AI Specific Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#compute-platform-integrations">Compute Platform Integrations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#security">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#netris-controller-administration">Netris Controller Administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#management-interfaces">Management Interfaces</a></li>
@@ -240,7 +239,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">14. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
@@ -406,6 +405,24 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpu-installation.html">Installing BlueField-3 DPUs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#creating-the-resources">Creating the Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#interfaces-physical-ifaces-yaml">1. Interfaces — <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#bfb-bfb-yaml">2. BFB — <code class="docutils literal notranslate"><span class="pre">bfb.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpuflavor-hbn-dpuflavor-yaml">3. DPUFlavor — <code class="docutils literal notranslate"><span class="pre">hbn-dpuflavor.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#doca-hbn-service-hbn-service-yaml">4. DOCA HBN service — <code class="docutils literal notranslate"><span class="pre">hbn-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#netris-dpu-agent-service-netris-agent-service-yaml">5. Netris DPU agent service — <code class="docutils literal notranslate"><span class="pre">netris-agent-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpudeployment-dpudeployment-yaml">6. DPUDeployment — <code class="docutils literal notranslate"><span class="pre">dpudeployment.yaml</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#apply-order">Apply Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#verify">Verify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
 <ul class="current">
@@ -435,8 +452,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#netq-settings">NetQ Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#syslog-settings">Syslog Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -467,7 +486,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="switch-ports.html">Switch Ports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-interfaces.html">Network Interfaces</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-lag">Custom LAG</a></li>
@@ -602,10 +621,11 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">3. Create Server Clusters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">3. Verification</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">4. Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">5. Monitoring Integration Status</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#replacing-hcas-and-servers">Replacing HCAs and Servers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
 </ul>
@@ -894,6 +914,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.16.0.html">Netris 4.16.0 Release Notes (Sep/02/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#what-s-new-in-netris-version">What’s new in Netris 4.16.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.15.0.html">Netris 4.15.0 Release Notes (Aug/18/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#what-s-new-in-netris-version">What’s new in Netris 4.15.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#features">Features</a></li>
@@ -1141,7 +1170,7 @@
               <a href="https://github.com/netrisai/docs/blob/master/lag.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="switch-ports.html" class="btn btn-neutral float-left" title="Switch Ports" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="network-interfaces.html" class="btn btn-neutral float-left" title="Network Interfaces" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="maintenance-mode.html" class="btn btn-neutral float-right" title="Maintenance Mode" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -1196,7 +1225,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="switch-ports.html" class="btn btn-neutral float-left" title="Switch Ports" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="network-interfaces.html" class="btn btn-neutral float-left" title="Network Interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="maintenance-mode.html" class="btn btn-neutral float-right" title="Maintenance Mode" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

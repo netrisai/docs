@@ -198,7 +198,6 @@
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#cloud-networking-functions-constructs">Cloud Networking Functions &amp; Constructs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#overlay-network-functions">Overlay Network Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#ai-specific-functions">AI Specific Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#compute-platform-integrations">Compute Platform Integrations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#security">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#netris-controller-administration">Netris Controller Administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#management-interfaces">Management Interfaces</a></li>
@@ -239,7 +238,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">13. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">14. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
@@ -405,6 +404,24 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpu-installation.html">Installing BlueField-3 DPUs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#creating-the-resources">Creating the Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#interfaces-physical-ifaces-yaml">1. Interfaces — <code class="docutils literal notranslate"><span class="pre">physical-ifaces.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#bfb-bfb-yaml">2. BFB — <code class="docutils literal notranslate"><span class="pre">bfb.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpuflavor-hbn-dpuflavor-yaml">3. DPUFlavor — <code class="docutils literal notranslate"><span class="pre">hbn-dpuflavor.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#doca-hbn-service-hbn-service-yaml">4. DOCA HBN service — <code class="docutils literal notranslate"><span class="pre">hbn-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#netris-dpu-agent-service-netris-agent-service-yaml">5. Netris DPU agent service — <code class="docutils literal notranslate"><span class="pre">netris-agent-service.yaml</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluefield-3-dpu-installation.html#dpudeployment-dpudeployment-yaml">6. DPUDeployment — <code class="docutils literal notranslate"><span class="pre">dpudeployment.yaml</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#apply-order">Apply Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#verify">Verify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpu-installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
 <ul>
@@ -434,8 +451,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#netq-settings">NetQ Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#syslog-settings">Syslog Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -466,7 +485,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="switch-ports.html">Switch Ports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-interfaces.html">Network Interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lag.html">Link Aggregation (LAG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#custom-lag">Custom LAG</a></li>
@@ -601,10 +620,11 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#server-configuration-in-netris">1. Server Configuration in Netris</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-a-server-cluster-template">2. Create a Server Cluster Template</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#create-server-clusters">3. Create Server Clusters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">3. Verification</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">4. Monitoring Integration Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#verification">4. Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#monitoring-integration-status">5. Monitoring Integration Status</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#replacing-hcas-and-servers">Replacing HCAs and Servers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#functional-workflow">Functional Workflow</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#pkey-membership-dedicated-and-shared">PKey membership: dedicated and shared</a></li>
 </ul>
@@ -893,6 +913,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.16.0.html">Netris 4.16.0 Release Notes (Sep/02/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#what-s-new-in-netris-version">What’s new in Netris 4.16.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.15.0.html">Netris 4.15.0 Release Notes (Aug/18/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#what-s-new-in-netris-version">What’s new in Netris 4.15.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.15.0.html#features">Features</a></li>
@@ -1187,7 +1216,8 @@ can communicate with it. Its 1 GbE MGMT port must be physically cabled and acces
 Management connectivity must be established either through an external Out-of-Band network or
 through a VNet that includes the DPU management port.</p>
 <p><strong>Agent installation.</strong> Registering a DPU in Netris inventory does not automatically install
-the Netris agent onto the DPU. Agent installation is handled through DPF.</p>
+the Netris agent onto the DPU. Agent installation is handled through NVIDIA DPF and is
+described in <a class="reference internal" href="bluefield-3-dpu-installation.html"><span class="doc">Installing BlueField-3 DPUs</span></a>.</p>
 </section>
 <section id="use-cases">
 <h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
@@ -1212,6 +1242,12 @@ tenant network with consistent hardware-enforced isolation.</p>
 <h2>Configuring a Server with a DPU<a class="headerlink" href="#configuring-a-server-with-a-dpu" title="Link to this heading"></a></h2>
 <p>For step-by-step instructions on adding a DPU to a server object in Netris inventory,
 see <a class="reference internal" href="topology-management.html#topology-management-adding-dpus"><span class="std std-ref">Adding DPUs</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Saving the server object here does not install the Netris agent on the DPU. If it isn’t
+installed yet, see <a class="reference internal" href="bluefield-3-dpu-installation.html"><span class="doc">Installing BlueField-3 DPUs</span></a> — the DPU won’t report in or expose
+VFs to attach to a VNet until the agent is running.</p>
+</div>
 </section>
 <section id="vf-interface-naming">
 <h2>VF Interface Naming<a class="headerlink" href="#vf-interface-naming" title="Link to this heading"></a></h2>

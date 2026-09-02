@@ -1,9 +1,9 @@
 .. meta::
-    :description: Switch Ports
+    :description: Network Interfaces
 
-============
-Switch Ports
-============
+===================
+Network Interfaces
+===================
 
 Switch ports can be directly managed in the **Network Interfaces** UI section. Both physical and virtual ports (extended, aggregate, etc…) will appear in this section once they have been added to inventory. The Netris Controller will automatically sync the list of available ports that appear on each device.
 
@@ -46,20 +46,17 @@ The following options are available for editing on each port:
 Example: Edit physical port
 
 
-Quick action menu provides following actions for ports (note that Bulk Action also available for multiple ports:
+Quick action menu provides the following actions for ports (note that Bulk Action is also available for multiple ports:
 
 Edit - Edit the port.
-Admin UP/Down - Toggle admin status of the port.
-Add to V-net - Add selected port(s) to a V-net.
-
-.. image:: images/quick-action-ports.png
-  :align: center
-  :class: with-shadow
+Admin UP/Down - Toggle the port's admin status.
 
 Add to LAG - Add selected ports into a LAG.
 
 .. image:: images/add-to-lag-port.png
   :align: center
   :class: with-shadow
+
+Copy Link - Copy the hyperlink to this port object to your buffer.
 
 Free Up Port - Detach port from all resources.

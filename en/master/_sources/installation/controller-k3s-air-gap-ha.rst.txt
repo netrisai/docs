@@ -28,7 +28,7 @@ Prerequisites
 -------------
 
 1. **Three Servers** in the same private network, each meeting the minimum `hardware requirements <https://www.netris.io/docs/en/latest/supported-switch-hardware.html>`_ for K3s and Netris Controller.
-2. **Two Virtual IP Addresses (VIPs)** available on that network:
+2. **Two Virtual IP Addresses (VIPs)** and an IP address for each controller node available on that network:
    
   - **KubeAPI VIP** (e.g., 192.168.0.40/32)
   - **Netris Controller VIP** (e.g., 192.168.0.50/32)
@@ -327,7 +327,7 @@ We need a second VIP for the Netris Controller load balancer.
 8. Install Traefik Proxy
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Apply the Traefik manifest:
+1. On the **first node only**, apply the Traefik manifest:
 
 .. code-block:: shell
 
@@ -580,7 +580,7 @@ The Netris Local Repository is essential for environments where switches, softga
 
 
 
-13. Validate Your Deployment
+14. Validate Your Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Access the Netris Controller** via https://192.168.0.50 (or your assigned FQDN).
