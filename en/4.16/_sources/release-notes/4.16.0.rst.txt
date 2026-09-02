@@ -1,0 +1,68 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.16.0
+.. _release_4_16_0:
+
+Netris |version| Release Notes (Sep/02/2026)
+=============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+This release brings centralized log forwarding to the switch fabric: syslog destinations are now configured once in an Inventory Profile and applied across every Netris-managed switch platform. It also adds validation that rejects unworkable IPv6 Router Advertisement and route-map settings before they reach the fabric, along with fixes across VPC peering, V-Net configuration, ACL enforcement, and BGP session and port health reporting.
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **Syslog Destination Configuration in Inventory Profiles**. Inventory Profiles now support syslog destination configuration, enabling switches to forward system logs to central logging infrastructure with no per-switch manual setup. Multiple destinations can be configured per profile, each specified as an IPv4 address or a fully qualified domain name, with port — and each with its own transport protocol and minimum severity level. Supported across all Netris-managed switch platforms and configurable through both UI and API.
+
+Enhancements
+------------
+.. Customer-facing enhancements to existing functionality and features.
+
+- **Per-field hardware object updates**. Hardware objects can now be updated field by field through the Controller API, leaving attributes that are not included in the request untouched. Existing full-replacement updates continue to behave as before, so current automation is unaffected.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes.
+
+- Fixed SoftGate installation hanging during the migration from Netplan to ifupdown on systems that do not ship a DHCP client package, such as Ubuntu 24.04.
+- Fixed a VLAN ID collision during switch port translation that could leave the agent retrying configuration indefinitely. Affected platforms: Arista.
+- Fixed a Site Default ACL Policy of Deny not being enforced for DNAT and IPv6 traffic. Affected platforms: SoftGate. Found in Netris 4.14 and later.
+- Fixed Netris DHCP traffic being dropped when a Site's Default ACL Policy is set to Deny. Found in Netris 4.8 and later.
+- Fixed missing notifications when an External BGP session on a SoftGate goes down. Found in Netris 4.14 and later.
+- Fixed healthy switch ports being displayed in an unknown state. Affected platforms: all. Found in Netris 4.14 and later.
+- Prefix lists can no longer be deleted while still referenced by a route-map. Affected platforms: all. Found in Netris 4.14 and later.
+- IPv6 Router Advertisement settings are now validated so that the advertisement interval cannot exceed the router lifetime, and both values are checked against their supported ranges. Affected platforms: all. Found in Netris 4.15 and later.
+- Fixed the switch agent attempting to configure interfaces that the Netris Controller has not yet discovered or inventoried, resulting in an invalid configuration. Affected platforms: Arista. Found in Netris 4.14 and later.
+- Fixed VPC peering routes not being learned on switches that host only one of the two peered VPCs. Affected platforms: Cumulus. Found in Netris 4.15 and later.
+- V-Net configuration is now fully withdrawn from the switch when the corresponding object is removed or disabled, including:
+
+  - anycast MAC address configuration when a gateway is removed from a V-Net
+  - bridge member configuration on member ports when a V-Net is disabled
+
+  Affected platforms: Cumulus. Found in Netris 4.15 and later.
+
+Security fixes
+----------------
+
+No security fixes in this release.
+
+**Deprecation Notices**
+
+- **Switch fabric selection removed**. Every site is now managed as a Netris-native fabric, and the fabric selector has been removed from Site configuration in the UI. The ``switchFabricProviders`` attribute has been removed from the Sites API. ``switchFabric`` is still returned on read, always as ``netris``, and is ignored if supplied on create or update; it will be removed in a future release.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
