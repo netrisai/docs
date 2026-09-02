@@ -49,7 +49,7 @@ The Netris Controller requires at least three (for HA) Ubuntu 24.04 bare-metal s
 Netris SoftGate HS (Multi-VPC version)
 ==========================================
 
-A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward the stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can be scaled horizontally by deploying more servers as CPU & RAM utilization necessitates.
+A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can scale horizontally by deploying more servers as CPU & RAM utilization requires.
 
 .. csv-table:: SoftGate HS Hardware Requirements
    :file: tables/softgate-hs-hardware.csv
@@ -180,7 +180,7 @@ Dell
    * - Dell
      - PowerSwitch S Series S5212F-ON
      - Broadcom Trident III
-     - 12x 25G SFP28,3x 100GbE QSFP28
+     - 12x 25G SFP28, 3x 100GbE QSFP28
      - Dell-SONiC
      -
      - ✔
@@ -321,7 +321,7 @@ EdgeCore
      -
      - ✔
 
-.. [#edgecore-fn1] VXLAN/VTEP support for this platform is not clearly confirmed in EdgeCore's published platform documentation. Contact Netris support before deploying this switch in a leaf/VTEP role. See EdgeCore's `DCS510 (AS9716-32D) datasheet <https://www.edge-core.com/wp-content/uploads/2026/07/2026-042-DCS510_AS9716-32D-DS-R11-20260709.pdf>`_.
+.. [#edgecore-fn1] EdgeCore's published platform documentation does not clearly confirm VXLAN/VTEP support for this platform. Contact Netris support before deploying this switch in a leaf/VTEP role. See EdgeCore's `DCS510 (AS9716-32D) datasheet <https://www.edge-core.com/wp-content/uploads/2026/07/2026-042-DCS510_AS9716-32D-DS-R11-20260709.pdf>`_.
 
 Arista
 ========
@@ -352,7 +352,7 @@ Arista
    * - Arista
      - 7050X4
      - Trident-4
-     - 32 QSFP-DD 400G + 2SFP+; 32 OSFP 400G + 2SFP+; 48 SFP-DD 100G + 8 QSFP-DD 400G; 48 DSFP 100G + 8 QSFPDD 400G; 24 QSFP56 200G + 8 QSFPDD 400G + 2SFP+; 48 QSFP28 + 8 QSFP-DD 400G + 2SFP+
+     - 32 QSFP-DD 400G + 2SFP+; 32 OSFP 400G + 2SFP+; 48 SFP-DD 100G + 8 QSFP-DD 400G; 48 DSFP 100G + 8 QSFP-DD 400G; 24 QSFP56 200G + 8 QSFP-DD 400G + 2SFP+; 48 QSFP28 + 8 QSFP-DD 400G + 2SFP+
      - EOS
      -
      - ✔
@@ -366,7 +366,7 @@ Arista
    * - Arista
      - 7060X5
      - Tomahawk 4
-     - 32 x QSFP-DD 800G + 2x SFP+; 32 x QSFP-DD 800G + 2x SFP+; 32 x OSFP 800G + 2x SFP+; 64 x QSFP-DD 400G + 2x SFP+; : 32 x QSFP-DD + 1 x SFP+; 56x QSFP100, 8 x QSFP-DD 400G, 1x SFP+
+     - 32 x QSFP-DD 800G + 2x SFP+; 32 x QSFP-DD 800G + 2x SFP+; 32 x OSFP 800G + 2x SFP+; 64 x QSFP-DD 400G + 2x SFP+; 32 x QSFP-DD + 1 x SFP+; 56x QSFP100, 8 x QSFP-DD 400G, 1x SFP+
      - EOS
      -
      - ✔
@@ -443,4 +443,4 @@ Arista
 
 .. [#arista-fn1] Current Arista EOS releases on this platform support VXLAN bridging but not VXLAN routing, per Arista's published datasheet. It can serve as a bridging-only VTEP. Contact Netris support if your design requires EVPN/VXLAN routing. This is a platform/NOS limitation. See Arista's `7060X6 Series datasheet <https://www.arista.com/assets/data/pdf/Datasheets/7060X6-Datasheet.pdf>`_.
 
-.. [#arista-fn2] VXLAN/VTEP support for this platform is not clearly confirmed in Arista's published documentation. Contact Netris support before deploying this switch in a leaf/VTEP role. See Arista's `7368X4 datasheet <https://www.arista.com/assets/data/pdf/Datasheets/7368X4-Datasheet.pdf>`_.
+.. [#arista-fn2] Arista's published documentation does not clearly confirm VXLAN/VTEP support for this platform. Contact Netris support before deploying this switch in a leaf/VTEP role. See Arista's `7368X4 datasheet <https://www.arista.com/assets/data/pdf/Datasheets/7368X4-Datasheet.pdf>`_.

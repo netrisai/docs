@@ -1231,7 +1231,7 @@
 </section>
 <section id="netris-softgate-hs-multi-vpc-version">
 <h2>Netris SoftGate HS (Multi-VPC version)<a class="headerlink" href="#netris-softgate-hs-multi-vpc-version" title="Link to this heading"></a></h2>
-<p>A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward the stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can be scaled horizontally by deploying more servers as CPU &amp; RAM utilization necessitates.</p>
+<p>A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can scale horizontally by deploying more servers as CPU &amp; RAM utilization requires.</p>
 <table class="docutils align-center" id="id9">
 <caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id9" title="Link to this table"></a></caption>
 <colgroup>
@@ -1259,7 +1259,7 @@
 <tr class="row-even"><td><p>NIC (dataplane)</p></td>
 <td><p>2x10Gbps</p></td>
 <td><p>2x25Gbps or faster</p></td>
-<td></td>
+<td><p>Validated for XDP acceleration: Mellanox Technologies MT2892 Family [ConnectX-6 Dx]; Mellanox Technologies MT27800 Family [ConnectX-5]</p></td>
 </tr>
 <tr class="row-odd"><td><p>NIC (management)</p></td>
 <td><p>1xGbps</p></td>
@@ -1413,7 +1413,7 @@
 <tr class="row-odd"><td><p>Dell</p></td>
 <td><p>PowerSwitch S Series S5212F-ON</p></td>
 <td><p>Broadcom Trident III</p></td>
-<td><p>12x 25G SFP28,3x 100GbE QSFP28</p></td>
+<td><p>12x 25G SFP28, 3x 100GbE QSFP28</p></td>
 <td><p>Dell-SONiC</p></td>
 <td></td>
 <td><p>✔</p></td>
@@ -1584,7 +1584,7 @@
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="edgecore-fn1" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">3</a><span class="fn-bracket">]</span></span>
-<p>VXLAN/VTEP support for this platform is not clearly confirmed in EdgeCore’s published platform documentation. Contact Netris support before deploying this switch in a leaf/VTEP role. See EdgeCore’s <a class="reference external" href="https://www.edge-core.com/wp-content/uploads/2026/07/2026-042-DCS510_AS9716-32D-DS-R11-20260709.pdf">DCS510 (AS9716-32D) datasheet</a>.</p>
+<p>EdgeCore’s published platform documentation does not clearly confirm VXLAN/VTEP support for this platform. Contact Netris support before deploying this switch in a leaf/VTEP role. See EdgeCore’s <a class="reference external" href="https://www.edge-core.com/wp-content/uploads/2026/07/2026-042-DCS510_AS9716-32D-DS-R11-20260709.pdf">DCS510 (AS9716-32D) datasheet</a>.</p>
 </aside>
 </aside>
 </section>
@@ -1619,7 +1619,7 @@
 <tr class="row-even"><td><p>Arista</p></td>
 <td><p>7050X4</p></td>
 <td><p>Trident-4</p></td>
-<td><p>32 QSFP-DD 400G + 2SFP+; 32 OSFP 400G + 2SFP+; 48 SFP-DD 100G + 8 QSFP-DD 400G; 48 DSFP 100G + 8 QSFPDD 400G; 24 QSFP56 200G + 8 QSFPDD 400G + 2SFP+; 48 QSFP28 + 8 QSFP-DD 400G + 2SFP+</p></td>
+<td><p>32 QSFP-DD 400G + 2SFP+; 32 OSFP 400G + 2SFP+; 48 SFP-DD 100G + 8 QSFP-DD 400G; 48 DSFP 100G + 8 QSFP-DD 400G; 24 QSFP56 200G + 8 QSFP-DD 400G + 2SFP+; 48 QSFP28 + 8 QSFP-DD 400G + 2SFP+</p></td>
 <td><p>EOS</p></td>
 <td></td>
 <td><p>✔</p></td>
@@ -1635,7 +1635,7 @@
 <tr class="row-even"><td><p>Arista</p></td>
 <td><p>7060X5</p></td>
 <td><p>Tomahawk 4</p></td>
-<td><p>32 x QSFP-DD 800G + 2x SFP+; 32 x QSFP-DD 800G + 2x SFP+; 32 x OSFP 800G + 2x SFP+; 64 x QSFP-DD 400G + 2x SFP+; : 32 x QSFP-DD + 1 x SFP+; 56x QSFP100, 8 x QSFP-DD 400G, 1x SFP+</p></td>
+<td><p>32 x QSFP-DD 800G + 2x SFP+; 32 x QSFP-DD 800G + 2x SFP+; 32 x OSFP 800G + 2x SFP+; 64 x QSFP-DD 400G + 2x SFP+; 32 x QSFP-DD + 1 x SFP+; 56x QSFP100, 8 x QSFP-DD 400G, 1x SFP+</p></td>
 <td><p>EOS</p></td>
 <td></td>
 <td><p>✔</p></td>
@@ -1730,7 +1730,7 @@
 </aside>
 <aside class="footnote brackets" id="arista-fn2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">5</a><span class="fn-bracket">]</span></span>
-<p>VXLAN/VTEP support for this platform is not clearly confirmed in Arista’s published documentation. Contact Netris support before deploying this switch in a leaf/VTEP role. See Arista’s <a class="reference external" href="https://www.arista.com/assets/data/pdf/Datasheets/7368X4-Datasheet.pdf">7368X4 datasheet</a>.</p>
+<p>Arista’s published documentation does not clearly confirm VXLAN/VTEP support for this platform. Contact Netris support before deploying this switch in a leaf/VTEP role. See Arista’s <a class="reference external" href="https://www.arista.com/assets/data/pdf/Datasheets/7368X4-Datasheet.pdf">7368X4 datasheet</a>.</p>
 </aside>
 </aside>
 </section>
