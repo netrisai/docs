@@ -1182,7 +1182,7 @@
 <span id="release-4-16-0"></span><h1>Netris 4.16.0 Release Notes (Sep/02/2026)<a class="headerlink" href="#netris-version-release-notes-sep-02-2026" title="Link to this heading"></a></h1>
 <section id="what-s-new-in-netris-version">
 <h2>What’s new in Netris 4.16.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
-<p>This release brings centralized log forwarding to the switch fabric: syslog destinations are now configured once in an Inventory Profile and applied across every Netris-managed switch platform. It also adds validation that rejects unworkable IPv6 Router Advertisement and route-map settings before they reach the fabric, along with fixes across VPC peering, V-Net configuration, ACL enforcement, and BGP session and port health reporting.</p>
+<p>This release brings centralized log forwarding to the switch fabric: syslog destinations are now configured once in an Inventory Profile and applied across every Netris-managed switch platform. It also adds support for Cumulus Linux 5.18.0, validation that rejects unworkable IPv6 Router Advertisement and route-map settings before they reach the fabric, along with fixes across VPC peering, V-Net configuration, ACL enforcement, and BGP session and port health reporting.</p>
 </section>
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
@@ -1194,6 +1194,7 @@
 <h2>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Per-field hardware object updates</strong>. Hardware objects can now be updated field by field through the Controller API, leaving attributes that are not included in the request untouched. Existing full-replacement updates continue to behave as before, so current automation is unaffected.</p></li>
+<li><p><strong>Cumulus Linux 5.18.0 support.</strong> Netris is now validated on Cumulus Linux 5.18.0.</p></li>
 </ul>
 </section>
 <section id="bug-fixes">
