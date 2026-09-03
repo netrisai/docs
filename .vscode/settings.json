@@ -5,8 +5,12 @@
     // Confluence (Documentation Procedures section) for the full setup.
     "editor.wordWrap": "on",
     "esbonio.server.enabled": true,
-    "esbonio.server.pythonCommand": "${workspaceFolder}/.venv/bin/python3",
+    "esbonio.server.pythonCommand": ["${workspaceFolder}/.venv/bin/python3"],
+    "esbonio.sphinx.pythonCommand": ["${workspaceFolder}/.venv/bin/python3"],
     "esbonio.sphinx.confDir": "${workspaceFolder}",
+    "esbonio.sphinx.buildArguments": [
+        "-M", "html", ".", "${workspaceFolder}/_build/esbonio"
+    ],
     "restructuredtext.linter.doc8.extraArgs": [
         "--ignore", "D001"
     ],
