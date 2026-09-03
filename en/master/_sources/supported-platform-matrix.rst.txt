@@ -103,8 +103,8 @@ Switch Fabric Management Functions
       - Custom configuration snippets for unique use cases.
       - ✔
       - Coming Soon
-      - Coming Soon
-      - TBD  
+      - ✔
+      - TBD
    *  - :ref:`SNMPv2 polling <snmp_settings>`
       - Enable SNMPv2 server.
       - ✔

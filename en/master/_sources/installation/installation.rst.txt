@@ -15,6 +15,8 @@ Netris Controller is installed as a Kubernetes application on dedicated bare-met
 - :doc:`controller-k8s-installation` — deploy the Netris Controller as a Kubernetes application using the official Helm chart.
 - :doc:`ztp` — automatically provision and onboard switches once the controller is installed.
 
+See :doc:`General Settings <../general-settings>` for the controller-wide settings under Settings → General.
+
 .. toctree::
    :maxdepth: 2
    :caption: Controller Installation
