@@ -3,14 +3,15 @@
     // Uses workspace-relative paths — no per-user editing needed.
     // See the "Local RST Authoring Environment (VS Code + Esbonio)" page in
     // Confluence (Documentation Procedures section) for the full setup.
+    // NOTE: esbonio.server.* is expanded by VS Code (${workspaceFolder} ok);
+    // esbonio.sphinx.* is resolved by the language server relative to the
+    // docs folder — use relative paths there, not ${workspaceFolder}.
     "editor.wordWrap": "on",
     "esbonio.server.enabled": true,
     "esbonio.server.pythonCommand": ["${workspaceFolder}/.venv/bin/python3"],
-    "esbonio.sphinx.pythonCommand": ["${workspaceFolder}/.venv/bin/python3"],
-    "esbonio.sphinx.confDir": "${workspaceFolder}",
-    "esbonio.sphinx.buildArguments": [
-        "-M", "html", ".", "${workspaceFolder}/_build/esbonio"
-    ],
+    "esbonio.sphinx.pythonCommand": [".venv/bin/python3"],
+    "esbonio.sphinx.confDir": ".",
+    "esbonio.sphinx.buildArguments": ["-M", "html", ".", "_build/esbonio"],
     "restructuredtext.linter.doc8.extraArgs": [
         "--ignore", "D001"
     ],
