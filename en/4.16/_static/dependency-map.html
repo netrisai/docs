@@ -1,0 +1,709 @@
+<title>Netris Object Dependency Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+
+<style>
+:root {
+  --bg: #0A0A0B;
+  --surface: #131114;
+  --surface-2: #1B191D;
+  --line: #2C2A30;
+  --line-soft: #201E23;
+  --ink: #F2F2F3;
+  --ink-dim: #A9A9A9;
+  --ink-faint: #646464;
+  --coral: #FF476C;
+  --coral-soft: rgba(255, 71, 108, 0.14);
+  --blue: #33A4FF;
+  --blue-soft: rgba(51, 164, 255, 0.12);
+  --green: #49D74E;
+  --green-soft: rgba(73, 215, 78, 0.12);
+  --amber: #FFB13D;
+
+  --f: 'Montserrat', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --r: 5px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #FFFFFF;
+    --surface: #F8F7F8;
+    --surface-2: #EBEBEB;
+    --line: #D9D7DC;
+    --line-soft: #E8E6EA;
+    --ink: #111111;
+    --ink-dim: #56565C;
+    --ink-faint: #8A8A92;
+    --coral: #E12E55;
+    --coral-soft: rgba(225, 46, 85, 0.10);
+    --blue: #156EF3;
+    --blue-soft: rgba(21, 110, 243, 0.10);
+    --green: #00752E;
+    --green-soft: rgba(0, 117, 46, 0.10);
+    --amber: #A65D00;
+  }
+}
+
+:root[data-theme="light"] {
+  --bg: #FFFFFF;
+  --surface: #F8F7F8;
+  --surface-2: #EBEBEB;
+  --line: #D9D7DC;
+  --line-soft: #E8E6EA;
+  --ink: #111111;
+  --ink-dim: #56565C;
+  --ink-faint: #8A8A92;
+  --coral: #E12E55;
+  --coral-soft: rgba(225, 46, 85, 0.10);
+  --blue: #156EF3;
+  --blue-soft: rgba(21, 110, 243, 0.10);
+  --green: #00752E;
+  --green-soft: rgba(0, 117, 46, 0.10);
+  --amber: #A65D00;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f);
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 40px 28px 72px;
+}
+
+/* ---------- header ---------- */
+
+header { display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px; }
+
+.eyebrow {
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--coral);
+}
+h1 {
+  font-size: clamp(28px, 4.4vw, 46px); font-weight: 700; letter-spacing: -0.025em;
+  line-height: 1.05; margin: 0; text-wrap: balance; max-width: 22ch;
+}
+.lede {
+  font-size: 15px; color: var(--ink-dim); max-width: 68ch; margin: 0; font-weight: 400;
+}
+.lede strong { color: var(--ink); font-weight: 600; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 6px; }
+
+button {
+  font-family: var(--f); font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  background: var(--surface); color: var(--ink-dim);
+  border: 1px solid var(--line); border-radius: var(--r);
+  padding: 8px 14px; cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+}
+button:hover { color: var(--ink); border-color: var(--ink-faint); }
+button[aria-pressed="true"] { color: var(--bg); background: var(--coral); border-color: var(--coral); }
+button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* ---------- layout ---------- */
+
+.stage {
+  display: grid; gap: 24px;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: start;
+}
+@media (max-width: 1080px) { .stage { grid-template-columns: minmax(0, 1fr); } }
+
+figure {
+  margin: 0; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 10px; padding: 18px 16px 12px; overflow: hidden;
+}
+.svg-scroll { overflow-x: auto; }
+svg.graph { display: block; width: 100%; height: auto; min-width: 1040px; }
+figcaption {
+  font-size: 12px; color: var(--ink-faint); margin-top: 12px;
+  padding-top: 12px; border-top: 1px solid var(--line-soft);
+}
+
+/* ---------- svg node styling ---------- */
+
+.layer-band { fill: none; }
+.layer-label {
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; fill: var(--ink-faint);
+}
+.divider { stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 4; }
+
+.node { cursor: pointer; }
+.node .box {
+  fill: var(--surface-2); stroke: var(--line); stroke-width: 1.25; rx: 5;
+  transition: fill .16s, stroke .16s, stroke-width .16s;
+}
+.node .name {
+  font-size: 12.5px; font-weight: 600; fill: var(--ink);
+  transition: fill .16s;
+}
+.node .unit {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+  fill: var(--ink-faint); transition: fill .16s;
+}
+.node:hover .box { stroke: var(--ink-faint); }
+.node:focus { outline: none; }
+.node:focus-visible .box { stroke: var(--blue); stroke-width: 2; }
+
+/* selection states */
+.graph.has-sel .node { opacity: 0.2; }
+.graph.has-sel .node.sel,
+.graph.has-sel .node.anc,
+.graph.has-sel .node.desc { opacity: 1; }
+
+.node.sel .box { fill: var(--coral-soft); stroke: var(--coral); stroke-width: 2; }
+.node.sel .name { fill: var(--coral); }
+.node.anc .box { fill: var(--blue-soft); stroke: var(--blue); stroke-width: 1.5; }
+.node.anc-far .box { stroke-opacity: 0.5; fill: none; }
+.node.desc .box { fill: var(--green-soft); stroke: var(--green); stroke-width: 1.25; }
+
+/* edges */
+.edge { fill: none; stroke-width: 1.4; }
+.edge.req { stroke: var(--blue); }
+.edge.opt { stroke: var(--blue); stroke-dasharray: 3 3.5; }
+.edge.down { stroke: var(--green); }
+.edge.down.opt { stroke: var(--green); stroke-dasharray: 3 3.5; }
+.edge.far { stroke-opacity: 0.42; }
+.edge-label {
+  font-size: 9.5px; font-weight: 600; fill: var(--blue);
+  paint-order: stroke; stroke: var(--bg); stroke-width: 3.5px; stroke-linejoin: round;
+}
+
+/* unit codes are optional — hidden when the map is used outside the course */
+body.hide-codes .node .unit,
+body.hide-codes .p-unit { display: none; }
+
+/* ---------- panel ---------- */
+
+aside {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 10px; padding: 20px; position: sticky; top: 24px;
+}
+@media (max-width: 1080px) { aside { position: static; } }
+
+.p-empty { font-size: 13.5px; color: var(--ink-dim); }
+.p-empty b { color: var(--ink); font-weight: 600; display: block; margin-bottom: 6px; }
+
+.p-unit {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 7px;
+}
+.p-name { font-size: 20px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 4px; line-height: 1.15; }
+.p-def { font-size: 13.5px; color: var(--ink-dim); margin: 0 0 18px; }
+
+.p-h {
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 0 0 8px; padding-top: 15px; border-top: 1px solid var(--line-soft);
+}
+.p-list { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.p-list li { font-size: 12.5px; color: var(--ink); display: flex; gap: 7px; align-items: baseline; }
+.p-list .rel { color: var(--ink-faint); font-size: 11px; }
+.p-list .cond { color: var(--amber); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.p-none { font-size: 12.5px; color: var(--ink-faint); font-style: italic; margin: 0 0 14px; }
+.p-jump { background: none; border: none; padding: 0; font: inherit; color: var(--blue);
+  text-transform: none; letter-spacing: 0; cursor: pointer; text-align: left; font-weight: 600; font-size: 12.5px; }
+.p-jump:hover { text-decoration: underline; }
+
+/* ---------- legend + notes ---------- */
+
+.strip { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 24px; }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px;
+}
+.card h2 {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 0 0 12px;
+}
+.card p { font-size: 12.5px; color: var(--ink-dim); margin: 0 0 9px; }
+.card p:last-child { margin-bottom: 0; }
+.card strong { color: var(--ink); font-weight: 600; }
+
+.key { display: flex; flex-direction: column; gap: 9px; }
+.key-row { display: flex; gap: 10px; align-items: center; font-size: 12.5px; color: var(--ink-dim); }
+.key-sw { width: 26px; height: 14px; border-radius: 3px; flex: none; border: 1.5px solid; }
+.key-line { width: 26px; height: 0; border-top-width: 1.6px; border-top-style: solid; flex: none; }
+
+.flag { border-color: var(--amber); }
+.flag h2 { color: var(--amber); }
+.flag ul { margin: 0; padding-left: 18px; }
+.flag li { font-size: 12.5px; color: var(--ink); margin-bottom: 7px; }
+.flag li:last-child { margin-bottom: 0; }
+.flag code {
+  font-family: var(--f); font-weight: 700; font-size: 11.5px;
+  background: var(--surface-2); padding: 1px 5px; border-radius: 3px; color: var(--coral);
+}
+
+footer {
+  margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--line-soft);
+  font-size: 11.5px; color: var(--ink-faint);
+}
+footer strong { color: var(--ink-dim); font-weight: 600; }
+
+/* ---------- slide capture view ---------- */
+body.slideview .wrap { max-width: 1180px; padding-top: 22px; }
+body.slideview header .lede,
+body.slideview .eyebrow,
+body.slideview h1,
+body.slideview aside,
+body.slideview .strip,
+body.slideview footer,
+body.slideview figcaption { display: none; }
+body.slideview .stage { grid-template-columns: minmax(0, 1fr); }
+body.slideview figure { padding: 0; border: none; background: none; border-radius: 0; }
+body.slideview header { margin-bottom: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Netris &middot; Object model</div>
+    <h1>Netris Object Dependency Map</h1>
+    <p class="lede">Every object in Netris sits on a layer, and depends only on the layers above it. Click any object
+      to see <strong>what must already exist</strong> before you can create it, and <strong>what it enables</strong>
+      once it does. Read downward for build order, upward for teardown order.</p>
+    <div class="controls">
+      <button type="button" id="reset">Show everything</button>
+      <button type="button" id="codes" aria-pressed="true">Unit codes</button>
+      <button type="button" id="slide" aria-pressed="false">Slide view</button>
+      <button type="button" id="theme">Flip theme</button>
+    </div>
+  </header>
+
+  <div class="stage">
+    <figure>
+      <div class="svg-scroll">
+        <svg class="graph" id="graph" viewBox="0 0 1280 720" role="img"
+          aria-label="Layered dependency map of Netris objects, from Tenant and Site at the top through address space, fabric hardware, wiring, segmentation and services, with access control shown separately as orthogonal.">
+        </svg>
+      </div>
+      <figcaption id="cap">Objects are arranged in dependency layers, top to bottom. Edges are hidden until you select
+        an object — the resting view is the map, the selected view is the answer to one question.</figcaption>
+    </figure>
+
+    <aside id="panel" aria-live="polite">
+      <div class="p-empty">
+        <b>Nothing selected</b>
+        Click an object in the map. Its prerequisites light up in blue, what it enables in green, and conditional
+        dependencies are drawn as dotted lines.
+      </div>
+    </aside>
+  </div>
+
+  <div class="strip">
+    <div class="card">
+      <h2>How to read it</h2>
+      <div class="key">
+        <div class="key-row"><span class="key-sw" style="border-color: var(--coral); background: var(--coral-soft);"></span> The object you selected</div>
+        <div class="key-row"><span class="key-sw" style="border-color: var(--blue); background: var(--blue-soft);"></span> Must already exist</div>
+        <div class="key-row"><span class="key-sw" style="border-color: var(--green); background: var(--green-soft);"></span> Becomes possible</div>
+        <div class="key-row"><span class="key-line" style="border-top-color: var(--blue);"></span> Hard prerequisite</div>
+        <div class="key-row"><span class="key-line" style="border-top-color: var(--blue); border-top-style: dashed;"></span> Conditional — only for some configurations</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Two ways to read it</h2>
+      <p><strong>Downward is build order.</strong> An object cannot exist until everything on the layers above it
+        does, so the blue chain above a selection is the list of things to create first.</p>
+      <p><strong>Upward is teardown order.</strong> Nothing can be removed while something below still depends on it.
+        Most &ldquo;it will not delete&rdquo; problems are a layer being removed with something still standing on it.</p>
+      <p>A dotted edge is conditional — required only for some configurations, and the label says which.</p>
+      <p><strong>Slide view</strong> strips everything but the diagram, on a 16:9 canvas, for screen captures.</p>
+    </div>
+  </div>
+
+  <footer>
+    <strong>Sources:</strong> verified against the published Netris RST docs &mdash; <em>ipam</em>, <em>vpc</em>,
+    <em>vnet</em>, <em>server-cluster</em>, <em>netris-softgate-HS</em>, <em>nat</em>, <em>l4-load-balancer</em>,
+    <em>vpc-peering</em>, <em>acls</em>, <em>dhcp-and-dhcp-relay</em>, <em>inventory-profile</em>,
+    <em>topology-management</em>, <em>accounts</em>. Last reviewed 25 Aug 2026.
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var COLW = 190, PITCH = 206, X0 = 28, NH = 42, W = 1280;
+
+  var LAYERS = [
+    { name: 'Declare',            y: 44  },
+    { name: 'Address space',      y: 138 },
+    { name: 'Fabric hardware',    y: 232 },
+    { name: 'Wiring & options',   y: 326 },
+    { name: 'Segmentation',       y: 420 },
+    { name: 'Services',           y: 514 },
+    { name: 'Access control — orthogonal to everything above', y: 640 }
+  ];
+
+  // r = hard requirement, o = conditional requirement. label describes the edge.
+  var N = [
+    { id:'tenant', l:0, c:1, name:'Tenant', unit:'B1',
+      def:'A named principal used to delegate management of network resources. Not a customer account and not an address space.',
+      req:[] },
+    { id:'site', l:0, c:2, name:'Site', unit:'B1',
+      def:'A discrete deployment — a region, data centre or location. Carries the ASNs, the VLAN auto-assign range and the ACL default policy.',
+      req:[] },
+
+    { id:'alloc', l:1, c:1, name:'IPAM Allocation', unit:'B1',
+      def:'A top-level prefix you declare before consuming any of it. Filed under a VPC and owned by a Tenant. Uniqueness is per VPC, not global — the same prefix may exist in two different VPCs. An allocation never has a parent: allocations cannot nest inside allocations. Its Tenant must be one that already has access to the VPC (Admin or Guest), but nothing consumes an allocation directly and the Tenant does not restrict who carves out of it — any tenant with access to the VPC may create subnets under it. There is an open ticket to remove the selector.',
+      req:[ {to:'tenant', k:'r', label:'owned by'}, {to:'vpc', k:'r', label:'filed under'} ] },
+    { id:'subnet', l:1, c:2, name:'IPAM Subnet + Purpose', unit:'B1',
+      def:'A prefix carved from an Allocation. Its Purpose — common, loopback, management, load-balancer, nat, inactive — decides which service may consume it. Subnets may nest under other subnets to any depth; the parent is resolved from the prefix, not chosen, and only top-level subnets are advertised upstream by SoftGate. A child subnet need not share a Tenant with its parent — only the VPC must match, and the only VPC the form accepts is the parent allocation's, though it will let you select others and then fail. The Tenant is consequential here: a service can only consume a subnet owned by the same Tenant, which is why a V-Net gateway subnet must be assigned to the V-Net Owner. Model the address space first, consume it second.',
+      req:[ {to:'alloc', k:'r', label:'carved from'}, {to:'tenant', k:'r', label:'owned by'}, {to:'vpc', k:'r', label:'filed under'}, {to:'site', k:'r', label:'assigned to'} ] },
+
+    { id:'invprofile', l:2, c:0, name:'Inventory Profile', unit:'B2',
+      def:'Fabric-level switch settings: Fabric Type, SSH/NTP/DNS, overlay optimization, GPU-fabric options. Attaching one flips the device to implicit-deny. Fabric Type must be right before turn-up — changing it later alters BGP topology across switches.',
+      req:[] },
+    { id:'switch', l:2, c:1, name:'Switch', unit:'B3',
+      def:'A managed switch in Inventory. Needs a loopback and a management subnet for its Site before it can finish provisioning.',
+      req:[ {to:'tenant', k:'r', label:'owned by'}, {to:'site', k:'r', label:'belongs to'}, {to:'invprofile', k:'r', label:'configured by'}, {to:'subnet', k:'r', label:'loopback + mgmt'} ] },
+    { id:'softgate', l:2, c:2, name:'SoftGate', unit:'B5',
+      def:'The VPC gateway at the fabric edge. Four nodes minimum for HA — two General (stateless: DNAT, L4LB, DHCP) and two SNAT (stateful). No shared state between nodes.',
+      req:[ {to:'tenant', k:'r', label:'owned by'}, {to:'site', k:'r', label:'belongs to'}, {to:'invprofile', k:'r', label:'configured by'}, {to:'subnet', k:'r', label:'loopback + mgmt'} ] },
+    { id:'server', l:2, c:3, name:'Server', unit:'B3',
+      def:'A server object in Inventory, with its NIC-to-interface mapping and any labels. Netris needs the mapping to validate topology and to place ports by label.',
+      req:[ {to:'site', k:'r', label:'belongs to'} ] },
+
+    { id:'ports', l:3, c:1, name:'Switch Ports / LAG', unit:'B4',
+      def:'Ports derived from the switch, optionally aggregated. These are what a V-Net actually groups.',
+      req:[ {to:'switch', k:'r', label:'derived from'} ] },
+    { id:'link', l:3, c:2, name:'Topology Link', unit:'B4',
+      def:'A point-to-point link between two inventory objects. Agents compare LLDP neighbours against this blueprint and report mismatches. It is also how Netris knows which switch port a server NIC reaches.',
+      req:[ {to:'ports', k:'r', label:'terminates on'}, {to:'switch', k:'r', label:'endpoint'}, {to:'softgate', k:'o', label:'endpoint'}, {to:'server', k:'o', label:'endpoint'} ] },
+    { id:'dhcpopts', l:3, c:4, name:'DHCP Options Set', unit:'C2',
+      def:'Required to enable Netris DHCP on a V-Net. A default set ships with the Controller — it cannot be deleted but can be modified, so you never have to create one, only select one.',
+      req:[] },
+
+    { id:'vpc', l:0, c:3, name:'VPC', unit:'C1',
+      def:'A logically segregated virtual network; on Ethernet fabrics, a VRF. VPC-1 ships as both System VPC and Default VPC and cannot be deleted. The VRF is instantiated on a switch only where that VPC has an L3 service there.',
+      req:[ {to:'tenant', k:'r', label:'owned by'} ] },
+    { id:'vnet', l:4, c:0, name:'V-Net', unit:'C2',
+      def:'A group of switch ports forming a network segment — L2VPN (like a VLAN) or L3VPN (a /31 per port). A gateway makes it routed, and for a multi-site V-Net the subnet must be assigned to every Site it spans before the gateway is added. The gateway subnet must also be owned by the V-Net Owner — a subnet owned by any other Tenant will not appear in the picker.',
+      req:[ {to:'vpc', k:'r', label:'lives in'}, {to:'site', k:'r', label:'spans'}, {to:'ports', k:'r', label:'groups'},
+            {to:'subnet', k:'o', label:'gateway (common)'}, {to:'dhcpopts', k:'o', label:'if DHCP'}, {to:'link', k:'o', label:'for label placement'} ] },
+    { id:'cluster', l:4, c:1, name:'Server Cluster', unit:'C3',
+      def:'The most frequent operation, and the one that hides the most machinery. Set VPC to \'Create New\' and it creates the VPC, the V-Nets and the IPAM allocations and subnets defined in the template, then configures the switch ports. It can also be pointed at an existing VPC, or map V-Nets to different VPCs per template object. So a VPC is something it consumes or produces — not a prerequisite.',
+      req:[ {to:'tmpl', k:'r', label:'instantiates'}, {to:'site', k:'r', label:'in'}, {to:'vpc', k:'o', label:'creates or uses'}, {to:'server', k:'r', label:'groups'}, {to:'link', k:'r', label:'needs topology'} ] },
+    { id:'tmpl', l:4, c:2, name:'Server Cluster Template', unit:'C3',
+      def:'A JSON array of V-Nets to create, their types, and which server NICs go into each. Must exist before a Server Cluster can be created. For l3vpn entries the /31 addresses must be pre-populated, typically via Terraform.',
+      req:[] },
+
+    { id:'bgp', l:5, c:0, name:'BGP Session', unit:'C8',
+      def:'External connectivity. Where it terminates decides the VPC: a SoftGate-terminated session must use the System VPC; a switch- or V-Net-terminated session can use any VPC but gets no SoftGate NAT or load-balancer services. A BGP session alone provisions the VRF.',
+      req:[ {to:'vpc', k:'r', label:'lives in'}, {to:'ports', k:'r', label:'terminates on'}, {to:'softgate', k:'o', label:'if SoftGate-terminated'}, {to:'switch', k:'o', label:'if switch-terminated'} ] },
+    { id:'nat', l:5, c:1, name:'NAT', unit:'C6',
+      def:'SNAT (always port-overloading), DNAT (elastic IP and port forwarding are both DNAT), and ACCEPT to carve an exclusion out of a broader rule. The public side is always the System VPC.',
+      req:[ {to:'softgate', k:'r', label:'runs on'}, {to:'subnet', k:'r', label:'purpose = nat'}, {to:'vpc', k:'r', label:'serves'} ] },
+    { id:'l4lb', l:5, c:2, name:'L4 Load Balancer', unit:'C6',
+      def:'Needs at least one SoftGate in the Site and at least one load-balancer subnet. Stateless, so it survives a SoftGate failure that SNAT would not. The frontend VIP is served from the System VPC.',
+      req:[ {to:'softgate', k:'r', label:'runs on'}, {to:'subnet', k:'r', label:'purpose = load-balancer'}, {to:'vpc', k:'r', label:'serves'} ] },
+    { id:'peering', l:5, c:3, name:'VPC Peering', unit:'C5',
+      def:'Routing between two VPCs, typically a tenant VPC to a shared-services hub. Two spokes on one hub do not see each other by default. Each VPC needs its VRF placed — a gateway V-Net or a BGP session is enough.',
+      req:[ {to:'vpc', k:'r', label:'joins two'} ] },
+    { id:'connect', l:5, c:4, name:'VPC Connect', unit:'C5',
+      def:'An on/off ramp between a VPC and an external network that bypasses the SoftGates — private interconnects and dedicated external routing. Not a distinct object in its own right: it is the outcome of a particular BGP Neighbor configuration, which is why it inherits everything a BGP session needs.',
+      req:[ {to:'bgp', k:'r', label:'built from'}, {to:'vpc', k:'r', label:'attaches to'} ] },
+    { id:'acl', l:5, c:5, name:'ACL', unit:'C7',
+      def:'Per-Site default policy (Permit All until you change it) plus a flat entry list. Entries are sorted by specificity per interface and the sort ignores Action — a narrow Permit beats a broad Deny.',
+      req:[ {to:'site', k:'r', label:'default policy'} ] },
+
+    { id:'permgroup', l:6, c:0, name:'Permission Group', unit:'C9',
+      def:'What may be viewed and edited, by area. The building block of the RBAC chain.',
+      req:[] },
+    { id:'role', l:6, c:1, name:'User Role', unit:'C9',
+      def:'A permission group bound to a set of tenants. This is where delegation actually happens.',
+      req:[ {to:'permgroup', k:'r', label:'bundles'}, {to:'tenant', k:'r', label:'scoped to'} ] },
+    { id:'user', l:6, c:2, name:'User', unit:'C9',
+      def:'One named account per person, plus a scoped service account for automation. Never a shared super-admin — the API Log can only tell you who changed something if accounts are named.',
+      req:[ {to:'role', k:'r', label:'granted'} ] }
+  ];
+
+
+  var byId = {};
+  N.forEach(function (n) {
+    n.x = X0 + n.c * PITCH;
+    n.y = LAYERS[n.l].y;
+    n.cx = n.x + COLW / 2;
+    byId[n.id] = n;
+  });
+
+  // reverse index: who requires me
+  N.forEach(function (n) { n.enables = []; });
+  N.forEach(function (n) {
+    n.req.forEach(function (e) {
+      if (byId[e.to]) byId[e.to].enables.push({ to: n.id, k: e.k, label: e.label });
+    });
+  });
+
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs) {
+    var e = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) { if (attrs[k] !== null && attrs[k] !== undefined) e.setAttribute(k, attrs[k]); }
+    return e;
+  }
+
+  var svg = document.getElementById('graph');
+  var gEdges = el('g', { 'class': 'edges' });
+  var gNodes = el('g', { 'class': 'nodes' });
+
+  // layer labels + the access divider
+  var gChrome = el('g', {});
+  LAYERS.forEach(function (L, i) {
+    var t = el('text', { x: X0, y: L.y - 11, 'class': 'layer-label' });
+    t.textContent = L.name;
+    gChrome.appendChild(t);
+    if (i === 6) {
+      gChrome.appendChild(el('line', { x1: X0, y1: L.y - 40, x2: W - X0, y2: L.y - 40, 'class': 'divider' }));
+    }
+  });
+  svg.appendChild(gChrome);
+  svg.appendChild(gEdges);
+  svg.appendChild(gNodes);
+
+  var nodeEls = {};
+  N.forEach(function (n) {
+    var g = el('g', {
+      'class': 'node',
+      tabindex: '0', role: 'button',
+      'aria-label': n.name
+    });
+    g.appendChild(el('rect', { x: n.x, y: n.y, width: COLW, height: NH, 'class': 'box' }));
+    var nm = el('text', { x: n.x + 13, 'class': 'name' });
+    if (n.name.length > 22) {
+      var parts = splitLabel(n.name);
+      nm.setAttribute('y', n.y + 17);
+      var t1 = el('tspan', { x: n.x + 13 }); t1.textContent = parts[0]; nm.appendChild(t1);
+      var t2 = el('tspan', { x: n.x + 13, dy: '13' }); t2.textContent = parts[1]; nm.appendChild(t2);
+    } else {
+      nm.setAttribute('y', n.y + 25);
+      nm.textContent = n.name;
+    }
+    g.appendChild(nm);
+    var u = el('text', { x: n.x + COLW - 11, y: n.y + 14, 'class': 'unit', 'text-anchor': 'end' });
+    u.textContent = n.unit;
+    g.appendChild(u);
+
+    g.addEventListener('click', function () { select(n.id); });
+    g.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); select(n.id); }
+    });
+    nodeEls[n.id] = g;
+    gNodes.appendChild(g);
+  });
+
+  function splitLabel(s) {
+    var w = s.split(' '), best = 0, diff = 1e9;
+    for (var i = 1; i < w.length; i++) {
+      var a = w.slice(0, i).join(' ').length, b = w.slice(i).join(' ').length;
+      if (Math.abs(a - b) < diff) { diff = Math.abs(a - b); best = i; }
+    }
+    return [w.slice(0, best).join(' '), w.slice(best).join(' ')];
+  }
+
+  function path(a, b) {
+    // same layer -> horizontal between facing edges
+    if (a.l === b.l) {
+      var y = a.y + NH / 2;
+      var x1 = a.cx < b.cx ? a.x + COLW : a.x;
+      var x2 = a.cx < b.cx ? b.x : b.x + COLW;
+      return 'M' + x1 + ',' + y + ' L' + x2 + ',' + y;
+    }
+    var up = a.l > b.l; // a is below b: draw from a's top to b's bottom
+    var sy = up ? a.y : a.y + NH;
+    var ty = up ? b.y + NH : b.y;
+    var span = Math.abs(ty - sy);
+    var k = Math.max(28, span * 0.45);
+    var c1 = up ? sy - k : sy + k;
+    var c2 = up ? ty + k : ty - k;
+    var bow = Math.min(70, Math.abs(a.cx - b.cx) * 0.18);
+    var dir = a.cx <= b.cx ? 1 : -1;
+    return 'M' + a.cx + ',' + sy +
+           ' C' + (a.cx + bow * dir) + ',' + c1 +
+           ' ' + (b.cx - bow * dir) + ',' + c2 +
+           ' ' + b.cx + ',' + ty;
+  }
+
+  var selected = null;
+
+  function ancestors(id) {
+    var depth = {}, queue = [[id, 0]], kindOf = {};
+    while (queue.length) {
+      var cur = queue.shift(), nid = cur[0], d = cur[1];
+      byId[nid].req.forEach(function (e) {
+        var nd = d + 1;
+        if (depth[e.to] === undefined || nd < depth[e.to]) {
+          depth[e.to] = nd;
+          if (d === 0) kindOf[e.to] = e.k;
+          queue.push([e.to, nd]);
+        }
+      });
+    }
+    return { depth: depth, kindOf: kindOf };
+  }
+
+  function clear() {
+    while (gEdges.firstChild) gEdges.removeChild(gEdges.firstChild);
+    N.forEach(function (n) {
+      nodeEls[n.id].classList.remove('sel', 'anc', 'anc-far', 'desc');
+    });
+    svg.classList.remove('has-sel');
+  }
+
+  function select(id) {
+    if (selected === id) { selected = null; clear(); renderPanel(null); return; }
+    selected = id;
+    clear();
+    svg.classList.add('has-sel');
+    var n = byId[id];
+    nodeEls[id].classList.add('sel');
+
+    var anc = ancestors(id);
+    Object.keys(anc.depth).forEach(function (aid) {
+      var cls = anc.depth[aid] === 1 ? 'anc' : 'anc';
+      nodeEls[aid].classList.add(cls);
+      if (anc.depth[aid] > 1) nodeEls[aid].classList.add('anc-far');
+    });
+    n.enables.forEach(function (e) { nodeEls[e.to].classList.add('desc'); });
+
+    // edges: full ancestor tree
+    var drawn = {};
+    function walk(nid, depth) {
+      byId[nid].req.forEach(function (e) {
+        var key = nid + '>' + e.to;
+        if (drawn[key]) return;
+        drawn[key] = 1;
+        var cls = 'edge ' + (e.k === 'o' ? 'opt' : 'req') + (depth > 0 ? ' far' : '');
+        gEdges.appendChild(el('path', { d: path(byId[nid], byId[e.to]), 'class': cls }));
+        if (depth === 0) addLabel(byId[nid], byId[e.to], e.label);
+        walk(e.to, depth + 1);
+      });
+    }
+    walk(id, 0);
+
+    n.enables.forEach(function (e) {
+      gEdges.appendChild(el('path', {
+        d: path(byId[e.to], n),
+        'class': 'edge down' + (e.k === 'o' ? ' opt' : '')
+      }));
+    });
+
+    renderPanel(n, anc);
+  }
+
+  function addLabel(a, b, text) {
+    if (!text) return;
+    var mx, my;
+    if (a.l === b.l) { mx = (a.cx + b.cx) / 2; my = a.y + NH / 2 - 7; }
+    else {
+      mx = (a.cx + b.cx) / 2;
+      my = (a.l > b.l ? (a.y + b.y + NH) / 2 : (a.y + NH + b.y) / 2) + 4;
+    }
+    var t = el('text', { x: mx, y: my, 'class': 'edge-label', 'text-anchor': 'middle' });
+    t.textContent = text;
+    gEdges.appendChild(t);
+  }
+
+  var panel = document.getElementById('panel');
+
+  function renderPanel(n) {
+    if (!n) {
+      panel.innerHTML = '<div class="p-empty"><b>Nothing selected</b>Click an object in the map. Its prerequisites ' +
+        'light up in blue, what it enables in green, and conditional dependencies are drawn as dotted lines.</div>';
+      return;
+    }
+    panel.innerHTML = '';
+
+    var u = document.createElement('div');
+    u.className = 'p-unit';
+    u.textContent = n.unit;
+    panel.appendChild(u);
+
+    var h = document.createElement('h3'); h.className = 'p-name'; h.textContent = n.name;
+    panel.appendChild(h);
+    var d = document.createElement('p'); d.className = 'p-def'; d.textContent = n.def;
+    panel.appendChild(d);
+
+    addSection('Must already exist', n.req, 'Nothing — this is a root object.');
+    addSection('Becomes possible', n.enables, 'Nothing depends on this directly.');
+  }
+
+  function addSection(title, list, emptyText) {
+    var hh = document.createElement('p'); hh.className = 'p-h'; hh.textContent = title;
+    panel.appendChild(hh);
+    if (!list.length) {
+      var p = document.createElement('p'); p.className = 'p-none'; p.textContent = emptyText;
+      panel.appendChild(p);
+      return;
+    }
+    var ul = document.createElement('ul'); ul.className = 'p-list';
+    list.forEach(function (e) {
+      var li = document.createElement('li');
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'p-jump'; b.textContent = byId[e.to].name;
+      b.addEventListener('click', function () { select(e.to); });
+      li.appendChild(b);
+      if (e.label) {
+        var s = document.createElement('span'); s.className = 'rel'; s.textContent = e.label;
+        li.appendChild(s);
+      }
+      if (e.k === 'o') {
+        var c = document.createElement('span'); c.className = 'cond'; c.textContent = 'conditional';
+        li.appendChild(c);
+      }
+      ul.appendChild(li);
+    });
+    panel.appendChild(ul);
+  }
+
+  // ---- controls ----
+  document.getElementById('reset').addEventListener('click', function () {
+    selected = null; clear(); renderPanel(null);
+  });
+
+  var codesbtn = document.getElementById('codes');
+  codesbtn.addEventListener('click', function () {
+    var on = codesbtn.getAttribute('aria-pressed') === 'true';
+    codesbtn.setAttribute('aria-pressed', on ? 'false' : 'true');
+    document.body.classList.toggle('hide-codes', on);
+  });
+
+  var slidebtn = document.getElementById('slide');
+  slidebtn.addEventListener('click', function () {
+    var on = slidebtn.getAttribute('aria-pressed') === 'true';
+    slidebtn.setAttribute('aria-pressed', on ? 'false' : 'true');
+    document.body.classList.toggle('slideview', !on);
+  });
+
+  document.getElementById('theme').addEventListener('click', function () {
+    var r = document.documentElement;
+    var cur = r.getAttribute('data-theme');
+    if (!cur) {
+      var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      r.setAttribute('data-theme', dark ? 'light' : 'dark');
+    } else {
+      r.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+    }
+  });
+
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape' && selected) { selected = null; clear(); renderPanel(null); }
+  });
+})();
+</script>

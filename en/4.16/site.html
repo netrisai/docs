@@ -98,7 +98,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="VPC" href="vpc.html" />
-    <link rel="prev" title="Installing BlueField-3 DPUs" href="bluefield-3-dpu-installation.html" /> 
+    <link rel="prev" title="General Settings" href="general-settings.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -425,7 +425,20 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Netris Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general-settings.html">General Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="general-settings.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general-settings.html#settings">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general-settings.html#ufm-settings">UFM Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Netris Site</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#site-scope">Site scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-a-site">Add a Site</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#edit-or-delete-a-site">Edit or delete a Site</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-and-terraform">API and Terraform</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="vpc.html">VPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#how-a-vpc-s-vrf-is-placed-on-the-fabric">How a VPC’s VRF is placed on the fabric</a></li>
@@ -1169,7 +1182,7 @@
               <a href="https://github.com/netrisai/docs/blob/master/site.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="bluefield-3-dpu-installation.html" class="btn btn-neutral float-left" title="Installing BlueField-3 DPUs" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="general-settings.html" class="btn btn-neutral float-left" title="General Settings" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="vpc.html" class="btn btn-neutral float-right" title="VPC" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -1179,24 +1192,84 @@
              
   <section id="netris-site">
 <h1>Netris Site<a class="headerlink" href="#netris-site" title="Link to this heading"></a></h1>
-<p>For each individual deployment, region, location, data center, etc. you should define it as a Site. All network components and resources should be associated with their respective Site and VPC.</p>
-<p>Add a new Site.
-Network → Sites → +Add</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>A Netris Site is a discrete physical deployment — a region, data center, or other location. A Site defines the parameters that every network object at that location inherits: the BGP Autonomous System Number (ASN) used toward external peers, the default ACL policy, and the VLAN ID ranges available to the switch fabric.</p>
+<p>Create one Site per location where Netris manages switches, SoftGate nodes, or DPUs. A Site must exist before any inventory, V-Net, or IPAM Subnet can be created, so creating the first Site is the first configuration step after installing the Controller.</p>
+<img alt="_images/site-add.png" class="with-shadow align-center" src="_images/site-add.png" />
+<p style="text-align: center;"><em>Figure: Add a Site</em></p></section>
+<section id="site-scope">
+<h2>Site scope<a class="headerlink" href="#site-scope" title="Link to this heading"></a></h2>
+<p>Objects in Netris are either global, bound to exactly one Site, or spanning one or more Sites. Use the table below to determine where a Site selection is required.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 45.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Scope</p></th>
+<th class="head"><p>Objects</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global — no Site</p></td>
+<td><p>Users, User Roles, Permission Groups, Tenants, VPCs, VPC Peerings, IPAM Allocations, Inventory Profiles, Server Cluster Templates, DHCP Options Sets, ACL Port Groups, E-BGP Objects, E-BGP Route-Maps</p></td>
+<td><p>A VPC is a logical container; its child objects each select their own Site.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exactly one Site</p></td>
+<td><p>Inventory units (switches, SoftGate nodes, servers, DPUs), Links, E-BGP peers, Static Routes, NAT rules, L4 Load Balancers, Server Clusters</p></td>
+<td><p>A Link terminates on ports of two inventory units, so it inherits their Site. Backends of an L4 Load Balancer must belong to the same Site as the service.</p></td>
+</tr>
+<tr class="row-even"><td><p>One or more Sites</p></td>
+<td><p>V-Nets, IPAM Subnets</p></td>
+<td><p>A Subnet assigned to multiple Sites is the mechanism for extending a V-Net across locations.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Per VPC, per-Site default</p></td>
+<td><p>ACL entries</p></td>
+<td><p>An ACL entry belongs to a VPC and is installed per interface. The ACL Default Policy is set per Site and applies to every VPC at that Site.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="add-a-site">
+<h2>Add a Site<a class="headerlink" href="#add-a-site" title="Link to this heading"></a></h2>
+<p>To add a new Site in Netris, navigate to Network → Sites and click the +Add button.</p>
+<ul>
+<li><p><strong>Site name</strong> - an alphanumeric value identifying the physical location.</p></li>
+<li><p><strong>Public ASN</strong> - the BGP Autonomous System Number Netris presents to peers outside the Netris-managed fabric. Netris uses it as the default Local ASN for every E-BGP session at this Site — sessions terminated on switches and on SoftGate nodes alike. The Local ASN of an individual E-BGP peer can be overridden to the switch’s Local ASN or a custom value; see the <a class="reference internal" href="bgp.html"><span class="doc">E-BGP section</span></a>. The Public ASN is not used inside the fabric: each switch gets its own local ASN for the underlay, assigned automatically from the controller-wide System ASN range in Settings → General (default 4200000000–4209999999). Specify your registered public ASN here if you have one. If not, use a private ASN from 64512–65534 (16-bit) or 4200000000–4294967294 (32-bit) that does not fall inside the System ASN range. Netris documentation uses ASN 65536 in examples.</p></li>
+<li><p><strong>ACL Default Policy</strong> - the action Netris applies to Layer-3 traffic that no ACL entry matches. Netris installs it as the final rule on every interface at the Site.</p>
 <ul class="simple">
-<li><p>Enter the Site name</p></li>
-<li><p>Enter your public Autonomous System Number (ASN) if you have one. If not, use a private ASN within the range of 64512 to 65534.</p></li>
-<li><p>Choose Switch fabric type “Netris”.</p></li>
+<li><p><strong>Deny</strong> - traffic is dropped unless an ACL entry permits it. DHCP and BGP control traffic is excluded from the policy and is never dropped, so no ACL entries are needed for Netris DHCP or E-BGP sessions to operate. Use this policy for a Zero Trust model.</p></li>
+<li><p><strong>Permit</strong> - traffic is forwarded unless an ACL entry denies it. This is the default.</p></li>
 </ul>
-<p>If you’re implementing the Zero Trust security model, you may want to select the ACL Default Policy “Deny.” More details can be found
-<a class="reference internal" href="acls.html"><span class="doc">here</span></a>.</p>
-<img alt="_images/site_setup.png" class="align-center" src="_images/site_setup.png" />
+<p>ACL entry precedence is determined by the sort order described in the <a class="reference internal" href="acls.html"><span class="doc">ACL section</span></a>, not by the Default Policy.</p>
+</li>
+<li><p><strong>VLAN ID System Reserved Range</strong> - VLAN IDs Netris reserves for the switch fabric itself: switch OS and ASIC requirements and the internal VLANs Netris uses to build V-Nets and other constructs. Netris never assigns these IDs to user-facing V-Nets. Default: 3600–4094.</p></li>
+<li><p><strong>VLAN ID Automatic Assignment Range</strong> - the pool Netris draws from when “Automatically Assign” is selected during V-Net creation. Default: 2–4094. The two ranges may overlap. Where they do, the System Reserved Range is excluded from the pool: with the defaults, Netris auto-assigns from 2–3599 only.</p></li>
+</ul>
+</section>
+<section id="edit-or-delete-a-site">
+<h2>Edit or delete a Site<a class="headerlink" href="#edit-or-delete-a-site" title="Link to this heading"></a></h2>
+<p>Site parameters can be changed after creation from Network → Sites. Changing the Public ASN resets E-BGP sessions that inherit it. Changing the ACL Default Policy to “Deny” on a Site with live workloads drops every flow that no ACL entry permits; plan the ACL entries before switching the policy.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The ACL Default Policy applies to all VPCs at this Site and does not allow for per-VPC or per-V-Net exceptions.</p>
+</div>
+<p>A Site with inventory attached cannot be deleted. Remove or reassign every switch, SoftGate node, and DPU at the Site first.</p>
+</section>
+<section id="api-and-terraform">
+<h2>API and Terraform<a class="headerlink" href="#api-and-terraform" title="Link to this heading"></a></h2>
+<p>Sites can be managed through the REST API and the Terraform provider (<a class="reference external" href="https://registry.terraform.io/providers/netrisai/netris/latest/docs/resources/site">netris_site</a>). As of Netris 4.16.0 the <code class="docutils literal notranslate"><span class="pre">switchFabricProviders</span></code> attribute has been removed from the Sites API; <code class="docutils literal notranslate"><span class="pre">switchFabric</span></code> is still returned on read, always as <code class="docutils literal notranslate"><span class="pre">netris</span></code>, and is ignored on create or update.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="bluefield-3-dpu-installation.html" class="btn btn-neutral float-left" title="Installing BlueField-3 DPUs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="general-settings.html" class="btn btn-neutral float-left" title="General Settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="vpc.html" class="btn btn-neutral float-right" title="VPC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
