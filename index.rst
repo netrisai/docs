@@ -48,6 +48,7 @@ You are welcome to join our community Slack_ channel to get additional support f
    :maxdepth: 2
    :caption: Fabric Management
 
+   general-settings
    site
    vpc
    topology-management
