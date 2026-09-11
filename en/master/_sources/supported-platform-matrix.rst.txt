@@ -496,7 +496,7 @@ Management Interfaces
 Netris and NOS versions compatibility matrix
 ============================================
 
-.. note:: SoftGate PRO has been discontinued and superseded by SoftGate HS. The SoftGate PRO column is retained for reference by existing deployments on earlier Netris versions.
+.. note:: SoftGate PRO has been discontinued and superseded by SoftGate HS.
 
 .. list-table::
    :header-rows: 0
@@ -504,194 +504,146 @@ Netris and NOS versions compatibility matrix
    * - **Netris Version**
      - **Cumulus Linux**
      - **Dell BCM-SONiC**
-     - **EdgeCore SONiC**
      - **Arista EOS**
-     - **SoftGate PRO OS**
      - **SoftGate HS OS**
      - **Availability**
    * - 4.16.0
      - 5.11 - 5.14, 5.16 - 5.16.6, 5.18.0
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.15.0
      - 5.11 - 5.14, 5.16 - 5.16.6
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.14.0
      - 5.11 - 5.14, 5.16 - 5.16.6
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.13.0
      - 5.11 - 5.14, 5.16 - 5.16.6
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.12.0
      - 5.11 - 5.14, 5.16
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.11.0
      - 5.11 - 5.14, 5.16
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.10.0
      - 5.11 - 5.14, 5.16
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.9.0
      - 5.11 - 5.14, 5.16
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.8.0
      - 5.11 - 5.14, 5.16
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.7.0
      - 5.11 - 5.13
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.6.0
      - 5.11 - 5.13
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - N/A
      - Ubuntu 24.04
      - ✔
    * - 4.5.3
      - 5.11 - 5.13
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.5.2
      - 5.11 - 5.13
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.5.1
      - 5.11 - 5.13
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.5.0
      - 5.11 - 5.13
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.4.1
      - 5.11 - 5.13
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.4.0
      - 5.11 - 5.13
      - 4.5
-     - 202211-331
      - 4.34.1F
-     - Ubuntu 20.04
      - Ubuntu 24.04
      - ✔
    * - 4.3.0
      - 5.9
      - 4.1
-     - 12.3
      - N/A
      - Ubuntu 20.04
-     - N/A
      - ✔
    * - 4.2.0
      - 5.9
      - 4.1
-     - 12.3
      - N/A
      - Ubuntu 20.04
-     - N/A
      - ✔
    * - 4.1.1
      - 5.7
      - N/A
-     - 12.3
      - N/A
      - Ubuntu 20.04
-     - N/A
      - ✔
    * - 4.0.0
      - 5.7
      - N/A
-     - 12.3
      - N/A
      - Ubuntu 20.04
-     - N/A
      - ✔
    * - 3.5.0
      - 5.7
      - N/A
-     - 12.3
      - N/A
      - Ubuntu 20.04
-     - N/A
      - ✔
    * - 3.4.1
      - 5.7
      - N/A
-     - 12.3
      - N/A
      - Ubuntu 20.04
-     - N/A
      - ✔
 
 See :doc:`release-notes/index` for more details on Netris releases.
