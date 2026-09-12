@@ -132,6 +132,8 @@ Add a Subnet
         - *load-balancer* - hosts of this subnet are used in L4LB services only. Useful for deploying on-prem kubernetes with cloud-like experience.
         - *nat* - hosts of this subnet or subnet itself can be used to define NAT services.
         - *inactive* - can't be used in any services, useful for reserving/documenting prefixes for future use.
+   * - **Global Routing**
+     - Checkbox. Controls whether this subnet is eligible to be advertised outside its own VPC — see :ref:`Global Routing <ipam_global_routing>`, below, for what it does and what's still unconfirmed about it.
 
 .. image:: images/add-subnet.png
   :align: center
@@ -141,6 +143,24 @@ Add a Subnet
 .. raw:: html
 
    <p style="text-align: center;"><em>Figure: Add Subnet Window</em></p>
+
+.. _ipam_global_routing:
+
+Global Routing
+--------------
+
+**Global Routing** is a per-subnet checkbox, introduced in 4.4.0, that controls whether a subnet can be advertised outside the VPC/VRF it was created in. The in-product hint text reads:
+
+    Subnets with "Global Routing" enabled will be advertised from guest VPCs to the System VPC, and if the System VPC has upstream (Internet) connection such subnets will be advertised further upstream.
+
+In other words: enabling it on a subnet in a tenant (guest) VPC makes that prefix a candidate for advertisement into the System VPC's routing context, and from there further upstream if a SoftGate object in the System VPC carries an E-BGP session to the Internet or another external network — see :doc:`BGP <bgp>` and the :ref:`BGP route exchange between SoftGates, upstream routers, and downstream switches <softgate-bgp-route-exchange>` section of :doc:`SoftGate HS <netris-softgate-HS>` for the mechanics of upstream advertisement itself.
+
+This is the mechanism the 4.4.0 release notes refer to as "native VPC subnet reachability from outside of the Netris-managed fabric" — the subnet is advertised as-is, with no address translation. It is distinct from two other things that also move traffic between a VPC and the outside world:
+
+* A NAT rule's *global IP* (see :doc:`NAT <nat>`) — a translated public address, not the subnet itself being advertised. Don't confuse the two just because both use the word "global."
+* :doc:`VPC Connect <vpc-connect>` — there, the eBGP peer relationship terminates directly on a switch port or V-Net SVI, does not involve a SoftGate, and the resulting traffic never passes through a SoftGate at all. Global Routing's advertisement path, by contrast, always runs through a SoftGate-terminated eBGP session in the System VPC.
+
+**Default state:** Global Routing is pre-checked automatically for any subnet created in the System VPC (VPC-1), regardless of Purpose — including *loopback* and *management* subnets. Whether that pre-checked state has any actual effect for those purposes is unconfirmed.
 
 .. tip::
 

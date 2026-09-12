@@ -94,7 +94,7 @@ The table below lists the objects that belong to a VPC, what selecting a VPC for
      - A V-Net belongs to exactly one VPC and one or more Sites.
    * - IPAM Allocation / Subnet (``Network -> IPAM``)
      - The VPC the allocation or subnet is filed under.
-     - See :doc:`ipam`. A subnet's *Purpose* (common, loopback, management, load-balancer, nat, inactive) determines how it can be used; loopback, load-balancer, and nat subnets are conventionally created in the System VPC — see :ref:`System VPC and Default VPC <vpc_system_default>`.
+     - See :doc:`ipam`. A subnet's *Purpose* (common, loopback, management, load-balancer, nat, inactive) determines how it can be used; loopback, load-balancer, and nat subnets are conventionally created in the System VPC — see :ref:`System VPC and Default VPC <vpc_system_default>`. A subnet's *Global Routing* checkbox separately controls whether it can be advertised outside its own VPC to the System VPC (and potentially upstream) — see :ref:`Global Routing <ipam_global_routing>` on the IPAM page; it's pre-checked by default for subnets created directly in the System VPC.
    * - E-BGP peer (``Network -> E-BGP``)
      - The VPC the BGP session's routes are injected into.
      - The **BGP Router** field determines where the session terminates: a SoftGate-terminated session must use the System VPC; a switch- or V-Net-terminated session (Direct Connect, no SoftGate) can use any VPC, but doesn't get SoftGate NAT/load-balancer services.
@@ -172,7 +172,7 @@ The System VPC is the **trust boundary and anchor point for platform/infrastruct
    * - Object
      - Why it lives here
    * - **Switch loopback and VTEP IPAM subnets**
-     - Switch main loopback IPs operate in the underlay and, by definition, don't belong to any VPC/VRF — but Netris IPAM still needs a VPC to file that subnet under, since every IPAM subnet has a VPC parent. (This is purely an IPAM bookkeeping detail — the loopback IPs themselves are never actually configured inside the System VPC's VRF on the switch.)
+     - Switch main loopback IPs operate in the underlay and, by definition, don't belong to any VPC/VRF — but Netris IPAM still needs a VPC to file that subnet under, since every IPAM subnet has a VPC parent. (This is purely an IPAM bookkeeping detail — the loopback IPs themselves are never actually configured inside the System VPC's VRF on the switch.) Note: the *Global Routing* checkbox is pre-checked by default on these subnets same as any other subnet created in the System VPC; whether that has any operational effect for a loopback-purpose subnet is unconfirmed.
    * - **eBGP sessions terminated on SoftGate**
      - These are your upstream/external BGP sessions — peering with providers, border routers, or an IX — and they define the reachability Netris uses for SNAT egress and DNAT/load-balancer ingress.
    * - **Public/exit side of NAT and Load Balancer services**
