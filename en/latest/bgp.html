@@ -351,8 +351,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#high-availability-and-load-distribution">High Availability and Load Distribution</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC originated traffic routing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#internet-originated-traffic-routing">Internet originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC-originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#internet-originated-traffic-routing">Internet-originated traffic routing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#failover-behavior">Failover behavior</a></li>
 </ul>
 </li>
@@ -480,6 +480,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#subnet-purpose-and-service-dependencies">Subnet purpose and service dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#add-an-allocation">Add an Allocation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#add-a-subnet">Add a Subnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#global-routing">Global Routing</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">BGP</a><ul>
@@ -1217,6 +1218,7 @@
 <section id="bgp-overview">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">BGP Overview</a><a class="headerlink" href="#bgp-overview" title="Link to this heading"></a></h2>
 <p>Netris uses BGP to connect tenant VPCs and management networks to the world outside the Netris-managed fabric — upstream carriers, non-Netris-managed data center networks, WAN routers, and security appliances such as firewalls.</p>
+<p>A subnet must additionally have its <em>Global Routing</em> checkbox enabled to be eligible for this kind of external advertisement — see <a class="reference internal" href="ipam.html#ipam-global-routing"><span class="std std-ref">Global Routing</span></a> on the IPAM page.</p>
 <p>There are two main types of BGP-enabled connectivity:</p>
 <ul class="simple">
 <li><p><strong>SoftGate-terminated BGP</strong> — the session terminates on a <a class="reference internal" href="netris-softgate-HS.html"><span class="doc">SoftGate</span></a> node. Typically used for connecting to ISPs, border routers, and similar upstream peers, since SoftGate also provides <a class="reference internal" href="nat.html"><span class="doc">NAT</span></a> and <a class="reference internal" href="l4-load-balancer.html"><span class="doc">Layer-4 load balancing</span></a> for that traffic.</p></li>

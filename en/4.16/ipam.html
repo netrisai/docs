@@ -351,8 +351,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#high-availability-and-load-distribution">High Availability and Load Distribution</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC originated traffic routing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#internet-originated-traffic-routing">Internet originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC-originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#internet-originated-traffic-routing">Internet-originated traffic routing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#failover-behavior">Failover behavior</a></li>
 </ul>
 </li>
@@ -480,6 +480,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#subnet-purpose-and-service-dependencies">Subnet purpose and service dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-an-allocation">Add an Allocation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-a-subnet">Add a Subnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#global-routing">Global Routing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bgp.html">BGP</a><ul>
@@ -1329,10 +1330,27 @@
 </div></blockquote>
 </td>
 </tr>
+<tr class="row-odd"><td><p><strong>Global Routing</strong></p></td>
+<td><p>Checkbox. Controls whether this subnet is eligible to be advertised outside its own VPC — see <a class="reference internal" href="#ipam-global-routing"><span class="std std-ref">Global Routing</span></a>, below, for what it does and what’s still unconfirmed about it.</p></td>
+</tr>
 </tbody>
 </table>
 <img alt="Add a New Subnet" class="with-shadow align-center" src="_images/add-subnet.png" />
-<p style="text-align: center;"><em>Figure: Add Subnet Window</em></p><div class="admonition tip">
+<p style="text-align: center;"><em>Figure: Add Subnet Window</em></p></section>
+<section id="global-routing">
+<span id="ipam-global-routing"></span><h2>Global Routing<a class="headerlink" href="#global-routing" title="Link to this heading"></a></h2>
+<p><strong>Global Routing</strong> is a per-subnet checkbox, introduced in 4.4.0, that controls whether a subnet can be advertised outside the VPC/VRF it was created in. The in-product hint text reads:</p>
+<blockquote>
+<div><p>Subnets with “Global Routing” enabled will be advertised from guest VPCs to the System VPC, and if the System VPC has upstream (Internet) connection such subnets will be advertised further upstream.</p>
+</div></blockquote>
+<p>In other words: enabling it on a subnet in a tenant (guest) VPC makes that prefix a candidate for advertisement into the System VPC’s routing context, and from there further upstream if a SoftGate object in the System VPC carries an E-BGP session to the Internet or another external network — see <a class="reference internal" href="bgp.html"><span class="doc">BGP</span></a> and the <a class="reference internal" href="netris-softgate-HS.html#softgate-bgp-route-exchange"><span class="std std-ref">BGP route exchange between SoftGates, upstream routers, and downstream switches</span></a> section of <a class="reference internal" href="netris-softgate-HS.html"><span class="doc">SoftGate HS</span></a> for the mechanics of upstream advertisement itself.</p>
+<p>This is the mechanism the 4.4.0 release notes refer to as “native VPC subnet reachability from outside of the Netris-managed fabric” — the subnet is advertised as-is, with no address translation. It is distinct from two other things that also move traffic between a VPC and the outside world:</p>
+<ul class="simple">
+<li><p>A NAT rule’s <em>global IP</em> (see <a class="reference internal" href="nat.html"><span class="doc">NAT</span></a>) — a translated public address, not the subnet itself being advertised. Don’t confuse the two just because both use the word “global.”</p></li>
+<li><p><a class="reference internal" href="vpc-connect.html"><span class="doc">VPC Connect</span></a> — there, the eBGP peer relationship terminates directly on a switch port or V-Net SVI, does not involve a SoftGate, and the resulting traffic never passes through a SoftGate at all. Global Routing’s advertisement path, by contrast, always runs through a SoftGate-terminated eBGP session in the System VPC.</p></li>
+</ul>
+<p><strong>Default state:</strong> Global Routing is pre-checked automatically for any subnet created in the System VPC (VPC-1), regardless of Purpose — including <em>loopback</em> and <em>management</em> subnets. Whether that pre-checked state has any actual effect for those purposes is unconfirmed.</p>
+<div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p><strong>IPAM does not track point-to-point link addressing.</strong> Underlay BGP-numbered links and L3VPN per-port links are configured directly on the Link object in Topology Manager instead — see <a class="reference internal" href="topology-management.html"><span class="doc">Topology Management</span></a>, <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profiles</span></a>, and <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a>. Netris can auto-allocate them, or an operator can enter them manually; L3VPN link addresses are typically pre-populated with Terraform during server onboarding.</p>
 </div>

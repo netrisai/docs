@@ -351,8 +351,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#high-availability-and-load-distribution">High Availability and Load Distribution</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC originated traffic routing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#internet-originated-traffic-routing">Internet originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC-originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#internet-originated-traffic-routing">Internet-originated traffic routing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#failover-behavior">Failover behavior</a></li>
 </ul>
 </li>
@@ -480,6 +480,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#subnet-purpose-and-service-dependencies">Subnet purpose and service dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#add-an-allocation">Add an Allocation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#add-a-subnet">Add a Subnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#global-routing">Global Routing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bgp.html">BGP</a><ul>
@@ -1194,6 +1195,10 @@
   <section id="nat">
 <span id="nat-def"></span><h1>NAT<a class="headerlink" href="#nat" title="Link to this heading"></a></h1>
 <p>If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT and DNAT features.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NAT’s <em>global IP</em> (a translated public address) is a different concept from an IPAM subnet’s <em>Global Routing</em> checkbox (advertising a subnet as-is, untranslated, outside its own VPC). See <a class="reference internal" href="ipam.html#ipam-global-routing"><span class="std std-ref">Global Routing</span></a> on the IPAM page if that’s what you’re looking for.</p>
+</div>
 <section id="enabling-nat">
 <h2>Enabling NAT<a class="headerlink" href="#enabling-nat" title="Link to this heading"></a></h2>
 <p>To enable NAT for a given site, you first need to create a subnet with NAT purpose (see the <a class="reference internal" href="ipam.html"><span class="doc">Create subnets for NAT service</span></a> section on the IPAM page). The NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need. Adding an IP Subnet under Network → IPAM.</p>

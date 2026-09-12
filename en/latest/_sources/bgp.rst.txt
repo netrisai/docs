@@ -16,6 +16,8 @@ BGP Overview
 
 Netris uses BGP to connect tenant VPCs and management networks to the world outside the Netris-managed fabric — upstream carriers, non-Netris-managed data center networks, WAN routers, and security appliances such as firewalls.
 
+A subnet must additionally have its *Global Routing* checkbox enabled to be eligible for this kind of external advertisement — see :ref:`Global Routing <ipam_global_routing>` on the IPAM page.
+
 There are two main types of BGP-enabled connectivity:
 
 - **SoftGate-terminated BGP** — the session terminates on a :doc:`SoftGate <netris-softgate-HS>` node. Typically used for connecting to ISPs, border routers, and similar upstream peers, since SoftGate also provides :doc:`NAT <nat>` and :doc:`Layer-4 load balancing <l4-load-balancer>` for that traffic.

@@ -9,6 +9,10 @@ NAT
 
 If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT and DNAT features.
 
+.. note::
+
+   NAT's *global IP* (a translated public address) is a different concept from an IPAM subnet's *Global Routing* checkbox (advertising a subnet as-is, untranslated, outside its own VPC). See :ref:`Global Routing <ipam_global_routing>` on the IPAM page if that's what you're looking for.
+
 Enabling NAT
 ------------
 To enable NAT for a given site, you first need to create a subnet with NAT purpose (see the :doc:`Create subnets for NAT service <ipam>` section on the IPAM page). The NAT IP addresses can be used for SNAT or DNAT as a global IP address (the public IP visible on the Internet). NAT IP pools are IP address ranges that SNAT can use as a rolling global IP (for a larger scale, similar to carrier-grade SNAT). SNAT is always overloading the ports, so many local hosts can share one or just a few public IP addresses. You can add as many NAT IP addresses and NAT pools as you need. Adding an IP Subnet under Network → IPAM.
