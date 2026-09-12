@@ -132,14 +132,16 @@ The System VPC role is about trust: it anchors objects the operator implicitly r
 
 .. raw:: html
 
-   <p style="text-align: center;"><em>System and Default are independent flags: VPC-1 is System but not Default, VPC-3 is Default but not System</em></p>
+   <p style="text-align: center;"><em>System and Default are independent flags: VPC-1 is System but not Default; VPC-3 is Default but not System</em></p>
 
 What the Default VPC is for
 ----------------------------
 
-The Default VPC is a **convenience/fallback mechanism**, not a trust or security boundary. VPC is a required field on every VPC-scoped object — it's just that the value doesn't always have to come from the caller. Exactly one VPC in a deployment is flagged as default, and that VPC is what the Controller substitutes whenever a value is required but none was explicitly given.
+The Default VPC is a **convenience/fallback mechanism**, not a trust or security boundary. Exactly one VPC in a deployment is flagged as Default.
 
-In the web UI, the Default VPC is pre-selected in "Add new" dialogs for VPC-scoped objects. You're free to change the selection before saving, but if you don't, the object is created in whichever VPC is flagged default. Over the API or in Terraform, the same substitution happens if a call omits the VPC field: the Controller doesn't reject the request for missing a required value, it fills that value in with the Default VPC.
+In the web UI, the Default VPC is pre-selected in "Add new" dialogs for VPC-scoped objects. You can change the selection before saving, but if you don't, the object is created in whichever VPC is flagged as Default.
+
+When using the API or Terraform, the same substitution happens if a call omits the VPC field: the Controller doesn't reject the request for missing a required value; it fills that value in with the Default VPC.
 
 .. image:: images/vpc_default_select.png
    :align: center
