@@ -351,8 +351,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#high-availability-and-load-distribution">High Availability and Load Distribution</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC originated traffic routing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#internet-originated-traffic-routing">Internet originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#netris-vpc-originated-traffic-routing">Netris VPC-originated traffic routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#internet-originated-traffic-routing">Internet-originated traffic routing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#failover-behavior">Failover behavior</a></li>
 </ul>
 </li>
@@ -480,6 +480,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#subnet-purpose-and-service-dependencies">Subnet purpose and service dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#add-an-allocation">Add an Allocation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipam.html#add-a-subnet">Add a Subnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipam.html#global-routing">Global Routing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bgp.html">BGP</a><ul>
@@ -1281,7 +1282,7 @@
 </tr>
 <tr class="row-odd"><td><p>IPAM Allocation / Subnet (<code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">IPAM</span></code>)</p></td>
 <td><p>The VPC the allocation or subnet is filed under.</p></td>
-<td><p>See <a class="reference internal" href="ipam.html"><span class="doc">IP Address Management (IPAM)</span></a>. A subnet’s <em>Purpose</em> (common, loopback, management, load-balancer, nat, inactive) determines how it can be used; loopback, load-balancer, and nat subnets are conventionally created in the System VPC — see <a class="reference internal" href="#vpc-system-default"><span class="std std-ref">System VPC and Default VPC</span></a>.</p></td>
+<td><p>See <a class="reference internal" href="ipam.html"><span class="doc">IP Address Management (IPAM)</span></a>. A subnet’s <em>Purpose</em> (common, loopback, management, load-balancer, nat, inactive) determines how it can be used; loopback, load-balancer, and nat subnets are conventionally created in the System VPC — see <a class="reference internal" href="#vpc-system-default"><span class="std std-ref">System VPC and Default VPC</span></a>. A subnet’s <em>Global Routing</em> checkbox separately controls whether it can be advertised outside its own VPC to the System VPC (and potentially upstream) — see <a class="reference internal" href="ipam.html#ipam-global-routing"><span class="std std-ref">Global Routing</span></a> on the IPAM page; it’s pre-checked by default for subnets created directly in the System VPC.</p></td>
 </tr>
 <tr class="row-even"><td><p>E-BGP peer (<code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">E-BGP</span></code>)</p></td>
 <td><p>The VPC the BGP session’s routes are injected into.</p></td>
@@ -1347,7 +1348,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>Switch loopback and VTEP IPAM subnets</strong></p></td>
-<td><p>Switch main loopback IPs operate in the underlay and, by definition, don’t belong to any VPC/VRF — but Netris IPAM still needs a VPC to file that subnet under, since every IPAM subnet has a VPC parent. (This is purely an IPAM bookkeeping detail — the loopback IPs themselves are never actually configured inside the System VPC’s VRF on the switch.)</p></td>
+<td><p>Switch main loopback IPs operate in the underlay and, by definition, don’t belong to any VPC/VRF — but Netris IPAM still needs a VPC to file that subnet under, since every IPAM subnet has a VPC parent. (This is purely an IPAM bookkeeping detail — the loopback IPs themselves are never actually configured inside the System VPC’s VRF on the switch.) Note: the <em>Global Routing</em> checkbox is pre-checked by default on these subnets same as any other subnet created in the System VPC; whether that has any operational effect for a loopback-purpose subnet is unconfirmed.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>eBGP sessions terminated on SoftGate</strong></p></td>
 <td><p>These are your upstream/external BGP sessions — peering with providers, border routers, or an IX — and they define the reachability Netris uses for SNAT egress and DNAT/load-balancer ingress.</p></td>
