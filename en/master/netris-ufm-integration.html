@@ -1255,8 +1255,12 @@
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <p>The Netris-UFM plugin manifest ships inside the same air-gapped installation tarball used to deploy the Netris Controller — no internet access is required. The steps below assume you unpacked that tarball into <code class="docutils literal notranslate"><span class="pre">~/netris-controller-ha/</span></code> (see <a class="reference internal" href="installation/controller-k3s-air-gap-ha.html"><span class="doc">Installing HA Netris Controller in Air-Gapped Environments</span></a> for details).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Applies to Netris Controller 4.17.0 and later.</strong> Earlier versions ship a single <code class="docutils literal notranslate"><span class="pre">manifests/netris-controller/ufm.yaml</span></code> file — edit and apply that file instead of the steps below.</p>
+</div>
 <ol class="arabic">
-<li><p>Edit <code class="docutils literal notranslate"><span class="pre">netris-controller-ha/manifests/netris-controller/ufm.yaml</span></code> to update the secret values based on your environment:</p>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">netris-controller-ha/manifests/netris-controller/ufm/secret.yaml</span></code> to set the credentials and other required parameters for your environment:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -1279,8 +1283,13 @@
 </pre></div>
 </div>
 </li>
-<li><p>Apply the configuration to your Kubernetes cluster:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netris-controller-ha/manifests/netris-controller/ufm.yaml
+<li><p>Apply the secret:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netris-controller-ha/manifests/netris-controller/ufm/secret.yaml
+</pre></div>
+</div>
+</li>
+<li><p>Apply the deployment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netris-controller-ha/manifests/netris-controller/ufm/deploy.yaml
 </pre></div>
 </div>
 </li>
@@ -1289,33 +1298,40 @@
 <section id="upgrading-the-ufm-integration">
 <h2>Upgrading the UFM Integration<a class="headerlink" href="#upgrading-the-ufm-integration" title="Link to this heading"></a></h2>
 <p>When you upgrade an existing Netris deployment, Netris recommends setting the <code class="docutils literal notranslate"><span class="pre">netris-controller-nvidia-ufm-agent</span></code> replicas to 0, which effectively disables the UFM integration, then following the normal Netris upgrade procedure (see <a class="reference internal" href="installation/controller-k3s-air-gap-ha.html"><span class="doc">Installing HA Netris Controller in Air-Gapped Environments</span></a>).</p>
-<p>To set the replicas to 0:</p>
+<p>To set the <code class="docutils literal notranslate"><span class="pre">netris-controller-nvidia-ufm-agent</span></code> replicas to 0 you can use the following command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>-nnetris-controller<span class="w"> </span>scale<span class="w"> </span>deploy<span class="w"> </span>netris-controller-nvidia-ufm-agent<span class="w"> </span>--replicas<span class="o">=</span><span class="m">0</span>
 </pre></div>
 </div>
-<p>To upgrade the plugin, simply apply the updated <code class="docutils literal notranslate"><span class="pre">ufm.yaml</span></code> manifest.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Remember to populate the updated <code class="docutils literal notranslate"><span class="pre">ufm.yaml</span></code> manifest file with the current netris credentials as shown in the installation section above.</p>
+<p><strong>On Netris Controller 4.17.0+:</strong> to upgrade the UFM integration plugin, re-apply the <code class="docutils literal notranslate"><span class="pre">deploy.yaml</span></code> manifest:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netris-controller-ha/manifests/netris-controller/ufm/deploy.yaml
+</pre></div>
 </div>
+<p>Because credentials now live in the separate <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code> file, you don’t need to re-populate them for a routine upgrade — only re-apply <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code> if the credentials themselves changed.</p>
+</div>
+<p><strong>On earlier versions:</strong> simply apply the updated <code class="docutils literal notranslate"><span class="pre">ufm.yaml</span></code> manifest. Remember to populate it with the current Netris credentials as shown in the installation section above.</p>
 <section id="multiple-ufm-instances">
 <h3>Multiple UFM Instances<a class="headerlink" href="#multiple-ufm-instances" title="Link to this heading"></a></h3>
 <p>If a customer’s InfiniBand environment has more than one fabric — each with its own UFM (for example, separate compute and storage fabrics) — deploy a separate Netris-UFM agent per UFM. A highly available UFM pair presents a single address to Netris and is served by one agent.</p>
+<p><strong>On Netris Controller 4.17.0+:</strong></p>
 <ol class="arabic simple">
-<li><p>Copy <code class="docutils literal notranslate"><span class="pre">ufm.yaml</span></code> to a new file name.</p></li>
-<li><p>In the copy, give the agent a unique Kubernetes resource name (<code class="docutils literal notranslate"><span class="pre">metadata.name</span></code>), <code class="docutils literal notranslate"><span class="pre">UFM_ADDR</span></code>, and a unique <code class="docutils literal notranslate"><span class="pre">UFM_ID</span></code>, and update the other UFM/Netris connection values as needed.</p></li>
+<li><p>Copy the entire <code class="docutils literal notranslate"><span class="pre">ufm</span></code> folder to a new folder name.</p></li>
+<li><p>In the copy, give the agent a unique Kubernetes resource name (<code class="docutils literal notranslate"><span class="pre">metadata.name</span></code>), <code class="docutils literal notranslate"><span class="pre">UFM_ADDR</span></code>, and a unique <code class="docutils literal notranslate"><span class="pre">UFM_ID</span></code> in both <code class="docutils literal notranslate"><span class="pre">deploy.yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code>, and update the other UFM/Netris connection values as needed.</p></li>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Here is a quick way to update the YAML file for the 2nd UFM instance:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>ufm.yaml<span class="w"> </span>ufm-storage.yaml
-sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-controller-nvidia-ufm-agent/netris-controller-nvidia-ufm-agent-storage/g'</span><span class="w"> </span>ufm-storage.yaml
+<p>Here is a quick way to update the YAML files for the 2nd UFM instance</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>-r<span class="w"> </span>manifests/netris-controller/ufm<span class="w"> </span>manifests/netris-controller/ufm-storage
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-controller-nvidia-ufm-agent/netris-controller-nvidia-ufm-agent-storage/g'</span><span class="w"> </span>manifests/netris-controller/ufm-storage/secret.yaml
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-controller-nvidia-ufm-agent/netris-controller-nvidia-ufm-agent-storage/g'</span><span class="w"> </span>manifests/netris-controller/ufm-storage/deploy.yaml
 </pre></div>
 </div>
 </div>
 <ol class="arabic simple" start="3">
-<li><p>Apply the copy with <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">apply</span> <span class="pre">-f</span></code>.</p></li>
+<li><p>Apply both files with <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">apply</span> <span class="pre">-f</span></code>.</p></li>
 </ol>
+<p><strong>On earlier versions:</strong> copy <code class="docutils literal notranslate"><span class="pre">ufm.yaml</span></code> to a new file name, update <code class="docutils literal notranslate"><span class="pre">metadata.name</span></code>, <code class="docutils literal notranslate"><span class="pre">UFM_ADDR</span></code>, and <code class="docutils literal notranslate"><span class="pre">UFM_ID</span></code> in the copy, and apply it the same way.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Re-applying a manifest with the same <code class="docutils literal notranslate"><span class="pre">metadata.name</span></code> updates the existing agent rather than creating a second one. Each UFM instance needs its own uniquely-named deployment and a unique <code class="docutils literal notranslate"><span class="pre">UFM_ID</span></code>.</p>
@@ -1469,7 +1485,7 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/netris-
 <ol class="arabic simple">
 <li><p>Navigate to <strong>Services</strong> → <strong>Server Cluster Template</strong>.</p></li>
 <li><p>Click <strong>Add</strong> to create a new template</p></li>
-<li><p>Configure the template using JSON with specific sections for different network fabrics. Use <a class="reference internal" href="server-cluster.html#infiniband-fabric-example"><span class="std std-ref">Infiniband Fabric Example</span></a>.</p></li>
+<li><p>Configure the template using JSON with specific sections for different network fabrics. See the <a class="reference internal" href="server-cluster.html#infiniband-fabric-example"><span class="std std-ref">Infiniband Fabric Example</span></a> on the Server Cluster page.</p></li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

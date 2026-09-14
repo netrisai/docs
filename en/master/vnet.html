@@ -1265,15 +1265,15 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <li><p>VLAN ID (for L2VPN V-Nets), which Netris will assign when set to Automatic,</p></li>
 <li><p>Owner administering the V-Net,</p></li>
 <li><p>V-Net state,</p></li>
-<li><p>List of switch ports to include in the V-Net, which can be explicitly listed or referenced through <a class="reference internal" href="labels.html#tags"><span class="std std-ref">Labels</span></a>.</p></li>
+<li><p>List of switch ports to include in the V-Net; they can be explicitly listed or referenced via <a class="reference internal" href="labels.html#tags"><span class="std std-ref">Labels</span></a> (see below).</p></li>
 </ul>
 </dd>
-<dt>Optionally V-Net definition can also include:</dt><dd><ul class="simple">
+<dt>Optionally, a V-Net definition can also include:</dt><dd><ul class="simple">
 <li><p><a class="reference internal" href="labels.html#tags"><span class="std std-ref">Labels</span></a> for dynamic switch port inclusion into the V-Net,</p></li>
 <li><p>List of collaborators (Guest tenants) who can add or remove switch ports to and from the V-Net, but not edit any other properties of the V-Net,</p></li>
 <li><p>IP Address Family (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack) to specify the type of gateway IP configured on the V-Net,</p></li>
 <li><p>IPv4 or IPv6 Gateway (for L2VPN V-Nets) to make the V-Net routable inside the VPC, i.e., add an SVI to the VLAN,</p></li>
-<li><p>For L2VPN V-Nets, DHCP scope and option set (SoftGate required), or DHCP Relay configuration,</p></li>
+<li><p>For L2VPN V-Nets, DHCP scope and option set (SoftGate required) or DHCP Relay configuration,</p></li>
 <li><p>Anycast MAC address (for L2VPN V-Nets), which Netris can assign for you,</p></li>
 <li><p>VXLAN ID,</p></li>
 <li><p>IPv6 Neighbor Discovery configuration.</p></li>
@@ -1438,7 +1438,7 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 </section>
 <section id="multisite-v-nets">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">Multisite V-Nets</a><a class="headerlink" href="#multisite-v-nets" title="Link to this heading"></a></h3>
-<p>Any V-Net may span multiple <a class="reference internal" href="site.html"><span class="doc">sites</span></a>. If the V-Net spans multiple sites and you add a gateway, you must first create the subnet under <code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">Subnets</span></code> and assign it to all sites the V-Net will span (You can define additional sites in <code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">Sites</span></code>). This way the anycast IP is valid everywhere.</p>
+<p>Any V-Net may span multiple <a class="reference internal" href="site.html"><span class="doc">Netris Sites</span></a>. If the V-Net spans multiple sites and you add a gateway, you must first create the subnet under <code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">Subnets</span></code> and assign it to all sites the V-Net will span (You can define additional sites in <code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">Sites</span></code>). This way the anycast IP is valid everywhere.</p>
 <img alt="Multisite V-Net" class="with-shadow align-center" src="_images/vnet-multisite.png" />
 <br /></section>
 <section id="link-aggregation-and-multihoming">
@@ -1505,12 +1505,12 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <blockquote>
 <div><ul class="simple">
 <li><p>VLAN-aware mode is not available with L3VPN.</p></li>
-<li><p>DHCP and anycast gateway are intentionally disabled; each server must configure its own IP on the peer side of the /31.</p></li>
+<li><p>DHCP (including DHCP Relay) and Anycast gateway are intentionally disabled; each server must configure its own IP on the peer side of the /31.</p></li>
 <li><p>The Untagged toggle and per-port VLAN ID apply only to the interface you are adding; they never create a global broadcast domain.</p></li>
 </ul>
 </div></blockquote>
-<p>With these steps you have a routed, broadcast-free V-Net ready for high-scale east–west traffic.</p>
-<p>In larger fabrics Netris recommends turning on the optional /26 aggregation in the Inventory Profile (<code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">Inventory</span> <span class="pre">Profiles</span></code>) to reduce TCAM usage in the hardware.</p>
+<p>With these steps, you have a routed, broadcast-free V-Net ready for high-scale east–west traffic.</p>
+<p>In larger fabrics, Netris recommends turning on the optional /26 aggregation in the Inventory Profile (<code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">Inventory</span> <span class="pre">Profiles</span></code>) to reduce TCAM usage in the hardware.</p>
 <img alt="Aggregate /26 setting in Inventory Profile" class="with-shadow align-center" src="_images/aggregate-slash26.png" />
 <br /></section>
 </section>
