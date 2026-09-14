@@ -91,6 +91,8 @@ Netris supports using an external DHCP server by enabling the DHCP Relay functio
 .. tip::
   In a V-Net, a DHCP Relay service and a DHCP service cannot be enabled simultaneously.
 
+  In a V-Net, DHCP Relay and DHCPv6 Relay cannot be enabled when L3VPN is enabled.
+
 To configure DHCP Relay in a V-Net:
  - Specify the VPC where the DHCP server is located.
  - Enter the IP addresses of the primary and (optionally) backup DHCP servers.
@@ -104,11 +106,12 @@ To configure DHCP Relay in a V-Net:
 
     <br />
 
-.. note::
+.. warning::
   When a V-Net and the DHCP server specified in the DHCP Relay configuration are homed in different VPCs, VPC peering is mandatory. Without it, the relay traffic cannot reach the DHCP server. Configure peering under Network → VPC Peering in the Controller.
 
   Non-overlapping IP ranges are required between the client VPCs (e.g., VPC-Alpha1) and the DHCP server's VPC (VPC-Shared-Infra). The DHCP server must be able to route back to the client's V-Net.
 
+.. warning::
   The switch loopback IP is the source IP of relayed packets.
 
 .. raw:: html

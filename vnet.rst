@@ -65,14 +65,14 @@ Every V-Net must include:
   - VLAN ID (for L2VPN V-Nets), which Netris will assign when set to Automatic,
   - Owner administering the V-Net,
   - V-Net state,
-  - List of switch ports to include in the V-Net, which can be explicitly listed or referenced through :ref:`Labels <tags>`.
+  - List of switch ports to include in the V-Net; they can be explicitly listed or referenced via :ref:`Labels <tags>` (see below).
 
-Optionally V-Net definition can also include:
+Optionally, a V-Net definition can also include:
   - :ref:`Labels <tags>` for dynamic switch port inclusion into the V-Net,
   - List of collaborators (Guest tenants) who can add or remove switch ports to and from the V-Net, but not edit any other properties of the V-Net,
   - IP Address Family (IPv4 only, IPv6 only, or IPv4/IPv6 Dual-Stack) to specify the type of gateway IP configured on the V-Net,
   - IPv4 or IPv6 Gateway (for L2VPN V-Nets) to make the V-Net routable inside the VPC, i.e., add an SVI to the VLAN,
-  - For L2VPN V-Nets, DHCP scope and option set (SoftGate required), or DHCP Relay configuration,
+  - For L2VPN V-Nets, DHCP scope and option set (SoftGate required) or DHCP Relay configuration,
   - Anycast MAC address (for L2VPN V-Nets), which Netris can assign for you,
   - VXLAN ID,
   - IPv6 Neighbor Discovery configuration.
@@ -202,7 +202,7 @@ Advanced V-Net Fields explained
 
 Multisite V-Nets
 ^^^^^^^^^^^^^^^^^^^^^^^^
-Any V-Net may span multiple :doc:`sites <site>`. If the V-Net spans multiple sites and you add a gateway, you must first create the subnet under ``Network -> Subnets`` and assign it to all sites the V-Net will span (You can define additional sites in ``Network -> Sites``). This way the anycast IP is valid everywhere.
+Any V-Net may span multiple :doc:`Netris Sites <site>`. If the V-Net spans multiple sites and you add a gateway, you must first create the subnet under ``Network -> Subnets`` and assign it to all sites the V-Net will span (You can define additional sites in ``Network -> Sites``). This way the anycast IP is valid everywhere.
 
 
 .. image:: images/vnet-multisite.png
@@ -277,12 +277,12 @@ Behind the scenes, Netris
 Rules and limits
 ^^^^^^^^^^^^^^^^^^^^^^^^
   - VLAN-aware mode is not available with L3VPN.
-  - DHCP and anycast gateway are intentionally disabled; each server must configure its own IP on the peer side of the /31.
+  - DHCP (including DHCP Relay) and Anycast gateway are intentionally disabled; each server must configure its own IP on the peer side of the /31.
   - The Untagged toggle and per-port VLAN ID apply only to the interface you are adding; they never create a global broadcast domain.
 
-With these steps you have a routed, broadcast-free V-Net ready for high-scale east–west traffic.
+With these steps, you have a routed, broadcast-free V-Net ready for high-scale east–west traffic.
 
-In larger fabrics Netris recommends turning on the optional /26 aggregation in the Inventory Profile (``Network -> Inventory Profiles``) to reduce TCAM usage in the hardware.
+In larger fabrics, Netris recommends turning on the optional /26 aggregation in the Inventory Profile (``Network -> Inventory Profiles``) to reduce TCAM usage in the hardware.
 
 .. image:: images/aggregate-slash26.png
     :align: center

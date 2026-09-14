@@ -83,7 +83,10 @@ Installation
 
 The Netris-UFM plugin manifest ships inside the same air-gapped installation tarball used to deploy the Netris Controller — no internet access is required. The steps below assume you unpacked that tarball into ``~/netris-controller-ha/`` (see :doc:`installation/controller-k3s-air-gap-ha` for details).
 
-1. Edit ``netris-controller-ha/manifests/netris-controller/ufm.yaml`` to update the secret values based on your environment:
+.. tip::
+   **Applies to Netris Controller 4.17.0 and later.** Earlier versions ship a single ``manifests/netris-controller/ufm.yaml`` file — edit and apply that file instead of the steps below.
+
+1. Edit ``netris-controller-ha/manifests/netris-controller/ufm/secret.yaml`` to set the credentials and other required parameters for your environment:
 
    .. code-block:: yaml
 
@@ -107,45 +110,62 @@ The Netris-UFM plugin manifest ships inside the same air-gapped installation tar
         UFM_PKEY_RANGE: "100-7ffe"
         UFM_ENABLE_SHARP: "true"
 
-2. Apply the configuration to your Kubernetes cluster:
+2. Apply the secret:
 
    .. code-block:: bash
 
-      kubectl apply -f netris-controller-ha/manifests/netris-controller/ufm.yaml
+      kubectl apply -f netris-controller-ha/manifests/netris-controller/ufm/secret.yaml
+
+3. Apply the deployment:
+
+   .. code-block:: bash
+
+      kubectl apply -f netris-controller-ha/manifests/netris-controller/ufm/deploy.yaml
 
 Upgrading the UFM Integration
 ===============================
 
 When you upgrade an existing Netris deployment, Netris recommends setting the ``netris-controller-nvidia-ufm-agent`` replicas to 0, which effectively disables the UFM integration, then following the normal Netris upgrade procedure (see :doc:`installation/controller-k3s-air-gap-ha`).
 
-To set the replicas to 0:
+To set the ``netris-controller-nvidia-ufm-agent`` replicas to 0 you can use the following command.
 
 .. code-block:: bash
 
    kubectl -nnetris-controller scale deploy netris-controller-nvidia-ufm-agent --replicas=0
 
-To upgrade the plugin, simply apply the updated ``ufm.yaml`` manifest.
-
 .. tip::
-   Remember to populate the updated ``ufm.yaml`` manifest file with the current netris credentials as shown in the installation section above.
+   **On Netris Controller 4.17.0+:** to upgrade the UFM integration plugin, re-apply the ``deploy.yaml`` manifest:
+
+   .. code-block:: bash
+
+      kubectl apply -f netris-controller-ha/manifests/netris-controller/ufm/deploy.yaml
+
+   Because credentials now live in the separate ``secret.yaml`` file, you don't need to re-populate them for a routine upgrade — only re-apply ``secret.yaml`` if the credentials themselves changed.
+
+**On earlier versions:** simply apply the updated ``ufm.yaml`` manifest. Remember to populate it with the current Netris credentials as shown in the installation section above.
 
 Multiple UFM Instances
 -----------------------
 
 If a customer's InfiniBand environment has more than one fabric — each with its own UFM (for example, separate compute and storage fabrics) — deploy a separate Netris-UFM agent per UFM. A highly available UFM pair presents a single address to Netris and is served by one agent.
 
-1. Copy ``ufm.yaml`` to a new file name.
-2. In the copy, give the agent a unique Kubernetes resource name (``metadata.name``), ``UFM_ADDR``, and a unique ``UFM_ID``, and update the other UFM/Netris connection values as needed.
+**On Netris Controller 4.17.0+:**
+
+1. Copy the entire ``ufm`` folder to a new folder name.
+2. In the copy, give the agent a unique Kubernetes resource name (``metadata.name``), ``UFM_ADDR``, and a unique ``UFM_ID`` in both ``deploy.yaml`` and ``secret.yaml``, and update the other UFM/Netris connection values as needed.
 
 .. tip::
-   Here is a quick way to update the YAML file for the 2nd UFM instance:
+   Here is a quick way to update the YAML files for the 2nd UFM instance
 
    .. code-block:: bash
 
-      cp ufm.yaml ufm-storage.yaml
-      sed -i 's/netris-controller-nvidia-ufm-agent/netris-controller-nvidia-ufm-agent-storage/g' ufm-storage.yaml
+      cp -r manifests/netris-controller/ufm manifests/netris-controller/ufm-storage
+      sed -i 's/netris-controller-nvidia-ufm-agent/netris-controller-nvidia-ufm-agent-storage/g' manifests/netris-controller/ufm-storage/secret.yaml
+      sed -i 's/netris-controller-nvidia-ufm-agent/netris-controller-nvidia-ufm-agent-storage/g' manifests/netris-controller/ufm-storage/deploy.yaml
 
-3. Apply the copy with ``kubectl apply -f``.
+3. Apply both files with ``kubectl apply -f``.
+
+**On earlier versions:** copy ``ufm.yaml`` to a new file name, update ``metadata.name``, ``UFM_ADDR``, and ``UFM_ID`` in the copy, and apply it the same way.
 
 .. important::
    Re-applying a manifest with the same ``metadata.name`` updates the existing agent rather than creating a second one. Each UFM instance needs its own uniquely-named deployment and a unique ``UFM_ID``.
@@ -272,7 +292,7 @@ Next, create a Server Cluster Template.
 
 1. Navigate to **Services** → **Server Cluster Template**.
 2. Click **Add** to create a new template
-3. Configure the template using JSON with specific sections for different network fabrics. Use :ref:`infiniband-fabric-example`.
+3. Configure the template using JSON with specific sections for different network fabrics. See the :ref:`Infiniband Fabric Example <infiniband-fabric-example>` on the Server Cluster page.
 
 .. note::
    Netris Controller has no visibility into individual UFM NICs or ports, so the InfiniBand side of the template is just a single generic ``netris-ufm`` fabric entry — you don't (and can't) enumerate individual HCAs the way you would for Ethernet interfaces. Per-host HCA/port mapping happens automatically via the GUID sync described above.
