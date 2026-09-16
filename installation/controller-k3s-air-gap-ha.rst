@@ -4,6 +4,10 @@
 Installing HA Netris Controller in Air-Gapped Environments
 ===========================================================
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 4
+
 Why Air-Gapped Installation?
 ----------------------------
 In many production or regulated environments, network connectivity is tightly restricted for security or compliance reasons. An **air-gapped** environment prevents unauthorized external access and ensures no reliance on external artifact repositories. All required components—binaries, container images, and Helm charts—are transferred manually (e.g., via USB, secure copy) and installed entirely offline. This approach:
@@ -90,7 +94,7 @@ Steps to Install
 1.1 Transfer the File to the Servers
 """"""""""""""""""""""""""""""""""""
 
-Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your **three** targets Ubuntu 24.04 (or supported Linux) nodes.
+Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your **three** target nodes running Ubuntu 24.04 or RHEL 9.8.
 
 
 1.2 Extract the Tarball

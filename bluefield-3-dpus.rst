@@ -3,6 +3,10 @@
 BlueField-3 DPU Support in Netris
 ==================================
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 2
+
 Overview
 --------
 

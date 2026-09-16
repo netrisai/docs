@@ -7,6 +7,10 @@
 DHCP and DHCP Relay
 ====================
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 3
+
 L2VPN routed V-Nets (where an IP gateway is added) may also be configured with a DHCP service fully managed by Netris and hosted on SoftGate.
 
 DHCP Option Sets
