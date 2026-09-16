@@ -5,7 +5,7 @@ Hardware Requirements
 Netris Controller
 =================
 
-The Netris Controller requires at least three (for HA) Ubuntu 24.04 bare-metal servers with the specs below. HA Netris Controller can run in both air-gapped and Internet-accessible environments.
+The Netris Controller requires at least three (for HA) bare-metal servers running Ubuntu 24.04 or RHEL 9.8 with the specs below. HA Netris Controller can run in both air-gapped and Internet-accessible environments.
 
 .. list-table::
    :header-rows: 0
