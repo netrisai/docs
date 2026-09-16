@@ -33,7 +33,7 @@ BGP neighbors can be declared in the Network → E-BGP section. Netris software 
 A BGP session with an external to the Netris-managed fabric neighbor is defined by two independent choices:
 
 - **BGP Router** — the switch (or SoftGate) that hosts the local BGP speaker and where the Netris-managed side of the session terminates.
-- **Local endpoint interface** — either a routed **switch port** or a **V-Net gateway (SVI)**, selected by setting either *Switch port* or *Connect via V-Net* (under Advanced).
+- **Local endpoint interface** — either a routed **switch port** or a **V-Net** (without a gateway), selected by setting either *Switch port* or *Connect via V-Net* (under Advanced). A V-Net used this way must not have a gateway configured: Netris creates a dedicated SVI in that V-Net for this BGP session on the BGP Router switch and assigns it the *Local IP*. BGP cannot terminate on an existing V-Net gateway.
 
 The peer-facing port can be any port on the Netris-managed fabric; it does not have to sit on the switch selected as the BGP Router. When the port and the BGP Router are on different switches, Netris connects the two automatically — it creates a dedicated SVI on the BGP Router switch and provisions a hidden (meaning not visible in the GUI under the V-Net menu) "virtual wire" V-Net to the switch where the peer is physically connected.
 
@@ -49,9 +49,9 @@ The resulting combinations:
    * - **Routed switch port**
      - The session and the port are on the same switch.
      - Netris builds a virtual wire from the peer's port to the SVI created on the BGP Router switch.
-   * - **V-Net gateway (SVI)**
-     - The V-Net's SVI on that switch is the local endpoint.
-     - The V-Net is extended to the BGP Router switch, and the SVI created there terminates the session.
+   * - **V-Net (no gateway)**
+     - Netris creates a dedicated SVI in that V-Net for this BGP session on the BGP Router switch; that SVI is the local endpoint.
+     - The V-Net is extended to the BGP Router switch, and the dedicated SVI created there terminates the session.
 
 **Adding BGP Peers**
 

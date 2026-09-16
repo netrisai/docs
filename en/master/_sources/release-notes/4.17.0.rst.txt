@@ -1,0 +1,67 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.17.0
+.. _release_4_17_0:
+
+Netris |version| Release Notes (Sep/15/2026)
+=============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Netris 4.17.0 extends BGP Session and Peer-Port Decoupling to Dell SONiC, turns on FRR logging on SoftGates and adds the FRR logs to the Netris tech-support bundle, and improves the NVIDIA UFM integration's deployment and PKey membership handling. It also adds support for Cumulus Linux 5.18.1, validation that rejects DHCP Relay together with L3VPN mode on V-Nets, along with fixes across VPC peering, DHCPv6 Relay on Arista, BGP session placement on Cumulus, Maintenance Mode on Arista, Controller Health, SoftGate health monitoring, the NAT API, and the Dashboard and Inventory Profile pages.
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+No new features were added in this release.
+
+Enhancements
+------------
+.. Customer-facing enhancements to existing functionality and features.
+
+- **BGP Session and Peer-Port Decoupling (Dell SONiC)**. On Dell SONiC, configure a BGP session on one switch while the port facing the BGP peer resides on another switch, giving you full flexibility in how BGP sessions are distributed across the fabric — independent of where peer connectivity physically lands. Works with any peer type (firewall, router, or server), and existing same-switch BGP configurations continue to work unchanged.
+- **FRR logging on SoftGate**. SoftGate now enables FRR logging by default, including BGP neighbor state changes, and the Netris tech-support bundle collects the FRR logs together with the rest of the SoftGate diagnostics.
+- **NVIDIA UFM integration**. Improvements to the Netris-UFM plugin, including:
+
+  - Deployment manifests are now split into ``ufm/deploy.yaml`` and ``ufm/secret.yaml``, so upgrades reapply the deployment without re-entering credentials, and additional UFM instances are deployed by copying the folder.
+  - Servers with several HCA ports now always have every port admitted to their Server Cluster's PKey, including when two ports report the same module index and port number.
+
+- **Cumulus Linux 5.18.1 support**. Netris is now validated on Cumulus Linux 5.18.1.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes.
+
+- Fixed V-Net settings accepting DHCP Relay or DHCPv6 Relay when L3VPN mode is enabled, a combination that is not supported.
+- Fixed the ``check_ratio`` monitor on SoftGates constantly reporting a high value.
+- Fixed VPC peering being configured on switches in a fabric where only one of the peered VPCs is present when a VPC spans multiple fabrics. Affected platforms: all.
+- Fixed DHCPv6 Relay not delivering addresses to servers in a V-Net. Affected platforms: Arista.
+- Fixed mismatched bridge and VNI configuration between switches when a BGP session is placed on one switch and its peer port on another. Affected platforms: Cumulus. Found in Netris 4.14 and later.
+- Fixed Controller Health not reporting when no license is applied or the license has expired.
+- Fixed the syslog server field in Inventory Profiles showing an IPv6 example address although IPv6 syslog destinations are not supported.
+- Fixed Maintenance Mode having no effect on switches. Affected platforms: Arista. Found in Netris 4.6 and later.
+- Fixed the Dashboard showing conflicting agent status between the summary widgets and the alarm list. Found in Netris 4.16 and later.
+- Fixed the SNMP and NetQ sections being expanded by default when editing an Inventory Profile. Found in Netris 4.15 and later.
+- Fixed the NAT API rejecting the protocol values shown in its own validation error message and Swagger example.
+- Fixed the validation error for the DHCPv4 Relay server field not being displayed when editing a V-Net. Found in Netris 4.16 and later.
+
+Security fixes
+----------------
+
+No security fixes in this release.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file

@@ -507,6 +507,12 @@ Netris and NOS versions compatibility matrix
      - **Arista EOS**
      - **SoftGate HS OS**
      - **Availability**
+   * - 4.17.0
+     - 5.11 - 5.14, 5.16 - 5.16.6, 5.18.0 - 5.18.1
+     - 4.5
+     - 4.34.1F
+     - Ubuntu 24.04
+     - ✔
    * - 4.16.0
      - 5.11 - 5.14, 5.16 - 5.16.6, 5.18.0
      - 4.5

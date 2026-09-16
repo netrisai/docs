@@ -928,6 +928,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release-notes/4.17.0.html">Netris 4.17.0 Release Notes (Sep/15/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.17.0.html#what-s-new-in-netris-version">What’s new in Netris 4.17.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.17.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.17.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.17.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.17.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes/4.17.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../release-notes/4.16.0.html">Netris 4.16.0 Release Notes (Sep/02/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.16.0.html#what-s-new-in-netris-version">What’s new in Netris 4.16.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../release-notes/4.16.0.html#features">Features</a></li>
@@ -1572,7 +1581,7 @@ netris-controller-ha-mariadb-operator-webhook-9b6dcd979-cz5cs<span class="w">   
 <ol class="arabic simple">
 <li><p><strong>HelmChart</strong> manifest:</p></li>
 </ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/hc.yaml
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./netris<span class="w"> </span>install
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
@@ -1805,7 +1814,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 <ol class="arabic simple">
 <li><p>Upgrade the <strong>HelmChart</strong> manifest:</p></li>
 </ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/hc.yaml
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./netris<span class="w"> </span>upgrade
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">

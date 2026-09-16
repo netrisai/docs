@@ -928,6 +928,15 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.17.0.html">Netris 4.17.0 Release Notes (Sep/15/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.17.0.html#what-s-new-in-netris-version">What’s new in Netris 4.17.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.17.0.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.17.0.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.17.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.17.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.17.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.16.0.html">Netris 4.16.0 Release Notes (Sep/02/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#what-s-new-in-netris-version">What’s new in Netris 4.16.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.16.0.html#features">Features</a></li>
@@ -1232,7 +1241,7 @@
 <p>A BGP session with an external to the Netris-managed fabric neighbor is defined by two independent choices:</p>
 <ul class="simple">
 <li><p><strong>BGP Router</strong> — the switch (or SoftGate) that hosts the local BGP speaker and where the Netris-managed side of the session terminates.</p></li>
-<li><p><strong>Local endpoint interface</strong> — either a routed <strong>switch port</strong> or a <strong>V-Net gateway (SVI)</strong>, selected by setting either <em>Switch port</em> or <em>Connect via V-Net</em> (under Advanced).</p></li>
+<li><p><strong>Local endpoint interface</strong> — either a routed <strong>switch port</strong> or a <strong>V-Net</strong> (without a gateway), selected by setting either <em>Switch port</em> or <em>Connect via V-Net</em> (under Advanced). A V-Net used this way must not have a gateway configured: Netris creates a dedicated SVI in that V-Net for this BGP session on the BGP Router switch and assigns it the <em>Local IP</em>. BGP cannot terminate on an existing V-Net gateway.</p></li>
 </ul>
 <p>The peer-facing port can be any port on the Netris-managed fabric; it does not have to sit on the switch selected as the BGP Router. When the port and the BGP Router are on different switches, Netris connects the two automatically — it creates a dedicated SVI on the BGP Router switch and provisions a hidden (meaning not visible in the GUI under the V-Net menu) “virtual wire” V-Net to the switch where the peer is physically connected.</p>
 <p>The resulting combinations:</p>
@@ -1253,9 +1262,9 @@
 <td><p>The session and the port are on the same switch.</p></td>
 <td><p>Netris builds a virtual wire from the peer’s port to the SVI created on the BGP Router switch.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>V-Net gateway (SVI)</strong></p></td>
-<td><p>The V-Net’s SVI on that switch is the local endpoint.</p></td>
-<td><p>The V-Net is extended to the BGP Router switch, and the SVI created there terminates the session.</p></td>
+<tr class="row-odd"><td><p><strong>V-Net (no gateway)</strong></p></td>
+<td><p>Netris creates a dedicated SVI in that V-Net for this BGP session on the BGP Router switch; that SVI is the local endpoint.</p></td>
+<td><p>The V-Net is extended to the BGP Router switch, and the dedicated SVI created there terminates the session.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1301,7 +1310,7 @@
 <td><p>IPv4 or IPv6.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Local IP</strong></p></td>
-<td><p>BGP peering IP address on Netris controlled side.</p></td>
+<td><p>BGP peering IP address on Netris controlled side. When terminating on a V-Net (Advanced &gt; Connect via V-Net), this is the IP address of the dedicated SVI Netris creates in that V-Net for this BGP session.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Remote IP</strong></p></td>
 <td><p>BGP peering IP address on the remote end.</p></td>
@@ -1334,7 +1343,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>Connect via V-Net</strong></p></td>
-<td><p>Select a V-Net if the BGP session is to be established with an endpoint from that V-Net rather than with the switch port directly.</p></td>
+<td><p>Select a V-Net if the BGP session is to be established with an endpoint from that V-Net rather than with the switch port directly. The V-Net must not have a gateway configured – Netris creates a dedicated SVI in that V-Net for this BGP session, so a V-Net that already has a gateway is not eligible.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>BFD</strong></p></td>
 <td><p>Enable/Disable BFD.</p></td>
