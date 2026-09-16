@@ -7,6 +7,10 @@
 NAT
 ======================
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 2
+
 If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT and DNAT features.
 
 .. note::

@@ -1202,14 +1202,24 @@
              
   <section id="netris-site">
 <h1>Netris Site<a class="headerlink" href="#netris-site" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#site-scope" id="id3">Site scope</a></p></li>
+<li><p><a class="reference internal" href="#add-a-site" id="id4">Add a Site</a></p></li>
+<li><p><a class="reference internal" href="#edit-or-delete-a-site" id="id5">Edit or delete a Site</a></p></li>
+<li><p><a class="reference internal" href="#api-and-terraform" id="id6">API and Terraform</a></p></li>
+</ul>
+</nav>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>A Netris Site is a discrete physical deployment — a region, data center, or other location. A Site defines the parameters that every network object at that location inherits: the BGP Autonomous System Number (ASN) used toward external peers, the default ACL policy, and the VLAN ID ranges available to the switch fabric.</p>
 <p>Create one Site per location where Netris manages switches, SoftGate nodes, or DPUs. A Site must exist before any inventory, V-Net, or IPAM Subnet can be created, so creating the first Site is the first configuration step after installing the Controller.</p>
 <img alt="_images/site-add.png" class="with-shadow align-center" src="_images/site-add.png" />
 <p style="text-align: center;"><em>Figure: Add a Site</em></p></section>
 <section id="site-scope">
-<h2>Site scope<a class="headerlink" href="#site-scope" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Site scope</a><a class="headerlink" href="#site-scope" title="Link to this heading"></a></h2>
 <p>Objects in Netris are either global, bound to exactly one Site, or spanning one or more Sites. Use the table below to determine where a Site selection is required.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1244,7 +1254,7 @@
 </table>
 </section>
 <section id="add-a-site">
-<h2>Add a Site<a class="headerlink" href="#add-a-site" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Add a Site</a><a class="headerlink" href="#add-a-site" title="Link to this heading"></a></h2>
 <p>To add a new Site in Netris, navigate to Network → Sites and click the +Add button.</p>
 <ul>
 <li><p><strong>Site name</strong> - an alphanumeric value identifying the physical location.</p></li>
@@ -1261,7 +1271,7 @@
 </ul>
 </section>
 <section id="edit-or-delete-a-site">
-<h2>Edit or delete a Site<a class="headerlink" href="#edit-or-delete-a-site" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Edit or delete a Site</a><a class="headerlink" href="#edit-or-delete-a-site" title="Link to this heading"></a></h2>
 <p>Site parameters can be changed after creation from Network → Sites. Changing the Public ASN resets E-BGP sessions that inherit it. Changing the ACL Default Policy to “Deny” on a Site with live workloads drops every flow that no ACL entry permits; plan the ACL entries before switching the policy.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1270,7 +1280,7 @@
 <p>A Site with inventory attached cannot be deleted. Remove or reassign every switch, SoftGate node, and DPU at the Site first.</p>
 </section>
 <section id="api-and-terraform">
-<h2>API and Terraform<a class="headerlink" href="#api-and-terraform" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">API and Terraform</a><a class="headerlink" href="#api-and-terraform" title="Link to this heading"></a></h2>
 <p>Sites can be managed through the REST API and the Terraform provider (<a class="reference external" href="https://registry.terraform.io/providers/netrisai/netris/latest/docs/resources/site">netris_site</a>). As of Netris 4.16.0 the <code class="docutils literal notranslate"><span class="pre">switchFabricProviders</span></code> attribute has been removed from the Sites API; <code class="docutils literal notranslate"><span class="pre">switchFabric</span></code> is still returned on read, always as <code class="docutils literal notranslate"><span class="pre">netris</span></code>, and is ignored on create or update.</p>
 </section>
 </section>

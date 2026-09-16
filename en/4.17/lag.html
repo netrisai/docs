@@ -1203,12 +1203,19 @@
              
   <section id="link-aggregation-lag">
 <h1>Link Aggregation (LAG)<a class="headerlink" href="#link-aggregation-lag" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#automatic-lag-with-evpn-multi-homing" id="id1">Automatic LAG with EVPN Multi-homing</a></p></li>
+<li><p><a class="reference internal" href="#custom-lag" id="id2">Custom LAG</a></p></li>
+</ul>
+</nav>
 <p>Link Aggregation (LAG), also known as link bundling, Ethernet/network/NIC bonding, or port teaming, is a method of combining (aggregating) multiple network connections in parallel to increase throughput beyond what a single connection could sustain and to provide redundancy in case one of the links fails.</p>
 <img alt="LAG diagram" class="align-center" src="_images/lag_diagram.png" />
 <p>The Link Aggregation Control Protocol (LACP) is a key component of LAG. It’s a protocol for the collective handling of multiple physical ports that can be seen as a single channel for network traffic.</p>
 <p>Netris supports Automatic and Custom modes of configuring LAGs, each described below.</p>
 <section id="automatic-lag-with-evpn-multi-homing">
-<h2>Automatic LAG with EVPN Multi-homing<a class="headerlink" href="#automatic-lag-with-evpn-multi-homing" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Automatic LAG with EVPN Multi-homing</a><a class="headerlink" href="#automatic-lag-with-evpn-multi-homing" title="Link to this heading"></a></h2>
 <p>If LACP is configured on the server side, then Netris will automatically identify the corresponding switch port pairs and form a LAG with EVPN Multihoming enabled for any switch ports participating in a V-Net service.</p>
 <p>EVPN Multi-Homing (EVPN-MH) offers robust support for an all-active redundancy model for servers. This means that all connections from a server to multiple switches are concurrently active and operational, ensuring high availability, load balancing, and seamless failover capabilities. As a result, EVPN-MH enhances network resilience and continuity of service.</p>
 <img alt="EVPN-MH diagram" class="align-center" src="_images/lag_diagram2.png" />
@@ -1225,7 +1232,7 @@
 <img alt="Add LAG to V-Net" class="align-center" src="_images/lag_add_vnet.png" />
 </section>
 <section id="custom-lag">
-<h2>Custom LAG<a class="headerlink" href="#custom-lag" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Custom LAG</a><a class="headerlink" href="#custom-lag" title="Link to this heading"></a></h2>
 <p>There are several use cases when you may need a Custom (manually configured) LAG.</p>
 <ul class="simple">
 <li><p>Aggregate more than one port per each switch (with or without EVPN).</p></li>

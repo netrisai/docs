@@ -1203,6 +1203,20 @@
              
   <section id="access-control-lists-acl">
 <span id="acl-def"></span><h1>Access Control Lists (ACL)<a class="headerlink" href="#access-control-lists-acl" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#where-acl-entries-are-installed" id="id2">Where ACL Entries Are Installed</a></p></li>
+<li><p><a class="reference internal" href="#acl-default-policy" id="id3">ACL Default Policy</a></p></li>
+<li><p><a class="reference internal" href="#acl-entries-rules" id="id4">ACL Entries / Rules</a></p>
+<ul>
+<li><p><a class="reference internal" href="#description-of-acl-entry-fields" id="id5">Description of ACL entry fields.</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#checking-for-overlapping-rules" id="id6">Checking for overlapping rules</a></p></li>
+<li><p><a class="reference internal" href="#acl-processing-order" id="id7">ACL Processing Order</a></p></li>
+</ul>
+</nav>
 <p>Netris supports ACL-based network access control on managed switch fabrics. Each entry you configure — an ACL entry — matches traffic by source and destination IP address, port or port range, and protocol, and applies a Permit or Deny action.</p>
 <img alt="_images/acl-main-view.png" class="with-shadow align-center" src="_images/acl-main-view.png" />
 <p style="text-align: center;"><em>Figure: Netris ACL main view</em></p><p>ACL entries execute in switch hardware or on SoftGate depending on the source and destination values (see “Where ACL Entries Are Installed”), providing line-rate performance for security enforcement.</p>
@@ -1210,23 +1224,23 @@
 <p>You can review the usage metrics of any Netris-managed switch in the Inventory screen.</p>
 <img alt="_images/acl-tcam.png" class="with-shadow align-center" src="_images/acl-tcam.png" />
 <p style="text-align: center;"><em>Figure: TCAM utilization view under Net→Inventory</em></p><section id="where-acl-entries-are-installed">
-<h2>Where ACL Entries Are Installed<a class="headerlink" href="#where-acl-entries-are-installed" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Where ACL Entries Are Installed</a><a class="headerlink" href="#where-acl-entries-are-installed" title="Link to this heading"></a></h2>
 <p>The Netris algorithm automatically determines where in the fabric any given ACL entry is installed and, therefore, enforced, based on whether the source or destination values resolve outside the selected VPC.</p>
 <p>If either the source or destination network is outside the selected VPC, the ACL entry will be added to SoftGate’s output chain.</p>
 <p>If both source and destination networks resolve to the selected VPC, the ACL entry will be installed on an SVI (Switch Virtual Interface) closest to the source of the matching traffic.</p>
 <p>Netris fully supports using overlapping IP schemas in different VPCs. Because every SVI (a Layer-3 interface) belongs to exactly one VPC, two VPCs with overlapping or identical IP ranges never conflict, even if both have sources on the same physical switch: the route lookup happens in the VPC selected on the ACL entry, and the resulting entry always lands on an L3 interface belonging to that VPC.</p>
 </section>
 <section id="acl-default-policy">
-<h2>ACL Default Policy<a class="headerlink" href="#acl-default-policy" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">ACL Default Policy</a><a class="headerlink" href="#acl-default-policy" title="Link to this heading"></a></h2>
 <p>The ACL default policy is to permit all hosts to communicate with each other. You can change the default policy on a per-site basis by editing the Site features under Net→Sites. Once the “ACL Default Policy” is changed to “Deny,” the specified site will start dropping traffic unless specific communication is permitted by an ACL entry.</p>
 <img alt="_images/acl_site_default.png" class="with-shadow align-center" src="_images/acl_site_default.png" />
 <p style="text-align: center;"><em>Figure: Changing the ACL Default Policy for a site</em></p></section>
 <section id="acl-entries-rules">
-<h2>ACL Entries / Rules<a class="headerlink" href="#acl-entries-rules" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">ACL Entries / Rules</a><a class="headerlink" href="#acl-entries-rules" title="Link to this heading"></a></h2>
 <p>ACL entries can be created, listed, and edited under Services→ACL. IPv4 and IPv6 addresses can’t be mixed in the same entry — each ACL entry matches a single address family.</p>
 <img alt="_images/acl_action_permit.png" class="with-shadow align-center" src="_images/acl_action_permit.png" />
 <p style="text-align: center;"><em>Figure: Example ACL rule permitting SSH traffic with Established</em></p><section id="description-of-acl-entry-fields">
-<h3>Description of ACL entry fields.<a class="headerlink" href="#description-of-acl-entry-fields" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Description of ACL entry fields.</a><a class="headerlink" href="#description-of-acl-entry-fields" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Name</strong> - Unique name for the ACL entry.</p></li>
 <li><p><strong>VPC</strong> - The VPC this ACL entry applies to.
@@ -1401,13 +1415,13 @@ Netris uses this value to determine where to install the ACL entry. See “Where
 <p style="text-align: center;"><em>Figure: Rejecting an ACL entry that will never be installed on any switch</em></p></section>
 </section>
 <section id="checking-for-overlapping-rules">
-<h2>Checking for overlapping rules<a class="headerlink" href="#checking-for-overlapping-rules" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Checking for overlapping rules</a><a class="headerlink" href="#checking-for-overlapping-rules" title="Link to this heading"></a></h2>
 <p>Netris can show you whether the ACL entry you are creating will overlap with another already existing entry. The <strong>Check</strong> button checks the ACL entry you’re adding, editing, or copying against existing ACL entries, and flags any existing entry whose matched traffic overlaps with it — whether that entry is fully shadowed by (entirely contained within) the candidate, or only partially overlaps with it.</p>
 <img alt="_images/acl-check-button.png" class="with-shadow align-center" src="_images/acl-check-button.png" />
 <p style="text-align: center;"><em>Figure: Check button indicates other rules with partial match to the candidate ACL entry</em></p><p>Example: Checking a candidate ACL entry for TCP from 10.0.0.0/8 to 10.1.0.0/24 surfaces two existing ACL entries: TCP from 10.0.0.0/24 to 10.1.0.0/24 (fully shadowed — that traffic is entirely contained within the candidate’s), and TCP from 10.1.0.0/24 to 10.0.0.0/8 (a partial match — since 10.1.0.0/24 is a subset of 10.0.0.0/8, any traffic from 10.1.0.0/24 to 10.1.0.0/24 satisfies both rules’ address ranges, even though neither rule is a superset of the other).</p>
 </section>
 <section id="acl-processing-order">
-<h2>ACL Processing Order<a class="headerlink" href="#acl-processing-order" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">ACL Processing Order</a><a class="headerlink" href="#acl-processing-order" title="Link to this heading"></a></h2>
 <p>From Services→ACL, every entry you create lives in one flat list. Netris installs entries on a per-interface basis (see “Where ACL Entries Are Installed”): for each interface, it identifies the entries that apply and then sorts that subset independently. That sorted position becomes the entry’s literal sequence number in the switch or SoftGate’s installed rule table, so this order is what determines match precedence on the device. Within each interface’s subset, entries are sorted as follows:</p>
 <ol class="arabic simple">
 <li><p>Sort by source IPv4/IPv6 prefix, longest to shortest.</p></li>

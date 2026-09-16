@@ -1202,8 +1202,21 @@
              
   <section id="bluefield-3-dpu-support-in-netris">
 <span id="bluefield-3-dpus"></span><h1>BlueField-3 DPU Support in Netris<a class="headerlink" href="#bluefield-3-dpu-support-in-netris" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#what-is-a-dpu" id="id2">What Is a DPU</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites-and-assumptions" id="id3">Prerequisites and Assumptions</a></p></li>
+<li><p><a class="reference internal" href="#use-cases" id="id4">Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#configuring-a-server-with-a-dpu" id="id5">Configuring a Server with a DPU</a></p></li>
+<li><p><a class="reference internal" href="#vf-interface-naming" id="id6">VF Interface Naming</a></p></li>
+<li><p><a class="reference internal" href="#connecting-dpu-vfs-to-a-vnet" id="id7">Connecting DPU VFs to a VNet</a></p></li>
+<li><p><a class="reference internal" href="#monitoring" id="id8">Monitoring</a></p></li>
+</ul>
+</nav>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>Netris supports NVIDIA BlueField-3 Data Processing Units (DPUs) as managed network devices
 within a server’s inventory. Once registered, a DPU participates in the North-South Ethernet
 fabric alongside physical switches — establishing BGP EVPN adjacencies, functioning as a
@@ -1213,7 +1226,7 @@ assignable network endpoints.</p>
 workflow you would use for a physical switch port.</p>
 </section>
 <section id="what-is-a-dpu">
-<h2>What Is a DPU<a class="headerlink" href="#what-is-a-dpu" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">What Is a DPU</a><a class="headerlink" href="#what-is-a-dpu" title="Link to this heading"></a></h2>
 <p>A Data Processing Unit is a system-on-a-chip device installed inside a server as a PCIe card.
 Unlike a standard NIC, a DPU contains its own CPU, memory, and OS, and can run networking
 services independently of the host.</p>
@@ -1230,7 +1243,7 @@ hardware-enforced tenant isolation across both device types.</p>
 and DPUs — and exposes both switch ports and DPU VFs through the same VNet attachment workflow.</p>
 </section>
 <section id="prerequisites-and-assumptions">
-<h2>Prerequisites and Assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Prerequisites and Assumptions</a><a class="headerlink" href="#prerequisites-and-assumptions" title="Link to this heading"></a></h2>
 <p>Before registering a DPU in Netris, the following conditions must be met.</p>
 <p><strong>DPU mode.</strong> BlueField-3 ships in DPU mode by default. Netris assumes the DPU is already in
 DPU mode. Mode switching and OS installation are typically handled by NVIDIA DPF.</p>
@@ -1243,7 +1256,7 @@ the Netris agent onto the DPU. Agent installation is handled through NVIDIA DPF 
 described in <a class="reference internal" href="bluefield-3-dpu-installation.html"><span class="doc">Installing BlueField-3 DPUs</span></a>.</p>
 </section>
 <section id="use-cases">
-<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Use Cases</a><a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
 <p><strong>Single-tenant server, North-South connectivity via DPU.</strong>
 The most common deployment. One DPU per server. The DPU’s two uplink ports connect to leaf
 switches. For a single-tenant server, it may be more appropriate to expose a Physical Function
@@ -1262,7 +1275,7 @@ EVPN and VXLAN configuration across both device types so that all endpoints shar
 tenant network with consistent hardware-enforced isolation.</p>
 </section>
 <section id="configuring-a-server-with-a-dpu">
-<h2>Configuring a Server with a DPU<a class="headerlink" href="#configuring-a-server-with-a-dpu" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Configuring a Server with a DPU</a><a class="headerlink" href="#configuring-a-server-with-a-dpu" title="Link to this heading"></a></h2>
 <p>For step-by-step instructions on adding a DPU to a server object in Netris inventory,
 see <a class="reference internal" href="topology-management.html#topology-management-adding-dpus"><span class="std std-ref">Adding DPUs</span></a>.</p>
 <div class="admonition note">
@@ -1273,7 +1286,7 @@ VFs to attach to a VNet until the agent is running.</p>
 </div>
 </section>
 <section id="vf-interface-naming">
-<h2>VF Interface Naming<a class="headerlink" href="#vf-interface-naming" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">VF Interface Naming</a><a class="headerlink" href="#vf-interface-naming" title="Link to this heading"></a></h2>
 <p>After save, Netris generates VF interface objects for each DPU based on the port count and
 VF count configured.</p>
 <p>For a DPU with two physical ports and X number of Virtual Functions total, VFs are split evenly between the two
@@ -1294,7 +1307,7 @@ Auto-generated descriptions are injected if the description field is empty (for 
 “DPU 1 port 1”, “DPU 1 MGMT”, “DPU 1 pf0vf0”). These descriptions are editable.</p>
 </section>
 <section id="connecting-dpu-vfs-to-a-vnet">
-<h2>Connecting DPU VFs to a VNet<a class="headerlink" href="#connecting-dpu-vfs-to-a-vnet" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Connecting DPU VFs to a VNet</a><a class="headerlink" href="#connecting-dpu-vfs-to-a-vnet" title="Link to this heading"></a></h2>
 <p>Once the DPU is saved and the agent is installed and reporting, its VF interfaces are available
 as endpoints in the VNet attach workflow — in the same selector as physical switch ports.</p>
 <p>To attach a VF to a VNet, open the target VNet, add a port, and select the VF by name (for
@@ -1308,7 +1321,7 @@ participate in the same tenant network with hardware-enforced isolation.</p>
 <p>For full VNet configuration instructions, see <a class="reference internal" href="vnet.html#v-net-def"><span class="std std-ref">V-Net</span></a>.</p>
 </section>
 <section id="monitoring">
-<h2>Monitoring<a class="headerlink" href="#monitoring" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Monitoring</a><a class="headerlink" href="#monitoring" title="Link to this heading"></a></h2>
 <p>DPU health and heartbeat are surfaced in the Inventory view as child status indicators under the parent server.</p>
 <p><strong>Heartbeat</strong> — reflects connectivity between the Netris controller and the DPU agent. Displayed per DPU. The count shown (for example, OK (2)) represents the number of DPUs in that server with that heartbeat status.</p>
 <p><strong>Health checks</strong> — aggregated across all DPUs in the server. The total count across OK, Warn, and Crit equals the combined number of health checks for all DPUs in the server.</p>

@@ -5,6 +5,10 @@
 Graph Boards
 **********************
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 2
+
 Graph Boards
 ============
 

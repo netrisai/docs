@@ -5,6 +5,10 @@
 Link Aggregation (LAG)
 ======================
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 2
+
 Link Aggregation (LAG), also known as link bundling, Ethernet/network/NIC bonding, or port teaming, is a method of combining (aggregating) multiple network connections in parallel to increase throughput beyond what a single connection could sustain and to provide redundancy in case one of the links fails.
 
 .. image:: images/lag_diagram.png

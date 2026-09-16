@@ -1204,8 +1204,53 @@
              
   <section id="installing-ha-netris-controller-in-air-gapped-environments">
 <h1>Installing HA Netris Controller in Air-Gapped Environments<a class="headerlink" href="#installing-ha-netris-controller-in-air-gapped-environments" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#why-air-gapped-installation" id="id7">Why Air-Gapped Installation?</a></p></li>
+<li><p><a class="reference internal" href="#why-a-high-availability-ha-cluster" id="id8">Why a High Availability (HA) Cluster?</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id9">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#obtain-the-installation-file" id="id10">Obtain the Installation File</a></p></li>
+<li><p><a class="reference internal" href="#steps-to-install" id="id11">Steps to Install</a></p>
+<ul>
+<li><p><a class="reference internal" href="#preparing-each-node" id="id12">1. Preparing Each Node</a></p>
+<ul>
+<li><p><a class="reference internal" href="#transfer-the-file-to-the-servers" id="id13">1.1 Transfer the File to the Servers</a></p></li>
+<li><p><a class="reference internal" href="#extract-the-tarball" id="id14">1.2 Extract the Tarball</a></p></li>
+<li><p><a class="reference internal" href="#navigate-to-the-installation-directory" id="id15">1.3 Navigate to the Installation Directory</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#install-k3s-on-all-nodes" id="id16">2. Install K3s on All Nodes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#load-k3s-binaries-and-images" id="id17">2.1 Load K3s Binaries and Images</a></p></li>
+<li><p><a class="reference internal" href="#initialize-the-first-node" id="id18">2.2 Initialize the First Node</a></p></li>
+<li><p><a class="reference internal" href="#join-the-second-and-third-nodes" id="id19">2.3 Join the Second and Third Nodes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#import-necessary-container-images" id="id20">3. Import Necessary Container Images</a></p></li>
+<li><p><a class="reference internal" href="#configure-kube-vip-for-kubeapi-high-availability" id="id21">4. Configure kube-vip for KubeAPI High Availability</a></p></li>
+<li><p><a class="reference internal" href="#add-helm-chart-packages-to-k3s" id="id22">5. Add Helm Chart Packages to K3s</a></p></li>
+<li><p><a class="reference internal" href="#verify-and-scale-core-k3s-components" id="id23">6. Verify and Scale Core K3s Components</a></p></li>
+<li><p><a class="reference internal" href="#deploy-kube-vip-cloud-controller" id="id24">7. Deploy Kube-VIP Cloud Controller</a></p></li>
+<li><p><a class="reference internal" href="#install-traefik-proxy" id="id25">8. Install Traefik Proxy</a></p></li>
+<li><p><a class="reference internal" href="#deploy-north-south-controller-vip-optional" id="id26">9. Deploy North-South controller VIP (optional)</a></p></li>
+<li><p><a class="reference internal" href="#deploy-the-netris-controller" id="id27">10. Deploy the Netris Controller</a></p>
+<ul>
+<li><p><a class="reference internal" href="#install-the-mariadb-operator" id="id28">10.1 Install the MariaDB Operator</a></p></li>
+<li><p><a class="reference internal" href="#install-netris-controller" id="id29">10.2 Install Netris Controller</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#optional-enable-ssl-with-cert-manager" id="id30">11. (Optional) Enable SSL with cert-manager</a></p></li>
+<li><p><a class="reference internal" href="#set-up-the-local-netris-repository" id="id31">13. Set Up the Local Netris Repository</a></p></li>
+<li><p><a class="reference internal" href="#validate-your-deployment" id="id32">14. Validate Your Deployment</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#after-installation" id="id33">After Installation</a></p></li>
+<li><p><a class="reference internal" href="#how-to-consume-local-repository" id="id34">How to consume local repository</a></p></li>
+</ul>
+</nav>
 <section id="why-air-gapped-installation">
-<h2>Why Air-Gapped Installation?<a class="headerlink" href="#why-air-gapped-installation" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Why Air-Gapped Installation?</a><a class="headerlink" href="#why-air-gapped-installation" title="Link to this heading"></a></h2>
 <p>In many production or regulated environments, network connectivity is tightly restricted for security or compliance reasons. An <strong>air-gapped</strong> environment prevents unauthorized external access and ensures no reliance on external artifact repositories. All required components—binaries, container images, and Helm charts—are transferred manually (e.g., via USB, secure copy) and installed entirely offline. This approach:</p>
 <ul class="simple">
 <li><p><strong>Enhances Security</strong> by limiting the potential attack surface.</p></li>
@@ -1214,7 +1259,7 @@
 </ul>
 </section>
 <section id="why-a-high-availability-ha-cluster">
-<h2>Why a High Availability (HA) Cluster?<a class="headerlink" href="#why-a-high-availability-ha-cluster" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Why a High Availability (HA) Cluster?</a><a class="headerlink" href="#why-a-high-availability-ha-cluster" title="Link to this heading"></a></h2>
 <p>Running <strong>Netris Controller</strong> on a <strong>high availability (HA)</strong> cluster provides resilience against hardware or software failures. By deploying multiple control-plane nodes, each with redundant services, the cluster can tolerate node downtime without losing critical functionality. Benefits include:</p>
 <ul class="simple">
 <li><p><strong>Redundancy</strong>: No single point of failure in the control plane or the critical components of Netris Controller.</p></li>
@@ -1223,7 +1268,7 @@
 </ul>
 </section>
 <section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p><strong>Three Servers</strong> in the same private network, each meeting the minimum <a class="reference external" href="https://www.netris.io/docs/en/latest/supported-switch-hardware.html">hardware requirements</a> for K3s and Netris Controller.</p></li>
 <li><p><strong>Two Virtual IP Addresses (VIPs)</strong> and an IP address for each controller node available on that network:</p></li>
@@ -1291,19 +1336,19 @@
 </div>
 </section>
 <section id="obtain-the-installation-file">
-<h2>Obtain the Installation File<a class="headerlink" href="#obtain-the-installation-file" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Obtain the Installation File</a><a class="headerlink" href="#obtain-the-installation-file" title="Link to this heading"></a></h2>
 <p>Contact <a class="reference external" href="https://www.netris.io/demo/">Netris</a> to acquire the air-gapped installation package, named <strong>netris-controller-ha-v4.x.x.tar.gz</strong>. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.</p>
 </section>
 <section id="steps-to-install">
-<h2>Steps to Install<a class="headerlink" href="#steps-to-install" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Steps to Install</a><a class="headerlink" href="#steps-to-install" title="Link to this heading"></a></h2>
 <section id="preparing-each-node">
-<h3>1. Preparing Each Node<a class="headerlink" href="#preparing-each-node" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">1. Preparing Each Node</a><a class="headerlink" href="#preparing-each-node" title="Link to this heading"></a></h3>
 <section id="transfer-the-file-to-the-servers">
-<h4>1.1 Transfer the File to the Servers<a class="headerlink" href="#transfer-the-file-to-the-servers" title="Link to this heading"></a></h4>
-<p>Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your <strong>three</strong> targets Ubuntu 24.04 (or supported Linux) nodes.</p>
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">1.1 Transfer the File to the Servers</a><a class="headerlink" href="#transfer-the-file-to-the-servers" title="Link to this heading"></a></h4>
+<p>Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your <strong>three</strong> target nodes running Ubuntu 24.04 or RHEL 9.8.</p>
 </section>
 <section id="extract-the-tarball">
-<h4>1.2 Extract the Tarball<a class="headerlink" href="#extract-the-tarball" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">1.2 Extract the Tarball</a><a class="headerlink" href="#extract-the-tarball" title="Link to this heading"></a></h4>
 <p>Once the file is on the servers, extract its contents:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>-xzvf<span class="w"> </span>netris-controller-ha-v4.x.x.tar.gz
 </pre></div>
@@ -1311,7 +1356,7 @@
 <p>This will create a folder containing all necessary scripts, binaries, images, Helm charts, CRDs, and manifests.</p>
 </section>
 <section id="navigate-to-the-installation-directory">
-<h4>1.3 Navigate to the Installation Directory<a class="headerlink" href="#navigate-to-the-installation-directory" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id15" role="doc-backlink">1.3 Navigate to the Installation Directory</a><a class="headerlink" href="#navigate-to-the-installation-directory" title="Link to this heading"></a></h4>
 <p>On <strong>all three nodes</strong> change the directory to the extracted folder. For example:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>netris-controller-ha-v4.x.x
 </pre></div>
@@ -1320,9 +1365,9 @@
 </section>
 </section>
 <section id="install-k3s-on-all-nodes">
-<h3>2. Install K3s on All Nodes<a class="headerlink" href="#install-k3s-on-all-nodes" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">2. Install K3s on All Nodes</a><a class="headerlink" href="#install-k3s-on-all-nodes" title="Link to this heading"></a></h3>
 <section id="load-k3s-binaries-and-images">
-<h4>2.1 Load K3s Binaries and Images<a class="headerlink" href="#load-k3s-binaries-and-images" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id17" role="doc-backlink">2.1 Load K3s Binaries and Images</a><a class="headerlink" href="#load-k3s-binaries-and-images" title="Link to this heading"></a></h4>
 <p>On <strong>all three nodes</strong>, run the following commands to prepare a local K3s installation:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/rancher/k3s/agent/images/
 
@@ -1340,7 +1385,7 @@ sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </sp
 </div>
 </section>
 <section id="initialize-the-first-node">
-<h4>2.2 Initialize the First Node<a class="headerlink" href="#initialize-the-first-node" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id18" role="doc-backlink">2.2 Initialize the First Node</a><a class="headerlink" href="#initialize-the-first-node" title="Link to this heading"></a></h4>
 <p>On the <strong>first node</strong>:</p>
 <ol class="arabic simple">
 <li><p>Replace 192.168.0.40 with your Kubernetes API VIP.</p></li>
@@ -1363,7 +1408,7 @@ sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </sp
 <p>All pods should be in a Running or Completed state.</p>
 </section>
 <section id="join-the-second-and-third-nodes">
-<h4>2.3 Join the Second and Third Nodes<a class="headerlink" href="#join-the-second-and-third-nodes" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id19" role="doc-backlink">2.3 Join the Second and Third Nodes</a><a class="headerlink" href="#join-the-second-and-third-nodes" title="Link to this heading"></a></h4>
 <p>On the <strong>second</strong> and <strong>third nodes</strong>, update the IPs to match your environment:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">K3S_TOKEN</span><span class="o">=</span>SECRET<span class="w"> </span><span class="se">\</span>
 <span class="nv">INSTALL_K3S_VERSION</span><span class="o">=</span>v1.31.5+k3s1<span class="w"> </span><span class="se">\</span>
@@ -1384,7 +1429,7 @@ sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </sp
 </section>
 </section>
 <section id="import-necessary-container-images">
-<h3>3. Import Necessary Container Images<a class="headerlink" href="#import-necessary-container-images" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">3. Import Necessary Container Images</a><a class="headerlink" href="#import-necessary-container-images" title="Link to this heading"></a></h3>
 <p>On <strong>all three nodes</strong>, import container images:</p>
 <ol class="arabic simple">
 <li><p>Decompress the images archive:</p></li>
@@ -1400,7 +1445,7 @@ sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </sp
 </div>
 </section>
 <section id="configure-kube-vip-for-kubeapi-high-availability">
-<h3>4. Configure kube-vip for KubeAPI High Availability<a class="headerlink" href="#configure-kube-vip-for-kubeapi-high-availability" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">4. Configure kube-vip for KubeAPI High Availability</a><a class="headerlink" href="#configure-kube-vip-for-kubeapi-high-availability" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>On the <strong>first node only</strong>, open kube-vip.yaml:</p></li>
 </ol>
@@ -1436,7 +1481,7 @@ sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </sp
 </div>
 </section>
 <section id="add-helm-chart-packages-to-k3s">
-<h3>5. Add Helm Chart Packages to K3s<a class="headerlink" href="#add-helm-chart-packages-to-k3s" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">5. Add Helm Chart Packages to K3s</a><a class="headerlink" href="#add-helm-chart-packages-to-k3s" title="Link to this heading"></a></h3>
 <p>Copy your Helm charts to the K3s static files directory on <strong>all three nodes</strong>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span>files/charts/*<span class="w"> </span>/var/lib/rancher/k3s/server/static/charts/
 </pre></div>
@@ -1444,7 +1489,7 @@ sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </sp
 <p>You can now perform kubectl or helm commands from any node or a remote machine (after adjusting kubeconfig to point to the VIP).</p>
 </section>
 <section id="verify-and-scale-core-k3s-components">
-<h3>6. Verify and Scale Core K3s Components<a class="headerlink" href="#verify-and-scale-core-k3s-components" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">6. Verify and Scale Core K3s Components</a><a class="headerlink" href="#verify-and-scale-core-k3s-components" title="Link to this heading"></a></h3>
 <p>Check the pods in the cluster:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
 </pre></div>
@@ -1461,7 +1506,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 </div>
 </section>
 <section id="deploy-kube-vip-cloud-controller">
-<h3>7. Deploy Kube-VIP Cloud Controller<a class="headerlink" href="#deploy-kube-vip-cloud-controller" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">7. Deploy Kube-VIP Cloud Controller</a><a class="headerlink" href="#deploy-kube-vip-cloud-controller" title="Link to this heading"></a></h3>
 <p>We need a second VIP for the Netris Controller load balancer.</p>
 <ol class="arabic simple">
 <li><p>On the <strong>first node only</strong>, open manifests/kube-vip-cloud-controller.yaml:</p></li>
@@ -1484,7 +1529,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 </div>
 </section>
 <section id="install-traefik-proxy">
-<h3>8. Install Traefik Proxy<a class="headerlink" href="#install-traefik-proxy" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">8. Install Traefik Proxy</a><a class="headerlink" href="#install-traefik-proxy" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>On the <strong>first node only</strong>, apply the Traefik manifest:</p></li>
 </ol>
@@ -1506,7 +1551,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 <p>It should show EXTERNAL-IP as 192.168.0.50.</p>
 </section>
 <section id="deploy-north-south-controller-vip-optional">
-<span id="north-south-vip"></span><h3>9. Deploy North-South controller VIP (optional)<a class="headerlink" href="#deploy-north-south-controller-vip-optional" title="Link to this heading"></a></h3>
+<span id="north-south-vip"></span><h3><a class="toc-backref" href="#id26" role="doc-backlink">9. Deploy North-South controller VIP (optional)</a><a class="headerlink" href="#deploy-north-south-controller-vip-optional" title="Link to this heading"></a></h3>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The North-South VIP is optional and can be configured at a later stage. The North-South VIP is typically used to provide access to the Netris API and for <a class="reference internal" href="ztp.html"><span class="doc">ZTP functionality</span></a> for endpoints connected to the North-South fabric.</p>
@@ -1533,9 +1578,9 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 </div>
 </section>
 <section id="deploy-the-netris-controller">
-<h3>10. Deploy the Netris Controller<a class="headerlink" href="#deploy-the-netris-controller" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">10. Deploy the Netris Controller</a><a class="headerlink" href="#deploy-the-netris-controller" title="Link to this heading"></a></h3>
 <section id="install-the-mariadb-operator">
-<h4>10.1 Install the MariaDB Operator<a class="headerlink" href="#install-the-mariadb-operator" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id28" role="doc-backlink">10.1 Install the MariaDB Operator</a><a class="headerlink" href="#install-the-mariadb-operator" title="Link to this heading"></a></h4>
 <ol class="arabic simple">
 <li><p>CRDs:</p></li>
 </ol>
@@ -1577,7 +1622,7 @@ netris-controller-ha-mariadb-operator-webhook-9b6dcd979-cz5cs<span class="w">   
 <p>Wait until all pods are ready and in a running or completed state.</p>
 </section>
 <section id="install-netris-controller">
-<h4>10.2 Install Netris Controller<a class="headerlink" href="#install-netris-controller" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id29" role="doc-backlink">10.2 Install Netris Controller</a><a class="headerlink" href="#install-netris-controller" title="Link to this heading"></a></h4>
 <ol class="arabic simple">
 <li><p><strong>HelmChart</strong> manifest:</p></li>
 </ol>
@@ -1658,7 +1703,7 @@ netris-controller-initdb-09-dhcp-option-set-jq7wl<span class="w">               
 </section>
 </section>
 <section id="optional-enable-ssl-with-cert-manager">
-<h3>11. (Optional) Enable SSL with cert-manager<a class="headerlink" href="#optional-enable-ssl-with-cert-manager" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">11. (Optional) Enable SSL with cert-manager</a><a class="headerlink" href="#optional-enable-ssl-with-cert-manager" title="Link to this heading"></a></h3>
 <p>If you intend to secure the Controller via an FQDN and Let’s Encrypt (or another ACME issuer) please also install cert-manager:</p>
 <ol class="arabic simple">
 <li><p>Install cert-manager:</p></li>
@@ -1680,7 +1725,7 @@ netris-controller-initdb-09-dhcp-option-set-jq7wl<span class="w">               
 </div>
 </section>
 <section id="set-up-the-local-netris-repository">
-<span id="install-local-repo"></span><h3>13. Set Up the Local Netris Repository<a class="headerlink" href="#set-up-the-local-netris-repository" title="Link to this heading"></a></h3>
+<span id="install-local-repo"></span><h3><a class="toc-backref" href="#id31" role="doc-backlink">13. Set Up the Local Netris Repository</a><a class="headerlink" href="#set-up-the-local-netris-repository" title="Link to this heading"></a></h3>
 <p>The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices do not have direct access to the internet. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository</p>
 <ol class="arabic simple">
 <li><p>Deploy local repo manifests:</p></li>
@@ -1704,7 +1749,7 @@ sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>
 </div>
 </section>
 <section id="validate-your-deployment">
-<h3>14. Validate Your Deployment<a class="headerlink" href="#validate-your-deployment" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">14. Validate Your Deployment</a><a class="headerlink" href="#validate-your-deployment" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Access the Netris Controller</strong> via <a class="reference external" href="https://192.168.0.50">https://192.168.0.50</a> (or your assigned FQDN).</p></li>
 <li><p><strong>Confirm all services</strong> (web service, GRPC, Redis, DBs) are Running:</p></li>
@@ -1724,14 +1769,14 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </section>
 </section>
 <section id="after-installation">
-<h2>After Installation<a class="headerlink" href="#after-installation" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id33" role="doc-backlink">After Installation</a><a class="headerlink" href="#after-installation" title="Link to this heading"></a></h2>
 <p>The air-gapped Netris Controller also includes a local repository/registry. This repository provides all the necessary packages and images for installing various types of Netris agents.</p>
 <p>Enable the Local repository in the Netris Controller Web UI under <strong>Settings</strong> section (as shown in the screenshots below).</p>
 <img alt="../_images/global-setting-local-repo.png" class="align-center" src="../_images/global-setting-local-repo.png" />
 <img alt="../_images/global-setting-local-repo-save.png" class="align-center" src="../_images/global-setting-local-repo-save.png" />
 </section>
 <section id="how-to-consume-local-repository">
-<h2>How to consume local repository<a class="headerlink" href="#how-to-consume-local-repository" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id34" role="doc-backlink">How to consume local repository</a><a class="headerlink" href="#how-to-consume-local-repository" title="Link to this heading"></a></h2>
 <p>Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).</p>
 <img alt="../_images/one-liner-with-local-repo.png" class="align-center" src="../_images/one-liner-with-local-repo.png" />
 <p>—</p>
