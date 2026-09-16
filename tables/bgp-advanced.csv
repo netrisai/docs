@@ -1,4 +1,4 @@
-**Connect via V-Net**,Select a V-Net if the BGP session is to be established with an endpoint from that V-Net rather than with the switch port directly.
+**Connect via V-Net**,"Select a V-Net if the BGP session is to be established with an endpoint from that V-Net rather than with the switch port directly. The V-Net must not have a gateway configured -- Netris creates a dedicated SVI in that V-Net for this BGP session, so a V-Net that already has a gateway is not eligible."
 **BFD**,Enable/Disable BFD.
 **BGP Timers**,"Keepalive (Hello) Interval, Hold Time and Connect Retry timers for the BGP session. Netris default values are 3 10 10."
 **Neighbor address**,IP address of the neighbor when peering with the loopback IP address instead of the interface IP address (aka Multihop).

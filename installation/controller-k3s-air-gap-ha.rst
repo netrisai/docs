@@ -441,7 +441,7 @@ Wait until all pods are ready and in a running or completed state.
 
 .. code-block:: shell
 
-  kubectl apply -f manifests/netris-controller/hc.yaml
+  ./netris install
 
 
 2. Wait 5–10 minutes for all pods to initialize.
@@ -742,7 +742,7 @@ On the **first node** only:
 
 .. code-block:: shell
 
-  kubectl apply -f manifests/netris-controller/hc.yaml
+  ./netris upgrade
 
 
 2. Wait 2-4 minutes for all pods to upgraded.
