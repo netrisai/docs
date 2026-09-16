@@ -6,6 +6,10 @@
 Inventory
 =========
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 2
+
 The Inventory section allows you to add/edit/delete network switches and SoftGates (VPC gateways). Initial setup of a Netris managed network is a three step process:
 
 #. Create :doc:`inventory-profile`.
