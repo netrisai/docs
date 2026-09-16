@@ -94,7 +94,7 @@ Steps to Install
 1.1 Transfer the File to the Servers
 """"""""""""""""""""""""""""""""""""
 
-Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your **three** targets Ubuntu 24.04 (or supported Linux) nodes.
+Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your **three** target nodes running Ubuntu 24.04 or RHEL 9.8.
 
 
 1.2 Extract the Tarball
