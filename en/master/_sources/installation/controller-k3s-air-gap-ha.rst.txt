@@ -4,6 +4,10 @@
 Installing HA Netris Controller in Air-Gapped Environments
 ===========================================================
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 4
+
 Why Air-Gapped Installation?
 ----------------------------
 In many production or regulated environments, network connectivity is tightly restricted for security or compliance reasons. An **air-gapped** environment prevents unauthorized external access and ensures no reliance on external artifact repositories. All required components—binaries, container images, and Helm charts—are transferred manually (e.g., via USB, secure copy) and installed entirely offline. This approach:

@@ -7,6 +7,10 @@
 IP Address Management (IPAM)
 ============================
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 2
+
 Netris IPAM is the address-space source of truth every address-consuming object in Netris depends on: V-Net gateways and DHCP pools, NAT and L4 Load Balancer address pools, switch and SoftGate loopback and management IPs, and BGP route advertisement all draw from subnets created here first. Allocations and subnets are tracked per VPC in a nested, tree-like structure, and each subnet's purpose and tenant determine which services are allowed to consume it.
 
 

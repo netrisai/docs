@@ -5,6 +5,10 @@
 NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller
 ################################################################
 
+.. contents:: Table of Contents
+   :local:
+   :depth: 4
+
 Overview
 ========
 

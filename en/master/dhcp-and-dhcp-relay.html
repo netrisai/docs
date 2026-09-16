@@ -1204,9 +1204,26 @@
              
   <section id="dhcp-and-dhcp-relay">
 <span id="vnet-dhcp"></span><h1>DHCP and DHCP Relay<a class="headerlink" href="#dhcp-and-dhcp-relay" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#dhcp-option-sets" id="id1">DHCP Option Sets</a></p></li>
+<li><p><a class="reference internal" href="#netris-dhcp" id="id2">Netris DHCP</a></p>
+<ul>
+<li><p><a class="reference internal" href="#softgatecontroller-dependency-for-netris-dhcp" id="id3">SoftGate–Controller dependency for Netris DHCP</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#dhcp-relay" id="id4">DHCP Relay</a></p>
+<ul>
+<li><p><a class="reference internal" href="#dhcpv6-relay-switch-loopback-ipv6-address" id="id5">DHCPv6 Relay: Switch Loopback IPv6 Address</a></p></li>
+<li><p><a class="reference internal" href="#dhcpv4-relay-example" id="id6">DHCPv4 Relay Example:</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
 <p>L2VPN routed V-Nets (where an IP gateway is added) may also be configured with a DHCP service fully managed by Netris and hosted on SoftGate.</p>
 <section id="dhcp-option-sets">
-<h2>DHCP Option Sets<a class="headerlink" href="#dhcp-option-sets" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">DHCP Option Sets</a><a class="headerlink" href="#dhcp-option-sets" title="Link to this heading"></a></h2>
 <p>The Controller ships with a default DHCP Options Set. The default set cannot be deleted, but it can be modified. You can also configure additional DHCP Option Sets before enabling a DHCP server for any V-Net.</p>
 <p>Add a DHCP Options Set by navigating to <code class="docutils literal notranslate"><span class="pre">Services</span> <span class="pre">-&gt;</span> <span class="pre">DHCP</span> <span class="pre">Options</span> <span class="pre">Sets</span></code> and clicking <code class="docutils literal notranslate"><span class="pre">+Add</span></code> in the top right.</p>
 <img alt="DHCP Option Set" class="with-shadow align-center" src="_images/dhcp-option-set.png" />
@@ -1216,7 +1233,7 @@
 <img alt="Custom DHCP Options" class="with-shadow align-center" src="_images/dhcp-custom-options.png" />
 <br /></section>
 <section id="netris-dhcp">
-<h2>Netris DHCP<a class="headerlink" href="#netris-dhcp" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Netris DHCP</a><a class="headerlink" href="#netris-dhcp" title="Link to this heading"></a></h2>
 <p>To enable Netris’ built-in DHCP service on an L2VPN V-Net:</p>
 <blockquote>
 <div><ul class="simple">
@@ -1232,7 +1249,7 @@
 </div>
 <img alt="Netris DHCP configuration in V-Net settings" class="with-shadow align-center" src="_images/dhcp-builtin.png" />
 <p style="text-align: center;"><em>Figure: Netris DHCP configuration in V-Net settings</em></p><section id="softgatecontroller-dependency-for-netris-dhcp">
-<h3>SoftGate–Controller dependency for Netris DHCP<a class="headerlink" href="#softgatecontroller-dependency-for-netris-dhcp" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">SoftGate–Controller dependency for Netris DHCP</a><a class="headerlink" href="#softgatecontroller-dependency-for-netris-dhcp" title="Link to this heading"></a></h3>
 <p>Netris DHCP has no hard dependency on the Controller for day-to-day service. The active SoftGate’s local DHCP server hands out leases from its own local leases file, independent of Controller reachability — if the Controller is unreachable, the SoftGate keeps issuing dynamic leases on its own, from its last Controller-synced configuration, which the Netris SoftGate agent caches locally.</p>
 <p>The Controller’s role is keeping IP assignments stable across a SoftGate failover: the Netris agent on the active SoftGate pushes each new lease up to the Controller, which converts it into a static IP–MAC reservation and syncs it back down to every SoftGate as a static binding. That round trip isn’t instantaneous — if the SoftGate serving DHCP for a V-Net fails over before a given client’s lease has completed the round trip and been written into every SoftGate’s static bindings, the newly active SoftGate has no record of that client yet and may hand it a different dynamic IP.</p>
 <p>The Controller’s reservation set persists independently of most V-Net edits:</p>
@@ -1245,7 +1262,7 @@
 </section>
 </section>
 <section id="dhcp-relay">
-<h2>DHCP Relay<a class="headerlink" href="#dhcp-relay" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">DHCP Relay</a><a class="headerlink" href="#dhcp-relay" title="Link to this heading"></a></h2>
 <p>Netris supports using an external DHCP server by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC. Both DHCPv4 and DHCPv6 are supported.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1274,13 +1291,13 @@
 <p>The switch loopback IP is the source IP of relayed packets.</p>
 </div>
 <br /><section id="dhcpv6-relay-switch-loopback-ipv6-address">
-<h3>DHCPv6 Relay: Switch Loopback IPv6 Address<a class="headerlink" href="#dhcpv6-relay-switch-loopback-ipv6-address" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">DHCPv6 Relay: Switch Loopback IPv6 Address</a><a class="headerlink" href="#dhcpv6-relay-switch-loopback-ipv6-address" title="Link to this heading"></a></h3>
 <p>When DHCPv6 Relay to a third-party server is configured (Address Family set to IPv4/IPv6 Dual-Stack or IPv6-Only), Netris derives an IPv6 loopback address for the switch and assigns it, as a /128, to the loopback interface in the relevant VRF(s). This address is used as the source address of relayed DHCPv6 traffic, the same role the switch’s existing IPv4 loopback plays for DHCPv4 relay.</p>
 <p>The loopback is configured when DHCPv6 Relay is enabled on the V-Net (with Address Family covering IPv6), and removed when DHCPv6 Relay is turned off. Switches cannot have a pre-existing IPv6 loopback address configured through any other means, so this derived address is always the switch’s only IPv6 loopback.</p>
 <p>The address is deterministically derived from the switch’s existing main IPv4 loopback address: Netris takes the IPv4 loopback address, converts it to hex, and uses that as the lower 32 bits of an address in the <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code> unique local address range. For example, an IPv4 loopback of <code class="docutils literal notranslate"><span class="pre">10.2.3.4</span></code> produces the IPv6 loopback <code class="docutils literal notranslate"><span class="pre">fd00::0a02:0304/128</span></code>.</p>
 </section>
 <section id="dhcpv4-relay-example">
-<h3>DHCPv4 Relay Example:<a class="headerlink" href="#dhcpv4-relay-example" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">DHCPv4 Relay Example:</a><a class="headerlink" href="#dhcpv4-relay-example" title="Link to this heading"></a></h3>
 <p>Suppose you have tenant workloads in VPC-Bravo1 and VPC-Alpha1. Both need DHCP, but you want to run a single DHCP service in VPC-Shared-Infra.</p>
 <img alt="DHCP Relay" class="with-shadow align-center" src="_images/vnet-dhcp-relay-diagram.png" />
 <br /><ol class="arabic simple">
