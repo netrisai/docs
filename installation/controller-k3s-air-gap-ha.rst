@@ -525,37 +525,9 @@ Expected output:
   netris-controller-initdb-09-dhcp-option-set-jq7wl                 0/1     Completed   0          58s
 
 
-
-
-11. (Optional) Enable SSL with cert-manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you intend to secure the Controller via an FQDN and Let's Encrypt (or another ACME issuer) please also install cert-manager:
-
-1. Install cert-manager:
-
-.. code-block:: shell
-
-  kubectl apply -f manifests/netris-controller/cert-manager.yaml
-
-
-2. Verify pods:
-
-
-.. code-block:: shell
-
-  kubectl get pods -n cert-manager
-
-
-3. Apply cert-manager resources (ClusterIssuers, etc.):
-
-.. code-block:: shell
-
-  kubectl apply -f manifests/netris-controller/cert-manager-resources.yaml
-
 .. _install-local-repo:
 
-13. Set Up the Local Netris Repository
+11. Set Up the Local Netris Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices do not have direct access to the internet. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository
@@ -584,7 +556,7 @@ The Netris Local Repository is essential for environments where switches, softga
 
 
 
-14. Validate Your Deployment
+12. Validate Your Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Access the Netris Controller** via https://192.168.0.50 (or your assigned FQDN).
