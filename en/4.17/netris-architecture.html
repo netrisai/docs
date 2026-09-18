@@ -237,9 +237,8 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">14. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#validate-your-deployment">12. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
@@ -1216,10 +1215,10 @@
 </section>
 <section id="ai-components-additive-when-a-gpu-cluster-is-present">
 <h2>AI components (additive, when a GPU cluster is present)<a class="headerlink" href="#ai-components-additive-when-a-gpu-cluster-is-present" title="Link to this heading"></a></h2>
-<p>If your deployment includes a GPU cluster — an East-West Ethernet backend fabric (e.g., NVIDIA Spectrum-X), an East-West Quantum InfiniBand backend fabric, an NVL72 rack-scale fabric, or BlueField DPUs in your servers — Netris adds the following components on top of the core platform:</p>
+<p>If your deployment includes a GPU cluster — an East-West Ethernet backend fabric (e.g., NVIDIA Spectrum-X), an NVIDIA Quantum InfiniBand backend fabric, an NVL72 rack-scale fabric, or BlueField DPUs in your servers — Netris offers the following optional components on top of the core platform:</p>
 <ul class="simple">
-<li><p><strong>NVIDIA BlueField DPUs</strong> — managed by Netris as first-class network devices participating in the EVPN/VXLAN fabric for hard isolation (enforced on networking hardware) on the server itself. See <a class="reference internal" href="bluefield-3-dpus.html"><span class="doc">BlueField-3 DPUs</span></a>.</p></li>
-<li><p><strong>NVIDIA UFM integration</strong> — for automated InfiniBand partition (PKey) management on Quantum backend fabrics. See <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">UFM Integration</span></a>.</p></li>
+<li><p><strong>NVIDIA BlueField DPUs</strong> — added by Netris as first-class endpoints (VTEPs) in the EVPN/VXLAN fabric, extending hard isolation (enforced on networking hardware) onto the server itself. See <a class="reference internal" href="bluefield-3-dpus.html"><span class="doc">BlueField-3 DPUs</span></a>.</p></li>
+<li><p><strong>NVIDIA UFM integration</strong> — for automated partition key (PKey) management on NVIDIA Quantum InfiniBand backend fabrics. See <a class="reference internal" href="netris-ufm-integration.html"><span class="doc">UFM Integration</span></a>.</p></li>
 <li><p><strong>NVIDIA NMX integration</strong> — for automated NVLink partition management on NVL72 rack-scale fabrics (GB200 NVL72 and GB300 NVL72). See <a class="reference internal" href="netris-nvlink-integration.html"><span class="doc">NMX Integration</span></a>.</p></li>
 <li><p><strong>Netris Host Networking (NHN) Plugin</strong> — runs on GPU servers to configure IP addresses, routing, and RoCE parameters without requiring management network access.</p></li>
 <li><p><strong>EVPN-on-Host</strong> — extends the EVPN control plane into standard Linux hosts for VM and container tenant isolation. See <a class="reference internal" href="evpn-on-host.html"><span class="doc">EVPN-on-Host</span></a>.</p></li>
@@ -1253,7 +1252,7 @@
 <ul class="simple">
 <li><p><strong>Controller Management Network (CMN):</strong> A physically separate, statically configured, non-Netris-managed management network (typically two switches). CMN provides connectivity between Netris Controller nodes and seed switches, when present (see the definition below). Supports controller cluster communication, bootstrap operations, and infrastructure onboarding. Because the CMN exists outside of the Netris-managed infrastructure, organizations can secure it using their preferred enterprise security controls (network segmentation, bastion hosts, VPN access, etc.). The CMN is typically not managed by Netris itself to prevent circular dependencies.</p></li>
 <li><p><strong>Seed switches.</strong> A set of 2 to 6 Netris-managed switches provisioned before any other Netris-managed switches. Seed switches connect directly to CMN and form the root of the OOB management hierarchy in larger deployments. Whether seed switches are used depends on the deployment topology described below.</p></li>
-<li><p><strong>Out-of-Band Management Network (OOB):</strong> A management aggregation network composed of OOB switches. The OOB network hosts management connectivity for Netris-managed network fabrics. In many deployments, the OOB network also hosts management connectivity for Server Management Interfaces (SMI), Data Processing Units (DPUs), Infrastructure Control Platforms (ICP), InfiniBand (IB) switches, NVLink switches, and Data Center Infrastructure Management (DCIM) systems. The OOB network may be implemented as part of the North–South fabric or as a standalone network fabric and can be Netris-managed or operator-managed (not Netris-managed) depending on the operator’s objectives.</p></li>
+<li><p><strong>Out-of-Band Management Network (OOB):</strong> A management aggregation network composed of OOB switches. The OOB network hosts management connectivity for Netris-managed network fabrics. In many deployments, the OOB network also hosts management connectivity for Server Management Interfaces (SMI), Data Processing Units (DPUs), Infrastructure Control Platforms (ICP), NVIDIA Quantum InfiniBand switches, NVLink switches, and Data Center Infrastructure Management (DCIM) systems. The OOB network may be implemented as part of the North–South fabric or as a standalone network fabric and can be Netris-managed or operator-managed (not Netris-managed) depending on the operator’s objectives.</p></li>
 </ul>
 <p><strong>Deployment topologies.</strong> Building on the management networks above, Netris supports two physical topologies for connecting Netris-managed switches to the controller:</p>
 <ul class="simple">
@@ -1269,7 +1268,7 @@
 <p>Netris is built on the following security design principles:</p>
 <ul class="simple">
 <li><p><strong>Control Plane Independence:</strong> Once configuration is applied, network devices enforce policies independently of the controller. Loss of the controller does not disrupt tenant traffic or compromise isolation.</p></li>
-<li><p><strong>Hard isolation (enforced on networking hardware):</strong> Tenant isolation is implemented through the underlying infrastructure hardware – VRF, VXLAN, and ACLs in Ethernet fabrics; InfiniBand partition keys (PKeys); and NVLink GPU fabric partitions. Netris automates the provisioning of these mechanisms and does not rely on software overlays for tenant separation.</p></li>
+<li><p><strong>Hard isolation (enforced on networking hardware):</strong> Tenant isolation is implemented through the underlying infrastructure hardware – VRF, VXLAN, and ACLs in Ethernet fabrics; partition keys (PKeys) on NVIDIA Quantum InfiniBand; and NVLink GPU fabric partitions. Netris automates the provisioning of these mechanisms and does not rely on software overlays for tenant separation.</p></li>
 <li><p><strong>Customer-Controlled Security Boundary:</strong> Because the Netris Controller is deployed within the customer’s environment, organizations retain full control over the security perimeter. Netris does not offer hosted control planes.</p></li>
 <li><p><strong>Audit Logging:</strong> All requests processed by the Netris API are logged. Because the web GUI operates through the same API, UI activity is also captured in the audit logs. Logs can be retrieved programmatically through the controller API or inspected in the GUI. See <a class="reference internal" href="monitoring-observability/visibility.html"><span class="doc">Graph Boards</span></a> for details.</p></li>
 </ul>
@@ -1282,7 +1281,7 @@
 <li><p>Role-based access control (<a class="reference internal" href="accounts.html"><span class="doc">Accounts</span></a>)</p></li>
 <li><p>Infrastructure configuration enforcement</p></li>
 <li><p>Audit logging (<a class="reference internal" href="monitoring-observability/visibility.html"><span class="doc">Graph Boards</span></a>)</p></li>
-<li><p>Tenant isolation orchestration across Ethernet, InfiniBand, and NVLink fabrics</p></li>
+<li><p>Tenant isolation orchestration across Ethernet, NVIDIA Quantum InfiniBand, and NVLink fabrics</p></li>
 <li><p>Device management hardening via <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profiles</span></a></p></li>
 </ul>
 <p><strong>Organizations deploying Netris are responsible for:</strong></p>

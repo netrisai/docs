@@ -237,9 +237,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#install-traefik-proxy">8. Install Traefik Proxy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#deploy-the-netris-controller">10. Deploy the Netris Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#optional-enable-ssl-with-cert-manager">11. (Optional) Enable SSL with cert-manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#set-up-the-local-netris-repository">13. Set Up the Local Netris Repository</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#validate-your-deployment">14. Validate Your Deployment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-up-the-local-netris-repository">11. Set Up the Local Netris Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#validate-your-deployment">12. Validate Your Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#after-installation">After Installation</a></li>
@@ -1240,13 +1239,12 @@
 <li><p><a class="reference internal" href="#install-netris-controller" id="id29">10.2 Install Netris Controller</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#optional-enable-ssl-with-cert-manager" id="id30">11. (Optional) Enable SSL with cert-manager</a></p></li>
-<li><p><a class="reference internal" href="#set-up-the-local-netris-repository" id="id31">13. Set Up the Local Netris Repository</a></p></li>
-<li><p><a class="reference internal" href="#validate-your-deployment" id="id32">14. Validate Your Deployment</a></p></li>
+<li><p><a class="reference internal" href="#set-up-the-local-netris-repository" id="id30">11. Set Up the Local Netris Repository</a></p></li>
+<li><p><a class="reference internal" href="#validate-your-deployment" id="id31">12. Validate Your Deployment</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#after-installation" id="id33">After Installation</a></p></li>
-<li><p><a class="reference internal" href="#how-to-consume-local-repository" id="id34">How to consume local repository</a></p></li>
+<li><p><a class="reference internal" href="#after-installation" id="id32">After Installation</a></p></li>
+<li><p><a class="reference internal" href="#how-to-consume-local-repository" id="id33">How to consume local repository</a></p></li>
 </ul>
 </nav>
 <section id="why-air-gapped-installation">
@@ -1702,30 +1700,8 @@ netris-controller-initdb-09-dhcp-option-set-jq7wl<span class="w">               
 </div>
 </section>
 </section>
-<section id="optional-enable-ssl-with-cert-manager">
-<h3><a class="toc-backref" href="#id30" role="doc-backlink">11. (Optional) Enable SSL with cert-manager</a><a class="headerlink" href="#optional-enable-ssl-with-cert-manager" title="Link to this heading"></a></h3>
-<p>If you intend to secure the Controller via an FQDN and Let’s Encrypt (or another ACME issuer) please also install cert-manager:</p>
-<ol class="arabic simple">
-<li><p>Install cert-manager:</p></li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/cert-manager.yaml
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Verify pods:</p></li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>cert-manager
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Apply cert-manager resources (ClusterIssuers, etc.):</p></li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/netris-controller/cert-manager-resources.yaml
-</pre></div>
-</div>
-</section>
 <section id="set-up-the-local-netris-repository">
-<span id="install-local-repo"></span><h3><a class="toc-backref" href="#id31" role="doc-backlink">13. Set Up the Local Netris Repository</a><a class="headerlink" href="#set-up-the-local-netris-repository" title="Link to this heading"></a></h3>
+<span id="install-local-repo"></span><h3><a class="toc-backref" href="#id30" role="doc-backlink">11. Set Up the Local Netris Repository</a><a class="headerlink" href="#set-up-the-local-netris-repository" title="Link to this heading"></a></h3>
 <p>The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices do not have direct access to the internet. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository</p>
 <ol class="arabic simple">
 <li><p>Deploy local repo manifests:</p></li>
@@ -1749,7 +1725,7 @@ sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>
 </div>
 </section>
 <section id="validate-your-deployment">
-<h3><a class="toc-backref" href="#id32" role="doc-backlink">14. Validate Your Deployment</a><a class="headerlink" href="#validate-your-deployment" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">12. Validate Your Deployment</a><a class="headerlink" href="#validate-your-deployment" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Access the Netris Controller</strong> via <a class="reference external" href="https://192.168.0.50">https://192.168.0.50</a> (or your assigned FQDN).</p></li>
 <li><p><strong>Confirm all services</strong> (web service, GRPC, Redis, DBs) are Running:</p></li>
@@ -1769,14 +1745,14 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </section>
 </section>
 <section id="after-installation">
-<h2><a class="toc-backref" href="#id33" role="doc-backlink">After Installation</a><a class="headerlink" href="#after-installation" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id32" role="doc-backlink">After Installation</a><a class="headerlink" href="#after-installation" title="Link to this heading"></a></h2>
 <p>The air-gapped Netris Controller also includes a local repository/registry. This repository provides all the necessary packages and images for installing various types of Netris agents.</p>
 <p>Enable the Local repository in the Netris Controller Web UI under <strong>Settings</strong> section (as shown in the screenshots below).</p>
 <img alt="../_images/global-setting-local-repo.png" class="align-center" src="../_images/global-setting-local-repo.png" />
 <img alt="../_images/global-setting-local-repo-save.png" class="align-center" src="../_images/global-setting-local-repo-save.png" />
 </section>
 <section id="how-to-consume-local-repository">
-<h2><a class="toc-backref" href="#id34" role="doc-backlink">How to consume local repository</a><a class="headerlink" href="#how-to-consume-local-repository" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id33" role="doc-backlink">How to consume local repository</a><a class="headerlink" href="#how-to-consume-local-repository" title="Link to this heading"></a></h2>
 <p>Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).</p>
 <img alt="../_images/one-liner-with-local-repo.png" class="align-center" src="../_images/one-liner-with-local-repo.png" />
 <p>—</p>
