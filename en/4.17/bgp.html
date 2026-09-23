@@ -1242,9 +1242,12 @@
 <li><p><strong>Local endpoint interface</strong> — either a routed <strong>switch port</strong> or a <strong>V-Net</strong> (<em>a.k.a. BGP terminated on V-Net</em>), selected by setting either <em>Switch port</em> or <em>Connect via V-Net</em> (under Advanced). A V-Net used this way gets a dedicated SVI on the BGP Router, and that SVI carries the <em>Local IP</em>. Whether the V-Net has a gateway depends on where the switch port is — see the table below.</p></li>
 </ul>
 <p>The peer-facing port can be any port on the Netris-managed fabric; it does not have to sit on the switch selected as the BGP Router. When the port and the BGP Router are on different switches, Netris connects the two automatically — it creates a dedicated SVI on the BGP Router switch and provisions a hidden (meaning not visible in the GUI under the V-Net menu) “virtual wire” V-Net to the switch where the peer is physically connected.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>A V-Net with a gateway can be used for BGP termination only when the BGP Router is the switch where the switch port is.</p>
 <p>The <em>Local IP</em> is either the V-Net gateway address itself or a secondary IP address on the same SVI, not a separate interface.</p>
 <p>Arista switches don’t support secondary addresses on an SVI, so the <em>Local IP</em> must be the V-Net gateway address.</p>
+</div>
 <p>The resulting combinations:</p>
 <table class="docutils align-default">
 <colgroup>
