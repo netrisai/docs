@@ -116,8 +116,6 @@ Now we can see that the service type has changed to LoadBalancer, and "EXTERNAL-
   kubernetes   ClusterIP      10.43.0.1      <none>          443/TCP                         37m
   podinfo      LoadBalancer   10.43.68.103   <pending>       9898:32486/TCP,9999:30455/TCP   3m45s
 
-Look for the service with the name **"podinfo-xxxxxxxx"**
-
 .. image:: /images/sandbox-podinfo-prov.png
     :align: center
     :alt: Sandbox PodInfo Provisioning
