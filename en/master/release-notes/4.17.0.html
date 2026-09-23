@@ -212,7 +212,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../supported-switch-hardware.html#supported-switch-hardware">Supported Switch Hardware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#nvidia">Nvidia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#dell">Dell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#edgecore">EdgeCore</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../supported-switch-hardware.html#arista">Arista</a></li>
 </ul>
 </li>
@@ -1217,8 +1216,9 @@
 <li><p><strong>FRR logging on SoftGate</strong>. SoftGate now enables FRR logging by default, including BGP neighbor state changes, and the Netris tech-support bundle collects the FRR logs together with the rest of the SoftGate diagnostics.</p></li>
 <li><p><strong>NVIDIA UFM integration</strong>. Improvements to the Netris-UFM plugin, including:</p>
 <ul>
-<li><p>Deployment manifests are now split into <code class="docutils literal notranslate"><span class="pre">ufm/deploy.yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">ufm/secret.yaml</span></code>, so upgrades reapply the deployment without re-entering credentials, and additional UFM instances are deployed by copying the folder.</p></li>
-<li><p>Servers with several HCA ports now always have every port admitted to their Server Cluster’s PKey, including when two ports report the same module index and port number.</p></li>
+<li><p>The plugin integration credentials are now preserved when upgrading the UFM plugin.</p></li>
+<li><p>You can now deploy additional UFM plugin instances by copying the ufm deployment folder and editing the deploy.yaml manifest.</p></li>
+<li><p>The Netris UFM plugin now keeps all of a host’s InfiniBand HCAs in their assigned PKey. Previously, one or more adapters could disappear from the PKey after a host reboot, when UFM assigned duplicate module index values.</p></li>
 </ul>
 </li>
 <li><p><strong>Cumulus Linux 5.18.1 support</strong>. Netris is now validated on Cumulus Linux 5.18.1.</p></li>
@@ -1227,7 +1227,7 @@
 <section id="bug-fixes">
 <h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Fixed V-Net settings accepting DHCP Relay or DHCPv6 Relay when L3VPN mode is enabled, a combination that is not supported.</p></li>
+<li><p>Fixed V-Net settings incorrectly accepting DHCP Relay or DHCPv6 Relay when L3VPN mode is enabled, a combination that is not supported.</p></li>
 <li><p>Fixed the <code class="docutils literal notranslate"><span class="pre">check_ratio</span></code> monitor on SoftGates constantly reporting a high value.</p></li>
 <li><p>Fixed VPC peering being configured on switches in a fabric where only one of the peered VPCs is present when a VPC spans multiple fabrics. Affected platforms: all.</p></li>
 <li><p>Fixed DHCPv6 Relay not delivering addresses to servers in a V-Net. Affected platforms: Arista.</p></li>

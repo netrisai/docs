@@ -212,7 +212,6 @@
 <li class="toctree-l1"><a class="reference internal" href="#supported-switch-hardware">Supported Switch Hardware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#nvidia">Nvidia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dell">Dell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#edgecore">EdgeCore</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#arista">Arista</a></li>
 </ul>
 </li>
@@ -1254,8 +1253,8 @@
 <section id="netris-softgate-hs-multi-vpc-version">
 <h2>Netris SoftGate HS (Multi-VPC version)<a class="headerlink" href="#netris-softgate-hs-multi-vpc-version" title="Link to this heading"></a></h2>
 <p>A minimum of 4 dedicated servers are required for an HA (highly available) active-active SoftGate HS cluster. Two SoftGates will forward stateful traffic (SNAT), and two others will forward stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.) Each group (stateful and stateless) can scale horizontally by deploying more servers as CPU &amp; RAM utilization requires.</p>
-<table class="docutils align-center" id="id9">
-<caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id9" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id8">
+<caption><span class="caption-text">SoftGate HS Hardware Requirements</span><a class="headerlink" href="#id8" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 25.0%" />
@@ -1533,83 +1532,6 @@
 </aside>
 </aside>
 </section>
-<section id="edgecore">
-<h2>EdgeCore<a class="headerlink" href="#edgecore" title="Link to this heading"></a></h2>
-<table class="docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><strong>Manufacturer</strong></p></td>
-<td><p><strong>Model</strong></p></td>
-<td><p><strong>ASIC</strong></p></td>
-<td><p><strong>Ports</strong></p></td>
-<td><p><strong>NOS</strong></p></td>
-<td><p><strong>Caveats</strong></p></td>
-<td><p><strong>Supported</strong></p></td>
-</tr>
-<tr class="row-even"><td><p>EdgeCore</p></td>
-<td><p>DCS201 (AS5835-54X)</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>48 x 10G SFP+ + 6 x 100G QSFP28</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>EdgeCore</p></td>
-<td><p>DCS202 (AS5835-54T)</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>48 x 10G RJ-45 + 6 x 100G QSFP28</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>EdgeCore</p></td>
-<td><p>DCS203 (AS7326-56X)</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>48 x 25G SFP28 + 8 x 100G QSFP28+ 2 x 10G</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>EdgeCore</p></td>
-<td><p>AS7726-32X</p></td>
-<td><p>Broadcom Trident III</p></td>
-<td><p>32 x 100G QSFP28 + 2 x 10G SFP+</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>EdgeCore</p></td>
-<td><p>DCS510 (AS9716-32D)</p></td>
-<td><p>Broadcom Tomahawk 3</p></td>
-<td><p>32 x 400G QSFP-DD</p></td>
-<td><p>EC-SONiC</p></td>
-<td><p>Contact Netris support <a class="footnote-reference brackets" href="#edgecore-fn1" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-odd"><td><p>EdgeCore</p></td>
-<td><p>DCS511 (AS9737-32DB)</p></td>
-<td><p>Broadcom Tomahawk 4</p></td>
-<td><p>32 x 400G QSFP56-DD</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-<tr class="row-even"><td><p>EdgeCore</p></td>
-<td><p>AIS800-64O</p></td>
-<td><p>Broadcom Tomahawk 5</p></td>
-<td><p>64 x OSFP800</p></td>
-<td><p>EC-SONiC</p></td>
-<td></td>
-<td><p>✔</p></td>
-</tr>
-</tbody>
-</table>
-<aside class="footnote-list brackets">
-<aside class="footnote brackets" id="edgecore-fn1" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">3</a><span class="fn-bracket">]</span></span>
-<p>EdgeCore’s published platform documentation does not clearly confirm VXLAN/VTEP support for this platform. Contact Netris support before deploying this switch in a leaf/VTEP role. See EdgeCore’s <a class="reference external" href="https://www.edge-core.com/wp-content/uploads/2026/07/2026-042-DCS510_AS9716-32D-DS-R11-20260709.pdf">DCS510 (AS9716-32D) datasheet</a>.</p>
-</aside>
-</aside>
-</section>
 <section id="arista">
 <h2>Arista<a class="headerlink" href="#arista" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
@@ -1667,7 +1589,7 @@
 <td><p>Tomahawk 5</p></td>
 <td><p>32 x 800G OSFP</p></td>
 <td><p>EOS</p></td>
-<td><p>Bridging VTEP only <a class="footnote-reference brackets" href="#arista-fn1" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
+<td><p>Bridging VTEP only <a class="footnote-reference brackets" href="#arista-fn1" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></td>
 <td><p>✔</p></td>
 </tr>
 <tr class="row-even"><td><p>Arista</p></td>
@@ -1675,7 +1597,7 @@
 <td><p>Tomahawk 5</p></td>
 <td><p>64 x 800G OSFP + 2 x SFP+</p></td>
 <td><p>EOS</p></td>
-<td><p>Bridging VTEP only <a class="footnote-reference brackets" href="#arista-fn1" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
+<td><p>Bridging VTEP only <a class="footnote-reference brackets" href="#arista-fn1" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></td>
 <td><p>✔</p></td>
 </tr>
 <tr class="row-odd"><td><p>Arista</p></td>
@@ -1723,7 +1645,7 @@
 <td><p>Tomahawk 3</p></td>
 <td><p>128 x 100G or 32 x 400G</p></td>
 <td><p>EOS</p></td>
-<td><p>Contact Netris support <a class="footnote-reference brackets" href="#arista-fn2" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a></p></td>
+<td><p>Contact Netris support <a class="footnote-reference brackets" href="#arista-fn2" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
 <td><p>✔</p></td>
 </tr>
 <tr class="row-odd"><td><p>Arista</p></td>
@@ -1746,12 +1668,12 @@
 </table>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="arista-fn1" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id6">1</a>,<a role="doc-backlink" href="#id7">2</a>)</span>
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id5">1</a>,<a role="doc-backlink" href="#id6">2</a>)</span>
 <p>Current Arista EOS releases on this platform support VXLAN bridging but not VXLAN routing, per Arista’s published datasheet. It can serve as a bridging-only VTEP. Contact Netris support if your design requires EVPN/VXLAN routing. This is a platform/NOS limitation. See Arista’s <a class="reference external" href="https://www.arista.com/assets/data/pdf/Datasheets/7060X6-Datasheet.pdf">7060X6 Series datasheet</a>.</p>
 </aside>
 <aside class="footnote brackets" id="arista-fn2" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">5</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">4</a><span class="fn-bracket">]</span></span>
 <p>Arista’s published documentation does not clearly confirm VXLAN/VTEP support for this platform. Contact Netris support before deploying this switch in a leaf/VTEP role. See Arista’s <a class="reference external" href="https://www.arista.com/assets/data/pdf/Datasheets/7368X4-Datasheet.pdf">7368X4 datasheet</a>.</p>
 </aside>
 </aside>

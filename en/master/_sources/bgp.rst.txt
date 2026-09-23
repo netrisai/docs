@@ -33,9 +33,15 @@ BGP neighbors can be declared in the Network → E-BGP section. Netris software 
 A BGP session with an external to the Netris-managed fabric neighbor is defined by two independent choices:
 
 - **BGP Router** — the switch (or SoftGate) that hosts the local BGP speaker and where the Netris-managed side of the session terminates.
-- **Local endpoint interface** — either a routed **switch port** or a **V-Net** (without a gateway), selected by setting either *Switch port* or *Connect via V-Net* (under Advanced). A V-Net used this way must not have a gateway configured: Netris creates a dedicated SVI in that V-Net for this BGP session on the BGP Router switch and assigns it the *Local IP*. BGP cannot terminate on an existing V-Net gateway.
+- **Local endpoint interface** — either a routed **switch port** or a **V-Net** (*a.k.a. BGP terminated on V-Net*), selected by setting either *Switch port* or *Connect via V-Net* (under Advanced). A V-Net used this way gets a dedicated SVI on the BGP Router, and that SVI carries the *Local IP*. Whether the V-Net has a gateway depends on where the switch port is — see the table below.
 
 The peer-facing port can be any port on the Netris-managed fabric; it does not have to sit on the switch selected as the BGP Router. When the port and the BGP Router are on different switches, Netris connects the two automatically — it creates a dedicated SVI on the BGP Router switch and provisions a hidden (meaning not visible in the GUI under the V-Net menu) "virtual wire" V-Net to the switch where the peer is physically connected.
+
+A V-Net with a gateway can be used for BGP termination only when the BGP Router is the switch where the switch port is.
+
+The *Local IP* is either the V-Net gateway address itself or a secondary IP address on the same SVI, not a separate interface.
+
+Arista switches don't support secondary addresses on an SVI, so the *Local IP* must be the V-Net gateway address.
 
 The resulting combinations:
 
@@ -49,9 +55,12 @@ The resulting combinations:
    * - **Routed switch port**
      - The session and the port are on the same switch.
      - Netris builds a virtual wire from the peer's port to the SVI created on the BGP Router switch.
-   * - **V-Net (no gateway)**
+   * - **V-Net without a gateway**
      - Netris creates a dedicated SVI in that V-Net for this BGP session on the BGP Router switch; that SVI is the local endpoint.
      - The V-Net is extended to the BGP Router switch, and the dedicated SVI created there terminates the session.
+   * - **V-Net with a gateway**
+     - The session terminates on the V-Net SVI on that switch. The Local IP is the gateway address, or a secondary address on the same SVI (secondary addresses are not supported on Arista).
+     - Not supported.
 
 **Adding BGP Peers**
 
