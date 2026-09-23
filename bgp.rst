@@ -37,11 +37,12 @@ A BGP session with an external to the Netris-managed fabric neighbor is defined 
 
 The peer-facing port can be any port on the Netris-managed fabric; it does not have to sit on the switch selected as the BGP Router. When the port and the BGP Router are on different switches, Netris connects the two automatically — it creates a dedicated SVI on the BGP Router switch and provisions a hidden (meaning not visible in the GUI under the V-Net menu) "virtual wire" V-Net to the switch where the peer is physically connected.
 
-A V-Net with a gateway can be used for BGP termination only when the BGP Router is the switch where the switch port is.
+.. warning::
+  A V-Net with a gateway can be used for BGP termination only when the BGP Router is the switch where the switch port is.
 
-The *Local IP* is either the V-Net gateway address itself or a secondary IP address on the same SVI, not a separate interface.
+  The *Local IP* is either the V-Net gateway address itself or a secondary IP address on the same SVI, not a separate interface.
 
-Arista switches don't support secondary addresses on an SVI, so the *Local IP* must be the V-Net gateway address.
+  Arista switches don't support secondary addresses on an SVI, so the *Local IP* must be the V-Net gateway address.
 
 The resulting combinations:
 
