@@ -1,8 +1,8 @@
 .. meta::
   :description: Netris-CloudStack Integration
 
-Server Configuration and Software Installation
-==============================================
+CloudStack: Server Configuration and Software Installation
+==========================================================
 
 Here we are going to configure the servers' network, install the `netris-cloudstack` agents on hypervisors, install CloudStack management software on `Server 1`, and install the CloudStack agent on `Server 2-4`.
 
@@ -222,7 +222,7 @@ To provision the **netris-cloudstack agent** on the hypervisor servers (**Server
 
    - **Note:** Each installer command is **unique to the specific node**.
 
-5. **SSH into the server** and execute the copied command:
+5. **SSH into the server** and execute the copied command.
 
 6. **Repeat this process** for each hypervisor server (**Servers 2, 3, and 4**).
 
@@ -265,8 +265,6 @@ Verification Steps
    .. code-block:: shell
 
       ip addr show cloudbr0
-
----
 
 Checking Network Connectivity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -369,11 +367,7 @@ Why Keep the Emergency OOB?
 How to Use Emergency OOB?
 """"""""""""""""""""""""""""""""""""
 
-1. **Disable underlay** on a hypervisor link:
-
-   ..
-
-      Navigate to Net > Topology, edit the link, and uncheck "Underlay"
+1. **Disable underlay** on a hypervisor link: Navigate to Net > Topology, edit the link, and uncheck "Underlay"
 
 2. **Reconnect to the hypervisor using the OOB IP**:
 
@@ -387,7 +381,7 @@ How to Use Emergency OOB?
 
    **Persisting OOB IP Configuration (Recommended)**
 
-   For long-term usability, configure the **emergency OOB IP persistently** using **Netplan**:
+   For long-term usability, configure the **emergency OOB IP persistently** using **Netplan**.
 
 
 
@@ -468,7 +462,7 @@ The user is responsible for installing the **CloudStack Management** service. Yo
 
 For earlier access, the development version is available at **ShapeBlue's repository**:
 
-**Repository URL:** `http://packages.shapeblue.com/cloudstack/custompublic/kapik/`
+**Repository URL:** http://packages.shapeblue.com/cloudstack/custompublic/kapik/
 
 Installation Steps
 ^^^^^^^^^^^^^^^^^^

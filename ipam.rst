@@ -11,6 +11,9 @@ IP Address Management (IPAM)
    :local:
    :depth: 2
 
+Overview
+--------
+
 Netris IPAM is the address-space source of truth every address-consuming object in Netris depends on: V-Net gateways and DHCP pools, NAT and L4 Load Balancer address pools, switch and SoftGate loopback and management IPs, and BGP route advertisement all draw from subnets created here first. Allocations and subnets are tracked per VPC in a nested, tree-like structure, and each subnet's purpose and tenant determine which services are allowed to consume it.
 
 
@@ -99,10 +102,6 @@ Add an Allocation
    :class: with-shadow
    :alt: Add a New IP Allocation
 
-Add Allocation Window
-
---------------------------
-
 Add a Subnet
 ------------
 
@@ -148,6 +147,19 @@ Add a Subnet
 
    <p style="text-align: center;"><em>Figure: Add Subnet Window</em></p>
 
+Controller Management Address on management subnets
+----------------------------------------------------
+
+Every subnet with Purpose set to ``management`` carries a read-only **Controller Management Address** attribute. It shows the address the Controller discovered for that subnet — the address devices on that management segment use to reach the Controller. Netris resolves it automatically; there is nothing to enter.
+
+The attribute appears on the subnet edit form. The Add Subnet form does not show it. Until discovery completes, the value reads ``Not yet resolved``. Netris does not provision switches on a subnet whose Controller Management Address has not resolved.
+
+ZTP and the agent installation one-liner both read this per-subnet address, so each device is given the Controller address reachable from its own management segment. See :ref:`Controller Management Address Resolution <ztp-controller-address-resolution>` on the :doc:`Zero Touch Provisioning <installation/ztp>` page for how resolution works, what the resolved and unresolved states look like, and how to troubleshoot a subnet that never resolves.
+
+.. note::
+
+   The Controller resolves these addresses from its own Kubernetes environment: kube-vip VIPs on HA controllers, or the Controller's LoadBalancer service on single-node and cloud deployments. External load balancers that are not represented as a Kubernetes LoadBalancer service are not supported.
+
 .. _ipam_global_routing:
 
 Global Routing
@@ -155,7 +167,9 @@ Global Routing
 
 **Global Routing** is a per-subnet checkbox, introduced in 4.4.0, that controls whether a subnet can be advertised outside the VPC/VRF it was created in. The in-product hint text reads:
 
-    Subnets with "Global Routing" enabled will be advertised from guest VPCs to the System VPC, and if the System VPC has upstream (Internet) connection such subnets will be advertised further upstream.
+.. tip::
+
+   Subnets with "Global Routing" enabled will be advertised from guest VPCs to the System VPC, and if the System VPC has upstream (Internet) connection such subnets will be advertised further upstream.
 
 In other words: enabling it on a subnet in a tenant (guest) VPC makes that prefix a candidate for advertisement into the System VPC's routing context, and from there further upstream if a SoftGate object in the System VPC carries an E-BGP session to the Internet or another external network — see :doc:`BGP <bgp>` and the :ref:`BGP route exchange between SoftGates, upstream routers, and downstream switches <softgate-bgp-route-exchange>` section of :doc:`SoftGate HS <netris-softgate-HS>` for the mechanics of upstream advertisement itself.
 
@@ -164,7 +178,9 @@ This is the mechanism the 4.4.0 release notes refer to as "native VPC subnet rea
 * A NAT rule's *global IP* (see :doc:`NAT <nat>`) — a translated public address, not the subnet itself being advertised. Don't confuse the two just because both use the word "global."
 * :doc:`VPC Connect <vpc-connect>` — there, the eBGP peer relationship terminates directly on a switch port or V-Net SVI, does not involve a SoftGate, and the resulting traffic never passes through a SoftGate at all. Global Routing's advertisement path, by contrast, always runs through a SoftGate-terminated eBGP session in the System VPC.
 
-**Default state:** Global Routing is pre-checked automatically for any subnet created in the System VPC (VPC-1), regardless of Purpose — including *loopback* and *management* subnets. Whether that pre-checked state has any actual effect for those purposes is unconfirmed.
+.. note::
+
+   **Default state:** Global Routing is pre-checked automatically for any subnet created in the System VPC (VPC-1), regardless of Purpose — including *loopback* and *management* subnets. Whether that pre-checked state has any actual effect for those purposes is unconfirmed.
 
 .. tip::
 

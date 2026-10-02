@@ -2,13 +2,17 @@
 .. meta::
     :description: Topology Management
 
-=========
-Inventory
-=========
+###################
+Topology Management
+###################
 
 .. contents:: Table of Contents
    :local:
    :depth: 2
+
+=========
+Inventory
+=========
 
 The Inventory section allows you to add/edit/delete network switches and SoftGates (VPC gateways). Initial setup of a Netris managed network is a three step process:
 

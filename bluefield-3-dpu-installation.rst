@@ -10,8 +10,8 @@ Installing BlueField-3 DPUs
     :depth: 3
 
 .. note::
-   **New to BlueField-3 DPUs?** Read the Overview and "What Is a DPU" sections on
-   :doc:`bluefield-3-dpus` first for background on what a DPU is and how Netris uses one. This
+   **New to BlueField-3 DPUs?** Read :ref:`Overview <bf3-overview>` and :ref:`What Is a DPU <bf3-what-is-a-dpu>` on the
+   :doc:`Integration page <bluefield-3-dpus>` first for background on what a DPU is and how Netris uses one. This
    page assumes that context and focuses only on installing the agent.
 
 Concepts
@@ -49,7 +49,7 @@ Once DPF is up, deploying Netris on the DPU is a matter of creating a handful of
 
 - **DOCA HBN** — the host-based networking data plane running on the DPU (BGP EVPN / VXLAN VTEP).
 - **netris-dpu-agent** — the Netris control-plane agent that registers the DPU with your Netris controller and manages HBN's configuration on Netris's behalf.
-- A **service chain** that wires the physical ports (``p0``/``p1``) and every Physical Function (PF) / Virtual Function (VF) representor through to HBN, so host traffic is correctly forwarded into the appropriate tenant's segment on the Netris-managed fabric.
+- A **service chain** that wires the physical ports (``p0``/``p1``) and every :ref:`Physical Function (PF) / Virtual Function (VF) <bf3-overview>` representor through to HBN, so host traffic is correctly forwarded into the appropriate tenant's segment on the Netris-managed fabric.
 
 No manual container installation is needed on the DPU itself. DPF pulls and runs both Helm charts as DPUServices once the ``DPUDeployment`` is created.
 

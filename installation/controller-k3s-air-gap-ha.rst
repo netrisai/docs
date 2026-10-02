@@ -14,7 +14,7 @@ In many production or regulated environments, network connectivity is tightly re
 
 - **Enhances Security** by limiting the potential attack surface.
 - **Ensures Consistency** of the software stack across multiple deployments.
--	**Complies** with strict regulatory standards where internet access may be disallowed.
+- **Complies** with strict regulatory standards where internet access may be disallowed.
 
 
 Why a High Availability (HA) Cluster?
@@ -24,14 +24,14 @@ Running **Netris Controller** on a **high availability (HA)** cluster provides r
 
 - **Redundancy**: No single point of failure in the control plane or the critical components of Netris Controller.
 - **Scalability**: Workloads can be spread across multiple nodes, easing resource constraints.
-- **Reliability**: Uninterrupted operation even during maintenance or unexpected issues on one of the nodes.
+- **Reliability**: Uninterrupted operation even during maintenance or unexpected issues on a node.
 
 
 
 Prerequisites
 -------------
 
-1. **Three Servers** in the same private network, each meeting the minimum `hardware requirements <https://www.netris.io/docs/en/latest/supported-switch-hardware.html>`_ for K3s and Netris Controller.
+1. **Three Servers** in the same private network, each meeting the minimum :doc:`hardware requirements </supported-switch-hardware>` for K3S and Netris Controller.
 2. **Two Virtual IP Addresses (VIPs)** and an IP address for each controller node available on that network:
    
   - **KubeAPI VIP** (e.g., 192.168.0.40/32)
@@ -47,24 +47,31 @@ Prerequisites
   
   - KubeAPI VIP: 192.168.0.40/32
   - Netris Controller VIP: 192.168.0.50/32
-  
+
+.. warning::
+
+   **Stable node IP addresses.** Assign each controller node a fixed IP address — statically on the node (recommended) or by DHCP reservation. K3S and the cluster overlay network bind to the node addresses present during installation, and the cluster does not recover on its own if those addresses change.
+
+   For example, a node whose default route is reached through a dynamically addressed interface builds the cluster overlay on that address. After a reboot or a power outage, the interface comes up with a different address and the Kubernetes cluster breaks.
 
 
-3. **Default Gateway** configured on each server. If no default route exists, add a dummy route or black-hole route to satisfy K3s requirements.
+3. **Default Gateway** configured on each server. If no default route exists, add a dummy route or black-hole route to satisfy K3S requirements.
 4. **Air-Gapped Artifacts**. You have the complete set of binaries, container images, Helm charts, CRDs, and manifests in the ``netris-controller-ha/`` folder.
-5. **Firewall Rules:** The following ports **must be open between all three nodes** to ensure proper K3s cluster functionality:
+5. **Firewall Rules:** The following ports **must be open between all three nodes** to ensure proper K3S cluster functionality:
 
   +----------+------------+--------------------------------------------------+
   | Protocol | Port       | Description                                      |
   +==========+============+==================================================+
   | TCP      | 2379-2380  | Required only for HA with embedded etcd          |
   +----------+------------+--------------------------------------------------+
-  | TCP      | 6443       | K3s supervisor and Kubernetes API Server         |
+  | TCP      | 6443       | K3S supervisor and Kubernetes API Server         |
   +----------+------------+--------------------------------------------------+
   | UDP      | 8472       | Required only for Flannel VXLAN                  |
   +----------+------------+--------------------------------------------------+
   | TCP      | 10250      | Kubelet metrics                                  |
   +----------+------------+--------------------------------------------------+
+
+6. **Root privileges.** Run these procedures as root or as a user with root privileges. I.e., add ``username ALL=(ALL:ALL) ALL`` to your ``sudoers`` file.
 
 .. warning::
    **CPU AVX Instruction Support Required:** MongoDB requires CPUs with AVX instruction set support. This is commonly missing in virtualized environments (KVM/Proxmox/VMware VMs). Check AVX support before installation:
@@ -73,14 +80,14 @@ Prerequisites
    
       cat /proc/cpuinfo | grep avx
    
-   If no output is returned, enable AVX support before proceeding.
+   If it returns no output, enable AVX support before proceeding.
 
 
 
 Obtain the Installation File
 ----------------------------
 
-Contact `Netris <https://www.netris.io/demo/>`_ to acquire the air-gapped installation package, named **netris-controller-ha-v4.x.x.tar.gz**. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.
+Contact `Netris <https://www.netris.io/demo/>`_ to acquire the air-gapped installation package, named **netris-controller-ha-v4.x.x.tar.gz**. This package contains everything you need for an HA deployment of Netris Controller on K3S without internet connectivity.
 
 
 
@@ -94,7 +101,7 @@ Steps to Install
 1.1 Transfer the File to the Servers
 """"""""""""""""""""""""""""""""""""
 
-Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your **three** target nodes running Ubuntu 24.04 or RHEL 9.8.
+Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all **three** target nodes running Ubuntu 24.04 or RHEL 9.8.
 
 
 1.2 Extract the Tarball
@@ -112,7 +119,7 @@ This will create a folder containing all necessary scripts, binaries, images, He
 1.3 Navigate to the Installation Directory
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-On **all three nodes** change the directory to the extracted folder. For example:
+On **all three nodes,** change the directory to the extracted folder. For example:
 
 .. code-block:: shell
 
@@ -121,10 +128,10 @@ On **all three nodes** change the directory to the extracted folder. For example
 All subsequent steps in this guide assume you're working from within this netris-controller-ha-v4.x.x/ directory.
 
 
-2. Install K3s on All Nodes
+2. Install K3S on All Nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.1 Load K3s Binaries and Images
+2.1 Load K3S Binaries and Images
 """"""""""""""""""""""""""""""""""""
 
 On **all three nodes**, run the following commands to prepare a local K3s installation:
@@ -232,7 +239,7 @@ On **all three nodes**, import container images:
   vim kube-vip.yaml
 
 
-2. Scroll to the bottom, you will see the ``address`` and ``vip_interface`` variables. Edit them:
+2. Scroll to the bottom; you will see the ``address`` and ``vip_interface`` variables. Edit them:
   
   - ``address``: replace ``192.168.0.40`` with your KubeAPI VIP.
   - ``vip_interface``: specify your network interface where 192.168.0.1 is located. (e.g., ``bond0``).
@@ -259,11 +266,11 @@ On **all three nodes**, import container images:
   ping 192.168.0.40
 
 
-5. Add Helm Chart Packages to K3s
+5. Add Helm Chart Packages to K3S
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-Copy your Helm charts to the K3s static files directory on **all three nodes**:
+Copy your Helm charts to the K3S static files directory on **all three nodes**:
 
 .. code-block:: shell
 
@@ -273,7 +280,7 @@ Copy your Helm charts to the K3s static files directory on **all three nodes**:
 You can now perform kubectl or helm commands from any node or a remote machine (after adjusting kubeconfig to point to the VIP).
 
 
-6. Verify and Scale Core K3s Components
+6. Verify and Scale Core K3S Components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Check the pods in the cluster:
@@ -359,11 +366,11 @@ It should show EXTERNAL-IP as 192.168.0.50.
 9. Deploy North-South controller VIP (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. tip:: The North-South VIP is optional and can be configured at a later stage. The North-South VIP is typically used to provide access to the Netris API and for :doc:`ZTP functionality </installation/ztp>` for endpoints connected to the North-South fabric.
+.. tip:: The North-South VIP is optional and can be configured later. The North-South VIP typically provides access to the Netris API and :doc:`ZTP functionality </installation/ztp>` for endpoints connected to the North-South fabric.
 
-1. Set vip_interface in manifests/kube-vip-ns.yaml (North-South NIC name)
+1. Set vip_interface in ``manifests/kube-vip-ns.yaml`` (North-South NIC name)
 
-2. Apply
+2. On the **first node only**, apply
 
 .. code-block:: shell
 
@@ -377,7 +384,7 @@ It should show EXTERNAL-IP as 192.168.0.50.
   
   kubectl apply -f manifests/kube-vip-ns-cloud-controller.yaml
 
-5. Apply North-South traefik service manifest
+5. Apply North-South Traefik service manifest
 
 .. code-block:: shell
   
@@ -441,7 +448,7 @@ Wait until all pods are ready and in a running or completed state.
 10.2 Install Netris Controller
 """"""""""""""""""""""""""""""
 
-1. **HelmChart** manifest:
+1. **Helm chart** manifest:
 
 .. code-block:: shell
 
@@ -458,71 +465,70 @@ Wait until all pods are ready and in a running or completed state.
 
 Look for multiple pods in Running and Completed states (e.g., mariadb, mongodb, redis, web-service, "initdb" jobs, etc.).
 
+.. dropdown:: Expected output
 
-Expected output:
+  .. code-block:: shell
 
-.. code-block:: shell
-
-  NAME                                                              READY   STATUS      RESTARTS   AGE
-  helm-install-netris-controller-ha-mariadb-operator-sgcn9          0/1     Completed   0          4m45s
-  helm-install-netris-controller-ha-r7brz                           0/1     Completed   0          116s
-  netris-controller-ha-equinix-metal-agent-74fc8647b5-6wcck         1/1     Running     0          110s
-  netris-controller-ha-graphite-0                                   1/1     Running     0          112s
-  netris-controller-ha-graphite-1                                   1/1     Running     0          99s
-  netris-controller-ha-graphite-2                                   1/1     Running     0          85s
-  netris-controller-ha-grpc-5f88c9649b-b6csb                        1/1     Running     0          106s
-  netris-controller-ha-grpc-5f88c9649b-jrvbl                        1/1     Running     0          108s
-  netris-controller-ha-grpc-5f88c9649b-pdzdw                        1/1     Running     0          106s
-  netris-controller-ha-mariadb-0                                    1/1     Running     0          82s
-  netris-controller-ha-mariadb-1                                    1/1     Running     0          82s
-  netris-controller-ha-mariadb-2                                    1/1     Running     0          82s
-  netris-controller-ha-mariadb-ha-0                                 1/1     Running     0          111s
-  netris-controller-ha-mariadb-ha-1                                 1/1     Running     0          109s
-  netris-controller-ha-mariadb-ha-2                                 1/1     Running     0          109s
-  netris-controller-ha-mariadb-operator-6d49f86bd6-dlf6j            1/1     Running     0          4m43s
-  netris-controller-ha-mariadb-operator-6d49f86bd6-gqz45            1/1     Running     0          4m43s
-  netris-controller-ha-mariadb-operator-6d49f86bd6-lqjhx            1/1     Running     0          4m44s
-  netris-controller-ha-mariadb-operator-cert-controller-79c42dcqh   1/1     Running     0          4m42s
-  netris-controller-ha-mariadb-operator-cert-controller-79c44v4tv   1/1     Running     0          4m44s
-  netris-controller-ha-mariadb-operator-cert-controller-79c4q9l2g   1/1     Running     0          4m42s
-  netris-controller-ha-mariadb-operator-webhook-9b6dcd979-2jtr6     1/1     Running     0          4m43s
-  netris-controller-ha-mariadb-operator-webhook-9b6dcd979-56pxp     1/1     Running     0          4m44s
-  netris-controller-ha-mariadb-operator-webhook-9b6dcd979-cz5cs     1/1     Running     0          4m43s
-  netris-controller-ha-mongodb-0                                    1/1     Running     0          112s
-  netris-controller-ha-mongodb-1                                    1/1     Running     0          96s
-  netris-controller-ha-mongodb-2                                    1/1     Running     0          81s
-  netris-controller-ha-phoenixnap-bmc-agent-64c75f8598-hjvzj        1/1     Running     0          113s
-  netris-controller-ha-redis-node-0                                 2/2     Running     0          112s
-  netris-controller-ha-redis-node-1                                 2/2     Running     0          86s
-  netris-controller-ha-redis-node-2                                 2/2     Running     0          57s
-  netris-controller-ha-smtp-5f789dbb58-xr4cx                        1/1     Running     0          111s
-  netris-controller-ha-telescope-7696d94694-qrszj                   1/1     Running     0          112s
-  netris-controller-ha-telescope-notifier-7b59777b8-wp89p           1/1     Running     0          107s
-  netris-controller-ha-web-service-backend-67999c5699-bdcp8         1/1     Running     0          111s
-  netris-controller-ha-web-service-backend-67999c5699-gbwr4         1/1     Running     0          107s
-  netris-controller-ha-web-service-backend-67999c5699-h5hgb         1/1     Running     0          107s
-  netris-controller-ha-web-service-frontend-74d978fd67-9ptvj        1/1     Running     0          108s
-  netris-controller-ha-web-service-frontend-74d978fd67-dtbpn        1/1     Running     0          105s
-  netris-controller-ha-web-service-frontend-74d978fd67-jnbqr        1/1     Running     0          105s
-  netris-controller-ha-web-session-generator-fc4c64597-dlssj        1/1     Running     0          108s
-  netris-controller-ha-web-session-generator-fc4c64597-g2ghs        1/1     Running     0          113s
-  netris-controller-ha-web-session-generator-fc4c64597-rbf2s        1/1     Running     0          109s
-  netris-controller-initdb-00-xcaas-ssbtq                           0/1     Completed   0          78s
-  netris-controller-initdb-01-tenants-crjzg                         0/1     Completed   0          73s
-  netris-controller-initdb-01-users-79phr                           0/1     Completed   0          68s
-  netris-controller-initdb-02-permissions-sxhj4                     0/1     Completed   0          63s
-  netris-controller-initdb-02-port-5m9kg                            0/1     Completed   0          63s
-  netris-controller-initdb-02-vpc-j65lp                             0/1     Completed   0          63s
-  netris-controller-initdb-03-global-settings-2d5lk                 0/1     Completed   0          63s
-  netris-controller-initdb-04-currency-srpwl                        0/1     Completed   0          63s
-  netris-controller-initdb-04-whitelist-mmtsj                       0/1     Completed   0          63s
-  netris-controller-initdb-05-auth-schemes-fqrxf                    0/1     Completed   0          63s
-  netris-controller-initdb-05-supported-platforms-wfht4             0/1     Completed   0          63s
-  netris-controller-initdb-06-mon-thresholds-z4pw8                  0/1     Completed   0          63s
-  netris-controller-initdb-06-nos-list-cdhwj                        0/1     Completed   0          63s
-  netris-controller-initdb-07-inventory-profiles-9hkgp              0/1     Completed   0          63s
-  netris-controller-initdb-07-vpn-scores-sgv6n                      0/1     Completed   0          63s
-  netris-controller-initdb-09-dhcp-option-set-jq7wl                 0/1     Completed   0          58s
+      NAME                                                              READY   STATUS      RESTARTS   AGE
+      helm-install-netris-controller-ha-mariadb-operator-sgcn9          0/1     Completed   0          4m45s
+      helm-install-netris-controller-ha-r7brz                           0/1     Completed   0          116s
+      netris-controller-ha-equinix-metal-agent-74fc8647b5-6wcck         1/1     Running     0          110s
+      netris-controller-ha-graphite-0                                   1/1     Running     0          112s
+      netris-controller-ha-graphite-1                                   1/1     Running     0          99s
+      netris-controller-ha-graphite-2                                   1/1     Running     0          85s
+      netris-controller-ha-grpc-5f88c9649b-b6csb                        1/1     Running     0          106s
+      netris-controller-ha-grpc-5f88c9649b-jrvbl                        1/1     Running     0          108s
+      netris-controller-ha-grpc-5f88c9649b-pdzdw                        1/1     Running     0          106s
+      netris-controller-ha-mariadb-0                                    1/1     Running     0          82s
+      netris-controller-ha-mariadb-1                                    1/1     Running     0          82s
+      netris-controller-ha-mariadb-2                                    1/1     Running     0          82s
+      netris-controller-ha-mariadb-ha-0                                 1/1     Running     0          111s
+      netris-controller-ha-mariadb-ha-1                                 1/1     Running     0          109s
+      netris-controller-ha-mariadb-ha-2                                 1/1     Running     0          109s
+      netris-controller-ha-mariadb-operator-6d49f86bd6-dlf6j            1/1     Running     0          4m43s
+      netris-controller-ha-mariadb-operator-6d49f86bd6-gqz45            1/1     Running     0          4m43s
+      netris-controller-ha-mariadb-operator-6d49f86bd6-lqjhx            1/1     Running     0          4m44s
+      netris-controller-ha-mariadb-operator-cert-controller-79c42dcqh   1/1     Running     0          4m42s
+      netris-controller-ha-mariadb-operator-cert-controller-79c44v4tv   1/1     Running     0          4m44s
+      netris-controller-ha-mariadb-operator-cert-controller-79c4q9l2g   1/1     Running     0          4m42s
+      netris-controller-ha-mariadb-operator-webhook-9b6dcd979-2jtr6     1/1     Running     0          4m43s
+      netris-controller-ha-mariadb-operator-webhook-9b6dcd979-56pxp     1/1     Running     0          4m44s
+      netris-controller-ha-mariadb-operator-webhook-9b6dcd979-cz5cs     1/1     Running     0          4m43s
+      netris-controller-ha-mongodb-0                                    1/1     Running     0          112s
+      netris-controller-ha-mongodb-1                                    1/1     Running     0          96s
+      netris-controller-ha-mongodb-2                                    1/1     Running     0          81s
+      netris-controller-ha-phoenixnap-bmc-agent-64c75f8598-hjvzj        1/1     Running     0          113s
+      netris-controller-ha-redis-node-0                                 2/2     Running     0          112s
+      netris-controller-ha-redis-node-1                                 2/2     Running     0          86s
+      netris-controller-ha-redis-node-2                                 2/2     Running     0          57s
+      netris-controller-ha-smtp-5f789dbb58-xr4cx                        1/1     Running     0          111s
+      netris-controller-ha-telescope-7696d94694-qrszj                   1/1     Running     0          112s
+      netris-controller-ha-telescope-notifier-7b59777b8-wp89p           1/1     Running     0          107s
+      netris-controller-ha-web-service-backend-67999c5699-bdcp8         1/1     Running     0          111s
+      netris-controller-ha-web-service-backend-67999c5699-gbwr4         1/1     Running     0          107s
+      netris-controller-ha-web-service-backend-67999c5699-h5hgb         1/1     Running     0          107s
+      netris-controller-ha-web-service-frontend-74d978fd67-9ptvj        1/1     Running     0          108s
+      netris-controller-ha-web-service-frontend-74d978fd67-dtbpn        1/1     Running     0          105s
+      netris-controller-ha-web-service-frontend-74d978fd67-jnbqr        1/1     Running     0          105s
+      netris-controller-ha-web-session-generator-fc4c64597-dlssj        1/1     Running     0          108s
+      netris-controller-ha-web-session-generator-fc4c64597-g2ghs        1/1     Running     0          113s
+      netris-controller-ha-web-session-generator-fc4c64597-rbf2s        1/1     Running     0          109s
+      netris-controller-initdb-00-xcaas-ssbtq                           0/1     Completed   0          78s
+      netris-controller-initdb-01-tenants-crjzg                         0/1     Completed   0          73s
+      netris-controller-initdb-01-users-79phr                           0/1     Completed   0          68s
+      netris-controller-initdb-02-permissions-sxhj4                     0/1     Completed   0          63s
+      netris-controller-initdb-02-port-5m9kg                            0/1     Completed   0          63s
+      netris-controller-initdb-02-vpc-j65lp                             0/1     Completed   0          63s
+      netris-controller-initdb-03-global-settings-2d5lk                 0/1     Completed   0          63s
+      netris-controller-initdb-04-currency-srpwl                        0/1     Completed   0          63s
+      netris-controller-initdb-04-whitelist-mmtsj                       0/1     Completed   0          63s
+      netris-controller-initdb-05-auth-schemes-fqrxf                    0/1     Completed   0          63s
+      netris-controller-initdb-05-supported-platforms-wfht4             0/1     Completed   0          63s
+      netris-controller-initdb-06-mon-thresholds-z4pw8                  0/1     Completed   0          63s
+      netris-controller-initdb-06-nos-list-cdhwj                        0/1     Completed   0          63s
+      netris-controller-initdb-07-inventory-profiles-9hkgp              0/1     Completed   0          63s
+      netris-controller-initdb-07-vpn-scores-sgv6n                      0/1     Completed   0          63s
+      netris-controller-initdb-09-dhcp-option-set-jq7wl                 0/1     Completed   0          58s
 
 
 .. _install-local-repo:
@@ -530,7 +536,7 @@ Expected output:
 11. Set Up the Local Netris Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices do not have direct access to the internet. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository
+The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices don't have direct internet access. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository
 
 1. Deploy local repo manifests:
 
@@ -560,7 +566,7 @@ The Netris Local Repository is essential for environments where switches, softga
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Access the Netris Controller** via https://192.168.0.50 (or your assigned FQDN).
-- **Confirm all services** (web service, GRPC, Redis, DBs) are Running:
+- **Confirm all services** (web service, GRPC, Redis, DBs) are running:
 
 .. code-block:: shell
 
@@ -578,7 +584,7 @@ The Netris Local Repository is essential for environments where switches, softga
 All nodes should be Ready; all pods should be Running or Completed.
 
 
-**Congratulations!** You have successfully deployed a **highly available, air-gapped** Netris Controller on a three-node K3s cluster.
+**Congratulations!** You have successfully deployed a **highly available, air-gapped** Netris Controller on a three-node K3S cluster.
 
 
 After Installation
@@ -586,519 +592,34 @@ After Installation
 
 The air-gapped Netris Controller also includes a local repository/registry. This repository provides all the necessary packages and images for installing various types of Netris agents.
 
-Enable the Local repository in the Netris Controller Web UI under **Settings** section (as shown in the screenshots below).
+Enable the Local repository in the Netris Controller Web UI under the **Settings** section (as shown in the screenshots below).
 
 .. image:: ../images/global-setting-local-repo.png
     :align: center
 
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Local Repository toggle in Settings → General</em></p>
+
 .. image:: ../images/global-setting-local-repo-save.png
     :align: center
 
+.. raw:: html
 
-How to consume local repository
--------------------------------
-
-Once the local repository function is enabled in the Netris Controller Settings, the Netris agent installation oneliner will automatically point to the local repository (as shown in the screenshots below).
-
+   <p style="text-align: center;"><em>Figure: Saving the Local Repository setting</em></p>
 
 .. image:: ../images/one-liner-with-local-repo.png
     :align: center
 
+.. raw:: html
 
----
+   <p style="text-align: center;"><em>Figure: Agent installation one-liner pointing to the local repository</em></p>
 
-For any issues or additional assistance, please contact Netris Support.
+For issues or additional assistance, contact Netris Support.
 
 
-.. _k3s-ha-upgrade:
+See also
+--------
 
-Upgrading HA Netris Controller in Air-Gapped Environments
-=========================================================
-
-Obtain the Upgrade File
-----------------------------
-
-Contact `Netris <https://www.netris.io/demo/>`_ to acquire the air-gapped upgrade package, named **netris-controller-ha-v4.x.x.tar.gz**. This package contains everything you need for an HA deployment of Netris Controller on K3s, without internet connectivity.
-
-
-
-1. Preparing Each Node
----------------------------
-
-1.1 Transfer the File to the Servers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Use a secure copy method (e.g., SCP, USB drive) to move the netris-controller-ha-v4.x.x.tar.gz file to all your **three** nodes.
-
-
-1.2 Extract the Tarball
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Once the file is on the servers, extract its contents:
-
-.. code-block:: shell
-
-  tar -xzvf netris-controller-ha-v4.x.x.tar.gz
-
-This will create a folder containing all necessary scripts, binaries, images, Helm charts, CRDs, and manifests.
-
-
-1.3 Navigate to the Installation Directory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-On **all three nodes** change the directory to the extracted folder. For example:
-
-.. code-block:: shell
-
-  cd netris-controller-ha-v4.x.x
-
-All subsequent steps in this guide assume you're working from within this netris-controller-ha-v4.x.x/ directory.
-
-
-
-2. Steps to Upgrade Controller
--------------------------------
-
-*If you're only upgrading the Local Netris Repository, you can skip this section and go directly to* :ref:`Section 3<local-repo-k3s-ha-upgrade>`
-
-2.1 Import Necessary Container Images
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-On **all three nodes**, import container images:
-
-
-1. Decompress the images archive:
-
-.. code-block:: shell
-
-  gunzip -f images.tar.gz
-
-
-2. Import them:
-
-.. code-block:: shell
-
-  sudo ctr images import images.tar
-
-2.2 Add Helm Chart Packages Upgrades to K3s
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Copy your Helm charts to the K3s static files directory on **all three nodes**:
-
-.. code-block:: shell
-
-  sudo cp files/charts/* /var/lib/rancher/k3s/server/static/charts/
-
-
-2.3 Database backup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To take database snapshot run the following command on the **first node**:
-
-.. code-block:: shell
-
-  kubectl -n netris-controller exec -it netris-controller-ha-mariadb-ha-0 -- bash -c 'mysqldump -h netris-controller-ha-mariadb -u netris -pchangeme netris' > db-snapshot-$(date +%Y-%m-%d-%H-%M-%S).sql
-
-
-2.4 Upgrade Netris Controller
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-On the **first node** only:
-
-.. warning::
-   **Upgrading to v4.6.1?** Do not follow the manual steps below. Instead, use the automated upgrade script included in the package, which handles MariaDB cluster re-creation, database backup/restore, and MongoDB data migration automatically:
-
-   .. code-block:: shell
-
-      ./update-v4.6.1.sh
-
-   The script will verify versions, prompt for confirmation, and guide you through the full upgrade. Once it completes successfully, proceed to step 3 to verify the result.
-
-1. Upgrade the **HelmChart** manifest:
-
-.. code-block:: shell
-
-  ./netris upgrade
-
-
-2. Wait 2-4 minutes for all pods to upgraded.
-
-3. Check:
-
-.. code-block:: shell
-
-  kubectl get pods -n netris-controller
-
-Look for multiple pods in Running and Completed states.
-
-
-.. _local-repo-k3s-ha-upgrade:
-
-3. Steps to Upgrade the Local Netris Repository
------------------------------------------------
-
-On **all three nodes**, copy the repository files into the Persistent Volume:
-
-.. code-block:: shell
-
-  export PVC_PATH=$(kubectl get pv $(kubectl get pvc staticsite-$(kubectl -nnetris-controller get pod -l app.kubernetes.io/instance=netris-local-repo --field-selector spec.nodeName=$(hostname | tr '[:upper:]' '[:lower:]') --no-headers -o custom-columns=":metadata.name") -n netris-controller -o jsonpath="{.spec.volumeName}") -o jsonpath="{.spec.local.path}")
-
-  sudo cp -r files/repo ${PVC_PATH}
-
-
-
-**Congratulations!** You have successfully upgraded your **highly available, air-gapped** Netris Controller.
-
-
-Maintenance Procedures
-=======================
-
-Proper maintenance procedures are critical for ensuring the continued stability and availability of your Netris Controller HA deployment. Improper shutdown or maintenance sequences can lead to database cluster inconsistencies, particularly with MariaDB, potentially resulting in service disruptions or data corruption.
-
-Node Maintenance Best Practices
---------------------------------
-
-Individual Node Maintenance (Recommended Approach)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The safest approach is to perform maintenance on one node at a time, keeping the cluster operational throughout the process:
-
-1. **Identify the primary MariaDB node before starting maintenance**:
-
-   .. code-block:: bash
-
-      kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
-
-   Note the PRIMARY column output (e.g., ``netris-controller-ha-mariadb-ha-0``)
-
-2. **Find which physical node is hosting the primary MariaDB**:
-
-   .. code-block:: bash
-
-      kubectl -nnetris-controller get pod netris-controller-ha-mariadb-ha-0 -o wide
-
-   Note the NODE column (e.g., ``ctl-ha-node1``)
-
-3. **Plan your maintenance order**:
-
-   - Start with nodes NOT hosting the primary MariaDB
-   - Leave the node hosting the primary MariaDB for last
-
-4. **For each non-primary node**:
-
-   a. **Cordon the node** to prevent new pods from being scheduled:
-
-      .. code-block:: bash
-
-         kubectl cordon <node-name>
-
-   b. **Drain the node** safely to relocate all running pods:
-
-      .. code-block:: bash
-
-         kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data
-
-   c. **Verify pods have been relocated**:
-
-      .. code-block:: bash
-
-         kubectl get pods -A -o wide | grep <node-name>
-   
-   d. **Perform maintenance** on the node (updates, reboots, etc.)
-   
-   e. **Bring the node back online**
-   
-   f. **Verify node is ready**:
-
-      .. code-block:: bash
-
-         kubectl get nodes
-   
-   g. **Uncordon the node**:
-
-      .. code-block:: bash
-
-         kubectl uncordon <node-name>
-   
-   h. **Verify cluster health before proceeding to the next node**:
-
-      .. code-block:: bash
-
-         kubectl get pods -n netris-controller
-         kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
-
-5. **For the node hosting the primary MariaDB**:
-   
-   a. **Double-check it's still hosting the primary** (as failover might have occurred):
-
-      .. code-block:: bash
-
-         kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
-         kubectl -nnetris-controller get pod <primary-pod-name> -o wide
-   
-   b. Follow the same cordon, drain, maintenance, and uncordon steps as above
-
-Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you need to shut down multiple nodes simultaneously:
-
-1. **Identify the primary MariaDB node**:
-
-   .. code-block:: bash
-
-      kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
-
-   Note the PRIMARY column output (e.g., ``netris-controller-ha-mariadb-ha-0``)
-
-2. **Find which physical nodes are hosting each MariaDB instance**:
-
-   .. code-block:: bash
-
-      kubectl -nnetris-controller get pod -l app.kubernetes.io/name=mariadb -o wide
-
-3. **Safe node shutdown sequence**:
-
-   a. **Shutdown secondary/replica nodes first**:
-
-      .. code-block:: bash
-
-         # For each non-primary node
-         kubectl cordon <non-primary-node>
-         kubectl drain <non-primary-node> --ignore-daemonsets --delete-emptydir-data
-         # Wait at least 1 minute before shutting down or proceeding to next node
-         sudo shutdown -h now  # Only on the drained node
-
-   b. **Shutdown the primary node last**:
-
-      .. code-block:: bash
-
-         kubectl cordon <primary-node>
-         kubectl drain <primary-node> --ignore-daemonsets --delete-emptydir-data
-         sudo shutdown -h now  # Only on the primary node
-
-4. **Safe node startup sequence**:
-
-   a. **Start the node that was hosting the primary MariaDB first**
-   
-   b. **Wait until it's fully online** (check with ``kubectl get nodes``)
-   
-   c. **Start the remaining nodes** one by one with at least 2 minutes between each
-   
-   d. **Uncordon each node after it's online**:
-
-      .. code-block:: bash
-
-         kubectl uncordon <node-name>
-
-5. **Verify cluster health**:
-
-   .. code-block:: bash
-
-      kubectl get nodes
-      kubectl -n netris-controller get pods
-      kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
-
-
-6. **Rebalance pods across all nodes**:
-
-   After all nodes are back online and uncordoned, restart all deployments to ensure even pod distribution:
-
-   .. code-block:: bash
-      
-      # This will restart all deployments in netris-controller namespace
-      kubectl -nnetris-controller rollout restart deployment
-
-   Wait for all pods to restart and reach Running state:
-
-   .. code-block:: bash
-   
-      kubectl -nnetris-controller get pods
-
-   Verify that pods are now distributed evenly across all nodes:
-
-   .. code-block:: bash
-   
-      kubectl -nnetris-controller get pods -o wide
-
-Verifying MariaDB Cluster Health
-----------------------------------
-
-After maintenance, verify the MariaDB cluster is healthy:
-
-1. **Check MaxScale status**:
-
-   .. code-block:: bash
-
-      kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb
-
-   The STATUS should show ``Running`` and a PRIMARY should be identified
-
-2. **Verify all MariaDB pods are running**:
-
-   .. code-block:: bash
-
-      kubectl -n netris-controller get pods -l app.kubernetes.io/name=mariadb
-
-3. **If issues are detected**, check the operator logs:
-
-   .. code-block:: bash
-
-      kubectl -n netris-controller logs -l app.kubernetes.io/name=mariadb-operator
-
-Maintenance Best Practices
-----------------------------
-
-1. **Always perform one-node-at-a-time maintenance** when possible
-2. **Never simply power off nodes** without properly cordoning and draining
-3. **Always shut down secondary/replica database nodes before the primary**
-4. **Always start the primary node first** when bringing the system back online
-5. **Verify cluster health after each node** completes maintenance
-6. **Rebalance your workloads** by restarting deployments after all maintenance is complete
-7. **Schedule maintenance during low-usage periods**
-8. **Create a backup before maintenance**
-9. **Document all maintenance activities** in a maintenance log
-
-MariaDB automatic backups: locate, verify, and restore
-======================================================
-
-The Netris Controller automatically creates MariaDB backups every 12 hours.
-
-These backups are stored locally on each controller node.
-
-.. warning::
-
-   Because backups are stored on local disks, copy them to an external and secure
-   location such as object storage, NFS, or a backup server for disaster recovery.
-
-Locate the backup directory on each controller node
----------------------------------------------------
-
-Each controller node stores a MariaDB backup locally.
-
-Run the following command locally on each controller node. It detects and exports
-the backup directory path for the current node only:
-
-.. code-block:: bash
-
-   export BACKUP_PATH=$(kubectl get pv -o jsonpath='{range .items[*]}{.metadata.name}{"|"}{.spec.nodeAffinity.required.nodeSelectorTerms[0].matchExpressions[0].values[0]}{"|"}{.spec.local.path}{"\n"}{end}' \
-   | grep netris-controller-ha-mariadb-backup \
-   | grep "|$(hostname | tr '[:upper:]' '[:lower:]')|" \
-   | cut -d'|' -f3)
-
-Example:
-
-.. code-block:: bash
-
-   ubuntu@ctl-ha-node1:~$ sudo ls -al $BACKUP_PATH
-   total 296
-   drwxrwsrwx 2 root  999   4096 Feb  3 07:40 .
-   drwx------ 9 root root   4096 Feb  3 07:40 ..
-   -rw-r--r-- 1 lxd   999     39 Feb  3 07:40 0-backup-target.txt
-   -rw-r--r-- 1 lxd   999 289736 Feb  3 07:40 backup.2026-02-03T07:40:03Z.sql
-
-Copy the backup file to your home directory
--------------------------------------------
-
-Choose the required backup file and copy it to your home directory:
-
-.. code-block:: bash
-
-   sudo cp $BACKUP_PATH/backup.2026-02-03T07:40:03Z.sql ~/backup.sql
-
-Verify the backup file integrity
---------------------------------
-
-Before restoring a backup, verify that the dump completed successfully.
-
-The last line of the dump file must contain:
-
-.. code-block:: text
-
-   -- Dump completed on <date>
-
-Check the last line by running:
-
-.. code-block:: bash
-
-   tail ~/backup.sql
-
-Example output:
-
-.. code-block:: bash
-
-   -- Dump completed on 2026-02-03  7:40:03
-
-.. caution::
-
-   If this line is missing, do not restore from this backup.
-
-Verify MariaDB cluster readiness before restore
------------------------------------------------
-
-Before restoring, confirm that the MariaDB cluster is in the ``READY`` state:
-
-.. code-block:: bash
-
-   kubectl -n netris-controller get maxscale netris-controller-ha-mariadb
-
-Expected output:
-
-.. code-block:: bash
-
-   NAME                           READY   STATUS    PRIMARY                             AGE
-   netris-controller-ha-mariadb   True    Running   netris-controller-ha-mariadb-ha-0   66m
-
-Proceed only if ``READY`` is ``True``.
-
-Copy the backup file into a MariaDB pod
----------------------------------------
-
-Copy the backup file into one of the MariaDB pods:
-
-.. code-block:: bash
-
-   kubectl -n netris-controller cp ~/backup.sql \
-     netris-controller-ha-mariadb-ha-0:/tmp/backup.sql
-
-No output is expected.
-
-Restore the backup
-------------------
-
-Run the restore command inside the MariaDB pod:
-
-.. code-block:: bash
-
-   kubectl -n netris-controller exec -it netris-controller-ha-mariadb-ha-0 -- \
-     bash -c 'mysql -h netris-controller-ha-mariadb -u netris -pchangeme netris < /tmp/backup.sql'
-
-No output is expected if the restore completes successfully.
-
-Take a manual backup
---------------------
-
-To create a MariaDB backup manually at any time, run:
-
-.. code-block:: bash
-
-   kubectl -n netris-controller exec -it netris-controller-ha-mariadb-ha-0 -- \
-     bash -c 'mysqldump -h netris-controller-ha-mariadb -u netris -pchangeme netris' \
-     > db-snapshot-$(date +%Y-%m-%d-%H-%M-%S).sql
-
-Summary
--------
-
-* MariaDB backups are created automatically every 12 hours.
-* Backups are stored locally on each controller node.
-* Copy backups to external storage for disaster recovery.
-* Verify backup integrity before restoring.
-* Restore only when the MariaDB cluster is in the ``READY`` state.
-
-**For serious database issues**, contact Netris support with:
-
-- Output of ``kubectl -nnetris-controller get maxscale netris-controller-ha-mariadb -o yaml``
-- Logs from MariaDB pods and operator
-
-
-By following these maintenance procedures, you can significantly reduce the risk of database inconsistencies and service disruptions during and after maintenance operations.
+- :doc:`controller-ha-upgrade`
+- :doc:`controller-maintenance-backups`

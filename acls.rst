@@ -11,6 +11,9 @@ Access Control Lists (ACL)
    :local:
    :depth: 3
 
+Overview
+========
+
 Netris supports ACL-based network access control on managed switch fabrics. Each entry you configure — an ACL entry — matches traffic by source and destination IP address, port or port range, and protocol, and applies a Permit or Deny action.
 
 .. image:: images/acl-main-view.png
@@ -45,6 +48,19 @@ If either the source or destination network is outside the selected VPC, the ACL
 If both source and destination networks resolve to the selected VPC, the ACL entry will be installed on an SVI (Switch Virtual Interface) closest to the source of the matching traffic.
 
 Netris fully supports using overlapping IP schemas in different VPCs. Because every SVI (a Layer-3 interface) belongs to exactly one VPC, two VPCs with overlapping or identical IP ranges never conflict, even if both have sources on the same physical switch: the route lookup happens in the VPC selected on the ACL entry, and the resulting entry always lands on an L3 interface belonging to that VPC.
+
+.. _acl-dnat-l4lb:
+
+ACL entries for DNAT and L4LB traffic
+-------------------------------------
+
+Netris evaluates ACL entries on SoftGate after destination translation. For inbound traffic that hits a DNAT rule or an L4LB frontend, write the ACL entry in the tenant's VPC and match on the translated, tenant-internal address — the DNAT target or the L4LB backend — not on the public global IP, and not in the System VPC (VPC-1).
+
+Example: to permit inbound Internet traffic to a server at 192.168.4.10 published through a DNAT rule on global IP 203.0.113.20, create the ACL entry in the tenant VPC with destination 192.168.4.10. The same entry written with destination 203.0.113.20 is accepted by the Controller but never matches traffic, whether its action is Permit or Deny.
+
+.. warning::
+
+   **Behavior change in Netris 4.6.0.** Netris 4.6.0 made the SoftGate General role XDP-accelerated, and the XDP dataplane evaluates ACL entries after destination translation. Before 4.6.0, an ACL entry matching the public, pre-translation address did take effect. Before upgrading SoftGates from a release earlier than 4.6.0, review every ACL entry written against a NAT global IP or an L4LB frontend address and recreate it in the tenant VPC against the translated address. A Deny entry left in the old form stops enforcing silently; a Permit entry left in the old form stops being the thing that admits the traffic.
 
 ACL Default Policy
 ====================

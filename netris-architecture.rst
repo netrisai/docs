@@ -48,6 +48,7 @@ The Netris Controller is the central operations point of a Netris deployment. En
 
 .. image:: images/netris_controller_diagram.png
     :align: center
+    :alt: High-level Netris architecture
     :class: with-shadow
 
 .. raw:: html
@@ -123,7 +124,7 @@ Netris is built on the following security design principles:
 
 * **Control Plane Independence:** Once configuration is applied, network devices enforce policies independently of the controller. Loss of the controller does not disrupt tenant traffic or compromise isolation.
 
-* **Hard isolation (enforced on networking hardware):** Tenant isolation is implemented through the underlying infrastructure hardware -- VRF, VXLAN, and ACLs in Ethernet fabrics; partition keys (PKeys) on NVIDIA Quantum InfiniBand; and NVLink GPU fabric partitions. Netris automates the provisioning of these mechanisms and does not rely on software overlays for tenant separation.
+* **Hard isolation (enforced on networking hardware):** Tenant isolation is implemented through the underlying infrastructure hardware — VRF, VXLAN, and ACLs in Ethernet fabrics; partition keys (PKeys) on NVIDIA Quantum InfiniBand; and NVLink GPU fabric partitions. Netris automates the provisioning of these mechanisms and does not rely on software overlays for tenant separation.
 
 * **Customer-Controlled Security Boundary:** Because the Netris Controller is deployed within the customer's environment, organizations retain full control over the security perimeter. Netris does not offer hosted control planes.
 

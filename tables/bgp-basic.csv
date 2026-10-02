@@ -1,14 +1,14 @@
-**Name**,User assigned name of BGP session.
+**Name**,User-assigned name of the BGP session.
 **Description**,Free description.
-**VPC**,Select the VPC to which the BGP session should belong.
-**Site**,Select the site (data center) where this BGP session should be terminated on.
-**BGP Router**,Define on which node the BGP session should be terminated.
-**Switch port**,"Switch Port where the physical cable to the BGP neighbor is connected (any port on the fabric). If terminating the BGP session on a V-Net (See Advanced>Connect via V-Net), this option is disabled and the switch port must be added to the V-Net rather than being selected here."
-**VLAN ID**,Optionally tag with a VLAN ID (usually untagged). Disabled if terminating the BGP session on a V-Net (See Advanced>Connect via V-Net option below).
-**Neighbor AS**,Autonomous System number of the remote side. (Local AS is defined in the Advanced section)
+**VPC**,VPC to which the BGP session belongs.
+**Site**,The :doc:`Site </site>` (data center) where this BGP session should be terminated.
+**BGP Router**,The Netris-managed node (switch or SoftGate) terminating the BGP session.
+**Switch port**,"Switch Port where the physical cable to the remote BGP neighbor is connected (any port on the fabric). If terminating the BGP session on a V-Net (see Advanced>Connect via V-Net), this option is disabled and the switch port must be added to the :doc:`V-Net </vnet>` rather than being selected here."
+**VLAN ID**,Optionally tag with a VLAN ID (usually untagged). Disabled if terminating the BGP session on a V-Net (see Advanced> Connect via V-Net option below).
+**Neighbor AS**,The remote side's Autonomous System number. (Local AS is defined in the Advanced section)
 **IP Family**,IPv4 or IPv6.
-**Local IP**,"BGP peering IP address on Netris controlled side. When terminating on a V-Net (Advanced > Connect via V-Net), this is the IP address of the dedicated SVI Netris creates in that V-Net for this BGP session."
+**Local IP**,"BGP peering IP address on the Netris-controlled side. When terminating on a V-Net (Advanced > Connect via V-Net), this is the IP address of the dedicated SVI Netris creates in that V-Net for this BGP session."
 **Remote IP**,BGP peering IP address on the remote end.
-**State**,Administrative state (Enabled/Disabled).
+**State**,Administrative State (Enabled/Disabled).
 **Labels**,Tags associated with the BGP session.
 **Advanced**,Advanced policy settings are described in the next section.

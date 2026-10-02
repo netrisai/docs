@@ -26,8 +26,8 @@ Enhancements
 - **NVIDIA UFM integration**. Improvements to the Netris-UFM plugin, including:
 
   - The plugin integration credentials are now preserved when upgrading the UFM plugin.
-  - You can now deploy additional UFM plugin instances by copying the ufm deployment folder and editing the deploy.yaml manifest.
-  - The Netris UFM plugin now keeps all of a host's InfiniBand HCAs in their assigned PKey. Previously, one or more adapters could disappear from the PKey after a host reboot, when UFM assigned duplicate module index values.
+  - You can now deploy additional UFM plugin instances by copying the ``ufm`` deployment folder and editing the ``deploy.yaml`` manifest.
+  - The Netris UFM plugin now keeps all of a host's InfiniBand HCAs in their assigned PKey. Previously, one or more adapters could disappear from the PKey after a host reboot, when UFM assigned duplicate module index values to adapters on the same host during rediscovery.
 
 - **Cumulus Linux 5.18.1 support**. Netris is now validated on Cumulus Linux 5.18.1.
 

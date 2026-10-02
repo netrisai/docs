@@ -14,7 +14,7 @@ Overview
 
 Traditionally, Software-Defined Networking (SDN) platforms have created virtual overlays on top of physical switch networks, operating with a control plane entirely separate from the switch fabric. These software-defined overlays lack hardware acceleration and cannot provide performance and security guarantees of hardware-level isolation.
 
-AI Cloud and AI Factory operators require
+AI Cloud and AI Factory operators require:
 
 - Bare metal servers to have tenant isolation enforced by the network hardware with no dependency on host agents or subinterfaces inside the server OS.
 - Virtual workloads (VMs, containers, Kubernetes pods) to coexist with bare metal servers in the same tenant VPC, using the same segmentation and security policies.
@@ -124,7 +124,7 @@ FRR running on the `mgmt-srv-01` node maintains EVPN BGP adjacencies with the di
 2. The packet hits the tenant's VXLAN bridge (`vxlan1000`) on node `mgmt-srv-01`. The node's Linux OS encapsulates the original packet as a payload into a VXLAN packet with destination IP 172.16.0.50 (`Leaf4` switch loopback IP), source IP 172.16.0.10 (node `mgmt-srv-01` loopback IP), and VNI 1000 in the outer header. Then, based on the routing table FRR installed on the node, the packet is sent out of one of the two server NICs (`eth9` or `eth10`, which are ECMP load balanced) connected to `Leaf1` and `Leaf2` switches.
 3. The receiving leaf switch (e.g., `Leaf2`) forwards the VXLAN packet to the spine and subsequently to the leaf switch connected to the bare metal node `gpu-node-10` (`Leaf4`) based on the 172.16.0.50 VXLAN packet destination IP address.
 4. The receiving leaf switch `Leaf4` decapsulates the payload from the VXLAN packet and sends the original IP packet directly to the bare metal server `gpu-node-10`.
-5. The bare metal server (g`pu-node-10`) receives the original packet destined to its IP 10.188.1.200, seeing the packet sourced from `Pod1` (IP: 10.188.1.10).
+5. The bare metal server (gpu-node-10) receives the original packet destined to its IP 10.188.1.200, seeing the packet sourced from `Pod1` (IP: 10.188.1.10).
 
 Conversely, when gpu-node-10 sends a packet to Pod1, the process happens in reverse order.
 
@@ -193,7 +193,7 @@ The management V-Net is for the systems administrator, the Netris Controller, an
 - The Netris agent's installation
 - The Netris agent's communication with the Netris controller.
 
-In this V-Net, you must
+In this V-Net, you must:
 
 - Include the switch ports (directly, using :ref:`labels <tags>`, or through :doc:`Server Cluster </server-cluster>`) to which the EVPN-on-Host candidate servers are connected in the North-South fabric as **untagged**.
 

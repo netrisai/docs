@@ -9,6 +9,9 @@ Link Aggregation (LAG)
    :local:
    :depth: 2
 
+Overview
+--------
+
 Link Aggregation (LAG), also known as link bundling, Ethernet/network/NIC bonding, or port teaming, is a method of combining (aggregating) multiple network connections in parallel to increase throughput beyond what a single connection could sustain and to provide redundancy in case one of the links fails.
 
 .. image:: images/lag_diagram.png
@@ -33,12 +36,14 @@ EVPN Multi-Homing (EVPN-MH) offers robust support for an all-active redundancy m
    :alt: EVPN-MH diagram
 
 
-**Note: Active Active Multi-homing is currently limited to:**
+.. note::
 
-* Switch OS Cumulus 5.3 or higher. 
-* Netris 4.0 or higher.
-* One port per switch (can be overcome in Custom LAG).
-* Only two switches in EVPN-MH domain with ASIC Spectrum A1.
+   **Active Active Multi-homing is currently limited to:**
+
+   * Switch OS Cumulus 5.3 or higher. 
+   * Netris 4.0 or higher.
+   * One port per switch (can be overcome in Custom LAG).
+   * Only two switches in EVPN-MH domain with ASIC Spectrum A1.
 
 When you add switch ports to a V-Net service, Netris agents automatically configure LAG and apply LACP with EVPN-MH and LACP fallback. If Active-Active Multi Homing is not supported on your hardware, Active-Standby LACP LAG will be configured. 
 

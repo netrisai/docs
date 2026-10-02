@@ -12,5 +12,5 @@
 **MAC address**,MAC address of the device; applicable to switches only (reserved for future use)
 **Preliminary port count**,Used for definition of topology. When the device registers with the controller the actual ports will synchronize with inventory
 **Initial Break Out**,Used for defining the breakout configuration of the front panel ports
-**EVPN Route Server**,Indicates if the switch is designated as an EVPN Route Server. See Inventory Profile documentation for more details.
+**EVPN Route Server**,Indicates if the switch is designated as an EVPN Route Server. See :doc:`Inventory Profiles </inventory-profile>` for more details.
 **Add Link**,Used for describing physical connections between switches and SoftGates

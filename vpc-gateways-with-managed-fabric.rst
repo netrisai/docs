@@ -2,6 +2,8 @@
 Getting Started with Switch-Fabric Manager & VPC
 ================================================
 
+This tutorial walks through the core building blocks of a Netris deployment, in order. Each item links to the relevant reference page.
+
 * :doc:`../introduction`
 * :doc:`../installation/controller-k3s-air-gap-ha`
 * :doc:`../site`
