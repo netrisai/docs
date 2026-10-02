@@ -24,7 +24,7 @@ The following diagram demonstrates the ZTP process.
 
   <br />
 
-When a new switch is powered on and connected to the management network, it sends a DHCP discover request on its eth0 (management) interface. The Netris ZTP DHCP server responds with the correct IP address and a link to download the appropriate NOS based on the switch's MAC address found in the discover request. The switch then downloads its NOS image from the Netris Controller local repository, installs it, and registers itself with the controller — all without operator intervention.
+When a new switch is powered on and connected to the management network, it sends a DHCP discover request on its eth0 (management) interface. The Netris ZTP DHCP server responds with the correct IP address and a link to download the appropriate NOS based on the switch's MAC address found in the discover request. The switch then downloads its NOS image from the Netris Controller local repository, installs it, and registers with the controller — all without operator intervention.
 
 Netris ZTP significantly reduces deployment time and eliminates manual configuration errors, especially in environments with many switches to provision.
 
@@ -36,13 +36,13 @@ To enable ZTP, the following requirements must be satisfied. Complete each item 
 1. HA Controller with North-South VIP
 --------------------------------------
 
-The Netris Controller must be deployed with a North-South Virtual IP (N/S VIP) configured. The N/S VIP is the address through which switches and other infrastructure devices reach the controller services.
+Deploy the Netris Controller with a North-South Virtual IP (N/S VIP) configured. The N/S VIP is the address switches and other infrastructure devices use to reach the controller services.
 
 See: :ref:`Deploy North-South controller VIP <North-South-vip>`
 
 .. tip::
 
-   The N/S VIP is only required when deploying hierarchical (a.k.a. hybrid) Out-of-Band Management network topology. In direct-to-CMN deployments, the controller's CMN VIP can be used instead, and the N/S VIP is not required. Please, contact Netris Support to learn more about Hybrid and Direct-to-CMN deployments.
+   The N/S VIP is required only when deploying a hierarchical (a.k.a. hybrid) Out-of-Band Management network topology. In direct-to-CMN deployments, you can use the controller's CMN VIP instead, and the N/S VIP is not required. Contact Netris Support to learn more about Hybrid and Direct-to-CMN deployments.
 
 2. Configure Netris Local Repository
 -------------------------------------
@@ -62,7 +62,7 @@ Below is the command to identify the directory name on a controller node (must b
 
    echo $PVC_PATH
 
-Upload required NOS images to this subdirectory on each controller node in the HA cluster (substitue ``<controller_IP>`` and ``$PVC_PATH`` with the appropriate values):
+Upload required NOS images to this subdirectory on each controller node in the HA cluster (substitute ``<controller_IP>`` and ``$PVC_PATH`` with the appropriate values):
 
 .. code-block:: shell
 
@@ -74,36 +74,40 @@ Upload required NOS images to this subdirectory on each controller node in the H
 
    This method will be improved in future releases to allow uploading through the Netris Controller UI or API, eliminating the need for manual file transfer to each controller node.
 
-4. Controller Management Address IP in Controller Settings
-----------------------------------------------------------
+.. _ztp-controller-address-resolution:
 
-In the Netris Controller web UI, navigate to **Settings > General** and set the **Controller Management Address** to the North-South VIP address configured in step 1. This ensures that switches downloading NOS images and packages during ZTP reach the local repository through the controller's VIP.
+4. Controller Management Address Resolution
+-------------------------------------------
 
-By default, the Netris agent installer is downloaded from the Netris public repository. You can optionally enable the :ref:`Local Repository feature <install-local-repo>` for the Netris agent installer to be sourced directly from the Netris controller.
+Netris automatically resolves the Controller Management Address for each management subnet. The Controller IP Discovery service determines which controller address reaches each management subnet and writes that address to the subnet object in IPAM.
 
-.. tip::
-
-   If you use FQDN instead of the IP address in the Local Repository URL, ensure the DNS servers configured in the application inventory profiles can resolve the controller's FQDN to the controller's N/S VIP.
-
-.. image:: ../images/ZTP-ControllerManagementAddress.png
+.. image:: ../images/ztp-edit-subnet-controller-ip-resolved.png
    :align: center
    :class: with-shadow
 
 .. raw:: html
 
-  <br />
+   <p style="text-align: center;"><em>Figure: A management subnet after discovery, showing the resolved Controller Management Address on the subnet edit form</em></p>
 
-.. warning::
+The ZTP DHCP server and the Netris agent installer both read it from there, so every switch receives a provisioning URL pointing to the controller address reachable from its own management segment.
 
-   **ZTP Network Scope:** In this version of Netris ZTP, the DHCP server can service either the seed switches (connected to the CMN) or non-seed switches (connected via the management V-Net), but not both simultaneously.
+Netris serves every management segment at once. Seed switches on the CMN and switches on the management V-Net can be provisioned, rebuilt, and upgraded in parallel, with no operator action between phases.
 
-   **Recommended Workflow**
+The global Controller Management Address under **Settings > General** remains as a fallback. Netris uses it only when no management subnet attached to a device has a resolved address. You do not need to set it.
 
-   To provision all switches in a deployment, follow this two-phase approach:
+.. note::
 
-   1. **Phase 1 — Seed switches (CMN):** Set the Controller Management Address to the controller's CMN IP address. Power on and provision all seed switches first.
+   Netris will remove the global Controller Management Address setting in a future release. Per-subnet resolution is the supported mechanism from 4.18 onward.
 
-   2. **Phase 2 — Remaining switches (Management V-Net):** Once all seed switches are provisioned, update the Controller Management Address to the controller's N/S VIP address instead. Then power on and provision the remaining switches (OOB switches, leaf switches, etc.) whose management ports connect to the seed switches or other OOB switches.
+By default, the Netris agent installer is downloaded from the Netris public repository. You can optionally enable the :ref:`Local Repository feature <install-local-repo>` to source the Netris agent installer directly from the Netris controller.
+
+.. tip::
+
+   If you use an FQDN instead of the IP address in the Local Repository URL, ensure the DNS servers configured in the application inventory profiles can resolve the controller's FQDN to the controller's N/S VIP.
+
+.. note::
+
+   Controller IP Discovery resolves addresses from the controller's own Kubernetes environment: kube-vip VIPs on HA controllers, or the controller's LoadBalancer service on single-node and cloud deployments. External load balancers that are not represented as a Kubernetes LoadBalancer service are not supported.
 
 5. IPAM Subnets in the Management VPC
 --------------------------------------
@@ -127,7 +131,7 @@ The above screenshot demonstrates this configuration.
 * ``10.254.96.0/24`` is the subnet for the "seed" switches (attached to the System VPC)
 * ``10.254.98.0/24`` is the subnet for all other Netris-managed switches (attached to the Management VPC)
 
-.. important::
+.. tip::
 
    You must set the default gateway value on the subnet. This option is visible only when the subnet purpose is set to management.
 
@@ -135,7 +139,21 @@ The above screenshot demonstrates this configuration.
       :align: center
       :class: with-shadow
 
-If your Netris deployment includes a dedicated subnet for the controller's North-South VIP, this subnet should also be created in the IPAM.
+   .. raw:: html
+
+      <p style="text-align: center;"><em>Figure: Adding a management subnet.</em></p>
+
+Each management subnet also carries a read-only **Controller Management Address** attribute showing the address Netris resolved for that subnet. The Add Subnet form does not show the Controller Management Address. It appears on the subnet edit form. Until discovery completes, the value reads ``Not yet resolved``. Netris does not provision switches on a subnet whose Controller Management Address has not resolved.
+
+.. image:: ../images/ztp-edit-subnet-controller-ip-not-resolved.png
+   :align: center
+   :class: with-shadow
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: A management subnet whose Controller Management Address has not yet resolved</em></p>
+
+If your Netris deployment includes a dedicated subnet for the controller's North-South VIP, create this subnet in IPAM as well.
 
 .. tip::
 
@@ -158,6 +176,10 @@ If the Netris-managed switches are in a different VNet from the controller's Nor
 
   <br />
 
+.. tip::
+
+   Depending on your routing domain configuration, you may need to provision a local static route to the switches' loopbacks on each Netris Controller so the DHCP server (running on the Netris Controller node) can properly forward DHCP reply traffic. See the example in :ref:`ztp-static-routes` below.
+
 7. Inventory Profile Configuration
 -----------------------------------
 
@@ -177,7 +199,7 @@ Each inventory profile used for ZTP must specify the following:
 8. Switch MAC Address in Inventory
 -----------------------------------
 
-The MAC address of each switch must be populated in the corresponding switch object within the Netris inventory. The MAC address must be that of the **eth0** interface of the switch. This is the address the switch uses during its initial DHCP discover, and it is how the ZTP server identifies which NOS to assign.
+Populate the MAC address of each switch in the corresponding switch object within the Netris inventory. The MAC address must be that of the switch's **eth0** interface. This is the address the switch uses during its initial DHCP discovery, and it is how the ZTP server identifies which NOS to assign.
 
 .. image:: ../images/ZTP-MAC-address.png
    :align: center
@@ -190,12 +212,14 @@ The MAC address of each switch must be populated in the corresponding switch obj
 **Where to Find the MAC Address:**
 
 1. **Switch chassis label** — a sticker on the front or rear of the switch, typically near the serial number.
-2. **Original packaging** — the shipping box label includes the MAC address alongside the part number and serial number.
+2. **Original packaging** — the shipping box label includes the MAC address, part number, and serial number.
+
+.. _ztp-static-routes:
 
 9. Configure Static Routes on the Controller Nodes
 ---------------------------------------------------
 
-The controller nodes need static routes so they can communicate with the management V-Net subnet through the N/S interface. Without these routes, the controller cannot reach the switches on the management network.
+The controller nodes need static routes to communicate with the management V-Net subnet through the N/S interface. Without these routes, the controller cannot reach the switches on the management network.
 
 On each controller node, edit the Netplan configuration file at ``/etc/netplan/50-cloud-init.yaml`` to add the required routes.
 
@@ -246,7 +270,7 @@ After editing, apply the configuration:
 10. Deploy the Netris ZTP DHCP Server
 -------------------------------------
 
-The Netris ZTP DHCP server is deployed as a Kubernetes workload on the controller cluster, following the same pattern used for other controller services (e.g., the local repository). The manifest is located at:
+Deploy the Netris ZTP DHCP server as a Kubernetes workload on the controller cluster, following the same pattern used for other controller services (e.g., the local repository). The manifest is located at:
 
 .. code-block:: shell
 
@@ -275,7 +299,7 @@ Verify the DHCP server pod is running:
 
 After deploying the DHCP server, confirm the following:
 
-1. The ZTP DHCP server pod is in a Running state, which can be seen in the Dashboard.
+1. The ZTP DHCP server pod is in a Running state, as shown in the Dashboard.
 
 .. image:: ../images/ZTP-health.png
    :align: center
@@ -300,7 +324,7 @@ For reference, here is the sequence of events that occurs when a switch is provi
 2. The ZTP DHCP server matches the DHCP request to a switch object in Netris using the source MAC address.
 3. The server assigns the correct management IP address and provides boot parameters, including the URL of the NOS image on the local repository.
 4. The switch downloads and installs the NOS image.
-5. After installation, the switch reboots into the new NOS, initiates the ZTP process, which configures the admin credentials from the inventory profile, downloads the Netris switch agent, and establishes a connection to the Netris Controller. Note that a switch make take upwards of 10-15 minutes to become provisioned depending on the switch's hardware and other factors.
+5. After installation, the switch reboots into the new NOS, initiates the ZTP process, which configures the admin credentials from the inventory profile, downloads the Netris switch agent, and establishes a connection to the Netris Controller. A switch may take 10-15 minutes to provision, depending on the switch's hardware and other factors.
 6. The switch appears as provisioned in the Netris inventory and begins receiving its intended network configuration.
 
 Troubleshooting
@@ -320,8 +344,8 @@ If a switch does not provision as expected, check the following:
 
 **DHCP relay:** Confirm the V-Net DHCP relay is pointing to the correct N/S VIP address.
 
-**Controller Management Address:** Ensure the Controller Management Address in controller settings is set to the N/S VIP (or CMN VIP if appropriate).
+**Controller Management Address not resolved:** In IPAM, check the **Controller Management Address** attribute on the switch's management subnet. If it reads ``Not yet resolved``, Netris could not determine which controller address reaches that subnet. Confirm the controller has a route to the subnet and that a controller VIP exists in the subnet the controller uses to reach it.
 
-**NOS image the admin password:** Verify the NOS image name in the Inventory Profile matches the NOS images uploaded to the local repo.
+**NOS image and admin password:** Verify the NOS image name in the Inventory Profile matches the NOS images uploaded to the local repo, and that the profile has a NOS admin password set.
 
-For additional assistance, please contact Netris Support.
+For additional assistance, contact Netris Support.

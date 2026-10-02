@@ -27,7 +27,7 @@ Add a DHCP Options Set by navigating to ``Services -> DHCP Options Sets`` and cl
 
 .. raw:: html
 
-  <br />
+   <p style="text-align: center;"><em>Figure: Adding a DHCP Option Set</em></p>
 
 Netris supports a wide range of Standard DHCP Options.
 
@@ -38,7 +38,7 @@ Netris supports a wide range of Standard DHCP Options.
 
 .. raw:: html
 
-  <br />
+   <p style="text-align: center;"><em>Figure: Adding standard DHCP options to option set</em></p>
 
 Netris also enables you to define Custom DHCP Options.
 
@@ -49,7 +49,7 @@ Netris also enables you to define Custom DHCP Options.
 
 .. raw:: html
 
-  <br />
+   <p style="text-align: center;"><em>Figure: Adding custom DHCP options to option set</em></p>
 
 Netris DHCP
 ===========
@@ -90,7 +90,7 @@ DHCP Relay
 Netris supports using an external DHCP server by enabling the DHCP Relay function. This allows DHCP clients inside a V-Net to obtain addresses from a non-Netris-managed DHCP server running in the same or another VPC. Both DHCPv4 and DHCPv6 are supported.
 
 .. note::
-  DHCPv6 Relay is currently supported on Cumulus and Arista platforms.
+  DHCPv6 Relay is supported on NVIDIA Cumulus, Arista EOS, and Dell SONiC.
 
 .. tip::
   In a V-Net, a DHCP Relay service and a DHCP service cannot be enabled simultaneously.

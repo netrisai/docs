@@ -1,9 +1,9 @@
 .. meta::
     :description: Netris System Visibility, Monitoring & Telemetry
 
-**********************
-Graph Boards
-**********************
+**********
+Visibility
+**********
 
 .. contents:: Table of Contents
    :local:

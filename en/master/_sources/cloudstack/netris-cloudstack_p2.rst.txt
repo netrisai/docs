@@ -1,8 +1,8 @@
 .. meta::
   :description: Netris-CloudStack Integration
 
-Prerequisites
-=============
+CloudStack: Prerequisites
+=========================
 
 :doc:`Switch fabric up & running </vpc-gateways-with-managed-fabric>` and :ref:`connected to ISP <bgp_def>`
 
@@ -264,6 +264,7 @@ The following Terraform configuration example demonstrates how to **automate ser
      role        = "generic"
      portcount   = 4
      tags = ["iface.eth1=CS-Cloud1-MGMT", "iface.eth2=CS-Cloud1-MGMT"]
+   }
 
    resource "netris_server" "server_hypervisor" {
      count       = 3
@@ -280,12 +281,13 @@ The following Terraform configuration example demonstrates how to **automate ser
      "cloudstack": {
        "mgmt": {
          "bridge-name": "cloudbr0",
-         "ipv4": "10.100.1.${count.index + 2}"/21",
+         "ipv4": "10.100.1.${count.index + 2}/21",
          "nameservers": ["1.1.1.1", "8.8.8.8"]
        }
      }
    }
    EOF
+   }
 
 
 Creating Servers’ Links
@@ -388,9 +390,11 @@ Optimize BGP Overlay for Hypervisor
 
 This step is crucial for **BGP/EVPN VXLAN integration** with hypervisor networking. Enabling this optimization ensures that a large number of **hypervisor virtual networking EVPN prefixes** do not overflow the **switch TCAM**, maintaining efficient and scalable routing within the network fabric.
 
-⚠ **Warning: This is a disruptive action!**
+.. warning::
 
-  Do **not** apply this change in a **production environment** without proper planning and scheduled maintenance. Enabling this setting **reconfigures the fabric**, which may cause temporary disruptions in **BGP peerings and VXLAN routing**.
+   **This is a disruptive action!**
+
+   Do **not** apply this change in a **production environment** without proper planning and scheduled maintenance. Enabling this setting **reconfigures the fabric**, which may cause temporary disruptions in **BGP peerings and VXLAN routing**.
 
 **Navigate to Inventory Profiles**
 

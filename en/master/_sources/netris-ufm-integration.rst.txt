@@ -1,9 +1,9 @@
 .. meta::
     :description: NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller
 
-################################################################
-NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller
-################################################################
+###################################
+NVIDIA UFM (InfiniBand) Integration
+###################################
 
 .. contents:: Table of Contents
    :local:
@@ -12,12 +12,12 @@ NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller
 Overview
 ========
 
-The Netris-UFM plugin provides seamless integration between Netris Controller and NVIDIA UFM (Unified Fabric Manager) for AI infrastructures with hybrid InfiniBand and Ethernet networks. This integration allows infrastructure operators to define compute multi-tenancy in a single place through Netris, significantly simplifying management across both network types.
+The Netris-UFM plugin provides seamless integration between Netris Controller and NVIDIA UFM (Unified Fabric Manager) for AI infrastructures with hybrid InfiniBand and Ethernet networks. This integration lets infrastructure operators define compute multi-tenancy in one place through Netris, simplifying management across both network types.
 
 Key Benefits
 --------------
 
-- **Unified Management Interface**: Define tenant isolation by simply listing servers in a :doc:`server-cluster </server-cluster>` object
+- **Unified Management Interface**: Define tenant isolation by simply listing servers in a :doc:`Server Cluster </server-cluster>` object
 - **Automated Provisioning**: Automatically configure both Ethernet (via Netris) and InfiniBand (via UFM) networks
 - **Simplified Operations**: Eliminate the need to manage SwitchPorts, VLANs, VRFs on Ethernet and GUIDs, PKeys, SHARP groups on InfiniBand separately
 
@@ -30,7 +30,7 @@ The Netris-UFM plugin acts as the integration layer between Netris Controller an
 2. **NVIDIA UFM**: Manages the InfiniBand switches and provides specialized InfiniBand functionality
 3. **Netris-UFM Plugin**: Synchronizes configurations between both systems
 
-When you define a :doc:`server-cluster </server-cluster>` in Netris, the plugin automatically:
+When you define a :doc:`Server Cluster </server-cluster>` in Netris, the plugin automatically:
 
 - Discovers InfiniBand port GUIDs from UFM
 - Creates and manages appropriate PKeys in UFM
@@ -59,7 +59,7 @@ Before installing the Netris-UFM plugin, ensure:
 UFM Configuration Requirements
 ================================
 
-To enable the UFM PKey REST API functionality required by the Netris-UFM integration, you must configure UFM to use limited membership by default.
+To enable the UFM PKey REST API functionality required for the Netris-UFM integration, configure UFM to use limited membership by default.
 
 **Configure gv.cfg**
 
@@ -129,9 +129,9 @@ The Netris-UFM plugin manifest ships inside the same air-gapped installation tar
 Upgrading the UFM Integration
 ===============================
 
-When you upgrade an existing Netris deployment, Netris recommends setting the ``netris-controller-nvidia-ufm-agent`` replicas to 0, which effectively disables the UFM integration, then following the normal Netris upgrade procedure (see :doc:`installation/controller-k3s-air-gap-ha`).
+When you upgrade an existing Netris deployment, Netris recommends setting the ``netris-controller-nvidia-ufm-agent`` replicas to 0, which effectively turns off the UFM integration, then following the normal :doc:`Netris upgrade procedure <installation/controller-ha-upgrade>`.
 
-To set the ``netris-controller-nvidia-ufm-agent`` replicas to 0 you can use the following command.
+To set the ``netris-controller-nvidia-ufm-agent`` replicas to 0, you can use the following command.
 
 .. code-block:: bash
 
@@ -144,9 +144,9 @@ To set the ``netris-controller-nvidia-ufm-agent`` replicas to 0 you can use the 
 
       kubectl apply -f netris-controller-ha/manifests/netris-controller/ufm/deploy.yaml
 
-   Because credentials now live in the separate ``secret.yaml`` file, you don't need to re-populate them for a routine upgrade — only re-apply ``secret.yaml`` if the credentials themselves changed.
+   Because credentials now live in the separate ``secret.yaml`` file, you don't need to repopulate them for a routine upgrade — only re-apply ``secret.yaml`` if the credentials themselves changed.
 
-**On earlier versions:** simply apply the updated ``ufm.yaml`` manifest. Remember to populate it with the current Netris credentials as shown in the installation section above.
+**On earlier versions:** apply the updated ``ufm.yaml`` manifest. Remember to populate it with the current Netris credentials as shown in the installation section above.
 
 Multiple UFM Instances
 -----------------------
@@ -172,7 +172,7 @@ If a customer's InfiniBand environment has more than one fabric — each with it
 **On earlier versions:** copy ``ufm.yaml`` to a new file name, update ``metadata.name``, ``UFM_ADDR``, and ``UFM_ID`` in the copy, and apply it the same way.
 
 .. important::
-   Re-applying a manifest with the same ``metadata.name`` updates the existing agent rather than creating a second one. Each UFM instance needs its own uniquely-named deployment and a unique ``UFM_ID``.
+   Re-applying a manifest with the same ``metadata.name`` updates the existing agent rather than creating a second one. Each UFM instance needs its own uniquely named deployment and a unique ``UFM_ID``.
 
 Configuration Parameters
 ========================
@@ -257,7 +257,7 @@ Agent Configuration
      - 10
      - 10
 
-Starting in Netris Controller 4.11, the Reconcile Interval can also be set from the UI (**Settings** → **General**). When that field is present, it takes precedence over ``RECONCILE_INTERVAL`` in the YAML/env file; the YAML/env value is used only as a fallback on controllers predating 4.11.
+Starting in Netris Controller 4.11, you can also set the Reconcile Interval from the UI (**Settings → General**). When that field is present, it takes precedence over ``RECONCILE_INTERVAL`` in the YAML/env file; the YAML/env value is used only as a fallback on controllers predating 4.11.
 
 Usage Guide
 ===========
@@ -271,20 +271,20 @@ The first step is to create servers in the Netris Controller inventory that matc
 
 1. In Netris Controller, navigate to **Network** → **Topology** → **+Add**.
 2. Create servers with **identical names** as they appear in UFM (this is crucial for proper GUID mapping)
-3. Once created, the Netris-UFM agent will automatically sync the InfiniBand host and HCA GUIDs from UFM into Netris
+3. Once created, the Netris-UFM agent will automatically sync the InfiniBand host and HCA GUIDs from UFM into Netris.
 
 .. important::
-   Server names must match exactly between UFM and Netris Controller for the initial sync to complete properly. Once the initial sync is done and the `hosting_system_guid` field is populated in Netris inventory, the plugin will continue to maintain the mapping even if server names change in Netris or UFM. You can verify the GUID mapping in Netris Controller UI under **Network** → **Inventory** by examining the Custom field of the server object. It should show both the HCA GUIDs and the hosting system GUID.
+   Server names must match exactly between UFM and Netris Controller for the initial sync to complete properly. Once the initial sync is complete and the ``hosting_system_guid`` field is populated in Netris inventory, the plugin will maintain the mapping even if server names change in Netris or UFM. You can verify the GUID mapping in the Netris Controller UI under **Network** → **Inventory** by examining the server object's Custom field. It should show both the HCA GUIDs and the hosting system GUID.
 
-   .. image:: images/ufm-hosting-system-guid.png
-      :align: center
-      :class: with-shadow
+.. image:: images/ufm-hosting-system-guid.png
+   :align: center
+   :class: with-shadow
 
-   .. raw:: html
+.. raw:: html
 
-      <p style="text-align: center;"><em>Figure: Server Custom field showing GUIDs</em></p>
+   <p style="text-align: center;"><em>Figure: Server Custom field showing GUIDs</em></p>
 
-``hosting_system_guid`` always corresponds to the GUID of the server's first HCA. You can cross-check this value in the UFM UI under the server's Device view, which displays one general GUID that should match. See "Replacing HCAs and Servers" below for what to do when hardware is replaced or the mapping is lost.
+``hosting_system_guid`` always corresponds to the GUID of the server's first HCA. You can cross-check this value in the UFM UI under the server's Device view, which displays one general GUID that should match. See "Replacing HCAs and Servers" below for what to do when hardware is replaced, or the mapping is lost.
 
 .. note::
    The server's Custom field may also show GPU UID entries. Those come from the separate :doc:`NVLink integration <netris-nvlink-integration>` and are unrelated to UFM — the Netris-UFM plugin doesn't read or write them.
@@ -295,8 +295,8 @@ The first step is to create servers in the Netris Controller inventory that matc
 Next, create a Server Cluster Template.
 
 1. Navigate to **Services** → **Server Cluster Template**.
-2. Click **Add** to create a new template
-3. Configure the template using JSON with specific sections for different network fabrics. See the :ref:`Infiniband Fabric Example <infiniband-fabric-example>` on the Server Cluster page.
+2. Click **Add** to create a new template.
+3. Configure the template using JSON with specific sections for different network fabrics. See the :ref:`InfiniBand Fabric Example <infiniband-fabric-example>` on the Server Cluster page.
 
 .. note::
    Netris Controller has no visibility into individual UFM NICs or ports, so the InfiniBand side of the template is just a single generic ``netris-ufm`` fabric entry — you don't (and can't) enumerate individual HCAs the way you would for Ethernet interfaces. Per-host HCA/port mapping happens automatically via the GUID sync described above.
@@ -347,7 +347,7 @@ Replacing HCAs and Servers
   - Delete the ``hosting_system_guid`` key/value from the server's Custom JSON in Netris and let the Netris-UFM agent repopulate it. Reminder: server object name in Netris must match the server name in UFM — rename either side first if they've drifted apart.
   - Or manually set ``hosting_system_guid`` in the Custom JSON to the new value.
 
-- **Full server replacement** (1:1 swap, re-onboarded into the cluster as a new system) — the same two options as primary HCA replacement apply. As long as the replacement is onboarded under the same name it had in UFM, Netris discovers it as a new system and repopulates the HCA GUID mappings automatically; the old mapping does not cause a conflict.
+- **Full server replacement** (1:1 swap, re-onboarded into the cluster as a new system) — the same two options as primary HCA replacement apply. As long as the replacement is onboarded under the same name it had in UFM, Netris discovers it as a new system and automatically repopulates the HCA GUID mappings; the old mapping does not cause a conflict.
 
 Functional Workflow
 =====================
@@ -370,23 +370,23 @@ Functional Workflow
 
 4. **Continuous Reconciliation**:
 
-   - Plugin periodically synchronizes between Netris and UFM
+   - The plugin periodically synchronizes between Netris and UFM
    - Ensures consistency between Ethernet and InfiniBand configurations
    - Reconciliation interval is configurable (default: 10 seconds)
 
 PKey membership: dedicated and shared
 --------------------------------------
 
-When Netris provisions a PKey for a Server Cluster, each member server's HCA GUIDs are added to that PKey. The ``index0`` attribute records whether the server is a dedicated or a shared member:
+When Netris provisions a PKey for a Server Cluster, it adds each member server's HCA GUIDs to that PKey. The ``index0`` attribute records whether the server is a dedicated or a shared member:
 
 - **Dedicated member** — GUIDs added with ``index0=true``. A GUID holds ``index0=true`` membership in one PKey.
 - **Shared member** — GUIDs added with ``index0=false``. A GUID can hold ``index0=false`` membership in any number of PKeys.
 
 This is the InfiniBand equivalent of untagged versus 802.1Q tagged switch ports on Ethernet. See :ref:`server-cluster-shared-endpoints` on the Server Cluster page.
 
-When ``index0=false``, additional server-side configuration is required and is under the control of your compute orchestrator.
+When ``index0=false``, you need additional server-side configuration, which your compute orchestrator controls.
 
-A server can be added as a shared member directly, whether or not it is a dedicated member of another cluster.
+You can add a server as a shared member directly, whether or not it is a dedicated member of another cluster.
 
 InfiniBand Security (Recommended)
 ======================================
@@ -437,9 +437,9 @@ Edit ``/opt/ufm/files/conf/opensm/opensm.conf`` and set:
 3. Enable VSKey (Vendor Specific Key)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-VSKey provides security for NVIDIA/Mellanox vendor-specific operations that go beyond standard InfiniBand management.
+VSKey secures NVIDIA/Mellanox vendor-specific operations beyond standard InfiniBand management.
 
-To configure it edit ``/opt/ufm/files/conf/opensm/opensm.conf`` and set:
+To configure it, edit ``/opt/ufm/files/conf/opensm/opensm.conf`` and set:
 
 .. code-block:: ini
 
@@ -454,12 +454,12 @@ To configure it edit ``/opt/ufm/files/conf/opensm/opensm.conf`` and set:
   
   * ``0`` – Ignore: No VS key configuration
   * ``1`` – Disable: Ports set with zero values (no protection)
-  * ``2`` – Enable: Each port configured with unique VS Key **← Recommended**
+  * ``2`` – Enable: Each port configured with a unique VS Key **← Recommended**
 
 * ``vs_key_ci_protect_bits``: Protection level
 
   * ``0`` – Key is protected but readable via KeyInfo GET
-  * ``1`` – Full protection; all VS MADs must have correct key **← Recommended**
+  * ``1`` – Full protection; all VS MADs must have the correct key **← Recommended**
 
 * ``vs_key_lease_period``: Duration in seconds before key expires (``60`` recommended)
 * ``key_mgr_seed``: Set to ``0`` to use MKey as seed for VS keys
@@ -553,9 +553,9 @@ Connection Issues to Netris Controller or UFM
 
    - If using self-signed certificates, set NETRIS_VERIFY_SSL/UFM_VERIFY_SSL to "false"
    - For production, use valid certificates and set verification to "true"
-   - Certificates typically expire within one year (sometimes two); plan for rotation. When a certificate expires or becomes invalid, Netris logs a connection failure in the agent logs.
+   - Certificates typically expire within one year (sometimes two), so plan for a timely rotation. When a certificate expires or becomes invalid, Netris logs a connection failure in the agent logs.
 
-**Note on log behavior:** The agent logs an entry only when it takes an action or encounters an error. A reconciliation cycle that completes normally and finds nothing to change does not produce a log message — so no new log entries is the expected, healthy state, not a sign that something has stalled.
+**Note on log behavior:** The agent logs an entry only when it takes an action or encounters an error. The agent produces no log message during a healthy reconciliation cycle.
 
 If connectivity to UFM goes down, you will see a new timeout message every reconcile interval (every 10 seconds by default) for as long as the outage lasts. Once connectivity is restored, those timeout messages stop, and no separate "connection restored" message is logged in their place. So a timeout logged hours ago with nothing since typically means connectivity was restored, not that the integration is still down.
 
@@ -615,8 +615,8 @@ Synchronization Delays
 **Solutions**:
 
 1. Turn on debug logging in Settings>General to monitor synchronization operations in detail. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
-2. Adjust the Reconcile Interval Settings>General to a shorter time period for faster synchronization. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
-3. Use Dry Run mode (Settings → General) to test changes without applying them. This is particularly useful in two situations: (a) the agent was disabled for a while, and Netris and UFM have drifted apart from manual changes made on both sides, so you want to preview what enabling it would do before actually re-enabling it; and (b) your change-management process requires reviewing planned changes before they're applied — Dry Run lets you generate that preview for approval. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions on viewing logs.
+2. Adjust the Reconcile Interval (Settings > General) to a shorter period for faster synchronization. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions.
+3. Use Dry Run mode (Settings → General) to test changes without applying them. This is particularly useful in two situations: (a) the agent was disabled for a while, and Netris and UFM have drifted apart from manual changes made on both sides, so you want to preview what enabling it would do before actually re-enabling it; and (b) your change-management process requires reviewing planned changes before they're applied — Dry Run lets you generate that preview for approval. Tail the logs once turned on. See :ref:`ufm_integration_view_logs` for instructions.
 
    .. image:: images/general-ufm-debug-dry-run-reconcile.png
       :align: center
@@ -624,7 +624,7 @@ Synchronization Delays
 
    .. raw:: html
 
-      </br>
+      <p style="text-align: center;"><em>Figure: Debug logging, Dry Run, and Reconcile Interval settings under Settings → General</em></p>
 
 4. Check for high CPU or memory usage on the plugin host
 5. Verify network latency between the plugin and both systems
@@ -634,7 +634,7 @@ Synchronization Delays
 
       kubectl rollout restart deployment/netris-controller-nvidia-ufm-agent -n netris-controller
 
-**Checking PKey/GUID membership:** To see which GUIDs belong to a given server cluster's PKey, use the Netris API (v2) PKey Ledger endpoint for the ``netris-ufm`` integration. Useful when troubleshooting cluster membership that doesn't match expectations.
+**Check PKey/GUID membership:** To see which GUIDs belong to a given server cluster's PKey, use the Netris API (v2) PKey Ledger endpoint for the ``netris-ufm`` integration. Useful when troubleshooting cluster membership that doesn't match expectations.
 
 Version Compatibility
 ======================
@@ -664,7 +664,7 @@ Quick Setup Example
       kubectl get pods -n netris-controller | grep ufm
 
 3. Create a Server Cluster Template in Netris Controller UI or API
-4. Create Server Cluster with the servers that have InfiniBand connections
+4. Create a Server Cluster with the servers that have InfiniBand connections
 5. Verify PKey assignments in UFM:
 
    - Check the UFM UI for PKey assignments

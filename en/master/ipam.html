@@ -191,7 +191,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html">Netris Supported Functionality &amp; Platforms Matrix</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html">Netris Supported Functionality and Platforms Matrix</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#switch-fabric-management-functions">Switch Fabric Management Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#host-networking">Host Networking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#monitoring-telemetry">Monitoring &amp; Telemetry</a></li>
@@ -202,9 +202,9 @@
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#security">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#netris-controller-administration">Netris Controller Administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#management-interfaces">Management Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported-platform-matrix.html#netris-and-nos-versions-compatibility-matrix">Netris and NOS versions compatibility matrix</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="supported-platform-matrix.html#netris-and-nos-versions-compatibility-matrix">Netris and NOS versions compatibility matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported-switch-hardware.html">Hardware Requirements</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-controller">Netris Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supported-switch-hardware.html#netris-softgate-hs-multi-vpc-version">Netris SoftGate HS (Multi-VPC version)</a></li>
@@ -227,11 +227,11 @@
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#obtain-the-installation-file">Obtain the Installation File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#steps-to-install">Steps to Install</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#preparing-each-node">1. Preparing Each Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3s on All Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-k3s-on-all-nodes">2. Install K3S on All Nodes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#import-necessary-container-images">3. Import Necessary Container Images</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#configure-kube-vip-for-kubeapi-high-availability">4. Configure kube-vip for KubeAPI High Availability</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3s Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-to-k3s">5. Add Helm Chart Packages to K3S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-and-scale-core-k3s-components">6. Verify and Scale Core K3S Components</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-kube-vip-cloud-controller">7. Deploy Kube-VIP Cloud Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#install-traefik-proxy">8. Install Traefik Proxy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#deploy-north-south-controller-vip-optional">9. Deploy North-South controller VIP (optional)</a></li>
@@ -241,46 +241,45 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#after-installation">After Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#how-to-consume-local-repository">How to consume local repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#see-also">See also</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#upgrading-ha-netris-controller-in-air-gapped-environments">Upgrading HA Netris Controller in Air-Gapped Environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id2">1. Preparing Each Node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id3">1.1 Transfer the File to the Servers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id4">1.2 Extract the Tarball</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id5">1.3 Navigate to the Installation Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/controller-ha-upgrade.html">Upgrading the HA Netris Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-ha-upgrade.html#obtain-the-upgrade-file">Obtain the Upgrade File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-ha-upgrade.html#preparing-each-node">1. Preparing Each Node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-ha-upgrade.html#transfer-the-file-to-the-servers">1.1 Transfer the File to the Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-ha-upgrade.html#extract-the-tarball">1.2 Extract the Tarball</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-ha-upgrade.html#navigate-to-the-installation-directory">1.3 Navigate to the Installation Directory</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#id6">2.1 Import Necessary Container Images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#add-helm-chart-packages-upgrades-to-k3s">2.2 Add Helm Chart Packages Upgrades to K3s</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#database-backup">2.3 Database backup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-ha-upgrade.html#steps-to-upgrade-controller">2. Steps to Upgrade Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-ha-upgrade.html#import-necessary-container-images">2.1 Import Necessary Container Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-ha-upgrade.html#add-helm-chart-package-upgrades-to-k3s">2.2 Add Helm Chart Package Upgrades to K3S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-ha-upgrade.html#database-backup">2.3 Database backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-ha-upgrade.html#upgrade-netris-controller">2.4 Upgrade Netris Controller</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-ha-upgrade.html#steps-to-upgrade-the-local-netris-repository">3. Steps to Upgrade the Local Netris Repository</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#maintenance-procedures">Maintenance Procedures</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#node-maintenance-best-practices">Node Maintenance Best Practices</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#individual-node-maintenance-recommended-approach">Individual Node Maintenance (Recommended Approach)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#full-cluster-maintenance-when-all-nodes-need-simultaneous-maintenance">Full Cluster Maintenance (When All Nodes Need Simultaneous Maintenance)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/controller-maintenance-backups.html">Netris Controller Maintenance and Backups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-maintenance-backups.html#maintenance-procedures">Maintenance Procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#node-maintenance-best-practices">Node Maintenance Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#maintenance-best-practices">Maintenance Best Practices</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verifying-mariadb-cluster-health">Verifying MariaDB Cluster Health</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#maintenance-best-practices">Maintenance Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation/controller-maintenance-backups.html#mariadb-automatic-backups-locate-verify-and-restore">MariaDB automatic backups: locate, verify, and restore</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#locate-the-backup-directory-on-each-controller-node">Locate the backup directory on each controller node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#copy-the-backup-file-to-your-home-directory">Copy the backup file to your home directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#verify-the-backup-file-integrity">Verify the backup file integrity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#verify-mariadb-cluster-readiness-before-restore">Verify MariaDB cluster readiness before restore</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#copy-the-backup-file-into-a-mariadb-pod">Copy the backup file into a MariaDB pod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#restore-the-backup">Restore the backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#take-a-manual-backup">Take a manual backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/controller-maintenance-backups.html#summary">Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#mariadb-automatic-backups-locate-verify-and-restore">MariaDB automatic backups: locate, verify, and restore</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#locate-the-backup-directory-on-each-controller-node">Locate the backup directory on each controller node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#copy-the-backup-file-to-your-home-directory">Copy the backup file to your home directory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-the-backup-file-integrity">Verify the backup file integrity</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#verify-mariadb-cluster-readiness-before-restore">Verify MariaDB cluster readiness before restore</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#copy-the-backup-file-into-a-mariadb-pod">Copy the backup file into a MariaDB pod</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#restore-the-backup">Restore the backup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#take-a-manual-backup">Take a manual backup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation/controller-k3s-air-gap-ha.html#summary">Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="installation/controller-k8s-installation.html">Helm Chart Installation</a><ul>
@@ -297,7 +296,7 @@
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ha-controller-with-north-south-vip">1. HA Controller with North-South VIP</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#configure-netris-local-repository">2. Configure Netris Local Repository</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#upload-nos-images-to-the-local-repo">3. Upload NOS images to the local repo</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#controller-management-address-ip-in-controller-settings">4. Controller Management Address IP in Controller Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#controller-management-address-resolution">4. Controller Management Address Resolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#ipam-subnets-in-the-management-vpc">5. IPAM Subnets in the Management VPC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#v-net-with-dhcp-relay">6. V-Net with DHCP Relay</a></li>
 <li class="toctree-l4"><a class="reference internal" href="installation/ztp.html#inventory-profile-configuration">7. Inventory Profile Configuration</a></li>
@@ -317,7 +316,6 @@
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5.9%2B-Switch-initial-setup.html">Nvidia Cumulus v5.9+ Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v5-Switch-initial-setup.html">Nvidia Cumulus v5 Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Nvidia-Cumulus-v3.7-Switch-initial-setup.html">Nvidia Cumulus v3.7 Switch Initial Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EdgeCore-SONiC-Switch-initial-setup.html">EdgeCore SONiC Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Dell-SONiC-Switch-initial-setup.html">Dell SONiC Switch Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Ubuntu-SwitchDev-Switch-initial-setup.html">Ubuntu SwitchDev Switch Initial Setup</a></li>
 </ul>
@@ -438,7 +436,7 @@
 <li class="toctree-l2"><a class="reference internal" href="site.html#api-and-terraform">API and Terraform</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="vpc.html">VPC</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="vpc.html">Netris VPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#how-a-vpc-s-vrf-is-placed-on-the-fabric">How a VPC’s VRF is placed on the fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
@@ -451,15 +449,18 @@
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#historical-note-why-system-vpc-and-default-vpc-are-the-same-vpc-today">Historical note: why System VPC and Default VPC are the same VPC today</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="topology-management.html">Inventory</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-softgates">Adding SoftGates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-servers">Adding Servers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-dpus">Adding DPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topology-management.html">Topology Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#inventory">Inventory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="topology-management.html#adding-switches">Adding Switches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="topology-management.html#adding-softgates">Adding SoftGates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="topology-management.html#adding-servers">Adding Servers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="topology-management.html#adding-dpus">Adding DPUs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="topology-management.html#topology-manager">Topology Manager</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="topology-management.html#adding-links">Adding Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology-management.html#topology-manager">Topology Manager</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="topology-management.html#adding-links">Adding Links</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inventory-profile.html">Inventory Profiles</a><ul>
@@ -467,6 +468,12 @@
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#snmpv2-credentials">SNMPv2 credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#netq-settings">NetQ Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#syslog-settings">Syslog Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#arista-lanz-settings">Arista LANZ Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#aaa-settings">AAA Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inventory-profile.html#authentication-order">Authentication Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory-profile.html#radius">RADIUS</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#fabric-settings">Fabric Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#gpu-cluster-specific-settings">GPU Cluster Specific Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory-profile.html#custom-rules">Custom Rules</a></li>
@@ -474,10 +481,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">IP Address Management (IPAM)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#allocations-and-subnets">Allocations and Subnets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#subnet-purpose-and-service-dependencies">Subnet purpose and service dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-an-allocation">Add an Allocation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-a-subnet">Add a Subnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controller-management-address-on-management-subnets">Controller Management Address on management subnets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#global-routing">Global Routing</a></li>
 </ul>
 </li>
@@ -500,6 +509,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="network-interfaces.html">Network Interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lag.html">Link Aggregation (LAG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lag.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#automatic-lag-with-evpn-multi-homing">Automatic LAG with EVPN Multi-homing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lag.html#custom-lag">Custom LAG</a></li>
 </ul>
@@ -550,14 +560,14 @@
 <li class="toctree-l1"><a class="reference internal" href="server-cluster.html">Server Cluster</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="server-cluster.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server-cluster.html#server-cluster-template">Server Cluster Template</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#server-cluster-template-examples">Server Cluster Template Examples:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#server-cluster-template-examples">Server Cluster Template Examples</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#ethernet-only-fabric-example">Ethernet-only Fabric Example</a></li>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#infiniband-fabric-example">Infiniband Fabric Example</a></li>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#nvlink-nvl72-or-nvl144-fabric-example">NVLink (NVL72 or NVL144) Fabric Example</a></li>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#ipv6-example">IPv6 Example</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#template-fields-explained">Template Fields Explained:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#template-fields-explained">Template Fields Explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#adding-a-server-cluster-template">Adding a Server Cluster Template</a></li>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#advanced-uses">Advanced Uses</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#non-overlapping-subnets">Non-overlapping subnets</a></li>
@@ -573,19 +583,22 @@
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#server-cluster-fields-explained">Server Cluster Fields Explained:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#server-cluster-fields-explained">Server Cluster Fields Explained</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nat.html">NAT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nat.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nat.html#enabling-nat">Enabling NAT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nat.html#defining-nat-rules">Defining NAT rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nat.html#nat-and-acls">NAT and ACLs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="l4-load-balancer.html">L4 Load Balancer (L4LB)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="l4-load-balancer.html#enabling-l4lb-service">Enabling L4LB service</a></li>
 <li class="toctree-l2"><a class="reference internal" href="l4-load-balancer.html#consuming-l4lb-service">Consuming L4LB service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l4-load-balancer.html#l4lb-and-acls">L4LB and ACLs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vpc-peering.html">VPC Peering</a><ul>
@@ -597,7 +610,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="acls.html">Access Control Lists (ACL)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="acls.html#where-acl-entries-are-installed">Where ACL Entries Are Installed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html#where-acl-entries-are-installed">Where ACL Entries Are Installed</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="acls.html#acl-entries-for-dnat-and-l4lb-traffic">ACL entries for DNAT and L4LB traffic</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="acls.html#acl-default-policy">ACL Default Policy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acls.html#acl-entries-rules">ACL Entries / Rules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="acls.html#description-of-acl-entry-fields">Description of ACL entry fields.</a></li>
@@ -610,7 +627,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Netris Integrations</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="netris-ufm-integration.html">NVIDIA UFM (InfiniBand) Integration Plugin for Netris Controller</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="netris-ufm-integration.html">NVIDIA UFM (InfiniBand) Integration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-ufm-integration.html#key-benefits">Key Benefits</a></li>
 </ul>
@@ -674,7 +691,7 @@
 <li class="toctree-l2"><a class="reference internal" href="netris-ufm-integration.html#additional-resources">Additional Resources</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="netris-nvlink-integration.html">NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="netris-nvlink-integration.html">NVIDIA NMX-C (NVLink) Integration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="netris-nvlink-integration.html#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-nvlink-integration.html#key-benefits">Key Benefits</a></li>
 </ul>
@@ -728,8 +745,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cloudstack/netris-cloudstack.html">Netris-CloudStack Integration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p1.html">High-Level Concept of Integration</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="cloudstack/netris-cloudstack.html">CloudStack Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p1.html">CloudStack: High-Level Concept of Integration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p1.html#how-it-works">How It Works</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p1.html#challenges-addressed">Challenges Addressed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p1.html#benefits">Benefits</a></li>
@@ -741,7 +758,7 @@
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p1.html#network-flow">Network Flow</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p2.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p2.html">CloudStack: Prerequisites</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p2.html#step-by-step-configuration-instructions-for-the-netris-controller">Step-by-Step Configuration Instructions for the Netris Controller</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p2.html#ipam-setup">IPAM Setup</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="cloudstack/netris-cloudstack_p2.html#create-an-allocation">Create an Allocation</a></li>
@@ -760,7 +777,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p3.html">Server Configuration and Software Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p3.html">CloudStack: Server Configuration and Software Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p3.html#configuring-network-on-cloudstack-management-server-server-1">Configuring Network on CloudStack Management Server (Server 1)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="cloudstack/netris-cloudstack_p3.html#understanding-the-network-layout">Understanding the Network Layout</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cloudstack/netris-cloudstack_p3.html#netplan-configuration">Netplan Configuration</a></li>
@@ -785,7 +802,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p4.html">Configuring CloudStack for Netris Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p4.html">CloudStack: Configuring CloudStack for Netris Integration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p4.html#enabling-the-netris-plugin-in-cloudstack">Enabling the Netris Plugin in CloudStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p4.html#initializing-cloudstack-setup">Initializing CloudStack Setup</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="cloudstack/netris-cloudstack_p4.html#steps-to-initialize-cloudstack">Steps to Initialize CloudStack</a></li>
@@ -793,7 +810,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p5.html">Using CloudStack with Netris Isolation Method</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cloudstack/netris-cloudstack_p5.html">CloudStack: Using CloudStack with Netris Isolation Method</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p5.html#creating-a-vpc">Creating a VPC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p5.html#creating-a-network-tier">Creating a Network Tier</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cloudstack/netris-cloudstack_p5.html#port-forwarding">Port Forwarding</a><ul>
@@ -813,7 +830,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="terraform-integration.html">Terraform: Netris provider</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="terraform-integration.html">Terraform: Netris Provider</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="terraform-integration.html#install-terraform">Install Terraform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="terraform-integration.html#create-a-directory-for-terraform-files">Create a directory for Terraform files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="terraform-integration.html#configure-a-provider">Configure a provider</a></li>
@@ -859,7 +876,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">BlueField-3 DPU Support in Netris</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">NVIDIA BlueField-3 DPU Integration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#what-is-a-dpu">What Is a DPU</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bluefield-3-dpus.html#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
@@ -873,8 +890,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Observability</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/visibility.html">Graph Boards</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/visibility.html#id1">Graph Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitoring-observability/visibility.html">Visibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitoring-observability/visibility.html#graph-boards">Graph Boards</a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitoring-observability/visibility.html#api-logs">API Logs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitoring-observability/visibility.html#dashboard">Dashboard</a></li>
 </ul>
@@ -926,6 +943,14 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.18.0.html">Netris 4.18.0 Release Notes (Oct/01/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.18.0.html#what-s-new-in-netris-version">What’s new in Netris 4.18.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.18.0.html#features-and-enhancements">Features and Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.18.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.18.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.18.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.17.0.html">Netris 4.17.0 Release Notes (Sep/15/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.17.0.html#what-s-new-in-netris-version">What’s new in Netris 4.17.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.17.0.html#features">Features</a></li>
@@ -1136,6 +1161,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/3.0.0.html">Netris 3.0.0 Release Notes (Oct/6/2021)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/3.0.0.html#what-s-new-in-netris-version">What’s new in Netris 3.0.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/3.0.0.html#kubernetes-integration">Kubernetes Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/3.0.0.html#free-softgate-option">Free Softgate Option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/3.0.0.html#calico-integration">Calico Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/3.0.0.html#try-netris-3-0-now">Try Netris 3.0 Now</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/3.0.0.html#references">References</a></li>
 </ul>
 </li>
@@ -1204,23 +1233,28 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#allocations-and-subnets" id="id3">Allocations and Subnets</a></p></li>
-<li><p><a class="reference internal" href="#subnet-purpose-and-service-dependencies" id="id4">Subnet purpose and service dependencies</a></p></li>
-<li><p><a class="reference internal" href="#add-an-allocation" id="id5">Add an Allocation</a></p></li>
-<li><p><a class="reference internal" href="#add-a-subnet" id="id6">Add a Subnet</a></p></li>
-<li><p><a class="reference internal" href="#global-routing" id="id7">Global Routing</a></p></li>
+<li><p><a class="reference internal" href="#overview" id="id3">Overview</a></p></li>
+<li><p><a class="reference internal" href="#allocations-and-subnets" id="id4">Allocations and Subnets</a></p></li>
+<li><p><a class="reference internal" href="#subnet-purpose-and-service-dependencies" id="id5">Subnet purpose and service dependencies</a></p></li>
+<li><p><a class="reference internal" href="#add-an-allocation" id="id6">Add an Allocation</a></p></li>
+<li><p><a class="reference internal" href="#add-a-subnet" id="id7">Add a Subnet</a></p></li>
+<li><p><a class="reference internal" href="#controller-management-address-on-management-subnets" id="id8">Controller Management Address on management subnets</a></p></li>
+<li><p><a class="reference internal" href="#global-routing" id="id9">Global Routing</a></p></li>
 </ul>
 </nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>Netris IPAM is the address-space source of truth every address-consuming object in Netris depends on: V-Net gateways and DHCP pools, NAT and L4 Load Balancer address pools, switch and SoftGate loopback and management IPs, and BGP route advertisement all draw from subnets created here first. Allocations and subnets are tracked per VPC in a nested, tree-like structure, and each subnet’s purpose and tenant determine which services are allowed to consume it.</p>
+</section>
 <section id="allocations-and-subnets">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Allocations and Subnets</a><a class="headerlink" href="#allocations-and-subnets" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Allocations and Subnets</a><a class="headerlink" href="#allocations-and-subnets" title="Link to this heading"></a></h2>
 <p>There are 2 main types of IP prefixes - allocation and subnet. Allocations are IP ranges allocated to an organization via RIR/LIR or private IP ranges that are going to be used by the network. Subnets are prefixes which are going to be used in services.</p>
 <p>An allocation never has a parent — creating an allocation inside another allocation is rejected. A subnet may sit under another subnet, to any depth: creating a <code class="docutils literal notranslate"><span class="pre">10.0.10.0/25</span></code> where a <code class="docutils literal notranslate"><span class="pre">10.0.10.0/24</span></code> subnet already exists files the <code class="docutils literal notranslate"><span class="pre">/25</span></code> under the <code class="docutils literal notranslate"><span class="pre">/24</span></code>. The parent is never chosen — there is no parent selector. You enter a prefix, and the Controller places it under the containing allocation or subnet in that VPC.</p>
 <p>Only top-level subnets are advertised upstream by SoftGate, so whether a subnet is nested under another subnet changes what leaves the fabric — see <a class="reference internal" href="netris-softgate-HS.html"><span class="doc">SoftGate HS</span></a>.</p>
 <img alt="IPAM Tree View" class="with-shadow align-center" src="_images/subnet-tree.png" />
 <p style="text-align: center;"><em>Figure: IPAM Tree View</em></p></section>
 <section id="subnet-purpose-and-service-dependencies">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Subnet purpose and service dependencies</a><a class="headerlink" href="#subnet-purpose-and-service-dependencies" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Subnet purpose and service dependencies</a><a class="headerlink" href="#subnet-purpose-and-service-dependencies" title="Link to this heading"></a></h2>
 <p>Netris models address space first and consumes it second: you create an IPAM subnet with the right <strong>purpose</strong> before the service that will use it. A service only offers addresses from subnets whose purpose matches, so the IPAM entry is a prerequisite, not an afterthought.</p>
 <p>Subnets — not allocations — are what render the <code class="docutils literal notranslate"><span class="pre">network</span></code> statements Netris uses for BGP route advertisement. To have a particular prefix or subprefix advertised, create a subnet for it — see <a class="reference internal" href="bgp.html"><span class="doc">BGP</span></a>.</p>
 <table class="docutils align-default">
@@ -1269,7 +1303,7 @@
 </div>
 </section>
 <section id="add-an-allocation">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Add an Allocation</a><a class="headerlink" href="#add-an-allocation" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Add an Allocation</a><a class="headerlink" href="#add-an-allocation" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Navigate to Net→IPAM</p></li>
 <li><p>Click the <strong>Add</strong> button</p></li>
@@ -1299,11 +1333,9 @@
 </tbody>
 </table>
 <img alt="Add a New IP Allocation" class="with-shadow align-center" src="_images/add-allocation.png" />
-<p>Add Allocation Window</p>
 </section>
-<hr class="docutils" />
 <section id="add-a-subnet">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Add a Subnet</a><a class="headerlink" href="#add-a-subnet" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Add a Subnet</a><a class="headerlink" href="#add-a-subnet" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Navigate to Net→IPAM</p></li>
 <li><p>Click the <strong>Add</strong> button</p></li>
@@ -1354,19 +1386,33 @@
 </table>
 <img alt="Add a New Subnet" class="with-shadow align-center" src="_images/add-subnet.png" />
 <p style="text-align: center;"><em>Figure: Add Subnet Window</em></p></section>
+<section id="controller-management-address-on-management-subnets">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Controller Management Address on management subnets</a><a class="headerlink" href="#controller-management-address-on-management-subnets" title="Link to this heading"></a></h2>
+<p>Every subnet with Purpose set to <code class="docutils literal notranslate"><span class="pre">management</span></code> carries a read-only <strong>Controller Management Address</strong> attribute. It shows the address the Controller discovered for that subnet — the address devices on that management segment use to reach the Controller. Netris resolves it automatically; there is nothing to enter.</p>
+<p>The attribute appears on the subnet edit form. The Add Subnet form does not show it. Until discovery completes, the value reads <code class="docutils literal notranslate"><span class="pre">Not</span> <span class="pre">yet</span> <span class="pre">resolved</span></code>. Netris does not provision switches on a subnet whose Controller Management Address has not resolved.</p>
+<p>ZTP and the agent installation one-liner both read this per-subnet address, so each device is given the Controller address reachable from its own management segment. See <a class="reference internal" href="installation/ztp.html#ztp-controller-address-resolution"><span class="std std-ref">Controller Management Address Resolution</span></a> on the <a class="reference internal" href="installation/ztp.html"><span class="doc">Zero Touch Provisioning</span></a> page for how resolution works, what the resolved and unresolved states look like, and how to troubleshoot a subnet that never resolves.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Controller resolves these addresses from its own Kubernetes environment: kube-vip VIPs on HA controllers, or the Controller’s LoadBalancer service on single-node and cloud deployments. External load balancers that are not represented as a Kubernetes LoadBalancer service are not supported.</p>
+</div>
+</section>
 <section id="global-routing">
-<span id="ipam-global-routing"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">Global Routing</a><a class="headerlink" href="#global-routing" title="Link to this heading"></a></h2>
+<span id="ipam-global-routing"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">Global Routing</a><a class="headerlink" href="#global-routing" title="Link to this heading"></a></h2>
 <p><strong>Global Routing</strong> is a per-subnet checkbox, introduced in 4.4.0, that controls whether a subnet can be advertised outside the VPC/VRF it was created in. The in-product hint text reads:</p>
-<blockquote>
-<div><p>Subnets with “Global Routing” enabled will be advertised from guest VPCs to the System VPC, and if the System VPC has upstream (Internet) connection such subnets will be advertised further upstream.</p>
-</div></blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Subnets with “Global Routing” enabled will be advertised from guest VPCs to the System VPC, and if the System VPC has upstream (Internet) connection such subnets will be advertised further upstream.</p>
+</div>
 <p>In other words: enabling it on a subnet in a tenant (guest) VPC makes that prefix a candidate for advertisement into the System VPC’s routing context, and from there further upstream if a SoftGate object in the System VPC carries an E-BGP session to the Internet or another external network — see <a class="reference internal" href="bgp.html"><span class="doc">BGP</span></a> and the <a class="reference internal" href="netris-softgate-HS.html#softgate-bgp-route-exchange"><span class="std std-ref">BGP route exchange between SoftGates, upstream routers, and downstream switches</span></a> section of <a class="reference internal" href="netris-softgate-HS.html"><span class="doc">SoftGate HS</span></a> for the mechanics of upstream advertisement itself.</p>
 <p>This is the mechanism the 4.4.0 release notes refer to as “native VPC subnet reachability from outside of the Netris-managed fabric” — the subnet is advertised as-is, with no address translation. It is distinct from two other things that also move traffic between a VPC and the outside world:</p>
 <ul class="simple">
 <li><p>A NAT rule’s <em>global IP</em> (see <a class="reference internal" href="nat.html"><span class="doc">NAT</span></a>) — a translated public address, not the subnet itself being advertised. Don’t confuse the two just because both use the word “global.”</p></li>
 <li><p><a class="reference internal" href="vpc-connect.html"><span class="doc">VPC Connect</span></a> — there, the eBGP peer relationship terminates directly on a switch port or V-Net SVI, does not involve a SoftGate, and the resulting traffic never passes through a SoftGate at all. Global Routing’s advertisement path, by contrast, always runs through a SoftGate-terminated eBGP session in the System VPC.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p><strong>Default state:</strong> Global Routing is pre-checked automatically for any subnet created in the System VPC (VPC-1), regardless of Purpose — including <em>loopback</em> and <em>management</em> subnets. Whether that pre-checked state has any actual effect for those purposes is unconfirmed.</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p><strong>IPAM does not track point-to-point link addressing.</strong> Underlay BGP-numbered links and L3VPN per-port links are configured directly on the Link object in Topology Manager instead — see <a class="reference internal" href="topology-management.html"><span class="doc">Topology Management</span></a>, <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profiles</span></a>, and <a class="reference internal" href="server-cluster.html"><span class="doc">Server Cluster</span></a>. Netris can auto-allocate them, or an operator can enter them manually; L3VPN link addresses are typically pre-populated with Terraform during server onboarding.</p>

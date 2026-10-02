@@ -1,0 +1,69 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.18.0
+.. _release_4_18_0:
+
+Netris |version| Release Notes (Oct/01/2026)
+=============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Netris 4.18.0 adds RADIUS authentication for switch logins on Cumulus and Dell SONiC and Arista LANZ congestion monitoring, both configured in Inventory Profiles, and lets ZTP provision switches on every management subnet without changing the Controller Management Address. It extends syslog destinations to SoftGates and DHCPv6 Relay to Dell SONiC, and speeds up V-Net and server cluster operations in large-scale deployments. It also includes fixes across the Controller API, the Controller web interface, eBGP sessions and DHCP on SoftGate, MC-LAG, FEC and configuration changes on Cumulus, and ECN on Arista, along with a fix for a Go security vulnerability.
+
+.. note::
+
+   **cert-manager is now installed with the Netris Controller.** Starting with Netris 4.18.0, the Netris Controller Helm chart installs cert-manager, which the Controller requires. cert-manager was previously an optional, manual installation step.
+
+Features and Enhancements
+-------------------------
+.. New capabilities and customer-facing enhancements to existing functionality and features.
+
+- **RADIUS Authentication for Switches**. Configure RADIUS authentication for switch logins in the Inventory Profile: one or more RADIUS servers in priority order, the authentication type, and the authentication order with fallback to local accounts. RADIUS shared secrets are stored encrypted and are never returned in clear text by the UI or API. Affected platforms: Cumulus, Dell SONiC.
+- **Arista LANZ Congestion Monitoring**. Enable Arista LANZ (Latency Analyzer) from the Inventory Profile to detect microbursts and queue congestion on switch ports and the CPU queue, with optional thresholds, logging of congestion events to syslog, and a streaming feed for external monitoring clients restricted by subnet.
+- **ZTP on every management subnet**. ZTP now provisions and upgrades switches on every management subnet at the same time, with no need to set or change the Controller Management Address between operations. The Controller discovers its address on each management subnet automatically and shows it on the subnet in IPAM.
+- **Syslog destinations for SoftGates**. Syslog destinations configured in an Inventory Profile now also apply to SoftGates, so they forward their system logs to central logging infrastructure alongside switches, with no per-SoftGate setup.
+- **DHCPv6 Relay for V-Nets (Dell SONiC)**. Extends DHCPv6 relay support to Dell SONiC, so V-Nets can relay DHCPv6 requests to an external DHCPv6 server — including across VPC peering to a centralized server — completing IPv6 parity with existing IPv4 DHCP relay.
+- **Faster V-Net and server cluster operations at scale**. Creating V-Nets and server clusters with automatically assigned VLANs, and deleting server clusters, IPAM allocations and subnets, is now faster in large-scale deployments.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes.
+
+- Fixed the logout API endpoint returning a redirect instead of a JSON API response.
+- Fixed L4 Load Balancer creation through the API failing with an unrelated "site not enabled" message when the IP family is given as "IPv4", the capitalization shown in the API reference.
+- Fixed Inventory Profile create and update API requests never returning when the fabric or GPU cluster properties are omitted from the request. Found in Netris 4.16 and later.
+- Fixed time zone information being displayed inconsistently in the Inventory details of switches and SoftGates. Found in Netris 4.13 and later.
+- Fixed the number of critical alerts in the External BGP donut chart on the Dashboard not matching the number of alerts listed when the list is filtered by CRIT. Found in Netris 4.15 and later.
+- Fixed pages in the Controller web interface occasionally failing to load. Found in Netris 4.17 and later.
+- Fixed eBGP sessions with upstream routers flapping after a SoftGate is put into and taken out of maintenance mode.
+- Fixed eBGP sessions on SoftGate going down when the fabric learned the wrong MAC address for the SoftGate's eBGP local IP. Found in Netris 4.14 and later.
+- Fixed the agent pushing its DHCP server configuration every 30 seconds in a continuous loop, including:
+
+  - when the ``isc-kea-hooks`` package is not installed;
+  - on Ubuntu 24.04, where the DHCP server reports its logger settings under the ``output-options`` key.
+
+  Affected platforms: SoftGate (DPDK). Found in Netris 4.8 and later.
+- Fixed the agent occasionally applying an empty configuration to a switch. Affected platforms: Cumulus. Found in Netris 4.8 and later.
+- Fixed MC-LAG configuration failing to apply when the peer link description is longer than 80 characters. Affected platforms: Cumulus. Found in Netris 4.15 and later.
+- Fixed switch ports flapping when the agent applies a FEC setting of Auto, such as after an upgrade. Affected platforms: Cumulus. Found in Netris 4.11 and later.
+- Fixed ECN markings being lost on RoCEv2 traffic between leaf switches when the traffic is carried over VXLAN. Affected platforms: Arista. Found in Netris 4.15 and later.
+
+Security fixes
+----------------
+
+- Fixed `CVE-2026-39821 <https://www.cve.org/CVERecord?id=CVE-2026-39821>`_, a critical vulnerability in the Go ``net/http`` stack and ``golang.org/x/net/idna``, in the Netris Controller, the Dell SONiC agent, and the UFM agent by updating ``golang.org/x/net`` to 0.55.0.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file

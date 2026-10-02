@@ -24,7 +24,7 @@ Features
     The Netris-tech-support data collection script is now also available for the Netris controller, to facilitate support processing.
 4. New location (Metro) of Equinix Metal:
 
-Netris now includes the new location (Metro) of Equinix Metal: Mumbai.
+    Netris now includes the new location (Metro) of Equinix Metal: Mumbai.
 
 Bug fixes
 ---------

@@ -8,6 +8,7 @@ Maintenance Mode
 Overview
 ========
 Maintenance mode is intended to assist in smoothly redirecting traffic away from a particular device for a maintenance to be carried out with minimal impact on your network. It's advisable to activate Maintenance Mode, wait a few minutes and ensure that traffic has been re-routed, prior to initiating maintenance procedures on the device. Once the maintenance is completed, you should deactivate Maintenance Mode to switchover the traffic back to normal. 
+
 To toggle Maintenance Mode on or off, navigate to the Inventory section, or Topology manager (more convenient for switch-fabric). Edit the devices, and use the Maintenance Mode checkbox to enable/disable. 
 
 .. image:: images/maintenance-mode.png

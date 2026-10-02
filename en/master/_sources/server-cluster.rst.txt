@@ -43,8 +43,8 @@ Here are several template examples followed by detailed descriptions of every fi
 .. warning::
    For l3vpn type to function properly, the /31 links' addresses must be prepopulated. This is best done with Terraform during the server onboarding phase. See :doc:`Netris Terraform Provider </terraform-integration>` for details.
 
-Server Cluster Template Examples:
----------------------------------
+Server Cluster Template Examples
+--------------------------------
 
 Ethernet-only Fabric Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -249,10 +249,10 @@ IPv6 is fully supported in Netris. This example showcases how to optionally enab
     }
   ]
 
-Template Fields Explained:
---------------------------
+Template Fields Explained
+-------------------------
 
-Each object in the **Vnets** JSON array may include a combination of the following key-value pairs
+Each object in the **Vnets** JSON array may include a combination of the following key-value pairs:
 
   - **postfix**: A string appended to the server cluster name to form the V-Net name.
   - **type**: A string specifying the type of V-Net (`l2vpn`, `l3vpn`, `netris-ufm`, `netris-nvlink`).
@@ -266,14 +266,14 @@ Each object in the **Vnets** JSON array may include a combination of the followi
   - **ipv4Gateway**: When `type:l2vpn` one of the following values:
 
     - A string specifying the IPv4 gateway for V-Net in CIDR notation
-    - A string `specify` to force the operator to enter the gateway explicitly at cluster creation
+    - A string `specify` to require the operator to enter the gateway explicitly at cluster creation
     - an object (see :ref:`advanced-uses`) with the following properties: **assignType** (only `auto` is permitted at this time), **allocation** (the IPv4 address allocation, a supernet from which the child subnets will be derived), **childSubnetPrefixLength** (the prefix length for child subnets), and **hostnum** (the host number for the gateway).
 
   - **ipv4DhcpEnabled**: A boolean to enable/disable DHCP for IPv4.
   - **ipv6Gateway**: When `type:l2vpn` one of the following values:
 
     - A string specifying the IPv6 gateway for V-Net in CIDR notation
-    - A string `specify` to force the operator to enter the gateway explicitly at cluster creation
+    - A string `specify` to require the operator to enter the gateway explicitly at cluster creation
     - an object (see :ref:`advanced-uses`) with the same **assignType**, **allocation**, **childSubnetPrefixLength**, and **hostnum** properties as above (IPv6-scoped).
 
   - **Ufm**: Nvidia UFM controller identifier (`ufm_id`) for V-Net `type:netris-ufm`. See :doc:`Netris UFM documentation </netris-ufm-integration>` for details.
@@ -458,10 +458,10 @@ In case you want to specify the IP gateway manually when creating a Server Clust
       "type": "l2vpn",
       "vlan": "untagged",
       "vlanID": "auto",
-      "ipFamily": "dual",
       "serverNics": [
         "eth11"
       ],
+      "ipFamily": "dual",
       "ipv4Gateway": "specify",
       "ipv6Gateway": "specify"
     }
@@ -511,7 +511,7 @@ To assign multiple V-Nets to the same VPC, select them together as shown on the 
 
 .. note::
 
-  In the screenshot above the Mgmt V-Net will be added to the existing VPC-102 (Shared-infra), while one new VPC will be created with the EastWest and the NorthSouth V-Nets assigned to it.
+  In the screenshot above the “Mgmt” V-Net will be added to the existing VPC-102 (Shared-infra), while one new VPC will be created with the “EastWest” and the “NorthSouth” V-Nets assigned to it.
 
 .. _server-cluster-shared-endpoints:
 
@@ -592,8 +592,8 @@ Once a node is selected as dedicated in a cluster:
 - It cannot be added as a dedicated member to any other cluster
 - It cannot be added as a shared node into the same cluster, but it can be added as a shared node to any other cluster.
 
-Server Cluster Fields Explained:
---------------------------------
+Server Cluster Fields Explained
+-------------------------------
 
 - **Name**: A descriptive name for the server cluster.
 - **Admin**: The administrative owner of this server cluster.

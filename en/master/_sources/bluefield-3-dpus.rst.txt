@@ -1,11 +1,13 @@
 .. _bluefield-3-dpus:
 
-BlueField-3 DPU Support in Netris
+NVIDIA BlueField-3 DPU Integration
 ==================================
 
 .. contents:: Table of Contents
    :local:
    :depth: 2
+
+.. _bf3-overview:
 
 Overview
 --------
@@ -19,6 +21,8 @@ assignable network endpoints.
 This allows you to attach a server's workloads to a VNet through a DPU VF using the same
 workflow you would use for a physical switch port.
 
+
+.. _bf3-what-is-a-dpu:
 
 What Is a DPU
 -------------

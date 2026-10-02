@@ -16,29 +16,32 @@ BGP Overview
 
 Netris uses BGP to connect tenant VPCs and management networks to the world outside the Netris-managed fabric — upstream carriers, non-Netris-managed data center networks, WAN routers, and security appliances such as firewalls.
 
-A subnet must additionally have its *Global Routing* checkbox enabled to be eligible for this kind of external advertisement — see :ref:`Global Routing <ipam_global_routing>` on the IPAM page.
-
 There are two main types of BGP-enabled connectivity:
 
 - **SoftGate-terminated BGP** — the session terminates on a :doc:`SoftGate <netris-softgate-HS>` node. Typically used for connecting to ISPs, border routers, and similar upstream peers, since SoftGate also provides :doc:`NAT <nat>` and :doc:`Layer-4 load balancing <l4-load-balancer>` for that traffic.
-- :doc:`VPC Connect <vpc-connect>` **(switch-terminated BGP)** — the session terminates directly on a switch port or V-Net SVI. Typically used to establish line-rate connections to external gateways that don't require NAT or L4LB as part of the connection.
+
+.. tip::
+
+   A subnet must additionally have its *Global Routing* checkbox enabled to be eligible for this kind of external advertisement — see :ref:`Global Routing <ipam_global_routing>` on the IPAM page.
+
+- :doc:`VPC Connect <vpc-connect>` **(switch-terminated BGP)** — the session terminates directly on a routed switch port or on a V-Net. Typically used to establish line-rate connections to external gateways that don't require NAT or L4LB as part of the connection.
 
 Typical use cases are connecting the Netris-managed fabric to external networks such as WAN, non-Netris-managed parts of the data center network, Internet Service Providers, and similar external networks.
 
 Basic BGP
 ---------
 
-BGP neighbors can be declared in the Network → E-BGP section. Netris software will automatically generate and program the network configuration to meet the requirements.
+BGP neighbors are declared in the Network → E-BGP section. Netris software automatically generates and programs the network configuration to meet the requirements.
 
-A BGP session with an external to the Netris-managed fabric neighbor is defined by two independent choices:
+Two independent choices define a BGP session with an external neighbor to the Netris-managed fabric:
 
 - **BGP Router** — the switch (or SoftGate) that hosts the local BGP speaker and where the Netris-managed side of the session terminates.
-- **Local endpoint interface** — either a routed **switch port** or a **V-Net** (*a.k.a. BGP terminated on V-Net*), selected by setting either *Switch port* or *Connect via V-Net* (under Advanced). A V-Net used this way gets a dedicated SVI on the BGP Router, and that SVI carries the *Local IP*. Whether the V-Net has a gateway depends on where the switch port is — see the table below.
+- **Local endpoint interface** — either a routed **switch port** or a **V-Net** (*a.k.a. BGP terminated on V-Net*), selected by setting either *Switch port* or *Connect via V-Net* (under Advanced). A V-Net used this way gets a dedicated SVI on the *BGP Router*, and that SVI carries the *Local IP*. Whether the V-Net has a gateway depends on where the switch port is — see the table below.
 
-The peer-facing port can be any port on the Netris-managed fabric; it does not have to sit on the switch selected as the BGP Router. When the port and the BGP Router are on different switches, Netris connects the two automatically — it creates a dedicated SVI on the BGP Router switch and provisions a hidden (meaning not visible in the GUI under the V-Net menu) "virtual wire" V-Net to the switch where the peer is physically connected.
+The peer-facing port can be any port on the Netris-managed fabric; it does not have to sit on the switch selected as the *BGP Router*. When the port and the *BGP Router* are on different switches, Netris connects the two automatically — it creates a dedicated SVI on the *BGP Router* and provisions a hidden (meaning not visible in the GUI under the V-Net menu) "virtual wire" V-Net to the switch where the peer is physically connected.
 
 .. warning::
-  A V-Net with a gateway can be used for BGP termination only when the BGP Router is the switch where the switch port is.
+  A V-Net with a gateway can be used for BGP termination only when the *BGP Router* is the switch where the switch port is.
 
   The *Local IP* is either the V-Net gateway address itself or a secondary IP address on the same SVI, not a separate interface.
 
@@ -51,16 +54,16 @@ The resulting combinations:
    :widths: 25 35 40
 
    * - Local endpoint
-     - Peer port on the BGP Router switch
-     - Peer port on a different switch
+     - Switch port on the *BGP Router*
+     - Switch port on a different switch
    * - **Routed switch port**
      - The session and the port are on the same switch.
-     - Netris builds a virtual wire from the peer's port to the SVI created on the BGP Router switch.
+     - Netris builds a virtual wire from the peer's port to the SVI created on the *BGP Router*.
    * - **V-Net without a gateway**
-     - Netris creates a dedicated SVI in that V-Net for this BGP session on the BGP Router switch; that SVI is the local endpoint.
-     - The V-Net is extended to the BGP Router switch, and the dedicated SVI created there terminates the session.
+     - Netris creates a dedicated SVI in that V-Net for this BGP session on the *BGP Router*; that SVI is the local endpoint.
+     - The V-Net extends to the *BGP Router*, and the dedicated SVI there terminates the session.
    * - **V-Net with a gateway**
-     - The session terminates on the V-Net SVI on that switch. The Local IP is the gateway address, or a secondary address on the same SVI (secondary addresses are not supported on Arista).
+     - The session terminates on the V-Net SVI on that switch. The *Local IP* is the gateway address, or a secondary address on the same SVI (secondary addresses are not supported on Arista).
      - Not supported.
 
 **Adding BGP Peers**
@@ -80,7 +83,7 @@ Example: Declare a basic BGP neighbor.
 .. image:: images/create_bgp.png
     :align: center
 
-If everything is correct, State, port and BGP will get green status.
+If everything is correct, State, port, and BGP status will turn green.
 
 .. image:: images/bgp_status.png
     :align: center
@@ -88,7 +91,7 @@ If everything is correct, State, port and BGP will get green status.
 Advanced BGP
 ------------
 
-BGP neighbor declaration can optionally include advanced BGP attributes and BGP route-maps for fine-tuning of BGP policies.
+BGP neighbor declaration can optionally include advanced BGP attributes and BGP route-maps to fine-tune BGP policies.
 
 Click Advanced to expand the BGP neighbor add/edit window.
 
@@ -101,13 +104,12 @@ Click Advanced to expand the BGP neighbor add/edit window.
 
 - Typically, all SoftGate nodes in a deployment share the same AS number.
 - All SoftGate nodes advertise all prefixes (locally originated as well as originated on other SoftGate nodes and subsequently learned through the fabric) to their upstreams.
-- When the **Remove Private AS** is switched on (check box is set), all inter-SoftGate path information is stripped from the AS PATH before the prefix is advertised upstream, thus each prefix will appear to the upstream BGP neighbor as equidistant (ECMP). As a result some traffic might be forwarded to SoftGates that would then have to forward it again to the "correct" SoftGate, thus resulting in suboptimal routing behavior and increased load.
-- With the **Remove Private AS** toggle set to off (check box is cleared), the AS PATH of each prefix will include the full list of ASN, including the list of ASNs of switches connecting SoftGates to each other. Because of this, on any given SoftGate locally originated prefixes will always have the AS PATH shorter than prefixes learned through the switch fabric from other SoftGates.
+- When *Remove Private AS* is enabled (the checkbox is set), all inter-SoftGate path information is stripped from the AS PATH before the prefix is advertised upstream; thus, each prefix appears to the upstream BGP neighbor as equidistant (ECMP). As a result, some traffic might be forwarded to SoftGates that then have to forward it again to the "correct" SoftGate, resulting in suboptimal routing and increased load.
+- With the *Remove Private AS* toggle set to off (check box is cleared), the AS PATH of each prefix will include the full list of ASNs, including the list of ASNs of switches connecting SoftGates to each other. Because of this, on any given SoftGate, locally originated prefixes will always have the AS PATH shorter than prefixes learned through the switch fabric from other SoftGates.
 
 BGP Objects
 -----------
-| Under Network → E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy.
-| Supported objects include:
+Under Network → E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy. Supported objects include:
 
 * IPv4 Prefix
 * IPv6 Prefix
@@ -118,12 +120,11 @@ BGP Objects
 
 IPv4 Prefix
 ^^^^^^^^^^^
-| The rules are defined one per line.
-| Each line in IPv4 prefix list field consists of three parts:
+Define rules one per line. Each line in the IPv4 prefix list field consists of three parts:
 
 * Action - Possible values are: permit or deny (mandatory).
 * IP Prefix - Any valid IPv4 prefix (mandatory).
-* Length - Possible values are: le <len>, ge <len> or ge <len> le <len>.
+* Length - Possible values are: le <len>, ge <len>, or ge <len> le <len>.
 
 Example: Creating an IPv4 Prefix list.
 
@@ -132,12 +133,11 @@ Example: Creating an IPv4 Prefix list.
 
 IPv6 Prefix
 ^^^^^^^^^^^
-| Rules defined one per line.
-| Each line in IPv6 prefix list field consists of three parts:
+Define rules one per line. Each line in the IPv6 prefix list field consists of three parts:
 
 * Action - Possible values are: permit or deny (mandatory).
 * IP Prefix - Any valid IPv6 prefix (mandatory).
-* Keyword - Possible values are: le <len>, ge <len> or ge <len> le <len>.
+* Keyword - Possible values are: le <len>, ge <len>, or ge <len> le <len>.
 
 Example: Creating an IPv6 Prefix list.
 
@@ -146,23 +146,23 @@ Example: Creating an IPv6 Prefix list.
 
 Community
 ^^^^^^^^^
-| Community field has two parts:
+Community field has two parts:
 
 * **Action** - Possible values: permit or deny (mandatory).
-* **Community string** - Allowed format: ``<permit/deny> LINE``. LINE is AA:NN Community number in AA:NN format (where AA and NN are (0-65535)) or ``local-AS``, ``no-advertise``, ``no-export``, ``internet`` or ``additive``.
+* **Community string** - Allowed format: ``<permit/deny> LINE``. LINE is an AA:NN Community number in AA:NN format (where AA and NN are (0-65535)) or ``local-AS``, ``no-advertise``, ``no-export``, ``internet``, or ``additive``.
 
-Example: Creating community.
+Example: Creating a community.
 
 .. image:: images/community.png
     :align: center
 
 BGP route-maps
 --------------
-| Under the Network → E-BGP Route-maps section, you can define route-map policies, which can be associated with the BGP neighbors inbound or outbound.
+Under Network → E-BGP Route-maps, you can define route-map policies and associate them with BGP neighbors inbound or outbound.
 
-| Description of route-map fields:
+Description of route-map fields:
 
-* **Sequence Number** - Automatically assigned a sequence number. Drag and move sequences to organize the order.
+* **Sequence Number** - Automatically assigned. Drag and move sequences to organize the order.
 * **Description** - Free description.
 * **Policy** - Permit or deny the routes which match below all match clauses within the current sequence.
 * **Match** - Rules for route matching.
@@ -192,7 +192,7 @@ By default, Netris SoftGates only redistribute the default route into tenant VPC
 Starting with version 4.5.4, Netris introduces a mechanism to selectively import non-default routes into VPCs by tagging them with a special **BGP community: 0:7**. Routes marked with this community will be redistributed into tenant VPCs alongside the default.
 
 .. warning::
-  Importing additional prefixes into VPCs increases the size of the routing table on SoftGates and switches. Ensure that your hardware can handle the increased load, especially if you plan to import many prefixes.
+  Importing additional prefixes into VPCs increases the routing table size on SoftGates and switches. Ensure that your hardware can handle the increased load, especially if you plan to import many prefixes.
 
 How to Import Non-Default Prefixes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -206,11 +206,11 @@ If you manage the eBGP peer configuration using the Netris Controller, you can m
 1.	Create a Prefix List under Network → E-BGP Objects
 
 .. tip::
-  Do not include 0.0.0.0/0 — it is automatically imported
+  Do not include 0.0.0.0/0 — it is automatically imported.
 
 .. image:: images/prefix-list-imported-prefixes.png
     :align: center
-    :alt: prefix list
+    :alt: Prefix list for imported prefixes
     :class: with-shadow
 
 .. raw:: html
@@ -235,11 +235,11 @@ Add a new route-map that
 
 3.	Attach the Route Map to the eBGP Peer under Network → E-BGP
 
-Edit the relevant eBGP neighbor and under Advanced Settings, set the inbound route-map to the one created in Step 2
+Edit the relevant eBGP neighbor and, under Advanced Settings, set the inbound route-map to the one created in Step 2
 
 .. image:: images/ebgp-advanced-inbound-route-map.png
     :align: center
-    :alt: inbound route-map
+    :alt: eBGP advanced inbound route-map
     :class: with-shadow
 
 .. raw:: html
@@ -256,6 +256,6 @@ Once applied, any matching prefixes received from this eBGP peer will be tagged 
 
 **Option 2**: Tag Outbound from External BGP Peer
 
-Alternatively, the external BGP speaker can set the 0:7 community on outbound updates before advertising routes to the SoftGate. This option does not require any configuration in Netris, as long as the incoming route already carries the community.
+Alternatively, the external BGP speaker can set the 0:7 community on outbound updates before advertising routes to the SoftGate. This option requires no configuration in Netris, as long as the incoming route already carries the community.
 
-This is useful when the upstream router is under the customer's control and managing policy from that side is preferred.
+This is useful when the upstream router is under the customer's control, and the customer prefers to manage policy on that side.
