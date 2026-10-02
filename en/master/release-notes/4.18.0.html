@@ -75,7 +75,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netris 4.18.0 Release Notes (Oct/01/2026) &mdash; Netris Documentation</title>
+  <title>Netris 4.18.0 Release Notes (Oct/02/2026) &mdash; Netris Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -942,7 +942,7 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Release Notes</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 4.18.0 Release Notes (Oct/01/2026)</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Netris 4.18.0 Release Notes (Oct/02/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-s-new-in-netris-version">What’s new in Netris 4.18.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#features-and-enhancements">Features and Enhancements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug fixes</a></li>
@@ -1215,7 +1215,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Release Notes</a></li>
-      <li class="breadcrumb-item active">Netris 4.18.0 Release Notes (Oct/01/2026)</li>
+      <li class="breadcrumb-item active">Netris 4.18.0 Release Notes (Oct/02/2026)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/netrisai/docs/blob/master/release-notes/4.18.0.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1228,8 +1228,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="netris-version-release-notes-oct-01-2026">
-<span id="release-4-18-0"></span><h1>Netris 4.18.0 Release Notes (Oct/01/2026)<a class="headerlink" href="#netris-version-release-notes-oct-01-2026" title="Link to this heading"></a></h1>
+  <section id="netris-version-release-notes-oct-02-2026">
+<span id="release-4-18-0"></span><h1>Netris 4.18.0 Release Notes (Oct/02/2026)<a class="headerlink" href="#netris-version-release-notes-oct-02-2026" title="Link to this heading"></a></h1>
 <section id="what-s-new-in-netris-version">
 <h2>What’s new in Netris 4.18.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
 <p>Netris 4.18.0 adds RADIUS authentication for switch logins on Cumulus and Dell SONiC and Arista LANZ congestion monitoring, both configured in Inventory Profiles, and lets ZTP provision switches on every management subnet without changing the Controller Management Address. It extends syslog destinations to SoftGates and DHCPv6 Relay to Dell SONiC, and speeds up V-Net and server cluster operations in large-scale deployments. It also includes fixes across the Controller API, the Controller web interface, eBGP sessions and DHCP on SoftGate, MC-LAG, FEC and configuration changes on Cumulus, and ECN on Arista, along with a fix for a Go security vulnerability.</p>
@@ -1259,7 +1259,6 @@
 <li><p>Fixed the number of critical alerts in the External BGP donut chart on the Dashboard not matching the number of alerts listed when the list is filtered by CRIT. Found in Netris 4.15 and later.</p></li>
 <li><p>Fixed pages in the Controller web interface occasionally failing to load. Found in Netris 4.17 and later.</p></li>
 <li><p>Fixed eBGP sessions with upstream routers flapping after a SoftGate is put into and taken out of maintenance mode.</p></li>
-<li><p>Fixed eBGP sessions on SoftGate going down when the fabric learned the wrong MAC address for the SoftGate’s eBGP local IP. Found in Netris 4.14 and later.</p></li>
 <li><p>Fixed the agent pushing its DHCP server configuration every 30 seconds in a continuous loop, including:</p>
 <ul class="simple">
 <li><p>when the <code class="docutils literal notranslate"><span class="pre">isc-kea-hooks</span></code> package is not installed;</p></li>

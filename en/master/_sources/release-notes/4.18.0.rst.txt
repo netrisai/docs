@@ -3,7 +3,7 @@
 .. |version| replace:: 4.18.0
 .. _release_4_18_0:
 
-Netris |version| Release Notes (Oct/01/2026)
+Netris |version| Release Notes (Oct/02/2026)
 =============================================
 
 What's new in Netris |version|?
@@ -37,7 +37,6 @@ Bug fixes
 - Fixed the number of critical alerts in the External BGP donut chart on the Dashboard not matching the number of alerts listed when the list is filtered by CRIT. Found in Netris 4.15 and later.
 - Fixed pages in the Controller web interface occasionally failing to load. Found in Netris 4.17 and later.
 - Fixed eBGP sessions with upstream routers flapping after a SoftGate is put into and taken out of maintenance mode.
-- Fixed eBGP sessions on SoftGate going down when the fabric learned the wrong MAC address for the SoftGate's eBGP local IP. Found in Netris 4.14 and later.
 - Fixed the agent pushing its DHCP server configuration every 30 seconds in a continuous loop, including:
 
   - when the ``isc-kea-hooks`` package is not installed;
