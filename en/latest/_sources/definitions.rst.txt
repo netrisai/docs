@@ -88,11 +88,11 @@ Infrastructure and operations
 
 * **Controller Management Network (CMN)** - A physically separate, non-Netris-managed network that connects Netris Controller nodes and seed switches. Not one of the four fabric roles; exists to prevent circular dependencies between the controller and the fabrics that the controller manages. See the :ref:`management_network_architecture` section of Netris Architecture for the full design.
 
-* **Seed switches** - A set of 2 to 6 Netris-managed switches provisioned before any other Netris-managed switches in a deployment. Seed switches connect their management interfaces directly to the CMN and form the root of the OOB management hierarchy in Hybrid OOB (hierarchical) deployments. Not used in Direct-to-CMN deployments. See :ref:`management_network_architecture`.
+* **Seed switches** - A set of 2 to 6 Netris-managed switches provisioned before any other Netris-managed switches in a deployment. Seed switches connect their management interfaces directly to the CMN and form the root of the OOB management hierarchy in Hybrid OOB (hierarchical) deployments. Not used in Direct-to-CMN deployments. See :ref:`management_network_architecture` in :doc:`Netris Architecture <netris-architecture>`.
 
-* **Direct-to-CMN deployment topology** - A management plane topology in which all Netris-managed switches connect their management interfaces directly to the CMN. No seed switches are required. Suitable for smaller deployments — typically up to about 90 Netris-managed switches. See :ref:`management_network_architecture`.
+* **Direct-to-CMN deployment topology** - A management plane topology in which all Netris-managed switches connect their management interfaces directly to the CMN. No seed switches are required. Suitable for smaller deployments — typically up to about 90 Netris-managed switches. See :ref:`management_network_architecture` in :doc:`Netris Architecture <netris-architecture>`.
 
-* **Hybrid OOB (hierarchical) deployment topology** - A management plane topology in which a small set of seed switches connects directly to the CMN and forms the root of an OOB management hierarchy. The remaining Netris-managed switches connect their management interfaces to the OOB network. Used for larger deployments. See :ref:`management_network_architecture`.
+* **Hybrid OOB (hierarchical) deployment topology** - A management plane topology in which a small set of seed switches connects directly to the CMN and forms the root of an OOB management hierarchy. The remaining Netris-managed switches connect their management interfaces to the OOB network. Used for larger deployments. See :ref:`management_network_architecture` in :doc:`Netris Architecture <netris-architecture>`.
 
 * **Inventory** - The collection of all Netris-managed network units in the system — switches, SoftGate nodes, and DPUs — each running a Netris agent and registered with the Netris Controller.
 

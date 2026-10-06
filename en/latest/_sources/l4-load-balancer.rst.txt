@@ -6,7 +6,12 @@
 #######################
 L4 Load Balancer (L4LB)
 #######################
-Netris L4 Load Balancer (L4LB) leverages SoftGate(Linux router) nodes to provide Layer-4 load balancing services, including on-demand cloud load balancing with native integration with :doc:`Kubernetes <kubernetes-integration>` and :doc:`Terraform <terraform-integration>`. 
+
+.. contents:: Table of Contents
+   :local:
+   :depth: 1
+
+Netris L4 Load Balancer (L4LB) leverages SoftGate (Linux router) nodes to provide Layer-4 load balancing services, including on-demand cloud load balancing with native integration with :doc:`Kubernetes <kubernetes-integration>` and :doc:`Terraform <terraform-integration>`. 
 
 Enabling L4LB service
 ---------------------
@@ -82,3 +87,8 @@ Example: Requesting an L4 Load Balancer service.
    :alt: List L4 Load Balancers
 
 Example: Listing of L4 Load Balancer services
+
+L4LB and ACLs
+-------------
+
+When a Site's ACL Default Policy is Deny, inbound traffic to an L4LB frontend needs an ACL entry permitting it. Write that entry in the tenant's VPC against the backend addresses — not against the frontend IP. See :ref:`ACL entries for DNAT and L4LB traffic <acl-dnat-l4lb>` on the :doc:`Access Control Lists (ACL) <acls>` page.

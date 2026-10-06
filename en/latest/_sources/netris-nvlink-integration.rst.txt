@@ -1,9 +1,9 @@
 .. meta::
     :description: NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller
 
-################################################################
-NVIDIA NMX-C (NVLink) Integration Plugin for Netris Controller
-################################################################
+#################################
+NVIDIA NMX-C (NVLink) Integration
+#################################
 
 .. contents:: Table of Contents
    :local:

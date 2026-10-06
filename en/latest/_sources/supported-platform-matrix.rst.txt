@@ -1,6 +1,10 @@
-=================================================
-Netris Supported Functionality & Platforms Matrix
-=================================================
+===================================================
+Netris Supported Functionality and Platforms Matrix
+===================================================
+
+.. contents:: Table of Contents
+   :local:
+   :depth: 1
 
 Switch Fabric Management Functions
 ==================================
@@ -14,10 +18,8 @@ Switch Fabric Management Functions
 
         BCM-SONiC
       - Arista EOS
-      - EdgeCore SONiC
    *  - Fabric Manager
       - Day0, Day1, and Day2 switch fabric operations.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -26,10 +28,8 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - East-West (backend/scale out) Fabric*
       - Manage switches in East-West Ethernet-based fabrics including multi-plane deployments.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -38,10 +38,8 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - Topology Manager
       - Design and operate the switch fabric.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -50,10 +48,8 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - :doc:`IPAM (IP Address Management) </ipam>`
       - Manage IP subnets. Assign RBAC, multi-tenancy, and service-based rules and roles to IP address resources.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -62,10 +58,8 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - BGP Unnumbered
       - Any network topology with BGP unnumbered underlay
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -74,10 +68,8 @@ Switch Fabric Management Functions
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - VXLAN/EVPN
       - VXLAN over BGP/EVPN switch fabric
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -86,37 +78,36 @@ Switch Fabric Management Functions
       - ✔
       - TBD
       - ✔
-      - ✔
    *  - :doc:`/installation/ztp`
       - Zero-touch provisioning of the NOS & Netris agent
       - ✔
       - Coming Soon
       - Coming Soon
-      - TBD
    *  - Upgrade/Downgrade
       - Upgrade & Downgrade of Netris agent through the controller
       - ✔
       - Coming Soon
       - Coming Soon
-      - TBD
    *  - Custom Config Snippets
       - Custom configuration snippets for unique use cases.
       - ✔
       - Coming Soon
       - ✔
-      - TBD
    *  - :ref:`SNMPv2 polling <snmp_settings>`
       - Enable SNMPv2 server.
       - ✔
       - ✔
       - ✔
-      - TBD
    *  - :ref:`Syslog Destinations <syslog_settings>`
-      - Forward switch logs to up to 4 remote syslog servers configured on the Inventory Profile.
+      - Forward switch and SoftGate logs to up to 4 remote syslog servers configured on the Inventory Profile.
       - ✔
       - ✔
       - ✔
-      - TBD
+   *  - AAA (RADIUS) Authentication
+      - Authenticate switch logins against RADIUS servers configured on the Inventory Profile, with a configurable authentication order and local fallback.
+      - ✔
+      - ✔
+      - Coming Soon
 
 \* Netris also integrates with NVIDIA UFM and NVIDIA NMX-C to automate partition management across NVIDIA Quantum InfiniBand and NVL72 fabrics.
 
@@ -133,10 +124,8 @@ Host Networking
 
         BCM-SONiC
       - Arista EOS
-      - EdgeCore-SONiC
    *  - :doc:`HBN (Host Based Networking) for BlueField DPUs </bluefield-3-dpus>`
       - Extend the EVPN/VXLAN fabric into BlueField DPUs for hardware-enforced tenant isolation at the server level.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -145,7 +134,6 @@ Host Networking
       - ✔
       - ✔
       - TBD
-      - TBD   
 
 Monitoring & Telemetry
 ==================================
@@ -155,14 +143,12 @@ Monitoring & Telemetry
    *  - Function
       - Description
       - NVIDIA Cumulus
-      - Dell-SONiC
+      - Dell SONiC
 
         BCM-SONiC
       - Arista EOS
-      - EdgeCore SONiC
    *  - :doc:`Monitoring: Switch Ports</monitoring-observability/healthchecks>`
       - Automatic monitoring of Link statuses, link utilization, laser signal levels, temperature, errors, packets, transceiver presence.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -171,10 +157,8 @@ Monitoring & Telemetry
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - :doc:`Monitoring: Sensors</monitoring-observability/healthchecks>`
       - Automatic monitoring of temperature, fans, power supply statuses.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -183,10 +167,8 @@ Monitoring & Telemetry
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - :doc:`Topology Validation </monitoring-observability/topology-validation>`
       - Detect wiring errors switch-to-switch & switch-to-SoftGate.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -195,13 +177,16 @@ Monitoring & Telemetry
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - :doc:`NVIDIA NetQ integration </monitoring-observability/netq>`
       - Activate NVIDIA NetQ Blueprint through Netris topology
       - ✔
       - N/A
       - N/A
+   *  - Arista LANZ congestion monitoring
+      - Detect microbursts and queue congestion on switch ports and the CPU queue, with congestion events logged to syslog and streamed to external monitoring clients.
       - N/A
+      - N/A
+      - ✔
 
 See :doc:`monitoring-observability/healthchecks` for more details on monitoring and telemetry features.
 
@@ -218,10 +203,8 @@ External Routing Functions
 
         BCM-SONiC
       - Arista EOS
-      - EdgeCore-SONiC
    *  - External BGP (SoftGate)
       - Terminate full routing table on SoftGate Gateway-server.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -230,16 +213,13 @@ External Routing Functions
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - BGP Route-Maps
       - Create chain of BGP rules.
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - Static Routes
       - Define static routing rules.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -259,10 +239,8 @@ Cloud Networking Functions & Constructs
 
         BCM-SONiC
       - Arista EOS
-      - EdgeCore-SONiC
    *  - VPC (Virtual Private Cloud)
       - Isolated VPCs, VRFs. Overlapping IPs supported.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -271,10 +249,18 @@ Cloud Networking Functions & Constructs
       - ✔
       - ✔
       - ✔
+   *  - :doc:`DHCP Relay (IPv4) <dhcp-and-dhcp-relay>`
+      - Relay DHCPv4 requests from a V-Net to an external DHCP server, including across VPC peering.
+      - ✔
+      - ✔
+      - ✔
+   *  - :doc:`DHCPv6 Relay <dhcp-and-dhcp-relay>`
+      - Relay DHCPv6 requests from a V-Net to an external DHCPv6 server, including across VPC peering.
+      - ✔
+      - ✔
       - ✔
    *  - :doc:`Server Cluster (Profiling) </server-cluster>`
       - Create network constructs template, then apply it on groups of servers.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -283,10 +269,8 @@ Cloud Networking Functions & Constructs
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - NAT Gateway
       - Provide shared DNAT, PAT, 1:1 NAT to multiple V-Nets and multiple VPCs
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -295,16 +279,13 @@ Cloud Networking Functions & Constructs
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - Subnet Global Routing
       - Enable Internet Routing between a custom VPC and a System VPC on a per-subnet basis. SoftGate HS only
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - VPC Peering
       - Enable peering (route-leaking) between VPCs.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -323,10 +304,8 @@ Overlay Network Functions
 
         BCM-SONiC
       - Arista EOS
-      - EdgeCore-SONiC
    *  - :doc:`L2VPN VXLAN VLAN Aware<vnet>`
       - L2VPN VXLAN with VLAN tagged or untagged termination on switch port.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -335,29 +314,24 @@ Overlay Network Functions
       - N/A
       - N/A
       - ✔
-      - N/A
    *  - :doc:`L3VPN VXLAN<vnet>`
       - L3VPN VXLAN, Commonly used in high performance computing, such as AI clusters.
       - ✔
       - ✔
       - TBD
-      - ✔
    *  - :doc:`EVPN-MH / VXLAN-ESI <lag>`
       - EVPN MultiHoming based on VXLAN and ESI for automatic Active-Active server network multihoming
       - ✔
       - ✔
       - ✔
-      - TBD
    *  - :doc:`LACP <lag>`
       - Link Aggregation or Active-Standby server multihoming.
       - ✔
       - ✔
       - ✔
-      - TBD
    *  - :doc:`MC-LAG <lag>`
       - Traditional MC-LAG-based server multihoming
       - ✔
-      - TBD
       - TBD
       - TBD
 
@@ -374,16 +348,13 @@ AI Specific Functions
 
         BCM-SONiC
       - Arista EOS
-      - EdgeCore-SONiC
    *  - Spectrum-X
       - Switch-fabric management and automation optimized for NVIDIA Spectrum-X architecture
       - ✔
       - N/A
       - N/A
-      - N/A
    *  - Rail-optimized topology
       - Switch-fabric management and automation optimized for rail-optimized fabrics
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -392,29 +363,24 @@ AI Specific Functions
       - ✔
       - TBD
       - ✔
-      - ✔
    *  - RoCE Adaptive Routing
       - Enable RoCE adaptive routing based on best practices
       - ✔
       - TBD
-      - ✔
       - ✔
    *  - RoCE Congestion Control
       - Enable automatic congestion control for RoCE workloads
       - ✔
       - N/A
       - ✔
-      - N/A
    *  - RoCE and QoS fine tuning
       - Allow fine tuning of QoS and other RoCE specific parameters
       - N/A
       - TBD
       - ✔
-      - N/A
    *  - SuperNIC auto-configuration for RoCE
       - Automatically configure IP addresses, routing, RoCE and other SuperNIC specific configuration on GPU servers
       - ✔
-      - TBD
       - TBD
       - TBD
 
@@ -430,10 +396,8 @@ Security
 
         BCM-SONiC
       - Arista EOS
-      - EdgeCore-SONiC
    *  - :doc:`Network ACLs</acls>`
       - Centralized Network Access Control Lists.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -442,10 +406,8 @@ Security
       - ✔
       - ✔
       - ✔
-      - ✔
    *  - Audit Logs
       - Log all controller access and changes.
-      - ✔
       - ✔
       - ✔
       - ✔
@@ -492,11 +454,8 @@ Management Interfaces
       - Manage your infrastructure as a code using Terraform.
       - ✔
 
-============================================
 Netris and NOS versions compatibility matrix
 ============================================
-
-.. note:: SoftGate PRO has been discontinued and superseded by SoftGate HS.
 
 .. list-table::
    :header-rows: 0
@@ -507,6 +466,12 @@ Netris and NOS versions compatibility matrix
      - **Arista EOS**
      - **SoftGate HS OS**
      - **Availability**
+   * - 4.18.0
+     - 5.11 - 5.14, 5.16 - 5.16.6, 5.18.0 - 5.18.1
+     - 4.5
+     - 4.34.1F
+     - Ubuntu 24.04
+     - ✔
    * - 4.17.0
      - 5.11 - 5.14, 5.16 - 5.16.6, 5.18.0 - 5.18.1
      - 4.5
@@ -651,5 +616,7 @@ Netris and NOS versions compatibility matrix
      - N/A
      - Ubuntu 20.04
      - ✔
+
+Note: SoftGate PRO has been discontinued and superseded by SoftGate HS.
 
 See :doc:`release-notes/index` for more details on Netris releases.

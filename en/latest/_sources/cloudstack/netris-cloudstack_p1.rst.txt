@@ -1,8 +1,8 @@
 .. meta::
   :description: Netris-CloudStack Integration
 
-High-Level Concept of Integration
-=================================
+CloudStack: High-Level Concept of Integration
+=============================================
 
 
 The integration of Netris with Apache CloudStack provides a robust and scalable networking solution, addressing the limitations of traditional switch fabrics and enhancing the network capabilities of CloudStack.

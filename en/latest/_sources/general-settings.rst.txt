@@ -12,7 +12,7 @@ General Settings
 Overview
 --------
 
-Settings → General holds the controller-wide parameters of a Netris Controller. These settings apply to every Site, VPC, and device the Controller manages; there is no per-Site override for any of them. Most deployments set the Controller FQDN, Local Repository, and Controller Management Address during installation and leave the rest at defaults.
+Settings → General holds the controller-wide parameters of a Netris Controller. These settings apply to every Site, VPC, and device the Controller manages; there is no per-Site override for any of them. Most deployments set the Controller FQDN and Local Repository during installation and leave the rest at defaults.
 
 To change a setting, navigate to Settings → General and click Edit. Changes take effect immediately on save; no Controller restart is required.
 
@@ -67,7 +67,7 @@ Settings
      - When enabled, agents download the Netris agent installer, packages, and NOS images from the repository at this URL instead of the Netris public repository. Required for air-gapped deployments and for ZTP. See :doc:`installation/controller-k3s-air-gap-ha` and :doc:`installation/ztp`.
    * - Controller Management Address
      - disabled
-     - IP address the agent installation one-liner and ZTP use to reach the Controller from the management network. Set it to the Controller's North-South VIP; in Hybrid OOB deployments, set it to the CMN address while provisioning seed switches, then to the N/S VIP. See :doc:`installation/ztp`.
+     - Fallback address used to reach the Controller from the management network. Netris resolves the Controller's address for each management subnet automatically and uses that address. If no management subnet attached to the device has a resolved address, Netris falls back to this global setting when one is configured. ZTP and the agent installation one-liner both follow that order, so setting this is not required. Applies to switches and SoftGates. See :doc:`Zero Touch Provisioning <installation/ztp>`.
 
 UFM Settings
 ------------

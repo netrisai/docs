@@ -11,6 +11,9 @@ NAT
    :local:
    :depth: 2
 
+Overview
+--------
+
 If you utilize private address space for your hosts, you may need a NAT service to enable internet access. Netris SoftGate nodes are required for NAT (Network Address Translation) functionality to work and support SNAT and DNAT features.
 
 .. note::
@@ -79,3 +82,8 @@ Example: Port forwarding. DNAT the traffic destined to 192.0.2.130:8080 to be fo
     - Administrative state (enable/disable).
   * - **Comment**
     - Free optional comment.
+
+NAT and ACLs
+------------
+
+When a Site's ACL Default Policy is Deny, inbound traffic to a DNAT rule needs an ACL entry permitting it. Write that entry in the tenant's VPC against the internal address the traffic is translated to — not against the NAT global IP. See :ref:`ACL entries for DNAT and L4LB traffic <acl-dnat-l4lb>` on the :doc:`Access Control Lists (ACL) <acls>` page.

@@ -116,7 +116,7 @@ V-Net Fields explained
      - Example: prod, gpu, east-1.
    * - **Add Network Interface**
      - Explicitly attach switch ports to the V-Net.
-     - Use when exact ports are known. Switch Port should be assigned to the owner or collaborator under ``Network -> Network`` Interfaces
+     - Use when exact ports are known. Switch Port should be assigned to the owner or collaborator under ``Network -> Network Interfaces``
    * - **Add Network Interface Tag**
      - Attach ports by label.
      - Useful for large server fleets.
@@ -282,7 +282,7 @@ Rules and limits
 
 With these steps, you have a routed, broadcast-free V-Net ready for high-scale east–west traffic.
 
-In larger fabrics, Netris recommends turning on the optional /26 aggregation in the Inventory Profile (``Network -> Inventory Profiles``) to reduce TCAM usage in the hardware.
+In larger fabrics, Netris recommends turning on the optional /26 aggregation in the :doc:`Inventory Profile <inventory-profile>` (``Network -> Inventory Profiles``) to reduce TCAM usage in the hardware.
 
 .. image:: images/aggregate-slash26.png
     :align: center

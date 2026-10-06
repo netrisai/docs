@@ -46,12 +46,18 @@ The two diagrams below show how these fabrics fit together in two common Netris 
 .. image:: images/Netris-RA-Spectrum-X.png
     :align: center
 
-The East-West fabric is Ethernet (e.g., NVIDIA Spectrum-X). Netris manages both the North-South frontend fabric and the East-West Ethernet backend fabric. A Netris Switch Agent runs on every Netris-managed switch, applying controller intent locally and reporting telemetry back to the controller. Netris SoftGate provides ingress and egress services (NAT, L4 load balancing) at the edge of the North-South fabric. The Netris Controller sits outside the data path and reaches every managed device through closed-loop telemetry and configuration channels over the OOB management network. Netris integrates with NMX to orchestrate NVLink partitions for tenant isolation when an NVL72 fabric is present.
+.. raw:: html
 
-**Reference architecture — NVIDIA Quantum InfiniBand backend**
+   <p style="text-align: center;"><em>Figure: Reference architecture — Ethernet (Spectrum-X) backend</em></p>
+
+The East-West fabric is Ethernet (e.g., NVIDIA Spectrum-X). Netris manages both the North-South frontend fabric and the East-West Ethernet backend fabric. A Netris Switch Agent runs on every Netris-managed switch, applying controller intent locally and reporting telemetry back to the controller. Netris SoftGate provides ingress and egress services (NAT, L4 load balancing) at the edge of the North-South fabric. The Netris Controller sits outside the data path and reaches every managed device through closed-loop telemetry and configuration channels over the OOB management network. Netris integrates with NMX to orchestrate NVLink partitions for tenant isolation when an NVL72 fabric is present.
 
 .. image:: images/Netris-RA-Hybrid-Ethernet-InfiniBand.png
     :align: center
+
+.. raw:: html
+
+   <p style="text-align: center;"><em>Figure: Reference architecture — NVIDIA Quantum InfiniBand backend</em></p>
 
 The East-West fabric is NVIDIA Quantum InfiniBand. Netris manages the North-South Ethernet frontend fabric directly and integrates with NVIDIA UFM (Unified Fabric Manager) to orchestrate tenant isolation (PKeys) on the NVIDIA Quantum InfiniBand fabric. The rest of the architecture — Netris Switch Agents on the Netris-managed Ethernet switches, SoftGate, Controller, OOB, and integration with NMX for NVL72 management — is identical to the Ethernet-backend deployment.
 

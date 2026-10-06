@@ -24,7 +24,7 @@ Features
     When deploying a server in the PhoenixNAP with a static IP and default gateway and selecting Netris V-Net as a private network, Netris will automatically include the new server into the V-Net. Commonly used when IaC (Infrastructure as Code) is used for deployment or when server IP configuration is desired to be configured statically through PhoenixNAP portal instead of DHCP.
 4. New locations (Metros) of Equinix Metal:
 
-    he following locations (Metros) of Equinix Metal are added in Netris:
+    The following locations (Metros) of Equinix Metal are added in Netris:
 
         - Montreal
         - Helsinki

@@ -2,7 +2,7 @@
     :description: Terraform: Netris provider
   
 ##########################
-Terraform: Netris provider
+Terraform: Netris Provider
 ##########################
 
 Use Netris provider to interact with the many resources supported by Netris. You must configure the provider with the proper credentials before you can use it.
@@ -21,7 +21,7 @@ When you make changes in the Terraform files and apply them, Terraform automatic
 Install Terraform
 =================
 
-Download and install the `Terraform <https://www.terraform.io/downloads>`_
+Download and install `Terraform <https://www.terraform.io/downloads>`_.
 
 
 
@@ -153,7 +153,7 @@ Then, when we have the ``tenantid``, we can create IPAM resources.
   EOF
 
 With the command above, we've defined 6 resources, 3 of the type of Allocation, 3 of the type of Subnet, each Subnet resource has a different purpose.
-For more details, get familiar with the :doc:`IPAM docs <ipam>`.
+For more details, get familiar with the :doc:`IPAM <ipam>` documentation.
 
 Now, when we have all the required resources let's define our Inventory.
 We're going to create 1 SoftGate, 1 switch and connect them with a link.
@@ -304,9 +304,7 @@ Terraform will create all the required resources and the terminal will display t
 Delete resources
 ================
 
-1. To delete resources created using Terraform:
-
-Run the command:
+1. To delete resources created using Terraform, run the command:
 
 .. code-block:: shell-session
 

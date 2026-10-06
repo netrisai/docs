@@ -1,8 +1,8 @@
 .. meta::
   :description: Netris-CloudStack Integration
 
-Using CloudStack with Netris Isolation Method
-=============================================
+CloudStack: Using CloudStack with Netris Isolation Method
+=========================================================
 
 This chapter outlines how to use the CloudStack platform with the Netris isolation method.
 

@@ -40,7 +40,7 @@ Execute ``pulumi up`` or ``pulumi destroy`` to start/stop a simulation of what's
    Do not run ``pulumi stack rm main`` after ``pulumi destroy`` unless instructed by Netris support. This may cause issues with your simulation environment. Use only ``pulumi destroy`` to safely stop a simulation.
 
 .. tip::
-    For your convenience, when you run ``pulumi up``, the system will dynamicall install a set of CLI aliases based on the simulation topology to make it easier to access the simulation servers and switches. You can get the list of aliases by running ``alias | grep ssh`` on the Netris controller server. When you execute ``pulumi destroy``, these aliases will be removed.
+    For your convenience, when you run ``pulumi up``, the system will dynamically install a set of CLI aliases based on the simulation topology to make it easier to access the simulation servers and switches. You can get the list of aliases by running ``alias | grep ssh`` on the Netris controller server. When you execute ``pulumi destroy``, these aliases will be removed.
 
     .. dropdown:: Expand to see the list of aliases
 
@@ -186,7 +186,7 @@ Example:
   root@hgx-pod00-su0-h00:~# 
 
 
-On the GPU host, you'll find `./cluster-ping.sh`, which is a bash script that helps you execute parallel pings across every East-West and North-South interface towards any GPU node. The script knows the IP addressing scheme used in this scenario, and it only needs the SU number and host number.
+On the GPU host, you'll find ``./cluster-ping.sh``, which is a bash script that helps you execute parallel pings across every East-West and North-South interface towards any GPU node. The script knows the IP addressing scheme used in this scenario, and it only needs the SU number and host number.
 
 In the below example, the host pings itself. So, local interface IPs are responding, while the default gateways are not. If you ping another host, you'll get timeouts on all interfaces. 
 

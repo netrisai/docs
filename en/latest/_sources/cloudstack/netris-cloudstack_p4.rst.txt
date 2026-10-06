@@ -1,8 +1,8 @@
 .. meta::
   :description: Netris-CloudStack Integration
 
-Configuring CloudStack for Netris Integration
-==============================================
+CloudStack: Configuring CloudStack for Netris Integration
+=========================================================
 
 This chapter focuses on **initializing**, **configuring**, and **utilizing CloudStack** to integrate seamlessly with the Netris Controller. By following these steps, you will enable advanced networking capabilities within CloudStack using the Netris plugin and configure the environment for optimal performance.
 
