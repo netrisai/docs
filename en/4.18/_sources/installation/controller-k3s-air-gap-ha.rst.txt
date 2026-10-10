@@ -335,36 +335,10 @@ We need a second VIP for the Netris Controller load balancer.
 
   kubectl -n kube-system get pods -l component=kube-vip-cloud-provider
 
-8. Install Traefik Proxy
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-1. On the **first node only**, apply the Traefik manifest:
-
-.. code-block:: shell
-
-  kubectl apply -f manifests/traefik.yaml
-
-
-2. Check pods:
-
-.. code-block:: shell
-
-  kubectl -n kube-system get pods -l app.kubernetes.io/instance=traefik-kube-system
-
-
-3. Verify Traefik has the external IP:
-
-.. code-block:: shell
-
-  kubectl -n kube-system get svc traefik
-
-
-It should show EXTERNAL-IP as 192.168.0.50.
-
 .. _North-South-vip:
 
-9. Deploy North-South controller VIP (optional)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+8. Deploy North-South controller VIP (optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. tip:: The North-South VIP is optional and can be configured later. The North-South VIP typically provides access to the Netris API and :doc:`ZTP functionality </installation/ztp>` for endpoints connected to the North-South fabric.
 
@@ -384,19 +358,12 @@ It should show EXTERNAL-IP as 192.168.0.50.
   
   kubectl apply -f manifests/kube-vip-ns-cloud-controller.yaml
 
-5. Apply North-South Traefik service manifest
-
-.. code-block:: shell
-  
-  kubectl apply -f manifests/traefik-ns-svc.yaml
+9. Deploy the Netris Controller
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-10. Deploy the Netris Controller
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-10.1 Install the MariaDB Operator
-""""""""""""""""""""""""""""""""""
+9.1 Install the MariaDB Operator
+"""""""""""""""""""""""""""""""""
 
 1. CRDs:
 
@@ -445,8 +412,8 @@ Expected output:
 Wait until all pods are ready and in a running or completed state.
 
 
-10.2 Install Netris Controller
-""""""""""""""""""""""""""""""
+9.2 Install Netris Controller
+"""""""""""""""""""""""""""""
 
 1. **Helm chart** manifest:
 
@@ -533,8 +500,8 @@ Look for multiple pods in Running and Completed states (e.g., mariadb, mongodb, 
 
 .. _install-local-repo:
 
-11. Set Up the Local Netris Repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10. Set Up the Local Netris Repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Netris Local Repository is essential for environments where switches, softgates, or other infrastructure devices don't have direct internet access. By setting up a local repository, you ensure that these devices can still download necessary packages and updates through a local APT repository
 
@@ -562,8 +529,8 @@ The Netris Local Repository is essential for environments where switches, softga
 
 
 
-12. Validate Your Deployment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+11. Validate Your Deployment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Access the Netris Controller** via https://192.168.0.50 (or your assigned FQDN).
 - **Confirm all services** (web service, GRPC, Redis, DBs) are running:
