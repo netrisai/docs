@@ -100,8 +100,6 @@ To take a database snapshot, run the following command on the **first node**:
 2.4 Upgrade Netris Controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On the **first node** only:
-
 .. warning::
    **Upgrading to v4.6.1?** Do not follow the manual steps below. Instead, use the automated upgrade script included in the package, which handles MariaDB cluster re-creation, database backup/restore, and MongoDB data migration automatically:
 
@@ -110,6 +108,8 @@ On the **first node** only:
       ./update-v4.6.1.sh
 
    The script will verify versions, prompt for confirmation, and guide you through the full upgrade. Once it completes successfully, proceed to step 3 to verify the result.
+
+On the **first node** only:
 
 1. Upgrade the **Helm chart** manifest:
 
