@@ -99,7 +99,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="DHCP and DHCP Relay" href="dhcp-and-dhcp-relay.html" />
-    <link rel="prev" title="Static Routing" href="static-routing.html" /> 
+    <link rel="prev" title="Dynamic VPC Assignment with 802.1X" href="dynamic-vpc-assignment.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -520,6 +520,31 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="static-routing.html">Static Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic-vpc-assignment.html">Dynamic VPC Assignment with 802.1X</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#why-use-it">Why use it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#before-you-begin">Before you begin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#planning-constraints">Planning constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#choosing-the-radius-model">Choosing the RADIUS model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#creating-a-dynamic-vpc-group">Creating a Dynamic VPC Group</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dynamic-vpc-assignment.html#netris-hosted-example">Netris-hosted example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic-vpc-assignment.html#rd-party-example">3rd-party example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#using-a-dynamic-vpc-group-in-an-l3vpn-v-net">Using a Dynamic VPC Group in an L3VPN V-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#using-a-dynamic-vpc-group-in-a-server-cluster">Using a Dynamic VPC Group in a Server Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#configuring-the-server">Configuring the server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dynamic-vpc-assignment.html#with-netris-host-networking">With Netris Host Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic-vpc-assignment.html#without-netris-host-networking">Without Netris Host Networking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#vrf-names">VRF names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#what-netris-configures-on-the-switch">What Netris configures on the switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#field-reference">Field reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-vpc-assignment.html#api-and-terraform">API and Terraform</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Services</span></p>
 <ul class="current">
@@ -548,6 +573,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#l3vpn">L3VPN</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-an-l3vpn-v-net">Creating an L3VPN V-Net</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rules-and-limits">Rules and limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-vpc-assignment">Dynamic VPC assignment</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#verification-tools">Verification Tools</a><ul>
@@ -576,7 +602,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="server-cluster.html#creating-server-cluster">Creating Server Cluster</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server-cluster.html#adding-a-server-cluster">Adding a Server Cluster</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="server-cluster.html#dynamic-vpc-assignment">Dynamic VPC assignment</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="server-cluster.html#shared-endpoints">Shared Endpoints</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#shared-and-dedicated-endpoints-across-fabrics">Shared and dedicated endpoints across fabrics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="server-cluster.html#untagged-vlan-on-shared-endpoints">Untagged VLAN on Shared Endpoints</a></li>
@@ -942,6 +971,14 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.19.0.html">Netris 4.19.0 Release Notes (Oct/19/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.19.0.html#what-s-new-in-netris-version">What’s new in Netris 4.19.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.19.0.html#features-and-enhancements">Features and Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.19.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.19.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.19.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.18.0.html">Netris 4.18.0 Release Notes (Oct/02/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.18.0.html#what-s-new-in-netris-version">What’s new in Netris 4.18.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.18.0.html#features-and-enhancements">Features and Enhancements</a></li>
@@ -1219,7 +1256,7 @@
               <a href="https://github.com/netrisai/docs/blob/master/vnet.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="static-routing.html" class="btn btn-neutral float-left" title="Static Routing" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dynamic-vpc-assignment.html" class="btn btn-neutral float-left" title="Dynamic VPC Assignment with 802.1X" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="dhcp-and-dhcp-relay.html" class="btn btn-neutral float-right" title="DHCP and DHCP Relay" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -1247,11 +1284,12 @@
 <ul>
 <li><p><a class="reference internal" href="#creating-an-l3vpn-v-net" id="id11">Creating an L3VPN V-Net</a></p></li>
 <li><p><a class="reference internal" href="#rules-and-limits" id="id12">Rules and limits</a></p></li>
+<li><p><a class="reference internal" href="#dynamic-vpc-assignment" id="id13">Dynamic VPC assignment</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#verification-tools" id="id13">Verification Tools</a></p>
+<li><p><a class="reference internal" href="#verification-tools" id="id14">Verification Tools</a></p>
 <ul>
-<li><p><a class="reference internal" href="#ui-tools" id="id14">UI Tools</a></p></li>
+<li><p><a class="reference internal" href="#ui-tools" id="id15">UI Tools</a></p></li>
 </ul>
 </li>
 </ul>
@@ -1332,7 +1370,7 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 </tr>
 <tr class="row-odd"><td><p><strong>VPC</strong> (Virtual Private Cloud)</p></td>
 <td><p>Construct that contains the V-Net.</p></td>
-<td><p>A VPC must exist first.</p></td>
+<td><p>A VPC must exist first. For an L3VPN V-Net on NVIDIA Cumulus, you can select a Dynamic VPC Group here instead of a VPC, so that each switch port’s VPC is chosen by 802.1X at authentication time. See <a class="reference internal" href="#vnet-dynamic-vpc"><span class="std std-ref">Dynamic VPC assignment</span></a> below.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Sites</strong></p></td>
 <td><p>One or more sites where the V-Net will run.</p></td>
@@ -1548,11 +1586,17 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
 <p>In larger fabrics, Netris recommends turning on the optional /26 aggregation in the <a class="reference internal" href="inventory-profile.html"><span class="doc">Inventory Profile</span></a> (<code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">-&gt;</span> <span class="pre">Inventory</span> <span class="pre">Profiles</span></code>) to reduce TCAM usage in the hardware.</p>
 <img alt="Aggregate /26 setting in Inventory Profile" class="with-shadow align-center" src="_images/aggregate-slash26.png" />
 <br /></section>
+<section id="dynamic-vpc-assignment">
+<span id="vnet-dynamic-vpc"></span><h3><a class="toc-backref" href="#id13" role="doc-backlink">Dynamic VPC assignment</a><a class="headerlink" href="#dynamic-vpc-assignment" title="Link to this heading"></a></h3>
+<p>An L3VPN V-Net normally resolves to one VPC, and every routed link in it is routed in that VPC’s VRF. On NVIDIA Cumulus, you can instead bind the V-Net to a Dynamic VPC Group. Each server then authenticates over 802.1X, RADIUS returns a VRF name, and that switch port’s routed link is placed in the VRF of the VPC its credential maps to. Two servers on the same V-Net can end up in different VPCs.</p>
+<p>Select the group in the <strong>VPC</strong> dropdown, where Dynamic VPC Groups are listed under a <strong>Dynamic VPC</strong> header above the VPCs. The group is offered only once <strong>L3VPN</strong> is selected and a V-Net owner is set, every member switch port must be untagged, and the group is read-only after the V-Net is created. Switch port IP addressing is unchanged.</p>
+<p>See <a class="reference internal" href="dynamic-vpc-assignment.html"><span class="doc">Dynamic VPC Assignment with 802.1X</span></a> for the Dynamic VPC Group object, the RADIUS models, and the server-side supplicant configuration.</p>
+</section>
 </section>
 <section id="verification-tools">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Verification Tools</a><a class="headerlink" href="#verification-tools" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Verification Tools</a><a class="headerlink" href="#verification-tools" title="Link to this heading"></a></h2>
 <section id="ui-tools">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">UI Tools</a><a class="headerlink" href="#ui-tools" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">UI Tools</a><a class="headerlink" href="#ui-tools" title="Link to this heading"></a></h3>
 <p>You can view all existing V-Nets by navigating to  <code class="docutils literal notranslate"><span class="pre">Services</span> <span class="pre">-&gt;</span> <span class="pre">V-Net</span></code>.</p>
 <img alt="V-Net list" class="with-shadow align-center" src="_images/vnet-list.png" />
 <br /><p>You can view additional operational details of any V-Net by clicking on the chevron to the left of the V-Net name to expand the view.</p>
@@ -1565,7 +1609,7 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="static-routing.html" class="btn btn-neutral float-left" title="Static Routing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dynamic-vpc-assignment.html" class="btn btn-neutral float-left" title="Dynamic VPC Assignment with 802.1X" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="dhcp-and-dhcp-relay.html" class="btn btn-neutral float-right" title="DHCP and DHCP Relay" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -1590,7 +1634,7 @@ EVPN (Ethernet VPN) is a control plane protocol that works with VXLAN to distrib
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: 4.18
+      v: 4.19
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

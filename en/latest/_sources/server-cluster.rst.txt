@@ -513,6 +513,17 @@ To assign multiple V-Nets to the same VPC, select them together as shown on the 
 
   In the screenshot above the “Mgmt” V-Net will be added to the existing VPC-102 (Shared-infra), while one new VPC will be created with the “EastWest” and the “NorthSouth” V-Nets assigned to it.
 
+.. _server-cluster-dynamic-vpc:
+
+Dynamic VPC assignment
+~~~~~~~~~~~~~~~~~~~~~~
+
+On NVIDIA Cumulus, the VPC dropdowns under **VPC mapping** also list Dynamic VPC Groups, under a **Dynamic VPC** header. Mapping a template object to a group lets each server's 802.1X credential decide which VPC its switch port is placed into, instead of fixing that at cluster creation. The Server Cluster Template itself does not change.
+
+A Dynamic VPC Group can be mapped only to untagged ``l3vpn`` template objects. With **Single VPC**, that means every object in the template must be one; otherwise map the remaining objects individually with **Per template object**. Shared endpoints are provisioned as 802.1Q tagged switch ports, so they are outside the scope of a Dynamic VPC Group.
+
+See :doc:`Dynamic VPC Assignment with 802.1X <dynamic-vpc-assignment>` for the Dynamic VPC Group object, the RADIUS models, and the server-side supplicant configuration.
+
 .. _server-cluster-shared-endpoints:
 
 Shared Endpoints
@@ -598,7 +609,7 @@ Server Cluster Fields Explained
 - **Name**: A descriptive name for the server cluster.
 - **Admin**: The administrative owner of this server cluster.
 - **Site**: The site where the server cluster is located.
-- **VPC**: The VPC to which the server cluster belongs. Typically set to "Create New" to generate a new VPC.
+- **VPC**: The VPC to which the server cluster belongs. Typically set to "Create New" to generate a new VPC. On NVIDIA Cumulus, a Dynamic VPC Group can be selected instead for untagged ``l3vpn`` template objects — see :ref:`Dynamic VPC assignment <server-cluster-dynamic-vpc>` above.
 - **Template**: The Server Cluster Template that defines the Netris primitives for this cluster.
 - **Servers**: A list of servers that are dedicated members of this cluster.
 - **SharedEndpoints**: A list of servers that are members of this cluster, but can also be added to other clusters.

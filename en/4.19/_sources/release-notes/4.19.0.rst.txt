@@ -1,0 +1,66 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.19.0
+.. _release_4_19_0:
+
+Netris |version| Release Notes (Oct/19/2026)
+=============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Netris 4.19.0 adds Dynamic VPC assignment with 802.1X and RADIUS, and support for NVIDIA Spectrum-X Reference Architecture 2.3.1 (QoS & RoCE, adaptive routing and ASIC monitoring updates, BGP advertisement-delay tuning, and BGP+LLDP unreachable-route signaling). The Netris Host Networking agent adds support for Spectrum-X Reference Architecture 2.3.1. Port and bond descriptions are now applied on Cumulus and Arista devices, and operator-set port MTU is preserved when BGP sessions are created.
+
+Fixes cover SVI and sub-interface addresses on Cumulus, VPC peering on Cumulus, outbound ACL rules on SoftGates, V-Net gateway removal, Network Links, UFM topology paths, BGP session status for offline devices, MAC address entry, IP discovery without a license, Local Repository settings, and Cumulus custom configuration files. This release also fixes CVE-2026-46600.
+
+Features and Enhancements
+-------------------------
+.. New capabilities and customer-facing enhancements to existing functionality and features.
+
+- **Dynamic VPC assignment with 802.1X (Cumulus)**. Switch ports in L3VPN V-Nets and Server Clusters can now be placed into a VPC when the connected host authenticates with 802.1X, instead of being bound to a single VPC. The VPCs a port can be placed into are defined in a new Dynamic VPC Group, which uses either a Netris-hosted RADIUS server, with a tenant username and password per VPC, or third-party RADIUS servers.
+- **NVIDIA Spectrum-X Reference Architecture 2.3.1 support (Cumulus)**, including:
+
+  - QoS & RoCE, RoCE Adaptive Routing, and ASIC Monitoring now apply the configuration specified by Reference Architecture 2.3.1.
+  - BGP advertisement delay on all leafs and per-tenant VRF in L3EVPN clusters, so BGP convergence timing matches the reference architecture.
+  - BGP+LLDP unreachable-route signaling for tenant VRFs, so GPU servers learn when a specific downstream host is unreachable on a given plane. Supported on Cumulus Linux 5.19 and later.
+
+- **Netris Host Networking agent support for Spectrum-X Reference Architecture 2.3.1**. The Netris Host Networking agent now configures SuperNICs according to Spectrum-X Reference Architecture 2.3.1, so the host side of the fabric matches the switch side.
+- **Port and bond descriptions on devices (Cumulus, Arista)**. Descriptions set in the Controller for ports and bonds are now applied on the device, so operators can identify them directly on the switch.
+- **Operator-set MTU preserved on BGP session creation**. Creating a BGP session now keeps the MTU set on the port. When the session is submitted, a warning shows the port's current MTU, notes the possible mismatch, and links to the port.
+- **License key is write-only**. After a license is activated, the key is no longer shown in the UI or returned by the API. The Active License Key Data breakdown stays visible.
+- **Fewer unnecessary device updates (Cumulus)**. The agent now applies configuration to the switch only when it has changed.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes.
+
+- Fixed SVI and sub-interface IP addresses being removed from a switch when the agent cannot reach the Controller during or after an upgrade and uses a cache created by an older Netris version. Affected platforms: Cumulus. Found in Netris 4.14 and later.
+- Fixed connected prefixes not being shared between VPCs when VPC peering is configured. Affected platforms: Cumulus. Found in Netris 4.15 and later.
+- Fixed outbound ACL rules not being applied on SoftGates when the VPC has a single subnet. Found in Netris 4.16 and later.
+- Fixed gateways being impossible to remove from a V-Net when two of its gateways share the same IP address, for example after a larger subnet is added to expand the V-Net's range. Found in Netris 4.16 and later.
+- Fixed Network Links showing a fractional link count, and a server being impossible to edit, after a hardware edit or port Free up fails partway. Found in Netris 4.14 and later.
+- Fixed topology path results from UFM counting only one link between two switches when they are connected by several parallel links. Found in Netris 4.16 and later.
+- Fixed BGP sessions on offline devices being shown as Established and counted as OK on the Dashboard when the Controller restarts before the devices reconnect. Found in Netris 4.18 and later.
+- Fixed MAC addresses being rejected for hardware and links when they are entered in uppercase in the UI, API, or Terraform. Found in Netris 4.18 and later.
+- Fixed IP discovery not working when no license is applied. Found in Netris 4.18 and later.
+- Fixed Local Repository being turned on when the setting is sent as JSON false or null through the API. Found in Netris 4.18 and later.
+- Fixed the Cumulus agent getting stuck when a custom configuration YAML file is invalid.
+
+Security fixes
+----------------
+
+- Fixed `CVE-2026-46600 <https://www.cve.org/CVERecord?id=CVE-2026-46600>`_, a denial-of-service vulnerability in the Go standard library that could crash a process parsing a crafted DNS record.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file

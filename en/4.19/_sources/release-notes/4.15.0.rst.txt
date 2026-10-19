@@ -1,0 +1,65 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.15.0
+.. _release_4_15_0:
+
+Netris |version| Release Notes (Aug/18/2026)
+============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+This release focuses on expanded platform coverage and operational visibility: IPv6 Neighbor Discovery extends to SONiC and Arista, Custom Arista Configuration Snippets, and API Trace/Correlation IDs in the Netris API logs for end-to-end request tracking. It also includes fixes for topology visualization and Arista ACL handling.
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **IPv6 Neighbor Discovery for V-Nets** (SONiC, Arista). A new IPv6 Neighbor Discovery configuration section on V-Nets lets operators explicitly control IPv6 RA behavior and advertise DNS server information alongside RA, including:
+
+  - Router Advertisement state (Enabled / Disabled / vendor Default) with configurable Lifetime and Interval per V-Net
+  - RDNSS (Recursive DNS Server) advertisement per RFC 8106 — up to three IPv6 DNS servers with configurable lifetime, so IPv6 clients receive DNS server information via RA without requiring DHCPv6
+
+- **Custom Arista Configuration Snippets**. Snippets are plain EOS CLI configuration fragments. The agent merges them into the configuration it generates before that configuration is applied to the switch, giving you a supported path to apply local customizations.
+- **API Trace/Correlation ID in Netris API Logs**. Netris API logs now include a unique Trace ID (correlation ID) attached to each request. The ID lets you follow a single request end to end across the API logs, and it can carry end-customer or tenant context so activity can be attributed to the originating tenant.
+
+Enhancements
+------------
+.. Customer-facing enhancements to existing functionality and features.
+
+No new enhancements were added in this release.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes.
+
+- Fixed a topology drawing issue where switches in the Super-Spine role for north-south connectivity were rendered above, rather than below, the leaf and spine switches used for east-west connectivity.
+- Resolved an issue where permission groups and user roles could be deleted even when actively assigned to users, which caused affected users to incorrectly became as "Permit All."
+- Resolved an issue where entering an invalid value in the E-BGP VLAN ID field did not display a validation error message.
+- Resolved an issue where entering an invalid value in the V-Net VLAN ID field did not display a validation error message.
+- Resolved an issue on Arista platforms where changing the ACL Default Policy from Permit to Deny did not apply the corresponding access-lists to switch interfaces, resulting in all IPv4 and IPv6 traffic being allowed regardless of the configured policy.
+- Resolved an issue on Arista platforms where IPv6 ACL deny rules did not block traffic between hosts in different VPCs. The agent was generating access-list entries using the generic ``ipv6`` keyword instead of the specific protocol keyword (e.g., ``icmpv6``, ``tcp``), causing deny policies to be ineffective for IPv6 traffic.
+- Resolved an issue where monitoring data on the Dashboard would intermittently disappear.
+- Resolved an issue where BGP sessions were established and healthy on the switch, but the controller's ``check_bgp`` monitor incorrectly reported the state as "unknown" for affected switches.
+- Resolved an issue where the RAM utilization graph on the Dashboard displayed incorrect values that did not match the ``check_memory`` monitor.
+- Fixed custom static default routes configured in the system VPC on a SoftGate not being advertised into other VPCs. Applies to IPv4 and IPv6.
+- Fixed the Default Originate option on a SoftGate's external BGP neighbors not advertising a default route to the peer.
+
+Security fixes
+----------------
+
+- `CVE-2026-46595 <https://www.cve.org/CVERecord?id=CVE-2026-46595>`_: a critical vulnerability in the Go standard library's ``golang.org/x/crypto/ssh`` package that could allow an attacker to bypass source-address validation during SSH authentication when a non-public-key callback method is used. Fix is planned across affected Netris components (controller-telescope, netris-operator, mongodb).
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file
