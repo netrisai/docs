@@ -96,7 +96,7 @@ V-Net Fields explained
      - Must be globally unique.
    * - **VPC** (Virtual Private Cloud)
      - Construct that contains the V-Net.
-     - A VPC must exist first.
+     - A VPC must exist first. For an L3VPN V-Net on NVIDIA Cumulus, you can select a Dynamic VPC Group here instead of a VPC, so that each switch port's VPC is chosen by 802.1X at authentication time. See :ref:`Dynamic VPC assignment <vnet-dynamic-vpc>` below.
    * - **Sites**
      - One or more sites where the V-Net will run.
      - Sites must belong to the chosen VPC. Multi-site V-Nets would require backbone connectivity between sites.
@@ -292,6 +292,17 @@ In larger fabrics, Netris recommends turning on the optional /26 aggregation in 
 .. raw:: html
 
     <br />
+
+.. _vnet-dynamic-vpc:
+
+Dynamic VPC assignment
+^^^^^^^^^^^^^^^^^^^^^^
+
+An L3VPN V-Net normally resolves to one VPC, and every routed link in it is routed in that VPC's VRF. On NVIDIA Cumulus, you can instead bind the V-Net to a Dynamic VPC Group. Each server then authenticates over 802.1X, RADIUS returns a VRF name, and that switch port's routed link is placed in the VRF of the VPC its credential maps to. Two servers on the same V-Net can end up in different VPCs.
+
+Select the group in the **VPC** dropdown, where Dynamic VPC Groups are listed under a **Dynamic VPC** header above the VPCs. The group is offered only once **L3VPN** is selected and a V-Net owner is set, every member switch port must be untagged, and the group is read-only after the V-Net is created. Switch port IP addressing is unchanged.
+
+See :doc:`Dynamic VPC Assignment with 802.1X <dynamic-vpc-assignment>` for the Dynamic VPC Group object, the RADIUS models, and the server-side supplicant configuration.
 
 Verification Tools
 ------------------

@@ -249,6 +249,11 @@ Cloud Networking Functions & Constructs
       - ✔
       - ✔
       - ✔
+   *  - :doc:`Dynamic VPC Assignment with 802.1X <dynamic-vpc-assignment>`
+      - Let a server choose its VPC by authenticating over 802.1X; RADIUS returns the VRF name and the switchport is placed into it. L3VPN V-Nets and Server Clusters on the East-West fabric, with untagged switchports.
+      - ✔
+      - N/A
+      - N/A
    *  - :doc:`DHCP Relay (IPv4) <dhcp-and-dhcp-relay>`
       - Relay DHCPv4 requests from a V-Net to an external DHCP server, including across VPC peering.
       - ✔
@@ -466,6 +471,12 @@ Netris and NOS versions compatibility matrix
      - **Arista EOS**
      - **SoftGate HS OS**
      - **Availability**
+   * - 4.19.0
+     - 5.11 - 5.14, 5.16 - 5.16.6, 5.18.0 - 5.18.1
+     - 4.5
+     - 4.34.1F
+     - Ubuntu 24.04
+     - ✔
    * - 4.18.0
      - 5.11 - 5.14, 5.16 - 5.16.6, 5.18.0 - 5.18.1
      - 4.5
