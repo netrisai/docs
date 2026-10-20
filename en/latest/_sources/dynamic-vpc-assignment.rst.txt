@@ -108,7 +108,9 @@ Choosing the RADIUS model
 
 Choose **Netris-hosted** to keep credential management with the fabric operator. Netris runs RADIUS on the Controller, manages its addresses and shared secret, and registers every mapped switch as a RADIUS client.
 
-This puts the Controller in the authentication path. While a switch cannot reach the Controller, a server that boots or reauthenticates on that switch cannot be placed into its VPC, and its switchport stays outside every VRF. Netris configures the switch to ignore reauthentication timeouts, which is intended to hold already-authenticated switchports in their VRF through an outage. A 3rd-party group moves this dependency onto the external servers, where up to three can be configured; weigh that against the credential-ownership question below.
+.. warning::
+
+   This puts the Controller in the authentication path. While a switch cannot reach the Controller, a server that boots or reauthenticates on that switch cannot be placed into its VPC, and its switchport stays outside every VRF. Netris configures the switch to ignore reauthentication timeouts, which is intended to hold already-authenticated switchports in their VRF through an outage. A 3rd-party group moves this dependency onto the external servers, where up to three can be configured; weigh that against the credential-ownership question below.
 
 Choose **3rd party** when the credential store belongs to someone else, such as a server owner or a separate identity team. You supply up to three servers and a shared secret; they define the users and the VRF each user receives.
 
