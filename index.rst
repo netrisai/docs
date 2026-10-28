@@ -48,7 +48,6 @@ You are welcome to join our community Slack_ channel to get additional support f
    :maxdepth: 2
    :caption: Fabric Management
 
-   general-settings
    site
    vpc
    topology-management
@@ -105,9 +104,11 @@ You are welcome to join our community Slack_ channel to get additional support f
    :maxdepth: 4
    :caption: Miscellaneous
 
+   general-settings
    accounts
-   custom-configuration-snippets
+   authentication
    labels
+   custom-configuration-snippets
 
 .. toctree::
    :maxdepth: 2
