@@ -98,8 +98,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Netris Site" href="site.html" />
-    <link rel="prev" title="Installing BlueField-3 DPUs" href="bluefield-3-dpu-installation.html" /> 
+    <link rel="next" title="Accounts" href="accounts.html" />
+    <link rel="prev" title="Getting Started with Switch-Fabric Manager &amp; VPC" href="vpc-gateways-with-managed-fabric.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -420,13 +420,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fabric Management</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">General Settings</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#settings">Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ufm-settings">UFM Settings</a></li>
-</ul>
-</li>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="site.html">Netris Site</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="site.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="site.html#site-scope">Site scope</a></li>
@@ -944,27 +938,59 @@
 <li class="toctree-l1"><a class="reference internal" href="vpc-gateways-with-managed-fabric.html">Getting Started with Switch-Fabric Manager &amp; VPC</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">General Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#settings">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ufm-settings">UFM Settings</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#users">Users</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#tenants">Tenants</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="accounts.html#admin-tenant-vs-guest-tenant">Admin Tenant vs Guest Tenant</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="accounts.html#permission-groups">Permission Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#permission-groups">Permission Groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#example-a-read-only-permission-group">Example: a read-only permission group</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#user-roles">User Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="custom-configuration-snippets.html">Custom Configuration Snippets</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#arista-eos">Arista EOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#nvidia-cumulus-linux-nvue">NVIDIA Cumulus Linux (NVUE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#the-local-scheme">The local scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#active-directory-authentication">Active Directory authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#how-it-works">How it works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#before-you-start">Before you start</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#getting-the-ca-certificate">Getting the CA certificate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#finding-the-host-names-on-the-dc-certificate">Finding the host names on the DC certificate</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#step-1-create-a-netris-role-for-each-ad-group">Step 1. Create a Netris role for each AD group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#users-in-more-than-one-group">Users in more than one group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#step-2-add-the-active-directory-scheme">Step 2. Add the Active Directory scheme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#step-3-test-with-a-real-ad-user">Step 3. Test with a real AD user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#step-4-check-the-saved-scheme">Step 4. Check the saved scheme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#step-5-make-it-the-default-optional">Step 5. Make it the default (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#step-6-sign-in">Step 6. Sign in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html#current-limitations">Current limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#see-also">See also</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#how-labels-work">How labels work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#rules-and-limits">Rules and limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="labels.html#when-to-use-labels">When to use labels</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom-configuration-snippets.html">Custom Configuration Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#arista-eos">Arista EOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-configuration-snippets.html#nvidia-cumulus-linux-nvue">NVIDIA Cumulus Linux (NVUE)</a></li>
 </ul>
 </li>
 </ul>
@@ -1256,8 +1282,8 @@
               <a href="https://github.com/netrisai/docs/blob/master/general-settings.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="bluefield-3-dpu-installation.html" class="btn btn-neutral float-left" title="Installing BlueField-3 DPUs" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="site.html" class="btn btn-neutral float-right" title="Netris Site" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="vpc-gateways-with-managed-fabric.html" class="btn btn-neutral float-left" title="Getting Started with Switch-Fabric Manager &amp; VPC" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="accounts.html" class="btn btn-neutral float-right" title="Accounts" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -1390,8 +1416,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="bluefield-3-dpu-installation.html" class="btn btn-neutral float-left" title="Installing BlueField-3 DPUs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="site.html" class="btn btn-neutral float-right" title="Netris Site" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="vpc-gateways-with-managed-fabric.html" class="btn btn-neutral float-left" title="Getting Started with Switch-Fabric Manager &amp; VPC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="accounts.html" class="btn btn-neutral float-right" title="Accounts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

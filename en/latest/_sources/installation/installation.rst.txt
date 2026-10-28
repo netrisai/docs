@@ -15,7 +15,7 @@ Start with one of the installation options below, then use the remaining pages f
 - :doc:`controller-k8s-installation` — deploy the Netris Controller as a Kubernetes application using the official Helm chart.
 - :doc:`Zero Touch Provisioning <ztp>` — automatically provision and onboard switches after you install the controller.
 
-See :doc:`General Settings <../general-settings>` for the controller-wide settings under Settings → General.
+See :doc:`General Settings <../general-settings>` (under Miscellaneous) for the controller-wide settings under Settings → General, which you set after installing the controller.
 
 .. toctree::
    :maxdepth: 2
