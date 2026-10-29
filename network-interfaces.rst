@@ -9,7 +9,7 @@ Switch ports can be directly managed in the **Network Interfaces** UI section. B
 
 The following options are available for editing on each port:
 
-* **Description** - Description of the port.
+* **Description** - Description of the port. Netris applies the description on the device, so ports and bonds can be identified from the switch CLI when LLDP is unavailable — for example, when the port is down. Supported on NVIDIA Cumulus Linux, Arista EOS, and Dell SONiC.
 * **Tenant** - Tenant to whom the port is assigned, by default it is the owner tenant of the device to whom the port belongs to.
 * **Breakout** - Available only for physical switch ports, used to split physical ports into multiple physical ports. When there is a need to use other supported option supported by switch not shown in the dropdown list user must set breakout to "Manual" and configure breakout manually on the switch. For certain platforms some ports need to be disabled to support breakout into other ports, for that option use "Disable" mode of breakout. Once a port is broken out, Netris applies no other configuration to the parent port. For Cumulus, after configuration, user must manually restart switchd daemon on the switch via command "systemctl restart switchd".
 * **MTU** - Maximum transmission unit of the port. Ports that Netris discovers on a switch are added with an MTU of 9216.

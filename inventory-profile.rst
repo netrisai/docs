@@ -269,7 +269,7 @@ To configure RADIUS servers, expand the RADIUS section of the Inventory Profile 
      - Destination port, 1–65535. Default is 1812.
    * - Secret
      - ✅ required
-     - Shared secret used to authenticate with this RADIUS server. The secret is stored encrypted and is never returned in clear text by the UI or the API. When editing an existing server, leave this field empty to keep the stored secret.
+     - Shared secret used to authenticate with this RADIUS server. The secret is stored encrypted and is never returned in clear text by the UI or the API. The secret cannot contain spaces. When editing an existing server, leave this field empty to keep the stored secret.
 
 Use **Add Server** to configure additional servers, up to eight per profile. Each server must have a unique address and port combination within the profile.
 

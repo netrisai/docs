@@ -333,7 +333,7 @@ Field reference
    * - Shared secret
      - 🟡 3rd party
      - —
-     - Secret shared between the switches and the RADIUS server.
+     - Secret shared between the switches and the RADIUS server. Cannot contain spaces.
 
 Tenant Passwords and shared secrets are masked and cannot be revealed after they are saved.
 

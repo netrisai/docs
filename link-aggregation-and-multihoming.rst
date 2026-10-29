@@ -160,6 +160,8 @@ Navigate to ``Network -> Network Interfaces``, select one or more switch ports, 
 
 Click the ``ADD`` button and fill out other values as needed.
 
+A description set on the bond is applied on the device, the same as for physical ports — see :doc:`Network Interfaces <network-interfaces>`.
+
 .. image:: images/add-to-LAG.png
     :align: center
     :alt: Add to LAG dialog
