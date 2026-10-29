@@ -83,6 +83,8 @@ Screenshot: Dashboard showing details of “Hardware Health.”
 
 Port up/down state can be set to “Save as normal.” So the system will alarm only if the actual state is different from the saved as the normal state. 
 
+Netris does not raise port-down alarms for switch ports that are neither configured nor part of the topology. Alarming begins as soon as such a port is added to the topology or configured.
+
 Screenshot: “Save as normal” on selected ports.
 
 .. image:: ../images/saveasnormal.png

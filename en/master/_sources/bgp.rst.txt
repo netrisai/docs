@@ -107,6 +107,8 @@ Click Advanced to expand the BGP neighbor add/edit window.
 - When *Remove Private AS* is enabled (the checkbox is set), all inter-SoftGate path information is stripped from the AS PATH before the prefix is advertised upstream; thus, each prefix appears to the upstream BGP neighbor as equidistant (ECMP). As a result, some traffic might be forwarded to SoftGates that then have to forward it again to the "correct" SoftGate, resulting in suboptimal routing and increased load.
 - With the *Remove Private AS* toggle set to off (check box is cleared), the AS PATH of each prefix will include the full list of ASNs, including the list of ASNs of switches connecting SoftGates to each other. Because of this, on any given SoftGate, locally originated prefixes will always have the AS PATH shorter than prefixes learned through the switch fabric from other SoftGates.
 
+**eBGP sessions and VPC access.** Reading, adding, editing, deleting, and changing the state of an eBGP session all require access to the VPC that owns it. A session in a VPC you cannot see returns 404; a session in a VPC you hold read-only returns 403.
+
 BGP Objects
 -----------
 Under Network → E-BGP objects, you can define various BGP objects referenced from a route-map to declare a dynamic BGP policy. Supported objects include:

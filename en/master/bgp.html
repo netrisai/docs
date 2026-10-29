@@ -1462,7 +1462,7 @@
 <td><p>When Multihop BGP peering is used, it lets the operator choose one of the SoftGate node’s loopback IP addresses as the BGP speaker source IP address.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>BGP password</strong></p></td>
-<td><p>Password for the BGP session</p></td>
+<td><p>Password for the BGP session. The API never returns the password itself: every eBGP response returns <code class="docutils literal notranslate"><span class="pre">bgpPassword</span></code> as <code class="docutils literal notranslate"><span class="pre">********</span></code> when a password is set, and empty when none is. This applies to all sessions, including your own. When editing a session, sending <code class="docutils literal notranslate"><span class="pre">********</span></code> back keeps the stored password, any other value replaces it, and an empty string clears it.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Remove Private AS</strong></p></td>
 <td><p>Strip private ASNs (64512–65534, or 4200000000–4294967294 for 4-byte ASNs) from the AS-PATH before advertising to this neighbor. Enabled by default. If multiple SoftGates advertise the same prefix to the same upstream, enabling or disabling this affects whether their AS-PATHs end up identical or distinct. See the note below this table for more details.</p></td>
@@ -1515,6 +1515,7 @@
 <li><p>When <em>Remove Private AS</em> is enabled (the checkbox is set), all inter-SoftGate path information is stripped from the AS PATH before the prefix is advertised upstream; thus, each prefix appears to the upstream BGP neighbor as equidistant (ECMP). As a result, some traffic might be forwarded to SoftGates that then have to forward it again to the “correct” SoftGate, resulting in suboptimal routing and increased load.</p></li>
 <li><p>With the <em>Remove Private AS</em> toggle set to off (check box is cleared), the AS PATH of each prefix will include the full list of ASNs, including the list of ASNs of switches connecting SoftGates to each other. Because of this, on any given SoftGate, locally originated prefixes will always have the AS PATH shorter than prefixes learned through the switch fabric from other SoftGates.</p></li>
 </ul>
+<p><strong>eBGP sessions and VPC access.</strong> Reading, adding, editing, deleting, and changing the state of an eBGP session all require access to the VPC that owns it. A session in a VPC you cannot see returns 404; a session in a VPC you hold read-only returns 403.</p>
 </section>
 <section id="bgp-objects">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">BGP Objects</a><a class="headerlink" href="#bgp-objects" title="Link to this heading"></a></h2>
