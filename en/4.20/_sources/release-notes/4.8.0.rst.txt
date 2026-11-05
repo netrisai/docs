@@ -1,0 +1,37 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.8.0
+.. _release_4.8.0:
+
+Netris |version| Release Notes (Apr/15/2026)
+============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Features
+--------
+.. New capabilities visible to customers. One line each; optional 1–2 lines of context.
+
+- **Added Cumulus 5.14 support**.
+- **Added Cumulus 5.16 support**.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes. If internal-only, keep wording generic.
+
+- Improved inventory management API performance when creating or editing inventory items.
+- Fixed IPSEC traffic being dropped on XDP-enabled SoftGates when 1:1 DNAT is in use.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file

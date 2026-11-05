@@ -1,0 +1,59 @@
+.. include:: ../_includes/links.rst
+ 
+.. |version| replace:: 4.10.0
+.. _release_4_10_0:
+ 
+Netris |version| Release Notes (May/19/2026)
+==============================================
+ 
+What's new in Netris |version|?
+-------------------------------
+
+.. warning::
+ 
+   Monitoring data loss will occur when upgrading to Netris |version|. Time-series data store changes from Graphite to VictoriaMetrics. The database is reinitialized during the upgrade, resulting in the loss of historical monitoring data. Future Netris releases will include a migration tool to preserve monitoring data during upgrades.
+ 
+Features
+--------
+ 
+- **Inventory Switch Role**. Operators can now explicitly define each switch's role (generic, leaf, spine, super-spine), which influences how the BGP underlay and EVPN address family are configured in the fabric. Existing switches are automatically assigned a role based on their location naming convention during the upgrade process. Inferring the switch role from the switch name is deprecated starting with Netris |version|. See :ref:`topology-management-adding-switches` for more details.
+- **Inventory Profile: Fabric Type**. Adds a new Fabric Type (East-West, North-South, Out-of-Band, and General-Purpose) property to Inventory Profiles, allowing administrators to define the fabric tier and traffic directionality for each profile. See :ref:`fabric_settings` for more details.
+- **Inventory Profile: Reference Architecture**. Adds a new Reference Architecture selector to Inventory Profiles, allowing administrators to associate a profile with a recommended deployment pattern. See :ref:`gpu_cluster_settings` for more details.
+- **Hardware Multi-Plane Support**. Adds support for multi-plane hardware configurations. See :ref:`gpu_cluster_settings` for more details.
+- **IP Address Family can be selected at Vnet level**. Allows administrators to specify the IP address family (IPv4, IPv6, or dual-stack) at the Vnet level.
+
+Enhancements
+------------
+ 
+- **Graphite to VictoriaMetrics Migration**. Replaces Graphite with VictoriaMetrics as the time-series database for monitoring data, improving performance and scalability.
+- **Server Cluster Scalability**. Improved the server cluster add/edit API to support creating clusters with a large number of servers (5000+) in a single operation.
+- **Swagger API Documentation**. Updated the Swagger API definitions with all missing API endpoints.
+- **UFM Integration Enhancements**. Added support for securely changing server names, UFM synchronization debugging, dry-run mode, and change of reconciliation interval.
+
+Bug fixes
+---------
+ 
+- Fixed L4LB not working when 1:1 DNAT rules are configured for the same backend IPs.
+- Fixed switch model not displaying correctly in the controller inventory for Cumulus Linux switches.
+- Fixed IPv4 and IPv6 addresses displaying concatenated without proper separation in the UI Network Links view.
+- Fixed IPv6 VPC peering not working as expected in multi-cluster topologies, a regression introduced in 4.9.0.
+- Fixed CloudStack agent not cleaning up VRF interfaces after the last VM in a VRF VNet is migrated or deleted.
+- Fixed suboptimal routing with VPC peering and EVPN Multihoming on Cumulus by implementing proper local leaking logic.
+- Fixed agent applying incomplete configurations for adaptive routing, a regression introduced in 4.8.0.
+ 
+Security fixes
+----------------
+ 
+No security fixes in this release.
+ 
+References
+----------
+ 
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on X-Twitter_
+- Join our Slack_
+ 
+.. End of file
