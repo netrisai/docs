@@ -26,10 +26,12 @@ When you activate Maintenance Mode for the softgate, several automatic actions a
   - Route information is prepended tenfold for outbound direction to all external and internal peers.
   - The BGP MED attribute is increased for all external and internal peers.
   - The BGP origin attribute is decreased for all external and internal peers.
-  - Connection-oriented services such as SNAT and L4LB will be transferred to the second softgate, resulting in a reestablishment of TCP connections.
+  - SNAT rules owned by this node are redistributed across the remaining SNAT SoftGates, and the TCP sessions those rules were carrying reset. DNAT, 1:1 NAT and L4LB are stateless and are unaffected: upstream routers simply ECMP that traffic across the remaining General SoftGates.
 
-.. note:: 
-  Before activating the maintenance mode, make sure that the second softgate is operating correctly.
+Deactivating Maintenance Mode on a SNAT SoftGate is equally disruptive. The rules move back to the recovered node and those sessions reset a second time, so plan the return into the maintenance window rather than only the drain.
+
+.. note::
+  Before activating Maintenance Mode, make sure the remaining SoftGates of the same role are healthy and have the capacity to carry the additional load.
   
 Maintenance Mode for Switch - What’s happening behind the scenes?
 =================================================================
