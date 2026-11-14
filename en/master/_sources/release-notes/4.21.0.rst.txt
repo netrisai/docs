@@ -13,7 +13,7 @@ Netris 4.21.0 adds bring-your-own EVPN VTEP support, so Netris-managed fabrics c
 
 Fixes include handling of E-BGP sessions when the Site ACL Default Policy is Deny, over aggregate/bond interfaces, on dual-stack switch ports, or when terminated on a V-Net. Also included are improvements to DHCPv4 relay, route aggregation on some rail-optimized Spectrum-X reference architectures, and IPv6 link-local prefix handling in VPC peering on Cumulus, and to ACLs on breakout interfaces on Arista. Other fixes include honoring the Untagged setting when switch ports are added to V-Nets, improved permission handling for Active Directory users in more than one mapped group, the ability to set the local authentication scheme as default, the Topology view showing E-BGP sessions of all VPCs, and System ASN ranges no longer rejected for overlapping the deprecated Site Mesh VPN ASN range.
 
-This release also strengthens username handling for Active Directory authentication.
+This release also strengthens username handling for Active Directory authentication and updates third-party components of the Controller to address publicly disclosed vulnerabilities.
 
 Features and Enhancements
 -------------------------
@@ -41,6 +41,7 @@ Bug fixes
 - Fixed IPv6 link-local prefixes not filtered from EVPN export on switches with remote-leaking VPC peering. Affected platforms: Cumulus. Found in Netris 4.19 and later.
 - Fixed ACLs not applying on breakout interfaces. Affected platforms: Arista. Found in Netris 4.6 and later.
 - Fixed Controller allowing an E-BGP session to terminate on a V-Net with a gateway when the V-Net is not present on the selected switch. Found in Netris 4.16 and later.
+- Fixed E-BGP sessions not coming up when terminated on a V-Net with an anycast gateway. Affected platforms: Arista. Found in Netris 4.14 and later.
 - Fixed switch ports added to a V-Net as untagged when the Untagged setting is off. Found in Netris 4.14 and later.
 - Fixed Active Directory users who belong to more than one mapped group not allowed to change Inventory, Inventory Profiles, and secrets when one of their roles grants write access. Found in Netris 4.19 and later.
 - Fixed local authentication scheme cannot be set as default after Active Directory scheme was set as default.
@@ -52,6 +53,10 @@ Security fixes
 ----------------
 
 - Improved handling of special characters in usernames when Active Directory is used for authentication.
+- Fixed `CVE-2026-11856 <https://www.cve.org/CVERecord?id=CVE-2026-11856>`_ and `CVE-2026-10536 <https://www.cve.org/CVERecord?id=CVE-2026-10536>`_, a credential leak and a use-after-free vulnerability in libcurl in the Controller web frontend.
+- Fixed `CVE-2026-111497 <https://www.cve.org/CVERecord?id=CVE-2026-111497>`_, a memory-corruption vulnerability in the Node.js Brotli decoder, and `CVE-2026-105483 <https://www.cve.org/CVERecord?id=CVE-2026-105483>`_, `CVE-2026-106069 <https://www.cve.org/CVERecord?id=CVE-2026-106069>`_ and `CVE-2026-105482 <https://www.cve.org/CVERecord?id=CVE-2026-105482>`_, TLS hostname-verification bypasses in Node.js, in the Controller backend.
+- Fixed `CVE-2026-90711 <https://www.cve.org/CVERecord?id=CVE-2026-90711>`_, an IP address spoofing vulnerability in the proxy-addr library used by the Controller backend.
+- Fixed `CVE-2026-14257 <https://www.cve.org/CVERecord?id=CVE-2026-14257>`_ and `CVE-2026-102278 <https://www.cve.org/CVERecord?id=CVE-2026-102278>`_, denial-of-service vulnerabilities in the brace-expansion library used by the Controller frontend and backend.
 
 References
 ----------

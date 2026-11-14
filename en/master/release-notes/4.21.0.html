@@ -1312,7 +1312,7 @@
 <h2>What’s new in Netris 4.21.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
 <p>Netris 4.21.0 adds bring-your-own EVPN VTEP support, so Netris-managed fabrics can interconnect with VTEPs managed by a third-party controller. This includes custom VPC L3VNIs and editable route targets, ASN-Agnostic peering on Cumulus, and a configurable Default Route-Target Prefix per Site. The release also adds optional XDP acceleration for SNAT SoftGates, NVIDIA RTX PRO 6000 reference architecture support on Cumulus, and support for Cumulus Linux 5.19.0.</p>
 <p>Fixes include handling of E-BGP sessions when the Site ACL Default Policy is Deny, over aggregate/bond interfaces, on dual-stack switch ports, or when terminated on a V-Net. Also included are improvements to DHCPv4 relay, route aggregation on some rail-optimized Spectrum-X reference architectures, and IPv6 link-local prefix handling in VPC peering on Cumulus, and to ACLs on breakout interfaces on Arista. Other fixes include honoring the Untagged setting when switch ports are added to V-Nets, improved permission handling for Active Directory users in more than one mapped group, the ability to set the local authentication scheme as default, the Topology view showing E-BGP sessions of all VPCs, and System ASN ranges no longer rejected for overlapping the deprecated Site Mesh VPN ASN range.</p>
-<p>This release also strengthens username handling for Active Directory authentication.</p>
+<p>This release also strengthens username handling for Active Directory authentication and updates third-party components of the Controller to address publicly disclosed vulnerabilities.</p>
 </section>
 <section id="features-and-enhancements">
 <h2>Features and Enhancements<a class="headerlink" href="#features-and-enhancements" title="Link to this heading"></a></h2>
@@ -1340,6 +1340,7 @@
 <li><p>Fixed IPv6 link-local prefixes not filtered from EVPN export on switches with remote-leaking VPC peering. Affected platforms: Cumulus. Found in Netris 4.19 and later.</p></li>
 <li><p>Fixed ACLs not applying on breakout interfaces. Affected platforms: Arista. Found in Netris 4.6 and later.</p></li>
 <li><p>Fixed Controller allowing an E-BGP session to terminate on a V-Net with a gateway when the V-Net is not present on the selected switch. Found in Netris 4.16 and later.</p></li>
+<li><p>Fixed E-BGP sessions not coming up when terminated on a V-Net with an anycast gateway. Affected platforms: Arista. Found in Netris 4.14 and later.</p></li>
 <li><p>Fixed switch ports added to a V-Net as untagged when the Untagged setting is off. Found in Netris 4.14 and later.</p></li>
 <li><p>Fixed Active Directory users who belong to more than one mapped group not allowed to change Inventory, Inventory Profiles, and secrets when one of their roles grants write access. Found in Netris 4.19 and later.</p></li>
 <li><p>Fixed local authentication scheme cannot be set as default after Active Directory scheme was set as default.</p></li>
@@ -1352,6 +1353,10 @@
 <h2>Security fixes<a class="headerlink" href="#security-fixes" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Improved handling of special characters in usernames when Active Directory is used for authentication.</p></li>
+<li><p>Fixed <a class="reference external" href="https://www.cve.org/CVERecord?id=CVE-2026-11856">CVE-2026-11856</a> and <a class="reference external" href="https://www.cve.org/CVERecord?id=CVE-2026-10536">CVE-2026-10536</a>, a credential leak and a use-after-free vulnerability in libcurl in the Controller web frontend.</p></li>
+<li><p>Fixed <a class="reference external" href="https://www.cve.org/CVERecord?id=CVE-2026-111497">CVE-2026-111497</a>, a memory-corruption vulnerability in the Node.js Brotli decoder, and <a class="reference external" href="https://www.cve.org/CVERecord?id=CVE-2026-105483">CVE-2026-105483</a>, <a class="reference external" href="https://www.cve.org/CVERecord?id=CVE-2026-106069">CVE-2026-106069</a> and <a class="reference external" href="https://www.cve.org/CVERecord?id=CVE-2026-105482">CVE-2026-105482</a>, TLS hostname-verification bypasses in Node.js, in the Controller backend.</p></li>
+<li><p>Fixed <a class="reference external" href="https://www.cve.org/CVERecord?id=CVE-2026-90711">CVE-2026-90711</a>, an IP address spoofing vulnerability in the proxy-addr library used by the Controller backend.</p></li>
+<li><p>Fixed <a class="reference external" href="https://www.cve.org/CVERecord?id=CVE-2026-14257">CVE-2026-14257</a> and <a class="reference external" href="https://www.cve.org/CVERecord?id=CVE-2026-102278">CVE-2026-102278</a>, denial-of-service vulnerabilities in the brace-expansion library used by the Controller frontend and backend.</p></li>
 </ul>
 </section>
 <section id="references">
