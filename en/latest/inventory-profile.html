@@ -81,7 +81,7 @@
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=6a604523" />
       <link rel="stylesheet" type="text/css" href="_static/styles.css?v=8456483b" />
 
   
@@ -93,7 +93,7 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
-      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="_static/design-tabs.js?v=fcb327ea"></script>
       <script src="_static/version-picker.js?v=51bfea80"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -326,7 +326,6 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#hardware-requirements">Hardware Requirements</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#performance">Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#architecture-overview">Architecture Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#softgate-physical-connectivity">SoftGate physical connectivity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#softgate-logical-connectivity">SoftGate logical connectivity</a></li>
@@ -352,6 +351,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#observability-and-operations">Observability and Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#see-also">See Also</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ai-netris-host-networking.html">Netris Host Networking</a><ul>
@@ -997,6 +997,14 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.21.0.html">Netris 4.21.0 Release Notes (Nov/13/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#what-s-new-in-netris-version">What’s new in Netris 4.21.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#features-and-enhancements">Features and Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.20.0.html">Netris 4.20.0 Release Notes (Nov/05/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.20.0.html#what-s-new-in-netris-version">What’s new in Netris 4.20.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.20.0.html#features-and-enhancements">Features and Enhancements</a></li>
@@ -1586,7 +1594,7 @@
 <span id="id4"></span><h2><a class="toc-backref" href="#id21" role="doc-backlink">Fabric Settings</a><a class="headerlink" href="#fabric-settings" title="Link to this heading"></a></h2>
 <p>Netris can automatically optimize fabric configurations based on the administrator’s design and preferences. The following controls are available in the Fabric Settings section of the Inventory Profile form:</p>
 <ul>
-<li><p><strong>Fabric Type</strong> (default = General Purpose). The selected fabric type filters which switches are subject to the “Optimize BGP Overlay for leaf-spine topology” feature, as described below. Supported values include:</p>
+<li><p><strong>Fabric Type</strong> (default = Generic). Fabric Type is a logical grouping label. It generates no device configuration on its own, and the value names do not imply an underlay, overlay, or physical design — a profile set to OOB and a profile set to North-South behave identically. Its only function today is to group switches into one logical fabric for the “Optimize BGP Overlay for leaf-spine topology” feature, described below. Supported values are:</p>
 <ul class="simple">
 <li><p>Generic</p></li>
 <li><p>East-West</p></li>
@@ -1597,6 +1605,8 @@
 <li><p>North-South</p></li>
 <li><p>OOB</p></li>
 </ul>
+<p>Switches are grouped by Fabric Type value, not by Inventory Profile. Two Inventory Profiles that carry the same Fabric Type form a single overlay optimization domain; two profiles with different Fabric Types form two independent ones. Assign a distinct Fabric Type to each logical fabric that should select its own EVPN Route Servers, including when several such fabrics are in the same site and are interconnected — for example an OOB fabric and a North-South fabric joined through border leafs.</p>
+<p>Set Fabric Type before fabric turn-up. Changing it on a converged fabric rebuilds the overlay BGP topology across every switch in both the old and the new group.</p>
 </li>
 <li><p><strong>Optimize BGP Overlay for leaf-spine topology</strong> (default = checked). When checked, Netris applies the following logic to all switches sharing the Fabric Type value set in this Inventory Profile. Netris configures designated switches as EVPN Route Servers (EVPN-RS), and each switch with the Switch Role property set to Leaf forms overlay BGP sessions (address-family l2vpn evpn) exclusively with those nodes. No other overlay BGP sessions are configured.</p>
 <p>EVPN-RS designation works as follows:</p>
@@ -1604,11 +1614,18 @@
 <li><p>If no switch object has the EVPN Route Server property (set in the <a class="reference internal" href="topology-management.html"><span class="doc">Topology Management</span></a> page’s <a class="reference internal" href="topology-management.html#topology-management-adding-switches"><span class="std std-ref">Adding Switches</span></a> section) set, Netris automatically selects the two switches with the Switch Role property set to Super-Spine — or, if no Super-Spine switches are present, the two switches with the Switch Role property set to Spine — with the lowest loopback IPs.</p></li>
 <li><p>If one or more switch objects have the EVPN Route Server property set, automatic selection is turned off entirely, and Netris uses only the explicitly designated switches as EVPN-RS nodes.</p></li>
 <li><p>Because setting the property on even one switch turns off automatic selection, operators should explicitly designate at least two switches for redundancy. Netris does not automatically enforce this recommendation.</p></li>
+<li><p>Automatic selection assumes a conventional leaf-spine / Clos hierarchy, because it selects candidates by Switch Role. For irregular, asymmetric, or partially connected topologies, designate Route Servers explicitly — regardless of fabric size — choosing switches that have reachability to every intended overlay participant.</p></li>
 </ul>
 <p>When unchecked, overlay BGP sessions are configured on all point-to-point links.</p>
 </li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Changing the “Optimize BGP Overlay for leaf-spine topology” setting on a converged fabric reconstructs the overlay BGP topology on every switch sharing the Fabric Type, not only on the switches using this Inventory Profile. Let the fabric converge before making another fabric-wide change.</p>
+</div>
+<ul class="simple">
 <li><p><strong>Optimize BGP Overlay for Hypervisor Integrated Fabric</strong> (default = unchecked). Required for BGP/EVPN VXLAN integration with compute hypervisor networking. This optimization makes sure that a large number of hypervisor virtual networking EVPN prefixes do not overflow switch TCAM.</p></li>
-<li><p><strong>BGP Numbered Underlay</strong> (default = unchecked). When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP uses the unnumbered method, and BGP sessions use p2p IPv6 link-local addresses.</p></li>
+<li><p><strong>BGP Numbered Underlay</strong> (default = unchecked). When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP uses the unnumbered method, and BGP sessions use p2p IPv6 link-local addresses. NVIDIA Spectrum-X Reference Architectures require BGP Numbered Underlay. Configure the point-to-point addresses on the corresponding Link objects; do not allocate them from Netris IPAM. Choose the underlay model during design and apply it consistently across a fabric.</p></li>
 <li><p><strong>Automatic Link Aggregation</strong> (default = unchecked). When checked, the UI automatically unchecks Enable MC-LAG.</p></li>
 <li><p><strong>Generate ESI by Server ID</strong> (default = unchecked). When checked, ESI-IDs are generated using server-ID-based logic instead of the default partner-MAC-based method. The setting is backward compatible: existing ESI-IDs remain valid, and servers not modeled in Netris automatically fall back to partner-MAC-based generation. Note that when multiple bond interfaces are present on servers, this should remain unchecked.</p></li>
 <li><p><strong>Enable MC-LAG</strong> (default = unchecked). When checked, Automatic Link Aggregation will automatically become unchecked through the UI. If unchecked, switch agents should not generate any MC-LAG-related configurations. Help message: “Enabling MC-LAG functionality will disable any EVPN-MH functionality. Two multihoming methods are not supported simultaneously on the same switches.”</p></li>
@@ -1620,12 +1637,14 @@
 <ul>
 <li><p><strong>QoS &amp; RoCE</strong> (default = unchecked): Optimize for RDMA over Converged Ethernet.</p></li>
 <li><p><strong>RoCE Adaptive Routing (AR)</strong> (default = unchecked): Enable Adaptive Routing for RoCE.</p></li>
-<li><p><strong>Congestion Control</strong> (default = unchecked): Enable Zero Touch RoCE Congestion Control.</p></li>
-<li><p><strong>ASIC monitoring</strong> (default = unchecked): Enable ASIC monitoring, including histograms and telemetry snapshots.</p></li>
-<li><p><strong>HWMP</strong> (default = unchecked): Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture.</p></li>
+<li><p><strong>Congestion Control</strong> (default = unchecked): Enable automatic congestion control for RoCE workloads. Congestion control tuning is applied on the GPU server’s SuperNIC; switch-side lossless behavior is configured through QoS &amp; RoCE and RoCE Adaptive Routing. See <a class="reference internal" href="ai-netris-host-networking.html"><span class="doc">Netris Host Networking</span></a>.</p></li>
+<li><p><strong>ASIC monitoring</strong> (default = unchecked): Enable ASIC monitoring on NVIDIA Cumulus Linux switches, including ingress and egress buffer histograms, bandwidth gauges, packet and byte counters, and periodic telemetry snapshots. The available counters differ between switch ASICs.</p></li>
+<li><p><strong>HWMP</strong> (default = unchecked): Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture. HWMP generates a deterministic anycast MAC address for each GPU port, so that the switch-side L3 attachment presents the same MAC identity on every participating plane.</p>
+<p>HWMP does not assign or synchronize the point-to-point link IP addresses. The topology must already be designed so that the same GPU port uses identical link addressing on every participating plane, as the applicable Reference Architecture requires.</p>
+</li>
 <li><p><strong>Reference Architecture</strong> (default = None): This setting tells Netris which reference architecture is being deployed on the subject fabric so that Netris can apply the appropriate prefix summarization in the L3VPN overlay.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="75b9ab88-d132-4df1-bc14-208bbf7a645f" name="75b9ab88-d132-4df1-bc14-208bbf7a645f" type="checkbox"><label class="sphinx_collapse__label" for="75b9ab88-d132-4df1-bc14-208bbf7a645f"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="da2de5c3-1893-4846-84e8-ba4051217099" name="da2de5c3-1893-4846-84e8-ba4051217099" type="checkbox"><label class="sphinx_collapse__label" for="da2de5c3-1893-4846-84e8-ba4051217099"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Reference Architecture</p></th>
@@ -1708,7 +1727,7 @@
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: 4.20
+      v: 4.21
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

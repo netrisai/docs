@@ -1,0 +1,58 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.20.0
+.. _release_4_20_0:
+
+Netris |version| Release Notes (Nov/05/2026)
+=============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Netris 4.20.0 adds port-down alarm suppression for unused switch ports, Active Directory authentication with a custom CA certificate, license enforcement for Controller services, and support for Cumulus Linux 5.18.3. It extends port and bond descriptions to Dell SONiC and sets IPv4 and IPv6 forwarding on Cumulus Linux 5.16 and 5.18 V-Nets based on whether they have a gateway.
+
+Fixes include improved handling of interface labels when assigning server ports to V-Nets, changes to Controller behavior after a switch or SoftGate addition is attempted with invalid input, improved consistency in the API handling of incomplete requests, RADIUS secrets validation, and improvements to BFD sessions on SoftGates.
+
+This release also strengthens eBGP session security and credential handling.
+
+Features and Enhancements
+-------------------------
+.. New capabilities and customer-facing enhancements to existing functionality and features.
+
+- **Cumulus Linux 5.18.3 support**. Netris is now validated on Cumulus Linux 5.18.3.
+- **Port-down alarm suppression for unused ports**. Netris no longer raises port-down alarms for switch ports that are not configured and are not part of the topology, and resumes alarming when such a port is added to the topology or configured.
+- **Active Directory authentication with a custom CA certificate**. The Active Directory authentication scheme now accepts a CA certificate and a TLS server name, so the Controller can verify domain controllers whose LDAPS certificates come from a private CA, or that are reached by IP address or alias.
+- **Controller license enforcement**. A valid installed license is now required to make changes to switch and SoftGate objects in the Controller, and to activate the RADIUS server and IP discovery. Devices keep forwarding traffic with their last applied configuration, and normal Controller operations resume as soon as a valid license is applied. This reverses the 4.19.0 change that let IP discovery run without a license.
+- **Port and bond descriptions on devices (Dell SONiC)**. Descriptions set in the Controller for ports and bonds are now applied on the device, so operators can identify them directly on the switch.
+- **IPv4 and IPv6 forwarding on V-Nets (Cumulus)**. Netris now disables IPv4 and IPv6 forwarding on a V-Net only when the V-Net has no gateway configured, so V-Nets with gateways behave the same on Cumulus Linux 5.16 and 5.18.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes.
+
+- Fixed switch agent repeatedly reapplying changes to switch port configuration when the server's interface is added as untagged to a V-Net, and adding the server to a Server Cluster causes that interface to become untagged in a different V-Net. Found in Netris 4.14 and later.
+- Fixed interface label change being rejected when the old and new labels add the switch port to V-Net as untagged. Affected platforms: all. Found in Netris 4.19 and later.
+- Fixed switch ports reserved through a server interface label not showing in the V-Net or the port's Free Up list. Found in Netris 4.19 and later.
+- Fixed Controller unable to accept changes from any user for about a minute after an Add switch or SoftGate operation is rejected due to invalid input, such as a duplicate name or a MAC address. Found in Netris 4.19 and later.
+- Fixed API and Terraform PATCH requests that the Controller rejects still saving part of their changes. Found in Netris 4.16 and later.
+- Fixes to RADIUS shared secret and password saving and validation in Inventory Profiles and third-party Dynamic VPC Groups. Found in Netris 4.19 and later.
+- Fixed BFD sessions with eBGP peers staying down on SoftGates for single-hop sessions when XDP is enabled, and all multihop sessions. Found in Netris 4.17 and later.
+
+Security fixes
+----------------
+
+- Improved permissions and credential handling of eBGP sessions.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file

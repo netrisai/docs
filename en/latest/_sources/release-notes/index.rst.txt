@@ -10,6 +10,7 @@ Release notes for every published Netris version, newest first.
 .. toctree::
     :maxdepth: 1
 
+    4.21.0
     4.20.0
     4.19.0
     4.18.0

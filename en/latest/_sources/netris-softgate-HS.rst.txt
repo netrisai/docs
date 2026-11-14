@@ -55,73 +55,7 @@ Hardware Requirements
 
 A SoftGate HS active-active HA (highly available) cluster requires at least 4 nodes. Two SoftGates will forward stateful traffic (SNAT), and two others will forward stateless traffic (DNAT, 1:1 NAT, Layer-4 Load Balancing, etc.). Each group (stateful and stateless) can scale horizontally by deploying more servers as CPU & RAM utilization requires.
 
-.. csv-table:: SoftGate HS Hardware Requirements
-     :file: tables/softgate-hs-hardware.csv
-     :widths: 40, 40, 40, 40
-     :header-rows: 1
-     :align: center
-
-Performance
-===========
-
-The Netris engineering team benchmarked SoftGate HS performance using a 64-byte packet size on Intel and AMD CPUs. The results represent the performance of a single SoftGate HS node in the General role. The SoftGate cluster's cumulative performance depends on the number of deployed nodes and how traffic is distributed between them. See the :ref:`High Availability and Load Distribution <softgate-hs-load-distribution>` section of this document for more information on how traffic is distributed across SoftGate nodes.
-
-.. tab-set::
-
-   .. tab-item:: Intel Xeon Gold 5315Y 32 core CPU @ 3.20GHz
-
-      **1 Netris VPC**
-
-      .. csv-table:: SoftGate HS Performance Intel - 1 VPC
-         :file: tables/softgate-hs-perf-intel-1vpc.csv
-         :widths: 60, 40
-         :header-rows: 1
-         :align: center
-
-      **100 Netris VPCs**
-
-      .. csv-table:: SoftGate HS Performance Intel - 100 VPCs
-         :file: tables/softgate-hs-perf-intel-100vpc.csv
-         :widths: 60, 40
-         :header-rows: 1
-         :align: center
-
-      **1000 Netris VPCs**
-
-      .. csv-table:: SoftGate HS Performance Intel - 1000 VPCs
-         :file: tables/softgate-hs-perf-intel-1000vpc.csv
-         :widths: 60, 40
-         :header-rows: 1
-         :align: center
-
-   .. tab-item:: AMD EPYC 7413 24-Core CPU @ 2.6GHz, 48 cores
-
-      **1 Netris VPC**
-
-      .. csv-table:: SoftGate HS Performance AMD - 1 VPC
-         :file: tables/softgate-hs-perf-amd-1vpc.csv
-         :widths: 60, 40
-         :header-rows: 1
-         :align: center
-
-      **100 Netris VPCs**
-
-      .. csv-table:: SoftGate HS Performance AMD - 100 VPCs
-         :file: tables/softgate-hs-perf-amd-100vpc.csv
-         :widths: 60, 40
-         :header-rows: 1
-         :align: center
-
-      **1000 Netris VPCs**
-
-      .. csv-table:: SoftGate HS Performance AMD - 1000 VPCs
-         :file: tables/softgate-hs-perf-amd-1000vpc.csv
-         :widths: 60, 40
-         :header-rows: 1
-         :align: center
-
-.. note::
-   We will add additional performance data soon.
+See :doc:`Hardware Requirements <supported-switch-hardware>` for the per-node server specification.
 
 Architecture Overview
 =====================
@@ -205,13 +139,13 @@ SoftGate dataplane is implemented using XDP (eXpress Data Path).
 
 XDP is a high-performance, programmable framework in the Linux kernel that allows processing network packets at the earliest possible stage, directly from the network driver, before they hit the main network stack, using eBPF programs for tasks like filtering and load balancing with minimal overhead. It significantly boosts SoftGate throughput and efficiency by handling packets faster than traditional methods, enabling kernel bypass for high-speed data paths.
 
-The Netris SoftGate agent automatically installs the relevant netfliter rules and attaches the appropriate interfaces on the SoftGate node to the XDP pipeline.
+The Netris SoftGate agent installs the relevant netfilter rules and attaches the dataplane interfaces to the XDP pipeline. It also owns the dataplane MTU, the receive ring size, and a defined set of kernel sysctl parameters, which it re-applies continuously. These are not operator settings: a manual change to any of them is overwritten, and restarting ``systemd-networkd`` by hand can detach the XDP program and remove FRR-installed routes, leaving a node that reports healthy and forwards nothing.
 
-.. warning:: XDP requires the MTU not to exceed 3498 bytes. Netris automatically implements this requirement.
+.. warning:: XDP requires the MTU not to exceed 3498 bytes. Netris sets and maintains this automatically; it cannot be raised.
 
-.. warning:: Disable hyperthreading for optimal performance.
+.. warning:: Hyperthreading must be disabled on XDP-accelerated SoftGates.
 
-In Netris 4.6.0, the SoftGate role General is XDP accelerated. SoftGate role SNAT XDP acceleration is coming soon.
+The SoftGate General role is XDP-accelerated, beginning with Netris 4.6.0. XDP acceleration for the SNAT role is coming soon. Until then, a SNAT node saturates at a lower packet rate than a General node on identical hardware.
 
 
 SoftGate Roles and Flavors
@@ -223,13 +157,17 @@ A deployment requires at least 4 SoftGate nodes for high availability, and you c
 
   SoftGates with this role handle stateless services including DNAT (which includes both 1:1 NAT and inbound port forwarding) and Layer-4 load balancing (L4LB). General SoftGates also provide DHCP server services.
 
-  General SoftGates advertise specific /32 prefixes to upstream routers, allowing return traffic to be directed to the correct SoftGate node. For optimal operation, the upstream routers should be configured to accept /32 route advertisements from SoftGates.
+  Every General SoftGate is configured with every DNAT and L4LB rule, so any of them can service the traffic. Each General node originates /32 host routes for those global IPs. Because every node originates the same routes, upstream routers see equal-cost paths to all of them and distribute inbound traffic across the General nodes by ECMP.
 
 * **Role: SNAT**
 
   SoftGates with this role perform the stateful SNAT function for Netris VPC-originated outbound traffic. SNAT, a purely outbound service, can translate the source IP of packets originated from one or more sources inside a Netris VPC. This configuration, in which multiple internal sources are translated behind a single global IP or a small pool of global IPs, is commonly called SNAT overload or Port Address Translation (PAT).
 
-  SNAT SoftGates advertise specific /32 routes to upstream routers, so return traffic is directed to the correct SoftGate node. For optimal operation, configure the upstream routers to accept /32 route advertisements from SoftGates.
+  Each SNAT rule is installed on exactly one SNAT SoftGate, selected by the Maglev algorithm on the rule's global IP. That node originates a /32 host route for the global IP, so an upstream router that accepts it sends return traffic directly to the owning node. Configure the upstream routers to accept these /32s: without them, return traffic arrives at an arbitrary SoftGate and is forwarded internally to the owner, consuming capacity on a node that performs no translation.
+
+.. tip::
+
+   **Accepting the /32s upstream.** Netris enables *Remove Private AS* by default on eBGP sessions. It strips the inter-SoftGate AS-path, so every SoftGate's advertisement of a given prefix looks equidistant to the upstream router, which then distributes the host route across all SoftGates by ECMP. Disable *Remove Private AS* on SoftGate-terminated eBGP sessions for optimal return-traffic routing. See :doc:`Remove Private AS <bgp>` on the BGP page for the full effect on AS-PATH.
 
 .. warning:: Starting with Netris 4.6.0, SoftGate HS (HyperScale) is the recommended SoftGate flavor.
 
@@ -278,9 +216,9 @@ Below are the step-by-step instructions.
 
   <br />
 
-2. Provide the required information, including the *Main IP address* and the *Management IP address*. Netris recommends explicitly specifying the IP addresses of every SoftGate node.
+2. Provide the required information, including the *Main IP address* and the *Management IP address*. Either set them explicitly or leave them as *Assign Automatically* — there is no recommendation either way; it depends on whether you care which address lands on which node.
 
-  However, you may leave the *Main IP address* and the *Management IP Address* set to *Assign Automatically*. If you do, Netris will automatically find the next available IP address in the earliest created subnet in the Netris IPAM with the appropriate Purpose (``purpose: loopback`` for loopback IPs and ``purpose: management`` for management IPs) and assign it to the SoftGate.
+  With *Assign Automatically*, Netris finds the next available IP address in the earliest created subnet in the Netris IPAM with the appropriate Purpose (``purpose: loopback`` for loopback IPs and ``purpose: management`` for management IPs) and assigns it to the SoftGate.
 
 3. Add Links. This tells Netris how this node is physically connected to the switching fabric.
 4. Locate the correct server object that represents the target SoftGate and click the three vertical dots (⋮) on the right side of the SoftGate node. Select Install Agent.
@@ -387,7 +325,7 @@ BGP route exchange between SoftGates, upstream routers, and downstream switches
 
 Each SoftGate node will originate and advertise the prefixes described below. You can change this behavior by applying outbound prefix-lists (*Prefix List Outbound* field) to each E-BGP object in the Netris controller (Network->E-BGP).
 
-.. tip:: This is closely related to, and possibly the same mechanism as, the *Global Routing* checkbox on an IPAM subnet — see :ref:`Global Routing <ipam_global_routing>` on the IPAM page. The exact relationship between that checkbox and the rule below is not yet confirmed; treat the rule below as the observed default behavior for ``vpc-1:Default`` subnets specifically.
+.. tip:: A subnet must also have its *Global Routing* checkbox enabled to be advertised externally — see :ref:`Global Routing <ipam_global_routing>` on the IPAM page.
 
 1. **By default**, both General and SNAT roles SoftGates advertise all subnets configured in the Netris IPAM that meet all of the following conditions:
 
@@ -427,9 +365,9 @@ Below is the output of the ``show ip bgp neighbor advertised-routes`` command wh
 
 2. Additionally, SNAT SoftGates originate (and advertise to the upstream neighbors, if permitted with an outbound prefix-list) /32 prefixes that correspond to global IPs of the SNAT rules configured in the Netris controller. This enables upstream routers to route packets directly to the correct SNAT SoftGate node. For each SNAT rule configured in the Netris controller, the Netris algorithm automatically selects an available SoftGate node with the SNAT role and, based on the `Maglev algorithm <https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf>`_, installs the SNAT rule on that SoftGate.
 
-3. General SoftGates originate (and advertise to the upstream neighbors, if permitted with an outbound prefix-list) /32 prefixes that correspond to the global IPs of the L4LB or DNAT rules configured in the Netris controller. This enables upstream routers to route packets directly to the L4LB SoftGate nodes. Unlike with the SNAT rules, where only one of the SNAT SoftGates is configured for any given SNAT rule in the Netris controller, each General SoftGate is configured with every L4LB and DNAT rule that is configured in the Netris controller.
+3. General SoftGates originate (and advertise to the upstream neighbors, if permitted with an outbound prefix-list) /32 prefixes that correspond to the global IPs of the L4LB or DNAT rules configured in the Netris controller. Unlike SNAT, where any given rule is installed on exactly one SNAT SoftGate, every General SoftGate is configured with every L4LB and DNAT rule. Every General node therefore originates the same /32s, so an upstream that accepts them sees equal-cost paths to all of them and distributes inbound traffic by ECMP rather than selecting a particular node.
 
-.. tip:: Configure your upstream routers to receive /32 prefixes from SoftGates for optimal routing and to prevent traffic from being forwarded internally if it arrives at the “wrong” SoftGate.
+.. tip:: Configure your upstream routers to accept the /32 prefixes originated by SNAT SoftGates. Each is originated by the single node that owns the rule, so accepting them sends return traffic straight to that node; without them, traffic arrives at an arbitrary SoftGate and is forwarded internally, consuming capacity on a node that performs no translation. The /32s originated by General SoftGates do not carry the same benefit, since every General node originates all of them — accepting those adds prefixes upstream without changing where packets land.
 
 .. warning:: You cannot simultaneously configure the same Global IP address for SNAT and any other translation service.
 
@@ -504,3 +442,9 @@ Observability and Operations
 ============================
 
 (coming soon)
+
+See Also
+========
+
+* :doc:`Hardware Requirements <supported-switch-hardware>` — the per-node server specification.
+* :doc:`Maintenance Mode <maintenance-mode>` — draining a SoftGate node for maintenance.

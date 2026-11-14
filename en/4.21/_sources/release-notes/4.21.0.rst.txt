@@ -1,0 +1,68 @@
+.. include:: ../_includes/links.rst
+
+.. |version| replace:: 4.21.0
+.. _release_4_21_0:
+
+Netris |version| Release Notes (Nov/13/2026)
+=============================================
+
+What's new in Netris |version|?
+-------------------------------
+
+Netris 4.21.0 adds bring-your-own EVPN VTEP support, so Netris-managed fabrics can interconnect with VTEPs managed by a third-party controller. This includes custom VPC L3VNIs and editable route targets, ASN-Agnostic peering on Cumulus, and a configurable Default Route-Target Prefix per Site. The release also adds optional XDP acceleration for SNAT SoftGates, NVIDIA RTX PRO 6000 reference architecture support on Cumulus, and support for Cumulus Linux 5.19.0.
+
+Fixes include handling of E-BGP sessions when the Site ACL Default Policy is Deny, over aggregate/bond interfaces, on dual-stack switch ports, or when terminated on a V-Net. Also included are improvements to DHCPv4 relay, route aggregation on some rail-optimized Spectrum-X reference architectures, and IPv6 link-local prefix handling in VPC peering on Cumulus, and to ACLs on breakout interfaces on Arista. Other fixes include honoring the Untagged setting when switch ports are added to V-Nets, improved permission handling for Active Directory users in more than one mapped group, the ability to set the local authentication scheme as default, the Topology view showing E-BGP sessions of all VPCs, and System ASN ranges no longer rejected for overlapping the deprecated Site Mesh VPN ASN range.
+
+This release also strengthens username handling for Active Directory authentication.
+
+Features and Enhancements
+-------------------------
+.. New capabilities and customer-facing enhancements to existing functionality and features.
+
+- **Bring-your-own EVPN VTEP (Cumulus, Dell SONiC, Arista, SoftGate)**. Netris-managed fabrics can now interconnect with non-Netris-managed VTEPs. VRF name, L2 VNI, L3 VNI, and route targets can now be retrieved through the API, so a 3rd-party controller can configure its VTEPs to match the Netris-managed fabric. The feature includes:
+
+  - **VPC L3VNI and route targets**. When creating or editing VPCs, the GUI and API now accept custom L3VNI values and editable import and export route targets. The API returns the route targets for VPCs, V-Nets, and E-BGP sessions, including their type (default, VPC peering, or custom), and the VPC list shows them under Internal L3VNI.
+  - **ASN-Agnostic peering (Cumulus)**. A server object in Netris can now be set to ASN-Agnostic, so Netris configures the relevant underlay connection to accept any BGP AS number the remote peer presents (except the switch's own).
+  - **Default Route-Target Prefix per Site**. Sites now have a configurable Default Route-Target Prefix parameter (default value: 65000). Netris combines it with the VNI, in the form ``<prefix>:<VNI>``, to auto-generate the route targets of VNIs created in the Site. When you upgrade to Netris 4.21.0, existing VNIs keep their ``0:<VNI>`` route targets and gain ``65000:<VNI>``. Changing the prefix doesn't change the route targets of existing VNIs; only VNIs created afterward use the new prefix. When an existing V-Net is extended to another Site, it gains a route target with that Site's prefix.
+
+- **XDP acceleration for SNAT SoftGates**. SoftGates with the SNAT role can now use XDP acceleration for higher throughput and lower latency of SNAT traffic. XDP is off by default and is turned on per SoftGate with ``routerctl -R snat enable``; until then, SNAT works as in earlier releases. Turning XDP off with ``routerctl -R snat disable`` briefly interrupts traffic through that SoftGate.
+- **NVIDIA RTX PRO 6000 reference architecture (Cumulus)**. Inventory Profiles now support RTX PRO 6000 as a Reference Architecture. On fabrics using it, Netris summarizes IPv4 and IPv6 unicast routes in the default VRF with BGP aggregate-address, as the reference architecture requires. Supported on Cumulus Linux 5.16 and later.
+- **Cumulus Linux 5.19.0 support**. Netris is now validated on Cumulus Linux 5.19.0.
+
+Bug fixes
+---------
+.. Customer-facing defect fixes.
+
+- Fixed E-BGP sessions not coming up when the Site ACL Default Policy is set to Deny. Affected platforms: Cumulus. Found in Netris 4.17 and later.
+- Fixed DHCPv4 requests from a V-Net also relayed to DHCP servers configured for other V-Nets in the same VPC. Affected platforms: Cumulus. Found in Netris 4.13 and later.
+- Fixed rail route aggregation on some Spectrum-X reference architectures (H100/H200/B200/GB200) not matching the NVIDIA specification. Affected platforms: Cumulus. Found in Netris 4.15 and later.
+- Fixed E-BGP peering over aggregate (bond) interfaces not working. Affected platforms: Cumulus. Found in Netris 4.16 and later.
+- Fixed IPv4 and IPv6 E-BGP sessions on the same switch port and VLAN not coming up together. Affected platforms: Cumulus. Found in Netris 4.19 and later.
+- Fixed IPv6 link-local prefixes not filtered from EVPN export on switches with remote-leaking VPC peering. Affected platforms: Cumulus. Found in Netris 4.19 and later.
+- Fixed ACLs not applying on breakout interfaces. Affected platforms: Arista. Found in Netris 4.6 and later.
+- Fixed Controller allowing an E-BGP session to terminate on a V-Net with a gateway when the V-Net is not present on the selected switch. Found in Netris 4.16 and later.
+- Fixed switch ports added to a V-Net as untagged when the Untagged setting is off. Found in Netris 4.14 and later.
+- Fixed Active Directory users who belong to more than one mapped group not allowed to change Inventory, Inventory Profiles, and secrets when one of their roles grants write access. Found in Netris 4.19 and later.
+- Fixed local authentication scheme cannot be set as default after Active Directory scheme was set as default.
+- Fixed the Topology view showing only E-BGP sessions of the default VPC. Found in Netris 4.15 and later.
+- Fixed System ASN ranges rejected for overlapping with the deprecated Site Mesh VPN ASN range. Found in Netris 4.14 and later.
+- Other minor GUI improvements.
+
+Security fixes
+----------------
+
+- Improved handling of special characters in usernames when Active Directory is used for authentication.
+
+References
+----------
+.. Link deeper docs; prefer permalinks.
+
+- :doc:`Supported Platforms <../supported-platform-matrix>`
+- :doc:`Supported Switch Hardware <../supported-switch-hardware>`
+- Schedule a Demo_
+- Follow us on LinkedIn_
+- Follow us on YouTube_
+- Follow us on X-Twitter_
+- Join our Slack_
+
+.. End of file

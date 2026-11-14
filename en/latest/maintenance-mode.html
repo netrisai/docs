@@ -81,7 +81,7 @@
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=6a604523" />
       <link rel="stylesheet" type="text/css" href="_static/styles.css?v=8456483b" />
 
   
@@ -93,7 +93,7 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
-      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="_static/design-tabs.js?v=fcb327ea"></script>
       <script src="_static/version-picker.js?v=51bfea80"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -326,7 +326,6 @@
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#hardware-requirements">Hardware Requirements</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#performance">Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#architecture-overview">Architecture Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#softgate-physical-connectivity">SoftGate physical connectivity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="netris-softgate-HS.html#softgate-logical-connectivity">SoftGate logical connectivity</a></li>
@@ -352,6 +351,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#observability-and-operations">Observability and Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netris-softgate-HS.html#see-also">See Also</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ai-netris-host-networking.html">Netris Host Networking</a><ul>
@@ -997,6 +997,14 @@
 <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/4.21.0.html">Netris 4.21.0 Release Notes (Nov/13/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#what-s-new-in-netris-version">What’s new in Netris 4.21.0?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#features-and-enhancements">Features and Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#bug-fixes">Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#security-fixes">Security fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="release-notes/4.21.0.html#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/4.20.0.html">Netris 4.20.0 Release Notes (Nov/05/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.20.0.html#what-s-new-in-netris-version">What’s new in Netris 4.20.0?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="release-notes/4.20.0.html#features-and-enhancements">Features and Enhancements</a></li>
@@ -1319,12 +1327,13 @@
 <li><p>Route information is prepended tenfold for outbound direction to all external and internal peers.</p></li>
 <li><p>The BGP MED attribute is increased for all external and internal peers.</p></li>
 <li><p>The BGP origin attribute is decreased for all external and internal peers.</p></li>
-<li><p>Connection-oriented services such as SNAT and L4LB will be transferred to the second softgate, resulting in a reestablishment of TCP connections.</p></li>
+<li><p>SNAT rules owned by this node are redistributed across the remaining SNAT SoftGates, and the TCP sessions those rules were carrying reset. DNAT, 1:1 NAT and L4LB are stateless and are unaffected: upstream routers simply ECMP that traffic across the remaining General SoftGates.</p></li>
 </ul>
 </div></blockquote>
+<p>Deactivating Maintenance Mode on a SNAT SoftGate is equally disruptive. The rules move back to the recovered node and those sessions reset a second time, so plan the return into the maintenance window rather than only the drain.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Before activating the maintenance mode, make sure that the second softgate is operating correctly.</p>
+<p>Before activating Maintenance Mode, make sure the remaining SoftGates of the same role are healthy and have the capacity to carry the additional load.</p>
 </div>
 </section>
 <section id="maintenance-mode-for-switch-whats-happening-behind-the-scenes">
@@ -1375,7 +1384,7 @@
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Alternate Versions</span>
-      v: 4.20
+      v: 4.21
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

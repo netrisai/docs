@@ -288,7 +288,7 @@ Fabric Settings
 
 Netris can automatically optimize fabric configurations based on the administrator's design and preferences. The following controls are available in the Fabric Settings section of the Inventory Profile form:
 
-- **Fabric Type** (default = General Purpose). The selected fabric type filters which switches are subject to the "Optimize BGP Overlay for leaf-spine topology" feature, as described below. Supported values include:
+- **Fabric Type** (default = Generic). Fabric Type is a logical grouping label. It generates no device configuration on its own, and the value names do not imply an underlay, overlay, or physical design — a profile set to OOB and a profile set to North-South behave identically. Its only function today is to group switches into one logical fabric for the "Optimize BGP Overlay for leaf-spine topology" feature, described below. Supported values are:
   
   * Generic
   * East-West
@@ -299,6 +299,10 @@ Netris can automatically optimize fabric configurations based on the administrat
   * North-South
   * OOB
 
+  Switches are grouped by Fabric Type value, not by Inventory Profile. Two Inventory Profiles that carry the same Fabric Type form a single overlay optimization domain; two profiles with different Fabric Types form two independent ones. Assign a distinct Fabric Type to each logical fabric that should select its own EVPN Route Servers, including when several such fabrics are in the same site and are interconnected — for example an OOB fabric and a North-South fabric joined through border leafs.
+
+  Set Fabric Type before fabric turn-up. Changing it on a converged fabric rebuilds the overlay BGP topology across every switch in both the old and the new group.
+
 - **Optimize BGP Overlay for leaf-spine topology** (default = checked). When checked, Netris applies the following logic to all switches sharing the Fabric Type value set in this Inventory Profile. Netris configures designated switches as EVPN Route Servers (EVPN-RS), and each switch with the Switch Role property set to Leaf forms overlay BGP sessions (address-family l2vpn evpn) exclusively with those nodes. No other overlay BGP sessions are configured.
 
   EVPN-RS designation works as follows:
@@ -306,11 +310,16 @@ Netris can automatically optimize fabric configurations based on the administrat
   * If no switch object has the EVPN Route Server property (set in the :doc:`Topology Management </topology-management>` page's :ref:`Adding Switches <topology-management-adding-switches>` section) set, Netris automatically selects the two switches with the Switch Role property set to Super-Spine — or, if no Super-Spine switches are present, the two switches with the Switch Role property set to Spine — with the lowest loopback IPs.
   * If one or more switch objects have the EVPN Route Server property set, automatic selection is turned off entirely, and Netris uses only the explicitly designated switches as EVPN-RS nodes.
   * Because setting the property on even one switch turns off automatic selection, operators should explicitly designate at least two switches for redundancy. Netris does not automatically enforce this recommendation.
+  * Automatic selection assumes a conventional leaf-spine / Clos hierarchy, because it selects candidates by Switch Role. For irregular, asymmetric, or partially connected topologies, designate Route Servers explicitly — regardless of fabric size — choosing switches that have reachability to every intended overlay participant.
 
   When unchecked, overlay BGP sessions are configured on all point-to-point links.
 
+.. warning::
+
+   Changing the "Optimize BGP Overlay for leaf-spine topology" setting on a converged fabric reconstructs the overlay BGP topology on every switch sharing the Fabric Type, not only on the switches using this Inventory Profile. Let the fabric converge before making another fabric-wide change.
+
 - **Optimize BGP Overlay for Hypervisor Integrated Fabric** (default = unchecked). Required for BGP/EVPN VXLAN integration with compute hypervisor networking. This optimization makes sure that a large number of hypervisor virtual networking EVPN prefixes do not overflow switch TCAM.
-- **BGP Numbered Underlay** (default = unchecked). When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP uses the unnumbered method, and BGP sessions use p2p IPv6 link-local addresses.
+- **BGP Numbered Underlay** (default = unchecked). When checked, BGP underlay sessions will be configured using p2p IPv4 addresses configured on link objects in the Netris controller. Otherwise, BGP uses the unnumbered method, and BGP sessions use p2p IPv6 link-local addresses. NVIDIA Spectrum-X Reference Architectures require BGP Numbered Underlay. Configure the point-to-point addresses on the corresponding Link objects; do not allocate them from Netris IPAM. Choose the underlay model during design and apply it consistently across a fabric.
 - **Automatic Link Aggregation** (default = unchecked). When checked, the UI automatically unchecks Enable MC-LAG.
 - **Generate ESI by Server ID** (default = unchecked). When checked, ESI-IDs are generated using server-ID-based logic instead of the default partner-MAC-based method. The setting is backward compatible: existing ESI-IDs remain valid, and servers not modeled in Netris automatically fall back to partner-MAC-based generation. Note that when multiple bond interfaces are present on servers, this should remain unchecked.
 - **Enable MC-LAG** (default = unchecked). When checked, Automatic Link Aggregation will automatically become unchecked through the UI. If unchecked, switch agents should not generate any MC-LAG-related configurations. Help message: "Enabling MC-LAG functionality will disable any EVPN-MH functionality. Two multihoming methods are not supported simultaneously on the same switches."
@@ -324,9 +333,12 @@ Additional optimizations are available for East-West GPU interconnect fabrics.
  
 - **QoS & RoCE** (default = unchecked): Optimize for RDMA over Converged Ethernet.
 - **RoCE Adaptive Routing (AR)** (default = unchecked): Enable Adaptive Routing for RoCE.
-- **Congestion Control** (default = unchecked): Enable Zero Touch RoCE Congestion Control.
-- **ASIC monitoring** (default = unchecked): Enable ASIC monitoring, including histograms and telemetry snapshots.
-- **HWMP** (default = unchecked): Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture.
+- **Congestion Control** (default = unchecked): Enable automatic congestion control for RoCE workloads. Congestion control tuning is applied on the GPU server's SuperNIC; switch-side lossless behavior is configured through QoS & RoCE and RoCE Adaptive Routing. See :doc:`Netris Host Networking <ai-netris-host-networking>`.
+- **ASIC monitoring** (default = unchecked): Enable ASIC monitoring on NVIDIA Cumulus Linux switches, including ingress and egress buffer histograms, bandwidth gauges, packet and byte counters, and periodic telemetry snapshots. The available counters differ between switch ASICs.
+- **HWMP** (default = unchecked): Enable Hardware Multiplane (HWMP) support for GPU cluster fabrics with multiple planes of switches and leaf-spine topology. Must set the appropriate Reference Architecture. HWMP generates a deterministic anycast MAC address for each GPU port, so that the switch-side L3 attachment presents the same MAC identity on every participating plane.
+
+  HWMP does not assign or synchronize the point-to-point link IP addresses. The topology must already be designed so that the same GPU port uses identical link addressing on every participating plane, as the applicable Reference Architecture requires.
+
 - **Reference Architecture** (default = None): This setting tells Netris which reference architecture is being deployed on the subject fabric so that Netris can apply the appropriate prefix summarization in the L3VPN overlay.
 
   .. collapse:: Reference Architectures
