@@ -22,6 +22,11 @@ Peering a BGP-only VPC
 
 A VPC that has no V-Nets — only BGP sessions — can still be peered. The BGP session provisions the VPC's VRF on the switch where it terminates, so peering works without creating a placeholder ("dummy") V-Net just to bring the VRF into existence. See :ref:`How a VPC's VRF is placed on the fabric <vpc_vrf_placement>` on the Netris VPC page for the underlying behavior.
 
+Route targets of a peering
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creating a VPC peering adds a route target of ``<peering ID>:0`` to the import and export lists of each member VPC's L3VNI, and to the export list of each V-Net whose gateway address falls inside the other member's inbound prefix list. Deleting the peering removes those entries. The entries on a member VPC's L3VNI are visible and editable on the VPC — see :ref:`L3VNI and route targets <vpc-l3vni-route-targets>` on the Netris VPC page.
+
 .. note::
 
    Additional details are coming soon…

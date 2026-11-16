@@ -82,6 +82,7 @@ You are welcome to join our community Slack_ channel to get additional support f
    cloudstack/netris-cloudstack
    terraform-integration
    evpn-on-host
+   unmanaged-evpn-vtep
    bluefield-3-dpus
 
 .. toctree::

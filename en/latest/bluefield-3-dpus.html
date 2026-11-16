@@ -98,7 +98,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Visibility" href="monitoring-observability/visibility.html" />
-    <link rel="prev" title="EVPN on Host" href="evpn-on-host.html" /> 
+    <link rel="prev" title="Unmanaged EVPN VTEP" href="unmanaged-evpn-vtep.html" /> 
 <script type="text/javascript">
    $(document).ready(function () {
     $('a[href^="http://"], a[href^="https://"]').not('a[class*=internal]').attr('target', '_blank');
@@ -432,6 +432,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#how-a-vpc-s-vrf-is-placed-on-the-fabric">How a VPC’s VRF is placed on the fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#l3vni-and-route-targets">L3VNI and route targets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#vpc-child-objects">VPC child objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#system-vpc-and-default-vpc">System VPC and Default VPC</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vpc.html#what-the-default-vpc-is-for">What the Default VPC is for</a></li>
@@ -624,6 +625,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vpc-peering.html">VPC Peering</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vpc-peering.html#peering-a-bgp-only-vpc">Peering a BGP-only VPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc-peering.html#route-targets-of-a-peering">Route targets of a peering</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vpc-connect.html">VPC Connect</a><ul>
@@ -895,6 +897,14 @@
 <li class="toctree-l3"><a class="reference internal" href="evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unmanaged-evpn-vtep.html">Unmanaged EVPN VTEP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#what-qualifies-as-an-unmanaged-vtep">What qualifies as an unmanaged VTEP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#as-number-modes">AS number modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#route-targets">Route targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#reading-the-values-through-the-api">Reading the values through the API</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">NVIDIA BlueField-3 DPU Integration</a><ul>
@@ -1297,7 +1307,7 @@
               <a href="https://github.com/netrisai/docs/blob/master/bluefield-3-dpus.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="evpn-on-host.html" class="btn btn-neutral float-left" title="EVPN on Host" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="unmanaged-evpn-vtep.html" class="btn btn-neutral float-left" title="Unmanaged EVPN VTEP" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="monitoring-observability/visibility.html" class="btn btn-neutral float-right" title="Visibility" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -1452,7 +1462,7 @@ participate in the same tenant network with hardware-enforced isolation.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="evpn-on-host.html" class="btn btn-neutral float-left" title="EVPN on Host" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="unmanaged-evpn-vtep.html" class="btn btn-neutral float-left" title="Unmanaged EVPN VTEP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="monitoring-observability/visibility.html" class="btn btn-neutral float-right" title="Visibility" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

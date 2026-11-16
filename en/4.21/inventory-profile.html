@@ -433,6 +433,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#how-a-vpc-s-vrf-is-placed-on-the-fabric">How a VPC’s VRF is placed on the fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#l3vni-and-route-targets">L3VNI and route targets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#vpc-child-objects">VPC child objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#system-vpc-and-default-vpc">System VPC and Default VPC</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vpc.html#what-the-default-vpc-is-for">What the Default VPC is for</a></li>
@@ -625,6 +626,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vpc-peering.html">VPC Peering</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vpc-peering.html#peering-a-bgp-only-vpc">Peering a BGP-only VPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc-peering.html#route-targets-of-a-peering">Route targets of a peering</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vpc-connect.html">VPC Connect</a><ul>
@@ -896,6 +898,14 @@
 <li class="toctree-l3"><a class="reference internal" href="evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unmanaged-evpn-vtep.html">Unmanaged EVPN VTEP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#what-qualifies-as-an-unmanaged-vtep">What qualifies as an unmanaged VTEP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#as-number-modes">AS number modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#route-targets">Route targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#reading-the-values-through-the-api">Reading the values through the API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">NVIDIA BlueField-3 DPU Integration</a><ul>
@@ -1644,7 +1654,7 @@
 </li>
 <li><p><strong>Reference Architecture</strong> (default = None): This setting tells Netris which reference architecture is being deployed on the subject fabric so that Netris can apply the appropriate prefix summarization in the L3VPN overlay.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="5fa27a12-5568-4a53-ba73-3f824d9a9104" name="5fa27a12-5568-4a53-ba73-3f824d9a9104" type="checkbox"><label class="sphinx_collapse__label" for="5fa27a12-5568-4a53-ba73-3f824d9a9104"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="9dd8773e-94a9-4d7d-b904-d1ecae4847bc" name="9dd8773e-94a9-4d7d-b904-d1ecae4847bc" type="checkbox"><label class="sphinx_collapse__label" for="9dd8773e-94a9-4d7d-b904-d1ecae4847bc"><i class="sphinx_collapse__icon"></i>Reference Architectures</label><div class="sphinx_collapse__content docutils">
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Reference Architecture</p></th>

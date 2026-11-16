@@ -14,11 +14,11 @@ Topology Management
 Inventory
 =========
 
-The Inventory section allows you to add/edit/delete network switches and SoftGates (VPC gateways). Initial setup of a Netris managed network is a three step process:
+The Inventory section allows you to add/edit/delete network switches and SoftGates (VPC gateways). Initial setup of a Netris-managed network is a three-step process:
 
 #. Create :doc:`inventory-profile`.
 #. Adding Switches.
-#. Adding Softgates.
+#. Adding SoftGates.
 
 .. note::
   You can also add new devices in the Topology view.
@@ -28,7 +28,7 @@ The Inventory section allows you to add/edit/delete network switches and SoftGat
 Adding Switches
 ===============
 
-Every switch needs to be added to the Netris Controller inventory. You can add new devices with the following process:
+Add every switch to the Netris Controller inventory. You can add new devices with the following process:
 
 #. Navigate to **Network -> Inventory**
 #. Click the **Add** button
@@ -51,7 +51,7 @@ Every switch needs to be added to the Netris Controller inventory. You can add n
 
 Adding SoftGates
 ================
-Every SoftGate node needs to be added to the Netris Controller inventory.
+Add every SoftGate node to the Netris Controller inventory.
 
 The installation process for SoftGate HS is described in the :ref:`SoftGate HS installation <netris-softgate-HS-installation>` section.
 
@@ -60,7 +60,7 @@ The installation process for SoftGate HS is described in the :ref:`SoftGate HS i
 Adding Servers
 ==============
 
-Every server needs to be added to the Netris Controller inventory. You can add new devices with the following process:
+Add every server to the Netris Controller inventory. You can add new devices with the following process:
 
 #. Navigate to **Network -> Inventory**
 #. Click the **Add** button
@@ -84,7 +84,7 @@ Every server needs to be added to the Netris Controller inventory. You can add n
 Adding DPUs
 ===========
 
-Starting with Netris 4.7, you can operate NVIDIA BlueField-3 DPUs. Unlike switches, servers, and SoftGates, DPUs are not standalone inventory objects, but rather a part of the server object. You can find more details about DPU support in Netris in the :doc:`NVIDIA BlueField-3 DPUs <bluefield-3-dpus>` section.
+Starting with Netris 4.7, you can operate NVIDIA BlueField-3 DPUs. Unlike switches, servers, and SoftGates, DPUs are not standalone inventory objects; they are part of the server object. For more details on DPU support in Netris, see the :doc:`NVIDIA BlueField-3 DPUs <bluefield-3-dpus>` section.
 
 To add a DPU to a Netris server object, add or edit the server object in which the DPU is installed and fill in the DPU fields as described below:
 
@@ -112,7 +112,7 @@ To add a DPU to a Netris server object, add or edit the server object in which t
 Topology Manager
 ================
 
-The topology manager is used for describing and monitoring the desired network topology. Netris Switch Agents software will automatically configure the underlying network devices according to this topology and will watch against potential failures. Wire your switches in accordance with the topology view.
+The topology manager is used to describe and monitor the desired network topology. Netris Switch Agents software will automatically configure the underlying network devices according to this topology and monitor for potential failures. Wire your switches according to the topology view.
 
 Adding Links
 ============
@@ -122,6 +122,9 @@ To define the links in the network:
 #. Right-click on the spine switch
 #. Click **Create Link**
 #. Select the **From Port** and the **To Port**
+#. Set **Underlay** according to the role of the link
+
+**Underlay** marks a link as part of the routed fabric underlay. Netris configures underlay addressing and a BGP session across it. Enable it on switch-to-switch links and on links to servers that participate in the EVPN fabric, including a server acting as an unmanaged VTEP (see :doc:`Unmanaged EVPN VTEP <unmanaged-evpn-vtep>`). Leave it disabled on links to endpoints that only terminate in a V-Net.
 
 See the example below:  
 
@@ -134,6 +137,6 @@ See the example below:
 .. image:: images/topology_completed.png
     :align: center
     
-Once the links have been defined, the network is automatically configured as long as physical connectivity is in place and Netris Agents can communicate with Netris Controller.
+Once the links are defined, the network is automatically configured as long as physical connectivity is in place and Netris Agents can communicate with the Netris Controller.
 
 .. tip:: You can drag/move the units to your desired positions and click “Save positions”.
