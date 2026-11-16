@@ -21,6 +21,10 @@ AI Cloud and AI Factory operators require:
 
 Starting with Netris 4.5.4, you can extend the EVPN control plane into any standard Linux host, such as a hypervisor or a Kubernetes node, by making the host itself a VTEP in the Netris-managed EVPN switching fabric. With this functionality, any guest workload, such as a VM or a Container pod, can be placed in any VPC and V-Net together with any Bare Metal host.
 
+.. tip::
+
+   EVPN-on-Host is for hosts whose VTEP configuration Netris manages through the EVPN-on-Host agent, using the EVPN-VTEP server role. If the host's VXLAN and EVPN configuration is owned outside Netris, use the Generic server role instead and see :doc:`Unmanaged EVPN VTEP <unmanaged-evpn-vtep>`.
+
 Supported Operating Systems
 -----------------------------------------
 

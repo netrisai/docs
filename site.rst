@@ -9,9 +9,9 @@ Netris Site
 Overview
 --------
 
-A Netris Site is a discrete physical deployment — a region, data center, or other location. A Site defines the parameters that every network object at that location inherits: the BGP Autonomous System Number (ASN) used toward external peers, the default ACL policy, and the VLAN ID ranges available to the switch fabric.
+A Netris Site is a discrete physical deployment — a region, data center, or other location. A Site defines the parameters that every network object at that location inherits: the BGP Autonomous System Number (ASN) used toward external peers, the default route-target prefix, the default ACL policy, and the VLAN ID ranges available to the switch fabric.
 
-Create one Site per location where Netris manages switches, SoftGate nodes, or DPUs. A Site must exist before any inventory, V-Net, or IPAM Subnet can be created, so creating the first Site is the first configuration step after installing the Controller.
+Create one Site per location where Netris manages switches, SoftGate nodes, or DPUs. A Site must exist before you can create any inventory, V-Net, or IPAM Subnet, so creating the first Site is the first configuration step after installing the Controller.
 
 .. image:: images/site-add.png
    :align: center
@@ -53,6 +53,7 @@ To add a new Site in Netris, navigate to Network → Sites and click the +Add bu
 
 * **Site name** - an alphanumeric value identifying the physical location.
 * **Public ASN** - the BGP Autonomous System Number Netris presents to peers outside the Netris-managed fabric. Netris uses it as the default Local ASN for every E-BGP session at this Site — sessions terminated on switches and on SoftGate nodes alike. The Local ASN of an individual E-BGP peer can be overridden to the switch's Local ASN or a custom value; see the :doc:`E-BGP section <bgp>`. The Public ASN is not used inside the fabric: each switch gets its own local ASN for the underlay, assigned automatically from the controller-wide System ASN range in Settings → General (default 4200000000–4209999999). Specify your registered public ASN here if you have one. If not, use a private ASN from 64512–65534 (16-bit) or 4200000000–4294967294 (32-bit) that does not fall inside the System ASN range. Netris documentation uses ASN 65536 in examples.
+* **Default Route-Target Prefix** - the ASN part of the route targets Netris generates for VNIs created at this Site, in the form ``<prefix>:<VNI>``. A 16-bit number, 0–65535; default 65000. A VNI that spans Sites with different prefixes receives one route target per distinct prefix. Route targets added by a VPC peering use the peering ID instead and are not affected by this value. An unmanaged VTEP reads the generated route targets through the API — see :doc:`Unmanaged EVPN VTEP <unmanaged-evpn-vtep>`.
 * **ACL Default Policy** - the action Netris applies to Layer-3 traffic that no ACL entry matches. Netris installs it as the final rule on every interface at the Site.
 
   * **Deny** - traffic is dropped unless an ACL entry permits it. DHCP and BGP control traffic is excluded from the policy and is never dropped, so no ACL entries are needed for Netris DHCP or E-BGP sessions to operate. Use this policy for a Zero Trust model.
@@ -68,12 +69,16 @@ Edit or delete a Site
 
 Site parameters can be changed after creation from Network → Sites. Changing the Public ASN resets E-BGP sessions that inherit it. Changing the ACL Default Policy to "Deny" on a Site with live workloads drops every flow that no ACL entry permits; plan the ACL entries before switching the policy.
 
+Changing the Default Route-Target Prefix does not rewrite the route targets of existing VNIs. Only VNIs created afterward use the new value.
+
 .. warning::
   The ACL Default Policy applies to all VPCs at this Site and does not allow for per-VPC or per-V-Net exceptions.
 
-A Site with inventory attached cannot be deleted. Remove or reassign every switch, SoftGate node, and DPU at the Site first.
+A Site with inventory attached cannot be deleted. First, remove or reassign every switch, SoftGate node, and DPU at the Site.
 
 API and Terraform
 -----------------
 
-Sites can be managed through the REST API and the Terraform provider (`netris_site <https://registry.terraform.io/providers/netrisai/netris/latest/docs/resources/site>`_). As of Netris 4.16.0 the ``switchFabricProviders`` attribute has been removed from the Sites API; ``switchFabric`` is still returned on read, always as ``netris``, and is ignored on create or update.
+Sites can be managed through the REST API and the Terraform provider (`netris_site <https://registry.terraform.io/providers/netrisai/netris/latest/docs/resources/site>`_). As of Netris 4.16.0, the ``switchFabricProviders`` attribute has been removed from the Sites API; ``switchFabric`` is still returned on read, always as ``netris``, and is ignored on create or update.
+
+As of Netris 4.21.0, the Sites API returns and accepts ``defaultRtAsn`` (0–65535, default 65000), the Default Route-Target Prefix.

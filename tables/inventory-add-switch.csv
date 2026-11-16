@@ -10,7 +10,7 @@
 **Management IP address**,Management IP address for the device. A subnet with purpose set to *Management* needs to be defined in IPAM for the current site
 **Switch role**,The switch's role in the fabric hierarchy; must be set for the "Optimize BGP Overlay for leaf-spine topology" feature to work properly
 **MAC address**,MAC address of the device; applicable to switches only (reserved for future use)
-**Preliminary port count**,Used for definition of topology. When the device registers with the controller the actual ports will synchronize with inventory
+**Preliminary port count**,"Used for definition of topology. When the device registers with the controller, the actual ports will synchronize with inventory"
 **Initial Break Out**,Used for defining the breakout configuration of the front panel ports
 **EVPN Route Server**,Indicates if the switch is designated as an EVPN Route Server. See :doc:`Inventory Profiles </inventory-profile>` for more details.
 **Add Link**,Used for describing physical connections between switches and SoftGates
