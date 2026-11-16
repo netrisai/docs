@@ -59,6 +59,12 @@ Network constructs
 
 * **Switch Port** - A physical port on a Netris-managed switch, or a server endpoint in a Bare Metal Cloud environment.
 
+* **VNI (VXLAN Network Identifier)** - The 24-bit identifier of a VXLAN segment. Netris assigns an **L2VNI** to each V-Net and an **L3VNI** to each VPC's VRF. VNI numbers are unique across the Controller.
+
+* **Route target** - An EVPN community that controls which VRFs and VNIs import a given set of routes. Netris generates a route target for each VNI from the Site's Default Route-Target Prefix and the VNI number, and adds one per VPC peering. See :doc:`Unmanaged EVPN VTEP <unmanaged-evpn-vtep>`.
+
+* **Unmanaged VTEP** - A VXLAN tunnel endpoint whose EVPN configuration is owned outside Netris, by another controller, automation, or process. Also referred to as a third-party VTEP or a bring-your-own VTEP. Netris publishes the VNI, VRF name, and route targets it is the source of truth for, and the owning system configures the device. Contrast with EVPN-on-Host, where Netris manages the host VTEP. See :doc:`Unmanaged EVPN VTEP <unmanaged-evpn-vtep>`.
+
 Services
 --------
 

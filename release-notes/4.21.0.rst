@@ -9,7 +9,7 @@ Netris |version| Release Notes (Nov/13/2026)
 What's new in Netris |version|?
 -------------------------------
 
-Netris 4.21.0 adds bring-your-own EVPN VTEP support, so Netris-managed fabrics can interconnect with VTEPs managed by a third-party controller. This includes custom VPC L3VNIs and editable route targets, ASN-Agnostic peering on Cumulus, and a configurable Default Route-Target Prefix per Site. The release also adds optional XDP acceleration for SNAT SoftGates, NVIDIA RTX PRO 6000 reference architecture support on Cumulus, and support for Cumulus Linux 5.19.0.
+Netris 4.21.0 adds unmanaged EVPN VTEP support, so Netris-managed fabrics can interconnect with VTEPs that Netris does not manage. This includes custom VPC L3VNIs and editable route targets, ASN-Agnostic peering on Cumulus, and a configurable Default Route-Target Prefix per Site. The release also adds optional XDP acceleration for SNAT SoftGates, NVIDIA RTX PRO 6000 reference architecture support on Cumulus, and support for Cumulus Linux 5.19.0.
 
 Fixes include handling of E-BGP sessions when the Site ACL Default Policy is Deny, over aggregate/bond interfaces, on dual-stack switch ports, or when terminated on a V-Net. Also included are improvements to DHCPv4 relay, route aggregation on some rail-optimized Spectrum-X reference architectures, and IPv6 link-local prefix handling in VPC peering on Cumulus, and to ACLs on breakout interfaces on Arista. Other fixes include honoring the Untagged setting when switch ports are added to V-Nets, improved permission handling for Active Directory users in more than one mapped group, the ability to set the local authentication scheme as default, the Topology view showing E-BGP sessions of all VPCs, and System ASN ranges no longer rejected for overlapping the deprecated Site Mesh VPN ASN range.
 
@@ -19,7 +19,7 @@ Features and Enhancements
 -------------------------
 .. New capabilities and customer-facing enhancements to existing functionality and features.
 
-- **Bring-your-own EVPN VTEP (Cumulus, Dell SONiC, Arista, SoftGate)**. Netris-managed fabrics can now interconnect with non-Netris-managed VTEPs. VRF name, L2 VNI, L3 VNI, and route targets can now be retrieved through the API, so a 3rd-party controller can configure its VTEPs to match the Netris-managed fabric. The feature includes:
+- **Unmanaged EVPN VTEP (Cumulus, Dell SONiC, Arista, SoftGate)**. Netris-managed fabrics can now interconnect with VTEPs that Netris does not manage, also referred to as third-party or bring-your-own VTEPs. VRF name, L2 VNI, L3 VNI, and route targets can now be retrieved through the API, so the system that owns those VTEPs can configure them to match the Netris-managed fabric. The feature includes:
 
   - **VPC L3VNI and route targets**. When creating or editing VPCs, the GUI and API now accept custom L3VNI values and editable import and export route targets. The API returns the route targets for VPCs, V-Nets, and E-BGP sessions, including their type (default, VPC peering, or custom), and the VPC list shows them under Internal L3VNI.
   - **ASN-Agnostic peering (Cumulus)**. A server object in Netris can now be set to ASN-Agnostic, so Netris configures the relevant underlay connection to accept any BGP AS number the remote peer presents (except the switch's own).
