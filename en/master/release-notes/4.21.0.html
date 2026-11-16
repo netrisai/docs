@@ -432,6 +432,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#how-a-vpc-s-vrf-is-placed-on-the-fabric">How a VPC’s VRF is placed on the fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vpc.html#l3vni-and-route-targets">L3VNI and route targets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#vpc-child-objects">VPC child objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vpc.html#system-vpc-and-default-vpc">System VPC and Default VPC</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../vpc.html#what-the-default-vpc-is-for">What the Default VPC is for</a></li>
@@ -624,6 +625,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../vpc-peering.html">VPC Peering</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../vpc-peering.html#peering-a-bgp-only-vpc">Peering a BGP-only VPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vpc-peering.html#route-targets-of-a-peering">Route targets of a peering</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../vpc-connect.html">VPC Connect</a><ul>
@@ -895,6 +897,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../unmanaged-evpn-vtep.html">Unmanaged EVPN VTEP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unmanaged-evpn-vtep.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unmanaged-evpn-vtep.html#what-qualifies-as-an-unmanaged-vtep">What qualifies as an unmanaged VTEP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unmanaged-evpn-vtep.html#as-number-modes">AS number modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unmanaged-evpn-vtep.html#route-targets">Route targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unmanaged-evpn-vtep.html#reading-the-values-through-the-api">Reading the values through the API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bluefield-3-dpus.html">NVIDIA BlueField-3 DPU Integration</a><ul>
@@ -1310,14 +1320,14 @@
 <span id="release-4-21-0"></span><h1>Netris 4.21.0 Release Notes (Nov/13/2026)<a class="headerlink" href="#netris-version-release-notes-nov-13-2026" title="Link to this heading"></a></h1>
 <section id="what-s-new-in-netris-version">
 <h2>What’s new in Netris 4.21.0?<a class="headerlink" href="#what-s-new-in-netris-version" title="Link to this heading"></a></h2>
-<p>Netris 4.21.0 adds bring-your-own EVPN VTEP support, so Netris-managed fabrics can interconnect with VTEPs managed by a third-party controller. This includes custom VPC L3VNIs and editable route targets, ASN-Agnostic peering on Cumulus, and a configurable Default Route-Target Prefix per Site. The release also adds optional XDP acceleration for SNAT SoftGates, NVIDIA RTX PRO 6000 reference architecture support on Cumulus, and support for Cumulus Linux 5.19.0.</p>
+<p>Netris 4.21.0 adds unmanaged EVPN VTEP support, so Netris-managed fabrics can interconnect with VTEPs that Netris does not manage. This includes custom VPC L3VNIs and editable route targets, ASN-Agnostic peering on Cumulus, and a configurable Default Route-Target Prefix per Site. The release also adds optional XDP acceleration for SNAT SoftGates, NVIDIA RTX PRO 6000 reference architecture support on Cumulus, and support for Cumulus Linux 5.19.0.</p>
 <p>Fixes include handling of E-BGP sessions when the Site ACL Default Policy is Deny, over aggregate/bond interfaces, on dual-stack switch ports, or when terminated on a V-Net. Also included are improvements to DHCPv4 relay, route aggregation on some rail-optimized Spectrum-X reference architectures, and IPv6 link-local prefix handling in VPC peering on Cumulus, and to ACLs on breakout interfaces on Arista. Other fixes include honoring the Untagged setting when switch ports are added to V-Nets, improved permission handling for Active Directory users in more than one mapped group, the ability to set the local authentication scheme as default, the Topology view showing E-BGP sessions of all VPCs, and System ASN ranges no longer rejected for overlapping the deprecated Site Mesh VPN ASN range.</p>
 <p>This release also strengthens username handling for Active Directory authentication and updates third-party components of the Controller to address publicly disclosed vulnerabilities.</p>
 </section>
 <section id="features-and-enhancements">
 <h2>Features and Enhancements<a class="headerlink" href="#features-and-enhancements" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Bring-your-own EVPN VTEP (Cumulus, Dell SONiC, Arista, SoftGate)</strong>. Netris-managed fabrics can now interconnect with non-Netris-managed VTEPs. VRF name, L2 VNI, L3 VNI, and route targets can now be retrieved through the API, so a 3rd-party controller can configure its VTEPs to match the Netris-managed fabric. The feature includes:</p>
+<li><p><strong>Unmanaged EVPN VTEP (Cumulus, Dell SONiC, Arista, SoftGate)</strong>. Netris-managed fabrics can now interconnect with VTEPs that Netris does not manage, also referred to as third-party or bring-your-own VTEPs. VRF name, L2 VNI, L3 VNI, and route targets can now be retrieved through the API, so the system that owns those VTEPs can configure them to match the Netris-managed fabric. The feature includes:</p>
 <ul>
 <li><p><strong>VPC L3VNI and route targets</strong>. When creating or editing VPCs, the GUI and API now accept custom L3VNI values and editable import and export route targets. The API returns the route targets for VPCs, V-Nets, and E-BGP sessions, including their type (default, VPC peering, or custom), and the VPC list shows them under Internal L3VNI.</p></li>
 <li><p><strong>ASN-Agnostic peering (Cumulus)</strong>. A server object in Netris can now be set to ASN-Agnostic, so Netris configures the relevant underlay connection to accept any BGP AS number the remote peer presents (except the switch’s own).</p></li>

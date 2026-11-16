@@ -432,6 +432,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#how-a-vpc-s-vrf-is-placed-on-the-fabric">How a VPC’s VRF is placed on the fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#adding-a-new-vpc">Adding a new VPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc.html#l3vni-and-route-targets">L3VNI and route targets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#vpc-child-objects">VPC child objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpc.html#system-vpc-and-default-vpc">System VPC and Default VPC</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vpc.html#what-the-default-vpc-is-for">What the Default VPC is for</a></li>
@@ -624,6 +625,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vpc-peering.html">VPC Peering</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vpc-peering.html#peering-a-bgp-only-vpc">Peering a BGP-only VPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpc-peering.html#route-targets-of-a-peering">Route targets of a peering</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vpc-connect.html">VPC Connect</a><ul>
@@ -895,6 +897,14 @@
 <li class="toctree-l3"><a class="reference internal" href="evpn-on-host.html#id1">Verification</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unmanaged-evpn-vtep.html">Unmanaged EVPN VTEP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#what-qualifies-as-an-unmanaged-vtep">What qualifies as an unmanaged VTEP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#as-number-modes">AS number modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#route-targets">Route targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unmanaged-evpn-vtep.html#reading-the-values-through-the-api">Reading the values through the API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bluefield-3-dpus.html">NVIDIA BlueField-3 DPU Integration</a><ul>
@@ -1694,19 +1704,37 @@
 <td><p>✔</p></td>
 <td><p>TBD</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="lag.html"><span class="doc">EVPN-MH / VXLAN-ESI</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="unmanaged-evpn-vtep.html"><span class="doc">Unmanaged EVPN VTEP interconnect</span></a></p></td>
+<td><p>Interconnect with EVPN VTEPs that Netris does not manage. VRF name, L2VNI, L3VNI, and route targets are published through the API.</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="unmanaged-evpn-vtep.html"><span class="doc">ASN-Agnostic server peering</span></a></p></td>
+<td><p>Switch accepts any BGP AS number the connected server presents.</p></td>
+<td><p>✔</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="vpc.html#vpc-l3vni-route-targets"><span class="std std-ref">Custom VPC route targets</span></a></p></td>
+<td><p>User-defined import and export route targets on a VPC’s L3VNI realized on the switch.</p></td>
+<td><p>✔</p></td>
+<td><p>TBD</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="lag.html"><span class="doc">EVPN-MH / VXLAN-ESI</span></a></p></td>
 <td><p>EVPN MultiHoming based on VXLAN and ESI for automatic Active-Active server network multihoming</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="lag.html"><span class="doc">LACP</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="lag.html"><span class="doc">LACP</span></a></p></td>
 <td><p>Link Aggregation or Active-Standby server multihoming.</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="lag.html"><span class="doc">MC-LAG</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="lag.html"><span class="doc">MC-LAG</span></a></p></td>
 <td><p>Traditional MC-LAG-based server multihoming</p></td>
 <td><p>✔</p></td>
 <td><p>TBD</p></td>

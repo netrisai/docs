@@ -324,6 +324,21 @@ Overlay Network Functions
       - ✔
       - ✔
       - TBD
+   *  - :doc:`Unmanaged EVPN VTEP interconnect <unmanaged-evpn-vtep>`
+      - Interconnect with EVPN VTEPs that Netris does not manage. VRF name, L2VNI, L3VNI, and route targets are published through the API.
+      - ✔
+      - ✔
+      - ✔
+   *  - :doc:`ASN-Agnostic server peering <unmanaged-evpn-vtep>`
+      - Switch accepts any BGP AS number the connected server presents.
+      - ✔
+      - N/A
+      - N/A
+   *  - :ref:`Custom VPC route targets <vpc-l3vni-route-targets>`
+      - User-defined import and export route targets on a VPC's L3VNI realized on the switch.
+      - ✔
+      - TBD
+      - TBD
    *  - :doc:`EVPN-MH / VXLAN-ESI <lag>`
       - EVPN MultiHoming based on VXLAN and ESI for automatic Active-Active server network multihoming
       - ✔
