@@ -154,7 +154,7 @@ Every subnet with Purpose set to ``management`` carries a read-only **Controller
 
 The attribute appears on the subnet edit form. The Add Subnet form does not show it. Until discovery completes, the value reads ``Not yet resolved``. Netris does not provision switches on a subnet whose Controller Management Address has not resolved.
 
-ZTP and the agent installation one-liner both read this per-subnet address, so each device is given the Controller address reachable from its own management segment. See :ref:`Controller Management Address Resolution <ztp-controller-address-resolution>` on the :doc:`Zero Touch Provisioning <installation/ztp>` page for how resolution works, what the resolved and unresolved states look like, and how to troubleshoot a subnet that never resolves.
+ZTP, the agent installation one-liner, and the Local Repository URL all read this per-subnet address, so each device is given the Controller address reachable from its own management segment. When the Local Repository is enabled under **Settings > General**, Netris serves it at ``http://<controller-management-address>/repo/`` for each management subnet. See :ref:`Controller Management Address Resolution <ztp-controller-address-resolution>` on the :doc:`Zero Touch Provisioning <installation/ztp>` page for how resolution works, what the resolved and unresolved states look like, and how to troubleshoot a subnet that never resolves.
 
 .. note::
 
