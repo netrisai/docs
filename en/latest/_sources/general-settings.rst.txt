@@ -12,7 +12,7 @@ General Settings
 Overview
 --------
 
-Settings → General holds the controller-wide parameters of a Netris Controller. These settings apply to every Site, VPC, and device the Controller manages; there is no per-Site override for any of them. Most deployments set the Controller FQDN and Local Repository during installation and leave the rest at defaults.
+Settings → General holds the controller-wide parameters of a Netris Controller. These settings apply to every Site, VPC, and device the Controller manages; there is no per-Site override for any of them. Most deployments set the Controller FQDN and enable the Local Repository during installation and leave the rest at defaults.
 
 To change a setting, navigate to Settings → General and click Edit. Changes take effect immediately on save; no Controller restart is required.
 
@@ -64,7 +64,7 @@ Settings
      - Pool from which Netris assigns a BGP Autonomous System Number to each switch whose AS Number is set to assign automatically in Inventory. Site Public ASNs and E-BGP peer ASNs must not fall inside this range. See :doc:`Netris Site <site>`.
    * - Local Repository
      - disabled
-     - When enabled, agents download the Netris agent installer, packages, and NOS images from the repository at this URL instead of the Netris public repository. Required for air-gapped deployments and for ZTP. See :doc:`installation/controller-k3s-air-gap-ha` and :doc:`installation/ztp`.
+     - When enabled, agents download the Netris agent installer, packages, and NOS images from the Controller instead of the Netris public repository. Required for air-gapped deployments and for ZTP. Netris serves the repository at ``http://<controller-management-address>/repo/``, using the Controller Management Address resolved for the device's management subnet. See :doc:`IP Address Management (IPAM) <ipam>`, :doc:`installation/controller-k3s-air-gap-ha` and :doc:`installation/ztp`.
    * - Controller Management Address
      - disabled
      - Fallback address used to reach the Controller from the management network. Netris resolves the Controller's address for each management subnet automatically and uses that address. If no management subnet attached to the device has a resolved address, Netris falls back to this global setting when one is configured. ZTP and the agent installation one-liner both follow that order, so setting this is not required. Applies to switches and SoftGates. See :doc:`Zero Touch Provisioning <installation/ztp>`.

@@ -559,7 +559,7 @@ After Installation
 
 The air-gapped Netris Controller also includes a local repository/registry. This repository provides all the necessary packages and images for installing various types of Netris agents.
 
-Enable the Local repository in the Netris Controller Web UI under the **Settings** section (as shown in the screenshots below).
+Enable the Local Repository in the Netris Controller Web UI under **Settings > General** (as shown in the screenshots below). Netris serves the repository at ``http://<controller-management-address>/repo/``, using the Controller Management Address resolved for each management subnet, and embeds that URL in the agent installation one-liner. See :doc:`IP Address Management (IPAM) </ipam>` for how that address is resolved.
 
 .. image:: ../images/global-setting-local-repo.png
     :align: center
