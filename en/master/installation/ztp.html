@@ -1392,15 +1392,8 @@
 <p style="text-align: center;"><em>Figure: A management subnet after discovery, showing the resolved Controller Management Address on the subnet edit form</em></p><p>The ZTP DHCP server and the Netris agent installer both read it from there, so every switch receives a provisioning URL pointing to the controller address reachable from its own management segment.</p>
 <p>Netris serves every management segment at once. Seed switches on the CMN and switches on the management V-Net can be provisioned, rebuilt, and upgraded in parallel, with no operator action between phases.</p>
 <p>The global Controller Management Address under <strong>Settings &gt; General</strong> remains as a fallback. Netris uses it only when no management subnet attached to a device has a resolved address. You do not need to set it.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Netris will remove the global Controller Management Address setting in a future release. Per-subnet resolution is the supported mechanism from 4.18 onward.</p>
-</div>
 <p>By default, the Netris agent installer is downloaded from the Netris public repository. You can optionally enable the <a class="reference internal" href="controller-k3s-air-gap-ha.html#install-local-repo"><span class="std std-ref">Local Repository feature</span></a> to source the Netris agent installer directly from the Netris controller.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>If you use an FQDN instead of the IP address in the Local Repository URL, ensure the DNS servers configured in the application inventory profiles can resolve the controller’s FQDN to the controller’s N/S VIP.</p>
-</div>
+<p>Netris serves the repository at <code class="docutils literal notranslate"><span class="pre">http://&lt;controller-management-address&gt;/repo/</span></code>, using the per-subnet Controller Management Address described above, and embeds that URL in the agent installation one-liner.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Controller IP Discovery resolves addresses from the controller’s own Kubernetes environment: kube-vip VIPs on HA controllers, or the controller’s LoadBalancer service on single-node and cloud deployments. External load balancers that are not represented as a Kubernetes LoadBalancer service are not supported.</p>

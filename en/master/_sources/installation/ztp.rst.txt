@@ -95,15 +95,9 @@ Netris serves every management segment at once. Seed switches on the CMN and swi
 
 The global Controller Management Address under **Settings > General** remains as a fallback. Netris uses it only when no management subnet attached to a device has a resolved address. You do not need to set it.
 
-.. note::
-
-   Netris will remove the global Controller Management Address setting in a future release. Per-subnet resolution is the supported mechanism from 4.18 onward.
-
 By default, the Netris agent installer is downloaded from the Netris public repository. You can optionally enable the :ref:`Local Repository feature <install-local-repo>` to source the Netris agent installer directly from the Netris controller.
 
-.. tip::
-
-   If you use an FQDN instead of the IP address in the Local Repository URL, ensure the DNS servers configured in the application inventory profiles can resolve the controller's FQDN to the controller's N/S VIP.
+Netris serves the repository at ``http://<controller-management-address>/repo/``, using the per-subnet Controller Management Address described above, and embeds that URL in the agent installation one-liner.
 
 .. note::
 

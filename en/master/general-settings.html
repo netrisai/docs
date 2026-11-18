@@ -1328,7 +1328,7 @@
 </nav>
 <section id="overview">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>Settings → General holds the controller-wide parameters of a Netris Controller. These settings apply to every Site, VPC, and device the Controller manages; there is no per-Site override for any of them. Most deployments set the Controller FQDN and Local Repository during installation and leave the rest at defaults.</p>
+<p>Settings → General holds the controller-wide parameters of a Netris Controller. These settings apply to every Site, VPC, and device the Controller manages; there is no per-Site override for any of them. Most deployments set the Controller FQDN and enable the Local Repository during installation and leave the rest at defaults.</p>
 <p>To change a setting, navigate to Settings → General and click Edit. Changes take effect immediately on save; no Controller restart is required.</p>
 </section>
 <section id="settings">
@@ -1396,7 +1396,7 @@
 </tr>
 <tr class="row-even"><td><p>Local Repository</p></td>
 <td><p>disabled</p></td>
-<td><p>When enabled, agents download the Netris agent installer, packages, and NOS images from the repository at this URL instead of the Netris public repository. Required for air-gapped deployments and for ZTP. See <a class="reference internal" href="installation/controller-k3s-air-gap-ha.html"><span class="doc">Installing HA Netris Controller in Air-Gapped Environments</span></a> and <a class="reference internal" href="installation/ztp.html"><span class="doc">Zero Touch Provisioning (ZTP)</span></a>.</p></td>
+<td><p>When enabled, agents download the Netris agent installer, packages, and NOS images from the Controller instead of the Netris public repository. Required for air-gapped deployments and for ZTP. Netris serves the repository at <code class="docutils literal notranslate"><span class="pre">http://&lt;controller-management-address&gt;/repo/</span></code>, using the Controller Management Address resolved for the device’s management subnet. See <a class="reference internal" href="ipam.html"><span class="doc">IP Address Management (IPAM)</span></a>, <a class="reference internal" href="installation/controller-k3s-air-gap-ha.html"><span class="doc">Installing HA Netris Controller in Air-Gapped Environments</span></a> and <a class="reference internal" href="installation/ztp.html"><span class="doc">Zero Touch Provisioning (ZTP)</span></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Controller Management Address</p></td>
 <td><p>disabled</p></td>

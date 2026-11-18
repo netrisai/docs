@@ -1845,7 +1845,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 <section id="after-installation">
 <h2><a class="toc-backref" href="#id25" role="doc-backlink">After Installation</a><a class="headerlink" href="#after-installation" title="Link to this heading"></a></h2>
 <p>The air-gapped Netris Controller also includes a local repository/registry. This repository provides all the necessary packages and images for installing various types of Netris agents.</p>
-<p>Enable the Local repository in the Netris Controller Web UI under the <strong>Settings</strong> section (as shown in the screenshots below).</p>
+<p>Enable the Local Repository in the Netris Controller Web UI under <strong>Settings &gt; General</strong> (as shown in the screenshots below). Netris serves the repository at <code class="docutils literal notranslate"><span class="pre">http://&lt;controller-management-address&gt;/repo/</span></code>, using the Controller Management Address resolved for each management subnet, and embeds that URL in the agent installation one-liner. See <a class="reference internal" href="../ipam.html"><span class="doc">IP Address Management (IPAM)</span></a> for how that address is resolved.</p>
 <img alt="../_images/global-setting-local-repo.png" class="align-center" src="../_images/global-setting-local-repo.png" />
 <p style="text-align: center;"><em>Figure: Local Repository toggle in Settings → General</em></p><img alt="../_images/global-setting-local-repo-save.png" class="align-center" src="../_images/global-setting-local-repo-save.png" />
 <p style="text-align: center;"><em>Figure: Saving the Local Repository setting</em></p><img alt="../_images/one-liner-with-local-repo.png" class="align-center" src="../_images/one-liner-with-local-repo.png" />
