@@ -145,7 +145,9 @@ The Netris SoftGate agent installs the relevant netfilter rules and attaches the
 
 .. warning:: Hyperthreading must be disabled on XDP-accelerated SoftGates.
 
-The SoftGate General role is XDP-accelerated, beginning with Netris 4.6.0. XDP acceleration for the SNAT role is coming soon. Until then, a SNAT node saturates at a lower packet rate than a General node on identical hardware.
+The SoftGate General role is always XDP-accelerated. On a SoftGate with the SNAT role, XDP acceleration is off by default and is turned on per SoftGate with ``routerctl -R snat enable``. It gives SNAT traffic higher throughput and lower latency.
+
+To check it, run ``routerctl -L snat``, which shows ``SNAT in XDP: active`` when XDP acceleration is on. Turning it off with ``routerctl -R snat disable`` briefly interrupts traffic through that SoftGate.
 
 
 SoftGate Roles and Flavors
@@ -169,7 +171,7 @@ A deployment requires at least 4 SoftGate nodes for high availability, and you c
 
    **Accepting the /32s upstream.** Netris enables *Remove Private AS* by default on eBGP sessions. It strips the inter-SoftGate AS-path, so every SoftGate's advertisement of a given prefix looks equidistant to the upstream router, which then distributes the host route across all SoftGates by ECMP. Disable *Remove Private AS* on SoftGate-terminated eBGP sessions for optimal return-traffic routing. See :doc:`Remove Private AS <bgp>` on the BGP page for the full effect on AS-PATH.
 
-.. warning:: Starting with Netris 4.6.0, SoftGate HS (HyperScale) is the recommended SoftGate flavor.
+.. warning:: SoftGate HS (HyperScale) is the recommended SoftGate flavor.
 
 .. _netris-softgate-HS-installation:
 
@@ -413,7 +415,7 @@ Packets originating on the Internet or outside the Netris-managed fabric with a 
 
 2. If the upstream router routes a packet to the appropriate SoftGate based on a /32 prefix, the SoftGate performs the appropriate translation and forwards the packet into the appropriate V-Net.
 
-3. If upstream routers do not learn /32 prefixes (because policy or another reason prevents it), the packet may be routed to a SoftGate node that cannot perform the required translation directly. In this case, the receiving SoftGate will automatically forward the packet to the appropriate SoftGate nodes based on policy-based routing configured by Netris to handle this situation.
+3. If upstream routers do not learn /32 prefixes (because policy or another reason prevents it), the packet can be routed to a SoftGate node that cannot perform the required translation directly. In this case, the receiving SoftGate will automatically forward the packet to the appropriate SoftGate nodes based on policy-based routing configured by Netris to handle this situation.
 
 Failover behavior
 -----------------
@@ -422,7 +424,7 @@ Netris configures all DNAT and L4LB services on all SoftGate nodes with the role
 
 Netris configures a given SNAT rule on exactly one SoftGate node with the SNAT role. The node is chosen using a deterministic, consistent hashing algorithm.
 
-This approach keeps the Netris SoftGate layer highly available and robust in various hardware failure scenarios.
+This approach keeps the Netris SoftGate layer highly available when a SoftGate node fails.
 
 In case of a SoftGate node failure
 
@@ -434,7 +436,7 @@ Note that SNAT service is the only stateful translation service provided by Soft
 
 When a SNAT SoftGate recovers, Netris will return the earlier redistributed SNAT rules to the recovered node.
 
-When an additional SNAT SoftGate is added to the deployment, as opposed to having recovered from an earlier failure, Netris will execute a SNAT rule reshuffle to redistribute all configured SNAT rules across all deployed SNAT SoftGates. This action may briefly interrupt existing SNAT connections while the rules are redistributed.
+When an additional SNAT SoftGate is added to the deployment, as opposed to having recovered from an earlier failure, Netris will execute a SNAT rule reshuffle to redistribute all configured SNAT rules across all deployed SNAT SoftGates. The reshuffle resets the SNAT sessions whose rules move to another node.
 
 .. _softgate_observability:
 

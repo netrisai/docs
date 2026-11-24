@@ -339,7 +339,7 @@ Additional optimizations are available for East-West GPU interconnect fabrics.
 
   HWMP does not assign or synchronize the point-to-point link IP addresses. The topology must already be designed so that the same GPU port uses identical link addressing on every participating plane, as the applicable Reference Architecture requires.
 
-- **Reference Architecture** (default = None): This setting tells Netris which reference architecture is being deployed on the subject fabric so that Netris can apply the appropriate prefix summarization in the L3VPN overlay.
+- **Reference Architecture** (default = None): This setting tells Netris which reference architecture is being deployed on the subject fabric so that Netris can apply the appropriate prefix summarization in the L3VPN overlay, aggregating the V-Net member IPv4 /31 and IPv6 /64 prefixes within each VPC's VRF.
 
   .. collapse:: Reference Architectures
 
@@ -366,6 +366,11 @@ Additional optimizations are available for East-West GPU interconnect fabrics.
         * - B300/GB300 SPX 2-TIER/3-TIER, SINGLE/DUAL/QUAD-PLANE (all combinations)
           - /24
           - /56
+        * - RTX PRO 6000
+          - /27
+          - /56
+
+  Reference Architecture summarization is realized on NVIDIA Cumulus Linux switches only. RTX PRO 6000 requires Cumulus Linux 5.16 or later.
 
 .. _custom_rules:
 
